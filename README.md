@@ -2,11 +2,13 @@
 
 Zig bindings to various Objective-C APIs, e.g. Metal, using [mach-objc-generator](https://github.com/hexops/mach-objc-generator). Features:
 
-* Zero-fuss installation, cross compilation, and no system dependencies.
+- Zero-fuss installation, cross compilation, and no system dependencies.
 
 ## Usage
 
 See https://machengine.org/pkg/mach-objc
+
+Use `generate.sh` to regenerate the source files. Only `metal/mtl.zig` can be regenerated at this point, but other frameworks may be added later.
 
 ## Issues
 
