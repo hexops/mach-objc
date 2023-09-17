@@ -1,6 +1,20 @@
-const c = @import("../c.zig");
+const builtin = @import("builtin");
 
-pub const ColorSpaceRef = c.CGColorSpaceRef;
-pub const Point = c.CGPoint;
-pub const Rect = c.CGRect;
-pub const Size = c.CGSize;
+pub const ColorSpaceRef = *opaque {};
+
+pub const Float = if (builtin.target.ptrBitWidth() == 8) f64 else f32;
+
+pub const Point = extern struct {
+    x: Float,
+    y: Float,
+};
+
+pub const Size = extern struct {
+    width: Float,
+    height: Float,
+};
+
+pub const Rect = extern struct {
+    origin: Point,
+    size: Size,
+};
