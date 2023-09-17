@@ -97,12 +97,12 @@ pub const MetalLayer = opaque {
             pub fn setWantsExtendedDynamicRangeContent(self_: *T, wantsExtendedDynamicRangeContent_: bool) void {
                 return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setWantsExtendedDynamicRangeContent_, wantsExtendedDynamicRangeContent_);
             }
-            pub fn EDRMetadata(self_: *T) ?*EDRMetadata {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*EDRMetadata, @ptrCast(&c.objc_msgSend))(self_, sel_EDRMetadata);
-            }
-            pub fn setEDRMetadata(self_: *T, EDRMetadata_: ?*EDRMetadata) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*EDRMetadata) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEDRMetadata_, EDRMetadata_);
-            }
+            // pub fn EDRMetadata(self_: *T) ?*EDRMetadata {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*EDRMetadata, @ptrCast(&c.objc_msgSend))(self_, sel_EDRMetadata);
+            // }
+            // pub fn setEDRMetadata(self_: *T, EDRMetadata_: ?*EDRMetadata) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ?*EDRMetadata) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEDRMetadata_, EDRMetadata_);
+            // }
             pub fn displaySyncEnabled(self_: *T) bool {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_displaySyncEnabled);
             }
@@ -121,7 +121,7 @@ pub const MetalLayer = opaque {
 var class_Layer: *c.objc_class = undefined;
 var class_MetalLayer: *c.objc_class = undefined;
 var sel_setColorspace_: *c.objc_selector = undefined;
-var sel_EDRMetadata: *c.objc_selector = undefined;
+//var sel_EDRMetadata: *c.objc_selector = undefined;
 var sel_setWantsExtendedDynamicRangeContent_: *c.objc_selector = undefined;
 var sel_setDevice_: *c.objc_selector = undefined;
 var sel_setPixelFormat_: *c.objc_selector = undefined;
@@ -154,7 +154,7 @@ pub fn init() void {
     class_MetalLayer = c.objc_getClass("CAMetalLayer").?;
 
     sel_setColorspace_ = c.sel_registerName("setColorspace:").?;
-    sel_EDRMetadata = c.sel_registerName("EDRMetadata").?;
+    //sel_EDRMetadata = c.sel_registerName("EDRMetadata").?;
     sel_setWantsExtendedDynamicRangeContent_ = c.sel_registerName("setWantsExtendedDynamicRangeContent:").?;
     sel_setDevice_ = c.sel_registerName("setDevice:").?;
     sel_setPixelFormat_ = c.sel_registerName("setPixelFormat:").?;

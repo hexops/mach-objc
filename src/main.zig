@@ -22,10 +22,5 @@ pub const quartz_core = struct {
 
 test {
     @setEvalBranchQuota(10000);
-    const refAllDecls = std.testing.refAllDecls;
-    refAllDecls(core_foundation.cf);
-    refAllDecls(core_graphics.cg);
-    refAllDecls(foundation.ns);
-    refAllDecls(metal.mtl);
-    refAllDecls(quartz_core.ca);
+    std.testing.refAllDeclsRecursive(@This());
 }

@@ -5,9 +5,9 @@ const ns = @import("../foundation/ns.zig");
 // ------------------------------------------------------------------------------------------------
 // Opaque types
 
-pub const dispatch_data_t = opaque {};
-pub const dispatch_queue_t = opaque {};
-pub const IOSurfaceRef = opaque {};
+pub const dispatch_data_t = *opaque {};
+pub const dispatch_queue_t = *opaque {};
+pub const IOSurfaceRef = *opaque {};
 
 // ------------------------------------------------------------------------------------------------
 // Blocks
@@ -36,7 +36,7 @@ pub fn Block(comptime FuncType: type) type {
     return opaque {
         const Self = @This();
 
-        pub fn init(invoke: FuncType) *Self {
+        pub fn init(comptime invoke: FuncType) *Self {
             const block = BlockLiteral{
                 .isa = _NSConcreteStackBlock,
                 .flags = 0,
@@ -53,7 +53,7 @@ pub fn Block(comptime FuncType: type) type {
 // Types
 
 // MTLCommandBuffer.hpp
-pub const CommandBufferHandler = Block(*const fn (*anyopaque, *CommandBuffer) callconv(.C) void);
+pub const CommandBufferHandler = *Block(*const fn (*anyopaque, *CommandBuffer) callconv(.C) void);
 
 // MTLCounters.hpp
 pub const CommonCounter = *ns.String;
@@ -61,24 +61,24 @@ pub const CommonCounterSet = *ns.String;
 
 // MTLDevice.hpp
 pub const DeviceNotificationName = *ns.String;
-pub const DeviceNotificationHandlerBlock = Block(fn (*anyopaque, *Device, DeviceNotificationName) callconv(.C) void);
-pub const NewLibraryCompletionHandler = Block(fn (*anyopaque, *Library, *ns.Error) callconv(.C) void);
-pub const NewRenderPipelineStateCompletionHandler = Block(fn (*anyopaque, *RenderPipelineState, *ns.Error) callconv(.C) void);
-pub const NewRenderPipelineStateWithReflectionCompletionHandler = Block(fn (*anyopaque, *RenderPipelineState, *RenderPipelineReflection, *ns.Error) callconv(.C) void);
-pub const NewComputePipelineStateCompletionHandler = Block(fn (*anyopaque, *ComputePipelineState, *ns.Error) callconv(.C) void);
-pub const NewComputePipelineStateWithReflectionCompletionHandler = Block(fn (*anyopaque, *ComputePipelineState, *ComputePipelineReflection, *ns.Error) callconv(.C) void);
+pub const DeviceNotificationHandlerBlock = *Block(fn (*anyopaque, *Device, DeviceNotificationName) callconv(.C) void);
+pub const NewLibraryCompletionHandler = *Block(fn (*anyopaque, *Library, *ns.Error) callconv(.C) void);
+pub const NewRenderPipelineStateCompletionHandler = *Block(fn (*anyopaque, *RenderPipelineState, *ns.Error) callconv(.C) void);
+pub const NewRenderPipelineStateWithReflectionCompletionHandler = *Block(fn (*anyopaque, *RenderPipelineState, *RenderPipelineReflection, *ns.Error) callconv(.C) void);
+pub const NewComputePipelineStateCompletionHandler = *Block(fn (*anyopaque, *ComputePipelineState, *ns.Error) callconv(.C) void);
+pub const NewComputePipelineStateWithReflectionCompletionHandler = *Block(fn (*anyopaque, *ComputePipelineState, *ComputePipelineReflection, *ns.Error) callconv(.C) void);
 pub const AutoreleasedComputePipelineReflection = *ComputePipelineReflection;
 pub const AutoreleasedRenderPipelineReflection = *RenderPipelineReflection;
 pub const Timestamp = u64;
 
 // MTLIOCommandBuffer.hpp
-pub const IOCommandBufferHandler = Block(fn (*anyopaque, *IOCommandBuffer) callconv(.C) void);
+pub const IOCommandBufferHandler = *Block(fn (*anyopaque, *IOCommandBuffer) callconv(.C) void);
 
 // MTLDrawable.hpp
-pub const DrawablePresentedHandler = Block(fn (*anyopaque, *Drawable) callconv(.C) void);
+pub const DrawablePresentedHandler = *Block(fn (*anyopaque, *Drawable) callconv(.C) void);
 
 // MTLEvent.hpp
-pub const SharedEventNotificationBlock = Block(fn (*anyopaque, *SharedEvent, u64) callconv(.C) void);
+pub const SharedEventNotificationBlock = *Block(fn (*anyopaque, *SharedEvent, u64) callconv(.C) void);
 
 // MTLLibrary.hpp
 pub const AutoreleasedArgument = *Argument;
@@ -1323,12 +1323,12 @@ pub const PrimitiveAccelerationStructureDescriptor = opaque {
             pub fn descriptor() *T {
                 return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
             }
-            pub fn geometryDescriptors(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_geometryDescriptors);
-            }
-            pub fn setGeometryDescriptors(self_: *T, geometryDescriptors_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setGeometryDescriptors_, geometryDescriptors_);
-            }
+            // pub fn geometryDescriptors(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_geometryDescriptors);
+            // }
+            // pub fn setGeometryDescriptors(self_: *T, geometryDescriptors_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setGeometryDescriptors_, geometryDescriptors_);
+            // }
             pub fn motionStartBorderMode(self_: *T) MotionBorderMode {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) MotionBorderMode, @ptrCast(&c.objc_msgSend))(self_, sel_motionStartBorderMode);
             }
@@ -1523,12 +1523,12 @@ pub const AccelerationStructureMotionTriangleGeometryDescriptor = opaque {
             pub fn descriptor() *T {
                 return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
             }
-            pub fn vertexBuffers(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexBuffers);
-            }
-            pub fn setVertexBuffers(self_: *T, vertexBuffers_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffers_, vertexBuffers_);
-            }
+            // pub fn vertexBuffers(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexBuffers);
+            // }
+            // pub fn setVertexBuffers(self_: *T, vertexBuffers_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffers_, vertexBuffers_);
+            // }
             pub fn vertexFormat(self_: *T) AttributeFormat {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) AttributeFormat, @ptrCast(&c.objc_msgSend))(self_, sel_vertexFormat);
             }
@@ -1594,12 +1594,12 @@ pub const AccelerationStructureMotionBoundingBoxGeometryDescriptor = opaque {
             pub fn descriptor() *T {
                 return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
             }
-            pub fn boundingBoxBuffers(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxBuffers);
-            }
-            pub fn setBoundingBoxBuffers(self_: *T, boundingBoxBuffers_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxBuffers_, boundingBoxBuffers_);
-            }
+            // pub fn boundingBoxBuffers(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxBuffers);
+            // }
+            // pub fn setBoundingBoxBuffers(self_: *T, boundingBoxBuffers_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxBuffers_, boundingBoxBuffers_);
+            // }
             pub fn boundingBoxStride(self_: *T) ns.UInteger {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxStride);
             }
@@ -1653,12 +1653,12 @@ pub const InstanceAccelerationStructureDescriptor = opaque {
             pub fn setInstanceCount(self_: *T, instanceCount_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstanceCount_, instanceCount_);
             }
-            pub fn instancedAccelerationStructures(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_instancedAccelerationStructures);
-            }
-            pub fn setInstancedAccelerationStructures(self_: *T, instancedAccelerationStructures_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstancedAccelerationStructures_, instancedAccelerationStructures_);
-            }
+            // pub fn instancedAccelerationStructures(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_instancedAccelerationStructures);
+            // }
+            // pub fn setInstancedAccelerationStructures(self_: *T, instancedAccelerationStructures_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstancedAccelerationStructures_, instancedAccelerationStructures_);
+            // }
             pub fn instanceDescriptorType(self_: *T) AccelerationStructureInstanceDescriptorType {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) AccelerationStructureInstanceDescriptorType, @ptrCast(&c.objc_msgSend))(self_, sel_instanceDescriptorType);
             }
@@ -1899,9 +1899,9 @@ pub const StructType = opaque {
             pub fn memberByName(self_: *T, name_: *ns.String) ?*StructMember {
                 return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) ?*StructMember, @ptrCast(&c.objc_msgSend))(self_, sel_memberByName_, name_);
             }
-            pub fn members(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_members);
-            }
+            // pub fn members(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_members);
+            // }
         };
     }
 };
@@ -2568,9 +2568,9 @@ pub const CaptureManager = opaque {
             pub fn sharedCaptureManager() *CaptureManager {
                 return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *CaptureManager, @ptrCast(&c.objc_msgSend))(T.class(), sel_sharedCaptureManager);
             }
-            pub fn init(self_: *T) *T {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_init);
-            }
+            // pub fn init(self_: *T) *T {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_init);
+            // }
             pub fn newCaptureScopeWithDevice(self_: *T, device_: *Device) *CaptureScope {
                 return @as(*const fn (*T, *c.objc_selector, *Device) callconv(.C) *CaptureScope, @ptrCast(&c.objc_msgSend))(self_, sel_newCaptureScopeWithDevice_, device_);
             }
@@ -2674,9 +2674,9 @@ pub const CommandBufferEncoderInfo = opaque {
             pub fn label(self_: *T) *ns.String {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
             }
-            pub fn debugSignposts(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_debugSignposts);
-            }
+            // pub fn debugSignposts(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_debugSignposts);
+            // }
             pub fn errorState(self_: *T) CommandEncoderErrorState {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) CommandEncoderErrorState, @ptrCast(&c.objc_msgSend))(self_, sel_errorState);
             }
@@ -3076,12 +3076,12 @@ pub const ComputePipelineReflection = opaque {
         return struct {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
-            pub fn bindings(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_bindings);
-            }
-            pub fn arguments(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_arguments);
-            }
+            // pub fn bindings(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_bindings);
+            // }
+            // pub fn arguments(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_arguments);
+            // }
         };
     }
 };
@@ -3139,24 +3139,24 @@ pub const ComputePipelineDescriptor = opaque {
             pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
                 return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportIndirectCommandBuffers_, supportIndirectCommandBuffers_);
             }
-            pub fn insertLibraries(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_insertLibraries);
-            }
-            pub fn setInsertLibraries(self_: *T, insertLibraries_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInsertLibraries_, insertLibraries_);
-            }
-            pub fn preloadedLibraries(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_preloadedLibraries);
-            }
-            pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreloadedLibraries_, preloadedLibraries_);
-            }
-            pub fn binaryArchives(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
-            }
+            // pub fn insertLibraries(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_insertLibraries);
+            // }
+            // pub fn setInsertLibraries(self_: *T, insertLibraries_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInsertLibraries_, insertLibraries_);
+            // }
+            // pub fn preloadedLibraries(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_preloadedLibraries);
+            // }
+            // pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreloadedLibraries_, preloadedLibraries_);
+            // }
+            // pub fn binaryArchives(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+            // }
+            // pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+            // }
             pub fn linkedFunctions(self_: *T) ?*LinkedFunctions {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_linkedFunctions);
             }
@@ -3192,9 +3192,9 @@ pub const ComputePipelineState = opaque {
             pub fn functionHandleWithFunction(self_: *T, function_: *Function) ?*FunctionHandle {
                 return @as(*const fn (*T, *c.objc_selector, *Function) callconv(.C) ?*FunctionHandle, @ptrCast(&c.objc_msgSend))(self_, sel_functionHandleWithFunction_, function_);
             }
-            pub fn newComputePipelineStateWithAdditionalBinaryFunctions_error(self_: *T, functions_: ns.Array, error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithAdditionalBinaryFunctions_error_, functions_, error_);
-            }
+            // pub fn newComputePipelineStateWithAdditionalBinaryFunctions_error(self_: *T, functions_: ns.Array, error_: ?*?*ns.Error) ?*ComputePipelineState {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithAdditionalBinaryFunctions_error_, functions_, error_);
+            // }
             pub fn newVisibleFunctionTableWithDescriptor(self_: *T, descriptor_: *VisibleFunctionTableDescriptor) ?*VisibleFunctionTable {
                 return @as(*const fn (*T, *c.objc_selector, *VisibleFunctionTableDescriptor) callconv(.C) ?*VisibleFunctionTable, @ptrCast(&c.objc_msgSend))(self_, sel_newVisibleFunctionTableWithDescriptor_, descriptor_);
             }
@@ -3250,9 +3250,9 @@ pub const CounterSet = opaque {
             pub fn name(self_: *T) *ns.String {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
             }
-            pub fn counters(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_counters);
-            }
+            // pub fn counters(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_counters);
+            // }
         };
     }
 };
@@ -3514,9 +3514,9 @@ pub const Device = opaque {
             pub fn newBufferWithBytes_length_options(self_: *T, pointer_: *const anyopaque, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
                 return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ResourceOptions) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytes_length_options_, pointer_, length_, options_);
             }
-            pub fn newBufferWithBytesNoCopy_length_options_deallocator(self_: *T, pointer_: *anyopaque, length_: ns.UInteger, options_: ResourceOptions, deallocator_: void) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, ResourceOptions, void) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytesNoCopy_length_options_deallocator_, pointer_, length_, options_, deallocator_);
-            }
+            // pub fn newBufferWithBytesNoCopy_length_options_deallocator(self_: *T, pointer_: *anyopaque, length_: ns.UInteger, options_: ResourceOptions, deallocator_: void) ?*Buffer {
+            //     return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, ResourceOptions, void) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytesNoCopy_length_options_deallocator_, pointer_, length_, options_, deallocator_);
+            // }
             pub fn newDepthStencilStateWithDescriptor(self_: *T, descriptor_: *DepthStencilDescriptor) ?*DepthStencilState {
                 return @as(*const fn (*T, *c.objc_selector, *DepthStencilDescriptor) callconv(.C) ?*DepthStencilState, @ptrCast(&c.objc_msgSend))(self_, sel_newDepthStencilStateWithDescriptor_, descriptor_);
             }
@@ -3625,9 +3625,9 @@ pub const Device = opaque {
             pub fn getDefaultSamplePositions_count(self_: *T, positions_: *SamplePosition, count_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, *SamplePosition, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getDefaultSamplePositions_count_, positions_, count_);
             }
-            pub fn newArgumentEncoderWithArguments(self_: *T, arguments_: ns.Array) ?*ArgumentEncoder {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) ?*ArgumentEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_newArgumentEncoderWithArguments_, arguments_);
-            }
+            // pub fn newArgumentEncoderWithArguments(self_: *T, arguments_: ns.Array) ?*ArgumentEncoder {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) ?*ArgumentEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_newArgumentEncoderWithArguments_, arguments_);
+            // }
             pub fn supportsRasterizationRateMapWithLayerCount(self_: *T, layerCount_: ns.UInteger) bool {
                 return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsRasterizationRateMapWithLayerCount_, layerCount_);
             }
@@ -3802,9 +3802,9 @@ pub const Device = opaque {
             pub fn maxBufferLength(self_: *T) ns.UInteger {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxBufferLength);
             }
-            pub fn counterSets(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_counterSets);
-            }
+            // pub fn counterSets(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_counterSets);
+            // }
             pub fn supportsDynamicLibraries(self_: *T) bool {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsDynamicLibraries);
             }
@@ -3924,9 +3924,9 @@ pub const SharedEventListener = opaque {
         return struct {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
-            pub fn init(self_: *T) *T {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_init);
-            }
+            // pub fn init(self_: *T) *T {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_init);
+            // }
             pub fn initWithDispatchQueue(self_: *T, dispatchQueue_: dispatch_queue_t) *T {
                 return @as(*const fn (*T, *c.objc_selector, dispatch_queue_t) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithDispatchQueue_, dispatchQueue_);
             }
@@ -4063,12 +4063,12 @@ pub const FunctionDescriptor = opaque {
             pub fn setOptions(self_: *T, options_: FunctionOptions) void {
                 return @as(*const fn (*T, *c.objc_selector, FunctionOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOptions_, options_);
             }
-            pub fn binaryArchives(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
-            }
+            // pub fn binaryArchives(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+            // }
+            // pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+            // }
         };
     }
 };
@@ -4233,27 +4233,27 @@ pub const FunctionStitchingFunctionNode = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
             pub usingnamespace FunctionStitchingNode.Methods(T);
 
-            pub fn initWithName_arguments_controlDependencies(self_: *T, name_: *ns.String, arguments_: ns.Array, controlDependencies_: ns.Array) *T {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, ns.Array, ns.Array) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithName_arguments_controlDependencies_, name_, arguments_, controlDependencies_);
-            }
+            // pub fn initWithName_arguments_controlDependencies(self_: *T, name_: *ns.String, arguments_: ns.Array, controlDependencies_: ns.Array) *T {
+            //     return @as(*const fn (*T, *c.objc_selector, *ns.String, ns.Array, ns.Array) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithName_arguments_controlDependencies_, name_, arguments_, controlDependencies_);
+            // }
             pub fn name(self_: *T) *ns.String {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
             }
             pub fn setName(self_: *T, name_: *ns.String) void {
                 return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setName_, name_);
             }
-            pub fn arguments(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_arguments);
-            }
-            pub fn setArguments(self_: *T, arguments_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArguments_, arguments_);
-            }
-            pub fn controlDependencies(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_controlDependencies);
-            }
-            pub fn setControlDependencies(self_: *T, controlDependencies_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setControlDependencies_, controlDependencies_);
-            }
+            // pub fn arguments(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_arguments);
+            // }
+            // pub fn setArguments(self_: *T, arguments_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArguments_, arguments_);
+            // }
+            // pub fn controlDependencies(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_controlDependencies);
+            // }
+            // pub fn setControlDependencies(self_: *T, controlDependencies_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setControlDependencies_, controlDependencies_);
+            // }
         };
     }
 };
@@ -4269,33 +4269,33 @@ pub const FunctionStitchingGraph = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
             pub usingnamespace ns.Copying.Methods(T);
 
-            pub fn initWithFunctionName_nodes_outputNode_attributes(self_: *T, functionName_: *ns.String, nodes_: ns.Array, outputNode_: ?*FunctionStitchingFunctionNode, attributes_: ns.Array) *T {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, ns.Array, ?*FunctionStitchingFunctionNode, ns.Array) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFunctionName_nodes_outputNode_attributes_, functionName_, nodes_, outputNode_, attributes_);
-            }
+            // pub fn initWithFunctionName_nodes_outputNode_attributes(self_: *T, functionName_: *ns.String, nodes_: ns.Array, outputNode_: ?*FunctionStitchingFunctionNode, attributes_: ns.Array) *T {
+            //     return @as(*const fn (*T, *c.objc_selector, *ns.String, ns.Array, ?*FunctionStitchingFunctionNode, ns.Array) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFunctionName_nodes_outputNode_attributes_, functionName_, nodes_, outputNode_, attributes_);
+            // }
             pub fn functionName(self_: *T) *ns.String {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_functionName);
             }
             pub fn setFunctionName(self_: *T, functionName_: *ns.String) void {
                 return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctionName_, functionName_);
             }
-            pub fn nodes(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_nodes);
-            }
-            pub fn setNodes(self_: *T, nodes_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setNodes_, nodes_);
-            }
+            // pub fn nodes(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_nodes);
+            // }
+            // pub fn setNodes(self_: *T, nodes_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setNodes_, nodes_);
+            // }
             pub fn outputNode(self_: *T) ?*FunctionStitchingFunctionNode {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*FunctionStitchingFunctionNode, @ptrCast(&c.objc_msgSend))(self_, sel_outputNode);
             }
             pub fn setOutputNode(self_: *T, outputNode_: ?*FunctionStitchingFunctionNode) void {
                 return @as(*const fn (*T, *c.objc_selector, ?*FunctionStitchingFunctionNode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOutputNode_, outputNode_);
             }
-            pub fn attributes(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_attributes);
-            }
-            pub fn setAttributes(self_: *T, attributes_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAttributes_, attributes_);
-            }
+            // pub fn attributes(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_attributes);
+            // }
+            // pub fn setAttributes(self_: *T, attributes_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAttributes_, attributes_);
+            // }
         };
     }
 };
@@ -4311,18 +4311,18 @@ pub const StitchedLibraryDescriptor = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
             pub usingnamespace ns.Copying.Methods(T);
 
-            pub fn functionGraphs(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functionGraphs);
-            }
-            pub fn setFunctionGraphs(self_: *T, functionGraphs_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctionGraphs_, functionGraphs_);
-            }
-            pub fn functions(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functions);
-            }
-            pub fn setFunctions(self_: *T, functions_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_, functions_);
-            }
+            // pub fn functionGraphs(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functionGraphs);
+            // }
+            // pub fn setFunctionGraphs(self_: *T, functionGraphs_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctionGraphs_, functionGraphs_);
+            // }
+            // pub fn functions(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functions);
+            // }
+            // pub fn setFunctions(self_: *T, functions_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_, functions_);
+            // }
         };
     }
 };
@@ -4981,18 +4981,18 @@ pub const Function = opaque {
             pub fn patchControlPointCount(self_: *T) ns.Integer {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Integer, @ptrCast(&c.objc_msgSend))(self_, sel_patchControlPointCount);
             }
-            pub fn vertexAttributes(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexAttributes);
-            }
-            pub fn stageInputAttributes(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_stageInputAttributes);
-            }
+            // pub fn vertexAttributes(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexAttributes);
+            // }
+            // pub fn stageInputAttributes(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_stageInputAttributes);
+            // }
             pub fn name(self_: *T) *ns.String {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
             }
-            pub fn functionConstantsDictionary(self_: *T) ns.Dictionary {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Dictionary, @ptrCast(&c.objc_msgSend))(self_, sel_functionConstantsDictionary);
-            }
+            // pub fn functionConstantsDictionary(self_: *T) ns.Dictionary {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Dictionary, @ptrCast(&c.objc_msgSend))(self_, sel_functionConstantsDictionary);
+            // }
             pub fn options(self_: *T) FunctionOptions {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) FunctionOptions, @ptrCast(&c.objc_msgSend))(self_, sel_options);
             }
@@ -5011,12 +5011,12 @@ pub const CompileOptions = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
             pub usingnamespace ns.Copying.Methods(T);
 
-            pub fn preprocessorMacros(self_: *T) ns.Dictionary {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Dictionary, @ptrCast(&c.objc_msgSend))(self_, sel_preprocessorMacros);
-            }
-            pub fn setPreprocessorMacros(self_: *T, preprocessorMacros_: ns.Dictionary) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Dictionary) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreprocessorMacros_, preprocessorMacros_);
-            }
+            // pub fn preprocessorMacros(self_: *T) ns.Dictionary {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Dictionary, @ptrCast(&c.objc_msgSend))(self_, sel_preprocessorMacros);
+            // }
+            // pub fn setPreprocessorMacros(self_: *T, preprocessorMacros_: ns.Dictionary) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Dictionary) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreprocessorMacros_, preprocessorMacros_);
+            // }
             pub fn fastMathEnabled(self_: *T) bool {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_fastMathEnabled);
             }
@@ -5041,12 +5041,12 @@ pub const CompileOptions = opaque {
             pub fn setInstallName(self_: *T, installName_: ?*ns.String) void {
                 return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstallName_, installName_);
             }
-            pub fn libraries(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_libraries);
-            }
-            pub fn setLibraries(self_: *T, libraries_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLibraries_, libraries_);
-            }
+            // pub fn libraries(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_libraries);
+            // }
+            // pub fn setLibraries(self_: *T, libraries_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLibraries_, libraries_);
+            // }
             pub fn preserveInvariance(self_: *T) bool {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_preserveInvariance);
             }
@@ -5094,18 +5094,18 @@ pub const Library = opaque {
             pub fn newFunctionWithName_constantValues_error(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, error_: ?*?*ns.Error) ?*Function {
                 return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_error_, name_, constantValues_, error_);
             }
-            pub fn newFunctionWithName_constantValues_completionHandler(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, completionHandler_: void) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_completionHandler_, name_, constantValues_, completionHandler_);
-            }
-            pub fn newFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *FunctionDescriptor, completionHandler_: void) void {
-                return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
-            }
+            // pub fn newFunctionWithName_constantValues_completionHandler(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, completionHandler_: void) void {
+            //     return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_completionHandler_, name_, constantValues_, completionHandler_);
+            // }
+            // pub fn newFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *FunctionDescriptor, completionHandler_: void) void {
+            //     return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
+            // }
             pub fn newFunctionWithDescriptor_error(self_: *T, descriptor_: *FunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
                 return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_error_, descriptor_, error_);
             }
-            pub fn newIntersectionFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *IntersectionFunctionDescriptor, completionHandler_: void) void {
-                return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
-            }
+            // pub fn newIntersectionFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *IntersectionFunctionDescriptor, completionHandler_: void) void {
+            //     return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
+            // }
             pub fn newIntersectionFunctionWithDescriptor_error(self_: *T, descriptor_: *IntersectionFunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
                 return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_error_, descriptor_, error_);
             }
@@ -5118,9 +5118,9 @@ pub const Library = opaque {
             pub fn device(self_: *T) *Device {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
             }
-            pub fn functionNames(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functionNames);
-            }
+            // pub fn functionNames(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functionNames);
+            // }
             pub fn @"type"(self_: *T) LibraryType {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) LibraryType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
             }
@@ -5145,30 +5145,30 @@ pub const LinkedFunctions = opaque {
             pub fn linkedFunctions() *LinkedFunctions {
                 return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(T.class(), sel_linkedFunctions);
             }
-            pub fn functions(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functions);
-            }
-            pub fn setFunctions(self_: *T, functions_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_, functions_);
-            }
-            pub fn binaryFunctions(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryFunctions);
-            }
-            pub fn setBinaryFunctions(self_: *T, binaryFunctions_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryFunctions_, binaryFunctions_);
-            }
-            pub fn groups(self_: *T) ns.Dictionary {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Dictionary, @ptrCast(&c.objc_msgSend))(self_, sel_groups);
-            }
-            pub fn setGroups(self_: *T, groups_: ns.Dictionary) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Dictionary) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setGroups_, groups_);
-            }
-            pub fn privateFunctions(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_privateFunctions);
-            }
-            pub fn setPrivateFunctions(self_: *T, privateFunctions_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPrivateFunctions_, privateFunctions_);
-            }
+            // pub fn functions(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_functions);
+            // }
+            // pub fn setFunctions(self_: *T, functions_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_, functions_);
+            // }
+            // pub fn binaryFunctions(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryFunctions);
+            // }
+            // pub fn setBinaryFunctions(self_: *T, binaryFunctions_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryFunctions_, binaryFunctions_);
+            // }
+            // pub fn groups(self_: *T) ns.Dictionary {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Dictionary, @ptrCast(&c.objc_msgSend))(self_, sel_groups);
+            // }
+            // pub fn setGroups(self_: *T, groups_: ns.Dictionary) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Dictionary) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setGroups_, groups_);
+            // }
+            // pub fn privateFunctions(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_privateFunctions);
+            // }
+            // pub fn setPrivateFunctions(self_: *T, privateFunctions_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPrivateFunctions_, privateFunctions_);
+            // }
         };
     }
 };
@@ -5276,9 +5276,9 @@ pub const RasterizationRateLayerDescriptor = opaque {
         return struct {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
-            pub fn init(self_: *T) *T {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_init);
-            }
+            // pub fn init(self_: *T) *T {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_init);
+            // }
             pub fn initWithSampleCount(self_: *T, sampleCount_: Size) *T {
                 return @as(*const fn (*T, *c.objc_selector, Size) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithSampleCount_, sampleCount_);
             }
@@ -6224,30 +6224,30 @@ pub const RenderPipelineReflection = opaque {
         return struct {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
-            pub fn vertexBindings(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexBindings);
-            }
-            pub fn fragmentBindings(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentBindings);
-            }
-            pub fn tileBindings(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_tileBindings);
-            }
-            pub fn objectBindings(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_objectBindings);
-            }
-            pub fn meshBindings(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_meshBindings);
-            }
-            pub fn vertexArguments(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexArguments);
-            }
-            pub fn fragmentArguments(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentArguments);
-            }
-            pub fn tileArguments(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_tileArguments);
-            }
+            // pub fn vertexBindings(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexBindings);
+            // }
+            // pub fn fragmentBindings(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentBindings);
+            // }
+            // pub fn tileBindings(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_tileBindings);
+            // }
+            // pub fn objectBindings(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_objectBindings);
+            // }
+            // pub fn meshBindings(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_meshBindings);
+            // }
+            // pub fn vertexArguments(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexArguments);
+            // }
+            // pub fn fragmentArguments(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentArguments);
+            // }
+            // pub fn tileArguments(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_tileArguments);
+            // }
         };
     }
 };
@@ -6401,24 +6401,24 @@ pub const RenderPipelineDescriptor = opaque {
             pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
                 return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportIndirectCommandBuffers_, supportIndirectCommandBuffers_);
             }
-            pub fn binaryArchives(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
-            }
-            pub fn vertexPreloadedLibraries(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexPreloadedLibraries);
-            }
-            pub fn setVertexPreloadedLibraries(self_: *T, vertexPreloadedLibraries_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexPreloadedLibraries_, vertexPreloadedLibraries_);
-            }
-            pub fn fragmentPreloadedLibraries(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentPreloadedLibraries);
-            }
-            pub fn setFragmentPreloadedLibraries(self_: *T, fragmentPreloadedLibraries_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentPreloadedLibraries_, fragmentPreloadedLibraries_);
-            }
+            // pub fn binaryArchives(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+            // }
+            // pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+            // }
+            // pub fn vertexPreloadedLibraries(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexPreloadedLibraries);
+            // }
+            // pub fn setVertexPreloadedLibraries(self_: *T, vertexPreloadedLibraries_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexPreloadedLibraries_, vertexPreloadedLibraries_);
+            // }
+            // pub fn fragmentPreloadedLibraries(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentPreloadedLibraries);
+            // }
+            // pub fn setFragmentPreloadedLibraries(self_: *T, fragmentPreloadedLibraries_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentPreloadedLibraries_, fragmentPreloadedLibraries_);
+            // }
             pub fn vertexLinkedFunctions(self_: *T) *LinkedFunctions {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_vertexLinkedFunctions);
             }
@@ -6470,24 +6470,24 @@ pub const RenderPipelineFunctionsDescriptor = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
             pub usingnamespace ns.Copying.Methods(T);
 
-            pub fn vertexAdditionalBinaryFunctions(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexAdditionalBinaryFunctions);
-            }
-            pub fn setVertexAdditionalBinaryFunctions(self_: *T, vertexAdditionalBinaryFunctions_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexAdditionalBinaryFunctions_, vertexAdditionalBinaryFunctions_);
-            }
-            pub fn fragmentAdditionalBinaryFunctions(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentAdditionalBinaryFunctions);
-            }
-            pub fn setFragmentAdditionalBinaryFunctions(self_: *T, fragmentAdditionalBinaryFunctions_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentAdditionalBinaryFunctions_, fragmentAdditionalBinaryFunctions_);
-            }
-            pub fn tileAdditionalBinaryFunctions(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_tileAdditionalBinaryFunctions);
-            }
-            pub fn setTileAdditionalBinaryFunctions(self_: *T, tileAdditionalBinaryFunctions_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileAdditionalBinaryFunctions_, tileAdditionalBinaryFunctions_);
-            }
+            // pub fn vertexAdditionalBinaryFunctions(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_vertexAdditionalBinaryFunctions);
+            // }
+            // pub fn setVertexAdditionalBinaryFunctions(self_: *T, vertexAdditionalBinaryFunctions_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexAdditionalBinaryFunctions_, vertexAdditionalBinaryFunctions_);
+            // }
+            // pub fn fragmentAdditionalBinaryFunctions(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentAdditionalBinaryFunctions);
+            // }
+            // pub fn setFragmentAdditionalBinaryFunctions(self_: *T, fragmentAdditionalBinaryFunctions_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentAdditionalBinaryFunctions_, fragmentAdditionalBinaryFunctions_);
+            // }
+            // pub fn tileAdditionalBinaryFunctions(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_tileAdditionalBinaryFunctions);
+            // }
+            // pub fn setTileAdditionalBinaryFunctions(self_: *T, tileAdditionalBinaryFunctions_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileAdditionalBinaryFunctions_, tileAdditionalBinaryFunctions_);
+            // }
         };
     }
 };
@@ -6665,18 +6665,18 @@ pub const TileRenderPipelineDescriptor = opaque {
             pub fn setMaxTotalThreadsPerThreadgroup(self_: *T, maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTotalThreadsPerThreadgroup_, maxTotalThreadsPerThreadgroup_);
             }
-            pub fn binaryArchives(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
-            }
-            pub fn preloadedLibraries(self_: *T) ns.Array {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_preloadedLibraries);
-            }
-            pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: ns.Array) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreloadedLibraries_, preloadedLibraries_);
-            }
+            // pub fn binaryArchives(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+            // }
+            // pub fn setBinaryArchives(self_: *T, binaryArchives_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+            // }
+            // pub fn preloadedLibraries(self_: *T) ns.Array {
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Array, @ptrCast(&c.objc_msgSend))(self_, sel_preloadedLibraries);
+            // }
+            // pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: ns.Array) void {
+            //     return @as(*const fn (*T, *c.objc_selector, ns.Array) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreloadedLibraries_, preloadedLibraries_);
+            // }
             pub fn linkedFunctions(self_: *T) *LinkedFunctions {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_linkedFunctions);
             }
