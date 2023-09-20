@@ -9,51 +9,11 @@ pub const dispatch_data_t = *opaque {};
 pub const dispatch_queue_t = *opaque {};
 pub const IOSurfaceRef = *opaque {};
 
-// ------------------------------------------------------------------------------------------------
-// Blocks
-
+// TODO - can we use definition in ns
 extern const _NSConcreteStackBlock: *anyopaque;
-extern fn _Block_copy(block: *const anyopaque) callconv(.C) *anyopaque;
-extern fn _Block_release(block: *const anyopaque) callconv(.C) void;
-
-const BlockDescriptor = extern struct {
-    reserved: c_ulong,
-    size: c_ulong,
-};
-
-const BlockLiteral = extern struct {
-    isa: *anyopaque,
-    flags: c_int,
-    reserved: c_int,
-    invoke: *const fn () callconv(.C) void,
-    descriptor: *const BlockDescriptor,
-};
-
-const block_descriptor = BlockDescriptor{ .reserved = 0, .size = @sizeOf(BlockLiteral) };
-
-// TODO - variable capture
-pub fn Block(comptime FuncType: type) type {
-    return opaque {
-        const Self = @This();
-
-        pub fn init(comptime invoke: FuncType) *Self {
-            const block = BlockLiteral{
-                .isa = _NSConcreteStackBlock,
-                .flags = 0,
-                .reserved = 0,
-                .invoke = @as(*const fn () callconv(.C) void, @ptrCast(invoke)),
-                .descriptor = &block_descriptor,
-            };
-            return _Block_copy(&block);
-        }
-    };
-}
 
 // ------------------------------------------------------------------------------------------------
 // Types
-
-// MTLCommandBuffer.hpp
-pub const CommandBufferHandler = *Block(*const fn (*anyopaque, *CommandBuffer) callconv(.C) void);
 
 // MTLCounters.hpp
 pub const CommonCounter = *ns.String;
@@ -61,24 +21,9 @@ pub const CommonCounterSet = *ns.String;
 
 // MTLDevice.hpp
 pub const DeviceNotificationName = *ns.String;
-pub const DeviceNotificationHandlerBlock = *Block(fn (*anyopaque, *Device, DeviceNotificationName) callconv(.C) void);
-pub const NewLibraryCompletionHandler = *Block(fn (*anyopaque, *Library, *ns.Error) callconv(.C) void);
-pub const NewRenderPipelineStateCompletionHandler = *Block(fn (*anyopaque, *RenderPipelineState, *ns.Error) callconv(.C) void);
-pub const NewRenderPipelineStateWithReflectionCompletionHandler = *Block(fn (*anyopaque, *RenderPipelineState, *RenderPipelineReflection, *ns.Error) callconv(.C) void);
-pub const NewComputePipelineStateCompletionHandler = *Block(fn (*anyopaque, *ComputePipelineState, *ns.Error) callconv(.C) void);
-pub const NewComputePipelineStateWithReflectionCompletionHandler = *Block(fn (*anyopaque, *ComputePipelineState, *ComputePipelineReflection, *ns.Error) callconv(.C) void);
 pub const AutoreleasedComputePipelineReflection = *ComputePipelineReflection;
 pub const AutoreleasedRenderPipelineReflection = *RenderPipelineReflection;
 pub const Timestamp = u64;
-
-// MTLIOCommandBuffer.hpp
-pub const IOCommandBufferHandler = *Block(fn (*anyopaque, *IOCommandBuffer) callconv(.C) void);
-
-// MTLDrawable.hpp
-pub const DrawablePresentedHandler = *Block(fn (*anyopaque, *Drawable) callconv(.C) void);
-
-// MTLEvent.hpp
-pub const SharedEventNotificationBlock = *Block(fn (*anyopaque, *SharedEvent, u64) callconv(.C) void);
 
 // MTLLibrary.hpp
 pub const AutoreleasedArgument = *Argument;
@@ -291,5 +236,4 @@ pub const SizeAndAlign = extern struct {
     size: ns.UInteger,
     @"align": ns.UInteger,
 };
-
 // ------------------------------------------------------------------------------------------------

@@ -12,6 +12,27 @@ pub const UInteger = usize;
 pub const unichar = u16;
 
 // ------------------------------------------------------------------------------------------------
+// Blocks
+
+extern const _NSConcreteStackBlock: *anyopaque;
+
+pub const BlockDescriptor = extern struct {
+    reserved: c_ulong,
+    size: c_ulong,
+};
+
+pub fn BlockLiteral(comptime Context: type) type {
+    return extern struct {
+        isa: *anyopaque,
+        flags: c_int,
+        reserved: c_int,
+        invoke: *const fn () callconv(.C) void,
+        descriptor: *const BlockDescriptor,
+        context: Context,
+    };
+}
+
+// ------------------------------------------------------------------------------------------------
 // Enumerations
 
 pub const ActivityOptions = u64;
