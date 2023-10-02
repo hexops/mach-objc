@@ -1,4 +1,5 @@
 const std = @import("std");
+pub const objc = @import("objc.zig");
 
 pub const core_foundation = struct {
     pub const cf = @import("core_foundation/cf.zig");
