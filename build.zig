@@ -19,7 +19,24 @@ pub fn testStep(b: *std.Build, optimize: std.builtin.OptimizeMode, target: std.z
         .target = target,
         .optimize = optimize,
     });
+    link(main_tests);
+
+    // Transitive dependencies, explicit linkage of these works around
+    // ziglang/zig#17130
+    main_tests.linkFramework("CoreFoundation");
+
+    // Direct dependencies
     main_tests.linkFramework("Foundation");
     b.installArtifact(main_tests);
     return b.addRunArtifact(main_tests);
+}
+
+pub fn link(step: *std.build.CompileStep) void {
+    if (step.target.toTarget().isDarwin()) {
+        @import("xcode_frameworks").addPaths(step);
+
+        // Transitive dependencies, explicit linkage of these works around
+        // ziglang/zig#17130
+        step.linkSystemLibrary("objc");
+    }
 }
