@@ -1,6 +1,10 @@
 const std = @import("std");
 pub const objc = @import("objc.zig");
 
+pub const avf_audio = struct {
+    pub const avaudio = @import("avf_audio/avaudio.zig");
+};
+
 pub const core_foundation = struct {
     pub const cf = @import("core_foundation/cf.zig");
 };
