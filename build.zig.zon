@@ -14,8 +14,8 @@
     },
     .dependencies = .{
         .xcode_frameworks = .{
-            .url = "https://pkg.machengine.org/xcode-frameworks/e77a5c6809a0d3f62ec549ee56e9d2dc6807cd5b.tar.gz",
-            .hash = "12202044ed9fd69af156b0afde619ffd1d111554c557f57ab670ca9960e76d60d0b8",
+            .url = "https://pkg.machengine.org/xcode-frameworks/ff1f5c15120b65504d8feccca8015a7e96ed580c.tar.gz",
+            .hash = "12207bc2707695102c636c26b60343e634127ee4d6e23210b1ae1664b2b2fea6076f",
         },
     },
 }
