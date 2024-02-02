@@ -14,13 +14,13 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    addPaths(main_tests);
+    addPaths(&main_tests.root_module);
     main_tests.linkFramework("Foundation");
 
     const test_step = b.step("test", "Run library tests");
     test_step.dependOn(&b.addRunArtifact(main_tests).step);
 }
 
-pub fn addPaths(step: *std.Build.Step.Compile) void {
-    @import("xcode_frameworks").addPaths(step);
+pub fn addPaths(mod: *std.Build.Module) void {
+    @import("xcode_frameworks").addPaths(mod);
 }
