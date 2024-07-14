@@ -8,6 +8,14 @@ pub fn build(b: *std.Build) void {
         .root_source_file = b.path("src/main.zig"),
     });
 
+    const generator_exe = b.addExecutable(.{
+        .name = "generator",
+        .root_source_file = b.path("generator.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(generator_exe);
+
     const main_tests = b.addTest(.{
         .name = "mach-objc-tests",
         .root_source_file = b.path("src/main.zig"),

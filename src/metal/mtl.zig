@@ -236,7 +236,6 @@ pub const SizeAndAlign = extern struct {
     size: ns.UInteger,
     @"align": ns.UInteger,
 };
-
 // ------------------------------------------------------------------------------------------------
 
 pub const AccelerationStructureUsage = ns.UInteger;
@@ -260,6 +259,8 @@ pub const AccelerationStructureInstanceDescriptorType = ns.UInteger;
 pub const AccelerationStructureInstanceDescriptorTypeDefault: AccelerationStructureInstanceDescriptorType = 0;
 pub const AccelerationStructureInstanceDescriptorTypeUserID: AccelerationStructureInstanceDescriptorType = 1;
 pub const AccelerationStructureInstanceDescriptorTypeMotion: AccelerationStructureInstanceDescriptorType = 2;
+pub const AccelerationStructureInstanceDescriptorTypeIndirect: AccelerationStructureInstanceDescriptorType = 3;
+pub const AccelerationStructureInstanceDescriptorTypeIndirectMotion: AccelerationStructureInstanceDescriptorType = 4;
 
 pub const AccelerationStructureRefitOptions = ns.UInteger;
 pub const AccelerationStructureRefitOptionVertexData: AccelerationStructureRefitOptions = 1;
@@ -357,6 +358,10 @@ pub const DataTypeVisibleFunctionTable: DataType = 115;
 pub const DataTypeIntersectionFunctionTable: DataType = 116;
 pub const DataTypePrimitiveAccelerationStructure: DataType = 117;
 pub const DataTypeInstanceAccelerationStructure: DataType = 118;
+pub const DataTypeBFloat: DataType = 121;
+pub const DataTypeBFloat2: DataType = 122;
+pub const DataTypeBFloat3: DataType = 123;
+pub const DataTypeBFloat4: DataType = 124;
 
 pub const BindingType = ns.Integer;
 pub const BindingTypeBuffer: BindingType = 0;
@@ -383,10 +388,13 @@ pub const ArgumentTypePrimitiveAccelerationStructure: ArgumentType = 25;
 pub const ArgumentTypeInstanceAccelerationStructure: ArgumentType = 26;
 pub const ArgumentTypeIntersectionFunctionTable: ArgumentType = 27;
 
-pub const ArgumentAccess = ns.UInteger;
-pub const ArgumentAccessReadOnly: ArgumentAccess = 0;
-pub const ArgumentAccessReadWrite: ArgumentAccess = 1;
-pub const ArgumentAccessWriteOnly: ArgumentAccess = 2;
+pub const BindingAccess = ns.UInteger;
+pub const BindingAccessReadOnly: BindingAccess = 0;
+pub const BindingAccessReadWrite: BindingAccess = 1;
+pub const BindingAccessWriteOnly: BindingAccess = 2;
+pub const ArgumentAccessReadOnly: BindingAccess = 0;
+pub const ArgumentAccessReadWrite: BindingAccess = 1;
+pub const ArgumentAccessWriteOnly: BindingAccess = 2;
 
 pub const BinaryArchiveError = ns.UInteger;
 pub const BinaryArchiveErrorNone: BinaryArchiveError = 0;
@@ -533,6 +541,7 @@ pub const GPUFamilyApple5: GPUFamily = 1005;
 pub const GPUFamilyApple6: GPUFamily = 1006;
 pub const GPUFamilyApple7: GPUFamily = 1007;
 pub const GPUFamilyApple8: GPUFamily = 1008;
+pub const GPUFamilyApple9: GPUFamily = 1009;
 pub const GPUFamilyMac1: GPUFamily = 2001;
 pub const GPUFamilyMac2: GPUFamily = 2002;
 pub const GPUFamilyCommon1: GPUFamily = 3001;
@@ -590,6 +599,7 @@ pub const DynamicLibraryErrorUnsupported: DynamicLibraryError = 5;
 pub const FunctionOptions = ns.UInteger;
 pub const FunctionOptionNone: FunctionOptions = 0;
 pub const FunctionOptionCompileToBinary: FunctionOptions = 1;
+pub const FunctionOptionStoreFunctionInMetalScript: FunctionOptions = 2;
 
 pub const FunctionLogType = ns.UInteger;
 pub const FunctionLogTypeValidation: FunctionLogType = 0;
@@ -606,6 +616,8 @@ pub const IndirectCommandTypeDrawPatches: IndirectCommandType = 4;
 pub const IndirectCommandTypeDrawIndexedPatches: IndirectCommandType = 8;
 pub const IndirectCommandTypeConcurrentDispatch: IndirectCommandType = 32;
 pub const IndirectCommandTypeConcurrentDispatchThreads: IndirectCommandType = 64;
+pub const IndirectCommandTypeDrawMeshThreadgroups: IndirectCommandType = 128;
+pub const IndirectCommandTypeDrawMeshThreads: IndirectCommandType = 256;
 
 pub const IntersectionFunctionSignature = ns.UInteger;
 pub const IntersectionFunctionSignatureNone: IntersectionFunctionSignature = 0;
@@ -615,6 +627,8 @@ pub const IntersectionFunctionSignatureWorldSpaceData: IntersectionFunctionSigna
 pub const IntersectionFunctionSignatureInstanceMotion: IntersectionFunctionSignature = 8;
 pub const IntersectionFunctionSignaturePrimitiveMotion: IntersectionFunctionSignature = 16;
 pub const IntersectionFunctionSignatureExtendedLimits: IntersectionFunctionSignature = 32;
+pub const IntersectionFunctionSignatureMaxLevels: IntersectionFunctionSignature = 64;
+pub const IntersectionFunctionSignatureCurveData: IntersectionFunctionSignature = 128;
 
 pub const IOStatus = ns.Integer;
 pub const IOStatusPending: IOStatus = 0;
@@ -659,6 +673,7 @@ pub const LanguageVersion2_2: LanguageVersion = 131074;
 pub const LanguageVersion2_3: LanguageVersion = 131075;
 pub const LanguageVersion2_4: LanguageVersion = 131076;
 pub const LanguageVersion3_0: LanguageVersion = 196608;
+pub const LanguageVersion3_1: LanguageVersion = 196609;
 
 pub const LibraryType = ns.Integer;
 pub const LibraryTypeExecutable: LibraryType = 0;
@@ -1063,6 +1078,8 @@ pub const AttributeFormatShort: AttributeFormat = 50;
 pub const AttributeFormatUShortNormalized: AttributeFormat = 51;
 pub const AttributeFormatShortNormalized: AttributeFormat = 52;
 pub const AttributeFormatHalf: AttributeFormat = 53;
+pub const AttributeFormatFloatRG11B10: AttributeFormat = 54;
+pub const AttributeFormatFloatRGB9E5: AttributeFormat = 55;
 
 pub const IndexType = ns.UInteger;
 pub const IndexTypeUInt16: IndexType = 0;
@@ -1105,6 +1122,7 @@ pub const TextureUsageShaderRead: TextureUsage = 1;
 pub const TextureUsageShaderWrite: TextureUsage = 2;
 pub const TextureUsageRenderTarget: TextureUsage = 4;
 pub const TextureUsagePixelFormatView: TextureUsage = 16;
+pub const TextureUsageShaderAtomic: TextureUsage = 32;
 
 pub const TextureCompressionType = ns.Integer;
 pub const TextureCompressionTypeLossless: TextureCompressionType = 0;
@@ -1163,6 +1181,8 @@ pub const VertexFormatShort: VertexFormat = 50;
 pub const VertexFormatUShortNormalized: VertexFormat = 51;
 pub const VertexFormatShortNormalized: VertexFormat = 52;
 pub const VertexFormatHalf: VertexFormat = 53;
+pub const VertexFormatFloatRG11B10: VertexFormat = 54;
+pub const VertexFormatFloatRGB9E5: VertexFormat = 55;
 
 pub const VertexStepFunction = ns.UInteger;
 pub const VertexStepFunctionConstant: VertexStepFunction = 0;
@@ -1908,8 +1928,8 @@ pub const PointerType = opaque {
             pub fn elementType(self_: *T) DataType {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_elementType);
             }
-            pub fn access(self_: *T) ArgumentAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+            pub fn access(self_: *T) BindingAccess {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
             }
             pub fn alignment(self_: *T) ns.UInteger {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_alignment);
@@ -1940,8 +1960,8 @@ pub const TextureReferenceType = opaque {
             pub fn textureType(self_: *T) TextureType {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
             }
-            pub fn access(self_: *T) ArgumentAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+            pub fn access(self_: *T) BindingAccess {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
             }
             pub fn isDepthTexture(self_: *T) bool {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isDepthTexture);
@@ -1966,8 +1986,8 @@ pub const Argument = opaque {
             pub fn @"type"(self_: *T) ArgumentType {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
             }
-            pub fn access(self_: *T) ArgumentAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+            pub fn access(self_: *T) BindingAccess {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
             }
             pub fn index(self_: *T) ns.UInteger {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_index);
@@ -2025,8 +2045,8 @@ pub const Binding = opaque {
             pub fn @"type"(self_: *T) BindingType {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
             }
-            pub fn access(self_: *T) ArgumentAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+            pub fn access(self_: *T) BindingAccess {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
             }
             pub fn index(self_: *T) ns.UInteger {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_index);
@@ -2850,6 +2870,18 @@ pub const ComputeCommandEncoder = opaque {
             pub fn setBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
                 return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffers_offsets_withRange_, buffers_, offsets_, range_);
             }
+            pub fn setBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
+            }
+            pub fn setBuffers_offsets_attributeStrides_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
+                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffers_offsets_attributeStrides_withRange_, buffers_, offsets_, strides_, range_);
+            }
+            pub fn setBufferOffset_attributeStride_atIndex(self_: *T, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBufferOffset_attributeStride_atIndex_, offset_, stride_, index_);
+            }
+            pub fn setBytes_length_attributeStride_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBytes_length_attributeStride_atIndex_, bytes_, length_, stride_, index_);
+            }
             pub fn setVisibleFunctionTable_atBufferIndex(self_: *T, visibleFunctionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTable_atBufferIndex_, visibleFunctionTable_, bufferIndex_);
             }
@@ -3390,6 +3422,24 @@ pub const DepthStencilState = opaque {
     }
 };
 
+pub const Architecture = opaque {
+    pub fn class() *c.objc_class {
+        return class_Architecture;
+    }
+    pub usingnamespace Methods(Architecture);
+
+    pub fn Methods(comptime T: type) type {
+        return struct {
+            pub usingnamespace ns.ObjectInterface.Methods(T);
+            pub usingnamespace ns.Copying.Methods(T);
+
+            pub fn name(self_: *T) *ns.String {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+            }
+        };
+    }
+};
+
 pub const ArgumentDescriptor = opaque {
     pub fn class() *c.objc_class {
         return class_ArgumentDescriptor;
@@ -3422,11 +3472,11 @@ pub const ArgumentDescriptor = opaque {
             pub fn setArrayLength(self_: *T, arrayLength_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArrayLength_, arrayLength_);
             }
-            pub fn access(self_: *T) ArgumentAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+            pub fn access(self_: *T) BindingAccess {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
             }
-            pub fn setAccess(self_: *T, access_: ArgumentAccess) void {
-                return @as(*const fn (*T, *c.objc_selector, ArgumentAccess) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAccess_, access_);
+            pub fn setAccess(self_: *T, access_: BindingAccess) void {
+                return @as(*const fn (*T, *c.objc_selector, BindingAccess) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAccess_, access_);
             }
             pub fn textureType(self_: *T) TextureType {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
@@ -3693,6 +3743,12 @@ pub const Device = opaque {
             pub fn newIOHandleWithURL_compressionMethod_error(self_: *T, url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
                 return @as(*const fn (*T, *c.objc_selector, *ns.URL, IOCompressionMethod, ?*?*ns.Error) callconv(.C) ?*IOFileHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newIOHandleWithURL_compressionMethod_error_, url_, compressionMethod_, error_);
             }
+            pub fn newIOFileHandleWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*IOFileHandle {
+                return @as(*const fn (*T, *c.objc_selector, *ns.URL, ?*?*ns.Error) callconv(.C) ?*IOFileHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newIOFileHandleWithURL_error_, url_, error_);
+            }
+            pub fn newIOFileHandleWithURL_compressionMethod_error(self_: *T, url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
+                return @as(*const fn (*T, *c.objc_selector, *ns.URL, IOCompressionMethod, ?*?*ns.Error) callconv(.C) ?*IOFileHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newIOFileHandleWithURL_compressionMethod_error_, url_, compressionMethod_, error_);
+            }
             pub fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(self_: *T, textureType_: TextureType, pixelFormat_: PixelFormat, sampleCount_: ns.UInteger) Size {
                 return @as(*const fn (*T, *c.objc_selector, TextureType, PixelFormat, ns.UInteger) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_sparseTileSizeWithTextureType_pixelFormat_sampleCount_, textureType_, pixelFormat_, sampleCount_);
             }
@@ -3752,6 +3808,9 @@ pub const Device = opaque {
             }
             pub fn registryID(self_: *T) u64 {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) u64, @ptrCast(&c.objc_msgSend))(self_, sel_registryID);
+            }
+            pub fn architecture(self_: *T) *Architecture {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Architecture, @ptrCast(&c.objc_msgSend))(self_, sel_architecture);
             }
             pub fn maxThreadsPerThreadgroup(self_: *T) Size {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_maxThreadsPerThreadgroup);
@@ -4448,8 +4507,8 @@ pub const Heap = opaque {
             pub fn newBufferWithLength_options(self_: *T, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
                 return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ResourceOptions) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithLength_options_, length_, options_);
             }
-            pub fn newTextureWithDescriptor(self_: *T, desc_: *TextureDescriptor) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureWithDescriptor_, desc_);
+            pub fn newTextureWithDescriptor(self_: *T, descriptor_: *TextureDescriptor) ?*Texture {
+                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureWithDescriptor_, descriptor_);
             }
             pub fn setPurgeableState(self_: *T, state_: PurgeableState) PurgeableState {
                 return @as(*const fn (*T, *c.objc_selector, PurgeableState) callconv(.C) PurgeableState, @ptrCast(&c.objc_msgSend))(self_, sel_setPurgeableState_, state_);
@@ -4556,11 +4615,41 @@ pub const IndirectCommandBufferDescriptor = opaque {
             pub fn setMaxKernelBufferBindCount(self_: *T, maxKernelBufferBindCount_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxKernelBufferBindCount_, maxKernelBufferBindCount_);
             }
+            pub fn maxKernelThreadgroupMemoryBindCount(self_: *T) ns.UInteger {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxKernelThreadgroupMemoryBindCount);
+            }
+            pub fn setMaxKernelThreadgroupMemoryBindCount(self_: *T, maxKernelThreadgroupMemoryBindCount_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxKernelThreadgroupMemoryBindCount_, maxKernelThreadgroupMemoryBindCount_);
+            }
+            pub fn maxObjectBufferBindCount(self_: *T) ns.UInteger {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxObjectBufferBindCount);
+            }
+            pub fn setMaxObjectBufferBindCount(self_: *T, maxObjectBufferBindCount_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxObjectBufferBindCount_, maxObjectBufferBindCount_);
+            }
+            pub fn maxMeshBufferBindCount(self_: *T) ns.UInteger {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxMeshBufferBindCount);
+            }
+            pub fn setMaxMeshBufferBindCount(self_: *T, maxMeshBufferBindCount_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxMeshBufferBindCount_, maxMeshBufferBindCount_);
+            }
+            pub fn maxObjectThreadgroupMemoryBindCount(self_: *T) ns.UInteger {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxObjectThreadgroupMemoryBindCount);
+            }
+            pub fn setMaxObjectThreadgroupMemoryBindCount(self_: *T, maxObjectThreadgroupMemoryBindCount_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxObjectThreadgroupMemoryBindCount_, maxObjectThreadgroupMemoryBindCount_);
+            }
             pub fn supportRayTracing(self_: *T) bool {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportRayTracing);
             }
             pub fn setSupportRayTracing(self_: *T, supportRayTracing_: bool) void {
                 return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportRayTracing_, supportRayTracing_);
+            }
+            pub fn supportDynamicAttributeStride(self_: *T) bool {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportDynamicAttributeStride);
+            }
+            pub fn setSupportDynamicAttributeStride(self_: *T, supportDynamicAttributeStride_: bool) void {
+                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportDynamicAttributeStride_, supportDynamicAttributeStride_);
             }
         };
     }
@@ -4608,6 +4697,9 @@ pub const IndirectRenderCommand = opaque {
             pub fn setFragmentBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentBuffer_offset_atIndex_, buffer_, offset_, index_);
             }
+            pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
+            }
             pub fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger, buffer_: *Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger, ?*Buffer, ns.UInteger, ns.UInteger, ns.UInteger, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride_, numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_);
             }
@@ -4619,6 +4711,27 @@ pub const IndirectRenderCommand = opaque {
             }
             pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseVertex_: ns.Integer, baseInstance_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, IndexType, *Buffer, ns.UInteger, ns.UInteger, ns.Integer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance_, primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_);
+            }
+            pub fn setObjectThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectThreadgroupMemoryLength_atIndex_, length_, index_);
+            }
+            pub fn setObjectBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectBuffer_offset_atIndex_, buffer_, offset_, index_);
+            }
+            pub fn setMeshBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshBuffer_offset_atIndex_, buffer_, offset_, index_);
+            }
+            pub fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
+                return @as(*const fn (*T, *c.objc_selector, Size, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_, threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_);
+            }
+            pub fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
+                return @as(*const fn (*T, *c.objc_selector, Size, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_, threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_);
+            }
+            pub fn setBarrier(self_: *T) void {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBarrier);
+            }
+            pub fn clearBarrier(self_: *T) void {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_clearBarrier);
             }
             pub fn reset(self_: *T) void {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
@@ -4639,6 +4752,9 @@ pub const IndirectComputeCommand = opaque {
             }
             pub fn setKernelBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setKernelBuffer_offset_atIndex_, buffer_, offset_, index_);
+            }
+            pub fn setKernelBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setKernelBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
             }
             pub fn concurrentDispatchThreadgroups_threadsPerThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
                 return @as(*const fn (*T, *c.objc_selector, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_concurrentDispatchThreadgroups_threadsPerThreadgroup_, threadgroupsPerGrid_, threadsPerThreadgroup_);
@@ -4716,6 +4832,12 @@ pub const IntersectionFunctionTable = opaque {
             }
             pub fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(self_: *T, signature_: IntersectionFunctionSignature, range_: ns.Range) void {
                 return @as(*const fn (*T, *c.objc_selector, IntersectionFunctionSignature, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaqueTriangleIntersectionFunctionWithSignature_withRange_, signature_, range_);
+            }
+            pub fn setOpaqueCurveIntersectionFunctionWithSignature_atIndex(self_: *T, signature_: IntersectionFunctionSignature, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, IntersectionFunctionSignature, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaqueCurveIntersectionFunctionWithSignature_atIndex_, signature_, index_);
+            }
+            pub fn setOpaqueCurveIntersectionFunctionWithSignature_withRange(self_: *T, signature_: IntersectionFunctionSignature, range_: ns.Range) void {
+                return @as(*const fn (*T, *c.objc_selector, IntersectionFunctionSignature, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaqueCurveIntersectionFunctionWithSignature_withRange_, signature_, range_);
             }
             pub fn setVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTable_atBufferIndex_, functionTable_, bufferIndex_);
@@ -5520,6 +5642,18 @@ pub const RenderCommandEncoder = opaque {
             }
             pub fn setVertexBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
                 return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffers_offsets_withRange_, buffers_, offsets_, range_);
+            }
+            pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
+            }
+            pub fn setVertexBuffers_offsets_attributeStrides_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
+                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffers_offsets_attributeStrides_withRange_, buffers_, offsets_, strides_, range_);
+            }
+            pub fn setVertexBufferOffset_attributeStride_atIndex(self_: *T, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBufferOffset_attributeStride_atIndex_, offset_, stride_, index_);
+            }
+            pub fn setVertexBytes_length_attributeStride_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBytes_length_attributeStride_atIndex_, bytes_, length_, stride_, index_);
             }
             pub fn setVertexTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexTexture_atIndex_, texture_, index_);
@@ -6907,6 +7041,30 @@ pub const MeshRenderPipelineDescriptor = opaque {
             pub fn setStencilAttachmentPixelFormat(self_: *T, stencilAttachmentPixelFormat_: PixelFormat) void {
                 return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilAttachmentPixelFormat_, stencilAttachmentPixelFormat_);
             }
+            pub fn supportIndirectCommandBuffers(self_: *T) bool {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportIndirectCommandBuffers);
+            }
+            pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
+                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportIndirectCommandBuffers_, supportIndirectCommandBuffers_);
+            }
+            pub fn objectLinkedFunctions(self_: *T) *LinkedFunctions {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_objectLinkedFunctions);
+            }
+            pub fn setObjectLinkedFunctions(self_: *T, objectLinkedFunctions_: ?*LinkedFunctions) void {
+                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectLinkedFunctions_, objectLinkedFunctions_);
+            }
+            pub fn meshLinkedFunctions(self_: *T) *LinkedFunctions {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_meshLinkedFunctions);
+            }
+            pub fn setMeshLinkedFunctions(self_: *T, meshLinkedFunctions_: ?*LinkedFunctions) void {
+                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshLinkedFunctions_, meshLinkedFunctions_);
+            }
+            pub fn fragmentLinkedFunctions(self_: *T) *LinkedFunctions {
+                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentLinkedFunctions);
+            }
+            pub fn setFragmentLinkedFunctions(self_: *T, fragmentLinkedFunctions_: ?*LinkedFunctions) void {
+                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentLinkedFunctions_, fragmentLinkedFunctions_);
+            }
         };
     }
 };
@@ -7807,6 +7965,7 @@ var class_ComputePipelineDescriptor: *c.objc_class = undefined;
 var class_CounterSampleBufferDescriptor: *c.objc_class = undefined;
 var class_StencilDescriptor: *c.objc_class = undefined;
 var class_DepthStencilDescriptor: *c.objc_class = undefined;
+var class_Architecture: *c.objc_class = undefined;
 var class_ArgumentDescriptor: *c.objc_class = undefined;
 var class_SharedEventListener: *c.objc_class = undefined;
 var class_SharedEventHandle: *c.objc_class = undefined;
@@ -7869,6 +8028,7 @@ var class_VertexDescriptor: *c.objc_class = undefined;
 var class_VisibleFunctionTableDescriptor: *c.objc_class = undefined;
 var sel_optimizeContentsForGPUAccess_slice_level_: *c.objc_selector = undefined;
 var sel_setStorageMode_: *c.objc_selector = undefined;
+var sel_setMaxKernelThreadgroupMemoryBindCount_: *c.objc_selector = undefined;
 var sel_setOptions_: *c.objc_selector = undefined;
 var sel_status: *c.objc_selector = undefined;
 var sel_width: *c.objc_selector = undefined;
@@ -8003,6 +8163,7 @@ var sel_addDebugMarker_range_: *c.objc_selector = undefined;
 var sel_motionEndTime: *c.objc_selector = undefined;
 var sel_setDepthWriteEnabled_: *c.objc_selector = undefined;
 var sel_setRenderPipelineState_: *c.objc_selector = undefined;
+var sel_setVertexBytes_length_attributeStride_atIndex_: *c.objc_selector = undefined;
 var sel_sampleBuffer: *c.objc_selector = undefined;
 var sel_newLibraryWithData_error_: *c.objc_selector = undefined;
 var sel_tileHeight: *c.objc_selector = undefined;
@@ -8020,20 +8181,22 @@ var sel_stencilCompareFunction: *c.objc_selector = undefined;
 var sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_: *c.objc_selector = undefined;
 var sel_newLibraryWithSource_options_completionHandler_: *c.objc_selector = undefined;
 var sel_newAccelerationStructureWithDescriptor_offset_: *c.objc_selector = undefined;
-var sel_setBarrier: *c.objc_selector = undefined;
-var sel_minimumLinearTextureAlignmentForPixelFormat_: *c.objc_selector = undefined;
 var sel_setObjectThreadgroupMemoryLength_atIndex_: *c.objc_selector = undefined;
+var sel_minimumLinearTextureAlignmentForPixelFormat_: *c.objc_selector = undefined;
+var sel_setBarrier: *c.objc_selector = undefined;
 var sel_setMeshFunction_: *c.objc_selector = undefined;
 var sel_transformationMatrixBufferOffset: *c.objc_selector = undefined;
 var sel_slice: *c.objc_selector = undefined;
 var sel_newBufferWithLength_options_: *c.objc_selector = undefined;
 var sel_initWithFunctionName_nodes_outputNode_attributes_: *c.objc_selector = undefined;
 var sel_physicalGranularity: *c.objc_selector = undefined;
+var sel_meshLinkedFunctions: *c.objc_selector = undefined;
 var sel_setFragmentFunction_: *c.objc_selector = undefined;
 var sel_renderTargetArrayLength: *c.objc_selector = undefined;
 var sel_setVertexBuffer_offset_atIndex_: *c.objc_selector = undefined;
 var sel_maxTotalThreadgroupsPerMeshGrid: *c.objc_selector = undefined;
 var sel_rasterizationRateMap: *c.objc_selector = undefined;
+var sel_setMeshLinkedFunctions_: *c.objc_selector = undefined;
 var sel_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex_: *c.objc_selector = undefined;
 var sel_setMipmapLevelCount_: *c.objc_selector = undefined;
 var sel_newComputePipelineStateWithFunction_options_completionHandler_: *c.objc_selector = undefined;
@@ -8073,6 +8236,7 @@ var sel_height: *c.objc_selector = undefined;
 var sel_resourceOptions: *c.objc_selector = undefined;
 var sel_setBinaryFunctions_: *c.objc_selector = undefined;
 var sel_blitCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
+var sel_setMaxObjectBufferBindCount_: *c.objc_selector = undefined;
 var sel_setBlendColorRed_green_blue_alpha_: *c.objc_selector = undefined;
 var sel_setTriangleFillMode_: *c.objc_selector = undefined;
 var sel_setLabel_: *c.objc_selector = undefined;
@@ -8080,6 +8244,7 @@ var sel_setSwizzle_: *c.objc_selector = undefined;
 var sel_renderPassDescriptor: *c.objc_selector = undefined;
 var sel_newDefaultLibrary: *c.objc_selector = undefined;
 var sel_synchronizeTexture_slice_level_: *c.objc_selector = undefined;
+var sel_newIOFileHandleWithURL_compressionMethod_error_: *c.objc_selector = undefined;
 var sel_bufferDataType: *c.objc_selector = undefined;
 var sel_setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange_: *c.objc_selector = undefined;
 var sel_boundingBoxBufferOffset: *c.objc_selector = undefined;
@@ -8095,6 +8260,7 @@ var sel_maxAnisotropy: *c.objc_selector = undefined;
 var sel_constantDataAtIndex_: *c.objc_selector = undefined;
 var sel_mipmapLevelCount: *c.objc_selector = undefined;
 var sel_setIntersectionFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
+var sel_setVertexBuffer_offset_attributeStride_atIndex_: *c.objc_selector = undefined;
 var sel_tileBindings: *c.objc_selector = undefined;
 var sel_instanceDescriptorType: *c.objc_selector = undefined;
 var sel_setDepthResolveFilter_: *c.objc_selector = undefined;
@@ -8170,6 +8336,7 @@ var sel_setStencilCompareFunction_: *c.objc_selector = undefined;
 var sel_privateFunctions: *c.objc_selector = undefined;
 var sel_setIndexBufferIndex_: *c.objc_selector = undefined;
 var sel_setMaxVertexCallStackDepth_: *c.objc_selector = undefined;
+var sel_maxMeshBufferBindCount: *c.objc_selector = undefined;
 var sel_setDepthStencilState_: *c.objc_selector = undefined;
 var sel_geometryDescriptors: *c.objc_selector = undefined;
 var sel_boundingBoxStride: *c.objc_selector = undefined;
@@ -8188,6 +8355,7 @@ var sel_synchronizeResource_: *c.objc_selector = undefined;
 var sel_logs: *c.objc_selector = undefined;
 var sel_newVisibleFunctionTableWithDescriptor_stage_: *c.objc_selector = undefined;
 var sel_getBytes_bytesPerRow_fromRegion_mipmapLevel_: *c.objc_selector = undefined;
+var sel_architecture: *c.objc_selector = undefined;
 var sel_groups: *c.objc_selector = undefined;
 var sel_setDepthClipMode_: *c.objc_selector = undefined;
 var sel_motionTransformBufferOffset: *c.objc_selector = undefined;
@@ -8266,6 +8434,7 @@ var sel_gpuResourceID: *c.objc_selector = undefined;
 var sel_textureType: *c.objc_selector = undefined;
 var sel_setVisibleFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
 var sel_updateTextureMapping_mode_region_mipLevel_slice_: *c.objc_selector = undefined;
+var sel_setVertexBufferOffset_attributeStride_atIndex_: *c.objc_selector = undefined;
 var sel_maxSampleCount: *c.objc_selector = undefined;
 var sel_buffers: *c.objc_selector = undefined;
 var sel_buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset_: *c.objc_selector = undefined;
@@ -8301,6 +8470,7 @@ var sel_newComputePipelineStateWithDescriptor_options_completionHandler_: *c.obj
 var sel_peerIndex: *c.objc_selector = undefined;
 var sel_setControlDependencies_: *c.objc_selector = undefined;
 var sel_endOfEncoderSampleIndex: *c.objc_selector = undefined;
+var sel_maxObjectBufferBindCount: *c.objc_selector = undefined;
 var sel_newRenderPipelineStateWithAdditionalBinaryFunctions_error_: *c.objc_selector = undefined;
 var sel_setStageInRegionWithIndirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
 var sel_heapAccelerationStructureSizeAndAlignWithDescriptor_: *c.objc_selector = undefined;
@@ -8310,12 +8480,14 @@ var sel_setArgumentBuffer_offset_: *c.objc_selector = undefined;
 var sel_setSparsePageSize_: *c.objc_selector = undefined;
 var sel_stageInputOutputDescriptor: *c.objc_selector = undefined;
 var sel_setTileSamplerStates_withRange_: *c.objc_selector = undefined;
+var sel_setBuffers_offsets_attributeStrides_withRange_: *c.objc_selector = undefined;
 var sel_parallelRenderCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
 var sel_setAccelerationStructure_atBufferIndex_: *c.objc_selector = undefined;
 var sel_newSharedEventWithHandle_: *c.objc_selector = undefined;
 var sel_stencilAttachment: *c.objc_selector = undefined;
 var sel_newComputePipelineStateWithFunction_error_: *c.objc_selector = undefined;
 var sel_setClearColor_: *c.objc_selector = undefined;
+var sel_setMaxMeshBufferBindCount_: *c.objc_selector = undefined;
 var sel_generateMipmapsForTexture_: *c.objc_selector = undefined;
 var sel_setStencilAttachment_: *c.objc_selector = undefined;
 var sel_insertDebugCaptureBoundary: *c.objc_selector = undefined;
@@ -8334,6 +8506,7 @@ var sel_setRenderPipelineStates_withRange_: *c.objc_selector = undefined;
 var sel_setComputePipelineState_atIndex_: *c.objc_selector = undefined;
 var sel_supportIndirectCommandBuffers: *c.objc_selector = undefined;
 var sel_setStencilStoreAction_: *c.objc_selector = undefined;
+var sel_objectLinkedFunctions: *c.objc_selector = undefined;
 var sel_setMipFilter_: *c.objc_selector = undefined;
 var sel_newFence: *c.objc_selector = undefined;
 var sel_setPurgeableState_: *c.objc_selector = undefined;
@@ -8385,16 +8558,18 @@ var sel_staticThreadgroupMemoryLength: *c.objc_selector = undefined;
 var sel_newTextureViewWithPixelFormat_textureType_levels_slices_: *c.objc_selector = undefined;
 var sel_setLinkedFunctions_: *c.objc_selector = undefined;
 var sel_colorAttachments: *c.objc_selector = undefined;
+var sel_setOpaqueCurveIntersectionFunctionWithSignature_withRange_: *c.objc_selector = undefined;
 var sel_maxCallStackDepth: *c.objc_selector = undefined;
-var sel_sparsePageSize: *c.objc_selector = undefined;
 var sel_supportsFamily_: *c.objc_selector = undefined;
+var sel_sparsePageSize: *c.objc_selector = undefined;
 var sel_setPrimitiveDataStride_: *c.objc_selector = undefined;
-var sel_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_: *c.objc_selector = undefined;
 var sel_resourceStateCommandEncoder: *c.objc_selector = undefined;
-var sel_setObjectBuffers_offsets_withRange_: *c.objc_selector = undefined;
 var sel_setSampleBuffer_: *c.objc_selector = undefined;
-var sel_setComputeFunction_: *c.objc_selector = undefined;
+var sel_setObjectBuffers_offsets_withRange_: *c.objc_selector = undefined;
 var sel_isDepthTexture: *c.objc_selector = undefined;
+var sel_setComputeFunction_: *c.objc_selector = undefined;
+var sel_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_: *c.objc_selector = undefined;
+var sel_setObjectLinkedFunctions_: *c.objc_selector = undefined;
 var sel_parentRelativeSlice: *c.objc_selector = undefined;
 var sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_: *c.objc_selector = undefined;
 var sel_setMaxFragmentCallStackDepth_: *c.objc_selector = undefined;
@@ -8416,6 +8591,7 @@ var sel_isAliasable: *c.objc_selector = undefined;
 var sel_layouts: *c.objc_selector = undefined;
 var sel_setBinaryArchives_: *c.objc_selector = undefined;
 var sel_maxThreadgroupMemoryLength: *c.objc_selector = undefined;
+var sel_setOpaqueCurveIntersectionFunctionWithSignature_atIndex_: *c.objc_selector = undefined;
 var sel_setMaxVertexAmplificationCount_: *c.objc_selector = undefined;
 var sel_supportsFunctionPointersFromRender: *c.objc_selector = undefined;
 var sel_supportAddingBinaryFunctions: *c.objc_selector = undefined;
@@ -8529,12 +8705,14 @@ var sel_fragmentFunction: *c.objc_selector = undefined;
 var sel_setIndexBufferOffset_: *c.objc_selector = undefined;
 var sel_insertDebugSignpost_: *c.objc_selector = undefined;
 var sel_setMeshBuffer_offset_atIndex_: *c.objc_selector = undefined;
+var sel_newIOFileHandleWithURL_error_: *c.objc_selector = undefined;
 var sel_presentedTime: *c.objc_selector = undefined;
 var sel_sampleTimestamps_gpuTimestamp_: *c.objc_selector = undefined;
 var sel_functionDescriptor: *c.objc_selector = undefined;
 var sel_depthPlane: *c.objc_selector = undefined;
 var sel_fillBuffer_range_value_: *c.objc_selector = undefined;
 var sel_useResources_count_usage_stages_: *c.objc_selector = undefined;
+var sel_setSupportDynamicAttributeStride_: *c.objc_selector = undefined;
 var sel_setVisibleFunctionTables_withBufferRange_: *c.objc_selector = undefined;
 var sel_encodedLength: *c.objc_selector = undefined;
 var sel_setObjectSamplerState_atIndex_: *c.objc_selector = undefined;
@@ -8545,6 +8723,7 @@ var sel_primitiveDataBuffer: *c.objc_selector = undefined;
 var sel_isActive: *c.objc_selector = undefined;
 var sel_commandBuffer: *c.objc_selector = undefined;
 var sel_insertLibraries: *c.objc_selector = undefined;
+var sel_maxKernelThreadgroupMemoryBindCount: *c.objc_selector = undefined;
 var sel_tailSizeInBytes: *c.objc_selector = undefined;
 var sel_setCompressionType_: *c.objc_selector = undefined;
 var sel_column: *c.objc_selector = undefined;
@@ -8575,6 +8754,7 @@ var sel_setPixelFormat_: *c.objc_selector = undefined;
 var sel_setLibraries_: *c.objc_selector = undefined;
 var sel_setTextureType_: *c.objc_selector = undefined;
 var sel_newArgumentEncoderForBufferAtIndex_: *c.objc_selector = undefined;
+var sel_setKernelBuffer_offset_attributeStride_atIndex_: *c.objc_selector = undefined;
 var sel_newFunctionWithDescriptor_completionHandler_: *c.objc_selector = undefined;
 var sel_newFunctionWithName_: *c.objc_selector = undefined;
 var sel_makeAliasable: *c.objc_selector = undefined;
@@ -8645,6 +8825,7 @@ var sel_newComputePipelineStateWithDescriptor_options_reflection_error_: *c.objc
 var sel_fragmentLinkedFunctions: *c.objc_selector = undefined;
 var sel_setIndirectCommandBuffers_withRange_: *c.objc_selector = undefined;
 var sel_startCaptureWithDescriptor_error_: *c.objc_selector = undefined;
+var sel_setBuffer_offset_attributeStride_atIndex_: *c.objc_selector = undefined;
 var sel_function: *c.objc_selector = undefined;
 var sel_intersectionFunctionTableOffset: *c.objc_selector = undefined;
 var sel_fragmentAdditionalBinaryFunctions: *c.objc_selector = undefined;
@@ -8674,14 +8855,16 @@ var sel_newIndirectCommandBufferWithDescriptor_maxCommandCount_options_: *c.objc
 var sel_indexType: *c.objc_selector = undefined;
 var sel_setVertexBuffers_offsets_withRange_: *c.objc_selector = undefined;
 var sel_useHeaps_count_: *c.objc_selector = undefined;
-var sel_resolveTexture: *c.objc_selector = undefined;
+var sel_setVertexBuffers_offsets_attributeStrides_withRange_: *c.objc_selector = undefined;
 var sel_waitForEvent_value_: *c.objc_selector = undefined;
 var sel_newHeapWithDescriptor_: *c.objc_selector = undefined;
-var sel_setVertexAdditionalBinaryFunctions_: *c.objc_selector = undefined;
+var sel_resolveTexture: *c.objc_selector = undefined;
 var sel_resolveSlice: *c.objc_selector = undefined;
+var sel_setVertexAdditionalBinaryFunctions_: *c.objc_selector = undefined;
 var sel_setFastMathEnabled_: *c.objc_selector = undefined;
 var sel_setMaxCallStackDepth_: *c.objc_selector = undefined;
 var sel_hazardTrackingMode: *c.objc_selector = undefined;
+var sel_supportDynamicAttributeStride: *c.objc_selector = undefined;
 var sel_setFunctionGraphs_: *c.objc_selector = undefined;
 var sel_setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth_: *c.objc_selector = undefined;
 var sel_layerAtIndex_: *c.objc_selector = undefined;
@@ -8717,9 +8900,10 @@ var sel_supportsShaderBarycentricCoordinates: *c.objc_selector = undefined;
 var sel_endEncoding: *c.objc_selector = undefined;
 var sel_setDispatchType_: *c.objc_selector = undefined;
 var sel_useResources_count_usage_: *c.objc_selector = undefined;
+var sel_setBufferOffset_attributeStride_atIndex_: *c.objc_selector = undefined;
 var sel_setVisibilityResultMode_offset_: *c.objc_selector = undefined;
-var sel_renderTargetWidth: *c.objc_selector = undefined;
 var sel_drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance_: *c.objc_selector = undefined;
+var sel_renderTargetWidth: *c.objc_selector = undefined;
 var sel_sAddressMode: *c.objc_selector = undefined;
 var sel_newRenderPipelineStateWithTileDescriptor_options_completionHandler_: *c.objc_selector = undefined;
 var sel_startCaptureWithCommandQueue_: *c.objc_selector = undefined;
@@ -8825,6 +9009,7 @@ var sel_cpuCacheMode: *c.objc_selector = undefined;
 var sel_setCompileSymbolVisibility_: *c.objc_selector = undefined;
 var sel_setNodes_: *c.objc_selector = undefined;
 var sel_errorOptions: *c.objc_selector = undefined;
+var sel_setMaxObjectThreadgroupMemoryBindCount_: *c.objc_selector = undefined;
 var sel_setInstanceDescriptorBuffer_: *c.objc_selector = undefined;
 var sel_drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_: *c.objc_selector = undefined;
 var sel_contents: *c.objc_selector = undefined;
@@ -8847,6 +9032,7 @@ var sel_newEvent: *c.objc_selector = undefined;
 var sel_setSupportRayTracing_: *c.objc_selector = undefined;
 var sel_concurrentDispatchThreadgroups_threadsPerThreadgroup_: *c.objc_selector = undefined;
 var sel_setStencilStoreActionOptions_: *c.objc_selector = undefined;
+var sel_maxObjectThreadgroupMemoryBindCount: *c.objc_selector = undefined;
 var sel_sparseTileSizeInBytesForSparsePageSize_: *c.objc_selector = undefined;
 var sel_newDefaultLibraryWithBundle_error_: *c.objc_selector = undefined;
 var sel_drawPrimitives_vertexStart_vertexCount_instanceCount_: *c.objc_selector = undefined;
@@ -8865,9 +9051,10 @@ var sel_newTextureWithDescriptor_offset_bytesPerRow_: *c.objc_selector = undefin
 var sel_optimizeIndirectCommandBuffer_withRange_: *c.objc_selector = undefined;
 var sel_supportsVertexAmplificationCount_: *c.objc_selector = undefined;
 var sel_setVertexLinkedFunctions_: *c.objc_selector = undefined;
-var sel_setThreadgroupSizeMatchesTileSize_: *c.objc_selector = undefined;
+var sel_setBytes_length_attributeStride_atIndex_: *c.objc_selector = undefined;
 var sel_setDepthAttachment_: *c.objc_selector = undefined;
 var sel_tessellationControlPointIndexType: *c.objc_selector = undefined;
+var sel_setThreadgroupSizeMatchesTileSize_: *c.objc_selector = undefined;
 var sel_setVertexVisibleFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
 var sel_addCompletedHandler_: *c.objc_selector = undefined;
 var sel_setResolveTexture_: *c.objc_selector = undefined;
@@ -8960,6 +9147,7 @@ pub fn init() void {
     class_CounterSampleBufferDescriptor = c.objc_getClass("MTLCounterSampleBufferDescriptor").?;
     class_StencilDescriptor = c.objc_getClass("MTLStencilDescriptor").?;
     class_DepthStencilDescriptor = c.objc_getClass("MTLDepthStencilDescriptor").?;
+    class_Architecture = c.objc_getClass("MTLArchitecture").?;
     class_ArgumentDescriptor = c.objc_getClass("MTLArgumentDescriptor").?;
     class_SharedEventListener = c.objc_getClass("MTLSharedEventListener").?;
     class_SharedEventHandle = c.objc_getClass("MTLSharedEventHandle").?;
@@ -9023,6 +9211,7 @@ pub fn init() void {
 
     sel_optimizeContentsForGPUAccess_slice_level_ = c.sel_registerName("optimizeContentsForGPUAccess:slice:level:").?;
     sel_setStorageMode_ = c.sel_registerName("setStorageMode:").?;
+    sel_setMaxKernelThreadgroupMemoryBindCount_ = c.sel_registerName("setMaxKernelThreadgroupMemoryBindCount:").?;
     sel_setOptions_ = c.sel_registerName("setOptions:").?;
     sel_status = c.sel_registerName("status").?;
     sel_width = c.sel_registerName("width").?;
@@ -9157,6 +9346,7 @@ pub fn init() void {
     sel_motionEndTime = c.sel_registerName("motionEndTime").?;
     sel_setDepthWriteEnabled_ = c.sel_registerName("setDepthWriteEnabled:").?;
     sel_setRenderPipelineState_ = c.sel_registerName("setRenderPipelineState:").?;
+    sel_setVertexBytes_length_attributeStride_atIndex_ = c.sel_registerName("setVertexBytes:length:attributeStride:atIndex:").?;
     sel_sampleBuffer = c.sel_registerName("sampleBuffer").?;
     sel_newLibraryWithData_error_ = c.sel_registerName("newLibraryWithData:error:").?;
     sel_tileHeight = c.sel_registerName("tileHeight").?;
@@ -9174,20 +9364,22 @@ pub fn init() void {
     sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_ = c.sel_registerName("drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:").?;
     sel_newLibraryWithSource_options_completionHandler_ = c.sel_registerName("newLibraryWithSource:options:completionHandler:").?;
     sel_newAccelerationStructureWithDescriptor_offset_ = c.sel_registerName("newAccelerationStructureWithDescriptor:offset:").?;
-    sel_setBarrier = c.sel_registerName("setBarrier").?;
-    sel_minimumLinearTextureAlignmentForPixelFormat_ = c.sel_registerName("minimumLinearTextureAlignmentForPixelFormat:").?;
     sel_setObjectThreadgroupMemoryLength_atIndex_ = c.sel_registerName("setObjectThreadgroupMemoryLength:atIndex:").?;
+    sel_minimumLinearTextureAlignmentForPixelFormat_ = c.sel_registerName("minimumLinearTextureAlignmentForPixelFormat:").?;
+    sel_setBarrier = c.sel_registerName("setBarrier").?;
     sel_setMeshFunction_ = c.sel_registerName("setMeshFunction:").?;
     sel_transformationMatrixBufferOffset = c.sel_registerName("transformationMatrixBufferOffset").?;
     sel_slice = c.sel_registerName("slice").?;
     sel_newBufferWithLength_options_ = c.sel_registerName("newBufferWithLength:options:").?;
     sel_initWithFunctionName_nodes_outputNode_attributes_ = c.sel_registerName("initWithFunctionName:nodes:outputNode:attributes:").?;
     sel_physicalGranularity = c.sel_registerName("physicalGranularity").?;
+    sel_meshLinkedFunctions = c.sel_registerName("meshLinkedFunctions").?;
     sel_setFragmentFunction_ = c.sel_registerName("setFragmentFunction:").?;
     sel_renderTargetArrayLength = c.sel_registerName("renderTargetArrayLength").?;
     sel_setVertexBuffer_offset_atIndex_ = c.sel_registerName("setVertexBuffer:offset:atIndex:").?;
     sel_maxTotalThreadgroupsPerMeshGrid = c.sel_registerName("maxTotalThreadgroupsPerMeshGrid").?;
     sel_rasterizationRateMap = c.sel_registerName("rasterizationRateMap").?;
+    sel_setMeshLinkedFunctions_ = c.sel_registerName("setMeshLinkedFunctions:").?;
     sel_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex_ = c.sel_registerName("setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:").?;
     sel_setMipmapLevelCount_ = c.sel_registerName("setMipmapLevelCount:").?;
     sel_newComputePipelineStateWithFunction_options_completionHandler_ = c.sel_registerName("newComputePipelineStateWithFunction:options:completionHandler:").?;
@@ -9227,6 +9419,7 @@ pub fn init() void {
     sel_resourceOptions = c.sel_registerName("resourceOptions").?;
     sel_setBinaryFunctions_ = c.sel_registerName("setBinaryFunctions:").?;
     sel_blitCommandEncoderWithDescriptor_ = c.sel_registerName("blitCommandEncoderWithDescriptor:").?;
+    sel_setMaxObjectBufferBindCount_ = c.sel_registerName("setMaxObjectBufferBindCount:").?;
     sel_setBlendColorRed_green_blue_alpha_ = c.sel_registerName("setBlendColorRed:green:blue:alpha:").?;
     sel_setTriangleFillMode_ = c.sel_registerName("setTriangleFillMode:").?;
     sel_setLabel_ = c.sel_registerName("setLabel:").?;
@@ -9234,6 +9427,7 @@ pub fn init() void {
     sel_renderPassDescriptor = c.sel_registerName("renderPassDescriptor").?;
     sel_newDefaultLibrary = c.sel_registerName("newDefaultLibrary").?;
     sel_synchronizeTexture_slice_level_ = c.sel_registerName("synchronizeTexture:slice:level:").?;
+    sel_newIOFileHandleWithURL_compressionMethod_error_ = c.sel_registerName("newIOFileHandleWithURL:compressionMethod:error:").?;
     sel_bufferDataType = c.sel_registerName("bufferDataType").?;
     sel_setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange_ = c.sel_registerName("setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:").?;
     sel_boundingBoxBufferOffset = c.sel_registerName("boundingBoxBufferOffset").?;
@@ -9249,6 +9443,7 @@ pub fn init() void {
     sel_constantDataAtIndex_ = c.sel_registerName("constantDataAtIndex:").?;
     sel_mipmapLevelCount = c.sel_registerName("mipmapLevelCount").?;
     sel_setIntersectionFunctionTable_atBufferIndex_ = c.sel_registerName("setIntersectionFunctionTable:atBufferIndex:").?;
+    sel_setVertexBuffer_offset_attributeStride_atIndex_ = c.sel_registerName("setVertexBuffer:offset:attributeStride:atIndex:").?;
     sel_tileBindings = c.sel_registerName("tileBindings").?;
     sel_instanceDescriptorType = c.sel_registerName("instanceDescriptorType").?;
     sel_setDepthResolveFilter_ = c.sel_registerName("setDepthResolveFilter:").?;
@@ -9324,6 +9519,7 @@ pub fn init() void {
     sel_privateFunctions = c.sel_registerName("privateFunctions").?;
     sel_setIndexBufferIndex_ = c.sel_registerName("setIndexBufferIndex:").?;
     sel_setMaxVertexCallStackDepth_ = c.sel_registerName("setMaxVertexCallStackDepth:").?;
+    sel_maxMeshBufferBindCount = c.sel_registerName("maxMeshBufferBindCount").?;
     sel_setDepthStencilState_ = c.sel_registerName("setDepthStencilState:").?;
     sel_geometryDescriptors = c.sel_registerName("geometryDescriptors").?;
     sel_boundingBoxStride = c.sel_registerName("boundingBoxStride").?;
@@ -9342,6 +9538,7 @@ pub fn init() void {
     sel_logs = c.sel_registerName("logs").?;
     sel_newVisibleFunctionTableWithDescriptor_stage_ = c.sel_registerName("newVisibleFunctionTableWithDescriptor:stage:").?;
     sel_getBytes_bytesPerRow_fromRegion_mipmapLevel_ = c.sel_registerName("getBytes:bytesPerRow:fromRegion:mipmapLevel:").?;
+    sel_architecture = c.sel_registerName("architecture").?;
     sel_groups = c.sel_registerName("groups").?;
     sel_setDepthClipMode_ = c.sel_registerName("setDepthClipMode:").?;
     sel_motionTransformBufferOffset = c.sel_registerName("motionTransformBufferOffset").?;
@@ -9420,6 +9617,7 @@ pub fn init() void {
     sel_textureType = c.sel_registerName("textureType").?;
     sel_setVisibleFunctionTable_atBufferIndex_ = c.sel_registerName("setVisibleFunctionTable:atBufferIndex:").?;
     sel_updateTextureMapping_mode_region_mipLevel_slice_ = c.sel_registerName("updateTextureMapping:mode:region:mipLevel:slice:").?;
+    sel_setVertexBufferOffset_attributeStride_atIndex_ = c.sel_registerName("setVertexBufferOffset:attributeStride:atIndex:").?;
     sel_maxSampleCount = c.sel_registerName("maxSampleCount").?;
     sel_buffers = c.sel_registerName("buffers").?;
     sel_buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset_ = c.sel_registerName("buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:").?;
@@ -9455,6 +9653,7 @@ pub fn init() void {
     sel_peerIndex = c.sel_registerName("peerIndex").?;
     sel_setControlDependencies_ = c.sel_registerName("setControlDependencies:").?;
     sel_endOfEncoderSampleIndex = c.sel_registerName("endOfEncoderSampleIndex").?;
+    sel_maxObjectBufferBindCount = c.sel_registerName("maxObjectBufferBindCount").?;
     sel_newRenderPipelineStateWithAdditionalBinaryFunctions_error_ = c.sel_registerName("newRenderPipelineStateWithAdditionalBinaryFunctions:error:").?;
     sel_setStageInRegionWithIndirectBuffer_indirectBufferOffset_ = c.sel_registerName("setStageInRegionWithIndirectBuffer:indirectBufferOffset:").?;
     sel_heapAccelerationStructureSizeAndAlignWithDescriptor_ = c.sel_registerName("heapAccelerationStructureSizeAndAlignWithDescriptor:").?;
@@ -9464,12 +9663,14 @@ pub fn init() void {
     sel_setSparsePageSize_ = c.sel_registerName("setSparsePageSize:").?;
     sel_stageInputOutputDescriptor = c.sel_registerName("stageInputOutputDescriptor").?;
     sel_setTileSamplerStates_withRange_ = c.sel_registerName("setTileSamplerStates:withRange:").?;
+    sel_setBuffers_offsets_attributeStrides_withRange_ = c.sel_registerName("setBuffers:offsets:attributeStrides:withRange:").?;
     sel_parallelRenderCommandEncoderWithDescriptor_ = c.sel_registerName("parallelRenderCommandEncoderWithDescriptor:").?;
     sel_setAccelerationStructure_atBufferIndex_ = c.sel_registerName("setAccelerationStructure:atBufferIndex:").?;
     sel_newSharedEventWithHandle_ = c.sel_registerName("newSharedEventWithHandle:").?;
     sel_stencilAttachment = c.sel_registerName("stencilAttachment").?;
     sel_newComputePipelineStateWithFunction_error_ = c.sel_registerName("newComputePipelineStateWithFunction:error:").?;
     sel_setClearColor_ = c.sel_registerName("setClearColor:").?;
+    sel_setMaxMeshBufferBindCount_ = c.sel_registerName("setMaxMeshBufferBindCount:").?;
     sel_generateMipmapsForTexture_ = c.sel_registerName("generateMipmapsForTexture:").?;
     sel_setStencilAttachment_ = c.sel_registerName("setStencilAttachment:").?;
     sel_insertDebugCaptureBoundary = c.sel_registerName("insertDebugCaptureBoundary").?;
@@ -9488,6 +9689,7 @@ pub fn init() void {
     sel_setComputePipelineState_atIndex_ = c.sel_registerName("setComputePipelineState:atIndex:").?;
     sel_supportIndirectCommandBuffers = c.sel_registerName("supportIndirectCommandBuffers").?;
     sel_setStencilStoreAction_ = c.sel_registerName("setStencilStoreAction:").?;
+    sel_objectLinkedFunctions = c.sel_registerName("objectLinkedFunctions").?;
     sel_setMipFilter_ = c.sel_registerName("setMipFilter:").?;
     sel_newFence = c.sel_registerName("newFence").?;
     sel_setPurgeableState_ = c.sel_registerName("setPurgeableState:").?;
@@ -9539,16 +9741,18 @@ pub fn init() void {
     sel_newTextureViewWithPixelFormat_textureType_levels_slices_ = c.sel_registerName("newTextureViewWithPixelFormat:textureType:levels:slices:").?;
     sel_setLinkedFunctions_ = c.sel_registerName("setLinkedFunctions:").?;
     sel_colorAttachments = c.sel_registerName("colorAttachments").?;
+    sel_setOpaqueCurveIntersectionFunctionWithSignature_withRange_ = c.sel_registerName("setOpaqueCurveIntersectionFunctionWithSignature:withRange:").?;
     sel_maxCallStackDepth = c.sel_registerName("maxCallStackDepth").?;
-    sel_sparsePageSize = c.sel_registerName("sparsePageSize").?;
     sel_supportsFamily_ = c.sel_registerName("supportsFamily:").?;
+    sel_sparsePageSize = c.sel_registerName("sparsePageSize").?;
     sel_setPrimitiveDataStride_ = c.sel_registerName("setPrimitiveDataStride:").?;
-    sel_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_ = c.sel_registerName("copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:").?;
     sel_resourceStateCommandEncoder = c.sel_registerName("resourceStateCommandEncoder").?;
-    sel_setObjectBuffers_offsets_withRange_ = c.sel_registerName("setObjectBuffers:offsets:withRange:").?;
     sel_setSampleBuffer_ = c.sel_registerName("setSampleBuffer:").?;
-    sel_setComputeFunction_ = c.sel_registerName("setComputeFunction:").?;
+    sel_setObjectBuffers_offsets_withRange_ = c.sel_registerName("setObjectBuffers:offsets:withRange:").?;
     sel_isDepthTexture = c.sel_registerName("isDepthTexture").?;
+    sel_setComputeFunction_ = c.sel_registerName("setComputeFunction:").?;
+    sel_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_ = c.sel_registerName("copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:").?;
+    sel_setObjectLinkedFunctions_ = c.sel_registerName("setObjectLinkedFunctions:").?;
     sel_parentRelativeSlice = c.sel_registerName("parentRelativeSlice").?;
     sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_ = c.sel_registerName("drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:").?;
     sel_setMaxFragmentCallStackDepth_ = c.sel_registerName("setMaxFragmentCallStackDepth:").?;
@@ -9570,6 +9774,7 @@ pub fn init() void {
     sel_layouts = c.sel_registerName("layouts").?;
     sel_setBinaryArchives_ = c.sel_registerName("setBinaryArchives:").?;
     sel_maxThreadgroupMemoryLength = c.sel_registerName("maxThreadgroupMemoryLength").?;
+    sel_setOpaqueCurveIntersectionFunctionWithSignature_atIndex_ = c.sel_registerName("setOpaqueCurveIntersectionFunctionWithSignature:atIndex:").?;
     sel_setMaxVertexAmplificationCount_ = c.sel_registerName("setMaxVertexAmplificationCount:").?;
     sel_supportsFunctionPointersFromRender = c.sel_registerName("supportsFunctionPointersFromRender").?;
     sel_supportAddingBinaryFunctions = c.sel_registerName("supportAddingBinaryFunctions").?;
@@ -9683,12 +9888,14 @@ pub fn init() void {
     sel_setIndexBufferOffset_ = c.sel_registerName("setIndexBufferOffset:").?;
     sel_insertDebugSignpost_ = c.sel_registerName("insertDebugSignpost:").?;
     sel_setMeshBuffer_offset_atIndex_ = c.sel_registerName("setMeshBuffer:offset:atIndex:").?;
+    sel_newIOFileHandleWithURL_error_ = c.sel_registerName("newIOFileHandleWithURL:error:").?;
     sel_presentedTime = c.sel_registerName("presentedTime").?;
     sel_sampleTimestamps_gpuTimestamp_ = c.sel_registerName("sampleTimestamps:gpuTimestamp:").?;
     sel_functionDescriptor = c.sel_registerName("functionDescriptor").?;
     sel_depthPlane = c.sel_registerName("depthPlane").?;
     sel_fillBuffer_range_value_ = c.sel_registerName("fillBuffer:range:value:").?;
     sel_useResources_count_usage_stages_ = c.sel_registerName("useResources:count:usage:stages:").?;
+    sel_setSupportDynamicAttributeStride_ = c.sel_registerName("setSupportDynamicAttributeStride:").?;
     sel_setVisibleFunctionTables_withBufferRange_ = c.sel_registerName("setVisibleFunctionTables:withBufferRange:").?;
     sel_encodedLength = c.sel_registerName("encodedLength").?;
     sel_setObjectSamplerState_atIndex_ = c.sel_registerName("setObjectSamplerState:atIndex:").?;
@@ -9699,6 +9906,7 @@ pub fn init() void {
     sel_isActive = c.sel_registerName("isActive").?;
     sel_commandBuffer = c.sel_registerName("commandBuffer").?;
     sel_insertLibraries = c.sel_registerName("insertLibraries").?;
+    sel_maxKernelThreadgroupMemoryBindCount = c.sel_registerName("maxKernelThreadgroupMemoryBindCount").?;
     sel_tailSizeInBytes = c.sel_registerName("tailSizeInBytes").?;
     sel_setCompressionType_ = c.sel_registerName("setCompressionType:").?;
     sel_column = c.sel_registerName("column").?;
@@ -9729,6 +9937,7 @@ pub fn init() void {
     sel_setLibraries_ = c.sel_registerName("setLibraries:").?;
     sel_setTextureType_ = c.sel_registerName("setTextureType:").?;
     sel_newArgumentEncoderForBufferAtIndex_ = c.sel_registerName("newArgumentEncoderForBufferAtIndex:").?;
+    sel_setKernelBuffer_offset_attributeStride_atIndex_ = c.sel_registerName("setKernelBuffer:offset:attributeStride:atIndex:").?;
     sel_newFunctionWithDescriptor_completionHandler_ = c.sel_registerName("newFunctionWithDescriptor:completionHandler:").?;
     sel_newFunctionWithName_ = c.sel_registerName("newFunctionWithName:").?;
     sel_makeAliasable = c.sel_registerName("makeAliasable").?;
@@ -9799,6 +10008,7 @@ pub fn init() void {
     sel_fragmentLinkedFunctions = c.sel_registerName("fragmentLinkedFunctions").?;
     sel_setIndirectCommandBuffers_withRange_ = c.sel_registerName("setIndirectCommandBuffers:withRange:").?;
     sel_startCaptureWithDescriptor_error_ = c.sel_registerName("startCaptureWithDescriptor:error:").?;
+    sel_setBuffer_offset_attributeStride_atIndex_ = c.sel_registerName("setBuffer:offset:attributeStride:atIndex:").?;
     sel_function = c.sel_registerName("function").?;
     sel_intersectionFunctionTableOffset = c.sel_registerName("intersectionFunctionTableOffset").?;
     sel_fragmentAdditionalBinaryFunctions = c.sel_registerName("fragmentAdditionalBinaryFunctions").?;
@@ -9828,14 +10038,16 @@ pub fn init() void {
     sel_indexType = c.sel_registerName("indexType").?;
     sel_setVertexBuffers_offsets_withRange_ = c.sel_registerName("setVertexBuffers:offsets:withRange:").?;
     sel_useHeaps_count_ = c.sel_registerName("useHeaps:count:").?;
-    sel_resolveTexture = c.sel_registerName("resolveTexture").?;
+    sel_setVertexBuffers_offsets_attributeStrides_withRange_ = c.sel_registerName("setVertexBuffers:offsets:attributeStrides:withRange:").?;
     sel_waitForEvent_value_ = c.sel_registerName("waitForEvent:value:").?;
     sel_newHeapWithDescriptor_ = c.sel_registerName("newHeapWithDescriptor:").?;
-    sel_setVertexAdditionalBinaryFunctions_ = c.sel_registerName("setVertexAdditionalBinaryFunctions:").?;
+    sel_resolveTexture = c.sel_registerName("resolveTexture").?;
     sel_resolveSlice = c.sel_registerName("resolveSlice").?;
+    sel_setVertexAdditionalBinaryFunctions_ = c.sel_registerName("setVertexAdditionalBinaryFunctions:").?;
     sel_setFastMathEnabled_ = c.sel_registerName("setFastMathEnabled:").?;
     sel_setMaxCallStackDepth_ = c.sel_registerName("setMaxCallStackDepth:").?;
     sel_hazardTrackingMode = c.sel_registerName("hazardTrackingMode").?;
+    sel_supportDynamicAttributeStride = c.sel_registerName("supportDynamicAttributeStride").?;
     sel_setFunctionGraphs_ = c.sel_registerName("setFunctionGraphs:").?;
     sel_setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth_ = c.sel_registerName("setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:").?;
     sel_layerAtIndex_ = c.sel_registerName("layerAtIndex:").?;
@@ -9871,9 +10083,10 @@ pub fn init() void {
     sel_endEncoding = c.sel_registerName("endEncoding").?;
     sel_setDispatchType_ = c.sel_registerName("setDispatchType:").?;
     sel_useResources_count_usage_ = c.sel_registerName("useResources:count:usage:").?;
+    sel_setBufferOffset_attributeStride_atIndex_ = c.sel_registerName("setBufferOffset:attributeStride:atIndex:").?;
     sel_setVisibilityResultMode_offset_ = c.sel_registerName("setVisibilityResultMode:offset:").?;
-    sel_renderTargetWidth = c.sel_registerName("renderTargetWidth").?;
     sel_drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance_ = c.sel_registerName("drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:").?;
+    sel_renderTargetWidth = c.sel_registerName("renderTargetWidth").?;
     sel_sAddressMode = c.sel_registerName("sAddressMode").?;
     sel_newRenderPipelineStateWithTileDescriptor_options_completionHandler_ = c.sel_registerName("newRenderPipelineStateWithTileDescriptor:options:completionHandler:").?;
     sel_startCaptureWithCommandQueue_ = c.sel_registerName("startCaptureWithCommandQueue:").?;
@@ -9979,6 +10192,7 @@ pub fn init() void {
     sel_setCompileSymbolVisibility_ = c.sel_registerName("setCompileSymbolVisibility:").?;
     sel_setNodes_ = c.sel_registerName("setNodes:").?;
     sel_errorOptions = c.sel_registerName("errorOptions").?;
+    sel_setMaxObjectThreadgroupMemoryBindCount_ = c.sel_registerName("setMaxObjectThreadgroupMemoryBindCount:").?;
     sel_setInstanceDescriptorBuffer_ = c.sel_registerName("setInstanceDescriptorBuffer:").?;
     sel_drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_ = c.sel_registerName("drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:").?;
     sel_contents = c.sel_registerName("contents").?;
@@ -10001,6 +10215,7 @@ pub fn init() void {
     sel_setSupportRayTracing_ = c.sel_registerName("setSupportRayTracing:").?;
     sel_concurrentDispatchThreadgroups_threadsPerThreadgroup_ = c.sel_registerName("concurrentDispatchThreadgroups:threadsPerThreadgroup:").?;
     sel_setStencilStoreActionOptions_ = c.sel_registerName("setStencilStoreActionOptions:").?;
+    sel_maxObjectThreadgroupMemoryBindCount = c.sel_registerName("maxObjectThreadgroupMemoryBindCount").?;
     sel_sparseTileSizeInBytesForSparsePageSize_ = c.sel_registerName("sparseTileSizeInBytesForSparsePageSize:").?;
     sel_newDefaultLibraryWithBundle_error_ = c.sel_registerName("newDefaultLibraryWithBundle:error:").?;
     sel_drawPrimitives_vertexStart_vertexCount_instanceCount_ = c.sel_registerName("drawPrimitives:vertexStart:vertexCount:instanceCount:").?;
@@ -10019,9 +10234,10 @@ pub fn init() void {
     sel_optimizeIndirectCommandBuffer_withRange_ = c.sel_registerName("optimizeIndirectCommandBuffer:withRange:").?;
     sel_supportsVertexAmplificationCount_ = c.sel_registerName("supportsVertexAmplificationCount:").?;
     sel_setVertexLinkedFunctions_ = c.sel_registerName("setVertexLinkedFunctions:").?;
-    sel_setThreadgroupSizeMatchesTileSize_ = c.sel_registerName("setThreadgroupSizeMatchesTileSize:").?;
+    sel_setBytes_length_attributeStride_atIndex_ = c.sel_registerName("setBytes:length:attributeStride:atIndex:").?;
     sel_setDepthAttachment_ = c.sel_registerName("setDepthAttachment:").?;
     sel_tessellationControlPointIndexType = c.sel_registerName("tessellationControlPointIndexType").?;
+    sel_setThreadgroupSizeMatchesTileSize_ = c.sel_registerName("setThreadgroupSizeMatchesTileSize:").?;
     sel_setVertexVisibleFunctionTable_atBufferIndex_ = c.sel_registerName("setVertexVisibleFunctionTable:atBufferIndex:").?;
     sel_addCompletedHandler_ = c.sel_registerName("addCompletedHandler:").?;
     sel_setResolveTexture_ = c.sel_registerName("setResolveTexture:").?;
