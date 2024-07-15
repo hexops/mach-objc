@@ -34,6 +34,12 @@ pub const Token = struct {
         caret,
         star,
         quote,
+        hyphen,
+        colon,
+        semi_colon,
+        plus,
+        grave_accent,
+        single_quote,
         kw_bool,
         kw_char,
         kw_class,
@@ -214,6 +220,30 @@ pub const Lexer = struct {
                     self.skip();
                     return self.token(Token.Kind.quote, start);
                 },
+                '-' => {
+                    self.skip();
+                    return self.token(Token.Kind.hyphen, start);
+                },
+                ':' => {
+                    self.skip();
+                    return self.token(Token.Kind.colon, start);
+                },
+                ';' => {
+                    self.skip();
+                    return self.token(Token.Kind.semi_colon, start);
+                },
+                '+' => {
+                    self.skip();
+                    return self.token(Token.Kind.plus, start);
+                },
+                '`' => {
+                    self.skip();
+                    return self.token(Token.Kind.grave_accent, start);
+                },
+                '\'' => {
+                    self.skip();
+                    return self.token(Token.Kind.single_quote, start);
+                },
                 ',' => {
                     self.skip();
                     return self.token(Token.Kind.comma, start);
@@ -272,7 +302,16 @@ pub const Parser = struct {
             } else if (std.mem.eql(u8, text, "API_UNAVAILABLE")) {
                 try self.match(.id);
                 try self.skipParenContent();
+            } else if (std.mem.eql(u8, text, "API_DEPRECATED")) {
+                try self.match(.id);
+                try self.skipParenContent();
             } else if (std.mem.eql(u8, text, "API_DEPRECATED_WITH_REPLACEMENT")) {
+                try self.match(.id);
+                try self.skipParenContent();
+            } else if (std.mem.eql(u8, text, "NS_AVAILABLE")) {
+                try self.match(.id);
+                try self.skipParenContent();
+            } else if (std.mem.eql(u8, text, "NS_AVAILABLE_MAC")) {
                 try self.match(.id);
                 try self.skipParenContent();
             } else if (std.mem.eql(u8, text, "NS_SWIFT_UNAVAILABLE")) {
@@ -944,6 +983,8 @@ fn isKeyword(id: []const u8) bool {
         return true;
     } else if (std.mem.eql(u8, id, "type")) {
         return true;
+    } else if (std.mem.eql(u8, id, "resume")) {
+        return true;
     } else {
         return false;
     }
@@ -962,6 +1003,8 @@ fn Generator(comptime WriterType: type) type {
         enums: EnumList,
         containers: ContainerList,
         selectors: SelectorHashSet,
+        namespace: []const u8,
+        allow_methods: []const [2][]const u8,
 
         fn init(allocator: std.mem.Allocator, writer: WriterType) Self {
             return Self{
@@ -970,6 +1013,8 @@ fn Generator(comptime WriterType: type) type {
                 .enums = EnumList.init(allocator),
                 .containers = ContainerList.init(allocator),
                 .selectors = SelectorHashSet.init(allocator),
+                .namespace = undefined,
+                .allow_methods = undefined,
             };
         }
 
@@ -1141,25 +1186,46 @@ fn Generator(comptime WriterType: type) type {
             try self.generateContainerName(container);
             try self.writer.print(");\n", .{});
             try self.writer.print("\n", .{});
-            try self.writer.print("    pub fn Methods(comptime T: type) type {{\n", .{});
+
+            var inherited_method_sets = std.ArrayList(*Container).init(self.allocator);
+            defer inherited_method_sets.deinit();
+            if (container.super) |super| {
+                const will_generate = blk: {
+                    if (std.mem.eql(u8, "NSObject", super.name)) break :blk true;
+                    if (getNamespace(super.name).len > 0) break :blk true;
+                    for (self.containers.items) |container2| {
+                        if (std.mem.eql(u8, container2.name, super.name)) break :blk true;
+                    }
+                    break :blk false;
+                };
+                if (will_generate) try inherited_method_sets.append(super);
+            }
+            for (container.protocols.items) |protocol| {
+                const will_generate = blk: {
+                    if (std.mem.eql(u8, "NSObject", protocol.name)) break :blk true;
+                    if (getNamespace(protocol.name).len > 0) break :blk true;
+
+                    for (self.containers.items) |container2| {
+                        if (std.mem.eql(u8, container2.name, protocol.name)) break :blk true;
+                    }
+                    break :blk false;
+                };
+                if (will_generate) try inherited_method_sets.append(protocol);
+            }
+
+            if (inherited_method_sets.items.len == 0 and container.methods.items.len == 0) {
+                try self.writer.print("    pub fn Methods(comptime _: type) type {{\n", .{});
+            } else {
+                try self.writer.print("    pub fn Methods(comptime T: type) type {{\n", .{});
+            }
             try self.writer.print("        return struct {{\n", .{});
 
-            var hasParent = false;
-            if (container.super) |super| {
+            for (inherited_method_sets.items) |inherited| {
                 try self.writer.print("            pub usingnamespace ", .{});
-                try self.generateContainerName(super);
+                try self.generateContainerName(inherited);
                 try self.writer.print(".Methods(T);\n", .{});
-                hasParent = true;
             }
-
-            for (container.protocols.items) |protocol| {
-                try self.writer.print("            pub usingnamespace ", .{});
-                try self.generateContainerName(protocol);
-                try self.writer.print(".Methods(T);\n", .{});
-                hasParent = true;
-            }
-
-            if (hasParent) {
+            if (inherited_method_sets.items.len > 0) {
                 try self.writer.print("\n", .{});
             }
 
@@ -1175,7 +1241,27 @@ fn Generator(comptime WriterType: type) type {
             }
         }
 
+        fn isAllowedMethod(self: *Self, container: *Container, method: Method) bool {
+            const generate_allowed_methods_only = blk: {
+                for (self.allow_methods) |pair| {
+                    if (std.mem.eql(u8, container.name, pair[0])) {
+                        break :blk true;
+                    }
+                }
+                break :blk false;
+            };
+            if (!generate_allowed_methods_only) return true;
+
+            for (self.allow_methods) |pair| {
+                if (std.mem.eql(u8, container.name, pair[0]) and std.mem.eql(u8, trimTrailingColon(method.name), pair[1])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         fn generateMethod(self: *Self, container: *Container, method: Method) !void {
+            if (!self.isAllowedMethod(container, method)) return;
             if (container.super) |super| {
                 if (self.doesParentHaveMethod(super, method.name))
                     return;
@@ -1428,7 +1514,7 @@ fn Generator(comptime WriterType: type) type {
 
         fn generateTypePrefix(self: *Self, name: []const u8) !void {
             const namespace = getNamespace(name);
-            if (namespace.len > 0 and !std.mem.eql(u8, namespace, "MTL")) {
+            if (namespace.len > 0 and !std.mem.eql(u8, namespace, self.namespace)) {
                 try self.generateLower(namespace);
                 try self.writer.writeAll(".");
             }
@@ -1471,6 +1557,9 @@ fn Generator(comptime WriterType: type) type {
 // ------------------------------------------------------------------------------------------------
 
 fn generateMetal(generator: anytype) !void {
+    generator.namespace = "MTL";
+    generator.allow_methods = &.{};
+
     // MTLAccelerationStructure
     try generator.addEnum("MTLAccelerationStructureUsage");
     try generator.addEnum("MTLAccelerationStructureInstanceOptions");
@@ -1897,6 +1986,9 @@ fn generateMetal(generator: anytype) !void {
 }
 
 fn generateAVFAudio(generator: anytype) !void {
+    generator.namespace = "AV";
+    generator.allow_methods = &.{};
+
     try generator.addEnum("AVAudioSessionCategoryOptions");
     try generator.addEnum("AVAudioSessionRouteSharingPolicy");
     try generator.addEnum("AVAudioSessionPortOverride");
@@ -1917,8 +2009,265 @@ fn generateAVFAudio(generator: anytype) !void {
 }
 
 fn generateCoreMIDI(generator: anytype) !void {
-    _ = generator; // autofix
+    generator.namespace = "MTL"; // TODO
+    generator.allow_methods = &.{};
+
     // TODO: generate everything needed to replace https://github.com/hexops/mach/pull/1196/files#diff-0bf7b1323cd692a01ead7d43a082b7dec001f9b2fc0ded1b1c0bd6d750578456
+}
+
+fn generateAppKit(generator: anytype) !void {
+    generator.namespace = "NS";
+    generator.allow_methods = &.{
+        // TODO: move to generateFoundation
+        [2][]const u8{ "NSObject", "init" },
+
+        [2][]const u8{ "NSApplication", "sharedApplication" },
+
+        [2][]const u8{ "NSWindow", "initWithContentRect:styleMask:backing:defer:screen" },
+
+        [2][]const u8{ "NSScreen", "screens" },
+    };
+
+    // TODO: many things below can be removed and/or moved to generateFoundation
+    // try generator.addInterface("INIntent");
+    // try generator.addInterface("CKShareMetadata");
+
+    try generator.addInterface("NSApplication");
+    // try generator.addInterface("NSResponder");
+    // try generator.addInterface("NSRunningApplication");
+    // try generator.addInterface("NSString");
+    try generator.addInterface("NSWindow");
+    // try generator.addInterface("NSNotification");
+    // try generator.addInterface("NSUserActivity");
+    // try generator.addInterface("NSCoder");
+    // try generator.addInterface("NSDictionary");
+    // try generator.addInterface("NSMenu");
+    // try generator.addInterface("NSArray");
+    // try generator.addInterface("NSURL");
+    // try generator.addInterface("NSError");
+
+    try generator.addInterface("NSObject");
+    // try generator.addInterface("NSException");
+    // try generator.addInterface("NSImage");
+    // try generator.addInterface("NSDockTile");
+    // try generator.addInterface("NSAppearance");
+    // try generator.addInterface("NSEvent");
+    // try generator.addInterface("NSDate");
+    // try generator.addInterface("NSGraphicsContext");
+    // try generator.addInterface("NSDocument");
+    // try generator.addInterface("NSData");
+    // try generator.addInterface("NSFileWrapper");
+    // try generator.addInterface("NSSavePanel");
+    // try generator.addInterface("NSPageLayout");
+    // try generator.addInterface("NSPrintInfo");
+    // try generator.addInterface("NSMethodSignature");
+    // try generator.addInterface("NSInvocation");
+    // try generator.addInterface("NSPrinter");
+    // try generator.addInterface("NSPDFInfo");
+    // try generator.addInterface("NSMutableDictionary");
+    // try generator.addInterface("NSTouchBar");
+    // try generator.addInterface("NSOperationQueue");
+    // try generator.addInterface("NSOperation");
+    // try generator.addInterface("NSTouchBarItem");
+    // try generator.addInterface("NSViewController");
+    // try generator.addInterface("NSView");
+    // try generator.addInterface("NSArchiver");
+    // try generator.addInterface("NSAttributedString");
+    // try generator.addInterface("NSBitmapImageRep");
+    // try generator.addInterface("NSBundle");
+    // try generator.addInterface("NSButtonCell");
+    // try generator.addInterface("NSCandidateListTouchBarItem");
+    // try generator.addInterface("NSCharacterSet");
+    // try generator.addInterface("NSClassDescription");
+    // try generator.addInterface("NSClipView");
+    // try generator.addInterface("NSCloseCommand");
+    // try generator.addInterface("NSColor");
+    // try generator.addInterface("NSColorSpace");
+    // try generator.addInterface("NSCursor");
+    // try generator.addInterface("NSDraggingItem");
+    // try generator.addInterface("NSDrawer");
+    // try generator.addInterface("NSEnumerator");
+    // try generator.addInterface("NSFileManager");
+    // try generator.addInterface("NSFileVersion");
+    // try generator.addInterface("NSFont");
+    // try generator.addInterface("NSFontPanel");
+    // try generator.addInterface("NSGestureRecognizer");
+    // try generator.addInterface("NSImageRep");
+    // try generator.addInterface("NSImageSymbolConfiguration");
+    // try generator.addInterface("NSIndexSet");
+    // try generator.addInterface("NSInputStream");
+    // try generator.addInterface("NSKeyedArchiver");
+    // try generator.addInterface("NSLayoutConstraint");
+    // try generator.addInterface("NSLayoutDimension");
+    // try generator.addInterface("NSLayoutGuide");
+    // try generator.addInterface("NSLayoutXAxisAnchor");
+    // try generator.addInterface("NSLayoutYAxisAnchor");
+    // try generator.addInterface("NSLocale");
+    // try generator.addInterface("NSMutableArray");
+    // try generator.addInterface("NSMutableOrderedSet");
+    // try generator.addInterface("NSMutableSet");
+    // try generator.addInterface("NSNumber");
+    // try generator.addInterface("NSOrderedCollectionDifference");
+    // try generator.addInterface("NSPanel");
+    // try generator.addInterface("NSPasteboard");
+    // try generator.addInterface("NSPortCoder");
+    // try generator.addInterface("NSPredicate");
+    // try generator.addInterface("NSPressureConfiguration");
+    // try generator.addInterface("NSPrintOperation");
+    // try generator.addInterface("NSProgress");
+    // try generator.addInterface("NSRulerView");
+    try generator.addInterface("NSScreen");
+    // try generator.addInterface("NSScriptCommand");
+    // try generator.addInterface("NSScriptObjectSpecifier");
+    // try generator.addInterface("NSScrollView");
+    // try generator.addInterface("NSSet");
+    // try generator.addInterface("NSShadow");
+    // try generator.addInterface("NSSharingService");
+    // try generator.addInterface("NSSharingServicePicker");
+    // try generator.addInterface("NSSortDescriptor");
+    // try generator.addInterface("NSStoryboard");
+    // try generator.addInterface("NSTableView");
+    // try generator.addInterface("NSText");
+    // try generator.addInterface("NSTextInputContext");
+    // try generator.addInterface("NSThread");
+    // try generator.addInterface("NSTimeZone");
+    // try generator.addInterface("NSTitlebarAccessoryViewController");
+    // try generator.addInterface("NSToolbar");
+    // try generator.addInterface("NSToolbarItem");
+    // try generator.addInterface("NSTouch");
+    // try generator.addInterface("NSTrackingArea");
+    // try generator.addInterface("NSURLHandle");
+    // try generator.addInterface("NSUndoManager");
+    // try generator.addInterface("NSWindowController");
+    // try generator.addInterface("NSWindowTab");
+    // try generator.addInterface("NSWindowTabGroup");
+
+    // try generator.addEnum("NSRequestUserAttentionType");
+    // try generator.addEnum("NSWindowListOptions");
+    // try generator.addEnum("NSApplicationActivationPolicy");
+    // try generator.addEnum("NSApplicationDelegateReply");
+    // try generator.addEnum("NSApplicationPresentationOptions");
+    // try generator.addEnum("NSApplicationOcclusionState");
+    // try generator.addEnum("NSEventMask");
+    // try generator.addEnum("NSRemoteNotificationType");
+    // try generator.addEnum("NSUserInterfaceLayoutDirection");
+    // try generator.addEnum("NSSaveOperationType");
+    // try generator.addEnum("NSApplicationPrintReply");
+    // try generator.addEnum("NSApplicationTerminateReply");
+    // try generator.addEnum("NSPrintingPaginationMode");
+    // try generator.addEnum("NSPaperOrientation");
+    // try generator.addEnum("NSApplicationActivationOptions");
+    // try generator.addEnum("NSStringCompareOptions");
+    // try generator.addEnum("NSComparisonResult");
+    // try generator.addEnum("NSQualityOfService");
+    // try generator.addEnum("NSOperationQueuePriority");
+    // try generator.addEnum("NSPrinterTableStatus");
+    // try generator.addEnum("NSPageLayoutResult");
+    // try generator.addEnum("NSAlignmentOptions");
+    // try generator.addEnum("NSAutoresizingMaskOptions");
+    try generator.addEnum("NSBackingStoreType");
+    // try generator.addEnum("NSColorRenderingIntent");
+    // try generator.addEnum("NSCompositingOperation");
+    // try generator.addEnum("NSDataBase64DecodingOptions");
+    // try generator.addEnum("NSDataBase64EncodingOptions");
+    // try generator.addEnum("NSDataCompressionAlgorithm");
+    // try generator.addEnum("NSDataReadingOptions");
+    // try generator.addEnum("NSDataSearchOptions");
+    // try generator.addEnum("NSDataWritingOptions");
+    // try generator.addEnum("NSDecodingFailurePolicy");
+    // try generator.addEnum("NSDisplayGamut");
+    // try generator.addEnum("NSDocumentChangeType");
+    // try generator.addEnum("NSDragOperation");
+    // try generator.addEnum("NSEnumerationOptions");
+    // try generator.addEnum("NSEventButtonMask");
+    // try generator.addEnum("NSEventGestureAxis");
+    // try generator.addEnum("NSEventModifierFlags");
+    // try generator.addEnum("NSEventPhase");
+    // try generator.addEnum("NSEventSubtype");
+    // try generator.addEnum("NSEventSwipeTrackingOptions");
+    // try generator.addEnum("NSEventType");
+    // try generator.addEnum("NSFileWrapperReadingOptions");
+    // try generator.addEnum("NSFileWrapperWritingOptions");
+    // try generator.addEnum("NSFocusRingType");
+    // try generator.addEnum("NSImageCacheMode");
+    // try generator.addEnum("NSImageInterpolation");
+    // try generator.addEnum("NSImageResizingMode");
+    // try generator.addEnum("NSKeyValueChange");
+    // try generator.addEnum("NSKeyValueObservingOptions");
+    // try generator.addEnum("NSKeyValueSetMutationKind");
+    // try generator.addEnum("NSLayoutAttribute");
+    // try generator.addEnum("NSLayoutConstraintOrientation");
+    // try generator.addEnum("NSMenuPresentationStyle");
+    // try generator.addEnum("NSMenuProperties");
+    // try generator.addEnum("NSMenuSelectionMode");
+    // try generator.addEnum("NSPointingDeviceType");
+    // try generator.addEnum("NSPressureBehavior");
+    // try generator.addEnum("NSRectEdge");
+    // try generator.addEnum("NSSelectionDirection");
+    // try generator.addEnum("NSSortOptions");
+    // try generator.addEnum("NSStringDrawingOptions");
+    // try generator.addEnum("NSStringEnumerationOptions");
+    // try generator.addEnum("NSTIFFCompression");
+    // try generator.addEnum("NSTouchPhase");
+    // try generator.addEnum("NSTouchTypeMask");
+    // try generator.addEnum("NSURLBookmarkCreationOptions");
+    // try generator.addEnum("NSURLBookmarkResolutionOptions");
+    // try generator.addEnum("NSViewControllerTransitionOptions");
+    // try generator.addEnum("NSViewLayerContentsPlacement");
+    // try generator.addEnum("NSViewLayerContentsRedrawPolicy");
+    // try generator.addEnum("NSWindowAnimationBehavior");
+    // try generator.addEnum("NSWindowBackingLocation");
+    // try generator.addEnum("NSWindowButton");
+    // try generator.addEnum("NSWindowCollectionBehavior");
+    // try generator.addEnum("NSWindowDepth");
+    // try generator.addEnum("NSWindowNumberListOptions");
+    // try generator.addEnum("NSWindowOcclusionState");
+    // try generator.addEnum("NSWindowOrderingMode");
+    // try generator.addEnum("NSWindowSharingType");
+    try generator.addEnum("NSWindowStyleMask");
+    // try generator.addEnum("NSWindowTabbingMode");
+    // try generator.addEnum("NSWindowTitleVisibility");
+    // try generator.addEnum("NSWindowToolbarStyle");
+    // try generator.addEnum("NSWindowUserTabbingPreference");
+
+    // // alias
+    // // try generator.addEnum("NSRangePointer");
+    // // try generator.addEnum("NSTrackingRectTag");
+
+    // // structs
+    // // try generator.addEnum("NSFastEnumerationState");
+    // // try generator.addEnum("NSAccessibility");
+    // // try generator.addEnum("NSEdgeInsets");
+
+    // // float
+    // // try generator.addEnum("NSLayoutPriority");
+
+    // // *String
+    // // try generator.addEnum("NSAppearanceName");
+    // // try generator.addEnum("NSBindingName");
+    // // try generator.addEnum("NSAttributedStringKey");
+    // // try generator.addEnum("NSGraphicsContextAttributeKey");
+    // // try generator.addEnum("NSImageHintKey");
+    // // try generator.addEnum("NSKeyValueChangeKey");
+    // // try generator.addEnum("NSLinguisticTagScheme");
+
+    // try generator.addProtocol("NSApplicationDelegate");
+    // try generator.addProtocol("NSUserActivityRestoring");
+    // try generator.addProtocol("NSSecureCoding");
+    // try generator.addProtocol("NSCopying");
+    // try generator.addProtocol("NSUserInterfaceItemSearching");
+    // try generator.addProtocol("NSObject");
+    // try generator.addProtocol("NSCoding");
+    // try generator.addProtocol("NSMutableCopying");
+    // try generator.addProtocol("NSProgressReporting");
+    // try generator.addProtocol("NSTouchBarDelegate");
+    // try generator.addProtocol("NSAnimatablePropertyContainer");
+    // try generator.addProtocol("NSMenuDelegate");
+    // try generator.addProtocol("NSAppearanceCustomization");
+    // try generator.addProtocol("NSDraggingDestination");
+    // try generator.addProtocol("NSEditor");
+    // try generator.addProtocol("NSImageDelegate");
+    // try generator.addProtocol("NSPreviewRepresentableActivityItem");
 }
 
 fn usage() void {
@@ -1926,7 +2275,7 @@ fn usage() void {
         \\mach-objc-generator [options]
         \\
         \\Options:
-        \\  --framework  Metal,AVFAudio,CoreMIDI  which code to generate
+        \\  --framework  Metal,AVFAudio,CoreMIDI,AppKit  which code to generate
         \\  --help
         \\
     , .{});
@@ -1936,6 +2285,7 @@ const Framework = enum {
     metal,
     avf_audio,
     core_midi,
+    app_kit,
 };
 
 pub fn main() anyerror!void {
@@ -1960,6 +2310,7 @@ pub fn main() anyerror!void {
                 if (std.mem.eql(u8, args[i], "Metal")) break :blk .metal;
                 if (std.mem.eql(u8, args[i], "AVFAudio")) break :blk .avf_audio;
                 if (std.mem.eql(u8, args[i], "CoreMIDI")) break :blk .core_midi;
+                if (std.mem.eql(u8, args[i], "AppKit")) break :blk .app_kit;
                 usage();
                 std.process.exit(1);
             };
@@ -1972,7 +2323,26 @@ pub fn main() anyerror!void {
     const file_data = try file.readToEndAlloc(allocator, std.math.maxInt(usize));
     defer allocator.free(file_data);
 
-    var valueTree = try std.json.parseFromSlice(std.json.Value, allocator, file_data, .{});
+    var scanner = std.json.Scanner.initCompleteInput(allocator, file_data);
+    defer scanner.deinit();
+    var diagnostics = std.json.Diagnostics{};
+    scanner.enableDiagnostics(&diagnostics);
+    var valueTree = std.json.parseFromTokenSource(std.json.Value, allocator, &scanner, .{
+        .duplicate_field_behavior = .@"error",
+        .ignore_unknown_fields = true,
+    }) catch |err| {
+        std.log.debug("parsing .ldtk file failed at line {d} column {d}\n", .{ diagnostics.getLine(), diagnostics.getColumn() });
+        return err;
+    };
+    // TODO: replace the above code with std.json.parseFromSlice usage once that API supports
+    // diagnostics: https://github.com/ziglang/zig/compare/master...json-diagnostics
+    //
+    // return try std.json.parseFromSlice(
+    //     File,
+    //     allocator,
+    //     bytes,
+    //     .{ .duplicate_field_behavior = .@"error", .ignore_unknown_fields = true },
+    // );
     defer valueTree.deinit();
 
     registry = Registry.init(allocator);
@@ -1991,6 +2361,7 @@ pub fn main() anyerror!void {
         .metal => try generateMetal(&generator),
         .avf_audio => try generateAVFAudio(&generator),
         .core_midi => try generateCoreMIDI(&generator),
+        .app_kit => try generateAppKit(&generator),
     }
     try generator.generate();
 }

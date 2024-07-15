@@ -56,7 +56,9 @@ pub const ProcessInfoThermalStateFair: ProcessInfoThermalState = 1;
 pub const ProcessInfoThermalStateSerious: ProcessInfoThermalState = 2;
 pub const ProcessInfoThermalStateCritical: ProcessInfoThermalState = 3;
 
+pub const StringTransform = *String;
 pub const StringEncoding = UInteger;
+pub const StringEncodingDetectionOptionsKey = *String;
 pub const ASCIIStringEncoding: StringEncoding = 1;
 pub const NEXTSTEPStringEncoding: StringEncoding = 2;
 pub const JapaneseEUCStringEncoding: StringEncoding = 3;

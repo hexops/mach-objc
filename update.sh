@@ -22,11 +22,7 @@ git_clone_rev https://github.com/hexops/xcode-frameworks 3d1d9613c39bfc2ebfa2551
 
 zig build -Doptimize=ReleaseFast
 
-# Delete generated files
 rm -rf src/metal/mtl.zig
-rm -rf src/avf_audio/avaudio.zig
-rm -rf src/core_midi/coremidi.zig
-
 echo "Generating Metal"
 echo "
 #include <Metal/Metal.h>
@@ -35,18 +31,18 @@ clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax
 mkdir -p src/metal/
 cat mtl_manual.zig > src/metal/mtl.zig
 ./zig-out/bin/generator --framework Metal >> src/metal/mtl.zig
-zig fmt src/metal/mtl.zig
 rm headers.json headers.m
 
+rm -rf src/avf_audio/avaudio.zig
 echo "Generating AVFAudio"
 cp avf_audio_headers.m headers.m
 clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations > headers.json
 mkdir -p src/avf_audio/
 cat avf_audio_manual.zig > src/avf_audio/avaudio.zig
 ./zig-out/bin/generator --framework AVFAudio >> src/avf_audio/avaudio.zig
-zig fmt src/avf_audio/avaudio.zig
 rm headers.json headers.m
 
+rm -rf src/core_midi/coremidi.zig
 echo "Generating CoreMIDI"
 echo "
 #include <CoreMIDI/MidiServices.h>
@@ -55,8 +51,20 @@ clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax
 mkdir -p src/core_midi/
 cat core_midi_manual.zig > src/core_midi/coremidi.zig
 ./zig-out/bin/generator --framework CoreMIDI >> src/core_midi/coremidi.zig
-zig fmt src/core_midi/coremidi.zig
 rm headers.json headers.m
+
+rm -rf src/appkit/appkit.zig
+echo "Generating AppKit"
+echo "
+#include <AppKit/AppKit.h>
+" > headers.m
+clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations -Wno-availability > headers.json
+mkdir -p src/appkit/
+cat appkit_manual.zig > src/appkit/appkit.zig
+./zig-out/bin/generator --framework AppKit >> src/appkit/appkit.zig
+rm headers.json headers.m
+
+zig fmt .
 
 # TODO: generate src/foundation/ns.zig
 # TODO: generate src/quartz_core/ca.zig
