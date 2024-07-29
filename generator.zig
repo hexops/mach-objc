@@ -1191,7 +1191,7 @@ fn Generator(comptime WriterType: type) type {
             defer inherited_method_sets.deinit();
             if (container.super) |super| {
                 const will_generate = blk: {
-                    if (std.mem.eql(u8, "NSObject", super.name)) break :blk true;
+                    if (self.isExternalContainerName(super)) break :blk true;
                     if (getNamespace(super.name).len > 0) break :blk true;
                     for (self.containers.items) |container2| {
                         if (std.mem.eql(u8, container2.name, super.name)) break :blk true;
@@ -1202,7 +1202,7 @@ fn Generator(comptime WriterType: type) type {
             }
             for (container.protocols.items) |protocol| {
                 const will_generate = blk: {
-                    if (std.mem.eql(u8, "NSObject", protocol.name)) break :blk true;
+                    if (self.isExternalContainerName(protocol)) break :blk true;
                     if (getNamespace(protocol.name).len > 0) break :blk true;
 
                     for (self.containers.items) |container2| {
@@ -1221,9 +1221,18 @@ fn Generator(comptime WriterType: type) type {
             try self.writer.print("        return struct {{\n", .{});
 
             for (inherited_method_sets.items) |inherited| {
-                try self.writer.print("            pub usingnamespace ", .{});
-                try self.generateContainerName(inherited);
-                try self.writer.print(".Methods(T);\n", .{});
+                const will_generate = blk: {
+                    if (self.isExternalContainerName(inherited)) break :blk true;
+                    for (self.containers.items) |container2| {
+                        if (std.mem.eql(u8, container2.name, inherited.name)) break :blk true;
+                    }
+                    break :blk false;
+                };
+                if (will_generate) {
+                    try self.writer.print("            pub usingnamespace ", .{});
+                    try self.generateContainerName(inherited);
+                    try self.writer.print(".Methods(T);\n", .{});
+                }
             }
             if (inherited_method_sets.items.len > 0) {
                 try self.writer.print("\n", .{});
@@ -1544,6 +1553,14 @@ fn Generator(comptime WriterType: type) type {
             try self.generateTypePrefix(container.name);
             try self.writer.writeAll(trimNamespace(container.name));
             try self.generateContainerSuffix(container);
+        }
+
+        fn isExternalContainerName(self: *Self, container: *Container) bool {
+            const namespace = getNamespace(container.name);
+            if (namespace.len > 0 and !std.mem.eql(u8, namespace, self.namespace)) {
+                return true;
+            }
+            return false;
         }
 
         fn generateLower(self: *Self, str: []const u8) !void {

@@ -80,8 +80,6 @@ pub const Application = opaque {
 
     pub fn Methods(comptime T: type) type {
         return struct {
-            pub usingnamespace Responder.Methods(T);
-
             pub fn sharedApplication() *Application {
                 return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *Application, @ptrCast(&c.objc_msgSend))(T.class(), sel_sharedApplication);
             }
@@ -97,8 +95,6 @@ pub const Window = opaque {
 
     pub fn Methods(comptime T: type) type {
         return struct {
-            pub usingnamespace Responder.Methods(T);
-
             pub fn initWithContentRect_styleMask_backing_defer_screen(self_: *T, contentRect_: Rect, style_: WindowStyleMask, backingStoreType_: BackingStoreType, flag_: bool, screen_: ?*Screen) *T {
                 return @as(*const fn (*T, *c.objc_selector, Rect, WindowStyleMask, BackingStoreType, bool, ?*Screen) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithContentRect_styleMask_backing_defer_screen_, contentRect_, style_, backingStoreType_, flag_, screen_);
             }
