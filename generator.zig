@@ -2039,10 +2039,17 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSObject", "init" },
 
         [2][]const u8{ "NSApplication", "sharedApplication" },
+        [2][]const u8{ "NSApplication", "setDelegate" },
+        [2][]const u8{ "NSApplication", "run" },
 
         [2][]const u8{ "NSWindow", "initWithContentRect:styleMask:backing:defer:screen" },
 
         [2][]const u8{ "NSScreen", "screens" },
+
+        [2][]const u8{ "NSApplicationDelegate", "applicationDidFinishLaunching" },
+
+        [2][]const u8{ "NSNotification", "object" },
+        [2][]const u8{ "NSNotification", "name" },
     };
 
     // TODO: many things below can be removed and/or moved to generateFoundation
@@ -2054,7 +2061,7 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addInterface("NSRunningApplication");
     // try generator.addInterface("NSString");
     try generator.addInterface("NSWindow");
-    // try generator.addInterface("NSNotification");
+    try generator.addInterface("NSNotification");
     // try generator.addInterface("NSUserActivity");
     // try generator.addInterface("NSCoder");
     // try generator.addInterface("NSDictionary");
@@ -2268,12 +2275,12 @@ fn generateAppKit(generator: anytype) !void {
     // // try generator.addEnum("NSKeyValueChangeKey");
     // // try generator.addEnum("NSLinguisticTagScheme");
 
-    // try generator.addProtocol("NSApplicationDelegate");
+    try generator.addProtocol("NSApplicationDelegate");
     // try generator.addProtocol("NSUserActivityRestoring");
     // try generator.addProtocol("NSSecureCoding");
     // try generator.addProtocol("NSCopying");
     // try generator.addProtocol("NSUserInterfaceItemSearching");
-    // try generator.addProtocol("NSObject");
+    try generator.addProtocol("NSObject");
     // try generator.addProtocol("NSCoding");
     // try generator.addProtocol("NSMutableCopying");
     // try generator.addProtocol("NSProgressReporting");
