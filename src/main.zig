@@ -1,4 +1,5 @@
 const std = @import("std");
+const c = @import("c.zig");
 pub const objc = @import("objc.zig");
 
 pub const avf_audio = struct {
@@ -27,6 +28,23 @@ pub const quartz_core = struct {
 
 pub const appkit = struct {
     pub const ns = @import("appkit/appkit.zig");
+};
+
+pub const mach = struct {
+    pub const AppDelegate = opaque {
+        pub fn allocInit() *AppDelegate {
+            return objc_alloc_init(c.objc_getClass("MACHAppDelegate").?);
+        }
+        extern "objc" fn objc_alloc_init(class: *anyopaque) *AppDelegate;
+
+        pub fn setRunBlock(self: *AppDelegate, block: *anyopaque) void {
+            method(self, block);
+        }
+        const method = @extern(
+            *const fn (*AppDelegate, *anyopaque) callconv(.C) void,
+            .{ .name = "\x01-[MACHAppDelegate setRunBlock:]" },
+        );
+    };
 };
 
 test {

@@ -2036,15 +2036,28 @@ fn generateAppKit(generator: anytype) !void {
     generator.namespace = "NS";
     generator.allow_methods = &.{
         // TODO: move to generateFoundation
-        [2][]const u8{ "NSObject", "init" },
+        [2][]const u8{ "NSObject", "alloc" },
+        [2][]const u8{ "NSObject", "release" },
 
         [2][]const u8{ "NSApplication", "sharedApplication" },
         [2][]const u8{ "NSApplication", "setDelegate" },
         [2][]const u8{ "NSApplication", "run" },
 
         [2][]const u8{ "NSWindow", "initWithContentRect:styleMask:backing:defer:screen" },
+        [2][]const u8{ "NSWindow", "isReleasedWhenClosed" },
+        [2][]const u8{ "NSWindow", "setReleasedWhenClosed" },
+        [2][]const u8{ "NSWindow", "contentView" },
+        [2][]const u8{ "NSWindow", "isVisible" },
+        [2][]const u8{ "NSWindow", "setIsVisible" },
+        [2][]const u8{ "NSWindow", "makeKeyAndOrderFront" },
+
+        [2][]const u8{ "NSView", "layer" },
+        [2][]const u8{ "NSView", "setLayer" },
+
+        [2][]const u8{ "NSResponder", "" },
 
         [2][]const u8{ "NSScreen", "screens" },
+        [2][]const u8{ "NSScreen", "mainScreen" },
 
         [2][]const u8{ "NSApplicationDelegate", "applicationDidFinishLaunching" },
 
@@ -2057,7 +2070,7 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addInterface("CKShareMetadata");
 
     try generator.addInterface("NSApplication");
-    // try generator.addInterface("NSResponder");
+    try generator.addInterface("NSResponder");
     // try generator.addInterface("NSRunningApplication");
     // try generator.addInterface("NSString");
     try generator.addInterface("NSWindow");
@@ -2094,7 +2107,7 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addInterface("NSOperation");
     // try generator.addInterface("NSTouchBarItem");
     // try generator.addInterface("NSViewController");
-    // try generator.addInterface("NSView");
+    try generator.addInterface("NSView");
     // try generator.addInterface("NSArchiver");
     // try generator.addInterface("NSAttributedString");
     // try generator.addInterface("NSBitmapImageRep");

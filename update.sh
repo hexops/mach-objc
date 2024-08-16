@@ -68,3 +68,18 @@ zig fmt .
 
 # TODO: generate src/foundation/ns.zig
 # TODO: generate src/quartz_core/ca.zig
+
+# Generate assembly. We currently target iOS 15+ and macOS 12+.
+# TODO: Add arm64-apple-ios15 and x86_64-apple-ios15-simulator to the targets once we get their SDKs in xcode-frameworks
+CFLAGS=(-S -Os -fomit-frame-pointer -fobjc-arc -fno-objc-exceptions -iframework ./xcode-frameworks/Frameworks -isystem ./xcode-frameworks/include)
+for target in arm64-apple-macos12 x86_64-apple-macos12
+do
+    cc -c MACHAppDelegate.m -target "$target" -o - $CFLAGS |
+        sed 's/\x01/\\x01/g' |
+        sed 's/  *; .*//g' | # Strip comments at the end of lines
+        sed 's/  *## .*//g' |
+        sed '/^    \.build_version .*/d' | # Strip OS-specific version info
+        sed '/^; .*/d' | # Strip whole-line comments
+        sed '/^## .*/d' > "MACHAppDelegate_${target//-/_}.s"
+done
+
