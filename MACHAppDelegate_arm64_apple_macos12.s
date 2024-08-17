@@ -1,61 +1,54 @@
 	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 12, 0	sdk_version 14, 0
+	.build_version macos, 12, 0
 	.private_extern	"-[MACHAppDelegate setRunBlock:]"
 	.globl	"-[MACHAppDelegate setRunBlock:]"
 	.p2align	2
 "-[MACHAppDelegate setRunBlock:]":
 	.cfi_startproc
-	sub	sp, sp, #16
-	.cfi_def_cfa_offset 16
-	str	x0, [sp, #8]
-	str	x1, [sp]
-	ldr	x8, [sp, #8]
-	subs	x8, x8, #0
-	cset	w8, ne
-	tbnz	w8, #0, LBB0_2
-	b	LBB0_1
-LBB0_1:
-	b	LBB0_3
+	cbz	x0, LBB0_2
+	stp	x20, x19, [sp, #-32]!
+	stp	x29, x30, [sp, #16]
+	.cfi_def_cfa_offset 32
+	.cfi_offset w30, -8
+	.cfi_offset w29, -16
+	.cfi_offset w19, -24
+	.cfi_offset w20, -32
+	mov	x19, x0
+	mov	x0, x1
+	bl	_objc_retainBlock
+	ldr	x8, [x19, #8]
+	ldp	x29, x30, [sp, #16]
+	mov	x9, x0
+	mov	x0, x8
+	str	x9, [x19, #8]
+	ldp	x20, x19, [sp], #32
+	b	_objc_release
 LBB0_2:
-	ldr	x8, [sp]
-	ldr	x9, [sp, #8]
-	str	x8, [x9, #8]
-	b	LBB0_3
-LBB0_3:
-	add	sp, sp, #16
 	ret
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHAppDelegate applicationDidFinishLaunching:]":
 	.cfi_startproc
-	sub	sp, sp, #48
-	.cfi_def_cfa_offset 48
-	stp	x29, x30, [sp, #32]
-	add	x29, sp, #32
-	.cfi_def_cfa w29, 16
-	.cfi_offset w30, -8
-	.cfi_offset w29, -16
-	stur	x0, [x29, #-8]
-	str	x1, [sp, #16]
-	str	x2, [sp, #8]
-	ldur	x8, [x29, #-8]
-	ldr	x8, [x8, #8]
-	subs	x8, x8, #0
-	cset	w8, eq
-	tbnz	w8, #0, LBB1_2
-	b	LBB1_1
-LBB1_1:
-	ldur	x8, [x29, #-8]
-	ldr	x1, [x8, #8]
+	ldr	x8, [x0, #8]
+	cbz	x8, LBB1_2
+	ldr	x1, [x0, #8]
+Lloh0:
 	adrp	x0, __dispatch_main_q@GOTPAGE
+Lloh1:
 	ldr	x0, [x0, __dispatch_main_q@GOTPAGEOFF]
-	bl	_dispatch_async
-	b	LBB1_2
+	b	_dispatch_async
 LBB1_2:
-	ldp	x29, x30, [sp, #32]
-	add	sp, sp, #48
 	ret
+	.loh AdrpLdrGot	Lloh0, Lloh1
+	.cfi_endproc
+
+	.p2align	2
+"-[MACHAppDelegate .cxx_destruct]":
+	.cfi_startproc
+	add	x0, x0, #8
+	mov	x1, xzr
+	b	_objc_storeStrong
 	.cfi_endproc
 
 	.section	__TEXT,__objc_classname,cstring_literals
@@ -284,6 +277,9 @@ l_OBJC_PROP_NAME_ATTR_.37:
 l_OBJC_PROP_NAME_ATTR_.38:
 	.asciz	"debugDescription"
 
+l_OBJC_PROP_NAME_ATTR_.39:
+	.asciz	"T@\"NSString\",?,R,C"
+
 	.section	__DATA,__objc_const
 	.p2align	3, 0x0
 __OBJC_$_PROP_LIST_NSObject:
@@ -296,13 +292,13 @@ __OBJC_$_PROP_LIST_NSObject:
 	.quad	l_OBJC_PROP_NAME_ATTR_.36
 	.quad	l_OBJC_PROP_NAME_ATTR_.37
 	.quad	l_OBJC_PROP_NAME_ATTR_.38
-	.quad	l_OBJC_PROP_NAME_ATTR_.37
+	.quad	l_OBJC_PROP_NAME_ATTR_.39
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.39:
+l_OBJC_METH_VAR_TYPE_.40:
 	.asciz	"B24@0:8@\"Protocol\"16"
 
-l_OBJC_METH_VAR_TYPE_.40:
+l_OBJC_METH_VAR_TYPE_.41:
 	.asciz	"@\"NSString\"16@0:8"
 
 	.section	__DATA,__objc_const
@@ -317,7 +313,7 @@ __OBJC_$_PROTOCOL_METHOD_TYPES_NSObject:
 	.quad	l_OBJC_METH_VAR_TYPE_.14
 	.quad	l_OBJC_METH_VAR_TYPE_.16
 	.quad	l_OBJC_METH_VAR_TYPE_.16
-	.quad	l_OBJC_METH_VAR_TYPE_.39
+	.quad	l_OBJC_METH_VAR_TYPE_.40
 	.quad	l_OBJC_METH_VAR_TYPE_.20
 	.quad	l_OBJC_METH_VAR_TYPE_.6
 	.quad	l_OBJC_METH_VAR_TYPE_.23
@@ -326,8 +322,8 @@ __OBJC_$_PROTOCOL_METHOD_TYPES_NSObject:
 	.quad	l_OBJC_METH_VAR_TYPE_.28
 	.quad	l_OBJC_METH_VAR_TYPE_.26
 	.quad	l_OBJC_METH_VAR_TYPE_.4
-	.quad	l_OBJC_METH_VAR_TYPE_.40
-	.quad	l_OBJC_METH_VAR_TYPE_.40
+	.quad	l_OBJC_METH_VAR_TYPE_.41
+	.quad	l_OBJC_METH_VAR_TYPE_.41
 
 	.private_extern	__OBJC_PROTOCOL_$_NSObject
 	.section	__DATA,__data
@@ -365,189 +361,189 @@ __OBJC_$_PROTOCOL_REFS_NSApplicationDelegate:
 	.quad	0
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.41:
+l_OBJC_METH_VAR_NAME_.42:
 	.asciz	"applicationShouldTerminate:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.42:
+l_OBJC_METH_VAR_TYPE_.43:
 	.asciz	"Q24@0:8@16"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.43:
+l_OBJC_METH_VAR_NAME_.44:
 	.asciz	"application:openURLs:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.44:
+l_OBJC_METH_VAR_TYPE_.45:
 	.asciz	"v32@0:8@16@24"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.45:
+l_OBJC_METH_VAR_NAME_.46:
 	.asciz	"application:openFile:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.46:
+l_OBJC_METH_VAR_TYPE_.47:
 	.asciz	"B32@0:8@16@24"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.47:
+l_OBJC_METH_VAR_NAME_.48:
 	.asciz	"application:openFiles:"
 
-l_OBJC_METH_VAR_NAME_.48:
+l_OBJC_METH_VAR_NAME_.49:
 	.asciz	"application:openTempFile:"
 
-l_OBJC_METH_VAR_NAME_.49:
+l_OBJC_METH_VAR_NAME_.50:
 	.asciz	"applicationShouldOpenUntitledFile:"
 
-l_OBJC_METH_VAR_NAME_.50:
+l_OBJC_METH_VAR_NAME_.51:
 	.asciz	"applicationOpenUntitledFile:"
 
-l_OBJC_METH_VAR_NAME_.51:
+l_OBJC_METH_VAR_NAME_.52:
 	.asciz	"application:openFileWithoutUI:"
 
-l_OBJC_METH_VAR_NAME_.52:
+l_OBJC_METH_VAR_NAME_.53:
 	.asciz	"application:printFile:"
 
-l_OBJC_METH_VAR_NAME_.53:
+l_OBJC_METH_VAR_NAME_.54:
 	.asciz	"application:printFiles:withSettings:showPrintPanels:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.54:
+l_OBJC_METH_VAR_TYPE_.55:
 	.asciz	"Q44@0:8@16@24@32B40"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.55:
+l_OBJC_METH_VAR_NAME_.56:
 	.asciz	"applicationShouldTerminateAfterLastWindowClosed:"
 
-l_OBJC_METH_VAR_NAME_.56:
+l_OBJC_METH_VAR_NAME_.57:
 	.asciz	"applicationShouldHandleReopen:hasVisibleWindows:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.57:
+l_OBJC_METH_VAR_TYPE_.58:
 	.asciz	"B28@0:8@16B24"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.58:
+l_OBJC_METH_VAR_NAME_.59:
 	.asciz	"applicationDockMenu:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.59:
+l_OBJC_METH_VAR_TYPE_.60:
 	.asciz	"@24@0:8@16"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.60:
+l_OBJC_METH_VAR_NAME_.61:
 	.asciz	"application:willPresentError:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.61:
+l_OBJC_METH_VAR_TYPE_.62:
 	.asciz	"@32@0:8@16@24"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.62:
+l_OBJC_METH_VAR_NAME_.63:
 	.asciz	"application:didRegisterForRemoteNotificationsWithDeviceToken:"
 
-l_OBJC_METH_VAR_NAME_.63:
+l_OBJC_METH_VAR_NAME_.64:
 	.asciz	"application:didFailToRegisterForRemoteNotificationsWithError:"
 
-l_OBJC_METH_VAR_NAME_.64:
+l_OBJC_METH_VAR_NAME_.65:
 	.asciz	"application:didReceiveRemoteNotification:"
 
-l_OBJC_METH_VAR_NAME_.65:
+l_OBJC_METH_VAR_NAME_.66:
 	.asciz	"applicationSupportsSecureRestorableState:"
 
-l_OBJC_METH_VAR_NAME_.66:
+l_OBJC_METH_VAR_NAME_.67:
 	.asciz	"application:handlerForIntent:"
 
-l_OBJC_METH_VAR_NAME_.67:
+l_OBJC_METH_VAR_NAME_.68:
 	.asciz	"application:willEncodeRestorableState:"
 
-l_OBJC_METH_VAR_NAME_.68:
+l_OBJC_METH_VAR_NAME_.69:
 	.asciz	"application:didDecodeRestorableState:"
 
-l_OBJC_METH_VAR_NAME_.69:
+l_OBJC_METH_VAR_NAME_.70:
 	.asciz	"application:willContinueUserActivityWithType:"
 
-l_OBJC_METH_VAR_NAME_.70:
+l_OBJC_METH_VAR_NAME_.71:
 	.asciz	"application:continueUserActivity:restorationHandler:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.71:
+l_OBJC_METH_VAR_TYPE_.72:
 	.asciz	"B40@0:8@16@24@?32"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.72:
+l_OBJC_METH_VAR_NAME_.73:
 	.asciz	"application:didFailToContinueUserActivityWithType:error:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.73:
+l_OBJC_METH_VAR_TYPE_.74:
 	.asciz	"v40@0:8@16@24@32"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.74:
+l_OBJC_METH_VAR_NAME_.75:
 	.asciz	"application:didUpdateUserActivity:"
 
-l_OBJC_METH_VAR_NAME_.75:
+l_OBJC_METH_VAR_NAME_.76:
 	.asciz	"application:userDidAcceptCloudKitShareWithMetadata:"
 
-l_OBJC_METH_VAR_NAME_.76:
+l_OBJC_METH_VAR_NAME_.77:
 	.asciz	"application:delegateHandlesKey:"
 
-l_OBJC_METH_VAR_NAME_.77:
+l_OBJC_METH_VAR_NAME_.78:
 	.asciz	"applicationShouldAutomaticallyLocalizeKeyEquivalents:"
 
-l_OBJC_METH_VAR_NAME_.78:
+l_OBJC_METH_VAR_NAME_.79:
 	.asciz	"applicationWillFinishLaunching:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.79:
+l_OBJC_METH_VAR_TYPE_.80:
 	.asciz	"v24@0:8@16"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.80:
+l_OBJC_METH_VAR_NAME_.81:
 	.asciz	"applicationDidFinishLaunching:"
 
-l_OBJC_METH_VAR_NAME_.81:
+l_OBJC_METH_VAR_NAME_.82:
 	.asciz	"applicationWillHide:"
 
-l_OBJC_METH_VAR_NAME_.82:
+l_OBJC_METH_VAR_NAME_.83:
 	.asciz	"applicationDidHide:"
 
-l_OBJC_METH_VAR_NAME_.83:
+l_OBJC_METH_VAR_NAME_.84:
 	.asciz	"applicationWillUnhide:"
 
-l_OBJC_METH_VAR_NAME_.84:
+l_OBJC_METH_VAR_NAME_.85:
 	.asciz	"applicationDidUnhide:"
 
-l_OBJC_METH_VAR_NAME_.85:
+l_OBJC_METH_VAR_NAME_.86:
 	.asciz	"applicationWillBecomeActive:"
 
-l_OBJC_METH_VAR_NAME_.86:
+l_OBJC_METH_VAR_NAME_.87:
 	.asciz	"applicationDidBecomeActive:"
 
-l_OBJC_METH_VAR_NAME_.87:
+l_OBJC_METH_VAR_NAME_.88:
 	.asciz	"applicationWillResignActive:"
 
-l_OBJC_METH_VAR_NAME_.88:
+l_OBJC_METH_VAR_NAME_.89:
 	.asciz	"applicationDidResignActive:"
 
-l_OBJC_METH_VAR_NAME_.89:
+l_OBJC_METH_VAR_NAME_.90:
 	.asciz	"applicationWillUpdate:"
 
-l_OBJC_METH_VAR_NAME_.90:
+l_OBJC_METH_VAR_NAME_.91:
 	.asciz	"applicationDidUpdate:"
 
-l_OBJC_METH_VAR_NAME_.91:
+l_OBJC_METH_VAR_NAME_.92:
 	.asciz	"applicationWillTerminate:"
 
-l_OBJC_METH_VAR_NAME_.92:
+l_OBJC_METH_VAR_NAME_.93:
 	.asciz	"applicationDidChangeScreenParameters:"
 
-l_OBJC_METH_VAR_NAME_.93:
+l_OBJC_METH_VAR_NAME_.94:
 	.asciz	"applicationDidChangeOcclusionState:"
 
-l_OBJC_METH_VAR_NAME_.94:
+l_OBJC_METH_VAR_NAME_.95:
 	.asciz	"applicationProtectedDataWillBecomeUnavailable:"
 
-l_OBJC_METH_VAR_NAME_.95:
+l_OBJC_METH_VAR_NAME_.96:
 	.asciz	"applicationProtectedDataDidBecomeAvailable:"
 
 	.section	__DATA,__objc_const
@@ -555,248 +551,248 @@ l_OBJC_METH_VAR_NAME_.95:
 __OBJC_$_PROTOCOL_INSTANCE_METHODS_OPT_NSApplicationDelegate:
 	.long	24
 	.long	45
-	.quad	l_OBJC_METH_VAR_NAME_.41
-	.quad	l_OBJC_METH_VAR_TYPE_.42
+	.quad	l_OBJC_METH_VAR_NAME_.42
+	.quad	l_OBJC_METH_VAR_TYPE_.43
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.43
-	.quad	l_OBJC_METH_VAR_TYPE_.44
+	.quad	l_OBJC_METH_VAR_NAME_.44
+	.quad	l_OBJC_METH_VAR_TYPE_.45
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.45
-	.quad	l_OBJC_METH_VAR_TYPE_.46
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.47
-	.quad	l_OBJC_METH_VAR_TYPE_.44
+	.quad	l_OBJC_METH_VAR_NAME_.46
+	.quad	l_OBJC_METH_VAR_TYPE_.47
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.48
-	.quad	l_OBJC_METH_VAR_TYPE_.46
+	.quad	l_OBJC_METH_VAR_TYPE_.45
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.49
-	.quad	l_OBJC_METH_VAR_TYPE_
+	.quad	l_OBJC_METH_VAR_TYPE_.47
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.50
 	.quad	l_OBJC_METH_VAR_TYPE_
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.51
-	.quad	l_OBJC_METH_VAR_TYPE_.46
+	.quad	l_OBJC_METH_VAR_TYPE_
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.52
-	.quad	l_OBJC_METH_VAR_TYPE_.46
+	.quad	l_OBJC_METH_VAR_TYPE_.47
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.53
-	.quad	l_OBJC_METH_VAR_TYPE_.54
+	.quad	l_OBJC_METH_VAR_TYPE_.47
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.55
-	.quad	l_OBJC_METH_VAR_TYPE_
+	.quad	l_OBJC_METH_VAR_NAME_.54
+	.quad	l_OBJC_METH_VAR_TYPE_.55
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.56
-	.quad	l_OBJC_METH_VAR_TYPE_.57
+	.quad	l_OBJC_METH_VAR_TYPE_
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.58
-	.quad	l_OBJC_METH_VAR_TYPE_.59
+	.quad	l_OBJC_METH_VAR_NAME_.57
+	.quad	l_OBJC_METH_VAR_TYPE_.58
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.60
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.59
+	.quad	l_OBJC_METH_VAR_TYPE_.60
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.62
-	.quad	l_OBJC_METH_VAR_TYPE_.44
+	.quad	l_OBJC_METH_VAR_NAME_.61
+	.quad	l_OBJC_METH_VAR_TYPE_.62
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.63
-	.quad	l_OBJC_METH_VAR_TYPE_.44
+	.quad	l_OBJC_METH_VAR_TYPE_.45
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.64
-	.quad	l_OBJC_METH_VAR_TYPE_.44
+	.quad	l_OBJC_METH_VAR_TYPE_.45
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.65
-	.quad	l_OBJC_METH_VAR_TYPE_
+	.quad	l_OBJC_METH_VAR_TYPE_.45
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.66
-	.quad	l_OBJC_METH_VAR_TYPE_.61
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.67
-	.quad	l_OBJC_METH_VAR_TYPE_.44
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.68
-	.quad	l_OBJC_METH_VAR_TYPE_.44
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.69
-	.quad	l_OBJC_METH_VAR_TYPE_.46
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.70
-	.quad	l_OBJC_METH_VAR_TYPE_.71
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.72
-	.quad	l_OBJC_METH_VAR_TYPE_.73
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.74
-	.quad	l_OBJC_METH_VAR_TYPE_.44
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.75
-	.quad	l_OBJC_METH_VAR_TYPE_.44
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.76
-	.quad	l_OBJC_METH_VAR_TYPE_.46
-	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.77
 	.quad	l_OBJC_METH_VAR_TYPE_
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.78
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_NAME_.67
+	.quad	l_OBJC_METH_VAR_TYPE_.62
 	.quad	0
-	.quad	l_OBJC_METH_VAR_NAME_.80
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_NAME_.68
+	.quad	l_OBJC_METH_VAR_TYPE_.45
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.69
+	.quad	l_OBJC_METH_VAR_TYPE_.45
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.70
+	.quad	l_OBJC_METH_VAR_TYPE_.47
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.71
+	.quad	l_OBJC_METH_VAR_TYPE_.72
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.73
+	.quad	l_OBJC_METH_VAR_TYPE_.74
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.75
+	.quad	l_OBJC_METH_VAR_TYPE_.45
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.76
+	.quad	l_OBJC_METH_VAR_TYPE_.45
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.77
+	.quad	l_OBJC_METH_VAR_TYPE_.47
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.78
+	.quad	l_OBJC_METH_VAR_TYPE_
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.81
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.82
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.83
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.84
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.85
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.86
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.87
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.88
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.89
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.90
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.91
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.92
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.93
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.94
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 	.quad	l_OBJC_METH_VAR_NAME_.95
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
+	.quad	0
+	.quad	l_OBJC_METH_VAR_NAME_.96
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	0
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.96:
+l_OBJC_METH_VAR_TYPE_.97:
 	.asciz	"Q24@0:8@\"NSApplication\"16"
 
-l_OBJC_METH_VAR_TYPE_.97:
+l_OBJC_METH_VAR_TYPE_.98:
 	.asciz	"v32@0:8@\"NSApplication\"16@\"NSArray\"24"
 
-l_OBJC_METH_VAR_TYPE_.98:
+l_OBJC_METH_VAR_TYPE_.99:
 	.asciz	"B32@0:8@\"NSApplication\"16@\"NSString\"24"
 
-l_OBJC_METH_VAR_TYPE_.99:
+l_OBJC_METH_VAR_TYPE_.100:
 	.asciz	"B24@0:8@\"NSApplication\"16"
 
-l_OBJC_METH_VAR_TYPE_.100:
+l_OBJC_METH_VAR_TYPE_.101:
 	.asciz	"B32@0:8@16@\"NSString\"24"
 
-l_OBJC_METH_VAR_TYPE_.101:
+l_OBJC_METH_VAR_TYPE_.102:
 	.asciz	"Q44@0:8@\"NSApplication\"16@\"NSArray\"24@\"NSDictionary\"32B40"
 
-l_OBJC_METH_VAR_TYPE_.102:
+l_OBJC_METH_VAR_TYPE_.103:
 	.asciz	"B28@0:8@\"NSApplication\"16B24"
 
-l_OBJC_METH_VAR_TYPE_.103:
+l_OBJC_METH_VAR_TYPE_.104:
 	.asciz	"@\"NSMenu\"24@0:8@\"NSApplication\"16"
 
-l_OBJC_METH_VAR_TYPE_.104:
+l_OBJC_METH_VAR_TYPE_.105:
 	.asciz	"@\"NSError\"32@0:8@\"NSApplication\"16@\"NSError\"24"
 
-l_OBJC_METH_VAR_TYPE_.105:
+l_OBJC_METH_VAR_TYPE_.106:
 	.asciz	"v32@0:8@\"NSApplication\"16@\"NSData\"24"
 
-l_OBJC_METH_VAR_TYPE_.106:
+l_OBJC_METH_VAR_TYPE_.107:
 	.asciz	"v32@0:8@\"NSApplication\"16@\"NSError\"24"
 
-l_OBJC_METH_VAR_TYPE_.107:
+l_OBJC_METH_VAR_TYPE_.108:
 	.asciz	"v32@0:8@\"NSApplication\"16@\"NSDictionary\"24"
 
-l_OBJC_METH_VAR_TYPE_.108:
+l_OBJC_METH_VAR_TYPE_.109:
 	.asciz	"@32@0:8@\"NSApplication\"16@\"INIntent\"24"
 
-l_OBJC_METH_VAR_TYPE_.109:
+l_OBJC_METH_VAR_TYPE_.110:
 	.asciz	"v32@0:8@\"NSApplication\"16@\"NSCoder\"24"
 
-l_OBJC_METH_VAR_TYPE_.110:
+l_OBJC_METH_VAR_TYPE_.111:
 	.asciz	"B40@0:8@\"NSApplication\"16@\"NSUserActivity\"24@?<v@?@\"NSArray\">32"
 
-l_OBJC_METH_VAR_TYPE_.111:
+l_OBJC_METH_VAR_TYPE_.112:
 	.asciz	"v40@0:8@\"NSApplication\"16@\"NSString\"24@\"NSError\"32"
 
-l_OBJC_METH_VAR_TYPE_.112:
+l_OBJC_METH_VAR_TYPE_.113:
 	.asciz	"v32@0:8@\"NSApplication\"16@\"NSUserActivity\"24"
 
-l_OBJC_METH_VAR_TYPE_.113:
+l_OBJC_METH_VAR_TYPE_.114:
 	.asciz	"v32@0:8@\"NSApplication\"16@\"CKShareMetadata\"24"
 
-l_OBJC_METH_VAR_TYPE_.114:
+l_OBJC_METH_VAR_TYPE_.115:
 	.asciz	"v24@0:8@\"NSNotification\"16"
 
 	.section	__DATA,__objc_const
 	.p2align	3, 0x0
 __OBJC_$_PROTOCOL_METHOD_TYPES_NSApplicationDelegate:
-	.quad	l_OBJC_METH_VAR_TYPE_.96
-	.quad	l_OBJC_METH_VAR_TYPE_.97
-	.quad	l_OBJC_METH_VAR_TYPE_.98
 	.quad	l_OBJC_METH_VAR_TYPE_.97
 	.quad	l_OBJC_METH_VAR_TYPE_.98
 	.quad	l_OBJC_METH_VAR_TYPE_.99
+	.quad	l_OBJC_METH_VAR_TYPE_.98
 	.quad	l_OBJC_METH_VAR_TYPE_.99
 	.quad	l_OBJC_METH_VAR_TYPE_.100
-	.quad	l_OBJC_METH_VAR_TYPE_.98
+	.quad	l_OBJC_METH_VAR_TYPE_.100
 	.quad	l_OBJC_METH_VAR_TYPE_.101
 	.quad	l_OBJC_METH_VAR_TYPE_.99
 	.quad	l_OBJC_METH_VAR_TYPE_.102
+	.quad	l_OBJC_METH_VAR_TYPE_.100
 	.quad	l_OBJC_METH_VAR_TYPE_.103
 	.quad	l_OBJC_METH_VAR_TYPE_.104
 	.quad	l_OBJC_METH_VAR_TYPE_.105
 	.quad	l_OBJC_METH_VAR_TYPE_.106
 	.quad	l_OBJC_METH_VAR_TYPE_.107
-	.quad	l_OBJC_METH_VAR_TYPE_.99
 	.quad	l_OBJC_METH_VAR_TYPE_.108
+	.quad	l_OBJC_METH_VAR_TYPE_.100
 	.quad	l_OBJC_METH_VAR_TYPE_.109
-	.quad	l_OBJC_METH_VAR_TYPE_.109
-	.quad	l_OBJC_METH_VAR_TYPE_.98
 	.quad	l_OBJC_METH_VAR_TYPE_.110
+	.quad	l_OBJC_METH_VAR_TYPE_.110
+	.quad	l_OBJC_METH_VAR_TYPE_.99
 	.quad	l_OBJC_METH_VAR_TYPE_.111
 	.quad	l_OBJC_METH_VAR_TYPE_.112
 	.quad	l_OBJC_METH_VAR_TYPE_.113
-	.quad	l_OBJC_METH_VAR_TYPE_.98
+	.quad	l_OBJC_METH_VAR_TYPE_.114
 	.quad	l_OBJC_METH_VAR_TYPE_.99
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
-	.quad	l_OBJC_METH_VAR_TYPE_.114
+	.quad	l_OBJC_METH_VAR_TYPE_.100
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
+	.quad	l_OBJC_METH_VAR_TYPE_.115
 
 	.private_extern	__OBJC_PROTOCOL_$_NSApplicationDelegate
 	.section	__DATA,__data
@@ -835,7 +831,7 @@ __OBJC_CLASS_PROTOCOLS_$_MACHAppDelegate:
 
 	.p2align	3, 0x0
 __OBJC_METACLASS_RO_$_MACHAppDelegate:
-	.long	1
+	.long	389
 	.long	40
 	.long	40
 	.space	4
@@ -857,14 +853,29 @@ _OBJC_METACLASS_$_MACHAppDelegate:
 	.quad	0
 	.quad	__OBJC_METACLASS_RO_$_MACHAppDelegate
 
+	.section	__TEXT,__objc_classname,cstring_literals
+l_OBJC_CLASS_NAME_.116:
+	.asciz	"\001"
+
+	.section	__TEXT,__objc_methname,cstring_literals
+l_OBJC_METH_VAR_NAME_.117:
+	.asciz	".cxx_destruct"
+
+	.section	__TEXT,__objc_methtype,cstring_literals
+l_OBJC_METH_VAR_TYPE_.118:
+	.asciz	"v16@0:8"
+
 	.section	__DATA,__objc_const
 	.p2align	3, 0x0
 __OBJC_$_INSTANCE_METHODS_MACHAppDelegate:
 	.long	24
-	.long	1
-	.quad	l_OBJC_METH_VAR_NAME_.80
-	.quad	l_OBJC_METH_VAR_TYPE_.79
+	.long	2
+	.quad	l_OBJC_METH_VAR_NAME_.81
+	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	"-[MACHAppDelegate applicationDidFinishLaunching:]"
+	.quad	l_OBJC_METH_VAR_NAME_.117
+	.quad	l_OBJC_METH_VAR_TYPE_.118
+	.quad	"-[MACHAppDelegate .cxx_destruct]"
 
 	.private_extern	_OBJC_IVAR_$_MACHAppDelegate._runBlock
 	.section	__DATA,__objc_ivar
@@ -874,11 +885,11 @@ _OBJC_IVAR_$_MACHAppDelegate._runBlock:
 	.long	8
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.115:
+l_OBJC_METH_VAR_NAME_.119:
 	.asciz	"_runBlock"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.116:
+l_OBJC_METH_VAR_TYPE_.120:
 	.asciz	"@?"
 
 	.section	__DATA,__objc_const
@@ -887,8 +898,8 @@ __OBJC_$_INSTANCE_VARIABLES_MACHAppDelegate:
 	.long	32
 	.long	1
 	.quad	_OBJC_IVAR_$_MACHAppDelegate._runBlock
-	.quad	l_OBJC_METH_VAR_NAME_.115
-	.quad	l_OBJC_METH_VAR_TYPE_.116
+	.quad	l_OBJC_METH_VAR_NAME_.119
+	.quad	l_OBJC_METH_VAR_TYPE_.120
 	.long	3
 	.long	8
 
@@ -903,15 +914,15 @@ __OBJC_$_PROP_LIST_MACHAppDelegate:
 	.quad	l_OBJC_PROP_NAME_ATTR_.36
 	.quad	l_OBJC_PROP_NAME_ATTR_.37
 	.quad	l_OBJC_PROP_NAME_ATTR_.38
-	.quad	l_OBJC_PROP_NAME_ATTR_.37
+	.quad	l_OBJC_PROP_NAME_ATTR_.39
 
 	.p2align	3, 0x0
 __OBJC_CLASS_RO_$_MACHAppDelegate:
-	.long	0
+	.long	388
 	.long	8
 	.long	16
 	.space	4
-	.quad	0
+	.quad	l_OBJC_CLASS_NAME_.116
 	.quad	l_OBJC_CLASS_NAME_
 	.quad	__OBJC_$_INSTANCE_METHODS_MACHAppDelegate
 	.quad	__OBJC_CLASS_PROTOCOLS_$_MACHAppDelegate
@@ -934,10 +945,10 @@ _OBJC_CLASS_$_MACHAppDelegate:
 l_OBJC_LABEL_CLASS_$:
 	.quad	_OBJC_CLASS_$_MACHAppDelegate
 
-	.no_dead_strip	__OBJC_PROTOCOL_$_NSObject
+	.no_dead_strip	__OBJC_LABEL_PROTOCOL_$_NSApplicationDelegate
 	.no_dead_strip	__OBJC_LABEL_PROTOCOL_$_NSObject
 	.no_dead_strip	__OBJC_PROTOCOL_$_NSApplicationDelegate
-	.no_dead_strip	__OBJC_LABEL_PROTOCOL_$_NSApplicationDelegate
+	.no_dead_strip	__OBJC_PROTOCOL_$_NSObject
 	.section	__DATA,__objc_imageinfo,regular,no_dead_strip
 L_OBJC_IMAGE_INFO:
 	.long	0

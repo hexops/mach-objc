@@ -71,15 +71,30 @@ zig fmt .
 
 # Generate assembly. We currently target iOS 15+ and macOS 12+.
 # TODO: Add arm64-apple-ios15 and x86_64-apple-ios15-simulator to the targets once we get their SDKs in xcode-frameworks
-CFLAGS=(-S -Os -fomit-frame-pointer -fobjc-arc -fno-objc-exceptions -iframework ./xcode-frameworks/Frameworks -isystem ./xcode-frameworks/include)
-for target in arm64-apple-macos12 x86_64-apple-macos12
+for pair in \
+    'MACHAppDelegate_aarch64-macos.s aarch64-macos.12.0' \
+    'MACHAppDelegate_x86_64-macos.s x86_64-macos.12.0'
 do
-    cc -c MACHAppDelegate.m -target "$target" -o - $CFLAGS |
+    dst=${pair%% *}
+    target=${pair#* }
+
+    zig cc -c MACHAppDelegate.m \
+        -target "$target" \
+        -S -Os -fomit-frame-pointer -fobjc-arc -fno-objc-exceptions \
+        -o "$dst" \
+        -iframework ./xcode-frameworks/Frameworks \
+        -isystem ./xcode-frameworks/include
+
+    cat "$dst" |
         sed 's/\x01/\\x01/g' |
         sed 's/  *; .*//g' | # Strip comments at the end of lines
         sed 's/  *## .*//g' |
         sed '/^    \.build_version .*/d' | # Strip OS-specific version info
         sed '/^; .*/d' | # Strip whole-line comments
-        sed '/^## .*/d' > "MACHAppDelegate_${target//-/_}.s"
+        sed '/^## .*/d' > "$dst.tmp"
+
+    mv "$dst.tmp" "$dst"
 done
 
+mv MACHAppDelegate_aarch64-macos.s MACHAppDelegate_arm64_apple_macos12.s
+mv MACHAppDelegate_x86_64-macos.s MACHAppDelegate_x86_64_apple_macos12.s
