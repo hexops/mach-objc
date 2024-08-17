@@ -1,7 +1,7 @@
-const c = @import("../c.zig");
-const cg = @import("../core_graphics/cg.zig");
-const mtl = @import("../metal/mtl.zig");
-const ns = @import("../foundation/ns.zig");
+const c = @import("c.zig");
+const cg = @import("core_graphics.zig");
+const mtl = @import("metal.zig");
+const ns = @import("foundation.zig");
 
 pub const Layer = opaque {
     pub fn class() *c.objc_class {

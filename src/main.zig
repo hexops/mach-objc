@@ -3,32 +3,34 @@ const c = @import("c.zig");
 pub const objc = @import("objc.zig");
 
 pub const avf_audio = struct {
-    pub const avaudio = @import("avf_audio/avaudio.zig");
+    pub const avaudio = @import("avf_audio.zig");
 };
 
 pub const core_foundation = struct {
-    pub const cf = @import("core_foundation/cf.zig");
+    pub const cf = @import("core_foundation.zig");
 };
 
 pub const core_graphics = struct {
-    pub const cg = @import("core_graphics/cg.zig");
+    pub const cg = @import("core_graphics.zig");
 };
 
 pub const foundation = struct {
-    pub const ns = @import("foundation/ns.zig");
+    pub const ns = @import("foundation.zig");
 };
 
 pub const metal = struct {
-    pub const mtl = @import("metal/mtl.zig");
+    pub const mtl = @import("metal.zig");
 };
 
 pub const quartz_core = struct {
-    pub const ca = @import("quartz_core/ca.zig");
+    pub const ca = @import("quartz_core.zig");
 };
 
-pub const appkit = struct {
-    pub const ns = @import("appkit/appkit.zig");
+pub const app_kit = struct {
+    pub const ns = @import("app_kit.zig");
 };
+// TODO: delete `appkit` once Mach is using `app_kit`.
+pub const appkit = app_kit;
 
 pub const mach = struct {
     pub const AppDelegate = opaque {
