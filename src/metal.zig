@@ -2659,16 +2659,8 @@ pub const CommandBuffer = opaque {
             pub fn commit(self_: *T) void {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_commit);
             }
-            pub fn addScheduledHandler(self_: *T, context: anytype, comptime block_: fn (ctx: @TypeOf(context), _: *CommandBuffer) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *CommandBuffer) callconv(.C) void {
-                        block_(literal.context, a0);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addScheduledHandler_, @ptrCast(&block));
+            pub fn addScheduledHandler(self_: *T, block_: *ns.Block(fn (*CommandBuffer) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addScheduledHandler_, block_);
             }
             pub fn presentDrawable(self_: *T, drawable_: *Drawable) void {
                 return @as(*const fn (*T, *c.objc_selector, *Drawable) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_presentDrawable_, drawable_);
@@ -2682,16 +2674,8 @@ pub const CommandBuffer = opaque {
             pub fn waitUntilScheduled(self_: *T) void {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitUntilScheduled);
             }
-            pub fn addCompletedHandler(self_: *T, context: anytype, comptime block_: fn (ctx: @TypeOf(context), _: *CommandBuffer) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *CommandBuffer) callconv(.C) void {
-                        block_(literal.context, a0);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addCompletedHandler_, @ptrCast(&block));
+            pub fn addCompletedHandler(self_: *T, block_: *ns.Block(fn (*CommandBuffer) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addCompletedHandler_, block_);
             }
             pub fn waitUntilCompleted(self_: *T) void {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitUntilCompleted);
@@ -3522,16 +3506,8 @@ pub const Device = opaque {
             pub fn newBufferWithBytes_length_options(self_: *T, pointer_: *const anyopaque, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
                 return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ResourceOptions) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytes_length_options_, pointer_, length_, options_);
             }
-            pub fn newBufferWithBytesNoCopy_length_options_deallocator(self_: *T, pointer_: *anyopaque, length_: ns.UInteger, options_: ResourceOptions, context: anytype, comptime deallocator_: fn (ctx: @TypeOf(context), _: *anyopaque, _: ns.UInteger) void) ?*Buffer {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *anyopaque, a1: ns.UInteger) callconv(.C) void {
-                        deallocator_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, ResourceOptions, *const anyopaque) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytesNoCopy_length_options_deallocator_, pointer_, length_, options_, @ptrCast(&block));
+            pub fn newBufferWithBytesNoCopy_length_options_deallocator(self_: *T, pointer_: *anyopaque, length_: ns.UInteger, options_: ResourceOptions, deallocator_: *ns.Block(fn (*anyopaque, ns.UInteger) void)) ?*Buffer {
+                return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, ResourceOptions, *const anyopaque) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytesNoCopy_length_options_deallocator_, pointer_, length_, options_, deallocator_);
             }
             pub fn newDepthStencilStateWithDescriptor(self_: *T, descriptor_: *DepthStencilDescriptor) ?*DepthStencilState {
                 return @as(*const fn (*T, *c.objc_selector, *DepthStencilDescriptor) callconv(.C) ?*DepthStencilState, @ptrCast(&c.objc_msgSend))(self_, sel_newDepthStencilStateWithDescriptor_, descriptor_);
@@ -3569,30 +3545,14 @@ pub const Device = opaque {
             pub fn newLibraryWithSource_options_error(self_: *T, source_: *ns.String, options_: ?*CompileOptions, error_: ?*?*ns.Error) ?*Library {
                 return @as(*const fn (*T, *c.objc_selector, *ns.String, ?*CompileOptions, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithSource_options_error_, source_, options_, error_);
             }
-            pub fn newLibraryWithSource_options_completionHandler(self_: *T, source_: *ns.String, options_: ?*CompileOptions, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*Library, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*Library, a1: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, ?*CompileOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithSource_options_completionHandler_, source_, options_, @ptrCast(&block));
+            pub fn newLibraryWithSource_options_completionHandler(self_: *T, source_: *ns.String, options_: ?*CompileOptions, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *ns.String, ?*CompileOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithSource_options_completionHandler_, source_, options_, completionHandler_);
             }
             pub fn newLibraryWithStitchedDescriptor_error(self_: *T, descriptor_: *StitchedLibraryDescriptor, error_: ?*?*ns.Error) ?*Library {
                 return @as(*const fn (*T, *c.objc_selector, *StitchedLibraryDescriptor, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithStitchedDescriptor_error_, descriptor_, error_);
             }
-            pub fn newLibraryWithStitchedDescriptor_completionHandler(self_: *T, descriptor_: *StitchedLibraryDescriptor, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*Library, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*Library, a1: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *StitchedLibraryDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithStitchedDescriptor_completionHandler_, descriptor_, @ptrCast(&block));
+            pub fn newLibraryWithStitchedDescriptor_completionHandler(self_: *T, descriptor_: *StitchedLibraryDescriptor, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *StitchedLibraryDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithStitchedDescriptor_completionHandler_, descriptor_, completionHandler_);
             }
             pub fn newRenderPipelineStateWithDescriptor_error(self_: *T, descriptor_: *RenderPipelineDescriptor, error_: ?*?*ns.Error) ?*RenderPipelineState {
                 return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_error_, descriptor_, error_);
@@ -3600,27 +3560,11 @@ pub const Device = opaque {
             pub fn newRenderPipelineStateWithDescriptor_options_reflection_error(self_: *T, descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
                 return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, PipelineOption, ?*AutoreleasedRenderPipelineReflection, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
             }
-            pub fn newRenderPipelineStateWithDescriptor_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*RenderPipelineState, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*RenderPipelineState, a1: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_completionHandler_, descriptor_, @ptrCast(&block));
+            pub fn newRenderPipelineStateWithDescriptor_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, completionHandler_: *ns.Block(fn (?*RenderPipelineState, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_completionHandler_, descriptor_, completionHandler_);
             }
-            pub fn newRenderPipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*RenderPipelineState, _: *RenderPipelineReflection, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*RenderPipelineState, a1: *RenderPipelineReflection, a2: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1, a2);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_options_completionHandler_, descriptor_, options_, @ptrCast(&block));
+            pub fn newRenderPipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
             }
             pub fn newComputePipelineStateWithFunction_error(self_: *T, computeFunction_: *Function, error_: ?*?*ns.Error) ?*ComputePipelineState {
                 return @as(*const fn (*T, *c.objc_selector, *Function, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_error_, computeFunction_, error_);
@@ -3628,41 +3572,17 @@ pub const Device = opaque {
             pub fn newComputePipelineStateWithFunction_options_reflection_error(self_: *T, computeFunction_: *Function, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
                 return @as(*const fn (*T, *c.objc_selector, *Function, PipelineOption, ?*AutoreleasedComputePipelineReflection, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_options_reflection_error_, computeFunction_, options_, reflection_, error_);
             }
-            pub fn newComputePipelineStateWithFunction_completionHandler(self_: *T, computeFunction_: *Function, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*ComputePipelineState, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*ComputePipelineState, a1: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *Function, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_completionHandler_, computeFunction_, @ptrCast(&block));
+            pub fn newComputePipelineStateWithFunction_completionHandler(self_: *T, computeFunction_: *Function, completionHandler_: *ns.Block(fn (?*ComputePipelineState, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *Function, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_completionHandler_, computeFunction_, completionHandler_);
             }
-            pub fn newComputePipelineStateWithFunction_options_completionHandler(self_: *T, computeFunction_: *Function, options_: PipelineOption, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*ComputePipelineState, _: *ComputePipelineReflection, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*ComputePipelineState, a1: *ComputePipelineReflection, a2: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1, a2);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *Function, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_options_completionHandler_, computeFunction_, options_, @ptrCast(&block));
+            pub fn newComputePipelineStateWithFunction_options_completionHandler(self_: *T, computeFunction_: *Function, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *Function, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_options_completionHandler_, computeFunction_, options_, completionHandler_);
             }
             pub fn newComputePipelineStateWithDescriptor_options_reflection_error(self_: *T, descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
                 return @as(*const fn (*T, *c.objc_selector, *ComputePipelineDescriptor, PipelineOption, ?*AutoreleasedComputePipelineReflection, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
             }
-            pub fn newComputePipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*ComputePipelineState, _: *ComputePipelineReflection, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*ComputePipelineState, a1: *ComputePipelineReflection, a2: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1, a2);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *ComputePipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithDescriptor_options_completionHandler_, descriptor_, options_, @ptrCast(&block));
+            pub fn newComputePipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *ComputePipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
             }
             pub fn newFence(self_: *T) ?*Fence {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Fence, @ptrCast(&c.objc_msgSend))(self_, sel_newFence);
@@ -3685,30 +3605,14 @@ pub const Device = opaque {
             pub fn newRenderPipelineStateWithTileDescriptor_options_reflection_error(self_: *T, descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
                 return @as(*const fn (*T, *c.objc_selector, *TileRenderPipelineDescriptor, PipelineOption, ?*AutoreleasedRenderPipelineReflection, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithTileDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
             }
-            pub fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(self_: *T, descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*RenderPipelineState, _: *RenderPipelineReflection, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*RenderPipelineState, a1: *RenderPipelineReflection, a2: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1, a2);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *TileRenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithTileDescriptor_options_completionHandler_, descriptor_, options_, @ptrCast(&block));
+            pub fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(self_: *T, descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *TileRenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithTileDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
             }
             pub fn newRenderPipelineStateWithMeshDescriptor_options_reflection_error(self_: *T, descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
                 return @as(*const fn (*T, *c.objc_selector, *MeshRenderPipelineDescriptor, PipelineOption, ?*AutoreleasedRenderPipelineReflection, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithMeshDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
             }
-            pub fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(self_: *T, descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*RenderPipelineState, _: *RenderPipelineReflection, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*RenderPipelineState, a1: *RenderPipelineReflection, a2: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1, a2);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *MeshRenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithMeshDescriptor_options_completionHandler_, descriptor_, options_, @ptrCast(&block));
+            pub fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(self_: *T, descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *MeshRenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithMeshDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
             }
             pub fn getDefaultSamplePositions_count(self_: *T, positions_: *SamplePosition, count_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, *SamplePosition, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getDefaultSamplePositions_count_, positions_, count_);
@@ -3952,16 +3856,8 @@ pub const Drawable = opaque {
             pub fn presentAfterMinimumDuration(self_: *T, duration_: cf.TimeInterval) void {
                 return @as(*const fn (*T, *c.objc_selector, cf.TimeInterval) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_presentAfterMinimumDuration_, duration_);
             }
-            pub fn addPresentedHandler(self_: *T, context: anytype, comptime block_: fn (ctx: @TypeOf(context), _: *Drawable) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *Drawable) callconv(.C) void {
-                        block_(literal.context, a0);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addPresentedHandler_, @ptrCast(&block));
+            pub fn addPresentedHandler(self_: *T, block_: *ns.Block(fn (*Drawable) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addPresentedHandler_, block_);
             }
             pub fn presentedTime(self_: *T) cf.TimeInterval {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) cf.TimeInterval, @ptrCast(&c.objc_msgSend))(self_, sel_presentedTime);
@@ -4046,16 +3942,8 @@ pub const SharedEvent = opaque {
         return struct {
             pub usingnamespace Event.Methods(T);
 
-            pub fn notifyListener_atValue_block(self_: *T, listener_: *SharedEventListener, value_: u64, context: anytype, comptime block_: fn (ctx: @TypeOf(context), _: *SharedEvent, _: u64) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *SharedEvent, a1: u64) callconv(.C) void {
-                        block_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *SharedEventListener, u64, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_notifyListener_atValue_block_, listener_, value_, @ptrCast(&block));
+            pub fn notifyListener_atValue_block(self_: *T, listener_: *SharedEventListener, value_: u64, block_: *ns.Block(fn (*SharedEvent, u64) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *SharedEventListener, u64, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_notifyListener_atValue_block_, listener_, value_, block_);
             }
             pub fn newSharedEventHandle(self_: *T) *SharedEventHandle {
                 return @as(*const fn (*T, *c.objc_selector) callconv(.C) *SharedEventHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newSharedEventHandle);
@@ -4859,16 +4747,8 @@ pub const IOCommandBuffer = opaque {
         return struct {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
-            pub fn addCompletedHandler(self_: *T, context: anytype, comptime block_: fn (ctx: @TypeOf(context), _: *IOCommandBuffer) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *IOCommandBuffer) callconv(.C) void {
-                        block_(literal.context, a0);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addCompletedHandler_, @ptrCast(&block));
+            pub fn addCompletedHandler(self_: *T, block_: *ns.Block(fn (*IOCommandBuffer) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addCompletedHandler_, block_);
             }
             pub fn loadBytes_size_sourceHandle_sourceHandleOffset(self_: *T, pointer_: *anyopaque, size_: ns.UInteger, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
                 return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, *IOFileHandle, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_loadBytes_size_sourceHandle_sourceHandleOffset_, pointer_, size_, sourceHandle_, sourceHandleOffset_);
@@ -5275,41 +5155,17 @@ pub const Library = opaque {
             pub fn newFunctionWithName_constantValues_error(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, error_: ?*?*ns.Error) ?*Function {
                 return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_error_, name_, constantValues_, error_);
             }
-            pub fn newFunctionWithName_constantValues_completionHandler(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*Function, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*Function, a1: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_completionHandler_, name_, constantValues_, @ptrCast(&block));
+            pub fn newFunctionWithName_constantValues_completionHandler(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_completionHandler_, name_, constantValues_, completionHandler_);
             }
-            pub fn newFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *FunctionDescriptor, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*Function, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*Function, a1: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_completionHandler_, descriptor_, @ptrCast(&block));
+            pub fn newFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *FunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
             }
             pub fn newFunctionWithDescriptor_error(self_: *T, descriptor_: *FunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
                 return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_error_, descriptor_, error_);
             }
-            pub fn newIntersectionFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *IntersectionFunctionDescriptor, context: anytype, comptime completionHandler_: fn (ctx: @TypeOf(context), _: ?*Function, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: ?*Function, a1: ?*ns.Error) callconv(.C) void {
-                        completionHandler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_completionHandler_, descriptor_, @ptrCast(&block));
+            pub fn newIntersectionFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *IntersectionFunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
             }
             pub fn newIntersectionFunctionWithDescriptor_error(self_: *T, descriptor_: *IntersectionFunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
                 return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_error_, descriptor_, error_);

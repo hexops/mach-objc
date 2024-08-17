@@ -39,11 +39,11 @@ pub const mach = struct {
         }
         extern "objc" fn objc_alloc_init(class: *anyopaque) *AppDelegate;
 
-        pub fn setRunBlock(self: *AppDelegate, block: *anyopaque) void {
+        pub fn setRunBlock(self: *AppDelegate, block: *foundation.ns.Block(fn () void)) void {
             method(self, block);
         }
         const method = @extern(
-            *const fn (*AppDelegate, *anyopaque) callconv(.C) void,
+            *const fn (*AppDelegate, *foundation.ns.Block(fn () void)) callconv(.C) void,
             .{ .name = "\x01-[MACHAppDelegate setRunBlock:]" },
         );
     };

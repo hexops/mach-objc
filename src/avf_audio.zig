@@ -96,16 +96,8 @@ pub const AVAudioSession = opaque {
             pub fn setAllowHapticsAndSystemSoundsDuringRecording_error(self_: *T, inValue_: bool, outError_: ?*?*ns.Error) bool {
                 return @as(*const fn (*T, *c.objc_selector, bool, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_setAllowHapticsAndSystemSoundsDuringRecording_error_, inValue_, outError_);
             }
-            pub fn requestRecordPermission(self_: *T, context: anytype, comptime response_: fn (ctx: @TypeOf(context), _: bool) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: bool) callconv(.C) void {
-                        response_(literal.context, a0);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_requestRecordPermission_, @ptrCast(&block));
+            pub fn requestRecordPermission(self_: *T, response_: *ns.Block(fn (bool) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_requestRecordPermission_, response_);
             }
             pub fn overrideOutputAudioPort_error(self_: *T, portOverride_: AVAudioSessionPortOverride, outError_: ?*?*ns.Error) bool {
                 return @as(*const fn (*T, *c.objc_selector, AVAudioSessionPortOverride, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_overrideOutputAudioPort_error_, portOverride_, outError_);
@@ -152,16 +144,8 @@ pub const AVAudioSession = opaque {
             pub fn setActive_withOptions_error(self_: *T, active_: bool, options_: AVAudioSessionSetActiveOptions, outError_: ?*?*ns.Error) bool {
                 return @as(*const fn (*T, *c.objc_selector, bool, AVAudioSessionSetActiveOptions, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_setActive_withOptions_error_, active_, options_, outError_);
             }
-            pub fn activateWithOptions_completionHandler(self_: *T, options_: AVAudioSessionActivationOptions, context: anytype, comptime handler_: fn (ctx: @TypeOf(context), _: bool, _: ?*ns.Error) void) void {
-                const Literal = ns.BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: bool, a1: ?*ns.Error) callconv(.C) void {
-                        handler_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, AVAudioSessionActivationOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_activateWithOptions_completionHandler_, options_, @ptrCast(&block));
+            pub fn activateWithOptions_completionHandler(self_: *T, options_: AVAudioSessionActivationOptions, handler_: *ns.Block(fn (bool, ?*ns.Error) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, AVAudioSessionActivationOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_activateWithOptions_completionHandler_, options_, handler_);
             }
             pub fn setPreferredSampleRate_error(self_: *T, sampleRate_: f64, outError_: ?*?*ns.Error) bool {
                 return @as(*const fn (*T, *c.objc_selector, f64, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_setPreferredSampleRate_error_, sampleRate_, outError_);
