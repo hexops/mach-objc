@@ -1283,7 +1283,6 @@ fn Generator(comptime WriterType: type) type {
             try self.writer.print(") ", .{});
             try self.generateType(method.return_type);
             try self.writer.print(" {{\n", .{});
-            try self.generateBlockHelpers(method);
             try self.writer.writeAll("                return @as(");
             try self.generateObjcSignature(method);
             try self.writer.writeAll(", @ptrCast(&c.objc_msgSend))(");
@@ -1330,42 +1329,19 @@ fn Generator(comptime WriterType: type) type {
 
         fn generateMethodParam(self: *Self, param: Param) !void {
             if (getBlockType(param)) |f| {
-                try self.writer.writeAll("context: anytype, comptime ");
-                try self.writer.print("{s}_: ", .{param.name});
-                try self.writer.writeAll("fn (ctx: @TypeOf(context)");
+                try self.writer.print("{s}_: *ns.Block(fn (", .{param.name});
+                var first = true;
                 for (f.params.items) |param_ty| {
-                    try self.writer.writeAll(", _: ");
+                    if (!first) try self.writer.writeAll(", ");
+                    first = false;
                     try self.generateType(param_ty);
                 }
                 try self.writer.writeAll(") ");
                 try self.generateType(f.return_type.*);
+                try self.writer.writeByte(')');
             } else {
                 try self.writer.print("{s}_: ", .{param.name});
                 try self.generateType(param.ty);
-            }
-        }
-
-        fn generateBlockHelpers(self: *Self, method: Method) !void {
-            for (method.params.items) |param| {
-                if (getBlockType(param)) |f| {
-                    try self.writer.writeAll("                const Literal = ns.BlockLiteral(@TypeOf(context));\n");
-                    try self.writer.writeAll("                const Helper = struct {\n");
-                    try self.writer.writeAll("                    pub fn cCallback(literal: *Literal");
-                    for (f.params.items, 0..) |param_ty, i| {
-                        try self.writer.print(", a{d}: ", .{i});
-                        try self.generateType(param_ty);
-                    }
-                    try self.writer.writeAll(") callconv(.C) void {\n");
-                    try self.writer.print("                        {s}_(literal.context", .{param.name});
-                    for (0..f.params.items.len) |i| {
-                        try self.writer.print(", a{d}", .{i});
-                    }
-                    try self.writer.writeAll(");\n");
-                    try self.writer.writeAll("                    }\n");
-                    try self.writer.writeAll("                };\n");
-                    try self.writer.writeAll("                const descriptor = ns.BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };\n");
-                    try self.writer.writeAll("                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };\n");
-                }
             }
         }
 
@@ -1400,11 +1376,7 @@ fn Generator(comptime WriterType: type) type {
 
             for (method.params.items) |param| {
                 try self.writer.writeAll(", ");
-                if (getBlockType(param)) |_| {
-                    try self.writer.writeAll("@ptrCast(&block)");
-                } else {
-                    try self.writer.print("{s}_", .{param.name});
-                }
+                try self.writer.print("{s}_", .{param.name});
             }
         }
 

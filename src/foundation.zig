@@ -1,4 +1,5 @@
 const c = @import("c.zig");
+const system = @import("system.zig");
 
 // ------------------------------------------------------------------------------------------------
 // Types
@@ -14,23 +15,12 @@ pub const unichar = u16;
 // ------------------------------------------------------------------------------------------------
 // Blocks
 
-extern const _NSConcreteStackBlock: *anyopaque;
-
-pub const BlockDescriptor = extern struct {
-    reserved: c_ulong,
-    size: c_ulong,
-};
-
-pub fn BlockLiteral(comptime Context: type) type {
-    return extern struct {
-        isa: *anyopaque,
-        flags: c_int,
-        reserved: c_int,
-        invoke: *const fn () callconv(.C) void,
-        descriptor: *const BlockDescriptor,
-        context: Context,
-    };
-}
+pub const Block = system.Block;
+pub const BlockLiteral = system.BlockLiteral;
+pub const BlockLiteralWithSignature = system.BlockLiteralWithSignature;
+pub const stackBlockLiteral = system.stackBlockLiteral;
+pub const globalBlockLiteral = system.globalBlockLiteral;
+pub const globalBlock = system.globalBlock;
 
 // ------------------------------------------------------------------------------------------------
 // Enumerations
@@ -1090,16 +1080,8 @@ pub const String = opaque {
             //     const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
             //     return @as(*const fn (*T, *c.objc_selector, Range, StringEnumerationOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enumerateSubstringsInRange_options_usingBlock_, range_, opts_, @ptrCast(&block));
             // }
-            pub fn enumerateLinesUsingBlock(self_: *T, context: anytype, comptime block_: fn (ctx: @TypeOf(context), _: *String, _: *bool) void) void {
-                const Literal = BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *String, a1: *bool) callconv(.C) void {
-                        block_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enumerateLinesUsingBlock_, @ptrCast(&block));
+            pub fn enumerateLinesUsingBlock(self_: *T, block_: *Block(fn(*String, bool) void)) void {
+                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enumerateLinesUsingBlock_, block_);
             }
             pub fn dataUsingEncoding_allowLossyConversion(self_: *T, encoding_: StringEncoding, lossy_: bool) ?*Data {
                 return @as(*const fn (*T, *c.objc_selector, StringEncoding, bool) callconv(.C) ?*Data, @ptrCast(&c.objc_msgSend))(self_, sel_dataUsingEncoding_allowLossyConversion_, encoding_, lossy_);
@@ -1164,16 +1146,8 @@ pub const String = opaque {
             pub fn initWithCharactersNoCopy_length_freeWhenDone(self_: *T, characters_: *unichar, length_: UInteger, freeBuffer_: bool) *T {
                 return @as(*const fn (*T, *c.objc_selector, *unichar, UInteger, bool) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCharactersNoCopy_length_freeWhenDone_, characters_, length_, freeBuffer_);
             }
-            pub fn initWithCharactersNoCopy_length_deallocator(self_: *T, chars_: *unichar, len_: UInteger, context: anytype, comptime deallocator_: fn (ctx: @TypeOf(context), _: *unichar, _: UInteger) void) *T {
-                const Literal = BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *unichar, a1: UInteger) callconv(.C) void {
-                        deallocator_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *unichar, UInteger, *const anyopaque) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCharactersNoCopy_length_deallocator_, chars_, len_, @ptrCast(&block));
+            pub fn initWithCharactersNoCopy_length_deallocator(self_: *T, chars_: *unichar, len_: UInteger, deallocator_: *Block(fn (*unichar, UInteger) void)) *T {
+                return @as(*const fn (*T, *c.objc_selector, *unichar, UInteger, *const anyopaque) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCharactersNoCopy_length_deallocator_, chars_, len_, deallocator_);
             }
             pub fn initWithCharacters_length(self_: *T, characters_: *const unichar, length_: UInteger) *T {
                 return @as(*const fn (*T, *c.objc_selector, *const unichar, UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCharacters_length_, characters_, length_);
@@ -1217,16 +1191,8 @@ pub const String = opaque {
             pub fn initWithBytesNoCopy_length_encoding_freeWhenDone(self_: *T, bytes_: *anyopaque, len_: UInteger, encoding_: StringEncoding, freeBuffer_: bool) *T {
                 return @as(*const fn (*T, *c.objc_selector, *anyopaque, UInteger, StringEncoding, bool) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBytesNoCopy_length_encoding_freeWhenDone_, bytes_, len_, encoding_, freeBuffer_);
             }
-            pub fn initWithBytesNoCopy_length_encoding_deallocator(self_: *T, bytes_: *anyopaque, len_: UInteger, encoding_: StringEncoding, context: anytype, comptime deallocator_: fn (ctx: @TypeOf(context), _: *anyopaque, _: UInteger) void) *T {
-                const Literal = BlockLiteral(@TypeOf(context));
-                const Helper = struct {
-                    pub fn cCallback(literal: *Literal, a0: *anyopaque, a1: UInteger) callconv(.C) void {
-                        deallocator_(literal.context, a0, a1);
-                    }
-                };
-                const descriptor = BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
-                const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, UInteger, StringEncoding, *const anyopaque) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBytesNoCopy_length_encoding_deallocator_, bytes_, len_, encoding_, @ptrCast(&block));
+            pub fn initWithBytesNoCopy_length_encoding_deallocator(self_: *T, bytes_: *anyopaque, len_: UInteger, encoding_: StringEncoding, deallocator_: *Block(fn (*anyopaque, UInteger) void)) *T {
+                return @as(*const fn (*T, *c.objc_selector, *anyopaque, UInteger, StringEncoding, *const anyopaque) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBytesNoCopy_length_encoding_deallocator_, bytes_, len_, encoding_, deallocator_);
             }
             pub fn string() *T {
                 return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_string);
