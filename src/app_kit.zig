@@ -1,12 +1,12 @@
-const c = @import("../c.zig");
-const ca = @import("../quartz_core/ca.zig");
-const cf = @import("../core_foundation/cf.zig");
-const ns = @import("../foundation/ns.zig");
-const cg = @import("../core_graphics/cg.zig");
-const objc = @import("../objc.zig");
+const c = @import("c.zig");
+const ca = @import("quartz_core.zig");
+const cf = @import("core_foundation.zig");
+const ns = @import("foundation.zig");
+const cg = @import("core_graphics.zig");
+const objc = @import("objc.zig");
 
 pub const applicationMain = NSApplicationMain;
-extern fn NSApplicationMain(argc: c_int, argv: **c_char) c_int;
+extern fn NSApplicationMain(argc: c_int, argv: [*]*c_char) c_int;
 
 // ------------------------------------------------------------------------------------------------
 // Shared
