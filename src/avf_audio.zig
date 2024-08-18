@@ -69,368 +69,359 @@ pub const AVAudioSessionIOTypeAggregated: AVAudioSessionIOType = 1;
 pub const AVAudioSession = opaque {
     pub const InternalInfo = objc.ExternClass("AVAudioSession", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AVAudioSession);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn sharedInstance() *AVAudioSession {
-                return objc.msgSend(T.InternalInfo.class(), "sharedInstance", *AVAudioSession, .{});
-            }
-            pub fn setCategory_error(self_: *T, category_: AVAudioSessionCategory, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setCategory:error:", bool, .{ category_, outError_ });
-            }
-            pub fn setCategory_withOptions_error(self_: *T, category_: AVAudioSessionCategory, options_: AVAudioSessionCategoryOptions, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setCategory:withOptions:error:", bool, .{ category_, options_, outError_ });
-            }
-            pub fn setCategory_mode_options_error(self_: *T, category_: AVAudioSessionCategory, mode_: AVAudioSessionMode, options_: *c.objc_object, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setCategory:mode:options:error:", bool, .{ category_, mode_, options_, outError_ });
-            }
-            pub fn setCategory_mode_routeSharingPolicy_options_error(self_: *T, category_: AVAudioSessionCategory, mode_: AVAudioSessionMode, policy_: AVAudioSessionRouteSharingPolicy, options_: AVAudioSessionCategoryOptions, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setCategory:mode:routeSharingPolicy:options:error:", bool, .{ category_, mode_, policy_, options_, outError_ });
-            }
-            pub fn setMode_error(self_: *T, mode_: AVAudioSessionMode, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setMode:error:", bool, .{ mode_, outError_ });
-            }
-            pub fn setAllowHapticsAndSystemSoundsDuringRecording_error(self_: *T, inValue_: bool, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setAllowHapticsAndSystemSoundsDuringRecording:error:", bool, .{ inValue_, outError_ });
-            }
-            pub fn requestRecordPermission(self_: *T, response_: *ns.Block(fn (bool) void)) void {
-                return objc.msgSend(self_, "requestRecordPermission:", void, .{response_});
-            }
-            pub fn overrideOutputAudioPort_error(self_: *T, portOverride_: AVAudioSessionPortOverride, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "overrideOutputAudioPort:error:", bool, .{ portOverride_, outError_ });
-            }
-            pub fn setPreferredInput_error(self_: *T, inPort_: ?*AVAudioSessionPortDescription, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredInput:error:", bool, .{ inPort_, outError_ });
-            }
-            pub fn setPrefersNoInterruptionsFromSystemAlerts_error(self_: *T, inValue_: bool, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPrefersNoInterruptionsFromSystemAlerts:error:", bool, .{ inValue_, outError_ });
-            }
-            pub fn availableCategories(self_: *T) *ns.Array(AVAudioSessionCategory) {
-                return objc.msgSend(self_, "availableCategories", *ns.Array(AVAudioSessionCategory), .{});
-            }
-            pub fn category(self_: *T) AVAudioSessionCategory {
-                return objc.msgSend(self_, "category", AVAudioSessionCategory, .{});
-            }
-            pub fn categoryOptions(self_: *T) AVAudioSessionCategoryOptions {
-                return objc.msgSend(self_, "categoryOptions", AVAudioSessionCategoryOptions, .{});
-            }
-            pub fn routeSharingPolicy(self_: *T) AVAudioSessionRouteSharingPolicy {
-                return objc.msgSend(self_, "routeSharingPolicy", AVAudioSessionRouteSharingPolicy, .{});
-            }
-            pub fn availableModes(self_: *T) *ns.Array(AVAudioSessionMode) {
-                return objc.msgSend(self_, "availableModes", *ns.Array(AVAudioSessionMode), .{});
-            }
-            pub fn mode(self_: *T) AVAudioSessionMode {
-                return objc.msgSend(self_, "mode", AVAudioSessionMode, .{});
-            }
-            pub fn allowHapticsAndSystemSoundsDuringRecording(self_: *T) bool {
-                return objc.msgSend(self_, "allowHapticsAndSystemSoundsDuringRecording", bool, .{});
-            }
-            pub fn recordPermission(self_: *T) AVAudioSessionRecordPermission {
-                return objc.msgSend(self_, "recordPermission", AVAudioSessionRecordPermission, .{});
-            }
-            pub fn preferredInput(self_: *T) ?*AVAudioSessionPortDescription {
-                return objc.msgSend(self_, "preferredInput", ?*AVAudioSessionPortDescription, .{});
-            }
-            pub fn prefersNoInterruptionsFromSystemAlerts(self_: *T) bool {
-                return objc.msgSend(self_, "prefersNoInterruptionsFromSystemAlerts", bool, .{});
-            }
-            pub fn setActive_error(self_: *T, active_: bool, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setActive:error:", bool, .{ active_, outError_ });
-            }
-            pub fn setActive_withOptions_error(self_: *T, active_: bool, options_: AVAudioSessionSetActiveOptions, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setActive:withOptions:error:", bool, .{ active_, options_, outError_ });
-            }
-            pub fn activateWithOptions_completionHandler(self_: *T, options_: AVAudioSessionActivationOptions, handler_: *ns.Block(fn (bool, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "activateWithOptions:completionHandler:", void, .{ options_, handler_ });
-            }
-            pub fn setPreferredSampleRate_error(self_: *T, sampleRate_: f64, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredSampleRate:error:", bool, .{ sampleRate_, outError_ });
-            }
-            pub fn setPreferredIOBufferDuration_error(self_: *T, duration_: ns.TimeInterval, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredIOBufferDuration:error:", bool, .{ duration_, outError_ });
-            }
-            pub fn setPreferredInputNumberOfChannels_error(self_: *T, count_: ns.Integer, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredInputNumberOfChannels:error:", bool, .{ count_, outError_ });
-            }
-            pub fn setPreferredOutputNumberOfChannels_error(self_: *T, count_: ns.Integer, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredOutputNumberOfChannels:error:", bool, .{ count_, outError_ });
-            }
-            pub fn setPreferredInputOrientation_error(self_: *T, orientation_: AVAudioStereoOrientation, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredInputOrientation:error:", bool, .{ orientation_, outError_ });
-            }
-            pub fn setInputGain_error(self_: *T, gain_: f32, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setInputGain:error:", bool, .{ gain_, outError_ });
-            }
-            pub fn setInputDataSource_error(self_: *T, dataSource_: ?*AVAudioSessionDataSourceDescription, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setInputDataSource:error:", bool, .{ dataSource_, outError_ });
-            }
-            pub fn setOutputDataSource_error(self_: *T, dataSource_: ?*AVAudioSessionDataSourceDescription, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setOutputDataSource:error:", bool, .{ dataSource_, outError_ });
-            }
-            pub fn preferredSampleRate(self_: *T) f64 {
-                return objc.msgSend(self_, "preferredSampleRate", f64, .{});
-            }
-            pub fn preferredIOBufferDuration(self_: *T) ns.TimeInterval {
-                return objc.msgSend(self_, "preferredIOBufferDuration", ns.TimeInterval, .{});
-            }
-            pub fn preferredInputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "preferredInputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn preferredOutputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "preferredOutputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn preferredInputOrientation(self_: *T) AVAudioStereoOrientation {
-                return objc.msgSend(self_, "preferredInputOrientation", AVAudioStereoOrientation, .{});
-            }
-            pub fn inputOrientation(self_: *T) AVAudioStereoOrientation {
-                return objc.msgSend(self_, "inputOrientation", AVAudioStereoOrientation, .{});
-            }
-            pub fn maximumInputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "maximumInputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn maximumOutputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "maximumOutputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn inputGain(self_: *T) f32 {
-                return objc.msgSend(self_, "inputGain", f32, .{});
-            }
-            pub fn isInputGainSettable(self_: *T) bool {
-                return objc.msgSend(self_, "isInputGainSettable", bool, .{});
-            }
-            pub fn isInputAvailable(self_: *T) bool {
-                return objc.msgSend(self_, "isInputAvailable", bool, .{});
-            }
-            pub fn inputDataSources(self_: *T) *ns.Array(*AVAudioSessionDataSourceDescription) {
-                return objc.msgSend(self_, "inputDataSources", *ns.Array(*AVAudioSessionDataSourceDescription), .{});
-            }
-            pub fn inputDataSource(self_: *T) *AVAudioSessionDataSourceDescription {
-                return objc.msgSend(self_, "inputDataSource", *AVAudioSessionDataSourceDescription, .{});
-            }
-            pub fn outputDataSources(self_: *T) *ns.Array(*AVAudioSessionDataSourceDescription) {
-                return objc.msgSend(self_, "outputDataSources", *ns.Array(*AVAudioSessionDataSourceDescription), .{});
-            }
-            pub fn outputDataSource(self_: *T) *AVAudioSessionDataSourceDescription {
-                return objc.msgSend(self_, "outputDataSource", *AVAudioSessionDataSourceDescription, .{});
-            }
-            pub fn sampleRate(self_: *T) f64 {
-                return objc.msgSend(self_, "sampleRate", f64, .{});
-            }
-            pub fn inputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "inputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn outputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "outputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn inputLatency(self_: *T) ns.TimeInterval {
-                return objc.msgSend(self_, "inputLatency", ns.TimeInterval, .{});
-            }
-            pub fn outputLatency(self_: *T) ns.TimeInterval {
-                return objc.msgSend(self_, "outputLatency", ns.TimeInterval, .{});
-            }
-            pub fn IOBufferDuration(self_: *T) ns.TimeInterval {
-                return objc.msgSend(self_, "IOBufferDuration", ns.TimeInterval, .{});
-            }
-            pub fn isOtherAudioPlaying(self_: *T) bool {
-                return objc.msgSend(self_, "isOtherAudioPlaying", bool, .{});
-            }
-            pub fn secondaryAudioShouldBeSilencedHint(self_: *T) bool {
-                return objc.msgSend(self_, "secondaryAudioShouldBeSilencedHint", bool, .{});
-            }
-            pub fn outputVolume(self_: *T) f32 {
-                return objc.msgSend(self_, "outputVolume", f32, .{});
-            }
-            pub fn promptStyle(self_: *T) AVAudioSessionPromptStyle {
-                return objc.msgSend(self_, "promptStyle", AVAudioSessionPromptStyle, .{});
-            }
-            pub fn setAggregatedIOPreference_error(self_: *T, inIOType_: AVAudioSessionIOType, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setAggregatedIOPreference:error:", bool, .{ inIOType_, outError_ });
-            }
-            pub fn availableInputs(self_: *T) *ns.Array(*AVAudioSessionPortDescription) {
-                return objc.msgSend(self_, "availableInputs", *ns.Array(*AVAudioSessionPortDescription), .{});
-            }
-            pub fn currentRoute(self_: *T) *AVAudioSessionRouteDescription {
-                return objc.msgSend(self_, "currentRoute", *AVAudioSessionRouteDescription, .{});
-            }
-            pub fn setActive_withFlags_error(self_: *T, active_: bool, flags_: ns.Integer, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setActive:withFlags:error:", bool, .{ active_, flags_, outError_ });
-            }
-            pub fn setPreferredHardwareSampleRate_error(self_: *T, sampleRate_: f64, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredHardwareSampleRate:error:", bool, .{ sampleRate_, outError_ });
-            }
-            pub fn delegate(self_: *T) *AVAudioSessionDelegate {
-                return objc.msgSend(self_, "delegate", *AVAudioSessionDelegate, .{});
-            }
-            pub fn setDelegate(self_: *T, delegate_: *AVAudioSessionDelegate) void {
-                return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
-            }
-            pub fn inputIsAvailable(self_: *T) bool {
-                return objc.msgSend(self_, "inputIsAvailable", bool, .{});
-            }
-            pub fn currentHardwareSampleRate(self_: *T) f64 {
-                return objc.msgSend(self_, "currentHardwareSampleRate", f64, .{});
-            }
-            pub fn currentHardwareInputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "currentHardwareInputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn currentHardwareOutputNumberOfChannels(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "currentHardwareOutputNumberOfChannels", ns.Integer, .{});
-            }
-            pub fn preferredHardwareSampleRate(self_: *T) f64 {
-                return objc.msgSend(self_, "preferredHardwareSampleRate", f64, .{});
-            }
-        };
+    pub fn sharedInstance() *AVAudioSession {
+        return objc.msgSend(@This().InternalInfo.class(), "sharedInstance", *AVAudioSession, .{});
+    }
+    pub fn setCategory_error(self_: *@This(), category_: AVAudioSessionCategory, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setCategory:error:", bool, .{ category_, outError_ });
+    }
+    pub fn setCategory_withOptions_error(self_: *@This(), category_: AVAudioSessionCategory, options_: AVAudioSessionCategoryOptions, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setCategory:withOptions:error:", bool, .{ category_, options_, outError_ });
+    }
+    pub fn setCategory_mode_options_error(self_: *@This(), category_: AVAudioSessionCategory, mode_: AVAudioSessionMode, options_: *objc.Id, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setCategory:mode:options:error:", bool, .{ category_, mode_, options_, outError_ });
+    }
+    pub fn setCategory_mode_routeSharingPolicy_options_error(self_: *@This(), category_: AVAudioSessionCategory, mode_: AVAudioSessionMode, policy_: AVAudioSessionRouteSharingPolicy, options_: AVAudioSessionCategoryOptions, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setCategory:mode:routeSharingPolicy:options:error:", bool, .{ category_, mode_, policy_, options_, outError_ });
+    }
+    pub fn setMode_error(self_: *@This(), mode_: AVAudioSessionMode, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setMode:error:", bool, .{ mode_, outError_ });
+    }
+    pub fn setAllowHapticsAndSystemSoundsDuringRecording_error(self_: *@This(), inValue_: bool, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setAllowHapticsAndSystemSoundsDuringRecording:error:", bool, .{ inValue_, outError_ });
+    }
+    pub fn requestRecordPermission(self_: *@This(), response_: *ns.Block(fn (bool) void)) void {
+        return objc.msgSend(self_, "requestRecordPermission:", void, .{response_});
+    }
+    pub fn overrideOutputAudioPort_error(self_: *@This(), portOverride_: AVAudioSessionPortOverride, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "overrideOutputAudioPort:error:", bool, .{ portOverride_, outError_ });
+    }
+    pub fn setPreferredInput_error(self_: *@This(), inPort_: ?*AVAudioSessionPortDescription, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredInput:error:", bool, .{ inPort_, outError_ });
+    }
+    pub fn setPrefersNoInterruptionsFromSystemAlerts_error(self_: *@This(), inValue_: bool, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPrefersNoInterruptionsFromSystemAlerts:error:", bool, .{ inValue_, outError_ });
+    }
+    pub fn availableCategories(self_: *@This()) *ns.Array(AVAudioSessionCategory) {
+        return objc.msgSend(self_, "availableCategories", *ns.Array(AVAudioSessionCategory), .{});
+    }
+    pub fn category(self_: *@This()) AVAudioSessionCategory {
+        return objc.msgSend(self_, "category", AVAudioSessionCategory, .{});
+    }
+    pub fn categoryOptions(self_: *@This()) AVAudioSessionCategoryOptions {
+        return objc.msgSend(self_, "categoryOptions", AVAudioSessionCategoryOptions, .{});
+    }
+    pub fn routeSharingPolicy(self_: *@This()) AVAudioSessionRouteSharingPolicy {
+        return objc.msgSend(self_, "routeSharingPolicy", AVAudioSessionRouteSharingPolicy, .{});
+    }
+    pub fn availableModes(self_: *@This()) *ns.Array(AVAudioSessionMode) {
+        return objc.msgSend(self_, "availableModes", *ns.Array(AVAudioSessionMode), .{});
+    }
+    pub fn mode(self_: *@This()) AVAudioSessionMode {
+        return objc.msgSend(self_, "mode", AVAudioSessionMode, .{});
+    }
+    pub fn allowHapticsAndSystemSoundsDuringRecording(self_: *@This()) bool {
+        return objc.msgSend(self_, "allowHapticsAndSystemSoundsDuringRecording", bool, .{});
+    }
+    pub fn recordPermission(self_: *@This()) AVAudioSessionRecordPermission {
+        return objc.msgSend(self_, "recordPermission", AVAudioSessionRecordPermission, .{});
+    }
+    pub fn preferredInput(self_: *@This()) ?*AVAudioSessionPortDescription {
+        return objc.msgSend(self_, "preferredInput", ?*AVAudioSessionPortDescription, .{});
+    }
+    pub fn prefersNoInterruptionsFromSystemAlerts(self_: *@This()) bool {
+        return objc.msgSend(self_, "prefersNoInterruptionsFromSystemAlerts", bool, .{});
+    }
+    pub fn setActive_error(self_: *@This(), active_: bool, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setActive:error:", bool, .{ active_, outError_ });
+    }
+    pub fn setActive_withOptions_error(self_: *@This(), active_: bool, options_: AVAudioSessionSetActiveOptions, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setActive:withOptions:error:", bool, .{ active_, options_, outError_ });
+    }
+    pub fn activateWithOptions_completionHandler(self_: *@This(), options_: AVAudioSessionActivationOptions, handler_: *ns.Block(fn (bool, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "activateWithOptions:completionHandler:", void, .{ options_, handler_ });
+    }
+    pub fn setPreferredSampleRate_error(self_: *@This(), sampleRate_: f64, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredSampleRate:error:", bool, .{ sampleRate_, outError_ });
+    }
+    pub fn setPreferredIOBufferDuration_error(self_: *@This(), duration_: ns.TimeInterval, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredIOBufferDuration:error:", bool, .{ duration_, outError_ });
+    }
+    pub fn setPreferredInputNumberOfChannels_error(self_: *@This(), count_: ns.Integer, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredInputNumberOfChannels:error:", bool, .{ count_, outError_ });
+    }
+    pub fn setPreferredOutputNumberOfChannels_error(self_: *@This(), count_: ns.Integer, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredOutputNumberOfChannels:error:", bool, .{ count_, outError_ });
+    }
+    pub fn setPreferredInputOrientation_error(self_: *@This(), orientation_: AVAudioStereoOrientation, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredInputOrientation:error:", bool, .{ orientation_, outError_ });
+    }
+    pub fn setInputGain_error(self_: *@This(), gain_: f32, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setInputGain:error:", bool, .{ gain_, outError_ });
+    }
+    pub fn setInputDataSource_error(self_: *@This(), dataSource_: ?*AVAudioSessionDataSourceDescription, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setInputDataSource:error:", bool, .{ dataSource_, outError_ });
+    }
+    pub fn setOutputDataSource_error(self_: *@This(), dataSource_: ?*AVAudioSessionDataSourceDescription, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setOutputDataSource:error:", bool, .{ dataSource_, outError_ });
+    }
+    pub fn preferredSampleRate(self_: *@This()) f64 {
+        return objc.msgSend(self_, "preferredSampleRate", f64, .{});
+    }
+    pub fn preferredIOBufferDuration(self_: *@This()) ns.TimeInterval {
+        return objc.msgSend(self_, "preferredIOBufferDuration", ns.TimeInterval, .{});
+    }
+    pub fn preferredInputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "preferredInputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn preferredOutputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "preferredOutputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn preferredInputOrientation(self_: *@This()) AVAudioStereoOrientation {
+        return objc.msgSend(self_, "preferredInputOrientation", AVAudioStereoOrientation, .{});
+    }
+    pub fn inputOrientation(self_: *@This()) AVAudioStereoOrientation {
+        return objc.msgSend(self_, "inputOrientation", AVAudioStereoOrientation, .{});
+    }
+    pub fn maximumInputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "maximumInputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn maximumOutputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "maximumOutputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn inputGain(self_: *@This()) f32 {
+        return objc.msgSend(self_, "inputGain", f32, .{});
+    }
+    pub fn isInputGainSettable(self_: *@This()) bool {
+        return objc.msgSend(self_, "isInputGainSettable", bool, .{});
+    }
+    pub fn isInputAvailable(self_: *@This()) bool {
+        return objc.msgSend(self_, "isInputAvailable", bool, .{});
+    }
+    pub fn inputDataSources(self_: *@This()) *ns.Array(*AVAudioSessionDataSourceDescription) {
+        return objc.msgSend(self_, "inputDataSources", *ns.Array(*AVAudioSessionDataSourceDescription), .{});
+    }
+    pub fn inputDataSource(self_: *@This()) *AVAudioSessionDataSourceDescription {
+        return objc.msgSend(self_, "inputDataSource", *AVAudioSessionDataSourceDescription, .{});
+    }
+    pub fn outputDataSources(self_: *@This()) *ns.Array(*AVAudioSessionDataSourceDescription) {
+        return objc.msgSend(self_, "outputDataSources", *ns.Array(*AVAudioSessionDataSourceDescription), .{});
+    }
+    pub fn outputDataSource(self_: *@This()) *AVAudioSessionDataSourceDescription {
+        return objc.msgSend(self_, "outputDataSource", *AVAudioSessionDataSourceDescription, .{});
+    }
+    pub fn sampleRate(self_: *@This()) f64 {
+        return objc.msgSend(self_, "sampleRate", f64, .{});
+    }
+    pub fn inputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "inputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn outputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "outputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn inputLatency(self_: *@This()) ns.TimeInterval {
+        return objc.msgSend(self_, "inputLatency", ns.TimeInterval, .{});
+    }
+    pub fn outputLatency(self_: *@This()) ns.TimeInterval {
+        return objc.msgSend(self_, "outputLatency", ns.TimeInterval, .{});
+    }
+    pub fn IOBufferDuration(self_: *@This()) ns.TimeInterval {
+        return objc.msgSend(self_, "IOBufferDuration", ns.TimeInterval, .{});
+    }
+    pub fn isOtherAudioPlaying(self_: *@This()) bool {
+        return objc.msgSend(self_, "isOtherAudioPlaying", bool, .{});
+    }
+    pub fn secondaryAudioShouldBeSilencedHint(self_: *@This()) bool {
+        return objc.msgSend(self_, "secondaryAudioShouldBeSilencedHint", bool, .{});
+    }
+    pub fn outputVolume(self_: *@This()) f32 {
+        return objc.msgSend(self_, "outputVolume", f32, .{});
+    }
+    pub fn promptStyle(self_: *@This()) AVAudioSessionPromptStyle {
+        return objc.msgSend(self_, "promptStyle", AVAudioSessionPromptStyle, .{});
+    }
+    pub fn setAggregatedIOPreference_error(self_: *@This(), inIOType_: AVAudioSessionIOType, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setAggregatedIOPreference:error:", bool, .{ inIOType_, outError_ });
+    }
+    pub fn availableInputs(self_: *@This()) *ns.Array(*AVAudioSessionPortDescription) {
+        return objc.msgSend(self_, "availableInputs", *ns.Array(*AVAudioSessionPortDescription), .{});
+    }
+    pub fn currentRoute(self_: *@This()) *AVAudioSessionRouteDescription {
+        return objc.msgSend(self_, "currentRoute", *AVAudioSessionRouteDescription, .{});
+    }
+    pub fn setActive_withFlags_error(self_: *@This(), active_: bool, flags_: ns.Integer, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setActive:withFlags:error:", bool, .{ active_, flags_, outError_ });
+    }
+    pub fn setPreferredHardwareSampleRate_error(self_: *@This(), sampleRate_: f64, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredHardwareSampleRate:error:", bool, .{ sampleRate_, outError_ });
+    }
+    pub fn delegate(self_: *@This()) *AVAudioSessionDelegate {
+        return objc.msgSend(self_, "delegate", *AVAudioSessionDelegate, .{});
+    }
+    pub fn setDelegate(self_: *@This(), delegate_: *AVAudioSessionDelegate) void {
+        return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
+    }
+    pub fn inputIsAvailable(self_: *@This()) bool {
+        return objc.msgSend(self_, "inputIsAvailable", bool, .{});
+    }
+    pub fn currentHardwareSampleRate(self_: *@This()) f64 {
+        return objc.msgSend(self_, "currentHardwareSampleRate", f64, .{});
+    }
+    pub fn currentHardwareInputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "currentHardwareInputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn currentHardwareOutputNumberOfChannels(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "currentHardwareOutputNumberOfChannels", ns.Integer, .{});
+    }
+    pub fn preferredHardwareSampleRate(self_: *@This()) f64 {
+        return objc.msgSend(self_, "preferredHardwareSampleRate", f64, .{});
     }
 };
 
 pub const AVAudioSessionPortDescription = opaque {
     pub const InternalInfo = objc.ExternClass("AVAudioSessionPortDescription", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AVAudioSessionPortDescription);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn setPreferredDataSource_error(self_: *T, dataSource_: ?*AVAudioSessionDataSourceDescription, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredDataSource:error:", bool, .{ dataSource_, outError_ });
-            }
-            pub fn portType(self_: *T) AVAudioSessionPort {
-                return objc.msgSend(self_, "portType", AVAudioSessionPort, .{});
-            }
-            pub fn portName(self_: *T) *ns.String {
-                return objc.msgSend(self_, "portName", *ns.String, .{});
-            }
-            pub fn UID(self_: *T) *ns.String {
-                return objc.msgSend(self_, "UID", *ns.String, .{});
-            }
-            pub fn hasHardwareVoiceCallProcessing(self_: *T) bool {
-                return objc.msgSend(self_, "hasHardwareVoiceCallProcessing", bool, .{});
-            }
-            pub fn isSpatialAudioEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isSpatialAudioEnabled", bool, .{});
-            }
-            pub fn channels(self_: *T) *ns.Array(*AVAudioSessionChannelDescription) {
-                return objc.msgSend(self_, "channels", *ns.Array(*AVAudioSessionChannelDescription), .{});
-            }
-            pub fn dataSources(self_: *T) ?*ns.Array(*AVAudioSessionDataSourceDescription) {
-                return objc.msgSend(self_, "dataSources", ?*ns.Array(*AVAudioSessionDataSourceDescription), .{});
-            }
-            pub fn selectedDataSource(self_: *T) ?*AVAudioSessionDataSourceDescription {
-                return objc.msgSend(self_, "selectedDataSource", ?*AVAudioSessionDataSourceDescription, .{});
-            }
-            pub fn preferredDataSource(self_: *T) ?*AVAudioSessionDataSourceDescription {
-                return objc.msgSend(self_, "preferredDataSource", ?*AVAudioSessionDataSourceDescription, .{});
-            }
-        };
+    pub fn setPreferredDataSource_error(self_: *@This(), dataSource_: ?*AVAudioSessionDataSourceDescription, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredDataSource:error:", bool, .{ dataSource_, outError_ });
+    }
+    pub fn portType(self_: *@This()) AVAudioSessionPort {
+        return objc.msgSend(self_, "portType", AVAudioSessionPort, .{});
+    }
+    pub fn portName(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "portName", *ns.String, .{});
+    }
+    pub fn UID(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "UID", *ns.String, .{});
+    }
+    pub fn hasHardwareVoiceCallProcessing(self_: *@This()) bool {
+        return objc.msgSend(self_, "hasHardwareVoiceCallProcessing", bool, .{});
+    }
+    pub fn isSpatialAudioEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isSpatialAudioEnabled", bool, .{});
+    }
+    pub fn channels(self_: *@This()) *ns.Array(*AVAudioSessionChannelDescription) {
+        return objc.msgSend(self_, "channels", *ns.Array(*AVAudioSessionChannelDescription), .{});
+    }
+    pub fn dataSources(self_: *@This()) ?*ns.Array(*AVAudioSessionDataSourceDescription) {
+        return objc.msgSend(self_, "dataSources", ?*ns.Array(*AVAudioSessionDataSourceDescription), .{});
+    }
+    pub fn selectedDataSource(self_: *@This()) ?*AVAudioSessionDataSourceDescription {
+        return objc.msgSend(self_, "selectedDataSource", ?*AVAudioSessionDataSourceDescription, .{});
+    }
+    pub fn preferredDataSource(self_: *@This()) ?*AVAudioSessionDataSourceDescription {
+        return objc.msgSend(self_, "preferredDataSource", ?*AVAudioSessionDataSourceDescription, .{});
     }
 };
 
 pub const AVAudioSessionDataSourceDescription = opaque {
     pub const InternalInfo = objc.ExternClass("AVAudioSessionDataSourceDescription", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AVAudioSessionDataSourceDescription);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn setPreferredPolarPattern_error(self_: *T, pattern_: AVAudioSessionPolarPattern, outError_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "setPreferredPolarPattern:error:", bool, .{ pattern_, outError_ });
-            }
-            pub fn dataSourceID(self_: *T) *ns.Number {
-                return objc.msgSend(self_, "dataSourceID", *ns.Number, .{});
-            }
-            pub fn dataSourceName(self_: *T) *ns.String {
-                return objc.msgSend(self_, "dataSourceName", *ns.String, .{});
-            }
-            pub fn location(self_: *T) AVAudioSessionLocation {
-                return objc.msgSend(self_, "location", AVAudioSessionLocation, .{});
-            }
-            pub fn orientation(self_: *T) AVAudioSessionOrientation {
-                return objc.msgSend(self_, "orientation", AVAudioSessionOrientation, .{});
-            }
-            pub fn supportedPolarPatterns(self_: *T) ?*ns.Array(AVAudioSessionPolarPattern) {
-                return objc.msgSend(self_, "supportedPolarPatterns", ?*ns.Array(AVAudioSessionPolarPattern), .{});
-            }
-            pub fn selectedPolarPattern(self_: *T) AVAudioSessionPolarPattern {
-                return objc.msgSend(self_, "selectedPolarPattern", AVAudioSessionPolarPattern, .{});
-            }
-            pub fn preferredPolarPattern(self_: *T) AVAudioSessionPolarPattern {
-                return objc.msgSend(self_, "preferredPolarPattern", AVAudioSessionPolarPattern, .{});
-            }
-        };
+    pub fn setPreferredPolarPattern_error(self_: *@This(), pattern_: AVAudioSessionPolarPattern, outError_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "setPreferredPolarPattern:error:", bool, .{ pattern_, outError_ });
+    }
+    pub fn dataSourceID(self_: *@This()) *ns.Number {
+        return objc.msgSend(self_, "dataSourceID", *ns.Number, .{});
+    }
+    pub fn dataSourceName(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "dataSourceName", *ns.String, .{});
+    }
+    pub fn location(self_: *@This()) AVAudioSessionLocation {
+        return objc.msgSend(self_, "location", AVAudioSessionLocation, .{});
+    }
+    pub fn orientation(self_: *@This()) AVAudioSessionOrientation {
+        return objc.msgSend(self_, "orientation", AVAudioSessionOrientation, .{});
+    }
+    pub fn supportedPolarPatterns(self_: *@This()) ?*ns.Array(AVAudioSessionPolarPattern) {
+        return objc.msgSend(self_, "supportedPolarPatterns", ?*ns.Array(AVAudioSessionPolarPattern), .{});
+    }
+    pub fn selectedPolarPattern(self_: *@This()) AVAudioSessionPolarPattern {
+        return objc.msgSend(self_, "selectedPolarPattern", AVAudioSessionPolarPattern, .{});
+    }
+    pub fn preferredPolarPattern(self_: *@This()) AVAudioSessionPolarPattern {
+        return objc.msgSend(self_, "preferredPolarPattern", AVAudioSessionPolarPattern, .{});
     }
 };
 
 pub const AVAudioSessionRouteDescription = opaque {
     pub const InternalInfo = objc.ExternClass("AVAudioSessionRouteDescription", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AVAudioSessionRouteDescription);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn inputs(self_: *T) *ns.Array(*AVAudioSessionPortDescription) {
-                return objc.msgSend(self_, "inputs", *ns.Array(*AVAudioSessionPortDescription), .{});
-            }
-            pub fn outputs(self_: *T) *ns.Array(*AVAudioSessionPortDescription) {
-                return objc.msgSend(self_, "outputs", *ns.Array(*AVAudioSessionPortDescription), .{});
-            }
-        };
+    pub fn inputs(self_: *@This()) *ns.Array(*AVAudioSessionPortDescription) {
+        return objc.msgSend(self_, "inputs", *ns.Array(*AVAudioSessionPortDescription), .{});
+    }
+    pub fn outputs(self_: *@This()) *ns.Array(*AVAudioSessionPortDescription) {
+        return objc.msgSend(self_, "outputs", *ns.Array(*AVAudioSessionPortDescription), .{});
     }
 };
 
 pub const AVAudioSessionChannelDescription = opaque {
     pub const InternalInfo = objc.ExternClass("AVAudioSessionChannelDescription", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AVAudioSessionChannelDescription);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn channelName(self_: *T) *ns.String {
-                return objc.msgSend(self_, "channelName", *ns.String, .{});
-            }
-            pub fn owningPortUID(self_: *T) *ns.String {
-                return objc.msgSend(self_, "owningPortUID", *ns.String, .{});
-            }
-            pub fn channelNumber(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "channelNumber", ns.UInteger, .{});
-            }
-            pub fn channelLabel(self_: *T) AudioChannelLabel {
-                return objc.msgSend(self_, "channelLabel", AudioChannelLabel, .{});
-            }
-        };
+    pub fn channelName(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "channelName", *ns.String, .{});
+    }
+    pub fn owningPortUID(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "owningPortUID", *ns.String, .{});
+    }
+    pub fn channelNumber(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "channelNumber", ns.UInteger, .{});
+    }
+    pub fn channelLabel(self_: *@This()) AudioChannelLabel {
+        return objc.msgSend(self_, "channelLabel", AudioChannelLabel, .{});
     }
 };
 
 pub const AVAudioSessionDelegate = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AVAudioSessionDelegate);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn beginInterruption(self_: *T) void {
-                return objc.msgSend(self_, "beginInterruption", void, .{});
-            }
-            pub fn endInterruptionWithFlags(self_: *T, flags_: ns.UInteger) void {
-                return objc.msgSend(self_, "endInterruptionWithFlags:", void, .{flags_});
-            }
-            pub fn endInterruption(self_: *T) void {
-                return objc.msgSend(self_, "endInterruption", void, .{});
-            }
-            pub fn inputIsAvailableChanged(self_: *T, isInputAvailable_: bool) void {
-                return objc.msgSend(self_, "inputIsAvailableChanged:", void, .{isInputAvailable_});
-            }
-        };
+    pub fn beginInterruption(self_: *@This()) void {
+        return objc.msgSend(self_, "beginInterruption", void, .{});
+    }
+    pub fn endInterruptionWithFlags(self_: *@This(), flags_: ns.UInteger) void {
+        return objc.msgSend(self_, "endInterruptionWithFlags:", void, .{flags_});
+    }
+    pub fn endInterruption(self_: *@This()) void {
+        return objc.msgSend(self_, "endInterruption", void, .{});
+    }
+    pub fn inputIsAvailableChanged(self_: *@This(), isInputAvailable_: bool) void {
+        return objc.msgSend(self_, "inputIsAvailableChanged:", void, .{isInputAvailable_});
     }
 };

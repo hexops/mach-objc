@@ -469,7 +469,7 @@ pub const Parser = struct {
 
                     return self.parsePointerSuffix(types.items[0], is_const, true);
                 } else {
-                    const t = Type{ .name = "c.objc_object" };
+                    const t = Type{ .name = "objc.Id" };
                     return self.parsePointerSuffix(t, is_const, true);
                 }
             },
@@ -1138,69 +1138,22 @@ fn Generator(comptime WriterType: type) type {
             }
             try self.writer.writeAll("});\n");
             try self.writer.writeAll("    pub const as = InternalInfo.as;\n");
+            try self.writer.writeAll("    pub const retain = InternalInfo.retain;\n");
+            try self.writer.writeAll("    pub const release = InternalInfo.release;\n");
+            try self.writer.writeAll("    pub const autorelease = InternalInfo.autorelease;\n");
 
-            try self.writer.print("    pub usingnamespace Methods(", .{});
-            try self.generateContainerName(container);
-            try self.writer.print(");\n", .{});
-            try self.writer.print("\n", .{});
-
-            var inherited_method_sets = std.ArrayList(*Container).init(self.allocator);
-            defer inherited_method_sets.deinit();
-            if (container.super) |super| {
-                const will_generate = blk: {
-                    if (self.isExternalContainerName(super)) break :blk true;
-                    if (getNamespace(super.name).len > 0) break :blk true;
-                    for (self.containers.items) |container2| {
-                        if (std.mem.eql(u8, container2.name, super.name)) break :blk true;
-                    }
-                    break :blk false;
-                };
-                if (will_generate) try inherited_method_sets.append(super);
+            if (container.is_interface and self.doesParentHaveMethod(container, "init")) {
+                // TODO: check if the type (or one of its parents) marks new/alloc/init as NS_UNAVAILABLE.
+                try self.writer.writeAll("    pub const new = InternalInfo.new;\n");
+                try self.writer.writeAll("    pub const alloc = InternalInfo.alloc;\n");
+                try self.writer.writeAll("    pub const allocInit = InternalInfo.allocInit;\n");
             }
-            for (container.protocols.items) |protocol| {
-                const will_generate = blk: {
-                    if (self.isExternalContainerName(protocol)) break :blk true;
-                    if (getNamespace(protocol.name).len > 0) break :blk true;
-
-                    for (self.containers.items) |container2| {
-                        if (std.mem.eql(u8, container2.name, protocol.name)) break :blk true;
-                    }
-                    break :blk false;
-                };
-                if (will_generate) try inherited_method_sets.append(protocol);
-            }
-
-            if (inherited_method_sets.items.len == 0 and container.methods.items.len == 0) {
-                try self.writer.print("    pub fn Methods(comptime _: type) type {{\n", .{});
-            } else {
-                try self.writer.print("    pub fn Methods(comptime T: type) type {{\n", .{});
-            }
-            try self.writer.print("        return struct {{\n", .{});
-
-            for (inherited_method_sets.items) |inherited| {
-                const will_generate = blk: {
-                    if (self.isExternalContainerName(inherited)) break :blk true;
-                    for (self.containers.items) |container2| {
-                        if (std.mem.eql(u8, container2.name, inherited.name)) break :blk true;
-                    }
-                    break :blk false;
-                };
-                if (will_generate) {
-                    try self.writer.print("            pub usingnamespace ", .{});
-                    try self.generateContainerName(inherited);
-                    try self.writer.print(".Methods(T);\n", .{});
-                }
-            }
-            if (inherited_method_sets.items.len > 0) {
-                try self.writer.print("\n", .{});
-            }
+            try self.writer.writeByte('\n');
 
             for (container.methods.items) |method| {
                 try self.generateMethod(container, method);
             }
 
-            try self.writer.print("        }};\n", .{});
-            try self.writer.print("    }}\n", .{});
             try self.writer.print("}};\n", .{});
             if (container.type_params.items.len > 0) {
                 try self.writer.print("}}\n", .{});
@@ -1233,7 +1186,7 @@ fn Generator(comptime WriterType: type) type {
                     return;
             }
 
-            try self.writer.writeAll("            pub fn ");
+            try self.writer.writeAll("    pub fn ");
             try self.generateMethodName(method.name);
             try self.writer.print("(", .{});
             try self.generateMethodParams(method);
@@ -1243,7 +1196,7 @@ fn Generator(comptime WriterType: type) type {
             try self.writer.writeAll("                return objc.msgSend(");
             try self.generateMethodArgs(method);
             try self.writer.print(");\n", .{});
-            try self.writer.print("            }}\n", .{});
+            try self.writer.print("    }}\n", .{});
         }
 
         fn doesParentHaveMethod(self: *Self, container: *Container, name: []const u8) bool {
@@ -1271,7 +1224,7 @@ fn Generator(comptime WriterType: type) type {
         fn generateMethodParams(self: *Self, method: Method) !void {
             var first = true;
             if (method.instance) {
-                try self.writer.print("self_: *T", .{});
+                try self.writer.print("self_: *@This()", .{});
                 first = false;
             }
             for (method.params.items) |param| {
@@ -1300,31 +1253,11 @@ fn Generator(comptime WriterType: type) type {
             }
         }
 
-        fn generateObjcSignature(self: *Self, method: Method) !void {
-            try self.writer.writeAll("*const fn (");
-            if (method.instance) {
-                try self.writer.writeAll("*T");
-            } else {
-                try self.writer.writeAll("*objc.Class");
-            }
-            try self.writer.writeAll(", *c.objc_selector");
-            for (method.params.items) |param| {
-                try self.writer.writeAll(", ");
-                if (getBlockType(param)) |_| {
-                    try self.writer.writeAll("*const anyopaque");
-                } else {
-                    try self.generateType(param.ty);
-                }
-            }
-            try self.writer.writeAll(") callconv(.C) ");
-            try self.generateType(method.return_type);
-        }
-
         fn generateMethodArgs(self: *Self, method: Method) !void {
             if (method.instance) {
                 try self.writer.print("self_", .{});
             } else {
-                try self.writer.print("T.InternalInfo.class()", .{});
+                try self.writer.print("@This().InternalInfo.class()", .{});
             }
             try self.writer.print(", \"{s}\", ", .{method.name});
             try self.generateType(method.return_type);
@@ -1407,7 +1340,7 @@ fn Generator(comptime WriterType: type) type {
                     try self.generateTypeName(n);
                 },
                 .instance_type => {
-                    try self.writer.writeAll("T");
+                    try self.writer.writeAll("@This()");
                 },
                 .pointer => |p| {
                     if (p.is_optional)
@@ -1964,8 +1897,8 @@ fn generateAppKit(generator: anytype) !void {
     generator.namespace = "NS";
     generator.allow_methods = &.{
         // TODO: move to generateFoundation
-        [2][]const u8{ "NSObject", "alloc" },
-        [2][]const u8{ "NSObject", "release" },
+        [2][]const u8{ "NSObject", "copy" },
+        [2][]const u8{ "NSObject", "retainCount" },
 
         [2][]const u8{ "NSApplication", "sharedApplication" },
         [2][]const u8{ "NSApplication", "setDelegate" },
