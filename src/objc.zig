@@ -1,15 +1,52 @@
 const builtin = @import("builtin");
 const std = @import("std");
 
-extern fn objc_autoreleasePoolPop(pool: *anyopaque) void;
-extern fn objc_autoreleasePoolPush() *anyopaque;
+// LLVM's documented ARC APIs that technically aren't part of libobjc's public API.
+pub const AutoreleasePool = opaque {};
+extern "objc" fn objc_autoreleasePoolPop(pool: *AutoreleasePool) void;
+extern "objc" fn objc_autoreleasePoolPush() *AutoreleasePool;
 
 pub const autoreleasePoolPop = objc_autoreleasePoolPop;
 pub const autoreleasePoolPush = objc_autoreleasePoolPush;
 
-const c = @import("c.zig");
-pub const Protocol = c.objc_object;
-pub const Class = c.objc_class;
+extern "objc" fn objc_autorelease(*Id) *Id; // Same as `[object autorelease]`.
+extern "objc" fn objc_release(*Id) void; // Same as `[object release]`.
+extern "objc" fn objc_retain(*Id) *Id; // Same as `[object retain]`.
+
+pub const autorelease = objc_autorelease;
+pub const release = objc_release;
+pub const retain = objc_retain;
+
+// APIs that are part of libobjc's public ABI, but not its public API.
+extern "objc" fn objc_alloc(class: *Class) ?*Id; // Same as `[Class alloc]`.
+extern "objc" fn objc_alloc_init(class: *Class) ?*Id; // Same as `[[Class alloc] init]`.
+extern "objc" fn objc_opt_new(class: *Class) ?*Id; // Same as `[Class new]`.
+extern "objc" fn objc_opt_class(object: ?*Id) ?*Class; // Same as `[object class]`.
+extern "objc" fn objc_opt_isKindOfClass(object: ?*Id, class: ?*Class) bool; // Same as `[object isKindOfClass:class]`.
+
+pub const alloc = objc_alloc_init;
+pub const alloc_init = objc_alloc_init;
+pub const opt_new = objc_opt_new;
+pub const opt_class = objc_opt_class;
+pub const opt_isKindOfClass = objc_opt_isKindOfClass;
+
+pub const Class = opaque {};
+pub const Id = opaque {
+    pub const InternalInfo = struct {
+        pub fn canCastTo(comptime Base: type) bool {
+            return Base == Id;
+        }
+
+        pub fn as(self: *Id, comptime Base: type) *Base {
+            if (comptime Base == Id) return self;
+            @compileError("Cannot cast `Id` to `" ++ @typeName(Base) ++ "`");
+        }
+    };
+    pub const as = InternalInfo.as;
+    pub const retain = objc_retain;
+    pub const release = objc_release;
+    pub const autorelease = objc_autorelease;
+};
 
 /// Calls `objc_msgSend(receiver, selector, args...)` (or `objc_msgSend_stret` if needed).
 ///
@@ -118,6 +155,30 @@ pub fn ExternClass(comptime name: []const u8, T: type, SuperType: type, comptime
             if (comptime canCastTo(Base)) return @ptrCast(self);
             @compileError("Cannot cast `" ++ @typeName(T) ++ "` to `" ++ @typeName(Base) ++ "`");
         }
+
+        pub fn new() *T {
+            return @ptrCast(opt_new(class()));
+        }
+
+        pub fn alloc() *T {
+            return @ptrCast(objc_alloc(class()));
+        }
+
+        pub fn allocInit() *T {
+            return @ptrCast(alloc_init(class()));
+        }
+
+        pub fn retain(self: *T) *T {
+            return @ptrCast(objc_retain(@ptrCast(self)));
+        }
+
+        pub fn release(self: *T) void {
+            return objc_release(@ptrCast(self));
+        }
+
+        pub fn autorelease(self: *T) *T {
+            return @ptrCast(objc_autorelease(@ptrCast(self)));
+        }
     };
 }
 
@@ -134,6 +195,18 @@ pub fn ExternProtocol(T: type, comptime super_protocols: []const type) type {
         pub fn as(self: *T, comptime Base: type) *Base {
             if (comptime canCastTo(Base)) return @ptrCast(self);
             @compileError("Cannot cast `" ++ @typeName(T) ++ "` to `" ++ @typeName(Base) ++ "`");
+        }
+
+        pub fn retain(self: *T) *T {
+            return @ptrCast(objc_retain(@ptrCast(self)));
+        }
+
+        pub fn release(self: *T) void {
+            return objc_release(@ptrCast(self));
+        }
+
+        pub fn autorelease(self: *T) *T {
+            return @ptrCast(objc_autorelease(@ptrCast(self)));
         }
     };
 }

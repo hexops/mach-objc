@@ -19,7 +19,6 @@ pub const TimeInterval = ns.TimeInterval;
 pub const UInteger = ns.UInteger;
 pub const unichar = ns.unichar;
 pub const Range = ns.Range;
-pub const Protocol = objc.Protocol;
 pub const StringEncoding = ns.StringEncoding;
 pub const StringTransform = ns.StringTransform;
 pub const StringEncodingDetectionOptionsKey = ns.StringEncodingDetectionOptionsKey;

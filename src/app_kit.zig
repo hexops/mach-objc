@@ -19,7 +19,6 @@ pub const TimeInterval = ns.TimeInterval;
 pub const UInteger = ns.UInteger;
 pub const unichar = ns.unichar;
 pub const Range = ns.Range;
-pub const Protocol = objc.Protocol;
 pub const StringEncoding = ns.StringEncoding;
 pub const StringTransform = ns.StringTransform;
 pub const StringEncodingDetectionOptionsKey = ns.StringEncodingDetectionOptionsKey;
@@ -79,168 +78,157 @@ pub const WindowStyleMaskHUDWindow: WindowStyleMask = 8192;
 pub const Application = opaque {
     pub const InternalInfo = objc.ExternClass("NSApplication", @This(), Responder, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Application);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Responder.Methods(T);
-
-            pub fn run(self_: *T) void {
-                return objc.msgSend(self_, "run", void, .{});
-            }
-            pub fn sharedApplication() *Application {
-                return objc.msgSend(T.InternalInfo.class(), "sharedApplication", *Application, .{});
-            }
-            pub fn setDelegate(self_: *T, delegate_: ?*ApplicationDelegate) void {
-                return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
-            }
-        };
+    pub fn run(self_: *@This()) void {
+        return objc.msgSend(self_, "run", void, .{});
+    }
+    pub fn sharedApplication() *Application {
+        return objc.msgSend(@This().InternalInfo.class(), "sharedApplication", *Application, .{});
+    }
+    pub fn setDelegate(self_: *@This(), delegate_: ?*ApplicationDelegate) void {
+        return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
     }
 };
 
 pub const Responder = opaque {
     pub const InternalInfo = objc.ExternClass("NSResponder", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Responder);
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ObjectInterface.Methods(T);
-        };
-    }
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 };
 
 pub const Window = opaque {
     pub const InternalInfo = objc.ExternClass("NSWindow", @This(), Responder, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Window);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Responder.Methods(T);
-
-            pub fn initWithContentRect_styleMask_backing_defer_screen(self_: *T, contentRect_: Rect, style_: WindowStyleMask, backingStoreType_: BackingStoreType, flag_: bool, screen_: ?*Screen) *T {
-                return objc.msgSend(self_, "initWithContentRect:styleMask:backing:defer:screen:", *T, .{ contentRect_, style_, backingStoreType_, flag_, screen_ });
-            }
-            pub fn makeKeyAndOrderFront(self_: *T, sender_: ?*c.objc_object) void {
-                return objc.msgSend(self_, "makeKeyAndOrderFront:", void, .{sender_});
-            }
-            pub fn contentView(self_: *T) ?*View {
-                return objc.msgSend(self_, "contentView", ?*View, .{});
-            }
-            pub fn isReleasedWhenClosed(self_: *T) bool {
-                return objc.msgSend(self_, "isReleasedWhenClosed", bool, .{});
-            }
-            pub fn setReleasedWhenClosed(self_: *T, releasedWhenClosed_: bool) void {
-                return objc.msgSend(self_, "setReleasedWhenClosed:", void, .{releasedWhenClosed_});
-            }
-            pub fn isVisible(self_: *T) bool {
-                return objc.msgSend(self_, "isVisible", bool, .{});
-            }
-            pub fn setIsVisible(self_: *T, flag_: bool) void {
-                return objc.msgSend(self_, "setIsVisible:", void, .{flag_});
-            }
-        };
+    pub fn initWithContentRect_styleMask_backing_defer_screen(self_: *@This(), contentRect_: Rect, style_: WindowStyleMask, backingStoreType_: BackingStoreType, flag_: bool, screen_: ?*Screen) *@This() {
+        return objc.msgSend(self_, "initWithContentRect:styleMask:backing:defer:screen:", *@This(), .{ contentRect_, style_, backingStoreType_, flag_, screen_ });
+    }
+    pub fn makeKeyAndOrderFront(self_: *@This(), sender_: ?*objc.Id) void {
+        return objc.msgSend(self_, "makeKeyAndOrderFront:", void, .{sender_});
+    }
+    pub fn contentView(self_: *@This()) ?*View {
+        return objc.msgSend(self_, "contentView", ?*View, .{});
+    }
+    pub fn isReleasedWhenClosed(self_: *@This()) bool {
+        return objc.msgSend(self_, "isReleasedWhenClosed", bool, .{});
+    }
+    pub fn setReleasedWhenClosed(self_: *@This(), releasedWhenClosed_: bool) void {
+        return objc.msgSend(self_, "setReleasedWhenClosed:", void, .{releasedWhenClosed_});
+    }
+    pub fn isVisible(self_: *@This()) bool {
+        return objc.msgSend(self_, "isVisible", bool, .{});
+    }
+    pub fn setIsVisible(self_: *@This(), flag_: bool) void {
+        return objc.msgSend(self_, "setIsVisible:", void, .{flag_});
     }
 };
 
 pub const Notification = opaque {
     pub const InternalInfo = objc.ExternClass("NSNotification", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Notification);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ObjectInterface.Methods(T);
-
-            pub fn name(self_: *T) NotificationName {
-                return objc.msgSend(self_, "name", NotificationName, .{});
-            }
-            pub fn object(self_: *T) ?*c.objc_object {
-                return objc.msgSend(self_, "object", ?*c.objc_object, .{});
-            }
-        };
+    pub fn name(self_: *@This()) NotificationName {
+        return objc.msgSend(self_, "name", NotificationName, .{});
+    }
+    pub fn object(self_: *@This()) ?*objc.Id {
+        return objc.msgSend(self_, "object", ?*objc.Id, .{});
     }
 };
 
 pub const ObjectInterface = opaque {
     pub const InternalInfo = objc.ExternClass("NSObject", @This(), c.object_type, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ObjectInterface);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub fn alloc() *T {
-                return objc.msgSend(T.InternalInfo.class(), "alloc", *T, .{});
-            }
-        };
+    pub fn copy(self_: *@This()) *objc.Id {
+        return objc.msgSend(self_, "copy", *objc.Id, .{});
     }
 };
 
 pub const View = opaque {
     pub const InternalInfo = objc.ExternClass("NSView", @This(), Responder, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(View);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Responder.Methods(T);
-
-            pub fn layer(self_: *T) *ca.Layer {
-                return objc.msgSend(self_, "layer", *ca.Layer, .{});
-            }
-            pub fn setLayer(self_: *T, layer_: *ca.Layer) void {
-                return objc.msgSend(self_, "setLayer:", void, .{layer_});
-            }
-        };
+    pub fn layer(self_: *@This()) *ca.Layer {
+        return objc.msgSend(self_, "layer", *ca.Layer, .{});
+    }
+    pub fn setLayer(self_: *@This(), layer_: *ca.Layer) void {
+        return objc.msgSend(self_, "setLayer:", void, .{layer_});
     }
 };
 
 pub const Screen = opaque {
     pub const InternalInfo = objc.ExternClass("NSScreen", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Screen);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ObjectInterface.Methods(T);
-
-            pub fn screens() *Array(*Screen) {
-                return objc.msgSend(T.InternalInfo.class(), "screens", *Array(*Screen), .{});
-            }
-            pub fn mainScreen() ?*Screen {
-                return objc.msgSend(T.InternalInfo.class(), "mainScreen", ?*Screen, .{});
-            }
-        };
+    pub fn screens() *Array(*Screen) {
+        return objc.msgSend(@This().InternalInfo.class(), "screens", *Array(*Screen), .{});
+    }
+    pub fn mainScreen() ?*Screen {
+        return objc.msgSend(@This().InternalInfo.class(), "mainScreen", ?*Screen, .{});
     }
 };
 
 pub const ApplicationDelegate = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{ ObjectProtocol, ObjectProtocol });
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ApplicationDelegate);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ObjectProtocol.Methods(T);
-
-            pub fn applicationDidFinishLaunching(self_: *T, notification_: *Notification) void {
-                return objc.msgSend(self_, "applicationDidFinishLaunching:", void, .{notification_});
-            }
-        };
+    pub fn applicationDidFinishLaunching(self_: *@This(), notification_: *Notification) void {
+        return objc.msgSend(self_, "applicationDidFinishLaunching:", void, .{notification_});
     }
 };
 
 pub const ObjectProtocol = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ObjectProtocol);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub fn release(self_: *T) void {
-                return objc.msgSend(self_, "release", void, .{});
-            }
-        };
+    pub fn retainCount(self_: *@This()) UInteger {
+        return objc.msgSend(self_, "retainCount", UInteger, .{});
     }
 };

@@ -1195,6611 +1195,6240 @@ pub const VertexStepFunctionPerPatchControlPoint: VertexStepFunction = 4;
 pub const AccelerationStructureDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructureDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn usage(self_: *T) AccelerationStructureUsage {
-                return objc.msgSend(self_, "usage", AccelerationStructureUsage, .{});
-            }
-            pub fn setUsage(self_: *T, usage_: AccelerationStructureUsage) void {
-                return objc.msgSend(self_, "setUsage:", void, .{usage_});
-            }
-        };
+    pub fn usage(self_: *@This()) AccelerationStructureUsage {
+        return objc.msgSend(self_, "usage", AccelerationStructureUsage, .{});
+    }
+    pub fn setUsage(self_: *@This(), usage_: AccelerationStructureUsage) void {
+        return objc.msgSend(self_, "setUsage:", void, .{usage_});
     }
 };
 
 pub const AccelerationStructureGeometryDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureGeometryDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructureGeometryDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn intersectionFunctionTableOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "intersectionFunctionTableOffset", ns.UInteger, .{});
-            }
-            pub fn setIntersectionFunctionTableOffset(self_: *T, intersectionFunctionTableOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIntersectionFunctionTableOffset:", void, .{intersectionFunctionTableOffset_});
-            }
-            pub fn @"opaque"(self_: *T) bool {
-                return objc.msgSend(self_, "opaque", bool, .{});
-            }
-            pub fn setOpaque(self_: *T, opaque_: bool) void {
-                return objc.msgSend(self_, "setOpaque:", void, .{opaque_});
-            }
-            pub fn allowDuplicateIntersectionFunctionInvocation(self_: *T) bool {
-                return objc.msgSend(self_, "allowDuplicateIntersectionFunctionInvocation", bool, .{});
-            }
-            pub fn setAllowDuplicateIntersectionFunctionInvocation(self_: *T, allowDuplicateIntersectionFunctionInvocation_: bool) void {
-                return objc.msgSend(self_, "setAllowDuplicateIntersectionFunctionInvocation:", void, .{allowDuplicateIntersectionFunctionInvocation_});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn primitiveDataBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "primitiveDataBuffer", ?*Buffer, .{});
-            }
-            pub fn setPrimitiveDataBuffer(self_: *T, primitiveDataBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setPrimitiveDataBuffer:", void, .{primitiveDataBuffer_});
-            }
-            pub fn primitiveDataBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "primitiveDataBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setPrimitiveDataBufferOffset(self_: *T, primitiveDataBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setPrimitiveDataBufferOffset:", void, .{primitiveDataBufferOffset_});
-            }
-            pub fn primitiveDataStride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "primitiveDataStride", ns.UInteger, .{});
-            }
-            pub fn setPrimitiveDataStride(self_: *T, primitiveDataStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setPrimitiveDataStride:", void, .{primitiveDataStride_});
-            }
-            pub fn primitiveDataElementSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "primitiveDataElementSize", ns.UInteger, .{});
-            }
-            pub fn setPrimitiveDataElementSize(self_: *T, primitiveDataElementSize_: ns.UInteger) void {
-                return objc.msgSend(self_, "setPrimitiveDataElementSize:", void, .{primitiveDataElementSize_});
-            }
-        };
+    pub fn intersectionFunctionTableOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "intersectionFunctionTableOffset", ns.UInteger, .{});
+    }
+    pub fn setIntersectionFunctionTableOffset(self_: *@This(), intersectionFunctionTableOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIntersectionFunctionTableOffset:", void, .{intersectionFunctionTableOffset_});
+    }
+    pub fn @"opaque"(self_: *@This()) bool {
+        return objc.msgSend(self_, "opaque", bool, .{});
+    }
+    pub fn setOpaque(self_: *@This(), opaque_: bool) void {
+        return objc.msgSend(self_, "setOpaque:", void, .{opaque_});
+    }
+    pub fn allowDuplicateIntersectionFunctionInvocation(self_: *@This()) bool {
+        return objc.msgSend(self_, "allowDuplicateIntersectionFunctionInvocation", bool, .{});
+    }
+    pub fn setAllowDuplicateIntersectionFunctionInvocation(self_: *@This(), allowDuplicateIntersectionFunctionInvocation_: bool) void {
+        return objc.msgSend(self_, "setAllowDuplicateIntersectionFunctionInvocation:", void, .{allowDuplicateIntersectionFunctionInvocation_});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn primitiveDataBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "primitiveDataBuffer", ?*Buffer, .{});
+    }
+    pub fn setPrimitiveDataBuffer(self_: *@This(), primitiveDataBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setPrimitiveDataBuffer:", void, .{primitiveDataBuffer_});
+    }
+    pub fn primitiveDataBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "primitiveDataBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setPrimitiveDataBufferOffset(self_: *@This(), primitiveDataBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setPrimitiveDataBufferOffset:", void, .{primitiveDataBufferOffset_});
+    }
+    pub fn primitiveDataStride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "primitiveDataStride", ns.UInteger, .{});
+    }
+    pub fn setPrimitiveDataStride(self_: *@This(), primitiveDataStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setPrimitiveDataStride:", void, .{primitiveDataStride_});
+    }
+    pub fn primitiveDataElementSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "primitiveDataElementSize", ns.UInteger, .{});
+    }
+    pub fn setPrimitiveDataElementSize(self_: *@This(), primitiveDataElementSize_: ns.UInteger) void {
+        return objc.msgSend(self_, "setPrimitiveDataElementSize:", void, .{primitiveDataElementSize_});
     }
 };
 
 pub const PrimitiveAccelerationStructureDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLPrimitiveAccelerationStructureDescriptor", @This(), AccelerationStructureDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(PrimitiveAccelerationStructureDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace AccelerationStructureDescriptor.Methods(T);
-
-            pub fn descriptor() *T {
-                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
-            }
-            pub fn geometryDescriptors(self_: *T) ?*ns.Array(*AccelerationStructureGeometryDescriptor) {
-                return objc.msgSend(self_, "geometryDescriptors", ?*ns.Array(*AccelerationStructureGeometryDescriptor), .{});
-            }
-            pub fn setGeometryDescriptors(self_: *T, geometryDescriptors_: ?*ns.Array(*AccelerationStructureGeometryDescriptor)) void {
-                return objc.msgSend(self_, "setGeometryDescriptors:", void, .{geometryDescriptors_});
-            }
-            pub fn motionStartBorderMode(self_: *T) MotionBorderMode {
-                return objc.msgSend(self_, "motionStartBorderMode", MotionBorderMode, .{});
-            }
-            pub fn setMotionStartBorderMode(self_: *T, motionStartBorderMode_: MotionBorderMode) void {
-                return objc.msgSend(self_, "setMotionStartBorderMode:", void, .{motionStartBorderMode_});
-            }
-            pub fn motionEndBorderMode(self_: *T) MotionBorderMode {
-                return objc.msgSend(self_, "motionEndBorderMode", MotionBorderMode, .{});
-            }
-            pub fn setMotionEndBorderMode(self_: *T, motionEndBorderMode_: MotionBorderMode) void {
-                return objc.msgSend(self_, "setMotionEndBorderMode:", void, .{motionEndBorderMode_});
-            }
-            pub fn motionStartTime(self_: *T) f32 {
-                return objc.msgSend(self_, "motionStartTime", f32, .{});
-            }
-            pub fn setMotionStartTime(self_: *T, motionStartTime_: f32) void {
-                return objc.msgSend(self_, "setMotionStartTime:", void, .{motionStartTime_});
-            }
-            pub fn motionEndTime(self_: *T) f32 {
-                return objc.msgSend(self_, "motionEndTime", f32, .{});
-            }
-            pub fn setMotionEndTime(self_: *T, motionEndTime_: f32) void {
-                return objc.msgSend(self_, "setMotionEndTime:", void, .{motionEndTime_});
-            }
-            pub fn motionKeyframeCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "motionKeyframeCount", ns.UInteger, .{});
-            }
-            pub fn setMotionKeyframeCount(self_: *T, motionKeyframeCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMotionKeyframeCount:", void, .{motionKeyframeCount_});
-            }
-        };
+    pub fn descriptor() *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "descriptor", *@This(), .{});
+    }
+    pub fn geometryDescriptors(self_: *@This()) ?*ns.Array(*AccelerationStructureGeometryDescriptor) {
+        return objc.msgSend(self_, "geometryDescriptors", ?*ns.Array(*AccelerationStructureGeometryDescriptor), .{});
+    }
+    pub fn setGeometryDescriptors(self_: *@This(), geometryDescriptors_: ?*ns.Array(*AccelerationStructureGeometryDescriptor)) void {
+        return objc.msgSend(self_, "setGeometryDescriptors:", void, .{geometryDescriptors_});
+    }
+    pub fn motionStartBorderMode(self_: *@This()) MotionBorderMode {
+        return objc.msgSend(self_, "motionStartBorderMode", MotionBorderMode, .{});
+    }
+    pub fn setMotionStartBorderMode(self_: *@This(), motionStartBorderMode_: MotionBorderMode) void {
+        return objc.msgSend(self_, "setMotionStartBorderMode:", void, .{motionStartBorderMode_});
+    }
+    pub fn motionEndBorderMode(self_: *@This()) MotionBorderMode {
+        return objc.msgSend(self_, "motionEndBorderMode", MotionBorderMode, .{});
+    }
+    pub fn setMotionEndBorderMode(self_: *@This(), motionEndBorderMode_: MotionBorderMode) void {
+        return objc.msgSend(self_, "setMotionEndBorderMode:", void, .{motionEndBorderMode_});
+    }
+    pub fn motionStartTime(self_: *@This()) f32 {
+        return objc.msgSend(self_, "motionStartTime", f32, .{});
+    }
+    pub fn setMotionStartTime(self_: *@This(), motionStartTime_: f32) void {
+        return objc.msgSend(self_, "setMotionStartTime:", void, .{motionStartTime_});
+    }
+    pub fn motionEndTime(self_: *@This()) f32 {
+        return objc.msgSend(self_, "motionEndTime", f32, .{});
+    }
+    pub fn setMotionEndTime(self_: *@This(), motionEndTime_: f32) void {
+        return objc.msgSend(self_, "setMotionEndTime:", void, .{motionEndTime_});
+    }
+    pub fn motionKeyframeCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "motionKeyframeCount", ns.UInteger, .{});
+    }
+    pub fn setMotionKeyframeCount(self_: *@This(), motionKeyframeCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMotionKeyframeCount:", void, .{motionKeyframeCount_});
     }
 };
 
 pub const AccelerationStructureTriangleGeometryDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureTriangleGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructureTriangleGeometryDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
-
-            pub fn descriptor() *T {
-                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
-            }
-            pub fn vertexBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "vertexBuffer", ?*Buffer, .{});
-            }
-            pub fn setVertexBuffer(self_: *T, vertexBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setVertexBuffer:", void, .{vertexBuffer_});
-            }
-            pub fn vertexBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "vertexBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setVertexBufferOffset(self_: *T, vertexBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBufferOffset:", void, .{vertexBufferOffset_});
-            }
-            pub fn vertexFormat(self_: *T) AttributeFormat {
-                return objc.msgSend(self_, "vertexFormat", AttributeFormat, .{});
-            }
-            pub fn setVertexFormat(self_: *T, vertexFormat_: AttributeFormat) void {
-                return objc.msgSend(self_, "setVertexFormat:", void, .{vertexFormat_});
-            }
-            pub fn vertexStride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "vertexStride", ns.UInteger, .{});
-            }
-            pub fn setVertexStride(self_: *T, vertexStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexStride:", void, .{vertexStride_});
-            }
-            pub fn indexBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "indexBuffer", ?*Buffer, .{});
-            }
-            pub fn setIndexBuffer(self_: *T, indexBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setIndexBuffer:", void, .{indexBuffer_});
-            }
-            pub fn indexBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "indexBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setIndexBufferOffset(self_: *T, indexBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIndexBufferOffset:", void, .{indexBufferOffset_});
-            }
-            pub fn indexType(self_: *T) IndexType {
-                return objc.msgSend(self_, "indexType", IndexType, .{});
-            }
-            pub fn setIndexType(self_: *T, indexType_: IndexType) void {
-                return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
-            }
-            pub fn triangleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "triangleCount", ns.UInteger, .{});
-            }
-            pub fn setTriangleCount(self_: *T, triangleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTriangleCount:", void, .{triangleCount_});
-            }
-            pub fn transformationMatrixBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "transformationMatrixBuffer", ?*Buffer, .{});
-            }
-            pub fn setTransformationMatrixBuffer(self_: *T, transformationMatrixBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setTransformationMatrixBuffer:", void, .{transformationMatrixBuffer_});
-            }
-            pub fn transformationMatrixBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "transformationMatrixBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setTransformationMatrixBufferOffset(self_: *T, transformationMatrixBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTransformationMatrixBufferOffset:", void, .{transformationMatrixBufferOffset_});
-            }
-        };
+    pub fn descriptor() *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "descriptor", *@This(), .{});
+    }
+    pub fn vertexBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "vertexBuffer", ?*Buffer, .{});
+    }
+    pub fn setVertexBuffer(self_: *@This(), vertexBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setVertexBuffer:", void, .{vertexBuffer_});
+    }
+    pub fn vertexBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "vertexBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setVertexBufferOffset(self_: *@This(), vertexBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBufferOffset:", void, .{vertexBufferOffset_});
+    }
+    pub fn vertexFormat(self_: *@This()) AttributeFormat {
+        return objc.msgSend(self_, "vertexFormat", AttributeFormat, .{});
+    }
+    pub fn setVertexFormat(self_: *@This(), vertexFormat_: AttributeFormat) void {
+        return objc.msgSend(self_, "setVertexFormat:", void, .{vertexFormat_});
+    }
+    pub fn vertexStride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "vertexStride", ns.UInteger, .{});
+    }
+    pub fn setVertexStride(self_: *@This(), vertexStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexStride:", void, .{vertexStride_});
+    }
+    pub fn indexBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "indexBuffer", ?*Buffer, .{});
+    }
+    pub fn setIndexBuffer(self_: *@This(), indexBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setIndexBuffer:", void, .{indexBuffer_});
+    }
+    pub fn indexBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "indexBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setIndexBufferOffset(self_: *@This(), indexBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIndexBufferOffset:", void, .{indexBufferOffset_});
+    }
+    pub fn indexType(self_: *@This()) IndexType {
+        return objc.msgSend(self_, "indexType", IndexType, .{});
+    }
+    pub fn setIndexType(self_: *@This(), indexType_: IndexType) void {
+        return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
+    }
+    pub fn triangleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "triangleCount", ns.UInteger, .{});
+    }
+    pub fn setTriangleCount(self_: *@This(), triangleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTriangleCount:", void, .{triangleCount_});
+    }
+    pub fn transformationMatrixBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "transformationMatrixBuffer", ?*Buffer, .{});
+    }
+    pub fn setTransformationMatrixBuffer(self_: *@This(), transformationMatrixBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setTransformationMatrixBuffer:", void, .{transformationMatrixBuffer_});
+    }
+    pub fn transformationMatrixBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "transformationMatrixBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setTransformationMatrixBufferOffset(self_: *@This(), transformationMatrixBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTransformationMatrixBufferOffset:", void, .{transformationMatrixBufferOffset_});
     }
 };
 
 pub const AccelerationStructureBoundingBoxGeometryDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureBoundingBoxGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructureBoundingBoxGeometryDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
-
-            pub fn descriptor() *T {
-                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
-            }
-            pub fn boundingBoxBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "boundingBoxBuffer", ?*Buffer, .{});
-            }
-            pub fn setBoundingBoxBuffer(self_: *T, boundingBoxBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setBoundingBoxBuffer:", void, .{boundingBoxBuffer_});
-            }
-            pub fn boundingBoxBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "boundingBoxBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setBoundingBoxBufferOffset(self_: *T, boundingBoxBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBoundingBoxBufferOffset:", void, .{boundingBoxBufferOffset_});
-            }
-            pub fn boundingBoxStride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "boundingBoxStride", ns.UInteger, .{});
-            }
-            pub fn setBoundingBoxStride(self_: *T, boundingBoxStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBoundingBoxStride:", void, .{boundingBoxStride_});
-            }
-            pub fn boundingBoxCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "boundingBoxCount", ns.UInteger, .{});
-            }
-            pub fn setBoundingBoxCount(self_: *T, boundingBoxCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBoundingBoxCount:", void, .{boundingBoxCount_});
-            }
-        };
+    pub fn descriptor() *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "descriptor", *@This(), .{});
+    }
+    pub fn boundingBoxBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "boundingBoxBuffer", ?*Buffer, .{});
+    }
+    pub fn setBoundingBoxBuffer(self_: *@This(), boundingBoxBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setBoundingBoxBuffer:", void, .{boundingBoxBuffer_});
+    }
+    pub fn boundingBoxBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "boundingBoxBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setBoundingBoxBufferOffset(self_: *@This(), boundingBoxBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBoundingBoxBufferOffset:", void, .{boundingBoxBufferOffset_});
+    }
+    pub fn boundingBoxStride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "boundingBoxStride", ns.UInteger, .{});
+    }
+    pub fn setBoundingBoxStride(self_: *@This(), boundingBoxStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBoundingBoxStride:", void, .{boundingBoxStride_});
+    }
+    pub fn boundingBoxCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "boundingBoxCount", ns.UInteger, .{});
+    }
+    pub fn setBoundingBoxCount(self_: *@This(), boundingBoxCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBoundingBoxCount:", void, .{boundingBoxCount_});
     }
 };
 
 pub const MotionKeyframeData = opaque {
     pub const InternalInfo = objc.ExternClass("MTLMotionKeyframeData", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(MotionKeyframeData);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn data() *T {
-                return objc.msgSend(T.InternalInfo.class(), "data", *T, .{});
-            }
-            pub fn buffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "buffer", ?*Buffer, .{});
-            }
-            pub fn setBuffer(self_: *T, buffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setBuffer:", void, .{buffer_});
-            }
-            pub fn offset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "offset", ns.UInteger, .{});
-            }
-            pub fn setOffset(self_: *T, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setOffset:", void, .{offset_});
-            }
-        };
+    pub fn data() *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "data", *@This(), .{});
+    }
+    pub fn buffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "buffer", ?*Buffer, .{});
+    }
+    pub fn setBuffer(self_: *@This(), buffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setBuffer:", void, .{buffer_});
+    }
+    pub fn offset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "offset", ns.UInteger, .{});
+    }
+    pub fn setOffset(self_: *@This(), offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setOffset:", void, .{offset_});
     }
 };
 
 pub const AccelerationStructureMotionTriangleGeometryDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureMotionTriangleGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructureMotionTriangleGeometryDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
-
-            pub fn descriptor() *T {
-                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
-            }
-            pub fn vertexBuffers(self_: *T) *ns.Array(*MotionKeyframeData) {
-                return objc.msgSend(self_, "vertexBuffers", *ns.Array(*MotionKeyframeData), .{});
-            }
-            pub fn setVertexBuffers(self_: *T, vertexBuffers_: *ns.Array(*MotionKeyframeData)) void {
-                return objc.msgSend(self_, "setVertexBuffers:", void, .{vertexBuffers_});
-            }
-            pub fn vertexFormat(self_: *T) AttributeFormat {
-                return objc.msgSend(self_, "vertexFormat", AttributeFormat, .{});
-            }
-            pub fn setVertexFormat(self_: *T, vertexFormat_: AttributeFormat) void {
-                return objc.msgSend(self_, "setVertexFormat:", void, .{vertexFormat_});
-            }
-            pub fn vertexStride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "vertexStride", ns.UInteger, .{});
-            }
-            pub fn setVertexStride(self_: *T, vertexStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexStride:", void, .{vertexStride_});
-            }
-            pub fn indexBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "indexBuffer", ?*Buffer, .{});
-            }
-            pub fn setIndexBuffer(self_: *T, indexBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setIndexBuffer:", void, .{indexBuffer_});
-            }
-            pub fn indexBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "indexBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setIndexBufferOffset(self_: *T, indexBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIndexBufferOffset:", void, .{indexBufferOffset_});
-            }
-            pub fn indexType(self_: *T) IndexType {
-                return objc.msgSend(self_, "indexType", IndexType, .{});
-            }
-            pub fn setIndexType(self_: *T, indexType_: IndexType) void {
-                return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
-            }
-            pub fn triangleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "triangleCount", ns.UInteger, .{});
-            }
-            pub fn setTriangleCount(self_: *T, triangleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTriangleCount:", void, .{triangleCount_});
-            }
-            pub fn transformationMatrixBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "transformationMatrixBuffer", ?*Buffer, .{});
-            }
-            pub fn setTransformationMatrixBuffer(self_: *T, transformationMatrixBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setTransformationMatrixBuffer:", void, .{transformationMatrixBuffer_});
-            }
-            pub fn transformationMatrixBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "transformationMatrixBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setTransformationMatrixBufferOffset(self_: *T, transformationMatrixBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTransformationMatrixBufferOffset:", void, .{transformationMatrixBufferOffset_});
-            }
-        };
+    pub fn descriptor() *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "descriptor", *@This(), .{});
+    }
+    pub fn vertexBuffers(self_: *@This()) *ns.Array(*MotionKeyframeData) {
+        return objc.msgSend(self_, "vertexBuffers", *ns.Array(*MotionKeyframeData), .{});
+    }
+    pub fn setVertexBuffers(self_: *@This(), vertexBuffers_: *ns.Array(*MotionKeyframeData)) void {
+        return objc.msgSend(self_, "setVertexBuffers:", void, .{vertexBuffers_});
+    }
+    pub fn vertexFormat(self_: *@This()) AttributeFormat {
+        return objc.msgSend(self_, "vertexFormat", AttributeFormat, .{});
+    }
+    pub fn setVertexFormat(self_: *@This(), vertexFormat_: AttributeFormat) void {
+        return objc.msgSend(self_, "setVertexFormat:", void, .{vertexFormat_});
+    }
+    pub fn vertexStride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "vertexStride", ns.UInteger, .{});
+    }
+    pub fn setVertexStride(self_: *@This(), vertexStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexStride:", void, .{vertexStride_});
+    }
+    pub fn indexBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "indexBuffer", ?*Buffer, .{});
+    }
+    pub fn setIndexBuffer(self_: *@This(), indexBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setIndexBuffer:", void, .{indexBuffer_});
+    }
+    pub fn indexBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "indexBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setIndexBufferOffset(self_: *@This(), indexBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIndexBufferOffset:", void, .{indexBufferOffset_});
+    }
+    pub fn indexType(self_: *@This()) IndexType {
+        return objc.msgSend(self_, "indexType", IndexType, .{});
+    }
+    pub fn setIndexType(self_: *@This(), indexType_: IndexType) void {
+        return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
+    }
+    pub fn triangleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "triangleCount", ns.UInteger, .{});
+    }
+    pub fn setTriangleCount(self_: *@This(), triangleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTriangleCount:", void, .{triangleCount_});
+    }
+    pub fn transformationMatrixBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "transformationMatrixBuffer", ?*Buffer, .{});
+    }
+    pub fn setTransformationMatrixBuffer(self_: *@This(), transformationMatrixBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setTransformationMatrixBuffer:", void, .{transformationMatrixBuffer_});
+    }
+    pub fn transformationMatrixBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "transformationMatrixBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setTransformationMatrixBufferOffset(self_: *@This(), transformationMatrixBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTransformationMatrixBufferOffset:", void, .{transformationMatrixBufferOffset_});
     }
 };
 
 pub const AccelerationStructureMotionBoundingBoxGeometryDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructureMotionBoundingBoxGeometryDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
-
-            pub fn descriptor() *T {
-                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
-            }
-            pub fn boundingBoxBuffers(self_: *T) *ns.Array(*MotionKeyframeData) {
-                return objc.msgSend(self_, "boundingBoxBuffers", *ns.Array(*MotionKeyframeData), .{});
-            }
-            pub fn setBoundingBoxBuffers(self_: *T, boundingBoxBuffers_: *ns.Array(*MotionKeyframeData)) void {
-                return objc.msgSend(self_, "setBoundingBoxBuffers:", void, .{boundingBoxBuffers_});
-            }
-            pub fn boundingBoxStride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "boundingBoxStride", ns.UInteger, .{});
-            }
-            pub fn setBoundingBoxStride(self_: *T, boundingBoxStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBoundingBoxStride:", void, .{boundingBoxStride_});
-            }
-            pub fn boundingBoxCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "boundingBoxCount", ns.UInteger, .{});
-            }
-            pub fn setBoundingBoxCount(self_: *T, boundingBoxCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBoundingBoxCount:", void, .{boundingBoxCount_});
-            }
-        };
+    pub fn descriptor() *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "descriptor", *@This(), .{});
+    }
+    pub fn boundingBoxBuffers(self_: *@This()) *ns.Array(*MotionKeyframeData) {
+        return objc.msgSend(self_, "boundingBoxBuffers", *ns.Array(*MotionKeyframeData), .{});
+    }
+    pub fn setBoundingBoxBuffers(self_: *@This(), boundingBoxBuffers_: *ns.Array(*MotionKeyframeData)) void {
+        return objc.msgSend(self_, "setBoundingBoxBuffers:", void, .{boundingBoxBuffers_});
+    }
+    pub fn boundingBoxStride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "boundingBoxStride", ns.UInteger, .{});
+    }
+    pub fn setBoundingBoxStride(self_: *@This(), boundingBoxStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBoundingBoxStride:", void, .{boundingBoxStride_});
+    }
+    pub fn boundingBoxCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "boundingBoxCount", ns.UInteger, .{});
+    }
+    pub fn setBoundingBoxCount(self_: *@This(), boundingBoxCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBoundingBoxCount:", void, .{boundingBoxCount_});
     }
 };
 
 pub const InstanceAccelerationStructureDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLInstanceAccelerationStructureDescriptor", @This(), AccelerationStructureDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(InstanceAccelerationStructureDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace AccelerationStructureDescriptor.Methods(T);
-
-            pub fn descriptor() *T {
-                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
-            }
-            pub fn instanceDescriptorBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "instanceDescriptorBuffer", ?*Buffer, .{});
-            }
-            pub fn setInstanceDescriptorBuffer(self_: *T, instanceDescriptorBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setInstanceDescriptorBuffer:", void, .{instanceDescriptorBuffer_});
-            }
-            pub fn instanceDescriptorBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "instanceDescriptorBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setInstanceDescriptorBufferOffset(self_: *T, instanceDescriptorBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setInstanceDescriptorBufferOffset:", void, .{instanceDescriptorBufferOffset_});
-            }
-            pub fn instanceDescriptorStride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "instanceDescriptorStride", ns.UInteger, .{});
-            }
-            pub fn setInstanceDescriptorStride(self_: *T, instanceDescriptorStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setInstanceDescriptorStride:", void, .{instanceDescriptorStride_});
-            }
-            pub fn instanceCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "instanceCount", ns.UInteger, .{});
-            }
-            pub fn setInstanceCount(self_: *T, instanceCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setInstanceCount:", void, .{instanceCount_});
-            }
-            pub fn instancedAccelerationStructures(self_: *T) ?*ns.Array(*AccelerationStructure) {
-                return objc.msgSend(self_, "instancedAccelerationStructures", ?*ns.Array(*AccelerationStructure), .{});
-            }
-            pub fn setInstancedAccelerationStructures(self_: *T, instancedAccelerationStructures_: ?*ns.Array(*AccelerationStructure)) void {
-                return objc.msgSend(self_, "setInstancedAccelerationStructures:", void, .{instancedAccelerationStructures_});
-            }
-            pub fn instanceDescriptorType(self_: *T) AccelerationStructureInstanceDescriptorType {
-                return objc.msgSend(self_, "instanceDescriptorType", AccelerationStructureInstanceDescriptorType, .{});
-            }
-            pub fn setInstanceDescriptorType(self_: *T, instanceDescriptorType_: AccelerationStructureInstanceDescriptorType) void {
-                return objc.msgSend(self_, "setInstanceDescriptorType:", void, .{instanceDescriptorType_});
-            }
-            pub fn motionTransformBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "motionTransformBuffer", ?*Buffer, .{});
-            }
-            pub fn setMotionTransformBuffer(self_: *T, motionTransformBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setMotionTransformBuffer:", void, .{motionTransformBuffer_});
-            }
-            pub fn motionTransformBufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "motionTransformBufferOffset", ns.UInteger, .{});
-            }
-            pub fn setMotionTransformBufferOffset(self_: *T, motionTransformBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMotionTransformBufferOffset:", void, .{motionTransformBufferOffset_});
-            }
-            pub fn motionTransformCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "motionTransformCount", ns.UInteger, .{});
-            }
-            pub fn setMotionTransformCount(self_: *T, motionTransformCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMotionTransformCount:", void, .{motionTransformCount_});
-            }
-        };
+    pub fn descriptor() *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "descriptor", *@This(), .{});
+    }
+    pub fn instanceDescriptorBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "instanceDescriptorBuffer", ?*Buffer, .{});
+    }
+    pub fn setInstanceDescriptorBuffer(self_: *@This(), instanceDescriptorBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setInstanceDescriptorBuffer:", void, .{instanceDescriptorBuffer_});
+    }
+    pub fn instanceDescriptorBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "instanceDescriptorBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setInstanceDescriptorBufferOffset(self_: *@This(), instanceDescriptorBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setInstanceDescriptorBufferOffset:", void, .{instanceDescriptorBufferOffset_});
+    }
+    pub fn instanceDescriptorStride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "instanceDescriptorStride", ns.UInteger, .{});
+    }
+    pub fn setInstanceDescriptorStride(self_: *@This(), instanceDescriptorStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setInstanceDescriptorStride:", void, .{instanceDescriptorStride_});
+    }
+    pub fn instanceCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "instanceCount", ns.UInteger, .{});
+    }
+    pub fn setInstanceCount(self_: *@This(), instanceCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setInstanceCount:", void, .{instanceCount_});
+    }
+    pub fn instancedAccelerationStructures(self_: *@This()) ?*ns.Array(*AccelerationStructure) {
+        return objc.msgSend(self_, "instancedAccelerationStructures", ?*ns.Array(*AccelerationStructure), .{});
+    }
+    pub fn setInstancedAccelerationStructures(self_: *@This(), instancedAccelerationStructures_: ?*ns.Array(*AccelerationStructure)) void {
+        return objc.msgSend(self_, "setInstancedAccelerationStructures:", void, .{instancedAccelerationStructures_});
+    }
+    pub fn instanceDescriptorType(self_: *@This()) AccelerationStructureInstanceDescriptorType {
+        return objc.msgSend(self_, "instanceDescriptorType", AccelerationStructureInstanceDescriptorType, .{});
+    }
+    pub fn setInstanceDescriptorType(self_: *@This(), instanceDescriptorType_: AccelerationStructureInstanceDescriptorType) void {
+        return objc.msgSend(self_, "setInstanceDescriptorType:", void, .{instanceDescriptorType_});
+    }
+    pub fn motionTransformBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "motionTransformBuffer", ?*Buffer, .{});
+    }
+    pub fn setMotionTransformBuffer(self_: *@This(), motionTransformBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setMotionTransformBuffer:", void, .{motionTransformBuffer_});
+    }
+    pub fn motionTransformBufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "motionTransformBufferOffset", ns.UInteger, .{});
+    }
+    pub fn setMotionTransformBufferOffset(self_: *@This(), motionTransformBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMotionTransformBufferOffset:", void, .{motionTransformBufferOffset_});
+    }
+    pub fn motionTransformCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "motionTransformCount", ns.UInteger, .{});
+    }
+    pub fn setMotionTransformCount(self_: *@This(), motionTransformCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMotionTransformCount:", void, .{motionTransformCount_});
     }
 };
 
 pub const AccelerationStructure = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructure);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Resource.Methods(T);
-
-            pub fn size(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "size", ns.UInteger, .{});
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-        };
+    pub fn size(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "size", ns.UInteger, .{});
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
     }
 };
 
 pub const AccelerationStructureCommandEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructureCommandEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace CommandEncoder.Methods(T);
-
-            pub fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(self_: *T, accelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, scratchBuffer_: *Buffer, scratchBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:", void, .{ accelerationStructure_, descriptor_, scratchBuffer_, scratchBufferOffset_ });
-            }
-            pub fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, destinationAccelerationStructure_: ?*AccelerationStructure, scratchBuffer_: ?*Buffer, scratchBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:", void, .{ sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_ });
-            }
-            pub fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, destinationAccelerationStructure_: ?*AccelerationStructure, scratchBuffer_: ?*Buffer, scratchBufferOffset_: ns.UInteger, options_: AccelerationStructureRefitOptions) void {
-                return objc.msgSend(self_, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:", void, .{ sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_, options_ });
-            }
-            pub fn copyAccelerationStructure_toAccelerationStructure(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, destinationAccelerationStructure_: *AccelerationStructure) void {
-                return objc.msgSend(self_, "copyAccelerationStructure:toAccelerationStructure:", void, .{ sourceAccelerationStructure_, destinationAccelerationStructure_ });
-            }
-            pub fn writeCompactedAccelerationStructureSize_toBuffer_offset(self_: *T, accelerationStructure_: *AccelerationStructure, buffer_: *Buffer, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "writeCompactedAccelerationStructureSize:toBuffer:offset:", void, .{ accelerationStructure_, buffer_, offset_ });
-            }
-            pub fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(self_: *T, accelerationStructure_: *AccelerationStructure, buffer_: *Buffer, offset_: ns.UInteger, sizeDataType_: DataType) void {
-                return objc.msgSend(self_, "writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:", void, .{ accelerationStructure_, buffer_, offset_, sizeDataType_ });
-            }
-            pub fn copyAndCompactAccelerationStructure_toAccelerationStructure(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, destinationAccelerationStructure_: *AccelerationStructure) void {
-                return objc.msgSend(self_, "copyAndCompactAccelerationStructure:toAccelerationStructure:", void, .{ sourceAccelerationStructure_, destinationAccelerationStructure_ });
-            }
-            pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "updateFence:", void, .{fence_});
-            }
-            pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
-            }
-            pub fn useResource_usage(self_: *T, resource_: *Resource, usage_: ResourceUsage) void {
-                return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
-            }
-            pub fn useResources_count_usage(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
-                return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
-            }
-            pub fn useHeap(self_: *T, heap_: *Heap) void {
-                return objc.msgSend(self_, "useHeap:", void, .{heap_});
-            }
-            pub fn useHeaps_count(self_: *T, heaps_: **const Heap, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
-            }
-            pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
-            }
-        };
+    pub fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(self_: *@This(), accelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, scratchBuffer_: *Buffer, scratchBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:", void, .{ accelerationStructure_, descriptor_, scratchBuffer_, scratchBufferOffset_ });
+    }
+    pub fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(self_: *@This(), sourceAccelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, destinationAccelerationStructure_: ?*AccelerationStructure, scratchBuffer_: ?*Buffer, scratchBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:", void, .{ sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_ });
+    }
+    pub fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(self_: *@This(), sourceAccelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, destinationAccelerationStructure_: ?*AccelerationStructure, scratchBuffer_: ?*Buffer, scratchBufferOffset_: ns.UInteger, options_: AccelerationStructureRefitOptions) void {
+        return objc.msgSend(self_, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:", void, .{ sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_, options_ });
+    }
+    pub fn copyAccelerationStructure_toAccelerationStructure(self_: *@This(), sourceAccelerationStructure_: *AccelerationStructure, destinationAccelerationStructure_: *AccelerationStructure) void {
+        return objc.msgSend(self_, "copyAccelerationStructure:toAccelerationStructure:", void, .{ sourceAccelerationStructure_, destinationAccelerationStructure_ });
+    }
+    pub fn writeCompactedAccelerationStructureSize_toBuffer_offset(self_: *@This(), accelerationStructure_: *AccelerationStructure, buffer_: *Buffer, offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "writeCompactedAccelerationStructureSize:toBuffer:offset:", void, .{ accelerationStructure_, buffer_, offset_ });
+    }
+    pub fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(self_: *@This(), accelerationStructure_: *AccelerationStructure, buffer_: *Buffer, offset_: ns.UInteger, sizeDataType_: DataType) void {
+        return objc.msgSend(self_, "writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:", void, .{ accelerationStructure_, buffer_, offset_, sizeDataType_ });
+    }
+    pub fn copyAndCompactAccelerationStructure_toAccelerationStructure(self_: *@This(), sourceAccelerationStructure_: *AccelerationStructure, destinationAccelerationStructure_: *AccelerationStructure) void {
+        return objc.msgSend(self_, "copyAndCompactAccelerationStructure:toAccelerationStructure:", void, .{ sourceAccelerationStructure_, destinationAccelerationStructure_ });
+    }
+    pub fn updateFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "updateFence:", void, .{fence_});
+    }
+    pub fn waitForFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "waitForFence:", void, .{fence_});
+    }
+    pub fn useResource_usage(self_: *@This(), resource_: *Resource, usage_: ResourceUsage) void {
+        return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
+    }
+    pub fn useResources_count_usage(self_: *@This(), resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
+        return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
+    }
+    pub fn useHeap(self_: *@This(), heap_: *Heap) void {
+        return objc.msgSend(self_, "useHeap:", void, .{heap_});
+    }
+    pub fn useHeaps_count(self_: *@This(), heaps_: **const Heap, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
+    }
+    pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *@This(), sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
+        return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
     }
 };
 
 pub const AccelerationStructurePassSampleBufferAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructurePassSampleBufferAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
-            }
-            pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
-            }
-            pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
-            }
-            pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
-            }
-        };
+    pub fn sampleBuffer(self_: *@This()) ?*CounterSampleBuffer {
+        return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
+    }
+    pub fn setSampleBuffer(self_: *@This(), sampleBuffer_: ?*CounterSampleBuffer) void {
+        return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
+    }
+    pub fn startOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setStartOfEncoderSampleIndex(self_: *@This(), startOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
+    }
+    pub fn endOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setEndOfEncoderSampleIndex(self_: *@This(), endOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
     }
 };
 
 pub const AccelerationStructurePassSampleBufferAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructurePassSampleBufferAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *AccelerationStructurePassSampleBufferAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *AccelerationStructurePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*AccelerationStructurePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *AccelerationStructurePassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *AccelerationStructurePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: ?*AccelerationStructurePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const AccelerationStructurePassDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAccelerationStructurePassDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AccelerationStructurePassDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn accelerationStructurePassDescriptor() *AccelerationStructurePassDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "accelerationStructurePassDescriptor", *AccelerationStructurePassDescriptor, .{});
-            }
-            pub fn sampleBufferAttachments(self_: *T) *AccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-                return objc.msgSend(self_, "sampleBufferAttachments", *AccelerationStructurePassSampleBufferAttachmentDescriptorArray, .{});
-            }
-        };
+    pub fn accelerationStructurePassDescriptor() *AccelerationStructurePassDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "accelerationStructurePassDescriptor", *AccelerationStructurePassDescriptor, .{});
+    }
+    pub fn sampleBufferAttachments(self_: *@This()) *AccelerationStructurePassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self_, "sampleBufferAttachments", *AccelerationStructurePassSampleBufferAttachmentDescriptorArray, .{});
     }
 };
 
 pub const Type = opaque {
     pub const InternalInfo = objc.ExternClass("MTLType", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Type);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn dataType(self_: *T) DataType {
-                return objc.msgSend(self_, "dataType", DataType, .{});
-            }
-        };
+    pub fn dataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "dataType", DataType, .{});
     }
 };
 
 pub const StructMember = opaque {
     pub const InternalInfo = objc.ExternClass("MTLStructMember", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(StructMember);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn structType(self_: *T) ?*StructType {
-                return objc.msgSend(self_, "structType", ?*StructType, .{});
-            }
-            pub fn arrayType(self_: *T) ?*ArrayType {
-                return objc.msgSend(self_, "arrayType", ?*ArrayType, .{});
-            }
-            pub fn textureReferenceType(self_: *T) ?*TextureReferenceType {
-                return objc.msgSend(self_, "textureReferenceType", ?*TextureReferenceType, .{});
-            }
-            pub fn pointerType(self_: *T) ?*PointerType {
-                return objc.msgSend(self_, "pointerType", ?*PointerType, .{});
-            }
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn offset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "offset", ns.UInteger, .{});
-            }
-            pub fn dataType(self_: *T) DataType {
-                return objc.msgSend(self_, "dataType", DataType, .{});
-            }
-            pub fn argumentIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "argumentIndex", ns.UInteger, .{});
-            }
-        };
+    pub fn structType(self_: *@This()) ?*StructType {
+        return objc.msgSend(self_, "structType", ?*StructType, .{});
+    }
+    pub fn arrayType(self_: *@This()) ?*ArrayType {
+        return objc.msgSend(self_, "arrayType", ?*ArrayType, .{});
+    }
+    pub fn textureReferenceType(self_: *@This()) ?*TextureReferenceType {
+        return objc.msgSend(self_, "textureReferenceType", ?*TextureReferenceType, .{});
+    }
+    pub fn pointerType(self_: *@This()) ?*PointerType {
+        return objc.msgSend(self_, "pointerType", ?*PointerType, .{});
+    }
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn offset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "offset", ns.UInteger, .{});
+    }
+    pub fn dataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "dataType", DataType, .{});
+    }
+    pub fn argumentIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "argumentIndex", ns.UInteger, .{});
     }
 };
 
 pub const StructType = opaque {
     pub const InternalInfo = objc.ExternClass("MTLStructType", @This(), Type, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(StructType);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Type.Methods(T);
-
-            pub fn memberByName(self_: *T, name_: *ns.String) ?*StructMember {
-                return objc.msgSend(self_, "memberByName:", ?*StructMember, .{name_});
-            }
-            pub fn members(self_: *T) *ns.Array(*StructMember) {
-                return objc.msgSend(self_, "members", *ns.Array(*StructMember), .{});
-            }
-        };
+    pub fn memberByName(self_: *@This(), name_: *ns.String) ?*StructMember {
+        return objc.msgSend(self_, "memberByName:", ?*StructMember, .{name_});
+    }
+    pub fn members(self_: *@This()) *ns.Array(*StructMember) {
+        return objc.msgSend(self_, "members", *ns.Array(*StructMember), .{});
     }
 };
 
 pub const ArrayType = opaque {
     pub const InternalInfo = objc.ExternClass("MTLArrayType", @This(), Type, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ArrayType);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Type.Methods(T);
-
-            pub fn elementStructType(self_: *T) ?*StructType {
-                return objc.msgSend(self_, "elementStructType", ?*StructType, .{});
-            }
-            pub fn elementArrayType(self_: *T) ?*ArrayType {
-                return objc.msgSend(self_, "elementArrayType", ?*ArrayType, .{});
-            }
-            pub fn elementTextureReferenceType(self_: *T) ?*TextureReferenceType {
-                return objc.msgSend(self_, "elementTextureReferenceType", ?*TextureReferenceType, .{});
-            }
-            pub fn elementPointerType(self_: *T) ?*PointerType {
-                return objc.msgSend(self_, "elementPointerType", ?*PointerType, .{});
-            }
-            pub fn elementType(self_: *T) DataType {
-                return objc.msgSend(self_, "elementType", DataType, .{});
-            }
-            pub fn arrayLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
-            }
-            pub fn stride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "stride", ns.UInteger, .{});
-            }
-            pub fn argumentIndexStride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "argumentIndexStride", ns.UInteger, .{});
-            }
-        };
+    pub fn elementStructType(self_: *@This()) ?*StructType {
+        return objc.msgSend(self_, "elementStructType", ?*StructType, .{});
+    }
+    pub fn elementArrayType(self_: *@This()) ?*ArrayType {
+        return objc.msgSend(self_, "elementArrayType", ?*ArrayType, .{});
+    }
+    pub fn elementTextureReferenceType(self_: *@This()) ?*TextureReferenceType {
+        return objc.msgSend(self_, "elementTextureReferenceType", ?*TextureReferenceType, .{});
+    }
+    pub fn elementPointerType(self_: *@This()) ?*PointerType {
+        return objc.msgSend(self_, "elementPointerType", ?*PointerType, .{});
+    }
+    pub fn elementType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "elementType", DataType, .{});
+    }
+    pub fn arrayLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
+    }
+    pub fn stride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "stride", ns.UInteger, .{});
+    }
+    pub fn argumentIndexStride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "argumentIndexStride", ns.UInteger, .{});
     }
 };
 
 pub const PointerType = opaque {
     pub const InternalInfo = objc.ExternClass("MTLPointerType", @This(), Type, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(PointerType);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Type.Methods(T);
-
-            pub fn elementStructType(self_: *T) ?*StructType {
-                return objc.msgSend(self_, "elementStructType", ?*StructType, .{});
-            }
-            pub fn elementArrayType(self_: *T) ?*ArrayType {
-                return objc.msgSend(self_, "elementArrayType", ?*ArrayType, .{});
-            }
-            pub fn elementType(self_: *T) DataType {
-                return objc.msgSend(self_, "elementType", DataType, .{});
-            }
-            pub fn access(self_: *T) BindingAccess {
-                return objc.msgSend(self_, "access", BindingAccess, .{});
-            }
-            pub fn alignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "alignment", ns.UInteger, .{});
-            }
-            pub fn dataSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "dataSize", ns.UInteger, .{});
-            }
-            pub fn elementIsArgumentBuffer(self_: *T) bool {
-                return objc.msgSend(self_, "elementIsArgumentBuffer", bool, .{});
-            }
-        };
+    pub fn elementStructType(self_: *@This()) ?*StructType {
+        return objc.msgSend(self_, "elementStructType", ?*StructType, .{});
+    }
+    pub fn elementArrayType(self_: *@This()) ?*ArrayType {
+        return objc.msgSend(self_, "elementArrayType", ?*ArrayType, .{});
+    }
+    pub fn elementType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "elementType", DataType, .{});
+    }
+    pub fn access(self_: *@This()) BindingAccess {
+        return objc.msgSend(self_, "access", BindingAccess, .{});
+    }
+    pub fn alignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "alignment", ns.UInteger, .{});
+    }
+    pub fn dataSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "dataSize", ns.UInteger, .{});
+    }
+    pub fn elementIsArgumentBuffer(self_: *@This()) bool {
+        return objc.msgSend(self_, "elementIsArgumentBuffer", bool, .{});
     }
 };
 
 pub const TextureReferenceType = opaque {
     pub const InternalInfo = objc.ExternClass("MTLTextureReferenceType", @This(), Type, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(TextureReferenceType);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Type.Methods(T);
-
-            pub fn textureDataType(self_: *T) DataType {
-                return objc.msgSend(self_, "textureDataType", DataType, .{});
-            }
-            pub fn textureType(self_: *T) TextureType {
-                return objc.msgSend(self_, "textureType", TextureType, .{});
-            }
-            pub fn access(self_: *T) BindingAccess {
-                return objc.msgSend(self_, "access", BindingAccess, .{});
-            }
-            pub fn isDepthTexture(self_: *T) bool {
-                return objc.msgSend(self_, "isDepthTexture", bool, .{});
-            }
-        };
+    pub fn textureDataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "textureDataType", DataType, .{});
+    }
+    pub fn textureType(self_: *@This()) TextureType {
+        return objc.msgSend(self_, "textureType", TextureType, .{});
+    }
+    pub fn access(self_: *@This()) BindingAccess {
+        return objc.msgSend(self_, "access", BindingAccess, .{});
+    }
+    pub fn isDepthTexture(self_: *@This()) bool {
+        return objc.msgSend(self_, "isDepthTexture", bool, .{});
     }
 };
 
 pub const Argument = opaque {
     pub const InternalInfo = objc.ExternClass("MTLArgument", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Argument);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn @"type"(self_: *T) ArgumentType {
-                return objc.msgSend(self_, "type", ArgumentType, .{});
-            }
-            pub fn access(self_: *T) BindingAccess {
-                return objc.msgSend(self_, "access", BindingAccess, .{});
-            }
-            pub fn index(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "index", ns.UInteger, .{});
-            }
-            pub fn isActive(self_: *T) bool {
-                return objc.msgSend(self_, "isActive", bool, .{});
-            }
-            pub fn bufferAlignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferAlignment", ns.UInteger, .{});
-            }
-            pub fn bufferDataSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferDataSize", ns.UInteger, .{});
-            }
-            pub fn bufferDataType(self_: *T) DataType {
-                return objc.msgSend(self_, "bufferDataType", DataType, .{});
-            }
-            pub fn bufferStructType(self_: *T) ?*StructType {
-                return objc.msgSend(self_, "bufferStructType", ?*StructType, .{});
-            }
-            pub fn bufferPointerType(self_: *T) ?*PointerType {
-                return objc.msgSend(self_, "bufferPointerType", ?*PointerType, .{});
-            }
-            pub fn threadgroupMemoryAlignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "threadgroupMemoryAlignment", ns.UInteger, .{});
-            }
-            pub fn threadgroupMemoryDataSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "threadgroupMemoryDataSize", ns.UInteger, .{});
-            }
-            pub fn textureType(self_: *T) TextureType {
-                return objc.msgSend(self_, "textureType", TextureType, .{});
-            }
-            pub fn textureDataType(self_: *T) DataType {
-                return objc.msgSend(self_, "textureDataType", DataType, .{});
-            }
-            pub fn isDepthTexture(self_: *T) bool {
-                return objc.msgSend(self_, "isDepthTexture", bool, .{});
-            }
-            pub fn arrayLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn @"type"(self_: *@This()) ArgumentType {
+        return objc.msgSend(self_, "type", ArgumentType, .{});
+    }
+    pub fn access(self_: *@This()) BindingAccess {
+        return objc.msgSend(self_, "access", BindingAccess, .{});
+    }
+    pub fn index(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "index", ns.UInteger, .{});
+    }
+    pub fn isActive(self_: *@This()) bool {
+        return objc.msgSend(self_, "isActive", bool, .{});
+    }
+    pub fn bufferAlignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferAlignment", ns.UInteger, .{});
+    }
+    pub fn bufferDataSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferDataSize", ns.UInteger, .{});
+    }
+    pub fn bufferDataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "bufferDataType", DataType, .{});
+    }
+    pub fn bufferStructType(self_: *@This()) ?*StructType {
+        return objc.msgSend(self_, "bufferStructType", ?*StructType, .{});
+    }
+    pub fn bufferPointerType(self_: *@This()) ?*PointerType {
+        return objc.msgSend(self_, "bufferPointerType", ?*PointerType, .{});
+    }
+    pub fn threadgroupMemoryAlignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "threadgroupMemoryAlignment", ns.UInteger, .{});
+    }
+    pub fn threadgroupMemoryDataSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "threadgroupMemoryDataSize", ns.UInteger, .{});
+    }
+    pub fn textureType(self_: *@This()) TextureType {
+        return objc.msgSend(self_, "textureType", TextureType, .{});
+    }
+    pub fn textureDataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "textureDataType", DataType, .{});
+    }
+    pub fn isDepthTexture(self_: *@This()) bool {
+        return objc.msgSend(self_, "isDepthTexture", bool, .{});
+    }
+    pub fn arrayLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
     }
 };
 
 pub const Binding = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Binding);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn @"type"(self_: *T) BindingType {
-                return objc.msgSend(self_, "type", BindingType, .{});
-            }
-            pub fn access(self_: *T) BindingAccess {
-                return objc.msgSend(self_, "access", BindingAccess, .{});
-            }
-            pub fn index(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "index", ns.UInteger, .{});
-            }
-            pub fn isUsed(self_: *T) bool {
-                return objc.msgSend(self_, "isUsed", bool, .{});
-            }
-            pub fn isArgument(self_: *T) bool {
-                return objc.msgSend(self_, "isArgument", bool, .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn @"type"(self_: *@This()) BindingType {
+        return objc.msgSend(self_, "type", BindingType, .{});
+    }
+    pub fn access(self_: *@This()) BindingAccess {
+        return objc.msgSend(self_, "access", BindingAccess, .{});
+    }
+    pub fn index(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "index", ns.UInteger, .{});
+    }
+    pub fn isUsed(self_: *@This()) bool {
+        return objc.msgSend(self_, "isUsed", bool, .{});
+    }
+    pub fn isArgument(self_: *@This()) bool {
+        return objc.msgSend(self_, "isArgument", bool, .{});
     }
 };
 
 pub const BufferBinding = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BufferBinding);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Binding.Methods(T);
-
-            pub fn bufferAlignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferAlignment", ns.UInteger, .{});
-            }
-            pub fn bufferDataSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferDataSize", ns.UInteger, .{});
-            }
-            pub fn bufferDataType(self_: *T) DataType {
-                return objc.msgSend(self_, "bufferDataType", DataType, .{});
-            }
-            pub fn bufferStructType(self_: *T) ?*StructType {
-                return objc.msgSend(self_, "bufferStructType", ?*StructType, .{});
-            }
-            pub fn bufferPointerType(self_: *T) ?*PointerType {
-                return objc.msgSend(self_, "bufferPointerType", ?*PointerType, .{});
-            }
-        };
+    pub fn bufferAlignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferAlignment", ns.UInteger, .{});
+    }
+    pub fn bufferDataSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferDataSize", ns.UInteger, .{});
+    }
+    pub fn bufferDataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "bufferDataType", DataType, .{});
+    }
+    pub fn bufferStructType(self_: *@This()) ?*StructType {
+        return objc.msgSend(self_, "bufferStructType", ?*StructType, .{});
+    }
+    pub fn bufferPointerType(self_: *@This()) ?*PointerType {
+        return objc.msgSend(self_, "bufferPointerType", ?*PointerType, .{});
     }
 };
 
 pub const ThreadgroupBinding = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ThreadgroupBinding);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Binding.Methods(T);
-
-            pub fn threadgroupMemoryAlignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "threadgroupMemoryAlignment", ns.UInteger, .{});
-            }
-            pub fn threadgroupMemoryDataSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "threadgroupMemoryDataSize", ns.UInteger, .{});
-            }
-        };
+    pub fn threadgroupMemoryAlignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "threadgroupMemoryAlignment", ns.UInteger, .{});
+    }
+    pub fn threadgroupMemoryDataSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "threadgroupMemoryDataSize", ns.UInteger, .{});
     }
 };
 
 pub const TextureBinding = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(TextureBinding);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Binding.Methods(T);
-
-            pub fn textureType(self_: *T) TextureType {
-                return objc.msgSend(self_, "textureType", TextureType, .{});
-            }
-            pub fn textureDataType(self_: *T) DataType {
-                return objc.msgSend(self_, "textureDataType", DataType, .{});
-            }
-            pub fn isDepthTexture(self_: *T) bool {
-                return objc.msgSend(self_, "isDepthTexture", bool, .{});
-            }
-            pub fn arrayLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
-            }
-        };
+    pub fn textureType(self_: *@This()) TextureType {
+        return objc.msgSend(self_, "textureType", TextureType, .{});
+    }
+    pub fn textureDataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "textureDataType", DataType, .{});
+    }
+    pub fn isDepthTexture(self_: *@This()) bool {
+        return objc.msgSend(self_, "isDepthTexture", bool, .{});
+    }
+    pub fn arrayLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
     }
 };
 
 pub const ObjectPayloadBinding = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ObjectPayloadBinding);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Binding.Methods(T);
-
-            pub fn objectPayloadAlignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "objectPayloadAlignment", ns.UInteger, .{});
-            }
-            pub fn objectPayloadDataSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "objectPayloadDataSize", ns.UInteger, .{});
-            }
-        };
+    pub fn objectPayloadAlignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "objectPayloadAlignment", ns.UInteger, .{});
+    }
+    pub fn objectPayloadDataSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "objectPayloadDataSize", ns.UInteger, .{});
     }
 };
 
 pub const ArgumentEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ArgumentEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn setArgumentBuffer_offset(self_: *T, argumentBuffer_: ?*Buffer, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setArgumentBuffer:offset:", void, .{ argumentBuffer_, offset_ });
-            }
-            pub fn setArgumentBuffer_startOffset_arrayElement(self_: *T, argumentBuffer_: ?*Buffer, startOffset_: ns.UInteger, arrayElement_: ns.UInteger) void {
-                return objc.msgSend(self_, "setArgumentBuffer:startOffset:arrayElement:", void, .{ argumentBuffer_, startOffset_, arrayElement_ });
-            }
-            pub fn setBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTexture:atIndex:", void, .{ texture_, index_ });
-            }
-            pub fn setTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTextures:withRange:", void, .{ textures_, range_ });
-            }
-            pub fn setSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSamplerState:atIndex:", void, .{ sampler_, index_ });
-            }
-            pub fn setSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setSamplerStates:withRange:", void, .{ samplers_, range_ });
-            }
-            pub fn constantDataAtIndex(self_: *T, index_: ns.UInteger) *anyopaque {
-                return objc.msgSend(self_, "constantDataAtIndex:", *anyopaque, .{index_});
-            }
-            pub fn setRenderPipelineState_atIndex(self_: *T, pipeline_: ?*RenderPipelineState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setRenderPipelineState:atIndex:", void, .{ pipeline_, index_ });
-            }
-            pub fn setRenderPipelineStates_withRange(self_: *T, pipelines_: *?*const RenderPipelineState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setRenderPipelineStates:withRange:", void, .{ pipelines_, range_ });
-            }
-            pub fn setComputePipelineState_atIndex(self_: *T, pipeline_: ?*ComputePipelineState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setComputePipelineState:atIndex:", void, .{ pipeline_, index_ });
-            }
-            pub fn setComputePipelineStates_withRange(self_: *T, pipelines_: *?*const ComputePipelineState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setComputePipelineStates:withRange:", void, .{ pipelines_, range_ });
-            }
-            pub fn setIndirectCommandBuffer_atIndex(self_: *T, indirectCommandBuffer_: ?*IndirectCommandBuffer, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIndirectCommandBuffer:atIndex:", void, .{ indirectCommandBuffer_, index_ });
-            }
-            pub fn setIndirectCommandBuffers_withRange(self_: *T, buffers_: *?*const IndirectCommandBuffer, range_: ns.Range) void {
-                return objc.msgSend(self_, "setIndirectCommandBuffers:withRange:", void, .{ buffers_, range_ });
-            }
-            pub fn setAccelerationStructure_atIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setAccelerationStructure:atIndex:", void, .{ accelerationStructure_, index_ });
-            }
-            pub fn newArgumentEncoderForBufferAtIndex(self_: *T, index_: ns.UInteger) ?*ArgumentEncoder {
-                return objc.msgSend(self_, "newArgumentEncoderForBufferAtIndex:", ?*ArgumentEncoder, .{index_});
-            }
-            pub fn setVisibleFunctionTable_atIndex(self_: *T, visibleFunctionTable_: ?*VisibleFunctionTable, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVisibleFunctionTable:atIndex:", void, .{ visibleFunctionTable_, index_ });
-            }
-            pub fn setVisibleFunctionTables_withRange(self_: *T, visibleFunctionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVisibleFunctionTables:withRange:", void, .{ visibleFunctionTables_, range_ });
-            }
-            pub fn setIntersectionFunctionTable_atIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIntersectionFunctionTable:atIndex:", void, .{ intersectionFunctionTable_, index_ });
-            }
-            pub fn setIntersectionFunctionTables_withRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setIntersectionFunctionTables:withRange:", void, .{ intersectionFunctionTables_, range_ });
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn encodedLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "encodedLength", ns.UInteger, .{});
-            }
-            pub fn alignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "alignment", ns.UInteger, .{});
-            }
-        };
+    pub fn setArgumentBuffer_offset(self_: *@This(), argumentBuffer_: ?*Buffer, offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setArgumentBuffer:offset:", void, .{ argumentBuffer_, offset_ });
+    }
+    pub fn setArgumentBuffer_startOffset_arrayElement(self_: *@This(), argumentBuffer_: ?*Buffer, startOffset_: ns.UInteger, arrayElement_: ns.UInteger) void {
+        return objc.msgSend(self_, "setArgumentBuffer:startOffset:arrayElement:", void, .{ argumentBuffer_, startOffset_, arrayElement_ });
+    }
+    pub fn setBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setTexture_atIndex(self_: *@This(), texture_: ?*Texture, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTexture:atIndex:", void, .{ texture_, index_ });
+    }
+    pub fn setTextures_withRange(self_: *@This(), textures_: *?*const Texture, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTextures:withRange:", void, .{ textures_, range_ });
+    }
+    pub fn setSamplerState_atIndex(self_: *@This(), sampler_: ?*SamplerState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSamplerState:atIndex:", void, .{ sampler_, index_ });
+    }
+    pub fn setSamplerStates_withRange(self_: *@This(), samplers_: *?*const SamplerState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setSamplerStates:withRange:", void, .{ samplers_, range_ });
+    }
+    pub fn constantDataAtIndex(self_: *@This(), index_: ns.UInteger) *anyopaque {
+        return objc.msgSend(self_, "constantDataAtIndex:", *anyopaque, .{index_});
+    }
+    pub fn setRenderPipelineState_atIndex(self_: *@This(), pipeline_: ?*RenderPipelineState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setRenderPipelineState:atIndex:", void, .{ pipeline_, index_ });
+    }
+    pub fn setRenderPipelineStates_withRange(self_: *@This(), pipelines_: *?*const RenderPipelineState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setRenderPipelineStates:withRange:", void, .{ pipelines_, range_ });
+    }
+    pub fn setComputePipelineState_atIndex(self_: *@This(), pipeline_: ?*ComputePipelineState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setComputePipelineState:atIndex:", void, .{ pipeline_, index_ });
+    }
+    pub fn setComputePipelineStates_withRange(self_: *@This(), pipelines_: *?*const ComputePipelineState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setComputePipelineStates:withRange:", void, .{ pipelines_, range_ });
+    }
+    pub fn setIndirectCommandBuffer_atIndex(self_: *@This(), indirectCommandBuffer_: ?*IndirectCommandBuffer, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIndirectCommandBuffer:atIndex:", void, .{ indirectCommandBuffer_, index_ });
+    }
+    pub fn setIndirectCommandBuffers_withRange(self_: *@This(), buffers_: *?*const IndirectCommandBuffer, range_: ns.Range) void {
+        return objc.msgSend(self_, "setIndirectCommandBuffers:withRange:", void, .{ buffers_, range_ });
+    }
+    pub fn setAccelerationStructure_atIndex(self_: *@This(), accelerationStructure_: ?*AccelerationStructure, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setAccelerationStructure:atIndex:", void, .{ accelerationStructure_, index_ });
+    }
+    pub fn newArgumentEncoderForBufferAtIndex(self_: *@This(), index_: ns.UInteger) ?*ArgumentEncoder {
+        return objc.msgSend(self_, "newArgumentEncoderForBufferAtIndex:", ?*ArgumentEncoder, .{index_});
+    }
+    pub fn setVisibleFunctionTable_atIndex(self_: *@This(), visibleFunctionTable_: ?*VisibleFunctionTable, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVisibleFunctionTable:atIndex:", void, .{ visibleFunctionTable_, index_ });
+    }
+    pub fn setVisibleFunctionTables_withRange(self_: *@This(), visibleFunctionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVisibleFunctionTables:withRange:", void, .{ visibleFunctionTables_, range_ });
+    }
+    pub fn setIntersectionFunctionTable_atIndex(self_: *@This(), intersectionFunctionTable_: ?*IntersectionFunctionTable, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIntersectionFunctionTable:atIndex:", void, .{ intersectionFunctionTable_, index_ });
+    }
+    pub fn setIntersectionFunctionTables_withRange(self_: *@This(), intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setIntersectionFunctionTables:withRange:", void, .{ intersectionFunctionTables_, range_ });
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn encodedLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "encodedLength", ns.UInteger, .{});
+    }
+    pub fn alignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "alignment", ns.UInteger, .{});
     }
 };
 
 pub const BinaryArchiveDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLBinaryArchiveDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BinaryArchiveDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn url(self_: *T) ?*ns.URL {
-                return objc.msgSend(self_, "url", ?*ns.URL, .{});
-            }
-            pub fn setUrl(self_: *T, url_: ?*ns.URL) void {
-                return objc.msgSend(self_, "setUrl:", void, .{url_});
-            }
-        };
+    pub fn url(self_: *@This()) ?*ns.URL {
+        return objc.msgSend(self_, "url", ?*ns.URL, .{});
+    }
+    pub fn setUrl(self_: *@This(), url_: ?*ns.URL) void {
+        return objc.msgSend(self_, "setUrl:", void, .{url_});
     }
 };
 
 pub const BinaryArchive = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BinaryArchive);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn addComputePipelineFunctionsWithDescriptor_error(self_: *T, descriptor_: *ComputePipelineDescriptor, error_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "addComputePipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
-            }
-            pub fn addRenderPipelineFunctionsWithDescriptor_error(self_: *T, descriptor_: *RenderPipelineDescriptor, error_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "addRenderPipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
-            }
-            pub fn addTileRenderPipelineFunctionsWithDescriptor_error(self_: *T, descriptor_: *TileRenderPipelineDescriptor, error_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "addTileRenderPipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
-            }
-            pub fn serializeToURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "serializeToURL:error:", bool, .{ url_, error_ });
-            }
-            pub fn addFunctionWithDescriptor_library_error(self_: *T, descriptor_: *FunctionDescriptor, library_: *Library, error_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "addFunctionWithDescriptor:library:error:", bool, .{ descriptor_, library_, error_ });
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-        };
+    pub fn addComputePipelineFunctionsWithDescriptor_error(self_: *@This(), descriptor_: *ComputePipelineDescriptor, error_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "addComputePipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
+    }
+    pub fn addRenderPipelineFunctionsWithDescriptor_error(self_: *@This(), descriptor_: *RenderPipelineDescriptor, error_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "addRenderPipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
+    }
+    pub fn addTileRenderPipelineFunctionsWithDescriptor_error(self_: *@This(), descriptor_: *TileRenderPipelineDescriptor, error_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "addTileRenderPipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
+    }
+    pub fn serializeToURL_error(self_: *@This(), url_: *ns.URL, error_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "serializeToURL:error:", bool, .{ url_, error_ });
+    }
+    pub fn addFunctionWithDescriptor_library_error(self_: *@This(), descriptor_: *FunctionDescriptor, library_: *Library, error_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "addFunctionWithDescriptor:library:error:", bool, .{ descriptor_, library_, error_ });
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
     }
 };
 
 pub const BlitCommandEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BlitCommandEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace CommandEncoder.Methods(T);
-
-            pub fn synchronizeResource(self_: *T, resource_: *Resource) void {
-                return objc.msgSend(self_, "synchronizeResource:", void, .{resource_});
-            }
-            pub fn synchronizeTexture_slice_level(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
-                return objc.msgSend(self_, "synchronizeTexture:slice:level:", void, .{ texture_, slice_, level_ });
-            }
-            pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
-                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
-            }
-            pub fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *T, sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
-                return objc.msgSend(self_, "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
-            }
-            pub fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(self_: *T, sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin, options_: BlitOption) void {
-                return objc.msgSend(self_, "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:", void, .{ sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_, options_ });
-            }
-            pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, destinationBytesPerRow_: ns.UInteger, destinationBytesPerImage_: ns.UInteger) void {
-                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_ });
-            }
-            pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, destinationBytesPerRow_: ns.UInteger, destinationBytesPerImage_: ns.UInteger, options_: BlitOption) void {
-                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_, options_ });
-            }
-            pub fn generateMipmapsForTexture(self_: *T, texture_: *Texture) void {
-                return objc.msgSend(self_, "generateMipmapsForTexture:", void, .{texture_});
-            }
-            pub fn fillBuffer_range_value(self_: *T, buffer_: *Buffer, range_: ns.Range, value_: u8) void {
-                return objc.msgSend(self_, "fillBuffer:range:value:", void, .{ buffer_, range_, value_ });
-            }
-            pub fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, sliceCount_: ns.UInteger, levelCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, destinationTexture_, destinationSlice_, destinationLevel_, sliceCount_, levelCount_ });
-            }
-            pub fn copyFromTexture_toTexture(self_: *T, sourceTexture_: *Texture, destinationTexture_: *Texture) void {
-                return objc.msgSend(self_, "copyFromTexture:toTexture:", void, .{ sourceTexture_, destinationTexture_ });
-            }
-            pub fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(self_: *T, sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, size_: ns.UInteger) void {
-                return objc.msgSend(self_, "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:", void, .{ sourceBuffer_, sourceOffset_, destinationBuffer_, destinationOffset_, size_ });
-            }
-            pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "updateFence:", void, .{fence_});
-            }
-            pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
-            }
-            pub fn getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset(self_: *T, texture_: *Texture, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger, resetCounters_: bool, countersBuffer_: *Buffer, countersBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:", void, .{ texture_, region_, mipLevel_, slice_, resetCounters_, countersBuffer_, countersBufferOffset_ });
-            }
-            pub fn resetTextureAccessCounters_region_mipLevel_slice(self_: *T, texture_: *Texture, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger) void {
-                return objc.msgSend(self_, "resetTextureAccessCounters:region:mipLevel:slice:", void, .{ texture_, region_, mipLevel_, slice_ });
-            }
-            pub fn optimizeContentsForGPUAccess(self_: *T, texture_: *Texture) void {
-                return objc.msgSend(self_, "optimizeContentsForGPUAccess:", void, .{texture_});
-            }
-            pub fn optimizeContentsForGPUAccess_slice_level(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
-                return objc.msgSend(self_, "optimizeContentsForGPUAccess:slice:level:", void, .{ texture_, slice_, level_ });
-            }
-            pub fn optimizeContentsForCPUAccess(self_: *T, texture_: *Texture) void {
-                return objc.msgSend(self_, "optimizeContentsForCPUAccess:", void, .{texture_});
-            }
-            pub fn optimizeContentsForCPUAccess_slice_level(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
-                return objc.msgSend(self_, "optimizeContentsForCPUAccess:slice:level:", void, .{ texture_, slice_, level_ });
-            }
-            pub fn resetCommandsInBuffer_withRange(self_: *T, buffer_: *IndirectCommandBuffer, range_: ns.Range) void {
-                return objc.msgSend(self_, "resetCommandsInBuffer:withRange:", void, .{ buffer_, range_ });
-            }
-            pub fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(self_: *T, source_: *IndirectCommandBuffer, sourceRange_: ns.Range, destination_: *IndirectCommandBuffer, destinationIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:", void, .{ source_, sourceRange_, destination_, destinationIndex_ });
-            }
-            pub fn optimizeIndirectCommandBuffer_withRange(self_: *T, indirectCommandBuffer_: *IndirectCommandBuffer, range_: ns.Range) void {
-                return objc.msgSend(self_, "optimizeIndirectCommandBuffer:withRange:", void, .{ indirectCommandBuffer_, range_ });
-            }
-            pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
-            }
-            pub fn resolveCounters_inRange_destinationBuffer_destinationOffset(self_: *T, sampleBuffer_: *CounterSampleBuffer, range_: ns.Range, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "resolveCounters:inRange:destinationBuffer:destinationOffset:", void, .{ sampleBuffer_, range_, destinationBuffer_, destinationOffset_ });
-            }
-        };
+    pub fn synchronizeResource(self_: *@This(), resource_: *Resource) void {
+        return objc.msgSend(self_, "synchronizeResource:", void, .{resource_});
+    }
+    pub fn synchronizeTexture_slice_level(self_: *@This(), texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
+        return objc.msgSend(self_, "synchronizeTexture:slice:level:", void, .{ texture_, slice_, level_ });
+    }
+    pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *@This(), sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
+        return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
+    }
+    pub fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *@This(), sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
+        return objc.msgSend(self_, "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
+    }
+    pub fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(self_: *@This(), sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin, options_: BlitOption) void {
+        return objc.msgSend(self_, "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:", void, .{ sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_, options_ });
+    }
+    pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(self_: *@This(), sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, destinationBytesPerRow_: ns.UInteger, destinationBytesPerImage_: ns.UInteger) void {
+        return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_ });
+    }
+    pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(self_: *@This(), sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, destinationBytesPerRow_: ns.UInteger, destinationBytesPerImage_: ns.UInteger, options_: BlitOption) void {
+        return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_, options_ });
+    }
+    pub fn generateMipmapsForTexture(self_: *@This(), texture_: *Texture) void {
+        return objc.msgSend(self_, "generateMipmapsForTexture:", void, .{texture_});
+    }
+    pub fn fillBuffer_range_value(self_: *@This(), buffer_: *Buffer, range_: ns.Range, value_: u8) void {
+        return objc.msgSend(self_, "fillBuffer:range:value:", void, .{ buffer_, range_, value_ });
+    }
+    pub fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(self_: *@This(), sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, sliceCount_: ns.UInteger, levelCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, destinationTexture_, destinationSlice_, destinationLevel_, sliceCount_, levelCount_ });
+    }
+    pub fn copyFromTexture_toTexture(self_: *@This(), sourceTexture_: *Texture, destinationTexture_: *Texture) void {
+        return objc.msgSend(self_, "copyFromTexture:toTexture:", void, .{ sourceTexture_, destinationTexture_ });
+    }
+    pub fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(self_: *@This(), sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, size_: ns.UInteger) void {
+        return objc.msgSend(self_, "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:", void, .{ sourceBuffer_, sourceOffset_, destinationBuffer_, destinationOffset_, size_ });
+    }
+    pub fn updateFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "updateFence:", void, .{fence_});
+    }
+    pub fn waitForFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "waitForFence:", void, .{fence_});
+    }
+    pub fn getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset(self_: *@This(), texture_: *Texture, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger, resetCounters_: bool, countersBuffer_: *Buffer, countersBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:", void, .{ texture_, region_, mipLevel_, slice_, resetCounters_, countersBuffer_, countersBufferOffset_ });
+    }
+    pub fn resetTextureAccessCounters_region_mipLevel_slice(self_: *@This(), texture_: *Texture, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger) void {
+        return objc.msgSend(self_, "resetTextureAccessCounters:region:mipLevel:slice:", void, .{ texture_, region_, mipLevel_, slice_ });
+    }
+    pub fn optimizeContentsForGPUAccess(self_: *@This(), texture_: *Texture) void {
+        return objc.msgSend(self_, "optimizeContentsForGPUAccess:", void, .{texture_});
+    }
+    pub fn optimizeContentsForGPUAccess_slice_level(self_: *@This(), texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
+        return objc.msgSend(self_, "optimizeContentsForGPUAccess:slice:level:", void, .{ texture_, slice_, level_ });
+    }
+    pub fn optimizeContentsForCPUAccess(self_: *@This(), texture_: *Texture) void {
+        return objc.msgSend(self_, "optimizeContentsForCPUAccess:", void, .{texture_});
+    }
+    pub fn optimizeContentsForCPUAccess_slice_level(self_: *@This(), texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
+        return objc.msgSend(self_, "optimizeContentsForCPUAccess:slice:level:", void, .{ texture_, slice_, level_ });
+    }
+    pub fn resetCommandsInBuffer_withRange(self_: *@This(), buffer_: *IndirectCommandBuffer, range_: ns.Range) void {
+        return objc.msgSend(self_, "resetCommandsInBuffer:withRange:", void, .{ buffer_, range_ });
+    }
+    pub fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(self_: *@This(), source_: *IndirectCommandBuffer, sourceRange_: ns.Range, destination_: *IndirectCommandBuffer, destinationIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:", void, .{ source_, sourceRange_, destination_, destinationIndex_ });
+    }
+    pub fn optimizeIndirectCommandBuffer_withRange(self_: *@This(), indirectCommandBuffer_: *IndirectCommandBuffer, range_: ns.Range) void {
+        return objc.msgSend(self_, "optimizeIndirectCommandBuffer:withRange:", void, .{ indirectCommandBuffer_, range_ });
+    }
+    pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *@This(), sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
+        return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
+    }
+    pub fn resolveCounters_inRange_destinationBuffer_destinationOffset(self_: *@This(), sampleBuffer_: *CounterSampleBuffer, range_: ns.Range, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "resolveCounters:inRange:destinationBuffer:destinationOffset:", void, .{ sampleBuffer_, range_, destinationBuffer_, destinationOffset_ });
     }
 };
 
 pub const BlitPassSampleBufferAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLBlitPassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BlitPassSampleBufferAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
-            }
-            pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
-            }
-            pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
-            }
-            pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
-            }
-        };
+    pub fn sampleBuffer(self_: *@This()) ?*CounterSampleBuffer {
+        return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
+    }
+    pub fn setSampleBuffer(self_: *@This(), sampleBuffer_: ?*CounterSampleBuffer) void {
+        return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
+    }
+    pub fn startOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setStartOfEncoderSampleIndex(self_: *@This(), startOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
+    }
+    pub fn endOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setEndOfEncoderSampleIndex(self_: *@This(), endOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
     }
 };
 
 pub const BlitPassSampleBufferAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLBlitPassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BlitPassSampleBufferAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *BlitPassSampleBufferAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *BlitPassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*BlitPassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *BlitPassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *BlitPassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: ?*BlitPassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const BlitPassDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLBlitPassDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BlitPassDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn blitPassDescriptor() *BlitPassDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "blitPassDescriptor", *BlitPassDescriptor, .{});
-            }
-            pub fn sampleBufferAttachments(self_: *T) *BlitPassSampleBufferAttachmentDescriptorArray {
-                return objc.msgSend(self_, "sampleBufferAttachments", *BlitPassSampleBufferAttachmentDescriptorArray, .{});
-            }
-        };
+    pub fn blitPassDescriptor() *BlitPassDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "blitPassDescriptor", *BlitPassDescriptor, .{});
+    }
+    pub fn sampleBufferAttachments(self_: *@This()) *BlitPassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self_, "sampleBufferAttachments", *BlitPassSampleBufferAttachmentDescriptorArray, .{});
     }
 };
 
 pub const Buffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Buffer);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Resource.Methods(T);
-
-            pub fn contents(self_: *T) *anyopaque {
-                return objc.msgSend(self_, "contents", *anyopaque, .{});
-            }
-            pub fn didModifyRange(self_: *T, range_: ns.Range) void {
-                return objc.msgSend(self_, "didModifyRange:", void, .{range_});
-            }
-            pub fn newTextureWithDescriptor_offset_bytesPerRow(self_: *T, descriptor_: *TextureDescriptor, offset_: ns.UInteger, bytesPerRow_: ns.UInteger) ?*Texture {
-                return objc.msgSend(self_, "newTextureWithDescriptor:offset:bytesPerRow:", ?*Texture, .{ descriptor_, offset_, bytesPerRow_ });
-            }
-            pub fn addDebugMarker_range(self_: *T, marker_: *ns.String, range_: ns.Range) void {
-                return objc.msgSend(self_, "addDebugMarker:range:", void, .{ marker_, range_ });
-            }
-            pub fn removeAllDebugMarkers(self_: *T) void {
-                return objc.msgSend(self_, "removeAllDebugMarkers", void, .{});
-            }
-            pub fn newRemoteBufferViewForDevice(self_: *T, device_: *Device) ?*Buffer {
-                return objc.msgSend(self_, "newRemoteBufferViewForDevice:", ?*Buffer, .{device_});
-            }
-            pub fn length(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "length", ns.UInteger, .{});
-            }
-            pub fn remoteStorageBuffer(self_: *T) *Buffer {
-                return objc.msgSend(self_, "remoteStorageBuffer", *Buffer, .{});
-            }
-            pub fn gpuAddress(self_: *T) u64 {
-                return objc.msgSend(self_, "gpuAddress", u64, .{});
-            }
-        };
+    pub fn contents(self_: *@This()) *anyopaque {
+        return objc.msgSend(self_, "contents", *anyopaque, .{});
+    }
+    pub fn didModifyRange(self_: *@This(), range_: ns.Range) void {
+        return objc.msgSend(self_, "didModifyRange:", void, .{range_});
+    }
+    pub fn newTextureWithDescriptor_offset_bytesPerRow(self_: *@This(), descriptor_: *TextureDescriptor, offset_: ns.UInteger, bytesPerRow_: ns.UInteger) ?*Texture {
+        return objc.msgSend(self_, "newTextureWithDescriptor:offset:bytesPerRow:", ?*Texture, .{ descriptor_, offset_, bytesPerRow_ });
+    }
+    pub fn addDebugMarker_range(self_: *@This(), marker_: *ns.String, range_: ns.Range) void {
+        return objc.msgSend(self_, "addDebugMarker:range:", void, .{ marker_, range_ });
+    }
+    pub fn removeAllDebugMarkers(self_: *@This()) void {
+        return objc.msgSend(self_, "removeAllDebugMarkers", void, .{});
+    }
+    pub fn newRemoteBufferViewForDevice(self_: *@This(), device_: *Device) ?*Buffer {
+        return objc.msgSend(self_, "newRemoteBufferViewForDevice:", ?*Buffer, .{device_});
+    }
+    pub fn length(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "length", ns.UInteger, .{});
+    }
+    pub fn remoteStorageBuffer(self_: *@This()) *Buffer {
+        return objc.msgSend(self_, "remoteStorageBuffer", *Buffer, .{});
+    }
+    pub fn gpuAddress(self_: *@This()) u64 {
+        return objc.msgSend(self_, "gpuAddress", u64, .{});
     }
 };
 
 pub const CaptureDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLCaptureDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CaptureDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn captureObject(self_: *T) ?*c.objc_object {
-                return objc.msgSend(self_, "captureObject", ?*c.objc_object, .{});
-            }
-            pub fn setCaptureObject(self_: *T, captureObject_: ?*c.objc_object) void {
-                return objc.msgSend(self_, "setCaptureObject:", void, .{captureObject_});
-            }
-            pub fn destination(self_: *T) CaptureDestination {
-                return objc.msgSend(self_, "destination", CaptureDestination, .{});
-            }
-            pub fn setDestination(self_: *T, destination_: CaptureDestination) void {
-                return objc.msgSend(self_, "setDestination:", void, .{destination_});
-            }
-            pub fn outputURL(self_: *T) ?*ns.URL {
-                return objc.msgSend(self_, "outputURL", ?*ns.URL, .{});
-            }
-            pub fn setOutputURL(self_: *T, outputURL_: ?*ns.URL) void {
-                return objc.msgSend(self_, "setOutputURL:", void, .{outputURL_});
-            }
-        };
+    pub fn captureObject(self_: *@This()) ?*objc.Id {
+        return objc.msgSend(self_, "captureObject", ?*objc.Id, .{});
+    }
+    pub fn setCaptureObject(self_: *@This(), captureObject_: ?*objc.Id) void {
+        return objc.msgSend(self_, "setCaptureObject:", void, .{captureObject_});
+    }
+    pub fn destination(self_: *@This()) CaptureDestination {
+        return objc.msgSend(self_, "destination", CaptureDestination, .{});
+    }
+    pub fn setDestination(self_: *@This(), destination_: CaptureDestination) void {
+        return objc.msgSend(self_, "setDestination:", void, .{destination_});
+    }
+    pub fn outputURL(self_: *@This()) ?*ns.URL {
+        return objc.msgSend(self_, "outputURL", ?*ns.URL, .{});
+    }
+    pub fn setOutputURL(self_: *@This(), outputURL_: ?*ns.URL) void {
+        return objc.msgSend(self_, "setOutputURL:", void, .{outputURL_});
     }
 };
 
 pub const CaptureManager = opaque {
     pub const InternalInfo = objc.ExternClass("MTLCaptureManager", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CaptureManager);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn sharedCaptureManager() *CaptureManager {
-                return objc.msgSend(T.InternalInfo.class(), "sharedCaptureManager", *CaptureManager, .{});
-            }
-            pub fn newCaptureScopeWithDevice(self_: *T, device_: *Device) *CaptureScope {
-                return objc.msgSend(self_, "newCaptureScopeWithDevice:", *CaptureScope, .{device_});
-            }
-            pub fn newCaptureScopeWithCommandQueue(self_: *T, commandQueue_: *CommandQueue) *CaptureScope {
-                return objc.msgSend(self_, "newCaptureScopeWithCommandQueue:", *CaptureScope, .{commandQueue_});
-            }
-            pub fn supportsDestination(self_: *T, destination_: CaptureDestination) bool {
-                return objc.msgSend(self_, "supportsDestination:", bool, .{destination_});
-            }
-            pub fn startCaptureWithDescriptor_error(self_: *T, descriptor_: *CaptureDescriptor, error_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "startCaptureWithDescriptor:error:", bool, .{ descriptor_, error_ });
-            }
-            pub fn startCaptureWithDevice(self_: *T, device_: *Device) void {
-                return objc.msgSend(self_, "startCaptureWithDevice:", void, .{device_});
-            }
-            pub fn startCaptureWithCommandQueue(self_: *T, commandQueue_: *CommandQueue) void {
-                return objc.msgSend(self_, "startCaptureWithCommandQueue:", void, .{commandQueue_});
-            }
-            pub fn startCaptureWithScope(self_: *T, captureScope_: *CaptureScope) void {
-                return objc.msgSend(self_, "startCaptureWithScope:", void, .{captureScope_});
-            }
-            pub fn stopCapture(self_: *T) void {
-                return objc.msgSend(self_, "stopCapture", void, .{});
-            }
-            pub fn defaultCaptureScope(self_: *T) ?*CaptureScope {
-                return objc.msgSend(self_, "defaultCaptureScope", ?*CaptureScope, .{});
-            }
-            pub fn setDefaultCaptureScope(self_: *T, defaultCaptureScope_: ?*CaptureScope) void {
-                return objc.msgSend(self_, "setDefaultCaptureScope:", void, .{defaultCaptureScope_});
-            }
-            pub fn isCapturing(self_: *T) bool {
-                return objc.msgSend(self_, "isCapturing", bool, .{});
-            }
-        };
+    pub fn sharedCaptureManager() *CaptureManager {
+        return objc.msgSend(@This().InternalInfo.class(), "sharedCaptureManager", *CaptureManager, .{});
+    }
+    pub fn newCaptureScopeWithDevice(self_: *@This(), device_: *Device) *CaptureScope {
+        return objc.msgSend(self_, "newCaptureScopeWithDevice:", *CaptureScope, .{device_});
+    }
+    pub fn newCaptureScopeWithCommandQueue(self_: *@This(), commandQueue_: *CommandQueue) *CaptureScope {
+        return objc.msgSend(self_, "newCaptureScopeWithCommandQueue:", *CaptureScope, .{commandQueue_});
+    }
+    pub fn supportsDestination(self_: *@This(), destination_: CaptureDestination) bool {
+        return objc.msgSend(self_, "supportsDestination:", bool, .{destination_});
+    }
+    pub fn startCaptureWithDescriptor_error(self_: *@This(), descriptor_: *CaptureDescriptor, error_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "startCaptureWithDescriptor:error:", bool, .{ descriptor_, error_ });
+    }
+    pub fn startCaptureWithDevice(self_: *@This(), device_: *Device) void {
+        return objc.msgSend(self_, "startCaptureWithDevice:", void, .{device_});
+    }
+    pub fn startCaptureWithCommandQueue(self_: *@This(), commandQueue_: *CommandQueue) void {
+        return objc.msgSend(self_, "startCaptureWithCommandQueue:", void, .{commandQueue_});
+    }
+    pub fn startCaptureWithScope(self_: *@This(), captureScope_: *CaptureScope) void {
+        return objc.msgSend(self_, "startCaptureWithScope:", void, .{captureScope_});
+    }
+    pub fn stopCapture(self_: *@This()) void {
+        return objc.msgSend(self_, "stopCapture", void, .{});
+    }
+    pub fn defaultCaptureScope(self_: *@This()) ?*CaptureScope {
+        return objc.msgSend(self_, "defaultCaptureScope", ?*CaptureScope, .{});
+    }
+    pub fn setDefaultCaptureScope(self_: *@This(), defaultCaptureScope_: ?*CaptureScope) void {
+        return objc.msgSend(self_, "setDefaultCaptureScope:", void, .{defaultCaptureScope_});
+    }
+    pub fn isCapturing(self_: *@This()) bool {
+        return objc.msgSend(self_, "isCapturing", bool, .{});
     }
 };
 
 pub const CaptureScope = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CaptureScope);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn beginScope(self_: *T) void {
-                return objc.msgSend(self_, "beginScope", void, .{});
-            }
-            pub fn endScope(self_: *T) void {
-                return objc.msgSend(self_, "endScope", void, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn commandQueue(self_: *T) ?*CommandQueue {
-                return objc.msgSend(self_, "commandQueue", ?*CommandQueue, .{});
-            }
-        };
+    pub fn beginScope(self_: *@This()) void {
+        return objc.msgSend(self_, "beginScope", void, .{});
+    }
+    pub fn endScope(self_: *@This()) void {
+        return objc.msgSend(self_, "endScope", void, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn commandQueue(self_: *@This()) ?*CommandQueue {
+        return objc.msgSend(self_, "commandQueue", ?*CommandQueue, .{});
     }
 };
 
 pub const CommandBufferDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLCommandBufferDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CommandBufferDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn retainedReferences(self_: *T) bool {
-                return objc.msgSend(self_, "retainedReferences", bool, .{});
-            }
-            pub fn setRetainedReferences(self_: *T, retainedReferences_: bool) void {
-                return objc.msgSend(self_, "setRetainedReferences:", void, .{retainedReferences_});
-            }
-            pub fn errorOptions(self_: *T) CommandBufferErrorOption {
-                return objc.msgSend(self_, "errorOptions", CommandBufferErrorOption, .{});
-            }
-            pub fn setErrorOptions(self_: *T, errorOptions_: CommandBufferErrorOption) void {
-                return objc.msgSend(self_, "setErrorOptions:", void, .{errorOptions_});
-            }
-        };
+    pub fn retainedReferences(self_: *@This()) bool {
+        return objc.msgSend(self_, "retainedReferences", bool, .{});
+    }
+    pub fn setRetainedReferences(self_: *@This(), retainedReferences_: bool) void {
+        return objc.msgSend(self_, "setRetainedReferences:", void, .{retainedReferences_});
+    }
+    pub fn errorOptions(self_: *@This()) CommandBufferErrorOption {
+        return objc.msgSend(self_, "errorOptions", CommandBufferErrorOption, .{});
+    }
+    pub fn setErrorOptions(self_: *@This(), errorOptions_: CommandBufferErrorOption) void {
+        return objc.msgSend(self_, "setErrorOptions:", void, .{errorOptions_});
     }
 };
 
 pub const CommandBufferEncoderInfo = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CommandBufferEncoderInfo);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn label(self_: *T) *ns.String {
-                return objc.msgSend(self_, "label", *ns.String, .{});
-            }
-            pub fn debugSignposts(self_: *T) *ns.Array(*ns.String) {
-                return objc.msgSend(self_, "debugSignposts", *ns.Array(*ns.String), .{});
-            }
-            pub fn errorState(self_: *T) CommandEncoderErrorState {
-                return objc.msgSend(self_, "errorState", CommandEncoderErrorState, .{});
-            }
-        };
+    pub fn label(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "label", *ns.String, .{});
+    }
+    pub fn debugSignposts(self_: *@This()) *ns.Array(*ns.String) {
+        return objc.msgSend(self_, "debugSignposts", *ns.Array(*ns.String), .{});
+    }
+    pub fn errorState(self_: *@This()) CommandEncoderErrorState {
+        return objc.msgSend(self_, "errorState", CommandEncoderErrorState, .{});
     }
 };
 
 pub const CommandBuffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CommandBuffer);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn enqueue(self_: *T) void {
-                return objc.msgSend(self_, "enqueue", void, .{});
-            }
-            pub fn commit(self_: *T) void {
-                return objc.msgSend(self_, "commit", void, .{});
-            }
-            pub fn addScheduledHandler(self_: *T, block_: *ns.Block(fn (*CommandBuffer) void)) void {
-                return objc.msgSend(self_, "addScheduledHandler:", void, .{block_});
-            }
-            pub fn presentDrawable(self_: *T, drawable_: *Drawable) void {
-                return objc.msgSend(self_, "presentDrawable:", void, .{drawable_});
-            }
-            pub fn presentDrawable_atTime(self_: *T, drawable_: *Drawable, presentationTime_: cf.TimeInterval) void {
-                return objc.msgSend(self_, "presentDrawable:atTime:", void, .{ drawable_, presentationTime_ });
-            }
-            pub fn presentDrawable_afterMinimumDuration(self_: *T, drawable_: *Drawable, duration_: cf.TimeInterval) void {
-                return objc.msgSend(self_, "presentDrawable:afterMinimumDuration:", void, .{ drawable_, duration_ });
-            }
-            pub fn waitUntilScheduled(self_: *T) void {
-                return objc.msgSend(self_, "waitUntilScheduled", void, .{});
-            }
-            pub fn addCompletedHandler(self_: *T, block_: *ns.Block(fn (*CommandBuffer) void)) void {
-                return objc.msgSend(self_, "addCompletedHandler:", void, .{block_});
-            }
-            pub fn waitUntilCompleted(self_: *T) void {
-                return objc.msgSend(self_, "waitUntilCompleted", void, .{});
-            }
-            pub fn blitCommandEncoder(self_: *T) ?*BlitCommandEncoder {
-                return objc.msgSend(self_, "blitCommandEncoder", ?*BlitCommandEncoder, .{});
-            }
-            pub fn renderCommandEncoderWithDescriptor(self_: *T, renderPassDescriptor_: *RenderPassDescriptor) ?*RenderCommandEncoder {
-                return objc.msgSend(self_, "renderCommandEncoderWithDescriptor:", ?*RenderCommandEncoder, .{renderPassDescriptor_});
-            }
-            pub fn computeCommandEncoderWithDescriptor(self_: *T, computePassDescriptor_: *ComputePassDescriptor) ?*ComputeCommandEncoder {
-                return objc.msgSend(self_, "computeCommandEncoderWithDescriptor:", ?*ComputeCommandEncoder, .{computePassDescriptor_});
-            }
-            pub fn blitCommandEncoderWithDescriptor(self_: *T, blitPassDescriptor_: *BlitPassDescriptor) ?*BlitCommandEncoder {
-                return objc.msgSend(self_, "blitCommandEncoderWithDescriptor:", ?*BlitCommandEncoder, .{blitPassDescriptor_});
-            }
-            pub fn computeCommandEncoder(self_: *T) ?*ComputeCommandEncoder {
-                return objc.msgSend(self_, "computeCommandEncoder", ?*ComputeCommandEncoder, .{});
-            }
-            pub fn computeCommandEncoderWithDispatchType(self_: *T, dispatchType_: DispatchType) ?*ComputeCommandEncoder {
-                return objc.msgSend(self_, "computeCommandEncoderWithDispatchType:", ?*ComputeCommandEncoder, .{dispatchType_});
-            }
-            pub fn encodeWaitForEvent_value(self_: *T, event_: *Event, value_: u64) void {
-                return objc.msgSend(self_, "encodeWaitForEvent:value:", void, .{ event_, value_ });
-            }
-            pub fn encodeSignalEvent_value(self_: *T, event_: *Event, value_: u64) void {
-                return objc.msgSend(self_, "encodeSignalEvent:value:", void, .{ event_, value_ });
-            }
-            pub fn parallelRenderCommandEncoderWithDescriptor(self_: *T, renderPassDescriptor_: *RenderPassDescriptor) ?*ParallelRenderCommandEncoder {
-                return objc.msgSend(self_, "parallelRenderCommandEncoderWithDescriptor:", ?*ParallelRenderCommandEncoder, .{renderPassDescriptor_});
-            }
-            pub fn resourceStateCommandEncoder(self_: *T) ?*ResourceStateCommandEncoder {
-                return objc.msgSend(self_, "resourceStateCommandEncoder", ?*ResourceStateCommandEncoder, .{});
-            }
-            pub fn resourceStateCommandEncoderWithDescriptor(self_: *T, resourceStatePassDescriptor_: *ResourceStatePassDescriptor) ?*ResourceStateCommandEncoder {
-                return objc.msgSend(self_, "resourceStateCommandEncoderWithDescriptor:", ?*ResourceStateCommandEncoder, .{resourceStatePassDescriptor_});
-            }
-            pub fn accelerationStructureCommandEncoder(self_: *T) ?*AccelerationStructureCommandEncoder {
-                return objc.msgSend(self_, "accelerationStructureCommandEncoder", ?*AccelerationStructureCommandEncoder, .{});
-            }
-            pub fn accelerationStructureCommandEncoderWithDescriptor(self_: *T, descriptor_: *AccelerationStructurePassDescriptor) *AccelerationStructureCommandEncoder {
-                return objc.msgSend(self_, "accelerationStructureCommandEncoderWithDescriptor:", *AccelerationStructureCommandEncoder, .{descriptor_});
-            }
-            pub fn pushDebugGroup(self_: *T, string_: *ns.String) void {
-                return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
-            }
-            pub fn popDebugGroup(self_: *T) void {
-                return objc.msgSend(self_, "popDebugGroup", void, .{});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn commandQueue(self_: *T) *CommandQueue {
-                return objc.msgSend(self_, "commandQueue", *CommandQueue, .{});
-            }
-            pub fn retainedReferences(self_: *T) bool {
-                return objc.msgSend(self_, "retainedReferences", bool, .{});
-            }
-            pub fn errorOptions(self_: *T) CommandBufferErrorOption {
-                return objc.msgSend(self_, "errorOptions", CommandBufferErrorOption, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn kernelStartTime(self_: *T) cf.TimeInterval {
-                return objc.msgSend(self_, "kernelStartTime", cf.TimeInterval, .{});
-            }
-            pub fn kernelEndTime(self_: *T) cf.TimeInterval {
-                return objc.msgSend(self_, "kernelEndTime", cf.TimeInterval, .{});
-            }
-            pub fn logs(self_: *T) *LogContainer {
-                return objc.msgSend(self_, "logs", *LogContainer, .{});
-            }
-            pub fn GPUStartTime(self_: *T) cf.TimeInterval {
-                return objc.msgSend(self_, "GPUStartTime", cf.TimeInterval, .{});
-            }
-            pub fn GPUEndTime(self_: *T) cf.TimeInterval {
-                return objc.msgSend(self_, "GPUEndTime", cf.TimeInterval, .{});
-            }
-            pub fn status(self_: *T) CommandBufferStatus {
-                return objc.msgSend(self_, "status", CommandBufferStatus, .{});
-            }
-            pub fn @"error"(self_: *T) ?*ns.Error {
-                return objc.msgSend(self_, "error", ?*ns.Error, .{});
-            }
-        };
+    pub fn enqueue(self_: *@This()) void {
+        return objc.msgSend(self_, "enqueue", void, .{});
+    }
+    pub fn commit(self_: *@This()) void {
+        return objc.msgSend(self_, "commit", void, .{});
+    }
+    pub fn addScheduledHandler(self_: *@This(), block_: *ns.Block(fn (*CommandBuffer) void)) void {
+        return objc.msgSend(self_, "addScheduledHandler:", void, .{block_});
+    }
+    pub fn presentDrawable(self_: *@This(), drawable_: *Drawable) void {
+        return objc.msgSend(self_, "presentDrawable:", void, .{drawable_});
+    }
+    pub fn presentDrawable_atTime(self_: *@This(), drawable_: *Drawable, presentationTime_: cf.TimeInterval) void {
+        return objc.msgSend(self_, "presentDrawable:atTime:", void, .{ drawable_, presentationTime_ });
+    }
+    pub fn presentDrawable_afterMinimumDuration(self_: *@This(), drawable_: *Drawable, duration_: cf.TimeInterval) void {
+        return objc.msgSend(self_, "presentDrawable:afterMinimumDuration:", void, .{ drawable_, duration_ });
+    }
+    pub fn waitUntilScheduled(self_: *@This()) void {
+        return objc.msgSend(self_, "waitUntilScheduled", void, .{});
+    }
+    pub fn addCompletedHandler(self_: *@This(), block_: *ns.Block(fn (*CommandBuffer) void)) void {
+        return objc.msgSend(self_, "addCompletedHandler:", void, .{block_});
+    }
+    pub fn waitUntilCompleted(self_: *@This()) void {
+        return objc.msgSend(self_, "waitUntilCompleted", void, .{});
+    }
+    pub fn blitCommandEncoder(self_: *@This()) ?*BlitCommandEncoder {
+        return objc.msgSend(self_, "blitCommandEncoder", ?*BlitCommandEncoder, .{});
+    }
+    pub fn renderCommandEncoderWithDescriptor(self_: *@This(), renderPassDescriptor_: *RenderPassDescriptor) ?*RenderCommandEncoder {
+        return objc.msgSend(self_, "renderCommandEncoderWithDescriptor:", ?*RenderCommandEncoder, .{renderPassDescriptor_});
+    }
+    pub fn computeCommandEncoderWithDescriptor(self_: *@This(), computePassDescriptor_: *ComputePassDescriptor) ?*ComputeCommandEncoder {
+        return objc.msgSend(self_, "computeCommandEncoderWithDescriptor:", ?*ComputeCommandEncoder, .{computePassDescriptor_});
+    }
+    pub fn blitCommandEncoderWithDescriptor(self_: *@This(), blitPassDescriptor_: *BlitPassDescriptor) ?*BlitCommandEncoder {
+        return objc.msgSend(self_, "blitCommandEncoderWithDescriptor:", ?*BlitCommandEncoder, .{blitPassDescriptor_});
+    }
+    pub fn computeCommandEncoder(self_: *@This()) ?*ComputeCommandEncoder {
+        return objc.msgSend(self_, "computeCommandEncoder", ?*ComputeCommandEncoder, .{});
+    }
+    pub fn computeCommandEncoderWithDispatchType(self_: *@This(), dispatchType_: DispatchType) ?*ComputeCommandEncoder {
+        return objc.msgSend(self_, "computeCommandEncoderWithDispatchType:", ?*ComputeCommandEncoder, .{dispatchType_});
+    }
+    pub fn encodeWaitForEvent_value(self_: *@This(), event_: *Event, value_: u64) void {
+        return objc.msgSend(self_, "encodeWaitForEvent:value:", void, .{ event_, value_ });
+    }
+    pub fn encodeSignalEvent_value(self_: *@This(), event_: *Event, value_: u64) void {
+        return objc.msgSend(self_, "encodeSignalEvent:value:", void, .{ event_, value_ });
+    }
+    pub fn parallelRenderCommandEncoderWithDescriptor(self_: *@This(), renderPassDescriptor_: *RenderPassDescriptor) ?*ParallelRenderCommandEncoder {
+        return objc.msgSend(self_, "parallelRenderCommandEncoderWithDescriptor:", ?*ParallelRenderCommandEncoder, .{renderPassDescriptor_});
+    }
+    pub fn resourceStateCommandEncoder(self_: *@This()) ?*ResourceStateCommandEncoder {
+        return objc.msgSend(self_, "resourceStateCommandEncoder", ?*ResourceStateCommandEncoder, .{});
+    }
+    pub fn resourceStateCommandEncoderWithDescriptor(self_: *@This(), resourceStatePassDescriptor_: *ResourceStatePassDescriptor) ?*ResourceStateCommandEncoder {
+        return objc.msgSend(self_, "resourceStateCommandEncoderWithDescriptor:", ?*ResourceStateCommandEncoder, .{resourceStatePassDescriptor_});
+    }
+    pub fn accelerationStructureCommandEncoder(self_: *@This()) ?*AccelerationStructureCommandEncoder {
+        return objc.msgSend(self_, "accelerationStructureCommandEncoder", ?*AccelerationStructureCommandEncoder, .{});
+    }
+    pub fn accelerationStructureCommandEncoderWithDescriptor(self_: *@This(), descriptor_: *AccelerationStructurePassDescriptor) *AccelerationStructureCommandEncoder {
+        return objc.msgSend(self_, "accelerationStructureCommandEncoderWithDescriptor:", *AccelerationStructureCommandEncoder, .{descriptor_});
+    }
+    pub fn pushDebugGroup(self_: *@This(), string_: *ns.String) void {
+        return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
+    }
+    pub fn popDebugGroup(self_: *@This()) void {
+        return objc.msgSend(self_, "popDebugGroup", void, .{});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn commandQueue(self_: *@This()) *CommandQueue {
+        return objc.msgSend(self_, "commandQueue", *CommandQueue, .{});
+    }
+    pub fn retainedReferences(self_: *@This()) bool {
+        return objc.msgSend(self_, "retainedReferences", bool, .{});
+    }
+    pub fn errorOptions(self_: *@This()) CommandBufferErrorOption {
+        return objc.msgSend(self_, "errorOptions", CommandBufferErrorOption, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn kernelStartTime(self_: *@This()) cf.TimeInterval {
+        return objc.msgSend(self_, "kernelStartTime", cf.TimeInterval, .{});
+    }
+    pub fn kernelEndTime(self_: *@This()) cf.TimeInterval {
+        return objc.msgSend(self_, "kernelEndTime", cf.TimeInterval, .{});
+    }
+    pub fn logs(self_: *@This()) *LogContainer {
+        return objc.msgSend(self_, "logs", *LogContainer, .{});
+    }
+    pub fn GPUStartTime(self_: *@This()) cf.TimeInterval {
+        return objc.msgSend(self_, "GPUStartTime", cf.TimeInterval, .{});
+    }
+    pub fn GPUEndTime(self_: *@This()) cf.TimeInterval {
+        return objc.msgSend(self_, "GPUEndTime", cf.TimeInterval, .{});
+    }
+    pub fn status(self_: *@This()) CommandBufferStatus {
+        return objc.msgSend(self_, "status", CommandBufferStatus, .{});
+    }
+    pub fn @"error"(self_: *@This()) ?*ns.Error {
+        return objc.msgSend(self_, "error", ?*ns.Error, .{});
     }
 };
 
 pub const CommandEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CommandEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn endEncoding(self_: *T) void {
-                return objc.msgSend(self_, "endEncoding", void, .{});
-            }
-            pub fn insertDebugSignpost(self_: *T, string_: *ns.String) void {
-                return objc.msgSend(self_, "insertDebugSignpost:", void, .{string_});
-            }
-            pub fn pushDebugGroup(self_: *T, string_: *ns.String) void {
-                return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
-            }
-            pub fn popDebugGroup(self_: *T) void {
-                return objc.msgSend(self_, "popDebugGroup", void, .{});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-        };
+    pub fn endEncoding(self_: *@This()) void {
+        return objc.msgSend(self_, "endEncoding", void, .{});
+    }
+    pub fn insertDebugSignpost(self_: *@This(), string_: *ns.String) void {
+        return objc.msgSend(self_, "insertDebugSignpost:", void, .{string_});
+    }
+    pub fn pushDebugGroup(self_: *@This(), string_: *ns.String) void {
+        return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
+    }
+    pub fn popDebugGroup(self_: *@This()) void {
+        return objc.msgSend(self_, "popDebugGroup", void, .{});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
     }
 };
 
 pub const CommandQueue = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CommandQueue);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn commandBuffer(self_: *T) ?*CommandBuffer {
-                return objc.msgSend(self_, "commandBuffer", ?*CommandBuffer, .{});
-            }
-            pub fn commandBufferWithDescriptor(self_: *T, descriptor_: *CommandBufferDescriptor) ?*CommandBuffer {
-                return objc.msgSend(self_, "commandBufferWithDescriptor:", ?*CommandBuffer, .{descriptor_});
-            }
-            pub fn commandBufferWithUnretainedReferences(self_: *T) ?*CommandBuffer {
-                return objc.msgSend(self_, "commandBufferWithUnretainedReferences", ?*CommandBuffer, .{});
-            }
-            pub fn insertDebugCaptureBoundary(self_: *T) void {
-                return objc.msgSend(self_, "insertDebugCaptureBoundary", void, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-        };
+    pub fn commandBuffer(self_: *@This()) ?*CommandBuffer {
+        return objc.msgSend(self_, "commandBuffer", ?*CommandBuffer, .{});
+    }
+    pub fn commandBufferWithDescriptor(self_: *@This(), descriptor_: *CommandBufferDescriptor) ?*CommandBuffer {
+        return objc.msgSend(self_, "commandBufferWithDescriptor:", ?*CommandBuffer, .{descriptor_});
+    }
+    pub fn commandBufferWithUnretainedReferences(self_: *@This()) ?*CommandBuffer {
+        return objc.msgSend(self_, "commandBufferWithUnretainedReferences", ?*CommandBuffer, .{});
+    }
+    pub fn insertDebugCaptureBoundary(self_: *@This()) void {
+        return objc.msgSend(self_, "insertDebugCaptureBoundary", void, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
     }
 };
 
 pub const ComputeCommandEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ComputeCommandEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace CommandEncoder.Methods(T);
-
-            pub fn setComputePipelineState(self_: *T, state_: *ComputePipelineState) void {
-                return objc.msgSend(self_, "setComputePipelineState:", void, .{state_});
-            }
-            pub fn setBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
-            }
-            pub fn setBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBufferOffset:atIndex:", void, .{ offset_, index_ });
-            }
-            pub fn setBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
-            }
-            pub fn setBuffers_offsets_attributeStrides_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setBuffers:offsets:attributeStrides:withRange:", void, .{ buffers_, offsets_, strides_, range_ });
-            }
-            pub fn setBufferOffset_attributeStride_atIndex(self_: *T, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBufferOffset:attributeStride:atIndex:", void, .{ offset_, stride_, index_ });
-            }
-            pub fn setBytes_length_attributeStride_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBytes:length:attributeStride:atIndex:", void, .{ bytes_, length_, stride_, index_ });
-            }
-            pub fn setVisibleFunctionTable_atBufferIndex(self_: *T, visibleFunctionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVisibleFunctionTable:atBufferIndex:", void, .{ visibleFunctionTable_, bufferIndex_ });
-            }
-            pub fn setVisibleFunctionTables_withBufferRange(self_: *T, visibleFunctionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVisibleFunctionTables:withBufferRange:", void, .{ visibleFunctionTables_, range_ });
-            }
-            pub fn setIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
-            }
-            pub fn setIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
-            }
-            pub fn setAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
-            }
-            pub fn setTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTexture:atIndex:", void, .{ texture_, index_ });
-            }
-            pub fn setTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTextures:withRange:", void, .{ textures_, range_ });
-            }
-            pub fn setSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSamplerState:atIndex:", void, .{ sampler_, index_ });
-            }
-            pub fn setSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setSamplerStates:withRange:", void, .{ samplers_, range_ });
-            }
-            pub fn setSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
-            }
-            pub fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return objc.msgSend(self_, "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
-            }
-            pub fn setThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
-            }
-            pub fn setImageblockWidth_height(self_: *T, width_: ns.UInteger, height_: ns.UInteger) void {
-                return objc.msgSend(self_, "setImageblockWidth:height:", void, .{ width_, height_ });
-            }
-            pub fn setStageInRegion(self_: *T, region_: Region) void {
-                return objc.msgSend(self_, "setStageInRegion:", void, .{region_});
-            }
-            pub fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(self_: *T, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStageInRegionWithIndirectBuffer:indirectBufferOffset:", void, .{ indirectBuffer_, indirectBufferOffset_ });
-            }
-            pub fn dispatchThreadgroups_threadsPerThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return objc.msgSend(self_, "dispatchThreadgroups:threadsPerThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerThreadgroup_ });
-            }
-            pub fn dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup(self_: *T, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger, threadsPerThreadgroup_: Size) void {
-                return objc.msgSend(self_, "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:", void, .{ indirectBuffer_, indirectBufferOffset_, threadsPerThreadgroup_ });
-            }
-            pub fn dispatchThreads_threadsPerThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return objc.msgSend(self_, "dispatchThreads:threadsPerThreadgroup:", void, .{ threadsPerGrid_, threadsPerThreadgroup_ });
-            }
-            pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "updateFence:", void, .{fence_});
-            }
-            pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
-            }
-            pub fn useResource_usage(self_: *T, resource_: *Resource, usage_: ResourceUsage) void {
-                return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
-            }
-            pub fn useResources_count_usage(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
-                return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
-            }
-            pub fn useHeap(self_: *T, heap_: *Heap) void {
-                return objc.msgSend(self_, "useHeap:", void, .{heap_});
-            }
-            pub fn useHeaps_count(self_: *T, heaps_: **const Heap, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
-            }
-            pub fn executeCommandsInBuffer_withRange(self_: *T, indirectCommandBuffer_: *IndirectCommandBuffer, executionRange_: ns.Range) void {
-                return objc.msgSend(self_, "executeCommandsInBuffer:withRange:", void, .{ indirectCommandBuffer_, executionRange_ });
-            }
-            pub fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(self_: *T, indirectCommandbuffer_: *IndirectCommandBuffer, indirectRangeBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", void, .{ indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_ });
-            }
-            pub fn memoryBarrierWithScope(self_: *T, scope_: BarrierScope) void {
-                return objc.msgSend(self_, "memoryBarrierWithScope:", void, .{scope_});
-            }
-            pub fn memoryBarrierWithResources_count(self_: *T, resources_: **const Resource, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "memoryBarrierWithResources:count:", void, .{ resources_, count_ });
-            }
-            pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
-            }
-            pub fn dispatchType(self_: *T) DispatchType {
-                return objc.msgSend(self_, "dispatchType", DispatchType, .{});
-            }
-        };
+    pub fn setComputePipelineState(self_: *@This(), state_: *ComputePipelineState) void {
+        return objc.msgSend(self_, "setComputePipelineState:", void, .{state_});
+    }
+    pub fn setBytes_length_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
+    }
+    pub fn setBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setBufferOffset_atIndex(self_: *@This(), offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBufferOffset:atIndex:", void, .{ offset_, index_ });
+    }
+    pub fn setBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setBuffer_offset_attributeStride_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
+    }
+    pub fn setBuffers_offsets_attributeStrides_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setBuffers:offsets:attributeStrides:withRange:", void, .{ buffers_, offsets_, strides_, range_ });
+    }
+    pub fn setBufferOffset_attributeStride_atIndex(self_: *@This(), offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBufferOffset:attributeStride:atIndex:", void, .{ offset_, stride_, index_ });
+    }
+    pub fn setBytes_length_attributeStride_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBytes:length:attributeStride:atIndex:", void, .{ bytes_, length_, stride_, index_ });
+    }
+    pub fn setVisibleFunctionTable_atBufferIndex(self_: *@This(), visibleFunctionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVisibleFunctionTable:atBufferIndex:", void, .{ visibleFunctionTable_, bufferIndex_ });
+    }
+    pub fn setVisibleFunctionTables_withBufferRange(self_: *@This(), visibleFunctionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVisibleFunctionTables:withBufferRange:", void, .{ visibleFunctionTables_, range_ });
+    }
+    pub fn setIntersectionFunctionTable_atBufferIndex(self_: *@This(), intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
+    }
+    pub fn setIntersectionFunctionTables_withBufferRange(self_: *@This(), intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
+    }
+    pub fn setAccelerationStructure_atBufferIndex(self_: *@This(), accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
+    }
+    pub fn setTexture_atIndex(self_: *@This(), texture_: ?*Texture, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTexture:atIndex:", void, .{ texture_, index_ });
+    }
+    pub fn setTextures_withRange(self_: *@This(), textures_: *?*const Texture, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTextures:withRange:", void, .{ textures_, range_ });
+    }
+    pub fn setSamplerState_atIndex(self_: *@This(), sampler_: ?*SamplerState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSamplerState:atIndex:", void, .{ sampler_, index_ });
+    }
+    pub fn setSamplerStates_withRange(self_: *@This(), samplers_: *?*const SamplerState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setSamplerStates:withRange:", void, .{ samplers_, range_ });
+    }
+    pub fn setSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *@This(), sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
+    }
+    pub fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *@This(), samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
+        return objc.msgSend(self_, "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
+    }
+    pub fn setThreadgroupMemoryLength_atIndex(self_: *@This(), length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
+    }
+    pub fn setImageblockWidth_height(self_: *@This(), width_: ns.UInteger, height_: ns.UInteger) void {
+        return objc.msgSend(self_, "setImageblockWidth:height:", void, .{ width_, height_ });
+    }
+    pub fn setStageInRegion(self_: *@This(), region_: Region) void {
+        return objc.msgSend(self_, "setStageInRegion:", void, .{region_});
+    }
+    pub fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(self_: *@This(), indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStageInRegionWithIndirectBuffer:indirectBufferOffset:", void, .{ indirectBuffer_, indirectBufferOffset_ });
+    }
+    pub fn dispatchThreadgroups_threadsPerThreadgroup(self_: *@This(), threadgroupsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
+        return objc.msgSend(self_, "dispatchThreadgroups:threadsPerThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerThreadgroup_ });
+    }
+    pub fn dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup(self_: *@This(), indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger, threadsPerThreadgroup_: Size) void {
+        return objc.msgSend(self_, "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:", void, .{ indirectBuffer_, indirectBufferOffset_, threadsPerThreadgroup_ });
+    }
+    pub fn dispatchThreads_threadsPerThreadgroup(self_: *@This(), threadsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
+        return objc.msgSend(self_, "dispatchThreads:threadsPerThreadgroup:", void, .{ threadsPerGrid_, threadsPerThreadgroup_ });
+    }
+    pub fn updateFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "updateFence:", void, .{fence_});
+    }
+    pub fn waitForFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "waitForFence:", void, .{fence_});
+    }
+    pub fn useResource_usage(self_: *@This(), resource_: *Resource, usage_: ResourceUsage) void {
+        return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
+    }
+    pub fn useResources_count_usage(self_: *@This(), resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
+        return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
+    }
+    pub fn useHeap(self_: *@This(), heap_: *Heap) void {
+        return objc.msgSend(self_, "useHeap:", void, .{heap_});
+    }
+    pub fn useHeaps_count(self_: *@This(), heaps_: **const Heap, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
+    }
+    pub fn executeCommandsInBuffer_withRange(self_: *@This(), indirectCommandBuffer_: *IndirectCommandBuffer, executionRange_: ns.Range) void {
+        return objc.msgSend(self_, "executeCommandsInBuffer:withRange:", void, .{ indirectCommandBuffer_, executionRange_ });
+    }
+    pub fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(self_: *@This(), indirectCommandbuffer_: *IndirectCommandBuffer, indirectRangeBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", void, .{ indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_ });
+    }
+    pub fn memoryBarrierWithScope(self_: *@This(), scope_: BarrierScope) void {
+        return objc.msgSend(self_, "memoryBarrierWithScope:", void, .{scope_});
+    }
+    pub fn memoryBarrierWithResources_count(self_: *@This(), resources_: **const Resource, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "memoryBarrierWithResources:count:", void, .{ resources_, count_ });
+    }
+    pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *@This(), sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
+        return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
+    }
+    pub fn dispatchType(self_: *@This()) DispatchType {
+        return objc.msgSend(self_, "dispatchType", DispatchType, .{});
     }
 };
 
 pub const ComputePassSampleBufferAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLComputePassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ComputePassSampleBufferAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
-            }
-            pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
-            }
-            pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
-            }
-            pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
-            }
-        };
+    pub fn sampleBuffer(self_: *@This()) ?*CounterSampleBuffer {
+        return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
+    }
+    pub fn setSampleBuffer(self_: *@This(), sampleBuffer_: ?*CounterSampleBuffer) void {
+        return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
+    }
+    pub fn startOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setStartOfEncoderSampleIndex(self_: *@This(), startOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
+    }
+    pub fn endOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setEndOfEncoderSampleIndex(self_: *@This(), endOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
     }
 };
 
 pub const ComputePassSampleBufferAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLComputePassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ComputePassSampleBufferAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *ComputePassSampleBufferAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *ComputePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*ComputePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *ComputePassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *ComputePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: ?*ComputePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const ComputePassDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLComputePassDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ComputePassDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn computePassDescriptor() *ComputePassDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "computePassDescriptor", *ComputePassDescriptor, .{});
-            }
-            pub fn dispatchType(self_: *T) DispatchType {
-                return objc.msgSend(self_, "dispatchType", DispatchType, .{});
-            }
-            pub fn setDispatchType(self_: *T, dispatchType_: DispatchType) void {
-                return objc.msgSend(self_, "setDispatchType:", void, .{dispatchType_});
-            }
-            pub fn sampleBufferAttachments(self_: *T) *ComputePassSampleBufferAttachmentDescriptorArray {
-                return objc.msgSend(self_, "sampleBufferAttachments", *ComputePassSampleBufferAttachmentDescriptorArray, .{});
-            }
-        };
+    pub fn computePassDescriptor() *ComputePassDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "computePassDescriptor", *ComputePassDescriptor, .{});
+    }
+    pub fn dispatchType(self_: *@This()) DispatchType {
+        return objc.msgSend(self_, "dispatchType", DispatchType, .{});
+    }
+    pub fn setDispatchType(self_: *@This(), dispatchType_: DispatchType) void {
+        return objc.msgSend(self_, "setDispatchType:", void, .{dispatchType_});
+    }
+    pub fn sampleBufferAttachments(self_: *@This()) *ComputePassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self_, "sampleBufferAttachments", *ComputePassSampleBufferAttachmentDescriptorArray, .{});
     }
 };
 
 pub const ComputePipelineReflection = opaque {
     pub const InternalInfo = objc.ExternClass("MTLComputePipelineReflection", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ComputePipelineReflection);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn bindings(self_: *T) *ns.Array(*Binding) {
-                return objc.msgSend(self_, "bindings", *ns.Array(*Binding), .{});
-            }
-            pub fn arguments(self_: *T) *ns.Array(*Argument) {
-                return objc.msgSend(self_, "arguments", *ns.Array(*Argument), .{});
-            }
-        };
+    pub fn bindings(self_: *@This()) *ns.Array(*Binding) {
+        return objc.msgSend(self_, "bindings", *ns.Array(*Binding), .{});
+    }
+    pub fn arguments(self_: *@This()) *ns.Array(*Argument) {
+        return objc.msgSend(self_, "arguments", *ns.Array(*Argument), .{});
     }
 };
 
 pub const ComputePipelineDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLComputePipelineDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ComputePipelineDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn computeFunction(self_: *T) ?*Function {
-                return objc.msgSend(self_, "computeFunction", ?*Function, .{});
-            }
-            pub fn setComputeFunction(self_: *T, computeFunction_: ?*Function) void {
-                return objc.msgSend(self_, "setComputeFunction:", void, .{computeFunction_});
-            }
-            pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(self_: *T) bool {
-                return objc.msgSend(self_, "threadGroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
-            }
-            pub fn setThreadGroupSizeIsMultipleOfThreadExecutionWidth(self_: *T, threadGroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
-                return objc.msgSend(self_, "setThreadGroupSizeIsMultipleOfThreadExecutionWidth:", void, .{threadGroupSizeIsMultipleOfThreadExecutionWidth_});
-            }
-            pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
-            }
-            pub fn setMaxTotalThreadsPerThreadgroup(self_: *T, maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
-            }
-            pub fn stageInputDescriptor(self_: *T) ?*StageInputOutputDescriptor {
-                return objc.msgSend(self_, "stageInputDescriptor", ?*StageInputOutputDescriptor, .{});
-            }
-            pub fn setStageInputDescriptor(self_: *T, stageInputDescriptor_: ?*StageInputOutputDescriptor) void {
-                return objc.msgSend(self_, "setStageInputDescriptor:", void, .{stageInputDescriptor_});
-            }
-            pub fn buffers(self_: *T) *PipelineBufferDescriptorArray {
-                return objc.msgSend(self_, "buffers", *PipelineBufferDescriptorArray, .{});
-            }
-            pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
-            }
-            pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
-                return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
-            }
-            pub fn insertLibraries(self_: *T) ?*ns.Array(*DynamicLibrary) {
-                return objc.msgSend(self_, "insertLibraries", ?*ns.Array(*DynamicLibrary), .{});
-            }
-            pub fn setInsertLibraries(self_: *T, insertLibraries_: ?*ns.Array(*DynamicLibrary)) void {
-                return objc.msgSend(self_, "setInsertLibraries:", void, .{insertLibraries_});
-            }
-            pub fn preloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return objc.msgSend(self_, "preloadedLibraries", *ns.Array(*DynamicLibrary), .{});
-            }
-            pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return objc.msgSend(self_, "setPreloadedLibraries:", void, .{preloadedLibraries_});
-            }
-            pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
-            }
-            pub fn linkedFunctions(self_: *T) ?*LinkedFunctions {
-                return objc.msgSend(self_, "linkedFunctions", ?*LinkedFunctions, .{});
-            }
-            pub fn setLinkedFunctions(self_: *T, linkedFunctions_: ?*LinkedFunctions) void {
-                return objc.msgSend(self_, "setLinkedFunctions:", void, .{linkedFunctions_});
-            }
-            pub fn supportAddingBinaryFunctions(self_: *T) bool {
-                return objc.msgSend(self_, "supportAddingBinaryFunctions", bool, .{});
-            }
-            pub fn setSupportAddingBinaryFunctions(self_: *T, supportAddingBinaryFunctions_: bool) void {
-                return objc.msgSend(self_, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions_});
-            }
-            pub fn maxCallStackDepth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxCallStackDepth", ns.UInteger, .{});
-            }
-            pub fn setMaxCallStackDepth(self_: *T, maxCallStackDepth_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxCallStackDepth:", void, .{maxCallStackDepth_});
-            }
-        };
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn computeFunction(self_: *@This()) ?*Function {
+        return objc.msgSend(self_, "computeFunction", ?*Function, .{});
+    }
+    pub fn setComputeFunction(self_: *@This(), computeFunction_: ?*Function) void {
+        return objc.msgSend(self_, "setComputeFunction:", void, .{computeFunction_});
+    }
+    pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(self_: *@This()) bool {
+        return objc.msgSend(self_, "threadGroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
+    }
+    pub fn setThreadGroupSizeIsMultipleOfThreadExecutionWidth(self_: *@This(), threadGroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
+        return objc.msgSend(self_, "setThreadGroupSizeIsMultipleOfThreadExecutionWidth:", void, .{threadGroupSizeIsMultipleOfThreadExecutionWidth_});
+    }
+    pub fn maxTotalThreadsPerThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
+    }
+    pub fn setMaxTotalThreadsPerThreadgroup(self_: *@This(), maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
+    }
+    pub fn stageInputDescriptor(self_: *@This()) ?*StageInputOutputDescriptor {
+        return objc.msgSend(self_, "stageInputDescriptor", ?*StageInputOutputDescriptor, .{});
+    }
+    pub fn setStageInputDescriptor(self_: *@This(), stageInputDescriptor_: ?*StageInputOutputDescriptor) void {
+        return objc.msgSend(self_, "setStageInputDescriptor:", void, .{stageInputDescriptor_});
+    }
+    pub fn buffers(self_: *@This()) *PipelineBufferDescriptorArray {
+        return objc.msgSend(self_, "buffers", *PipelineBufferDescriptorArray, .{});
+    }
+    pub fn supportIndirectCommandBuffers(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
+    }
+    pub fn setSupportIndirectCommandBuffers(self_: *@This(), supportIndirectCommandBuffers_: bool) void {
+        return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
+    }
+    pub fn insertLibraries(self_: *@This()) ?*ns.Array(*DynamicLibrary) {
+        return objc.msgSend(self_, "insertLibraries", ?*ns.Array(*DynamicLibrary), .{});
+    }
+    pub fn setInsertLibraries(self_: *@This(), insertLibraries_: ?*ns.Array(*DynamicLibrary)) void {
+        return objc.msgSend(self_, "setInsertLibraries:", void, .{insertLibraries_});
+    }
+    pub fn preloadedLibraries(self_: *@This()) *ns.Array(*DynamicLibrary) {
+        return objc.msgSend(self_, "preloadedLibraries", *ns.Array(*DynamicLibrary), .{});
+    }
+    pub fn setPreloadedLibraries(self_: *@This(), preloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
+        return objc.msgSend(self_, "setPreloadedLibraries:", void, .{preloadedLibraries_});
+    }
+    pub fn binaryArchives(self_: *@This()) ?*ns.Array(*BinaryArchive) {
+        return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
+    }
+    pub fn setBinaryArchives(self_: *@This(), binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
+        return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
+    }
+    pub fn linkedFunctions(self_: *@This()) ?*LinkedFunctions {
+        return objc.msgSend(self_, "linkedFunctions", ?*LinkedFunctions, .{});
+    }
+    pub fn setLinkedFunctions(self_: *@This(), linkedFunctions_: ?*LinkedFunctions) void {
+        return objc.msgSend(self_, "setLinkedFunctions:", void, .{linkedFunctions_});
+    }
+    pub fn supportAddingBinaryFunctions(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportAddingBinaryFunctions", bool, .{});
+    }
+    pub fn setSupportAddingBinaryFunctions(self_: *@This(), supportAddingBinaryFunctions_: bool) void {
+        return objc.msgSend(self_, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions_});
+    }
+    pub fn maxCallStackDepth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxCallStackDepth", ns.UInteger, .{});
+    }
+    pub fn setMaxCallStackDepth(self_: *@This(), maxCallStackDepth_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxCallStackDepth:", void, .{maxCallStackDepth_});
     }
 };
 
 pub const ComputePipelineState = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ComputePipelineState);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn imageblockMemoryLengthForDimensions(self_: *T, imageblockDimensions_: Size) ns.UInteger {
-                return objc.msgSend(self_, "imageblockMemoryLengthForDimensions:", ns.UInteger, .{imageblockDimensions_});
-            }
-            pub fn functionHandleWithFunction(self_: *T, function_: *Function) ?*FunctionHandle {
-                return objc.msgSend(self_, "functionHandleWithFunction:", ?*FunctionHandle, .{function_});
-            }
-            pub fn newComputePipelineStateWithAdditionalBinaryFunctions_error(self_: *T, functions_: *ns.Array(*Function), error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return objc.msgSend(self_, "newComputePipelineStateWithAdditionalBinaryFunctions:error:", ?*ComputePipelineState, .{ functions_, error_ });
-            }
-            pub fn newVisibleFunctionTableWithDescriptor(self_: *T, descriptor_: *VisibleFunctionTableDescriptor) ?*VisibleFunctionTable {
-                return objc.msgSend(self_, "newVisibleFunctionTableWithDescriptor:", ?*VisibleFunctionTable, .{descriptor_});
-            }
-            pub fn newIntersectionFunctionTableWithDescriptor(self_: *T, descriptor_: *IntersectionFunctionTableDescriptor) ?*IntersectionFunctionTable {
-                return objc.msgSend(self_, "newIntersectionFunctionTableWithDescriptor:", ?*IntersectionFunctionTable, .{descriptor_});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
-            }
-            pub fn threadExecutionWidth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "threadExecutionWidth", ns.UInteger, .{});
-            }
-            pub fn staticThreadgroupMemoryLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "staticThreadgroupMemoryLength", ns.UInteger, .{});
-            }
-            pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-        };
+    pub fn imageblockMemoryLengthForDimensions(self_: *@This(), imageblockDimensions_: Size) ns.UInteger {
+        return objc.msgSend(self_, "imageblockMemoryLengthForDimensions:", ns.UInteger, .{imageblockDimensions_});
+    }
+    pub fn functionHandleWithFunction(self_: *@This(), function_: *Function) ?*FunctionHandle {
+        return objc.msgSend(self_, "functionHandleWithFunction:", ?*FunctionHandle, .{function_});
+    }
+    pub fn newComputePipelineStateWithAdditionalBinaryFunctions_error(self_: *@This(), functions_: *ns.Array(*Function), error_: ?*?*ns.Error) ?*ComputePipelineState {
+        return objc.msgSend(self_, "newComputePipelineStateWithAdditionalBinaryFunctions:error:", ?*ComputePipelineState, .{ functions_, error_ });
+    }
+    pub fn newVisibleFunctionTableWithDescriptor(self_: *@This(), descriptor_: *VisibleFunctionTableDescriptor) ?*VisibleFunctionTable {
+        return objc.msgSend(self_, "newVisibleFunctionTableWithDescriptor:", ?*VisibleFunctionTable, .{descriptor_});
+    }
+    pub fn newIntersectionFunctionTableWithDescriptor(self_: *@This(), descriptor_: *IntersectionFunctionTableDescriptor) ?*IntersectionFunctionTable {
+        return objc.msgSend(self_, "newIntersectionFunctionTableWithDescriptor:", ?*IntersectionFunctionTable, .{descriptor_});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn maxTotalThreadsPerThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
+    }
+    pub fn threadExecutionWidth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "threadExecutionWidth", ns.UInteger, .{});
+    }
+    pub fn staticThreadgroupMemoryLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "staticThreadgroupMemoryLength", ns.UInteger, .{});
+    }
+    pub fn supportIndirectCommandBuffers(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
     }
 };
 
 pub const Counter = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Counter);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
     }
 };
 
 pub const CounterSet = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CounterSet);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn counters(self_: *T) *ns.Array(*Counter) {
-                return objc.msgSend(self_, "counters", *ns.Array(*Counter), .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn counters(self_: *@This()) *ns.Array(*Counter) {
+        return objc.msgSend(self_, "counters", *ns.Array(*Counter), .{});
     }
 };
 
 pub const CounterSampleBufferDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLCounterSampleBufferDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CounterSampleBufferDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn counterSet(self_: *T) ?*CounterSet {
-                return objc.msgSend(self_, "counterSet", ?*CounterSet, .{});
-            }
-            pub fn setCounterSet(self_: *T, counterSet_: ?*CounterSet) void {
-                return objc.msgSend(self_, "setCounterSet:", void, .{counterSet_});
-            }
-            pub fn label(self_: *T) *ns.String {
-                return objc.msgSend(self_, "label", *ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: *ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn storageMode(self_: *T) StorageMode {
-                return objc.msgSend(self_, "storageMode", StorageMode, .{});
-            }
-            pub fn setStorageMode(self_: *T, storageMode_: StorageMode) void {
-                return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
-            }
-            pub fn sampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
-            }
-            pub fn setSampleCount(self_: *T, sampleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
-            }
-        };
+    pub fn counterSet(self_: *@This()) ?*CounterSet {
+        return objc.msgSend(self_, "counterSet", ?*CounterSet, .{});
+    }
+    pub fn setCounterSet(self_: *@This(), counterSet_: ?*CounterSet) void {
+        return objc.msgSend(self_, "setCounterSet:", void, .{counterSet_});
+    }
+    pub fn label(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "label", *ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: *ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn storageMode(self_: *@This()) StorageMode {
+        return objc.msgSend(self_, "storageMode", StorageMode, .{});
+    }
+    pub fn setStorageMode(self_: *@This(), storageMode_: StorageMode) void {
+        return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
+    }
+    pub fn sampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
+    }
+    pub fn setSampleCount(self_: *@This(), sampleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
     }
 };
 
 pub const CounterSampleBuffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CounterSampleBuffer);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn resolveCounterRange(self_: *T, range_: ns.Range) ?*ns.Data {
-                return objc.msgSend(self_, "resolveCounterRange:", ?*ns.Data, .{range_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn label(self_: *T) *ns.String {
-                return objc.msgSend(self_, "label", *ns.String, .{});
-            }
-            pub fn sampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
-            }
-        };
+    pub fn resolveCounterRange(self_: *@This(), range_: ns.Range) ?*ns.Data {
+        return objc.msgSend(self_, "resolveCounterRange:", ?*ns.Data, .{range_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn label(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "label", *ns.String, .{});
+    }
+    pub fn sampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
     }
 };
 
 pub const StencilDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLStencilDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(StencilDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn stencilCompareFunction(self_: *T) CompareFunction {
-                return objc.msgSend(self_, "stencilCompareFunction", CompareFunction, .{});
-            }
-            pub fn setStencilCompareFunction(self_: *T, stencilCompareFunction_: CompareFunction) void {
-                return objc.msgSend(self_, "setStencilCompareFunction:", void, .{stencilCompareFunction_});
-            }
-            pub fn stencilFailureOperation(self_: *T) StencilOperation {
-                return objc.msgSend(self_, "stencilFailureOperation", StencilOperation, .{});
-            }
-            pub fn setStencilFailureOperation(self_: *T, stencilFailureOperation_: StencilOperation) void {
-                return objc.msgSend(self_, "setStencilFailureOperation:", void, .{stencilFailureOperation_});
-            }
-            pub fn depthFailureOperation(self_: *T) StencilOperation {
-                return objc.msgSend(self_, "depthFailureOperation", StencilOperation, .{});
-            }
-            pub fn setDepthFailureOperation(self_: *T, depthFailureOperation_: StencilOperation) void {
-                return objc.msgSend(self_, "setDepthFailureOperation:", void, .{depthFailureOperation_});
-            }
-            pub fn depthStencilPassOperation(self_: *T) StencilOperation {
-                return objc.msgSend(self_, "depthStencilPassOperation", StencilOperation, .{});
-            }
-            pub fn setDepthStencilPassOperation(self_: *T, depthStencilPassOperation_: StencilOperation) void {
-                return objc.msgSend(self_, "setDepthStencilPassOperation:", void, .{depthStencilPassOperation_});
-            }
-            pub fn readMask(self_: *T) u32 {
-                return objc.msgSend(self_, "readMask", u32, .{});
-            }
-            pub fn setReadMask(self_: *T, readMask_: u32) void {
-                return objc.msgSend(self_, "setReadMask:", void, .{readMask_});
-            }
-            pub fn writeMask(self_: *T) u32 {
-                return objc.msgSend(self_, "writeMask", u32, .{});
-            }
-            pub fn setWriteMask(self_: *T, writeMask_: u32) void {
-                return objc.msgSend(self_, "setWriteMask:", void, .{writeMask_});
-            }
-        };
+    pub fn stencilCompareFunction(self_: *@This()) CompareFunction {
+        return objc.msgSend(self_, "stencilCompareFunction", CompareFunction, .{});
+    }
+    pub fn setStencilCompareFunction(self_: *@This(), stencilCompareFunction_: CompareFunction) void {
+        return objc.msgSend(self_, "setStencilCompareFunction:", void, .{stencilCompareFunction_});
+    }
+    pub fn stencilFailureOperation(self_: *@This()) StencilOperation {
+        return objc.msgSend(self_, "stencilFailureOperation", StencilOperation, .{});
+    }
+    pub fn setStencilFailureOperation(self_: *@This(), stencilFailureOperation_: StencilOperation) void {
+        return objc.msgSend(self_, "setStencilFailureOperation:", void, .{stencilFailureOperation_});
+    }
+    pub fn depthFailureOperation(self_: *@This()) StencilOperation {
+        return objc.msgSend(self_, "depthFailureOperation", StencilOperation, .{});
+    }
+    pub fn setDepthFailureOperation(self_: *@This(), depthFailureOperation_: StencilOperation) void {
+        return objc.msgSend(self_, "setDepthFailureOperation:", void, .{depthFailureOperation_});
+    }
+    pub fn depthStencilPassOperation(self_: *@This()) StencilOperation {
+        return objc.msgSend(self_, "depthStencilPassOperation", StencilOperation, .{});
+    }
+    pub fn setDepthStencilPassOperation(self_: *@This(), depthStencilPassOperation_: StencilOperation) void {
+        return objc.msgSend(self_, "setDepthStencilPassOperation:", void, .{depthStencilPassOperation_});
+    }
+    pub fn readMask(self_: *@This()) u32 {
+        return objc.msgSend(self_, "readMask", u32, .{});
+    }
+    pub fn setReadMask(self_: *@This(), readMask_: u32) void {
+        return objc.msgSend(self_, "setReadMask:", void, .{readMask_});
+    }
+    pub fn writeMask(self_: *@This()) u32 {
+        return objc.msgSend(self_, "writeMask", u32, .{});
+    }
+    pub fn setWriteMask(self_: *@This(), writeMask_: u32) void {
+        return objc.msgSend(self_, "setWriteMask:", void, .{writeMask_});
     }
 };
 
 pub const DepthStencilDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLDepthStencilDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(DepthStencilDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn depthCompareFunction(self_: *T) CompareFunction {
-                return objc.msgSend(self_, "depthCompareFunction", CompareFunction, .{});
-            }
-            pub fn setDepthCompareFunction(self_: *T, depthCompareFunction_: CompareFunction) void {
-                return objc.msgSend(self_, "setDepthCompareFunction:", void, .{depthCompareFunction_});
-            }
-            pub fn isDepthWriteEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isDepthWriteEnabled", bool, .{});
-            }
-            pub fn setDepthWriteEnabled(self_: *T, depthWriteEnabled_: bool) void {
-                return objc.msgSend(self_, "setDepthWriteEnabled:", void, .{depthWriteEnabled_});
-            }
-            pub fn frontFaceStencil(self_: *T) *StencilDescriptor {
-                return objc.msgSend(self_, "frontFaceStencil", *StencilDescriptor, .{});
-            }
-            pub fn setFrontFaceStencil(self_: *T, frontFaceStencil_: ?*StencilDescriptor) void {
-                return objc.msgSend(self_, "setFrontFaceStencil:", void, .{frontFaceStencil_});
-            }
-            pub fn backFaceStencil(self_: *T) *StencilDescriptor {
-                return objc.msgSend(self_, "backFaceStencil", *StencilDescriptor, .{});
-            }
-            pub fn setBackFaceStencil(self_: *T, backFaceStencil_: ?*StencilDescriptor) void {
-                return objc.msgSend(self_, "setBackFaceStencil:", void, .{backFaceStencil_});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-        };
+    pub fn depthCompareFunction(self_: *@This()) CompareFunction {
+        return objc.msgSend(self_, "depthCompareFunction", CompareFunction, .{});
+    }
+    pub fn setDepthCompareFunction(self_: *@This(), depthCompareFunction_: CompareFunction) void {
+        return objc.msgSend(self_, "setDepthCompareFunction:", void, .{depthCompareFunction_});
+    }
+    pub fn isDepthWriteEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isDepthWriteEnabled", bool, .{});
+    }
+    pub fn setDepthWriteEnabled(self_: *@This(), depthWriteEnabled_: bool) void {
+        return objc.msgSend(self_, "setDepthWriteEnabled:", void, .{depthWriteEnabled_});
+    }
+    pub fn frontFaceStencil(self_: *@This()) *StencilDescriptor {
+        return objc.msgSend(self_, "frontFaceStencil", *StencilDescriptor, .{});
+    }
+    pub fn setFrontFaceStencil(self_: *@This(), frontFaceStencil_: ?*StencilDescriptor) void {
+        return objc.msgSend(self_, "setFrontFaceStencil:", void, .{frontFaceStencil_});
+    }
+    pub fn backFaceStencil(self_: *@This()) *StencilDescriptor {
+        return objc.msgSend(self_, "backFaceStencil", *StencilDescriptor, .{});
+    }
+    pub fn setBackFaceStencil(self_: *@This(), backFaceStencil_: ?*StencilDescriptor) void {
+        return objc.msgSend(self_, "setBackFaceStencil:", void, .{backFaceStencil_});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
     }
 };
 
 pub const DepthStencilState = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(DepthStencilState);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-        };
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
     }
 };
 
 pub const Architecture = opaque {
     pub const InternalInfo = objc.ExternClass("MTLArchitecture", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Architecture);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
     }
 };
 
 pub const ArgumentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLArgumentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ArgumentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn argumentDescriptor() *ArgumentDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "argumentDescriptor", *ArgumentDescriptor, .{});
-            }
-            pub fn dataType(self_: *T) DataType {
-                return objc.msgSend(self_, "dataType", DataType, .{});
-            }
-            pub fn setDataType(self_: *T, dataType_: DataType) void {
-                return objc.msgSend(self_, "setDataType:", void, .{dataType_});
-            }
-            pub fn index(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "index", ns.UInteger, .{});
-            }
-            pub fn setIndex(self_: *T, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIndex:", void, .{index_});
-            }
-            pub fn arrayLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
-            }
-            pub fn setArrayLength(self_: *T, arrayLength_: ns.UInteger) void {
-                return objc.msgSend(self_, "setArrayLength:", void, .{arrayLength_});
-            }
-            pub fn access(self_: *T) BindingAccess {
-                return objc.msgSend(self_, "access", BindingAccess, .{});
-            }
-            pub fn setAccess(self_: *T, access_: BindingAccess) void {
-                return objc.msgSend(self_, "setAccess:", void, .{access_});
-            }
-            pub fn textureType(self_: *T) TextureType {
-                return objc.msgSend(self_, "textureType", TextureType, .{});
-            }
-            pub fn setTextureType(self_: *T, textureType_: TextureType) void {
-                return objc.msgSend(self_, "setTextureType:", void, .{textureType_});
-            }
-            pub fn constantBlockAlignment(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "constantBlockAlignment", ns.UInteger, .{});
-            }
-            pub fn setConstantBlockAlignment(self_: *T, constantBlockAlignment_: ns.UInteger) void {
-                return objc.msgSend(self_, "setConstantBlockAlignment:", void, .{constantBlockAlignment_});
-            }
-        };
+    pub fn argumentDescriptor() *ArgumentDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "argumentDescriptor", *ArgumentDescriptor, .{});
+    }
+    pub fn dataType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "dataType", DataType, .{});
+    }
+    pub fn setDataType(self_: *@This(), dataType_: DataType) void {
+        return objc.msgSend(self_, "setDataType:", void, .{dataType_});
+    }
+    pub fn index(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "index", ns.UInteger, .{});
+    }
+    pub fn setIndex(self_: *@This(), index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIndex:", void, .{index_});
+    }
+    pub fn arrayLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
+    }
+    pub fn setArrayLength(self_: *@This(), arrayLength_: ns.UInteger) void {
+        return objc.msgSend(self_, "setArrayLength:", void, .{arrayLength_});
+    }
+    pub fn access(self_: *@This()) BindingAccess {
+        return objc.msgSend(self_, "access", BindingAccess, .{});
+    }
+    pub fn setAccess(self_: *@This(), access_: BindingAccess) void {
+        return objc.msgSend(self_, "setAccess:", void, .{access_});
+    }
+    pub fn textureType(self_: *@This()) TextureType {
+        return objc.msgSend(self_, "textureType", TextureType, .{});
+    }
+    pub fn setTextureType(self_: *@This(), textureType_: TextureType) void {
+        return objc.msgSend(self_, "setTextureType:", void, .{textureType_});
+    }
+    pub fn constantBlockAlignment(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "constantBlockAlignment", ns.UInteger, .{});
+    }
+    pub fn setConstantBlockAlignment(self_: *@This(), constantBlockAlignment_: ns.UInteger) void {
+        return objc.msgSend(self_, "setConstantBlockAlignment:", void, .{constantBlockAlignment_});
     }
 };
 
 pub const Device = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Device);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn newCommandQueue(self_: *T) ?*CommandQueue {
-                return objc.msgSend(self_, "newCommandQueue", ?*CommandQueue, .{});
-            }
-            pub fn newCommandQueueWithMaxCommandBufferCount(self_: *T, maxCommandBufferCount_: ns.UInteger) ?*CommandQueue {
-                return objc.msgSend(self_, "newCommandQueueWithMaxCommandBufferCount:", ?*CommandQueue, .{maxCommandBufferCount_});
-            }
-            pub fn heapTextureSizeAndAlignWithDescriptor(self_: *T, desc_: *TextureDescriptor) SizeAndAlign {
-                return objc.msgSend(self_, "heapTextureSizeAndAlignWithDescriptor:", SizeAndAlign, .{desc_});
-            }
-            pub fn heapBufferSizeAndAlignWithLength_options(self_: *T, length_: ns.UInteger, options_: ResourceOptions) SizeAndAlign {
-                return objc.msgSend(self_, "heapBufferSizeAndAlignWithLength:options:", SizeAndAlign, .{ length_, options_ });
-            }
-            pub fn newHeapWithDescriptor(self_: *T, descriptor_: *HeapDescriptor) ?*Heap {
-                return objc.msgSend(self_, "newHeapWithDescriptor:", ?*Heap, .{descriptor_});
-            }
-            pub fn newBufferWithLength_options(self_: *T, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
-                return objc.msgSend(self_, "newBufferWithLength:options:", ?*Buffer, .{ length_, options_ });
-            }
-            pub fn newBufferWithBytes_length_options(self_: *T, pointer_: *const anyopaque, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
-                return objc.msgSend(self_, "newBufferWithBytes:length:options:", ?*Buffer, .{ pointer_, length_, options_ });
-            }
-            pub fn newBufferWithBytesNoCopy_length_options_deallocator(self_: *T, pointer_: *anyopaque, length_: ns.UInteger, options_: ResourceOptions, deallocator_: *ns.Block(fn (*anyopaque, ns.UInteger) void)) ?*Buffer {
-                return objc.msgSend(self_, "newBufferWithBytesNoCopy:length:options:deallocator:", ?*Buffer, .{ pointer_, length_, options_, deallocator_ });
-            }
-            pub fn newDepthStencilStateWithDescriptor(self_: *T, descriptor_: *DepthStencilDescriptor) ?*DepthStencilState {
-                return objc.msgSend(self_, "newDepthStencilStateWithDescriptor:", ?*DepthStencilState, .{descriptor_});
-            }
-            pub fn newTextureWithDescriptor(self_: *T, descriptor_: *TextureDescriptor) ?*Texture {
-                return objc.msgSend(self_, "newTextureWithDescriptor:", ?*Texture, .{descriptor_});
-            }
-            pub fn newTextureWithDescriptor_iosurface_plane(self_: *T, descriptor_: *TextureDescriptor, iosurface_: IOSurfaceRef, plane_: ns.UInteger) ?*Texture {
-                return objc.msgSend(self_, "newTextureWithDescriptor:iosurface:plane:", ?*Texture, .{ descriptor_, iosurface_, plane_ });
-            }
-            pub fn newSharedTextureWithDescriptor(self_: *T, descriptor_: *TextureDescriptor) ?*Texture {
-                return objc.msgSend(self_, "newSharedTextureWithDescriptor:", ?*Texture, .{descriptor_});
-            }
-            pub fn newSharedTextureWithHandle(self_: *T, sharedHandle_: *SharedTextureHandle) ?*Texture {
-                return objc.msgSend(self_, "newSharedTextureWithHandle:", ?*Texture, .{sharedHandle_});
-            }
-            pub fn newSamplerStateWithDescriptor(self_: *T, descriptor_: *SamplerDescriptor) ?*SamplerState {
-                return objc.msgSend(self_, "newSamplerStateWithDescriptor:", ?*SamplerState, .{descriptor_});
-            }
-            pub fn newDefaultLibrary(self_: *T) ?*Library {
-                return objc.msgSend(self_, "newDefaultLibrary", ?*Library, .{});
-            }
-            pub fn newDefaultLibraryWithBundle_error(self_: *T, bundle_: *ns.Bundle, error_: ?*?*ns.Error) ?*Library {
-                return objc.msgSend(self_, "newDefaultLibraryWithBundle:error:", ?*Library, .{ bundle_, error_ });
-            }
-            pub fn newLibraryWithFile_error(self_: *T, filepath_: *ns.String, error_: ?*?*ns.Error) ?*Library {
-                return objc.msgSend(self_, "newLibraryWithFile:error:", ?*Library, .{ filepath_, error_ });
-            }
-            pub fn newLibraryWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*Library {
-                return objc.msgSend(self_, "newLibraryWithURL:error:", ?*Library, .{ url_, error_ });
-            }
-            pub fn newLibraryWithData_error(self_: *T, data_: dispatch_data_t, error_: ?*?*ns.Error) ?*Library {
-                return objc.msgSend(self_, "newLibraryWithData:error:", ?*Library, .{ data_, error_ });
-            }
-            pub fn newLibraryWithSource_options_error(self_: *T, source_: *ns.String, options_: ?*CompileOptions, error_: ?*?*ns.Error) ?*Library {
-                return objc.msgSend(self_, "newLibraryWithSource:options:error:", ?*Library, .{ source_, options_, error_ });
-            }
-            pub fn newLibraryWithSource_options_completionHandler(self_: *T, source_: *ns.String, options_: ?*CompileOptions, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newLibraryWithSource:options:completionHandler:", void, .{ source_, options_, completionHandler_ });
-            }
-            pub fn newLibraryWithStitchedDescriptor_error(self_: *T, descriptor_: *StitchedLibraryDescriptor, error_: ?*?*ns.Error) ?*Library {
-                return objc.msgSend(self_, "newLibraryWithStitchedDescriptor:error:", ?*Library, .{ descriptor_, error_ });
-            }
-            pub fn newLibraryWithStitchedDescriptor_completionHandler(self_: *T, descriptor_: *StitchedLibraryDescriptor, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newLibraryWithStitchedDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
-            }
-            pub fn newRenderPipelineStateWithDescriptor_error(self_: *T, descriptor_: *RenderPipelineDescriptor, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:error:", ?*RenderPipelineState, .{ descriptor_, error_ });
-            }
-            pub fn newRenderPipelineStateWithDescriptor_options_reflection_error(self_: *T, descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
-            }
-            pub fn newRenderPipelineStateWithDescriptor_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, completionHandler_: *ns.Block(fn (?*RenderPipelineState, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
-            }
-            pub fn newRenderPipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
-            }
-            pub fn newComputePipelineStateWithFunction_error(self_: *T, computeFunction_: *Function, error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return objc.msgSend(self_, "newComputePipelineStateWithFunction:error:", ?*ComputePipelineState, .{ computeFunction_, error_ });
-            }
-            pub fn newComputePipelineStateWithFunction_options_reflection_error(self_: *T, computeFunction_: *Function, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return objc.msgSend(self_, "newComputePipelineStateWithFunction:options:reflection:error:", ?*ComputePipelineState, .{ computeFunction_, options_, reflection_, error_ });
-            }
-            pub fn newComputePipelineStateWithFunction_completionHandler(self_: *T, computeFunction_: *Function, completionHandler_: *ns.Block(fn (?*ComputePipelineState, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newComputePipelineStateWithFunction:completionHandler:", void, .{ computeFunction_, completionHandler_ });
-            }
-            pub fn newComputePipelineStateWithFunction_options_completionHandler(self_: *T, computeFunction_: *Function, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newComputePipelineStateWithFunction:options:completionHandler:", void, .{ computeFunction_, options_, completionHandler_ });
-            }
-            pub fn newComputePipelineStateWithDescriptor_options_reflection_error(self_: *T, descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return objc.msgSend(self_, "newComputePipelineStateWithDescriptor:options:reflection:error:", ?*ComputePipelineState, .{ descriptor_, options_, reflection_, error_ });
-            }
-            pub fn newComputePipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newComputePipelineStateWithDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
-            }
-            pub fn newFence(self_: *T) ?*Fence {
-                return objc.msgSend(self_, "newFence", ?*Fence, .{});
-            }
-            pub fn supportsFeatureSet(self_: *T, featureSet_: FeatureSet) bool {
-                return objc.msgSend(self_, "supportsFeatureSet:", bool, .{featureSet_});
-            }
-            pub fn supportsFamily(self_: *T, gpuFamily_: GPUFamily) bool {
-                return objc.msgSend(self_, "supportsFamily:", bool, .{gpuFamily_});
-            }
-            pub fn supportsTextureSampleCount(self_: *T, sampleCount_: ns.UInteger) bool {
-                return objc.msgSend(self_, "supportsTextureSampleCount:", bool, .{sampleCount_});
-            }
-            pub fn minimumLinearTextureAlignmentForPixelFormat(self_: *T, format_: PixelFormat) ns.UInteger {
-                return objc.msgSend(self_, "minimumLinearTextureAlignmentForPixelFormat:", ns.UInteger, .{format_});
-            }
-            pub fn minimumTextureBufferAlignmentForPixelFormat(self_: *T, format_: PixelFormat) ns.UInteger {
-                return objc.msgSend(self_, "minimumTextureBufferAlignmentForPixelFormat:", ns.UInteger, .{format_});
-            }
-            pub fn newRenderPipelineStateWithTileDescriptor_options_reflection_error(self_: *T, descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return objc.msgSend(self_, "newRenderPipelineStateWithTileDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
-            }
-            pub fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(self_: *T, descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newRenderPipelineStateWithTileDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
-            }
-            pub fn newRenderPipelineStateWithMeshDescriptor_options_reflection_error(self_: *T, descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return objc.msgSend(self_, "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
-            }
-            pub fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(self_: *T, descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
-            }
-            pub fn getDefaultSamplePositions_count(self_: *T, positions_: *SamplePosition, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "getDefaultSamplePositions:count:", void, .{ positions_, count_ });
-            }
-            pub fn newArgumentEncoderWithArguments(self_: *T, arguments_: *ns.Array(*ArgumentDescriptor)) ?*ArgumentEncoder {
-                return objc.msgSend(self_, "newArgumentEncoderWithArguments:", ?*ArgumentEncoder, .{arguments_});
-            }
-            pub fn supportsRasterizationRateMapWithLayerCount(self_: *T, layerCount_: ns.UInteger) bool {
-                return objc.msgSend(self_, "supportsRasterizationRateMapWithLayerCount:", bool, .{layerCount_});
-            }
-            pub fn newRasterizationRateMapWithDescriptor(self_: *T, descriptor_: *RasterizationRateMapDescriptor) ?*RasterizationRateMap {
-                return objc.msgSend(self_, "newRasterizationRateMapWithDescriptor:", ?*RasterizationRateMap, .{descriptor_});
-            }
-            pub fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(self_: *T, descriptor_: *IndirectCommandBufferDescriptor, maxCount_: ns.UInteger, options_: ResourceOptions) ?*IndirectCommandBuffer {
-                return objc.msgSend(self_, "newIndirectCommandBufferWithDescriptor:maxCommandCount:options:", ?*IndirectCommandBuffer, .{ descriptor_, maxCount_, options_ });
-            }
-            pub fn newEvent(self_: *T) ?*Event {
-                return objc.msgSend(self_, "newEvent", ?*Event, .{});
-            }
-            pub fn newSharedEvent(self_: *T) ?*SharedEvent {
-                return objc.msgSend(self_, "newSharedEvent", ?*SharedEvent, .{});
-            }
-            pub fn newSharedEventWithHandle(self_: *T, sharedEventHandle_: *SharedEventHandle) ?*SharedEvent {
-                return objc.msgSend(self_, "newSharedEventWithHandle:", ?*SharedEvent, .{sharedEventHandle_});
-            }
-            pub fn newIOHandleWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return objc.msgSend(self_, "newIOHandleWithURL:error:", ?*IOFileHandle, .{ url_, error_ });
-            }
-            pub fn newIOCommandQueueWithDescriptor_error(self_: *T, descriptor_: *IOCommandQueueDescriptor, error_: ?*?*ns.Error) ?*IOCommandQueue {
-                return objc.msgSend(self_, "newIOCommandQueueWithDescriptor:error:", ?*IOCommandQueue, .{ descriptor_, error_ });
-            }
-            pub fn newIOHandleWithURL_compressionMethod_error(self_: *T, url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return objc.msgSend(self_, "newIOHandleWithURL:compressionMethod:error:", ?*IOFileHandle, .{ url_, compressionMethod_, error_ });
-            }
-            pub fn newIOFileHandleWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return objc.msgSend(self_, "newIOFileHandleWithURL:error:", ?*IOFileHandle, .{ url_, error_ });
-            }
-            pub fn newIOFileHandleWithURL_compressionMethod_error(self_: *T, url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return objc.msgSend(self_, "newIOFileHandleWithURL:compressionMethod:error:", ?*IOFileHandle, .{ url_, compressionMethod_, error_ });
-            }
-            pub fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(self_: *T, textureType_: TextureType, pixelFormat_: PixelFormat, sampleCount_: ns.UInteger) Size {
-                return objc.msgSend(self_, "sparseTileSizeWithTextureType:pixelFormat:sampleCount:", Size, .{ textureType_, pixelFormat_, sampleCount_ });
-            }
-            pub fn convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions(self_: *T, pixelRegions_: *const Region, tileRegions_: *Region, tileSize_: Size, mode_: SparseTextureRegionAlignmentMode, numRegions_: ns.UInteger) void {
-                return objc.msgSend(self_, "convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:", void, .{ pixelRegions_, tileRegions_, tileSize_, mode_, numRegions_ });
-            }
-            pub fn convertSparseTileRegions_toPixelRegions_withTileSize_numRegions(self_: *T, tileRegions_: *const Region, pixelRegions_: *Region, tileSize_: Size, numRegions_: ns.UInteger) void {
-                return objc.msgSend(self_, "convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:", void, .{ tileRegions_, pixelRegions_, tileSize_, numRegions_ });
-            }
-            pub fn sparseTileSizeInBytesForSparsePageSize(self_: *T, sparsePageSize_: SparsePageSize) ns.UInteger {
-                return objc.msgSend(self_, "sparseTileSizeInBytesForSparsePageSize:", ns.UInteger, .{sparsePageSize_});
-            }
-            pub fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(self_: *T, textureType_: TextureType, pixelFormat_: PixelFormat, sampleCount_: ns.UInteger, sparsePageSize_: SparsePageSize) Size {
-                return objc.msgSend(self_, "sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:", Size, .{ textureType_, pixelFormat_, sampleCount_, sparsePageSize_ });
-            }
-            pub fn newCounterSampleBufferWithDescriptor_error(self_: *T, descriptor_: *CounterSampleBufferDescriptor, error_: ?*?*ns.Error) ?*CounterSampleBuffer {
-                return objc.msgSend(self_, "newCounterSampleBufferWithDescriptor:error:", ?*CounterSampleBuffer, .{ descriptor_, error_ });
-            }
-            pub fn sampleTimestamps_gpuTimestamp(self_: *T, cpuTimestamp_: *Timestamp, gpuTimestamp_: *Timestamp) void {
-                return objc.msgSend(self_, "sampleTimestamps:gpuTimestamp:", void, .{ cpuTimestamp_, gpuTimestamp_ });
-            }
-            pub fn newArgumentEncoderWithBufferBinding(self_: *T, bufferBinding_: *BufferBinding) *ArgumentEncoder {
-                return objc.msgSend(self_, "newArgumentEncoderWithBufferBinding:", *ArgumentEncoder, .{bufferBinding_});
-            }
-            pub fn supportsCounterSampling(self_: *T, samplingPoint_: CounterSamplingPoint) bool {
-                return objc.msgSend(self_, "supportsCounterSampling:", bool, .{samplingPoint_});
-            }
-            pub fn supportsVertexAmplificationCount(self_: *T, count_: ns.UInteger) bool {
-                return objc.msgSend(self_, "supportsVertexAmplificationCount:", bool, .{count_});
-            }
-            pub fn newDynamicLibrary_error(self_: *T, library_: *Library, error_: ?*?*ns.Error) ?*DynamicLibrary {
-                return objc.msgSend(self_, "newDynamicLibrary:error:", ?*DynamicLibrary, .{ library_, error_ });
-            }
-            pub fn newDynamicLibraryWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*DynamicLibrary {
-                return objc.msgSend(self_, "newDynamicLibraryWithURL:error:", ?*DynamicLibrary, .{ url_, error_ });
-            }
-            pub fn newBinaryArchiveWithDescriptor_error(self_: *T, descriptor_: *BinaryArchiveDescriptor, error_: ?*?*ns.Error) ?*BinaryArchive {
-                return objc.msgSend(self_, "newBinaryArchiveWithDescriptor:error:", ?*BinaryArchive, .{ descriptor_, error_ });
-            }
-            pub fn accelerationStructureSizesWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) AccelerationStructureSizes {
-                return objc.msgSend(self_, "accelerationStructureSizesWithDescriptor:", AccelerationStructureSizes, .{descriptor_});
-            }
-            pub fn newAccelerationStructureWithSize(self_: *T, size_: ns.UInteger) ?*AccelerationStructure {
-                return objc.msgSend(self_, "newAccelerationStructureWithSize:", ?*AccelerationStructure, .{size_});
-            }
-            pub fn newAccelerationStructureWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) ?*AccelerationStructure {
-                return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:", ?*AccelerationStructure, .{descriptor_});
-            }
-            pub fn heapAccelerationStructureSizeAndAlignWithSize(self_: *T, size_: ns.UInteger) SizeAndAlign {
-                return objc.msgSend(self_, "heapAccelerationStructureSizeAndAlignWithSize:", SizeAndAlign, .{size_});
-            }
-            pub fn heapAccelerationStructureSizeAndAlignWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) SizeAndAlign {
-                return objc.msgSend(self_, "heapAccelerationStructureSizeAndAlignWithDescriptor:", SizeAndAlign, .{descriptor_});
-            }
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn registryID(self_: *T) u64 {
-                return objc.msgSend(self_, "registryID", u64, .{});
-            }
-            pub fn architecture(self_: *T) *Architecture {
-                return objc.msgSend(self_, "architecture", *Architecture, .{});
-            }
-            pub fn maxThreadsPerThreadgroup(self_: *T) Size {
-                return objc.msgSend(self_, "maxThreadsPerThreadgroup", Size, .{});
-            }
-            pub fn isLowPower(self_: *T) bool {
-                return objc.msgSend(self_, "isLowPower", bool, .{});
-            }
-            pub fn isHeadless(self_: *T) bool {
-                return objc.msgSend(self_, "isHeadless", bool, .{});
-            }
-            pub fn isRemovable(self_: *T) bool {
-                return objc.msgSend(self_, "isRemovable", bool, .{});
-            }
-            pub fn hasUnifiedMemory(self_: *T) bool {
-                return objc.msgSend(self_, "hasUnifiedMemory", bool, .{});
-            }
-            pub fn recommendedMaxWorkingSetSize(self_: *T) u64 {
-                return objc.msgSend(self_, "recommendedMaxWorkingSetSize", u64, .{});
-            }
-            pub fn location(self_: *T) DeviceLocation {
-                return objc.msgSend(self_, "location", DeviceLocation, .{});
-            }
-            pub fn locationNumber(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "locationNumber", ns.UInteger, .{});
-            }
-            pub fn maxTransferRate(self_: *T) u64 {
-                return objc.msgSend(self_, "maxTransferRate", u64, .{});
-            }
-            pub fn isDepth24Stencil8PixelFormatSupported(self_: *T) bool {
-                return objc.msgSend(self_, "isDepth24Stencil8PixelFormatSupported", bool, .{});
-            }
-            pub fn readWriteTextureSupport(self_: *T) ReadWriteTextureTier {
-                return objc.msgSend(self_, "readWriteTextureSupport", ReadWriteTextureTier, .{});
-            }
-            pub fn argumentBuffersSupport(self_: *T) ArgumentBuffersTier {
-                return objc.msgSend(self_, "argumentBuffersSupport", ArgumentBuffersTier, .{});
-            }
-            pub fn areRasterOrderGroupsSupported(self_: *T) bool {
-                return objc.msgSend(self_, "areRasterOrderGroupsSupported", bool, .{});
-            }
-            pub fn supports32BitFloatFiltering(self_: *T) bool {
-                return objc.msgSend(self_, "supports32BitFloatFiltering", bool, .{});
-            }
-            pub fn supports32BitMSAA(self_: *T) bool {
-                return objc.msgSend(self_, "supports32BitMSAA", bool, .{});
-            }
-            pub fn supportsQueryTextureLOD(self_: *T) bool {
-                return objc.msgSend(self_, "supportsQueryTextureLOD", bool, .{});
-            }
-            pub fn supportsBCTextureCompression(self_: *T) bool {
-                return objc.msgSend(self_, "supportsBCTextureCompression", bool, .{});
-            }
-            pub fn supportsPullModelInterpolation(self_: *T) bool {
-                return objc.msgSend(self_, "supportsPullModelInterpolation", bool, .{});
-            }
-            pub fn areBarycentricCoordsSupported(self_: *T) bool {
-                return objc.msgSend(self_, "areBarycentricCoordsSupported", bool, .{});
-            }
-            pub fn supportsShaderBarycentricCoordinates(self_: *T) bool {
-                return objc.msgSend(self_, "supportsShaderBarycentricCoordinates", bool, .{});
-            }
-            pub fn currentAllocatedSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "currentAllocatedSize", ns.UInteger, .{});
-            }
-            pub fn maxThreadgroupMemoryLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxThreadgroupMemoryLength", ns.UInteger, .{});
-            }
-            pub fn maxArgumentBufferSamplerCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxArgumentBufferSamplerCount", ns.UInteger, .{});
-            }
-            pub fn areProgrammableSamplePositionsSupported(self_: *T) bool {
-                return objc.msgSend(self_, "areProgrammableSamplePositionsSupported", bool, .{});
-            }
-            pub fn peerGroupID(self_: *T) u64 {
-                return objc.msgSend(self_, "peerGroupID", u64, .{});
-            }
-            pub fn peerIndex(self_: *T) u32 {
-                return objc.msgSend(self_, "peerIndex", u32, .{});
-            }
-            pub fn peerCount(self_: *T) u32 {
-                return objc.msgSend(self_, "peerCount", u32, .{});
-            }
-            pub fn sparseTileSizeInBytes(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "sparseTileSizeInBytes", ns.UInteger, .{});
-            }
-            pub fn maxBufferLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxBufferLength", ns.UInteger, .{});
-            }
-            pub fn counterSets(self_: *T) ?*ns.Array(*CounterSet) {
-                return objc.msgSend(self_, "counterSets", ?*ns.Array(*CounterSet), .{});
-            }
-            pub fn supportsDynamicLibraries(self_: *T) bool {
-                return objc.msgSend(self_, "supportsDynamicLibraries", bool, .{});
-            }
-            pub fn supportsRenderDynamicLibraries(self_: *T) bool {
-                return objc.msgSend(self_, "supportsRenderDynamicLibraries", bool, .{});
-            }
-            pub fn supportsRaytracing(self_: *T) bool {
-                return objc.msgSend(self_, "supportsRaytracing", bool, .{});
-            }
-            pub fn supportsFunctionPointers(self_: *T) bool {
-                return objc.msgSend(self_, "supportsFunctionPointers", bool, .{});
-            }
-            pub fn supportsFunctionPointersFromRender(self_: *T) bool {
-                return objc.msgSend(self_, "supportsFunctionPointersFromRender", bool, .{});
-            }
-            pub fn supportsRaytracingFromRender(self_: *T) bool {
-                return objc.msgSend(self_, "supportsRaytracingFromRender", bool, .{});
-            }
-            pub fn supportsPrimitiveMotionBlur(self_: *T) bool {
-                return objc.msgSend(self_, "supportsPrimitiveMotionBlur", bool, .{});
-            }
-            pub fn shouldMaximizeConcurrentCompilation(self_: *T) bool {
-                return objc.msgSend(self_, "shouldMaximizeConcurrentCompilation", bool, .{});
-            }
-            pub fn setShouldMaximizeConcurrentCompilation(self_: *T, shouldMaximizeConcurrentCompilation_: bool) void {
-                return objc.msgSend(self_, "setShouldMaximizeConcurrentCompilation:", void, .{shouldMaximizeConcurrentCompilation_});
-            }
-            pub fn maximumConcurrentCompilationTaskCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maximumConcurrentCompilationTaskCount", ns.UInteger, .{});
-            }
-        };
+    pub fn newCommandQueue(self_: *@This()) ?*CommandQueue {
+        return objc.msgSend(self_, "newCommandQueue", ?*CommandQueue, .{});
+    }
+    pub fn newCommandQueueWithMaxCommandBufferCount(self_: *@This(), maxCommandBufferCount_: ns.UInteger) ?*CommandQueue {
+        return objc.msgSend(self_, "newCommandQueueWithMaxCommandBufferCount:", ?*CommandQueue, .{maxCommandBufferCount_});
+    }
+    pub fn heapTextureSizeAndAlignWithDescriptor(self_: *@This(), desc_: *TextureDescriptor) SizeAndAlign {
+        return objc.msgSend(self_, "heapTextureSizeAndAlignWithDescriptor:", SizeAndAlign, .{desc_});
+    }
+    pub fn heapBufferSizeAndAlignWithLength_options(self_: *@This(), length_: ns.UInteger, options_: ResourceOptions) SizeAndAlign {
+        return objc.msgSend(self_, "heapBufferSizeAndAlignWithLength:options:", SizeAndAlign, .{ length_, options_ });
+    }
+    pub fn newHeapWithDescriptor(self_: *@This(), descriptor_: *HeapDescriptor) ?*Heap {
+        return objc.msgSend(self_, "newHeapWithDescriptor:", ?*Heap, .{descriptor_});
+    }
+    pub fn newBufferWithLength_options(self_: *@This(), length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
+        return objc.msgSend(self_, "newBufferWithLength:options:", ?*Buffer, .{ length_, options_ });
+    }
+    pub fn newBufferWithBytes_length_options(self_: *@This(), pointer_: *const anyopaque, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
+        return objc.msgSend(self_, "newBufferWithBytes:length:options:", ?*Buffer, .{ pointer_, length_, options_ });
+    }
+    pub fn newBufferWithBytesNoCopy_length_options_deallocator(self_: *@This(), pointer_: *anyopaque, length_: ns.UInteger, options_: ResourceOptions, deallocator_: *ns.Block(fn (*anyopaque, ns.UInteger) void)) ?*Buffer {
+        return objc.msgSend(self_, "newBufferWithBytesNoCopy:length:options:deallocator:", ?*Buffer, .{ pointer_, length_, options_, deallocator_ });
+    }
+    pub fn newDepthStencilStateWithDescriptor(self_: *@This(), descriptor_: *DepthStencilDescriptor) ?*DepthStencilState {
+        return objc.msgSend(self_, "newDepthStencilStateWithDescriptor:", ?*DepthStencilState, .{descriptor_});
+    }
+    pub fn newTextureWithDescriptor(self_: *@This(), descriptor_: *TextureDescriptor) ?*Texture {
+        return objc.msgSend(self_, "newTextureWithDescriptor:", ?*Texture, .{descriptor_});
+    }
+    pub fn newTextureWithDescriptor_iosurface_plane(self_: *@This(), descriptor_: *TextureDescriptor, iosurface_: IOSurfaceRef, plane_: ns.UInteger) ?*Texture {
+        return objc.msgSend(self_, "newTextureWithDescriptor:iosurface:plane:", ?*Texture, .{ descriptor_, iosurface_, plane_ });
+    }
+    pub fn newSharedTextureWithDescriptor(self_: *@This(), descriptor_: *TextureDescriptor) ?*Texture {
+        return objc.msgSend(self_, "newSharedTextureWithDescriptor:", ?*Texture, .{descriptor_});
+    }
+    pub fn newSharedTextureWithHandle(self_: *@This(), sharedHandle_: *SharedTextureHandle) ?*Texture {
+        return objc.msgSend(self_, "newSharedTextureWithHandle:", ?*Texture, .{sharedHandle_});
+    }
+    pub fn newSamplerStateWithDescriptor(self_: *@This(), descriptor_: *SamplerDescriptor) ?*SamplerState {
+        return objc.msgSend(self_, "newSamplerStateWithDescriptor:", ?*SamplerState, .{descriptor_});
+    }
+    pub fn newDefaultLibrary(self_: *@This()) ?*Library {
+        return objc.msgSend(self_, "newDefaultLibrary", ?*Library, .{});
+    }
+    pub fn newDefaultLibraryWithBundle_error(self_: *@This(), bundle_: *ns.Bundle, error_: ?*?*ns.Error) ?*Library {
+        return objc.msgSend(self_, "newDefaultLibraryWithBundle:error:", ?*Library, .{ bundle_, error_ });
+    }
+    pub fn newLibraryWithFile_error(self_: *@This(), filepath_: *ns.String, error_: ?*?*ns.Error) ?*Library {
+        return objc.msgSend(self_, "newLibraryWithFile:error:", ?*Library, .{ filepath_, error_ });
+    }
+    pub fn newLibraryWithURL_error(self_: *@This(), url_: *ns.URL, error_: ?*?*ns.Error) ?*Library {
+        return objc.msgSend(self_, "newLibraryWithURL:error:", ?*Library, .{ url_, error_ });
+    }
+    pub fn newLibraryWithData_error(self_: *@This(), data_: dispatch_data_t, error_: ?*?*ns.Error) ?*Library {
+        return objc.msgSend(self_, "newLibraryWithData:error:", ?*Library, .{ data_, error_ });
+    }
+    pub fn newLibraryWithSource_options_error(self_: *@This(), source_: *ns.String, options_: ?*CompileOptions, error_: ?*?*ns.Error) ?*Library {
+        return objc.msgSend(self_, "newLibraryWithSource:options:error:", ?*Library, .{ source_, options_, error_ });
+    }
+    pub fn newLibraryWithSource_options_completionHandler(self_: *@This(), source_: *ns.String, options_: ?*CompileOptions, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newLibraryWithSource:options:completionHandler:", void, .{ source_, options_, completionHandler_ });
+    }
+    pub fn newLibraryWithStitchedDescriptor_error(self_: *@This(), descriptor_: *StitchedLibraryDescriptor, error_: ?*?*ns.Error) ?*Library {
+        return objc.msgSend(self_, "newLibraryWithStitchedDescriptor:error:", ?*Library, .{ descriptor_, error_ });
+    }
+    pub fn newLibraryWithStitchedDescriptor_completionHandler(self_: *@This(), descriptor_: *StitchedLibraryDescriptor, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newLibraryWithStitchedDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
+    }
+    pub fn newRenderPipelineStateWithDescriptor_error(self_: *@This(), descriptor_: *RenderPipelineDescriptor, error_: ?*?*ns.Error) ?*RenderPipelineState {
+        return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:error:", ?*RenderPipelineState, .{ descriptor_, error_ });
+    }
+    pub fn newRenderPipelineStateWithDescriptor_options_reflection_error(self_: *@This(), descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
+        return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
+    }
+    pub fn newRenderPipelineStateWithDescriptor_completionHandler(self_: *@This(), descriptor_: *RenderPipelineDescriptor, completionHandler_: *ns.Block(fn (?*RenderPipelineState, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
+    }
+    pub fn newRenderPipelineStateWithDescriptor_options_completionHandler(self_: *@This(), descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
+    }
+    pub fn newComputePipelineStateWithFunction_error(self_: *@This(), computeFunction_: *Function, error_: ?*?*ns.Error) ?*ComputePipelineState {
+        return objc.msgSend(self_, "newComputePipelineStateWithFunction:error:", ?*ComputePipelineState, .{ computeFunction_, error_ });
+    }
+    pub fn newComputePipelineStateWithFunction_options_reflection_error(self_: *@This(), computeFunction_: *Function, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
+        return objc.msgSend(self_, "newComputePipelineStateWithFunction:options:reflection:error:", ?*ComputePipelineState, .{ computeFunction_, options_, reflection_, error_ });
+    }
+    pub fn newComputePipelineStateWithFunction_completionHandler(self_: *@This(), computeFunction_: *Function, completionHandler_: *ns.Block(fn (?*ComputePipelineState, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newComputePipelineStateWithFunction:completionHandler:", void, .{ computeFunction_, completionHandler_ });
+    }
+    pub fn newComputePipelineStateWithFunction_options_completionHandler(self_: *@This(), computeFunction_: *Function, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newComputePipelineStateWithFunction:options:completionHandler:", void, .{ computeFunction_, options_, completionHandler_ });
+    }
+    pub fn newComputePipelineStateWithDescriptor_options_reflection_error(self_: *@This(), descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
+        return objc.msgSend(self_, "newComputePipelineStateWithDescriptor:options:reflection:error:", ?*ComputePipelineState, .{ descriptor_, options_, reflection_, error_ });
+    }
+    pub fn newComputePipelineStateWithDescriptor_options_completionHandler(self_: *@This(), descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newComputePipelineStateWithDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
+    }
+    pub fn newFence(self_: *@This()) ?*Fence {
+        return objc.msgSend(self_, "newFence", ?*Fence, .{});
+    }
+    pub fn supportsFeatureSet(self_: *@This(), featureSet_: FeatureSet) bool {
+        return objc.msgSend(self_, "supportsFeatureSet:", bool, .{featureSet_});
+    }
+    pub fn supportsFamily(self_: *@This(), gpuFamily_: GPUFamily) bool {
+        return objc.msgSend(self_, "supportsFamily:", bool, .{gpuFamily_});
+    }
+    pub fn supportsTextureSampleCount(self_: *@This(), sampleCount_: ns.UInteger) bool {
+        return objc.msgSend(self_, "supportsTextureSampleCount:", bool, .{sampleCount_});
+    }
+    pub fn minimumLinearTextureAlignmentForPixelFormat(self_: *@This(), format_: PixelFormat) ns.UInteger {
+        return objc.msgSend(self_, "minimumLinearTextureAlignmentForPixelFormat:", ns.UInteger, .{format_});
+    }
+    pub fn minimumTextureBufferAlignmentForPixelFormat(self_: *@This(), format_: PixelFormat) ns.UInteger {
+        return objc.msgSend(self_, "minimumTextureBufferAlignmentForPixelFormat:", ns.UInteger, .{format_});
+    }
+    pub fn newRenderPipelineStateWithTileDescriptor_options_reflection_error(self_: *@This(), descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
+        return objc.msgSend(self_, "newRenderPipelineStateWithTileDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
+    }
+    pub fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(self_: *@This(), descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newRenderPipelineStateWithTileDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
+    }
+    pub fn newRenderPipelineStateWithMeshDescriptor_options_reflection_error(self_: *@This(), descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
+        return objc.msgSend(self_, "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
+    }
+    pub fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(self_: *@This(), descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
+    }
+    pub fn getDefaultSamplePositions_count(self_: *@This(), positions_: *SamplePosition, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "getDefaultSamplePositions:count:", void, .{ positions_, count_ });
+    }
+    pub fn newArgumentEncoderWithArguments(self_: *@This(), arguments_: *ns.Array(*ArgumentDescriptor)) ?*ArgumentEncoder {
+        return objc.msgSend(self_, "newArgumentEncoderWithArguments:", ?*ArgumentEncoder, .{arguments_});
+    }
+    pub fn supportsRasterizationRateMapWithLayerCount(self_: *@This(), layerCount_: ns.UInteger) bool {
+        return objc.msgSend(self_, "supportsRasterizationRateMapWithLayerCount:", bool, .{layerCount_});
+    }
+    pub fn newRasterizationRateMapWithDescriptor(self_: *@This(), descriptor_: *RasterizationRateMapDescriptor) ?*RasterizationRateMap {
+        return objc.msgSend(self_, "newRasterizationRateMapWithDescriptor:", ?*RasterizationRateMap, .{descriptor_});
+    }
+    pub fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(self_: *@This(), descriptor_: *IndirectCommandBufferDescriptor, maxCount_: ns.UInteger, options_: ResourceOptions) ?*IndirectCommandBuffer {
+        return objc.msgSend(self_, "newIndirectCommandBufferWithDescriptor:maxCommandCount:options:", ?*IndirectCommandBuffer, .{ descriptor_, maxCount_, options_ });
+    }
+    pub fn newEvent(self_: *@This()) ?*Event {
+        return objc.msgSend(self_, "newEvent", ?*Event, .{});
+    }
+    pub fn newSharedEvent(self_: *@This()) ?*SharedEvent {
+        return objc.msgSend(self_, "newSharedEvent", ?*SharedEvent, .{});
+    }
+    pub fn newSharedEventWithHandle(self_: *@This(), sharedEventHandle_: *SharedEventHandle) ?*SharedEvent {
+        return objc.msgSend(self_, "newSharedEventWithHandle:", ?*SharedEvent, .{sharedEventHandle_});
+    }
+    pub fn newIOHandleWithURL_error(self_: *@This(), url_: *ns.URL, error_: ?*?*ns.Error) ?*IOFileHandle {
+        return objc.msgSend(self_, "newIOHandleWithURL:error:", ?*IOFileHandle, .{ url_, error_ });
+    }
+    pub fn newIOCommandQueueWithDescriptor_error(self_: *@This(), descriptor_: *IOCommandQueueDescriptor, error_: ?*?*ns.Error) ?*IOCommandQueue {
+        return objc.msgSend(self_, "newIOCommandQueueWithDescriptor:error:", ?*IOCommandQueue, .{ descriptor_, error_ });
+    }
+    pub fn newIOHandleWithURL_compressionMethod_error(self_: *@This(), url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
+        return objc.msgSend(self_, "newIOHandleWithURL:compressionMethod:error:", ?*IOFileHandle, .{ url_, compressionMethod_, error_ });
+    }
+    pub fn newIOFileHandleWithURL_error(self_: *@This(), url_: *ns.URL, error_: ?*?*ns.Error) ?*IOFileHandle {
+        return objc.msgSend(self_, "newIOFileHandleWithURL:error:", ?*IOFileHandle, .{ url_, error_ });
+    }
+    pub fn newIOFileHandleWithURL_compressionMethod_error(self_: *@This(), url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
+        return objc.msgSend(self_, "newIOFileHandleWithURL:compressionMethod:error:", ?*IOFileHandle, .{ url_, compressionMethod_, error_ });
+    }
+    pub fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(self_: *@This(), textureType_: TextureType, pixelFormat_: PixelFormat, sampleCount_: ns.UInteger) Size {
+        return objc.msgSend(self_, "sparseTileSizeWithTextureType:pixelFormat:sampleCount:", Size, .{ textureType_, pixelFormat_, sampleCount_ });
+    }
+    pub fn convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions(self_: *@This(), pixelRegions_: *const Region, tileRegions_: *Region, tileSize_: Size, mode_: SparseTextureRegionAlignmentMode, numRegions_: ns.UInteger) void {
+        return objc.msgSend(self_, "convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:", void, .{ pixelRegions_, tileRegions_, tileSize_, mode_, numRegions_ });
+    }
+    pub fn convertSparseTileRegions_toPixelRegions_withTileSize_numRegions(self_: *@This(), tileRegions_: *const Region, pixelRegions_: *Region, tileSize_: Size, numRegions_: ns.UInteger) void {
+        return objc.msgSend(self_, "convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:", void, .{ tileRegions_, pixelRegions_, tileSize_, numRegions_ });
+    }
+    pub fn sparseTileSizeInBytesForSparsePageSize(self_: *@This(), sparsePageSize_: SparsePageSize) ns.UInteger {
+        return objc.msgSend(self_, "sparseTileSizeInBytesForSparsePageSize:", ns.UInteger, .{sparsePageSize_});
+    }
+    pub fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(self_: *@This(), textureType_: TextureType, pixelFormat_: PixelFormat, sampleCount_: ns.UInteger, sparsePageSize_: SparsePageSize) Size {
+        return objc.msgSend(self_, "sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:", Size, .{ textureType_, pixelFormat_, sampleCount_, sparsePageSize_ });
+    }
+    pub fn newCounterSampleBufferWithDescriptor_error(self_: *@This(), descriptor_: *CounterSampleBufferDescriptor, error_: ?*?*ns.Error) ?*CounterSampleBuffer {
+        return objc.msgSend(self_, "newCounterSampleBufferWithDescriptor:error:", ?*CounterSampleBuffer, .{ descriptor_, error_ });
+    }
+    pub fn sampleTimestamps_gpuTimestamp(self_: *@This(), cpuTimestamp_: *Timestamp, gpuTimestamp_: *Timestamp) void {
+        return objc.msgSend(self_, "sampleTimestamps:gpuTimestamp:", void, .{ cpuTimestamp_, gpuTimestamp_ });
+    }
+    pub fn newArgumentEncoderWithBufferBinding(self_: *@This(), bufferBinding_: *BufferBinding) *ArgumentEncoder {
+        return objc.msgSend(self_, "newArgumentEncoderWithBufferBinding:", *ArgumentEncoder, .{bufferBinding_});
+    }
+    pub fn supportsCounterSampling(self_: *@This(), samplingPoint_: CounterSamplingPoint) bool {
+        return objc.msgSend(self_, "supportsCounterSampling:", bool, .{samplingPoint_});
+    }
+    pub fn supportsVertexAmplificationCount(self_: *@This(), count_: ns.UInteger) bool {
+        return objc.msgSend(self_, "supportsVertexAmplificationCount:", bool, .{count_});
+    }
+    pub fn newDynamicLibrary_error(self_: *@This(), library_: *Library, error_: ?*?*ns.Error) ?*DynamicLibrary {
+        return objc.msgSend(self_, "newDynamicLibrary:error:", ?*DynamicLibrary, .{ library_, error_ });
+    }
+    pub fn newDynamicLibraryWithURL_error(self_: *@This(), url_: *ns.URL, error_: ?*?*ns.Error) ?*DynamicLibrary {
+        return objc.msgSend(self_, "newDynamicLibraryWithURL:error:", ?*DynamicLibrary, .{ url_, error_ });
+    }
+    pub fn newBinaryArchiveWithDescriptor_error(self_: *@This(), descriptor_: *BinaryArchiveDescriptor, error_: ?*?*ns.Error) ?*BinaryArchive {
+        return objc.msgSend(self_, "newBinaryArchiveWithDescriptor:error:", ?*BinaryArchive, .{ descriptor_, error_ });
+    }
+    pub fn accelerationStructureSizesWithDescriptor(self_: *@This(), descriptor_: *AccelerationStructureDescriptor) AccelerationStructureSizes {
+        return objc.msgSend(self_, "accelerationStructureSizesWithDescriptor:", AccelerationStructureSizes, .{descriptor_});
+    }
+    pub fn newAccelerationStructureWithSize(self_: *@This(), size_: ns.UInteger) ?*AccelerationStructure {
+        return objc.msgSend(self_, "newAccelerationStructureWithSize:", ?*AccelerationStructure, .{size_});
+    }
+    pub fn newAccelerationStructureWithDescriptor(self_: *@This(), descriptor_: *AccelerationStructureDescriptor) ?*AccelerationStructure {
+        return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:", ?*AccelerationStructure, .{descriptor_});
+    }
+    pub fn heapAccelerationStructureSizeAndAlignWithSize(self_: *@This(), size_: ns.UInteger) SizeAndAlign {
+        return objc.msgSend(self_, "heapAccelerationStructureSizeAndAlignWithSize:", SizeAndAlign, .{size_});
+    }
+    pub fn heapAccelerationStructureSizeAndAlignWithDescriptor(self_: *@This(), descriptor_: *AccelerationStructureDescriptor) SizeAndAlign {
+        return objc.msgSend(self_, "heapAccelerationStructureSizeAndAlignWithDescriptor:", SizeAndAlign, .{descriptor_});
+    }
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn registryID(self_: *@This()) u64 {
+        return objc.msgSend(self_, "registryID", u64, .{});
+    }
+    pub fn architecture(self_: *@This()) *Architecture {
+        return objc.msgSend(self_, "architecture", *Architecture, .{});
+    }
+    pub fn maxThreadsPerThreadgroup(self_: *@This()) Size {
+        return objc.msgSend(self_, "maxThreadsPerThreadgroup", Size, .{});
+    }
+    pub fn isLowPower(self_: *@This()) bool {
+        return objc.msgSend(self_, "isLowPower", bool, .{});
+    }
+    pub fn isHeadless(self_: *@This()) bool {
+        return objc.msgSend(self_, "isHeadless", bool, .{});
+    }
+    pub fn isRemovable(self_: *@This()) bool {
+        return objc.msgSend(self_, "isRemovable", bool, .{});
+    }
+    pub fn hasUnifiedMemory(self_: *@This()) bool {
+        return objc.msgSend(self_, "hasUnifiedMemory", bool, .{});
+    }
+    pub fn recommendedMaxWorkingSetSize(self_: *@This()) u64 {
+        return objc.msgSend(self_, "recommendedMaxWorkingSetSize", u64, .{});
+    }
+    pub fn location(self_: *@This()) DeviceLocation {
+        return objc.msgSend(self_, "location", DeviceLocation, .{});
+    }
+    pub fn locationNumber(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "locationNumber", ns.UInteger, .{});
+    }
+    pub fn maxTransferRate(self_: *@This()) u64 {
+        return objc.msgSend(self_, "maxTransferRate", u64, .{});
+    }
+    pub fn isDepth24Stencil8PixelFormatSupported(self_: *@This()) bool {
+        return objc.msgSend(self_, "isDepth24Stencil8PixelFormatSupported", bool, .{});
+    }
+    pub fn readWriteTextureSupport(self_: *@This()) ReadWriteTextureTier {
+        return objc.msgSend(self_, "readWriteTextureSupport", ReadWriteTextureTier, .{});
+    }
+    pub fn argumentBuffersSupport(self_: *@This()) ArgumentBuffersTier {
+        return objc.msgSend(self_, "argumentBuffersSupport", ArgumentBuffersTier, .{});
+    }
+    pub fn areRasterOrderGroupsSupported(self_: *@This()) bool {
+        return objc.msgSend(self_, "areRasterOrderGroupsSupported", bool, .{});
+    }
+    pub fn supports32BitFloatFiltering(self_: *@This()) bool {
+        return objc.msgSend(self_, "supports32BitFloatFiltering", bool, .{});
+    }
+    pub fn supports32BitMSAA(self_: *@This()) bool {
+        return objc.msgSend(self_, "supports32BitMSAA", bool, .{});
+    }
+    pub fn supportsQueryTextureLOD(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsQueryTextureLOD", bool, .{});
+    }
+    pub fn supportsBCTextureCompression(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsBCTextureCompression", bool, .{});
+    }
+    pub fn supportsPullModelInterpolation(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsPullModelInterpolation", bool, .{});
+    }
+    pub fn areBarycentricCoordsSupported(self_: *@This()) bool {
+        return objc.msgSend(self_, "areBarycentricCoordsSupported", bool, .{});
+    }
+    pub fn supportsShaderBarycentricCoordinates(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsShaderBarycentricCoordinates", bool, .{});
+    }
+    pub fn currentAllocatedSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "currentAllocatedSize", ns.UInteger, .{});
+    }
+    pub fn maxThreadgroupMemoryLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxThreadgroupMemoryLength", ns.UInteger, .{});
+    }
+    pub fn maxArgumentBufferSamplerCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxArgumentBufferSamplerCount", ns.UInteger, .{});
+    }
+    pub fn areProgrammableSamplePositionsSupported(self_: *@This()) bool {
+        return objc.msgSend(self_, "areProgrammableSamplePositionsSupported", bool, .{});
+    }
+    pub fn peerGroupID(self_: *@This()) u64 {
+        return objc.msgSend(self_, "peerGroupID", u64, .{});
+    }
+    pub fn peerIndex(self_: *@This()) u32 {
+        return objc.msgSend(self_, "peerIndex", u32, .{});
+    }
+    pub fn peerCount(self_: *@This()) u32 {
+        return objc.msgSend(self_, "peerCount", u32, .{});
+    }
+    pub fn sparseTileSizeInBytes(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "sparseTileSizeInBytes", ns.UInteger, .{});
+    }
+    pub fn maxBufferLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxBufferLength", ns.UInteger, .{});
+    }
+    pub fn counterSets(self_: *@This()) ?*ns.Array(*CounterSet) {
+        return objc.msgSend(self_, "counterSets", ?*ns.Array(*CounterSet), .{});
+    }
+    pub fn supportsDynamicLibraries(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsDynamicLibraries", bool, .{});
+    }
+    pub fn supportsRenderDynamicLibraries(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsRenderDynamicLibraries", bool, .{});
+    }
+    pub fn supportsRaytracing(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsRaytracing", bool, .{});
+    }
+    pub fn supportsFunctionPointers(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsFunctionPointers", bool, .{});
+    }
+    pub fn supportsFunctionPointersFromRender(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsFunctionPointersFromRender", bool, .{});
+    }
+    pub fn supportsRaytracingFromRender(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsRaytracingFromRender", bool, .{});
+    }
+    pub fn supportsPrimitiveMotionBlur(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportsPrimitiveMotionBlur", bool, .{});
+    }
+    pub fn shouldMaximizeConcurrentCompilation(self_: *@This()) bool {
+        return objc.msgSend(self_, "shouldMaximizeConcurrentCompilation", bool, .{});
+    }
+    pub fn setShouldMaximizeConcurrentCompilation(self_: *@This(), shouldMaximizeConcurrentCompilation_: bool) void {
+        return objc.msgSend(self_, "setShouldMaximizeConcurrentCompilation:", void, .{shouldMaximizeConcurrentCompilation_});
+    }
+    pub fn maximumConcurrentCompilationTaskCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maximumConcurrentCompilationTaskCount", ns.UInteger, .{});
     }
 };
 
 pub const Drawable = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Drawable);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn present(self_: *T) void {
-                return objc.msgSend(self_, "present", void, .{});
-            }
-            pub fn presentAtTime(self_: *T, presentationTime_: cf.TimeInterval) void {
-                return objc.msgSend(self_, "presentAtTime:", void, .{presentationTime_});
-            }
-            pub fn presentAfterMinimumDuration(self_: *T, duration_: cf.TimeInterval) void {
-                return objc.msgSend(self_, "presentAfterMinimumDuration:", void, .{duration_});
-            }
-            pub fn addPresentedHandler(self_: *T, block_: *ns.Block(fn (*Drawable) void)) void {
-                return objc.msgSend(self_, "addPresentedHandler:", void, .{block_});
-            }
-            pub fn presentedTime(self_: *T) cf.TimeInterval {
-                return objc.msgSend(self_, "presentedTime", cf.TimeInterval, .{});
-            }
-            pub fn drawableID(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "drawableID", ns.UInteger, .{});
-            }
-        };
+    pub fn present(self_: *@This()) void {
+        return objc.msgSend(self_, "present", void, .{});
+    }
+    pub fn presentAtTime(self_: *@This(), presentationTime_: cf.TimeInterval) void {
+        return objc.msgSend(self_, "presentAtTime:", void, .{presentationTime_});
+    }
+    pub fn presentAfterMinimumDuration(self_: *@This(), duration_: cf.TimeInterval) void {
+        return objc.msgSend(self_, "presentAfterMinimumDuration:", void, .{duration_});
+    }
+    pub fn addPresentedHandler(self_: *@This(), block_: *ns.Block(fn (*Drawable) void)) void {
+        return objc.msgSend(self_, "addPresentedHandler:", void, .{block_});
+    }
+    pub fn presentedTime(self_: *@This()) cf.TimeInterval {
+        return objc.msgSend(self_, "presentedTime", cf.TimeInterval, .{});
+    }
+    pub fn drawableID(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "drawableID", ns.UInteger, .{});
     }
 };
 
 pub const DynamicLibrary = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(DynamicLibrary);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn serializeToURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) bool {
-                return objc.msgSend(self_, "serializeToURL:error:", bool, .{ url_, error_ });
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn installName(self_: *T) *ns.String {
-                return objc.msgSend(self_, "installName", *ns.String, .{});
-            }
-        };
+    pub fn serializeToURL_error(self_: *@This(), url_: *ns.URL, error_: ?*?*ns.Error) bool {
+        return objc.msgSend(self_, "serializeToURL:error:", bool, .{ url_, error_ });
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn installName(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "installName", *ns.String, .{});
     }
 };
 
 pub const Event = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Event);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn device(self_: *T) ?*Device {
-                return objc.msgSend(self_, "device", ?*Device, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-        };
+    pub fn device(self_: *@This()) ?*Device {
+        return objc.msgSend(self_, "device", ?*Device, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
     }
 };
 
 pub const SharedEventListener = opaque {
     pub const InternalInfo = objc.ExternClass("MTLSharedEventListener", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(SharedEventListener);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn initWithDispatchQueue(self_: *T, dispatchQueue_: dispatch_queue_t) *T {
-                return objc.msgSend(self_, "initWithDispatchQueue:", *T, .{dispatchQueue_});
-            }
-            pub fn dispatchQueue(self_: *T) dispatch_queue_t {
-                return objc.msgSend(self_, "dispatchQueue", dispatch_queue_t, .{});
-            }
-        };
+    pub fn initWithDispatchQueue(self_: *@This(), dispatchQueue_: dispatch_queue_t) *@This() {
+        return objc.msgSend(self_, "initWithDispatchQueue:", *@This(), .{dispatchQueue_});
+    }
+    pub fn dispatchQueue(self_: *@This()) dispatch_queue_t {
+        return objc.msgSend(self_, "dispatchQueue", dispatch_queue_t, .{});
     }
 };
 
 pub const SharedEvent = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Event});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(SharedEvent);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Event.Methods(T);
-
-            pub fn notifyListener_atValue_block(self_: *T, listener_: *SharedEventListener, value_: u64, block_: *ns.Block(fn (*SharedEvent, u64) void)) void {
-                return objc.msgSend(self_, "notifyListener:atValue:block:", void, .{ listener_, value_, block_ });
-            }
-            pub fn newSharedEventHandle(self_: *T) *SharedEventHandle {
-                return objc.msgSend(self_, "newSharedEventHandle", *SharedEventHandle, .{});
-            }
-            pub fn signaledValue(self_: *T) u64 {
-                return objc.msgSend(self_, "signaledValue", u64, .{});
-            }
-            pub fn setSignaledValue(self_: *T, signaledValue_: u64) void {
-                return objc.msgSend(self_, "setSignaledValue:", void, .{signaledValue_});
-            }
-        };
+    pub fn notifyListener_atValue_block(self_: *@This(), listener_: *SharedEventListener, value_: u64, block_: *ns.Block(fn (*SharedEvent, u64) void)) void {
+        return objc.msgSend(self_, "notifyListener:atValue:block:", void, .{ listener_, value_, block_ });
+    }
+    pub fn newSharedEventHandle(self_: *@This()) *SharedEventHandle {
+        return objc.msgSend(self_, "newSharedEventHandle", *SharedEventHandle, .{});
+    }
+    pub fn signaledValue(self_: *@This()) u64 {
+        return objc.msgSend(self_, "signaledValue", u64, .{});
+    }
+    pub fn setSignaledValue(self_: *@This(), signaledValue_: u64) void {
+        return objc.msgSend(self_, "setSignaledValue:", void, .{signaledValue_});
     }
 };
 
 pub const SharedEventHandle = opaque {
     pub const InternalInfo = objc.ExternClass("MTLSharedEventHandle", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(SharedEventHandle);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.SecureCoding.Methods(T);
-
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-        };
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
     }
 };
 
 pub const Fence = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Fence);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-        };
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
     }
 };
 
 pub const FunctionConstantValues = opaque {
     pub const InternalInfo = objc.ExternClass("MTLFunctionConstantValues", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionConstantValues);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn setConstantValue_type_atIndex(self_: *T, value_: *const anyopaque, type_: DataType, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setConstantValue:type:atIndex:", void, .{ value_, type_, index_ });
-            }
-            pub fn setConstantValues_type_withRange(self_: *T, values_: *const anyopaque, type_: DataType, range_: ns.Range) void {
-                return objc.msgSend(self_, "setConstantValues:type:withRange:", void, .{ values_, type_, range_ });
-            }
-            pub fn setConstantValue_type_withName(self_: *T, value_: *const anyopaque, type_: DataType, name_: *ns.String) void {
-                return objc.msgSend(self_, "setConstantValue:type:withName:", void, .{ value_, type_, name_ });
-            }
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-        };
+    pub fn setConstantValue_type_atIndex(self_: *@This(), value_: *const anyopaque, type_: DataType, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setConstantValue:type:atIndex:", void, .{ value_, type_, index_ });
+    }
+    pub fn setConstantValues_type_withRange(self_: *@This(), values_: *const anyopaque, type_: DataType, range_: ns.Range) void {
+        return objc.msgSend(self_, "setConstantValues:type:withRange:", void, .{ values_, type_, range_ });
+    }
+    pub fn setConstantValue_type_withName(self_: *@This(), value_: *const anyopaque, type_: DataType, name_: *ns.String) void {
+        return objc.msgSend(self_, "setConstantValue:type:withName:", void, .{ value_, type_, name_ });
+    }
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
     }
 };
 
 pub const FunctionDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLFunctionDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn functionDescriptor() *FunctionDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "functionDescriptor", *FunctionDescriptor, .{});
-            }
-            pub fn name(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "name", ?*ns.String, .{});
-            }
-            pub fn setName(self_: *T, name_: ?*ns.String) void {
-                return objc.msgSend(self_, "setName:", void, .{name_});
-            }
-            pub fn specializedName(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "specializedName", ?*ns.String, .{});
-            }
-            pub fn setSpecializedName(self_: *T, specializedName_: ?*ns.String) void {
-                return objc.msgSend(self_, "setSpecializedName:", void, .{specializedName_});
-            }
-            pub fn constantValues(self_: *T) ?*FunctionConstantValues {
-                return objc.msgSend(self_, "constantValues", ?*FunctionConstantValues, .{});
-            }
-            pub fn setConstantValues(self_: *T, constantValues_: ?*FunctionConstantValues) void {
-                return objc.msgSend(self_, "setConstantValues:", void, .{constantValues_});
-            }
-            pub fn options(self_: *T) FunctionOptions {
-                return objc.msgSend(self_, "options", FunctionOptions, .{});
-            }
-            pub fn setOptions(self_: *T, options_: FunctionOptions) void {
-                return objc.msgSend(self_, "setOptions:", void, .{options_});
-            }
-            pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
-            }
-        };
+    pub fn functionDescriptor() *FunctionDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "functionDescriptor", *FunctionDescriptor, .{});
+    }
+    pub fn name(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "name", ?*ns.String, .{});
+    }
+    pub fn setName(self_: *@This(), name_: ?*ns.String) void {
+        return objc.msgSend(self_, "setName:", void, .{name_});
+    }
+    pub fn specializedName(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "specializedName", ?*ns.String, .{});
+    }
+    pub fn setSpecializedName(self_: *@This(), specializedName_: ?*ns.String) void {
+        return objc.msgSend(self_, "setSpecializedName:", void, .{specializedName_});
+    }
+    pub fn constantValues(self_: *@This()) ?*FunctionConstantValues {
+        return objc.msgSend(self_, "constantValues", ?*FunctionConstantValues, .{});
+    }
+    pub fn setConstantValues(self_: *@This(), constantValues_: ?*FunctionConstantValues) void {
+        return objc.msgSend(self_, "setConstantValues:", void, .{constantValues_});
+    }
+    pub fn options(self_: *@This()) FunctionOptions {
+        return objc.msgSend(self_, "options", FunctionOptions, .{});
+    }
+    pub fn setOptions(self_: *@This(), options_: FunctionOptions) void {
+        return objc.msgSend(self_, "setOptions:", void, .{options_});
+    }
+    pub fn binaryArchives(self_: *@This()) ?*ns.Array(*BinaryArchive) {
+        return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
+    }
+    pub fn setBinaryArchives(self_: *@This(), binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
+        return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
     }
 };
 
 pub const IntersectionFunctionDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLIntersectionFunctionDescriptor", @This(), FunctionDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IntersectionFunctionDescriptor);
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace FunctionDescriptor.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-        };
-    }
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 };
 
 pub const FunctionHandle = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionHandle);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn functionType(self_: *T) FunctionType {
-                return objc.msgSend(self_, "functionType", FunctionType, .{});
-            }
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-        };
+    pub fn functionType(self_: *@This()) FunctionType {
+        return objc.msgSend(self_, "functionType", FunctionType, .{});
+    }
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
     }
 };
 
 pub const LogContainer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(LogContainer);
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.FastEnumeration.Methods(T);
-        };
-    }
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 };
 
 pub const FunctionLogDebugLocation = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionLogDebugLocation);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn functionName(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "functionName", ?*ns.String, .{});
-            }
-            pub fn URL(self_: *T) ?*ns.URL {
-                return objc.msgSend(self_, "URL", ?*ns.URL, .{});
-            }
-            pub fn line(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "line", ns.UInteger, .{});
-            }
-            pub fn column(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "column", ns.UInteger, .{});
-            }
-        };
+    pub fn functionName(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "functionName", ?*ns.String, .{});
+    }
+    pub fn URL(self_: *@This()) ?*ns.URL {
+        return objc.msgSend(self_, "URL", ?*ns.URL, .{});
+    }
+    pub fn line(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "line", ns.UInteger, .{});
+    }
+    pub fn column(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "column", ns.UInteger, .{});
     }
 };
 
 pub const FunctionLog = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionLog);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn @"type"(self_: *T) FunctionLogType {
-                return objc.msgSend(self_, "type", FunctionLogType, .{});
-            }
-            pub fn encoderLabel(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "encoderLabel", ?*ns.String, .{});
-            }
-            pub fn function(self_: *T) ?*Function {
-                return objc.msgSend(self_, "function", ?*Function, .{});
-            }
-            pub fn debugLocation(self_: *T) ?*FunctionLogDebugLocation {
-                return objc.msgSend(self_, "debugLocation", ?*FunctionLogDebugLocation, .{});
-            }
-        };
+    pub fn @"type"(self_: *@This()) FunctionLogType {
+        return objc.msgSend(self_, "type", FunctionLogType, .{});
+    }
+    pub fn encoderLabel(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "encoderLabel", ?*ns.String, .{});
+    }
+    pub fn function(self_: *@This()) ?*Function {
+        return objc.msgSend(self_, "function", ?*Function, .{});
+    }
+    pub fn debugLocation(self_: *@This()) ?*FunctionLogDebugLocation {
+        return objc.msgSend(self_, "debugLocation", ?*FunctionLogDebugLocation, .{});
     }
 };
 
 pub const FunctionStitchingAttribute = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionStitchingAttribute);
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-        };
-    }
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 };
 
 pub const FunctionStitchingAttributeAlwaysInline = opaque {
     pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingAttributeAlwaysInline", @This(), ns.ObjectInterface, &.{FunctionStitchingAttribute});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionStitchingAttributeAlwaysInline);
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace FunctionStitchingAttribute.Methods(T);
-        };
-    }
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 };
 
 pub const FunctionStitchingNode = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionStitchingNode);
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-        };
-    }
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 };
 
 pub const FunctionStitchingInputNode = opaque {
     pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingInputNode", @This(), ns.ObjectInterface, &.{FunctionStitchingNode});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionStitchingInputNode);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace FunctionStitchingNode.Methods(T);
-
-            pub fn initWithArgumentIndex(self_: *T, argument_: ns.UInteger) *T {
-                return objc.msgSend(self_, "initWithArgumentIndex:", *T, .{argument_});
-            }
-            pub fn argumentIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "argumentIndex", ns.UInteger, .{});
-            }
-            pub fn setArgumentIndex(self_: *T, argumentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setArgumentIndex:", void, .{argumentIndex_});
-            }
-        };
+    pub fn initWithArgumentIndex(self_: *@This(), argument_: ns.UInteger) *@This() {
+        return objc.msgSend(self_, "initWithArgumentIndex:", *@This(), .{argument_});
+    }
+    pub fn argumentIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "argumentIndex", ns.UInteger, .{});
+    }
+    pub fn setArgumentIndex(self_: *@This(), argumentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setArgumentIndex:", void, .{argumentIndex_});
     }
 };
 
 pub const FunctionStitchingFunctionNode = opaque {
     pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingFunctionNode", @This(), ns.ObjectInterface, &.{FunctionStitchingNode});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionStitchingFunctionNode);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace FunctionStitchingNode.Methods(T);
-
-            pub fn initWithName_arguments_controlDependencies(self_: *T, name_: *ns.String, arguments_: *ns.Array(*FunctionStitchingNode), controlDependencies_: *ns.Array(*FunctionStitchingFunctionNode)) *T {
-                return objc.msgSend(self_, "initWithName:arguments:controlDependencies:", *T, .{ name_, arguments_, controlDependencies_ });
-            }
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn setName(self_: *T, name_: *ns.String) void {
-                return objc.msgSend(self_, "setName:", void, .{name_});
-            }
-            pub fn arguments(self_: *T) *ns.Array(*FunctionStitchingNode) {
-                return objc.msgSend(self_, "arguments", *ns.Array(*FunctionStitchingNode), .{});
-            }
-            pub fn setArguments(self_: *T, arguments_: *ns.Array(*FunctionStitchingNode)) void {
-                return objc.msgSend(self_, "setArguments:", void, .{arguments_});
-            }
-            pub fn controlDependencies(self_: *T) *ns.Array(*FunctionStitchingFunctionNode) {
-                return objc.msgSend(self_, "controlDependencies", *ns.Array(*FunctionStitchingFunctionNode), .{});
-            }
-            pub fn setControlDependencies(self_: *T, controlDependencies_: *ns.Array(*FunctionStitchingFunctionNode)) void {
-                return objc.msgSend(self_, "setControlDependencies:", void, .{controlDependencies_});
-            }
-        };
+    pub fn initWithName_arguments_controlDependencies(self_: *@This(), name_: *ns.String, arguments_: *ns.Array(*FunctionStitchingNode), controlDependencies_: *ns.Array(*FunctionStitchingFunctionNode)) *@This() {
+        return objc.msgSend(self_, "initWithName:arguments:controlDependencies:", *@This(), .{ name_, arguments_, controlDependencies_ });
+    }
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn setName(self_: *@This(), name_: *ns.String) void {
+        return objc.msgSend(self_, "setName:", void, .{name_});
+    }
+    pub fn arguments(self_: *@This()) *ns.Array(*FunctionStitchingNode) {
+        return objc.msgSend(self_, "arguments", *ns.Array(*FunctionStitchingNode), .{});
+    }
+    pub fn setArguments(self_: *@This(), arguments_: *ns.Array(*FunctionStitchingNode)) void {
+        return objc.msgSend(self_, "setArguments:", void, .{arguments_});
+    }
+    pub fn controlDependencies(self_: *@This()) *ns.Array(*FunctionStitchingFunctionNode) {
+        return objc.msgSend(self_, "controlDependencies", *ns.Array(*FunctionStitchingFunctionNode), .{});
+    }
+    pub fn setControlDependencies(self_: *@This(), controlDependencies_: *ns.Array(*FunctionStitchingFunctionNode)) void {
+        return objc.msgSend(self_, "setControlDependencies:", void, .{controlDependencies_});
     }
 };
 
 pub const FunctionStitchingGraph = opaque {
     pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingGraph", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionStitchingGraph);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn initWithFunctionName_nodes_outputNode_attributes(self_: *T, functionName_: *ns.String, nodes_: *ns.Array(*FunctionStitchingFunctionNode), outputNode_: ?*FunctionStitchingFunctionNode, attributes_: *ns.Array(*FunctionStitchingAttribute)) *T {
-                return objc.msgSend(self_, "initWithFunctionName:nodes:outputNode:attributes:", *T, .{ functionName_, nodes_, outputNode_, attributes_ });
-            }
-            pub fn functionName(self_: *T) *ns.String {
-                return objc.msgSend(self_, "functionName", *ns.String, .{});
-            }
-            pub fn setFunctionName(self_: *T, functionName_: *ns.String) void {
-                return objc.msgSend(self_, "setFunctionName:", void, .{functionName_});
-            }
-            pub fn nodes(self_: *T) *ns.Array(*FunctionStitchingFunctionNode) {
-                return objc.msgSend(self_, "nodes", *ns.Array(*FunctionStitchingFunctionNode), .{});
-            }
-            pub fn setNodes(self_: *T, nodes_: *ns.Array(*FunctionStitchingFunctionNode)) void {
-                return objc.msgSend(self_, "setNodes:", void, .{nodes_});
-            }
-            pub fn outputNode(self_: *T) ?*FunctionStitchingFunctionNode {
-                return objc.msgSend(self_, "outputNode", ?*FunctionStitchingFunctionNode, .{});
-            }
-            pub fn setOutputNode(self_: *T, outputNode_: ?*FunctionStitchingFunctionNode) void {
-                return objc.msgSend(self_, "setOutputNode:", void, .{outputNode_});
-            }
-            pub fn attributes(self_: *T) *ns.Array(*FunctionStitchingAttribute) {
-                return objc.msgSend(self_, "attributes", *ns.Array(*FunctionStitchingAttribute), .{});
-            }
-            pub fn setAttributes(self_: *T, attributes_: *ns.Array(*FunctionStitchingAttribute)) void {
-                return objc.msgSend(self_, "setAttributes:", void, .{attributes_});
-            }
-        };
+    pub fn initWithFunctionName_nodes_outputNode_attributes(self_: *@This(), functionName_: *ns.String, nodes_: *ns.Array(*FunctionStitchingFunctionNode), outputNode_: ?*FunctionStitchingFunctionNode, attributes_: *ns.Array(*FunctionStitchingAttribute)) *@This() {
+        return objc.msgSend(self_, "initWithFunctionName:nodes:outputNode:attributes:", *@This(), .{ functionName_, nodes_, outputNode_, attributes_ });
+    }
+    pub fn functionName(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "functionName", *ns.String, .{});
+    }
+    pub fn setFunctionName(self_: *@This(), functionName_: *ns.String) void {
+        return objc.msgSend(self_, "setFunctionName:", void, .{functionName_});
+    }
+    pub fn nodes(self_: *@This()) *ns.Array(*FunctionStitchingFunctionNode) {
+        return objc.msgSend(self_, "nodes", *ns.Array(*FunctionStitchingFunctionNode), .{});
+    }
+    pub fn setNodes(self_: *@This(), nodes_: *ns.Array(*FunctionStitchingFunctionNode)) void {
+        return objc.msgSend(self_, "setNodes:", void, .{nodes_});
+    }
+    pub fn outputNode(self_: *@This()) ?*FunctionStitchingFunctionNode {
+        return objc.msgSend(self_, "outputNode", ?*FunctionStitchingFunctionNode, .{});
+    }
+    pub fn setOutputNode(self_: *@This(), outputNode_: ?*FunctionStitchingFunctionNode) void {
+        return objc.msgSend(self_, "setOutputNode:", void, .{outputNode_});
+    }
+    pub fn attributes(self_: *@This()) *ns.Array(*FunctionStitchingAttribute) {
+        return objc.msgSend(self_, "attributes", *ns.Array(*FunctionStitchingAttribute), .{});
+    }
+    pub fn setAttributes(self_: *@This(), attributes_: *ns.Array(*FunctionStitchingAttribute)) void {
+        return objc.msgSend(self_, "setAttributes:", void, .{attributes_});
     }
 };
 
 pub const StitchedLibraryDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLStitchedLibraryDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(StitchedLibraryDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn functionGraphs(self_: *T) *ns.Array(*FunctionStitchingGraph) {
-                return objc.msgSend(self_, "functionGraphs", *ns.Array(*FunctionStitchingGraph), .{});
-            }
-            pub fn setFunctionGraphs(self_: *T, functionGraphs_: *ns.Array(*FunctionStitchingGraph)) void {
-                return objc.msgSend(self_, "setFunctionGraphs:", void, .{functionGraphs_});
-            }
-            pub fn functions(self_: *T) *ns.Array(*Function) {
-                return objc.msgSend(self_, "functions", *ns.Array(*Function), .{});
-            }
-            pub fn setFunctions(self_: *T, functions_: *ns.Array(*Function)) void {
-                return objc.msgSend(self_, "setFunctions:", void, .{functions_});
-            }
-        };
+    pub fn functionGraphs(self_: *@This()) *ns.Array(*FunctionStitchingGraph) {
+        return objc.msgSend(self_, "functionGraphs", *ns.Array(*FunctionStitchingGraph), .{});
+    }
+    pub fn setFunctionGraphs(self_: *@This(), functionGraphs_: *ns.Array(*FunctionStitchingGraph)) void {
+        return objc.msgSend(self_, "setFunctionGraphs:", void, .{functionGraphs_});
+    }
+    pub fn functions(self_: *@This()) *ns.Array(*Function) {
+        return objc.msgSend(self_, "functions", *ns.Array(*Function), .{});
+    }
+    pub fn setFunctions(self_: *@This(), functions_: *ns.Array(*Function)) void {
+        return objc.msgSend(self_, "setFunctions:", void, .{functions_});
     }
 };
 
 pub const HeapDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLHeapDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(HeapDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn size(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "size", ns.UInteger, .{});
-            }
-            pub fn setSize(self_: *T, size_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSize:", void, .{size_});
-            }
-            pub fn storageMode(self_: *T) StorageMode {
-                return objc.msgSend(self_, "storageMode", StorageMode, .{});
-            }
-            pub fn setStorageMode(self_: *T, storageMode_: StorageMode) void {
-                return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
-            }
-            pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
-            }
-            pub fn setCpuCacheMode(self_: *T, cpuCacheMode_: CPUCacheMode) void {
-                return objc.msgSend(self_, "setCpuCacheMode:", void, .{cpuCacheMode_});
-            }
-            pub fn sparsePageSize(self_: *T) SparsePageSize {
-                return objc.msgSend(self_, "sparsePageSize", SparsePageSize, .{});
-            }
-            pub fn setSparsePageSize(self_: *T, sparsePageSize_: SparsePageSize) void {
-                return objc.msgSend(self_, "setSparsePageSize:", void, .{sparsePageSize_});
-            }
-            pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
-            }
-            pub fn setHazardTrackingMode(self_: *T, hazardTrackingMode_: HazardTrackingMode) void {
-                return objc.msgSend(self_, "setHazardTrackingMode:", void, .{hazardTrackingMode_});
-            }
-            pub fn resourceOptions(self_: *T) ResourceOptions {
-                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
-            }
-            pub fn setResourceOptions(self_: *T, resourceOptions_: ResourceOptions) void {
-                return objc.msgSend(self_, "setResourceOptions:", void, .{resourceOptions_});
-            }
-            pub fn @"type"(self_: *T) HeapType {
-                return objc.msgSend(self_, "type", HeapType, .{});
-            }
-            pub fn setType(self_: *T, type_: HeapType) void {
-                return objc.msgSend(self_, "setType:", void, .{type_});
-            }
-        };
+    pub fn size(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "size", ns.UInteger, .{});
+    }
+    pub fn setSize(self_: *@This(), size_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSize:", void, .{size_});
+    }
+    pub fn storageMode(self_: *@This()) StorageMode {
+        return objc.msgSend(self_, "storageMode", StorageMode, .{});
+    }
+    pub fn setStorageMode(self_: *@This(), storageMode_: StorageMode) void {
+        return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
+    }
+    pub fn cpuCacheMode(self_: *@This()) CPUCacheMode {
+        return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
+    }
+    pub fn setCpuCacheMode(self_: *@This(), cpuCacheMode_: CPUCacheMode) void {
+        return objc.msgSend(self_, "setCpuCacheMode:", void, .{cpuCacheMode_});
+    }
+    pub fn sparsePageSize(self_: *@This()) SparsePageSize {
+        return objc.msgSend(self_, "sparsePageSize", SparsePageSize, .{});
+    }
+    pub fn setSparsePageSize(self_: *@This(), sparsePageSize_: SparsePageSize) void {
+        return objc.msgSend(self_, "setSparsePageSize:", void, .{sparsePageSize_});
+    }
+    pub fn hazardTrackingMode(self_: *@This()) HazardTrackingMode {
+        return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
+    }
+    pub fn setHazardTrackingMode(self_: *@This(), hazardTrackingMode_: HazardTrackingMode) void {
+        return objc.msgSend(self_, "setHazardTrackingMode:", void, .{hazardTrackingMode_});
+    }
+    pub fn resourceOptions(self_: *@This()) ResourceOptions {
+        return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
+    }
+    pub fn setResourceOptions(self_: *@This(), resourceOptions_: ResourceOptions) void {
+        return objc.msgSend(self_, "setResourceOptions:", void, .{resourceOptions_});
+    }
+    pub fn @"type"(self_: *@This()) HeapType {
+        return objc.msgSend(self_, "type", HeapType, .{});
+    }
+    pub fn setType(self_: *@This(), type_: HeapType) void {
+        return objc.msgSend(self_, "setType:", void, .{type_});
     }
 };
 
 pub const Heap = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Heap);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn maxAvailableSizeWithAlignment(self_: *T, alignment_: ns.UInteger) ns.UInteger {
-                return objc.msgSend(self_, "maxAvailableSizeWithAlignment:", ns.UInteger, .{alignment_});
-            }
-            pub fn newBufferWithLength_options(self_: *T, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
-                return objc.msgSend(self_, "newBufferWithLength:options:", ?*Buffer, .{ length_, options_ });
-            }
-            pub fn newTextureWithDescriptor(self_: *T, descriptor_: *TextureDescriptor) ?*Texture {
-                return objc.msgSend(self_, "newTextureWithDescriptor:", ?*Texture, .{descriptor_});
-            }
-            pub fn setPurgeableState(self_: *T, state_: PurgeableState) PurgeableState {
-                return objc.msgSend(self_, "setPurgeableState:", PurgeableState, .{state_});
-            }
-            pub fn newBufferWithLength_options_offset(self_: *T, length_: ns.UInteger, options_: ResourceOptions, offset_: ns.UInteger) ?*Buffer {
-                return objc.msgSend(self_, "newBufferWithLength:options:offset:", ?*Buffer, .{ length_, options_, offset_ });
-            }
-            pub fn newTextureWithDescriptor_offset(self_: *T, descriptor_: *TextureDescriptor, offset_: ns.UInteger) ?*Texture {
-                return objc.msgSend(self_, "newTextureWithDescriptor:offset:", ?*Texture, .{ descriptor_, offset_ });
-            }
-            pub fn newAccelerationStructureWithSize(self_: *T, size_: ns.UInteger) ?*AccelerationStructure {
-                return objc.msgSend(self_, "newAccelerationStructureWithSize:", ?*AccelerationStructure, .{size_});
-            }
-            pub fn newAccelerationStructureWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) ?*AccelerationStructure {
-                return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:", ?*AccelerationStructure, .{descriptor_});
-            }
-            pub fn newAccelerationStructureWithSize_offset(self_: *T, size_: ns.UInteger, offset_: ns.UInteger) ?*AccelerationStructure {
-                return objc.msgSend(self_, "newAccelerationStructureWithSize:offset:", ?*AccelerationStructure, .{ size_, offset_ });
-            }
-            pub fn newAccelerationStructureWithDescriptor_offset(self_: *T, descriptor_: *AccelerationStructureDescriptor, offset_: ns.UInteger) ?*AccelerationStructure {
-                return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:offset:", ?*AccelerationStructure, .{ descriptor_, offset_ });
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn storageMode(self_: *T) StorageMode {
-                return objc.msgSend(self_, "storageMode", StorageMode, .{});
-            }
-            pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
-            }
-            pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
-            }
-            pub fn resourceOptions(self_: *T) ResourceOptions {
-                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
-            }
-            pub fn size(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "size", ns.UInteger, .{});
-            }
-            pub fn usedSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "usedSize", ns.UInteger, .{});
-            }
-            pub fn currentAllocatedSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "currentAllocatedSize", ns.UInteger, .{});
-            }
-            pub fn @"type"(self_: *T) HeapType {
-                return objc.msgSend(self_, "type", HeapType, .{});
-            }
-        };
+    pub fn maxAvailableSizeWithAlignment(self_: *@This(), alignment_: ns.UInteger) ns.UInteger {
+        return objc.msgSend(self_, "maxAvailableSizeWithAlignment:", ns.UInteger, .{alignment_});
+    }
+    pub fn newBufferWithLength_options(self_: *@This(), length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
+        return objc.msgSend(self_, "newBufferWithLength:options:", ?*Buffer, .{ length_, options_ });
+    }
+    pub fn newTextureWithDescriptor(self_: *@This(), descriptor_: *TextureDescriptor) ?*Texture {
+        return objc.msgSend(self_, "newTextureWithDescriptor:", ?*Texture, .{descriptor_});
+    }
+    pub fn setPurgeableState(self_: *@This(), state_: PurgeableState) PurgeableState {
+        return objc.msgSend(self_, "setPurgeableState:", PurgeableState, .{state_});
+    }
+    pub fn newBufferWithLength_options_offset(self_: *@This(), length_: ns.UInteger, options_: ResourceOptions, offset_: ns.UInteger) ?*Buffer {
+        return objc.msgSend(self_, "newBufferWithLength:options:offset:", ?*Buffer, .{ length_, options_, offset_ });
+    }
+    pub fn newTextureWithDescriptor_offset(self_: *@This(), descriptor_: *TextureDescriptor, offset_: ns.UInteger) ?*Texture {
+        return objc.msgSend(self_, "newTextureWithDescriptor:offset:", ?*Texture, .{ descriptor_, offset_ });
+    }
+    pub fn newAccelerationStructureWithSize(self_: *@This(), size_: ns.UInteger) ?*AccelerationStructure {
+        return objc.msgSend(self_, "newAccelerationStructureWithSize:", ?*AccelerationStructure, .{size_});
+    }
+    pub fn newAccelerationStructureWithDescriptor(self_: *@This(), descriptor_: *AccelerationStructureDescriptor) ?*AccelerationStructure {
+        return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:", ?*AccelerationStructure, .{descriptor_});
+    }
+    pub fn newAccelerationStructureWithSize_offset(self_: *@This(), size_: ns.UInteger, offset_: ns.UInteger) ?*AccelerationStructure {
+        return objc.msgSend(self_, "newAccelerationStructureWithSize:offset:", ?*AccelerationStructure, .{ size_, offset_ });
+    }
+    pub fn newAccelerationStructureWithDescriptor_offset(self_: *@This(), descriptor_: *AccelerationStructureDescriptor, offset_: ns.UInteger) ?*AccelerationStructure {
+        return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:offset:", ?*AccelerationStructure, .{ descriptor_, offset_ });
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn storageMode(self_: *@This()) StorageMode {
+        return objc.msgSend(self_, "storageMode", StorageMode, .{});
+    }
+    pub fn cpuCacheMode(self_: *@This()) CPUCacheMode {
+        return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
+    }
+    pub fn hazardTrackingMode(self_: *@This()) HazardTrackingMode {
+        return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
+    }
+    pub fn resourceOptions(self_: *@This()) ResourceOptions {
+        return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
+    }
+    pub fn size(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "size", ns.UInteger, .{});
+    }
+    pub fn usedSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "usedSize", ns.UInteger, .{});
+    }
+    pub fn currentAllocatedSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "currentAllocatedSize", ns.UInteger, .{});
+    }
+    pub fn @"type"(self_: *@This()) HeapType {
+        return objc.msgSend(self_, "type", HeapType, .{});
     }
 };
 
 pub const IndirectCommandBufferDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLIndirectCommandBufferDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IndirectCommandBufferDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn commandTypes(self_: *T) IndirectCommandType {
-                return objc.msgSend(self_, "commandTypes", IndirectCommandType, .{});
-            }
-            pub fn setCommandTypes(self_: *T, commandTypes_: IndirectCommandType) void {
-                return objc.msgSend(self_, "setCommandTypes:", void, .{commandTypes_});
-            }
-            pub fn inheritPipelineState(self_: *T) bool {
-                return objc.msgSend(self_, "inheritPipelineState", bool, .{});
-            }
-            pub fn setInheritPipelineState(self_: *T, inheritPipelineState_: bool) void {
-                return objc.msgSend(self_, "setInheritPipelineState:", void, .{inheritPipelineState_});
-            }
-            pub fn inheritBuffers(self_: *T) bool {
-                return objc.msgSend(self_, "inheritBuffers", bool, .{});
-            }
-            pub fn setInheritBuffers(self_: *T, inheritBuffers_: bool) void {
-                return objc.msgSend(self_, "setInheritBuffers:", void, .{inheritBuffers_});
-            }
-            pub fn maxVertexBufferBindCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxVertexBufferBindCount", ns.UInteger, .{});
-            }
-            pub fn setMaxVertexBufferBindCount(self_: *T, maxVertexBufferBindCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxVertexBufferBindCount:", void, .{maxVertexBufferBindCount_});
-            }
-            pub fn maxFragmentBufferBindCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxFragmentBufferBindCount", ns.UInteger, .{});
-            }
-            pub fn setMaxFragmentBufferBindCount(self_: *T, maxFragmentBufferBindCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxFragmentBufferBindCount:", void, .{maxFragmentBufferBindCount_});
-            }
-            pub fn maxKernelBufferBindCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxKernelBufferBindCount", ns.UInteger, .{});
-            }
-            pub fn setMaxKernelBufferBindCount(self_: *T, maxKernelBufferBindCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxKernelBufferBindCount:", void, .{maxKernelBufferBindCount_});
-            }
-            pub fn maxKernelThreadgroupMemoryBindCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxKernelThreadgroupMemoryBindCount", ns.UInteger, .{});
-            }
-            pub fn setMaxKernelThreadgroupMemoryBindCount(self_: *T, maxKernelThreadgroupMemoryBindCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxKernelThreadgroupMemoryBindCount:", void, .{maxKernelThreadgroupMemoryBindCount_});
-            }
-            pub fn maxObjectBufferBindCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxObjectBufferBindCount", ns.UInteger, .{});
-            }
-            pub fn setMaxObjectBufferBindCount(self_: *T, maxObjectBufferBindCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxObjectBufferBindCount:", void, .{maxObjectBufferBindCount_});
-            }
-            pub fn maxMeshBufferBindCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxMeshBufferBindCount", ns.UInteger, .{});
-            }
-            pub fn setMaxMeshBufferBindCount(self_: *T, maxMeshBufferBindCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxMeshBufferBindCount:", void, .{maxMeshBufferBindCount_});
-            }
-            pub fn maxObjectThreadgroupMemoryBindCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxObjectThreadgroupMemoryBindCount", ns.UInteger, .{});
-            }
-            pub fn setMaxObjectThreadgroupMemoryBindCount(self_: *T, maxObjectThreadgroupMemoryBindCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxObjectThreadgroupMemoryBindCount:", void, .{maxObjectThreadgroupMemoryBindCount_});
-            }
-            pub fn supportRayTracing(self_: *T) bool {
-                return objc.msgSend(self_, "supportRayTracing", bool, .{});
-            }
-            pub fn setSupportRayTracing(self_: *T, supportRayTracing_: bool) void {
-                return objc.msgSend(self_, "setSupportRayTracing:", void, .{supportRayTracing_});
-            }
-            pub fn supportDynamicAttributeStride(self_: *T) bool {
-                return objc.msgSend(self_, "supportDynamicAttributeStride", bool, .{});
-            }
-            pub fn setSupportDynamicAttributeStride(self_: *T, supportDynamicAttributeStride_: bool) void {
-                return objc.msgSend(self_, "setSupportDynamicAttributeStride:", void, .{supportDynamicAttributeStride_});
-            }
-        };
+    pub fn commandTypes(self_: *@This()) IndirectCommandType {
+        return objc.msgSend(self_, "commandTypes", IndirectCommandType, .{});
+    }
+    pub fn setCommandTypes(self_: *@This(), commandTypes_: IndirectCommandType) void {
+        return objc.msgSend(self_, "setCommandTypes:", void, .{commandTypes_});
+    }
+    pub fn inheritPipelineState(self_: *@This()) bool {
+        return objc.msgSend(self_, "inheritPipelineState", bool, .{});
+    }
+    pub fn setInheritPipelineState(self_: *@This(), inheritPipelineState_: bool) void {
+        return objc.msgSend(self_, "setInheritPipelineState:", void, .{inheritPipelineState_});
+    }
+    pub fn inheritBuffers(self_: *@This()) bool {
+        return objc.msgSend(self_, "inheritBuffers", bool, .{});
+    }
+    pub fn setInheritBuffers(self_: *@This(), inheritBuffers_: bool) void {
+        return objc.msgSend(self_, "setInheritBuffers:", void, .{inheritBuffers_});
+    }
+    pub fn maxVertexBufferBindCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxVertexBufferBindCount", ns.UInteger, .{});
+    }
+    pub fn setMaxVertexBufferBindCount(self_: *@This(), maxVertexBufferBindCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxVertexBufferBindCount:", void, .{maxVertexBufferBindCount_});
+    }
+    pub fn maxFragmentBufferBindCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxFragmentBufferBindCount", ns.UInteger, .{});
+    }
+    pub fn setMaxFragmentBufferBindCount(self_: *@This(), maxFragmentBufferBindCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxFragmentBufferBindCount:", void, .{maxFragmentBufferBindCount_});
+    }
+    pub fn maxKernelBufferBindCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxKernelBufferBindCount", ns.UInteger, .{});
+    }
+    pub fn setMaxKernelBufferBindCount(self_: *@This(), maxKernelBufferBindCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxKernelBufferBindCount:", void, .{maxKernelBufferBindCount_});
+    }
+    pub fn maxKernelThreadgroupMemoryBindCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxKernelThreadgroupMemoryBindCount", ns.UInteger, .{});
+    }
+    pub fn setMaxKernelThreadgroupMemoryBindCount(self_: *@This(), maxKernelThreadgroupMemoryBindCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxKernelThreadgroupMemoryBindCount:", void, .{maxKernelThreadgroupMemoryBindCount_});
+    }
+    pub fn maxObjectBufferBindCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxObjectBufferBindCount", ns.UInteger, .{});
+    }
+    pub fn setMaxObjectBufferBindCount(self_: *@This(), maxObjectBufferBindCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxObjectBufferBindCount:", void, .{maxObjectBufferBindCount_});
+    }
+    pub fn maxMeshBufferBindCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxMeshBufferBindCount", ns.UInteger, .{});
+    }
+    pub fn setMaxMeshBufferBindCount(self_: *@This(), maxMeshBufferBindCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxMeshBufferBindCount:", void, .{maxMeshBufferBindCount_});
+    }
+    pub fn maxObjectThreadgroupMemoryBindCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxObjectThreadgroupMemoryBindCount", ns.UInteger, .{});
+    }
+    pub fn setMaxObjectThreadgroupMemoryBindCount(self_: *@This(), maxObjectThreadgroupMemoryBindCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxObjectThreadgroupMemoryBindCount:", void, .{maxObjectThreadgroupMemoryBindCount_});
+    }
+    pub fn supportRayTracing(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportRayTracing", bool, .{});
+    }
+    pub fn setSupportRayTracing(self_: *@This(), supportRayTracing_: bool) void {
+        return objc.msgSend(self_, "setSupportRayTracing:", void, .{supportRayTracing_});
+    }
+    pub fn supportDynamicAttributeStride(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportDynamicAttributeStride", bool, .{});
+    }
+    pub fn setSupportDynamicAttributeStride(self_: *@This(), supportDynamicAttributeStride_: bool) void {
+        return objc.msgSend(self_, "setSupportDynamicAttributeStride:", void, .{supportDynamicAttributeStride_});
     }
 };
 
 pub const IndirectCommandBuffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IndirectCommandBuffer);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Resource.Methods(T);
-
-            pub fn resetWithRange(self_: *T, range_: ns.Range) void {
-                return objc.msgSend(self_, "resetWithRange:", void, .{range_});
-            }
-            pub fn indirectRenderCommandAtIndex(self_: *T, commandIndex_: ns.UInteger) *IndirectRenderCommand {
-                return objc.msgSend(self_, "indirectRenderCommandAtIndex:", *IndirectRenderCommand, .{commandIndex_});
-            }
-            pub fn indirectComputeCommandAtIndex(self_: *T, commandIndex_: ns.UInteger) *IndirectComputeCommand {
-                return objc.msgSend(self_, "indirectComputeCommandAtIndex:", *IndirectComputeCommand, .{commandIndex_});
-            }
-            pub fn size(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "size", ns.UInteger, .{});
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-        };
+    pub fn resetWithRange(self_: *@This(), range_: ns.Range) void {
+        return objc.msgSend(self_, "resetWithRange:", void, .{range_});
+    }
+    pub fn indirectRenderCommandAtIndex(self_: *@This(), commandIndex_: ns.UInteger) *IndirectRenderCommand {
+        return objc.msgSend(self_, "indirectRenderCommandAtIndex:", *IndirectRenderCommand, .{commandIndex_});
+    }
+    pub fn indirectComputeCommandAtIndex(self_: *@This(), commandIndex_: ns.UInteger) *IndirectComputeCommand {
+        return objc.msgSend(self_, "indirectComputeCommandAtIndex:", *IndirectComputeCommand, .{commandIndex_});
+    }
+    pub fn size(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "size", ns.UInteger, .{});
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
     }
 };
 
 pub const IndirectRenderCommand = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IndirectRenderCommand);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn setRenderPipelineState(self_: *T, pipelineState_: *RenderPipelineState) void {
-                return objc.msgSend(self_, "setRenderPipelineState:", void, .{pipelineState_});
-            }
-            pub fn setVertexBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setFragmentBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
-            }
-            pub fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger, buffer_: *Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_ });
-            }
-            pub fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger, buffer_: *Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_ });
-            }
-            pub fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_ });
-            }
-            pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseVertex_: ns.Integer, baseInstance_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_ });
-            }
-            pub fn setObjectThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
-            }
-            pub fn setObjectBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setMeshBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMeshBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return objc.msgSend(self_, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
-            }
-            pub fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return objc.msgSend(self_, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
-            }
-            pub fn setBarrier(self_: *T) void {
-                return objc.msgSend(self_, "setBarrier", void, .{});
-            }
-            pub fn clearBarrier(self_: *T) void {
-                return objc.msgSend(self_, "clearBarrier", void, .{});
-            }
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-        };
+    pub fn setRenderPipelineState(self_: *@This(), pipelineState_: *RenderPipelineState) void {
+        return objc.msgSend(self_, "setRenderPipelineState:", void, .{pipelineState_});
+    }
+    pub fn setVertexBuffer_offset_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setFragmentBuffer_offset_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
+    }
+    pub fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(self_: *@This(), numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger, buffer_: *Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_ });
+    }
+    pub fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(self_: *@This(), numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger, buffer_: *Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_ });
+    }
+    pub fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(self_: *@This(), primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_ });
+    }
+    pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(self_: *@This(), primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseVertex_: ns.Integer, baseInstance_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_ });
+    }
+    pub fn setObjectThreadgroupMemoryLength_atIndex(self_: *@This(), length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
+    }
+    pub fn setObjectBuffer_offset_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setMeshBuffer_offset_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMeshBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *@This(), threadgroupsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
+        return objc.msgSend(self_, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
+    }
+    pub fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *@This(), threadsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
+        return objc.msgSend(self_, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
+    }
+    pub fn setBarrier(self_: *@This()) void {
+        return objc.msgSend(self_, "setBarrier", void, .{});
+    }
+    pub fn clearBarrier(self_: *@This()) void {
+        return objc.msgSend(self_, "clearBarrier", void, .{});
+    }
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
     }
 };
 
 pub const IndirectComputeCommand = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IndirectComputeCommand);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn setComputePipelineState(self_: *T, pipelineState_: *ComputePipelineState) void {
-                return objc.msgSend(self_, "setComputePipelineState:", void, .{pipelineState_});
-            }
-            pub fn setKernelBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setKernelBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setKernelBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setKernelBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
-            }
-            pub fn concurrentDispatchThreadgroups_threadsPerThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return objc.msgSend(self_, "concurrentDispatchThreadgroups:threadsPerThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerThreadgroup_ });
-            }
-            pub fn concurrentDispatchThreads_threadsPerThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return objc.msgSend(self_, "concurrentDispatchThreads:threadsPerThreadgroup:", void, .{ threadsPerGrid_, threadsPerThreadgroup_ });
-            }
-            pub fn setBarrier(self_: *T) void {
-                return objc.msgSend(self_, "setBarrier", void, .{});
-            }
-            pub fn clearBarrier(self_: *T) void {
-                return objc.msgSend(self_, "clearBarrier", void, .{});
-            }
-            pub fn setImageblockWidth_height(self_: *T, width_: ns.UInteger, height_: ns.UInteger) void {
-                return objc.msgSend(self_, "setImageblockWidth:height:", void, .{ width_, height_ });
-            }
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-            pub fn setThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
-            }
-            pub fn setStageInRegion(self_: *T, region_: Region) void {
-                return objc.msgSend(self_, "setStageInRegion:", void, .{region_});
-            }
-        };
+    pub fn setComputePipelineState(self_: *@This(), pipelineState_: *ComputePipelineState) void {
+        return objc.msgSend(self_, "setComputePipelineState:", void, .{pipelineState_});
+    }
+    pub fn setKernelBuffer_offset_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setKernelBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setKernelBuffer_offset_attributeStride_atIndex(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setKernelBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
+    }
+    pub fn concurrentDispatchThreadgroups_threadsPerThreadgroup(self_: *@This(), threadgroupsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
+        return objc.msgSend(self_, "concurrentDispatchThreadgroups:threadsPerThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerThreadgroup_ });
+    }
+    pub fn concurrentDispatchThreads_threadsPerThreadgroup(self_: *@This(), threadsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
+        return objc.msgSend(self_, "concurrentDispatchThreads:threadsPerThreadgroup:", void, .{ threadsPerGrid_, threadsPerThreadgroup_ });
+    }
+    pub fn setBarrier(self_: *@This()) void {
+        return objc.msgSend(self_, "setBarrier", void, .{});
+    }
+    pub fn clearBarrier(self_: *@This()) void {
+        return objc.msgSend(self_, "clearBarrier", void, .{});
+    }
+    pub fn setImageblockWidth_height(self_: *@This(), width_: ns.UInteger, height_: ns.UInteger) void {
+        return objc.msgSend(self_, "setImageblockWidth:height:", void, .{ width_, height_ });
+    }
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
+    }
+    pub fn setThreadgroupMemoryLength_atIndex(self_: *@This(), length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
+    }
+    pub fn setStageInRegion(self_: *@This(), region_: Region) void {
+        return objc.msgSend(self_, "setStageInRegion:", void, .{region_});
     }
 };
 
 pub const IntersectionFunctionTableDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLIntersectionFunctionTableDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IntersectionFunctionTableDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn intersectionFunctionTableDescriptor() *IntersectionFunctionTableDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "intersectionFunctionTableDescriptor", *IntersectionFunctionTableDescriptor, .{});
-            }
-            pub fn functionCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
-            }
-            pub fn setFunctionCount(self_: *T, functionCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFunctionCount:", void, .{functionCount_});
-            }
-        };
+    pub fn intersectionFunctionTableDescriptor() *IntersectionFunctionTableDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "intersectionFunctionTableDescriptor", *IntersectionFunctionTableDescriptor, .{});
+    }
+    pub fn functionCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
+    }
+    pub fn setFunctionCount(self_: *@This(), functionCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFunctionCount:", void, .{functionCount_});
     }
 };
 
 pub const IntersectionFunctionTable = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IntersectionFunctionTable);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Resource.Methods(T);
-
-            pub fn setBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setFunction_atIndex(self_: *T, function_: ?*FunctionHandle, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFunction:atIndex:", void, .{ function_, index_ });
-            }
-            pub fn setFunctions_withRange(self_: *T, functions_: *?*const FunctionHandle, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFunctions:withRange:", void, .{ functions_, range_ });
-            }
-            pub fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(self_: *T, signature_: IntersectionFunctionSignature, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", void, .{ signature_, index_ });
-            }
-            pub fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(self_: *T, signature_: IntersectionFunctionSignature, range_: ns.Range) void {
-                return objc.msgSend(self_, "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", void, .{ signature_, range_ });
-            }
-            pub fn setOpaqueCurveIntersectionFunctionWithSignature_atIndex(self_: *T, signature_: IntersectionFunctionSignature, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", void, .{ signature_, index_ });
-            }
-            pub fn setOpaqueCurveIntersectionFunctionWithSignature_withRange(self_: *T, signature_: IntersectionFunctionSignature, range_: ns.Range) void {
-                return objc.msgSend(self_, "setOpaqueCurveIntersectionFunctionWithSignature:withRange:", void, .{ signature_, range_ });
-            }
-            pub fn setVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
-            }
-            pub fn setVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, bufferRange_: ns.Range) void {
-                return objc.msgSend(self_, "setVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, bufferRange_ });
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-        };
+    pub fn setBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setFunction_atIndex(self_: *@This(), function_: ?*FunctionHandle, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFunction:atIndex:", void, .{ function_, index_ });
+    }
+    pub fn setFunctions_withRange(self_: *@This(), functions_: *?*const FunctionHandle, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFunctions:withRange:", void, .{ functions_, range_ });
+    }
+    pub fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(self_: *@This(), signature_: IntersectionFunctionSignature, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", void, .{ signature_, index_ });
+    }
+    pub fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(self_: *@This(), signature_: IntersectionFunctionSignature, range_: ns.Range) void {
+        return objc.msgSend(self_, "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", void, .{ signature_, range_ });
+    }
+    pub fn setOpaqueCurveIntersectionFunctionWithSignature_atIndex(self_: *@This(), signature_: IntersectionFunctionSignature, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", void, .{ signature_, index_ });
+    }
+    pub fn setOpaqueCurveIntersectionFunctionWithSignature_withRange(self_: *@This(), signature_: IntersectionFunctionSignature, range_: ns.Range) void {
+        return objc.msgSend(self_, "setOpaqueCurveIntersectionFunctionWithSignature:withRange:", void, .{ signature_, range_ });
+    }
+    pub fn setVisibleFunctionTable_atBufferIndex(self_: *@This(), functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
+    }
+    pub fn setVisibleFunctionTables_withBufferRange(self_: *@This(), functionTables_: *?*const VisibleFunctionTable, bufferRange_: ns.Range) void {
+        return objc.msgSend(self_, "setVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, bufferRange_ });
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
     }
 };
 
 pub const IOCommandBuffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IOCommandBuffer);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn addCompletedHandler(self_: *T, block_: *ns.Block(fn (*IOCommandBuffer) void)) void {
-                return objc.msgSend(self_, "addCompletedHandler:", void, .{block_});
-            }
-            pub fn loadBytes_size_sourceHandle_sourceHandleOffset(self_: *T, pointer_: *anyopaque, size_: ns.UInteger, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "loadBytes:size:sourceHandle:sourceHandleOffset:", void, .{ pointer_, size_, sourceHandle_, sourceHandleOffset_ });
-            }
-            pub fn loadBuffer_offset_size_sourceHandle_sourceHandleOffset(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, size_: ns.UInteger, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:", void, .{ buffer_, offset_, size_, sourceHandle_, sourceHandleOffset_ });
-            }
-            pub fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger, size_: Size, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, destinationOrigin_: Origin, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:", void, .{ texture_, slice_, level_, size_, sourceBytesPerRow_, sourceBytesPerImage_, destinationOrigin_, sourceHandle_, sourceHandleOffset_ });
-            }
-            pub fn copyStatusToBuffer_offset(self_: *T, buffer_: *Buffer, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "copyStatusToBuffer:offset:", void, .{ buffer_, offset_ });
-            }
-            pub fn commit(self_: *T) void {
-                return objc.msgSend(self_, "commit", void, .{});
-            }
-            pub fn waitUntilCompleted(self_: *T) void {
-                return objc.msgSend(self_, "waitUntilCompleted", void, .{});
-            }
-            pub fn tryCancel(self_: *T) void {
-                return objc.msgSend(self_, "tryCancel", void, .{});
-            }
-            pub fn addBarrier(self_: *T) void {
-                return objc.msgSend(self_, "addBarrier", void, .{});
-            }
-            pub fn pushDebugGroup(self_: *T, string_: *ns.String) void {
-                return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
-            }
-            pub fn popDebugGroup(self_: *T) void {
-                return objc.msgSend(self_, "popDebugGroup", void, .{});
-            }
-            pub fn enqueue(self_: *T) void {
-                return objc.msgSend(self_, "enqueue", void, .{});
-            }
-            pub fn waitForEvent_value(self_: *T, event_: *SharedEvent, value_: u64) void {
-                return objc.msgSend(self_, "waitForEvent:value:", void, .{ event_, value_ });
-            }
-            pub fn signalEvent_value(self_: *T, event_: *SharedEvent, value_: u64) void {
-                return objc.msgSend(self_, "signalEvent:value:", void, .{ event_, value_ });
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn status(self_: *T) IOStatus {
-                return objc.msgSend(self_, "status", IOStatus, .{});
-            }
-            pub fn @"error"(self_: *T) ?*ns.Error {
-                return objc.msgSend(self_, "error", ?*ns.Error, .{});
-            }
-        };
+    pub fn addCompletedHandler(self_: *@This(), block_: *ns.Block(fn (*IOCommandBuffer) void)) void {
+        return objc.msgSend(self_, "addCompletedHandler:", void, .{block_});
+    }
+    pub fn loadBytes_size_sourceHandle_sourceHandleOffset(self_: *@This(), pointer_: *anyopaque, size_: ns.UInteger, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "loadBytes:size:sourceHandle:sourceHandleOffset:", void, .{ pointer_, size_, sourceHandle_, sourceHandleOffset_ });
+    }
+    pub fn loadBuffer_offset_size_sourceHandle_sourceHandleOffset(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger, size_: ns.UInteger, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:", void, .{ buffer_, offset_, size_, sourceHandle_, sourceHandleOffset_ });
+    }
+    pub fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(self_: *@This(), texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger, size_: Size, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, destinationOrigin_: Origin, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:", void, .{ texture_, slice_, level_, size_, sourceBytesPerRow_, sourceBytesPerImage_, destinationOrigin_, sourceHandle_, sourceHandleOffset_ });
+    }
+    pub fn copyStatusToBuffer_offset(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "copyStatusToBuffer:offset:", void, .{ buffer_, offset_ });
+    }
+    pub fn commit(self_: *@This()) void {
+        return objc.msgSend(self_, "commit", void, .{});
+    }
+    pub fn waitUntilCompleted(self_: *@This()) void {
+        return objc.msgSend(self_, "waitUntilCompleted", void, .{});
+    }
+    pub fn tryCancel(self_: *@This()) void {
+        return objc.msgSend(self_, "tryCancel", void, .{});
+    }
+    pub fn addBarrier(self_: *@This()) void {
+        return objc.msgSend(self_, "addBarrier", void, .{});
+    }
+    pub fn pushDebugGroup(self_: *@This(), string_: *ns.String) void {
+        return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
+    }
+    pub fn popDebugGroup(self_: *@This()) void {
+        return objc.msgSend(self_, "popDebugGroup", void, .{});
+    }
+    pub fn enqueue(self_: *@This()) void {
+        return objc.msgSend(self_, "enqueue", void, .{});
+    }
+    pub fn waitForEvent_value(self_: *@This(), event_: *SharedEvent, value_: u64) void {
+        return objc.msgSend(self_, "waitForEvent:value:", void, .{ event_, value_ });
+    }
+    pub fn signalEvent_value(self_: *@This(), event_: *SharedEvent, value_: u64) void {
+        return objc.msgSend(self_, "signalEvent:value:", void, .{ event_, value_ });
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn status(self_: *@This()) IOStatus {
+        return objc.msgSend(self_, "status", IOStatus, .{});
+    }
+    pub fn @"error"(self_: *@This()) ?*ns.Error {
+        return objc.msgSend(self_, "error", ?*ns.Error, .{});
     }
 };
 
 pub const IOCommandQueue = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IOCommandQueue);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn enqueueBarrier(self_: *T) void {
-                return objc.msgSend(self_, "enqueueBarrier", void, .{});
-            }
-            pub fn commandBuffer(self_: *T) *IOCommandBuffer {
-                return objc.msgSend(self_, "commandBuffer", *IOCommandBuffer, .{});
-            }
-            pub fn commandBufferWithUnretainedReferences(self_: *T) *IOCommandBuffer {
-                return objc.msgSend(self_, "commandBufferWithUnretainedReferences", *IOCommandBuffer, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-        };
+    pub fn enqueueBarrier(self_: *@This()) void {
+        return objc.msgSend(self_, "enqueueBarrier", void, .{});
+    }
+    pub fn commandBuffer(self_: *@This()) *IOCommandBuffer {
+        return objc.msgSend(self_, "commandBuffer", *IOCommandBuffer, .{});
+    }
+    pub fn commandBufferWithUnretainedReferences(self_: *@This()) *IOCommandBuffer {
+        return objc.msgSend(self_, "commandBufferWithUnretainedReferences", *IOCommandBuffer, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
     }
 };
 
 pub const IOScratchBuffer = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IOScratchBuffer);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn buffer(self_: *T) *Buffer {
-                return objc.msgSend(self_, "buffer", *Buffer, .{});
-            }
-        };
+    pub fn buffer(self_: *@This()) *Buffer {
+        return objc.msgSend(self_, "buffer", *Buffer, .{});
     }
 };
 
 pub const IOScratchBufferAllocator = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IOScratchBufferAllocator);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn newScratchBufferWithMinimumSize(self_: *T, minimumSize_: ns.UInteger) ?*IOScratchBuffer {
-                return objc.msgSend(self_, "newScratchBufferWithMinimumSize:", ?*IOScratchBuffer, .{minimumSize_});
-            }
-        };
+    pub fn newScratchBufferWithMinimumSize(self_: *@This(), minimumSize_: ns.UInteger) ?*IOScratchBuffer {
+        return objc.msgSend(self_, "newScratchBufferWithMinimumSize:", ?*IOScratchBuffer, .{minimumSize_});
     }
 };
 
 pub const IOCommandQueueDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLIOCommandQueueDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IOCommandQueueDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn maxCommandBufferCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxCommandBufferCount", ns.UInteger, .{});
-            }
-            pub fn setMaxCommandBufferCount(self_: *T, maxCommandBufferCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxCommandBufferCount:", void, .{maxCommandBufferCount_});
-            }
-            pub fn priority(self_: *T) IOPriority {
-                return objc.msgSend(self_, "priority", IOPriority, .{});
-            }
-            pub fn setPriority(self_: *T, priority_: IOPriority) void {
-                return objc.msgSend(self_, "setPriority:", void, .{priority_});
-            }
-            pub fn @"type"(self_: *T) IOCommandQueueType {
-                return objc.msgSend(self_, "type", IOCommandQueueType, .{});
-            }
-            pub fn setType(self_: *T, type_: IOCommandQueueType) void {
-                return objc.msgSend(self_, "setType:", void, .{type_});
-            }
-            pub fn maxCommandsInFlight(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxCommandsInFlight", ns.UInteger, .{});
-            }
-            pub fn setMaxCommandsInFlight(self_: *T, maxCommandsInFlight_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxCommandsInFlight:", void, .{maxCommandsInFlight_});
-            }
-            pub fn scratchBufferAllocator(self_: *T) ?*IOScratchBufferAllocator {
-                return objc.msgSend(self_, "scratchBufferAllocator", ?*IOScratchBufferAllocator, .{});
-            }
-            pub fn setScratchBufferAllocator(self_: *T, scratchBufferAllocator_: ?*IOScratchBufferAllocator) void {
-                return objc.msgSend(self_, "setScratchBufferAllocator:", void, .{scratchBufferAllocator_});
-            }
-        };
+    pub fn maxCommandBufferCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxCommandBufferCount", ns.UInteger, .{});
+    }
+    pub fn setMaxCommandBufferCount(self_: *@This(), maxCommandBufferCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxCommandBufferCount:", void, .{maxCommandBufferCount_});
+    }
+    pub fn priority(self_: *@This()) IOPriority {
+        return objc.msgSend(self_, "priority", IOPriority, .{});
+    }
+    pub fn setPriority(self_: *@This(), priority_: IOPriority) void {
+        return objc.msgSend(self_, "setPriority:", void, .{priority_});
+    }
+    pub fn @"type"(self_: *@This()) IOCommandQueueType {
+        return objc.msgSend(self_, "type", IOCommandQueueType, .{});
+    }
+    pub fn setType(self_: *@This(), type_: IOCommandQueueType) void {
+        return objc.msgSend(self_, "setType:", void, .{type_});
+    }
+    pub fn maxCommandsInFlight(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxCommandsInFlight", ns.UInteger, .{});
+    }
+    pub fn setMaxCommandsInFlight(self_: *@This(), maxCommandsInFlight_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxCommandsInFlight:", void, .{maxCommandsInFlight_});
+    }
+    pub fn scratchBufferAllocator(self_: *@This()) ?*IOScratchBufferAllocator {
+        return objc.msgSend(self_, "scratchBufferAllocator", ?*IOScratchBufferAllocator, .{});
+    }
+    pub fn setScratchBufferAllocator(self_: *@This(), scratchBufferAllocator_: ?*IOScratchBufferAllocator) void {
+        return objc.msgSend(self_, "setScratchBufferAllocator:", void, .{scratchBufferAllocator_});
     }
 };
 
 pub const IOFileHandle = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(IOFileHandle);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-        };
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
     }
 };
 
 pub const VertexAttribute = opaque {
     pub const InternalInfo = objc.ExternClass("MTLVertexAttribute", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VertexAttribute);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn attributeIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "attributeIndex", ns.UInteger, .{});
-            }
-            pub fn attributeType(self_: *T) DataType {
-                return objc.msgSend(self_, "attributeType", DataType, .{});
-            }
-            pub fn isActive(self_: *T) bool {
-                return objc.msgSend(self_, "isActive", bool, .{});
-            }
-            pub fn isPatchData(self_: *T) bool {
-                return objc.msgSend(self_, "isPatchData", bool, .{});
-            }
-            pub fn isPatchControlPointData(self_: *T) bool {
-                return objc.msgSend(self_, "isPatchControlPointData", bool, .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn attributeIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "attributeIndex", ns.UInteger, .{});
+    }
+    pub fn attributeType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "attributeType", DataType, .{});
+    }
+    pub fn isActive(self_: *@This()) bool {
+        return objc.msgSend(self_, "isActive", bool, .{});
+    }
+    pub fn isPatchData(self_: *@This()) bool {
+        return objc.msgSend(self_, "isPatchData", bool, .{});
+    }
+    pub fn isPatchControlPointData(self_: *@This()) bool {
+        return objc.msgSend(self_, "isPatchControlPointData", bool, .{});
     }
 };
 
 pub const Attribute = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAttribute", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Attribute);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn attributeIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "attributeIndex", ns.UInteger, .{});
-            }
-            pub fn attributeType(self_: *T) DataType {
-                return objc.msgSend(self_, "attributeType", DataType, .{});
-            }
-            pub fn isActive(self_: *T) bool {
-                return objc.msgSend(self_, "isActive", bool, .{});
-            }
-            pub fn isPatchData(self_: *T) bool {
-                return objc.msgSend(self_, "isPatchData", bool, .{});
-            }
-            pub fn isPatchControlPointData(self_: *T) bool {
-                return objc.msgSend(self_, "isPatchControlPointData", bool, .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn attributeIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "attributeIndex", ns.UInteger, .{});
+    }
+    pub fn attributeType(self_: *@This()) DataType {
+        return objc.msgSend(self_, "attributeType", DataType, .{});
+    }
+    pub fn isActive(self_: *@This()) bool {
+        return objc.msgSend(self_, "isActive", bool, .{});
+    }
+    pub fn isPatchData(self_: *@This()) bool {
+        return objc.msgSend(self_, "isPatchData", bool, .{});
+    }
+    pub fn isPatchControlPointData(self_: *@This()) bool {
+        return objc.msgSend(self_, "isPatchControlPointData", bool, .{});
     }
 };
 
 pub const FunctionConstant = opaque {
     pub const InternalInfo = objc.ExternClass("MTLFunctionConstant", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(FunctionConstant);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn @"type"(self_: *T) DataType {
-                return objc.msgSend(self_, "type", DataType, .{});
-            }
-            pub fn index(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "index", ns.UInteger, .{});
-            }
-            pub fn required(self_: *T) bool {
-                return objc.msgSend(self_, "required", bool, .{});
-            }
-        };
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn @"type"(self_: *@This()) DataType {
+        return objc.msgSend(self_, "type", DataType, .{});
+    }
+    pub fn index(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "index", ns.UInteger, .{});
+    }
+    pub fn required(self_: *@This()) bool {
+        return objc.msgSend(self_, "required", bool, .{});
     }
 };
 
 pub const Function = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Function);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn newArgumentEncoderWithBufferIndex(self_: *T, bufferIndex_: ns.UInteger) *ArgumentEncoder {
-                return objc.msgSend(self_, "newArgumentEncoderWithBufferIndex:", *ArgumentEncoder, .{bufferIndex_});
-            }
-            pub fn newArgumentEncoderWithBufferIndex_reflection(self_: *T, bufferIndex_: ns.UInteger, reflection_: ?*AutoreleasedArgument) *ArgumentEncoder {
-                return objc.msgSend(self_, "newArgumentEncoderWithBufferIndex:reflection:", *ArgumentEncoder, .{ bufferIndex_, reflection_ });
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn functionType(self_: *T) FunctionType {
-                return objc.msgSend(self_, "functionType", FunctionType, .{});
-            }
-            pub fn patchType(self_: *T) PatchType {
-                return objc.msgSend(self_, "patchType", PatchType, .{});
-            }
-            pub fn patchControlPointCount(self_: *T) ns.Integer {
-                return objc.msgSend(self_, "patchControlPointCount", ns.Integer, .{});
-            }
-            pub fn vertexAttributes(self_: *T) ?*ns.Array(*VertexAttribute) {
-                return objc.msgSend(self_, "vertexAttributes", ?*ns.Array(*VertexAttribute), .{});
-            }
-            pub fn stageInputAttributes(self_: *T) ?*ns.Array(*Attribute) {
-                return objc.msgSend(self_, "stageInputAttributes", ?*ns.Array(*Attribute), .{});
-            }
-            pub fn name(self_: *T) *ns.String {
-                return objc.msgSend(self_, "name", *ns.String, .{});
-            }
-            pub fn functionConstantsDictionary(self_: *T) *ns.Dictionary(*ns.String, *FunctionConstant) {
-                return objc.msgSend(self_, "functionConstantsDictionary", *ns.Dictionary(*ns.String, *FunctionConstant), .{});
-            }
-            pub fn options(self_: *T) FunctionOptions {
-                return objc.msgSend(self_, "options", FunctionOptions, .{});
-            }
-        };
+    pub fn newArgumentEncoderWithBufferIndex(self_: *@This(), bufferIndex_: ns.UInteger) *ArgumentEncoder {
+        return objc.msgSend(self_, "newArgumentEncoderWithBufferIndex:", *ArgumentEncoder, .{bufferIndex_});
+    }
+    pub fn newArgumentEncoderWithBufferIndex_reflection(self_: *@This(), bufferIndex_: ns.UInteger, reflection_: ?*AutoreleasedArgument) *ArgumentEncoder {
+        return objc.msgSend(self_, "newArgumentEncoderWithBufferIndex:reflection:", *ArgumentEncoder, .{ bufferIndex_, reflection_ });
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn functionType(self_: *@This()) FunctionType {
+        return objc.msgSend(self_, "functionType", FunctionType, .{});
+    }
+    pub fn patchType(self_: *@This()) PatchType {
+        return objc.msgSend(self_, "patchType", PatchType, .{});
+    }
+    pub fn patchControlPointCount(self_: *@This()) ns.Integer {
+        return objc.msgSend(self_, "patchControlPointCount", ns.Integer, .{});
+    }
+    pub fn vertexAttributes(self_: *@This()) ?*ns.Array(*VertexAttribute) {
+        return objc.msgSend(self_, "vertexAttributes", ?*ns.Array(*VertexAttribute), .{});
+    }
+    pub fn stageInputAttributes(self_: *@This()) ?*ns.Array(*Attribute) {
+        return objc.msgSend(self_, "stageInputAttributes", ?*ns.Array(*Attribute), .{});
+    }
+    pub fn name(self_: *@This()) *ns.String {
+        return objc.msgSend(self_, "name", *ns.String, .{});
+    }
+    pub fn functionConstantsDictionary(self_: *@This()) *ns.Dictionary(*ns.String, *FunctionConstant) {
+        return objc.msgSend(self_, "functionConstantsDictionary", *ns.Dictionary(*ns.String, *FunctionConstant), .{});
+    }
+    pub fn options(self_: *@This()) FunctionOptions {
+        return objc.msgSend(self_, "options", FunctionOptions, .{});
     }
 };
 
 pub const CompileOptions = opaque {
     pub const InternalInfo = objc.ExternClass("MTLCompileOptions", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(CompileOptions);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn preprocessorMacros(self_: *T) ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol) {
-                return objc.msgSend(self_, "preprocessorMacros", ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol), .{});
-            }
-            pub fn setPreprocessorMacros(self_: *T, preprocessorMacros_: ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol)) void {
-                return objc.msgSend(self_, "setPreprocessorMacros:", void, .{preprocessorMacros_});
-            }
-            pub fn fastMathEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "fastMathEnabled", bool, .{});
-            }
-            pub fn setFastMathEnabled(self_: *T, fastMathEnabled_: bool) void {
-                return objc.msgSend(self_, "setFastMathEnabled:", void, .{fastMathEnabled_});
-            }
-            pub fn languageVersion(self_: *T) LanguageVersion {
-                return objc.msgSend(self_, "languageVersion", LanguageVersion, .{});
-            }
-            pub fn setLanguageVersion(self_: *T, languageVersion_: LanguageVersion) void {
-                return objc.msgSend(self_, "setLanguageVersion:", void, .{languageVersion_});
-            }
-            pub fn libraryType(self_: *T) LibraryType {
-                return objc.msgSend(self_, "libraryType", LibraryType, .{});
-            }
-            pub fn setLibraryType(self_: *T, libraryType_: LibraryType) void {
-                return objc.msgSend(self_, "setLibraryType:", void, .{libraryType_});
-            }
-            pub fn installName(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "installName", ?*ns.String, .{});
-            }
-            pub fn setInstallName(self_: *T, installName_: ?*ns.String) void {
-                return objc.msgSend(self_, "setInstallName:", void, .{installName_});
-            }
-            pub fn libraries(self_: *T) ?*ns.Array(*DynamicLibrary) {
-                return objc.msgSend(self_, "libraries", ?*ns.Array(*DynamicLibrary), .{});
-            }
-            pub fn setLibraries(self_: *T, libraries_: ?*ns.Array(*DynamicLibrary)) void {
-                return objc.msgSend(self_, "setLibraries:", void, .{libraries_});
-            }
-            pub fn preserveInvariance(self_: *T) bool {
-                return objc.msgSend(self_, "preserveInvariance", bool, .{});
-            }
-            pub fn setPreserveInvariance(self_: *T, preserveInvariance_: bool) void {
-                return objc.msgSend(self_, "setPreserveInvariance:", void, .{preserveInvariance_});
-            }
-            pub fn optimizationLevel(self_: *T) LibraryOptimizationLevel {
-                return objc.msgSend(self_, "optimizationLevel", LibraryOptimizationLevel, .{});
-            }
-            pub fn setOptimizationLevel(self_: *T, optimizationLevel_: LibraryOptimizationLevel) void {
-                return objc.msgSend(self_, "setOptimizationLevel:", void, .{optimizationLevel_});
-            }
-            pub fn compileSymbolVisibility(self_: *T) CompileSymbolVisibility {
-                return objc.msgSend(self_, "compileSymbolVisibility", CompileSymbolVisibility, .{});
-            }
-            pub fn setCompileSymbolVisibility(self_: *T, compileSymbolVisibility_: CompileSymbolVisibility) void {
-                return objc.msgSend(self_, "setCompileSymbolVisibility:", void, .{compileSymbolVisibility_});
-            }
-            pub fn allowReferencingUndefinedSymbols(self_: *T) bool {
-                return objc.msgSend(self_, "allowReferencingUndefinedSymbols", bool, .{});
-            }
-            pub fn setAllowReferencingUndefinedSymbols(self_: *T, allowReferencingUndefinedSymbols_: bool) void {
-                return objc.msgSend(self_, "setAllowReferencingUndefinedSymbols:", void, .{allowReferencingUndefinedSymbols_});
-            }
-            pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
-            }
-            pub fn setMaxTotalThreadsPerThreadgroup(self_: *T, maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
-            }
-        };
+    pub fn preprocessorMacros(self_: *@This()) ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol) {
+        return objc.msgSend(self_, "preprocessorMacros", ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol), .{});
+    }
+    pub fn setPreprocessorMacros(self_: *@This(), preprocessorMacros_: ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol)) void {
+        return objc.msgSend(self_, "setPreprocessorMacros:", void, .{preprocessorMacros_});
+    }
+    pub fn fastMathEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "fastMathEnabled", bool, .{});
+    }
+    pub fn setFastMathEnabled(self_: *@This(), fastMathEnabled_: bool) void {
+        return objc.msgSend(self_, "setFastMathEnabled:", void, .{fastMathEnabled_});
+    }
+    pub fn languageVersion(self_: *@This()) LanguageVersion {
+        return objc.msgSend(self_, "languageVersion", LanguageVersion, .{});
+    }
+    pub fn setLanguageVersion(self_: *@This(), languageVersion_: LanguageVersion) void {
+        return objc.msgSend(self_, "setLanguageVersion:", void, .{languageVersion_});
+    }
+    pub fn libraryType(self_: *@This()) LibraryType {
+        return objc.msgSend(self_, "libraryType", LibraryType, .{});
+    }
+    pub fn setLibraryType(self_: *@This(), libraryType_: LibraryType) void {
+        return objc.msgSend(self_, "setLibraryType:", void, .{libraryType_});
+    }
+    pub fn installName(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "installName", ?*ns.String, .{});
+    }
+    pub fn setInstallName(self_: *@This(), installName_: ?*ns.String) void {
+        return objc.msgSend(self_, "setInstallName:", void, .{installName_});
+    }
+    pub fn libraries(self_: *@This()) ?*ns.Array(*DynamicLibrary) {
+        return objc.msgSend(self_, "libraries", ?*ns.Array(*DynamicLibrary), .{});
+    }
+    pub fn setLibraries(self_: *@This(), libraries_: ?*ns.Array(*DynamicLibrary)) void {
+        return objc.msgSend(self_, "setLibraries:", void, .{libraries_});
+    }
+    pub fn preserveInvariance(self_: *@This()) bool {
+        return objc.msgSend(self_, "preserveInvariance", bool, .{});
+    }
+    pub fn setPreserveInvariance(self_: *@This(), preserveInvariance_: bool) void {
+        return objc.msgSend(self_, "setPreserveInvariance:", void, .{preserveInvariance_});
+    }
+    pub fn optimizationLevel(self_: *@This()) LibraryOptimizationLevel {
+        return objc.msgSend(self_, "optimizationLevel", LibraryOptimizationLevel, .{});
+    }
+    pub fn setOptimizationLevel(self_: *@This(), optimizationLevel_: LibraryOptimizationLevel) void {
+        return objc.msgSend(self_, "setOptimizationLevel:", void, .{optimizationLevel_});
+    }
+    pub fn compileSymbolVisibility(self_: *@This()) CompileSymbolVisibility {
+        return objc.msgSend(self_, "compileSymbolVisibility", CompileSymbolVisibility, .{});
+    }
+    pub fn setCompileSymbolVisibility(self_: *@This(), compileSymbolVisibility_: CompileSymbolVisibility) void {
+        return objc.msgSend(self_, "setCompileSymbolVisibility:", void, .{compileSymbolVisibility_});
+    }
+    pub fn allowReferencingUndefinedSymbols(self_: *@This()) bool {
+        return objc.msgSend(self_, "allowReferencingUndefinedSymbols", bool, .{});
+    }
+    pub fn setAllowReferencingUndefinedSymbols(self_: *@This(), allowReferencingUndefinedSymbols_: bool) void {
+        return objc.msgSend(self_, "setAllowReferencingUndefinedSymbols:", void, .{allowReferencingUndefinedSymbols_});
+    }
+    pub fn maxTotalThreadsPerThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
+    }
+    pub fn setMaxTotalThreadsPerThreadgroup(self_: *@This(), maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
     }
 };
 
 pub const Library = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Library);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn newFunctionWithName(self_: *T, functionName_: *ns.String) ?*Function {
-                return objc.msgSend(self_, "newFunctionWithName:", ?*Function, .{functionName_});
-            }
-            pub fn newFunctionWithName_constantValues_error(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, error_: ?*?*ns.Error) ?*Function {
-                return objc.msgSend(self_, "newFunctionWithName:constantValues:error:", ?*Function, .{ name_, constantValues_, error_ });
-            }
-            pub fn newFunctionWithName_constantValues_completionHandler(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newFunctionWithName:constantValues:completionHandler:", void, .{ name_, constantValues_, completionHandler_ });
-            }
-            pub fn newFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *FunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newFunctionWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
-            }
-            pub fn newFunctionWithDescriptor_error(self_: *T, descriptor_: *FunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
-                return objc.msgSend(self_, "newFunctionWithDescriptor:error:", ?*Function, .{ descriptor_, error_ });
-            }
-            pub fn newIntersectionFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *IntersectionFunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
-                return objc.msgSend(self_, "newIntersectionFunctionWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
-            }
-            pub fn newIntersectionFunctionWithDescriptor_error(self_: *T, descriptor_: *IntersectionFunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
-                return objc.msgSend(self_, "newIntersectionFunctionWithDescriptor:error:", ?*Function, .{ descriptor_, error_ });
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn functionNames(self_: *T) *ns.Array(*ns.String) {
-                return objc.msgSend(self_, "functionNames", *ns.Array(*ns.String), .{});
-            }
-            pub fn @"type"(self_: *T) LibraryType {
-                return objc.msgSend(self_, "type", LibraryType, .{});
-            }
-            pub fn installName(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "installName", ?*ns.String, .{});
-            }
-        };
+    pub fn newFunctionWithName(self_: *@This(), functionName_: *ns.String) ?*Function {
+        return objc.msgSend(self_, "newFunctionWithName:", ?*Function, .{functionName_});
+    }
+    pub fn newFunctionWithName_constantValues_error(self_: *@This(), name_: *ns.String, constantValues_: *FunctionConstantValues, error_: ?*?*ns.Error) ?*Function {
+        return objc.msgSend(self_, "newFunctionWithName:constantValues:error:", ?*Function, .{ name_, constantValues_, error_ });
+    }
+    pub fn newFunctionWithName_constantValues_completionHandler(self_: *@This(), name_: *ns.String, constantValues_: *FunctionConstantValues, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newFunctionWithName:constantValues:completionHandler:", void, .{ name_, constantValues_, completionHandler_ });
+    }
+    pub fn newFunctionWithDescriptor_completionHandler(self_: *@This(), descriptor_: *FunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newFunctionWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
+    }
+    pub fn newFunctionWithDescriptor_error(self_: *@This(), descriptor_: *FunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
+        return objc.msgSend(self_, "newFunctionWithDescriptor:error:", ?*Function, .{ descriptor_, error_ });
+    }
+    pub fn newIntersectionFunctionWithDescriptor_completionHandler(self_: *@This(), descriptor_: *IntersectionFunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
+        return objc.msgSend(self_, "newIntersectionFunctionWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
+    }
+    pub fn newIntersectionFunctionWithDescriptor_error(self_: *@This(), descriptor_: *IntersectionFunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
+        return objc.msgSend(self_, "newIntersectionFunctionWithDescriptor:error:", ?*Function, .{ descriptor_, error_ });
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn functionNames(self_: *@This()) *ns.Array(*ns.String) {
+        return objc.msgSend(self_, "functionNames", *ns.Array(*ns.String), .{});
+    }
+    pub fn @"type"(self_: *@This()) LibraryType {
+        return objc.msgSend(self_, "type", LibraryType, .{});
+    }
+    pub fn installName(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "installName", ?*ns.String, .{});
     }
 };
 
 pub const LinkedFunctions = opaque {
     pub const InternalInfo = objc.ExternClass("MTLLinkedFunctions", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(LinkedFunctions);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn linkedFunctions() *LinkedFunctions {
-                return objc.msgSend(T.InternalInfo.class(), "linkedFunctions", *LinkedFunctions, .{});
-            }
-            pub fn functions(self_: *T) ?*ns.Array(*Function) {
-                return objc.msgSend(self_, "functions", ?*ns.Array(*Function), .{});
-            }
-            pub fn setFunctions(self_: *T, functions_: ?*ns.Array(*Function)) void {
-                return objc.msgSend(self_, "setFunctions:", void, .{functions_});
-            }
-            pub fn binaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return objc.msgSend(self_, "binaryFunctions", ?*ns.Array(*Function), .{});
-            }
-            pub fn setBinaryFunctions(self_: *T, binaryFunctions_: ?*ns.Array(*Function)) void {
-                return objc.msgSend(self_, "setBinaryFunctions:", void, .{binaryFunctions_});
-            }
-            pub fn groups(self_: *T) ?*ns.Dictionary(*ns.String, *ns.Array(*Function)) {
-                return objc.msgSend(self_, "groups", ?*ns.Dictionary(*ns.String, *ns.Array(*Function)), .{});
-            }
-            pub fn setGroups(self_: *T, groups_: ?*ns.Dictionary(*ns.String, *ns.Array(*Function))) void {
-                return objc.msgSend(self_, "setGroups:", void, .{groups_});
-            }
-            pub fn privateFunctions(self_: *T) ?*ns.Array(*Function) {
-                return objc.msgSend(self_, "privateFunctions", ?*ns.Array(*Function), .{});
-            }
-            pub fn setPrivateFunctions(self_: *T, privateFunctions_: ?*ns.Array(*Function)) void {
-                return objc.msgSend(self_, "setPrivateFunctions:", void, .{privateFunctions_});
-            }
-        };
+    pub fn linkedFunctions() *LinkedFunctions {
+        return objc.msgSend(@This().InternalInfo.class(), "linkedFunctions", *LinkedFunctions, .{});
+    }
+    pub fn functions(self_: *@This()) ?*ns.Array(*Function) {
+        return objc.msgSend(self_, "functions", ?*ns.Array(*Function), .{});
+    }
+    pub fn setFunctions(self_: *@This(), functions_: ?*ns.Array(*Function)) void {
+        return objc.msgSend(self_, "setFunctions:", void, .{functions_});
+    }
+    pub fn binaryFunctions(self_: *@This()) ?*ns.Array(*Function) {
+        return objc.msgSend(self_, "binaryFunctions", ?*ns.Array(*Function), .{});
+    }
+    pub fn setBinaryFunctions(self_: *@This(), binaryFunctions_: ?*ns.Array(*Function)) void {
+        return objc.msgSend(self_, "setBinaryFunctions:", void, .{binaryFunctions_});
+    }
+    pub fn groups(self_: *@This()) ?*ns.Dictionary(*ns.String, *ns.Array(*Function)) {
+        return objc.msgSend(self_, "groups", ?*ns.Dictionary(*ns.String, *ns.Array(*Function)), .{});
+    }
+    pub fn setGroups(self_: *@This(), groups_: ?*ns.Dictionary(*ns.String, *ns.Array(*Function))) void {
+        return objc.msgSend(self_, "setGroups:", void, .{groups_});
+    }
+    pub fn privateFunctions(self_: *@This()) ?*ns.Array(*Function) {
+        return objc.msgSend(self_, "privateFunctions", ?*ns.Array(*Function), .{});
+    }
+    pub fn setPrivateFunctions(self_: *@This(), privateFunctions_: ?*ns.Array(*Function)) void {
+        return objc.msgSend(self_, "setPrivateFunctions:", void, .{privateFunctions_});
     }
 };
 
 pub const ParallelRenderCommandEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ParallelRenderCommandEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace CommandEncoder.Methods(T);
-
-            pub fn renderCommandEncoder(self_: *T) ?*RenderCommandEncoder {
-                return objc.msgSend(self_, "renderCommandEncoder", ?*RenderCommandEncoder, .{});
-            }
-            pub fn setColorStoreAction_atIndex(self_: *T, storeAction_: StoreAction, colorAttachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setColorStoreAction:atIndex:", void, .{ storeAction_, colorAttachmentIndex_ });
-            }
-            pub fn setDepthStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return objc.msgSend(self_, "setDepthStoreAction:", void, .{storeAction_});
-            }
-            pub fn setStencilStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return objc.msgSend(self_, "setStencilStoreAction:", void, .{storeAction_});
-            }
-            pub fn setColorStoreActionOptions_atIndex(self_: *T, storeActionOptions_: StoreActionOptions, colorAttachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setColorStoreActionOptions:atIndex:", void, .{ storeActionOptions_, colorAttachmentIndex_ });
-            }
-            pub fn setDepthStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return objc.msgSend(self_, "setDepthStoreActionOptions:", void, .{storeActionOptions_});
-            }
-            pub fn setStencilStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return objc.msgSend(self_, "setStencilStoreActionOptions:", void, .{storeActionOptions_});
-            }
-        };
+    pub fn renderCommandEncoder(self_: *@This()) ?*RenderCommandEncoder {
+        return objc.msgSend(self_, "renderCommandEncoder", ?*RenderCommandEncoder, .{});
+    }
+    pub fn setColorStoreAction_atIndex(self_: *@This(), storeAction_: StoreAction, colorAttachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setColorStoreAction:atIndex:", void, .{ storeAction_, colorAttachmentIndex_ });
+    }
+    pub fn setDepthStoreAction(self_: *@This(), storeAction_: StoreAction) void {
+        return objc.msgSend(self_, "setDepthStoreAction:", void, .{storeAction_});
+    }
+    pub fn setStencilStoreAction(self_: *@This(), storeAction_: StoreAction) void {
+        return objc.msgSend(self_, "setStencilStoreAction:", void, .{storeAction_});
+    }
+    pub fn setColorStoreActionOptions_atIndex(self_: *@This(), storeActionOptions_: StoreActionOptions, colorAttachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setColorStoreActionOptions:atIndex:", void, .{ storeActionOptions_, colorAttachmentIndex_ });
+    }
+    pub fn setDepthStoreActionOptions(self_: *@This(), storeActionOptions_: StoreActionOptions) void {
+        return objc.msgSend(self_, "setDepthStoreActionOptions:", void, .{storeActionOptions_});
+    }
+    pub fn setStencilStoreActionOptions(self_: *@This(), storeActionOptions_: StoreActionOptions) void {
+        return objc.msgSend(self_, "setStencilStoreActionOptions:", void, .{storeActionOptions_});
     }
 };
 
 pub const PipelineBufferDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLPipelineBufferDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(PipelineBufferDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn mutability(self_: *T) Mutability {
-                return objc.msgSend(self_, "mutability", Mutability, .{});
-            }
-            pub fn setMutability(self_: *T, mutability_: Mutability) void {
-                return objc.msgSend(self_, "setMutability:", void, .{mutability_});
-            }
-        };
+    pub fn mutability(self_: *@This()) Mutability {
+        return objc.msgSend(self_, "mutability", Mutability, .{});
+    }
+    pub fn setMutability(self_: *@This(), mutability_: Mutability) void {
+        return objc.msgSend(self_, "setMutability:", void, .{mutability_});
     }
 };
 
 pub const PipelineBufferDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLPipelineBufferDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(PipelineBufferDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, bufferIndex_: ns.UInteger) *PipelineBufferDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *PipelineBufferDescriptor, .{bufferIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, buffer_: ?*PipelineBufferDescriptor, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ buffer_, bufferIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), bufferIndex_: ns.UInteger) *PipelineBufferDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *PipelineBufferDescriptor, .{bufferIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), buffer_: ?*PipelineBufferDescriptor, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ buffer_, bufferIndex_ });
     }
 };
 
 pub const RasterizationRateSampleArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRasterizationRateSampleArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RasterizationRateSampleArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *ns.Number {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *ns.Number, .{index_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, value_: *ns.Number, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ value_, index_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), index_: ns.UInteger) *ns.Number {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *ns.Number, .{index_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), value_: *ns.Number, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ value_, index_ });
     }
 };
 
 pub const RasterizationRateLayerDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRasterizationRateLayerDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RasterizationRateLayerDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn initWithSampleCount(self_: *T, sampleCount_: Size) *T {
-                return objc.msgSend(self_, "initWithSampleCount:", *T, .{sampleCount_});
-            }
-            pub fn initWithSampleCount_horizontal_vertical(self_: *T, sampleCount_: Size, horizontal_: *const f32, vertical_: *const f32) *T {
-                return objc.msgSend(self_, "initWithSampleCount:horizontal:vertical:", *T, .{ sampleCount_, horizontal_, vertical_ });
-            }
-            pub fn sampleCount(self_: *T) Size {
-                return objc.msgSend(self_, "sampleCount", Size, .{});
-            }
-            pub fn maxSampleCount(self_: *T) Size {
-                return objc.msgSend(self_, "maxSampleCount", Size, .{});
-            }
-            pub fn horizontalSampleStorage(self_: *T) *f32 {
-                return objc.msgSend(self_, "horizontalSampleStorage", *f32, .{});
-            }
-            pub fn verticalSampleStorage(self_: *T) *f32 {
-                return objc.msgSend(self_, "verticalSampleStorage", *f32, .{});
-            }
-            pub fn horizontal(self_: *T) *RasterizationRateSampleArray {
-                return objc.msgSend(self_, "horizontal", *RasterizationRateSampleArray, .{});
-            }
-            pub fn vertical(self_: *T) *RasterizationRateSampleArray {
-                return objc.msgSend(self_, "vertical", *RasterizationRateSampleArray, .{});
-            }
-            pub fn setSampleCount(self_: *T, sampleCount_: Size) void {
-                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
-            }
-        };
+    pub fn initWithSampleCount(self_: *@This(), sampleCount_: Size) *@This() {
+        return objc.msgSend(self_, "initWithSampleCount:", *@This(), .{sampleCount_});
+    }
+    pub fn initWithSampleCount_horizontal_vertical(self_: *@This(), sampleCount_: Size, horizontal_: *const f32, vertical_: *const f32) *@This() {
+        return objc.msgSend(self_, "initWithSampleCount:horizontal:vertical:", *@This(), .{ sampleCount_, horizontal_, vertical_ });
+    }
+    pub fn sampleCount(self_: *@This()) Size {
+        return objc.msgSend(self_, "sampleCount", Size, .{});
+    }
+    pub fn maxSampleCount(self_: *@This()) Size {
+        return objc.msgSend(self_, "maxSampleCount", Size, .{});
+    }
+    pub fn horizontalSampleStorage(self_: *@This()) *f32 {
+        return objc.msgSend(self_, "horizontalSampleStorage", *f32, .{});
+    }
+    pub fn verticalSampleStorage(self_: *@This()) *f32 {
+        return objc.msgSend(self_, "verticalSampleStorage", *f32, .{});
+    }
+    pub fn horizontal(self_: *@This()) *RasterizationRateSampleArray {
+        return objc.msgSend(self_, "horizontal", *RasterizationRateSampleArray, .{});
+    }
+    pub fn vertical(self_: *@This()) *RasterizationRateSampleArray {
+        return objc.msgSend(self_, "vertical", *RasterizationRateSampleArray, .{});
+    }
+    pub fn setSampleCount(self_: *@This(), sampleCount_: Size) void {
+        return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
     }
 };
 
 pub const RasterizationRateLayerArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRasterizationRateLayerArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RasterizationRateLayerArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, layerIndex_: ns.UInteger) ?*RasterizationRateLayerDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", ?*RasterizationRateLayerDescriptor, .{layerIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, layer_: ?*RasterizationRateLayerDescriptor, layerIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ layer_, layerIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), layerIndex_: ns.UInteger) ?*RasterizationRateLayerDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", ?*RasterizationRateLayerDescriptor, .{layerIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), layer_: ?*RasterizationRateLayerDescriptor, layerIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ layer_, layerIndex_ });
     }
 };
 
 pub const RasterizationRateMapDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRasterizationRateMapDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RasterizationRateMapDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn rasterizationRateMapDescriptorWithScreenSize(screenSize_: Size) *RasterizationRateMapDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:", *RasterizationRateMapDescriptor, .{screenSize_});
-            }
-            pub fn rasterizationRateMapDescriptorWithScreenSize_layer(screenSize_: Size, layer_: *RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:layer:", *RasterizationRateMapDescriptor, .{ screenSize_, layer_ });
-            }
-            pub fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(screenSize_: Size, layerCount_: ns.UInteger, layers_: **const RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:", *RasterizationRateMapDescriptor, .{ screenSize_, layerCount_, layers_ });
-            }
-            pub fn layerAtIndex(self_: *T, layerIndex_: ns.UInteger) ?*RasterizationRateLayerDescriptor {
-                return objc.msgSend(self_, "layerAtIndex:", ?*RasterizationRateLayerDescriptor, .{layerIndex_});
-            }
-            pub fn setLayer_atIndex(self_: *T, layer_: ?*RasterizationRateLayerDescriptor, layerIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setLayer:atIndex:", void, .{ layer_, layerIndex_ });
-            }
-            pub fn layers(self_: *T) *RasterizationRateLayerArray {
-                return objc.msgSend(self_, "layers", *RasterizationRateLayerArray, .{});
-            }
-            pub fn screenSize(self_: *T) Size {
-                return objc.msgSend(self_, "screenSize", Size, .{});
-            }
-            pub fn setScreenSize(self_: *T, screenSize_: Size) void {
-                return objc.msgSend(self_, "setScreenSize:", void, .{screenSize_});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn layerCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "layerCount", ns.UInteger, .{});
-            }
-        };
+    pub fn rasterizationRateMapDescriptorWithScreenSize(screenSize_: Size) *RasterizationRateMapDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:", *RasterizationRateMapDescriptor, .{screenSize_});
+    }
+    pub fn rasterizationRateMapDescriptorWithScreenSize_layer(screenSize_: Size, layer_: *RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:layer:", *RasterizationRateMapDescriptor, .{ screenSize_, layer_ });
+    }
+    pub fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(screenSize_: Size, layerCount_: ns.UInteger, layers_: **const RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:", *RasterizationRateMapDescriptor, .{ screenSize_, layerCount_, layers_ });
+    }
+    pub fn layerAtIndex(self_: *@This(), layerIndex_: ns.UInteger) ?*RasterizationRateLayerDescriptor {
+        return objc.msgSend(self_, "layerAtIndex:", ?*RasterizationRateLayerDescriptor, .{layerIndex_});
+    }
+    pub fn setLayer_atIndex(self_: *@This(), layer_: ?*RasterizationRateLayerDescriptor, layerIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setLayer:atIndex:", void, .{ layer_, layerIndex_ });
+    }
+    pub fn layers(self_: *@This()) *RasterizationRateLayerArray {
+        return objc.msgSend(self_, "layers", *RasterizationRateLayerArray, .{});
+    }
+    pub fn screenSize(self_: *@This()) Size {
+        return objc.msgSend(self_, "screenSize", Size, .{});
+    }
+    pub fn setScreenSize(self_: *@This(), screenSize_: Size) void {
+        return objc.msgSend(self_, "setScreenSize:", void, .{screenSize_});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn layerCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "layerCount", ns.UInteger, .{});
     }
 };
 
 pub const RasterizationRateMap = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RasterizationRateMap);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn copyParameterDataToBuffer_offset(self_: *T, buffer_: *Buffer, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "copyParameterDataToBuffer:offset:", void, .{ buffer_, offset_ });
-            }
-            pub fn physicalSizeForLayer(self_: *T, layerIndex_: ns.UInteger) Size {
-                return objc.msgSend(self_, "physicalSizeForLayer:", Size, .{layerIndex_});
-            }
-            pub fn mapScreenToPhysicalCoordinates_forLayer(self_: *T, screenCoordinates_: Coordinate2D, layerIndex_: ns.UInteger) Coordinate2D {
-                return objc.msgSend(self_, "mapScreenToPhysicalCoordinates:forLayer:", Coordinate2D, .{ screenCoordinates_, layerIndex_ });
-            }
-            pub fn mapPhysicalToScreenCoordinates_forLayer(self_: *T, physicalCoordinates_: Coordinate2D, layerIndex_: ns.UInteger) Coordinate2D {
-                return objc.msgSend(self_, "mapPhysicalToScreenCoordinates:forLayer:", Coordinate2D, .{ physicalCoordinates_, layerIndex_ });
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn screenSize(self_: *T) Size {
-                return objc.msgSend(self_, "screenSize", Size, .{});
-            }
-            pub fn physicalGranularity(self_: *T) Size {
-                return objc.msgSend(self_, "physicalGranularity", Size, .{});
-            }
-            pub fn layerCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "layerCount", ns.UInteger, .{});
-            }
-            pub fn parameterBufferSizeAndAlign(self_: *T) SizeAndAlign {
-                return objc.msgSend(self_, "parameterBufferSizeAndAlign", SizeAndAlign, .{});
-            }
-        };
+    pub fn copyParameterDataToBuffer_offset(self_: *@This(), buffer_: *Buffer, offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "copyParameterDataToBuffer:offset:", void, .{ buffer_, offset_ });
+    }
+    pub fn physicalSizeForLayer(self_: *@This(), layerIndex_: ns.UInteger) Size {
+        return objc.msgSend(self_, "physicalSizeForLayer:", Size, .{layerIndex_});
+    }
+    pub fn mapScreenToPhysicalCoordinates_forLayer(self_: *@This(), screenCoordinates_: Coordinate2D, layerIndex_: ns.UInteger) Coordinate2D {
+        return objc.msgSend(self_, "mapScreenToPhysicalCoordinates:forLayer:", Coordinate2D, .{ screenCoordinates_, layerIndex_ });
+    }
+    pub fn mapPhysicalToScreenCoordinates_forLayer(self_: *@This(), physicalCoordinates_: Coordinate2D, layerIndex_: ns.UInteger) Coordinate2D {
+        return objc.msgSend(self_, "mapPhysicalToScreenCoordinates:forLayer:", Coordinate2D, .{ physicalCoordinates_, layerIndex_ });
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn screenSize(self_: *@This()) Size {
+        return objc.msgSend(self_, "screenSize", Size, .{});
+    }
+    pub fn physicalGranularity(self_: *@This()) Size {
+        return objc.msgSend(self_, "physicalGranularity", Size, .{});
+    }
+    pub fn layerCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "layerCount", ns.UInteger, .{});
+    }
+    pub fn parameterBufferSizeAndAlign(self_: *@This()) SizeAndAlign {
+        return objc.msgSend(self_, "parameterBufferSizeAndAlign", SizeAndAlign, .{});
     }
 };
 
 pub const RenderCommandEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderCommandEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace CommandEncoder.Methods(T);
-
-            pub fn setRenderPipelineState(self_: *T, pipelineState_: *RenderPipelineState) void {
-                return objc.msgSend(self_, "setRenderPipelineState:", void, .{pipelineState_});
-            }
-            pub fn setVertexBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
-            }
-            pub fn setVertexBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setVertexBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBufferOffset:atIndex:", void, .{ offset_, index_ });
-            }
-            pub fn setVertexBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVertexBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
-            }
-            pub fn setVertexBuffers_offsets_attributeStrides_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVertexBuffers:offsets:attributeStrides:withRange:", void, .{ buffers_, offsets_, strides_, range_ });
-            }
-            pub fn setVertexBufferOffset_attributeStride_atIndex(self_: *T, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBufferOffset:attributeStride:atIndex:", void, .{ offset_, stride_, index_ });
-            }
-            pub fn setVertexBytes_length_attributeStride_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexBytes:length:attributeStride:atIndex:", void, .{ bytes_, length_, stride_, index_ });
-            }
-            pub fn setVertexTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexTexture:atIndex:", void, .{ texture_, index_ });
-            }
-            pub fn setVertexTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVertexTextures:withRange:", void, .{ textures_, range_ });
-            }
-            pub fn setVertexSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexSamplerState:atIndex:", void, .{ sampler_, index_ });
-            }
-            pub fn setVertexSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVertexSamplerStates:withRange:", void, .{ samplers_, range_ });
-            }
-            pub fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
-            }
-            pub fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
-            }
-            pub fn setVertexVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
-            }
-            pub fn setVertexVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVertexVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
-            }
-            pub fn setVertexIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
-            }
-            pub fn setVertexIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setVertexIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
-            }
-            pub fn setVertexAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVertexAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
-            }
-            pub fn setViewport(self_: *T, viewport_: Viewport) void {
-                return objc.msgSend(self_, "setViewport:", void, .{viewport_});
-            }
-            pub fn setViewports_count(self_: *T, viewports_: *const Viewport, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "setViewports:count:", void, .{ viewports_, count_ });
-            }
-            pub fn setFrontFacingWinding(self_: *T, frontFacingWinding_: Winding) void {
-                return objc.msgSend(self_, "setFrontFacingWinding:", void, .{frontFacingWinding_});
-            }
-            pub fn setVertexAmplificationCount_viewMappings(self_: *T, count_: ns.UInteger, viewMappings_: ?*const VertexAmplificationViewMapping) void {
-                return objc.msgSend(self_, "setVertexAmplificationCount:viewMappings:", void, .{ count_, viewMappings_ });
-            }
-            pub fn setCullMode(self_: *T, cullMode_: CullMode) void {
-                return objc.msgSend(self_, "setCullMode:", void, .{cullMode_});
-            }
-            pub fn setDepthClipMode(self_: *T, depthClipMode_: DepthClipMode) void {
-                return objc.msgSend(self_, "setDepthClipMode:", void, .{depthClipMode_});
-            }
-            pub fn setDepthBias_slopeScale_clamp(self_: *T, depthBias_: f32, slopeScale_: f32, clamp_: f32) void {
-                return objc.msgSend(self_, "setDepthBias:slopeScale:clamp:", void, .{ depthBias_, slopeScale_, clamp_ });
-            }
-            pub fn setScissorRect(self_: *T, rect_: ScissorRect) void {
-                return objc.msgSend(self_, "setScissorRect:", void, .{rect_});
-            }
-            pub fn setScissorRects_count(self_: *T, scissorRects_: *const ScissorRect, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "setScissorRects:count:", void, .{ scissorRects_, count_ });
-            }
-            pub fn setTriangleFillMode(self_: *T, fillMode_: TriangleFillMode) void {
-                return objc.msgSend(self_, "setTriangleFillMode:", void, .{fillMode_});
-            }
-            pub fn setFragmentBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
-            }
-            pub fn setFragmentBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setFragmentBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentBufferOffset:atIndex:", void, .{ offset_, index_ });
-            }
-            pub fn setFragmentBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFragmentBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setFragmentTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentTexture:atIndex:", void, .{ texture_, index_ });
-            }
-            pub fn setFragmentTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFragmentTextures:withRange:", void, .{ textures_, range_ });
-            }
-            pub fn setFragmentSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentSamplerState:atIndex:", void, .{ sampler_, index_ });
-            }
-            pub fn setFragmentSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFragmentSamplerStates:withRange:", void, .{ samplers_, range_ });
-            }
-            pub fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
-            }
-            pub fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
-            }
-            pub fn setFragmentVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
-            }
-            pub fn setFragmentVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFragmentVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
-            }
-            pub fn setFragmentIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
-            }
-            pub fn setFragmentIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFragmentIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
-            }
-            pub fn setFragmentAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFragmentAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
-            }
-            pub fn setBlendColorRed_green_blue_alpha(self_: *T, red_: f32, green_: f32, blue_: f32, alpha_: f32) void {
-                return objc.msgSend(self_, "setBlendColorRed:green:blue:alpha:", void, .{ red_, green_, blue_, alpha_ });
-            }
-            pub fn setDepthStencilState(self_: *T, depthStencilState_: ?*DepthStencilState) void {
-                return objc.msgSend(self_, "setDepthStencilState:", void, .{depthStencilState_});
-            }
-            pub fn setStencilReferenceValue(self_: *T, referenceValue_: u32) void {
-                return objc.msgSend(self_, "setStencilReferenceValue:", void, .{referenceValue_});
-            }
-            pub fn setStencilFrontReferenceValue_backReferenceValue(self_: *T, frontReferenceValue_: u32, backReferenceValue_: u32) void {
-                return objc.msgSend(self_, "setStencilFrontReferenceValue:backReferenceValue:", void, .{ frontReferenceValue_, backReferenceValue_ });
-            }
-            pub fn setVisibilityResultMode_offset(self_: *T, mode_: VisibilityResultMode, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setVisibilityResultMode:offset:", void, .{ mode_, offset_ });
-            }
-            pub fn setColorStoreAction_atIndex(self_: *T, storeAction_: StoreAction, colorAttachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setColorStoreAction:atIndex:", void, .{ storeAction_, colorAttachmentIndex_ });
-            }
-            pub fn setDepthStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return objc.msgSend(self_, "setDepthStoreAction:", void, .{storeAction_});
-            }
-            pub fn setStencilStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return objc.msgSend(self_, "setStencilStoreAction:", void, .{storeAction_});
-            }
-            pub fn setColorStoreActionOptions_atIndex(self_: *T, storeActionOptions_: StoreActionOptions, colorAttachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setColorStoreActionOptions:atIndex:", void, .{ storeActionOptions_, colorAttachmentIndex_ });
-            }
-            pub fn setDepthStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return objc.msgSend(self_, "setDepthStoreActionOptions:", void, .{storeActionOptions_});
-            }
-            pub fn setStencilStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return objc.msgSend(self_, "setStencilStoreActionOptions:", void, .{storeActionOptions_});
-            }
-            pub fn setObjectBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
-            }
-            pub fn setObjectBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setObjectBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectBufferOffset:atIndex:", void, .{ offset_, index_ });
-            }
-            pub fn setObjectBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setObjectBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setObjectTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectTexture:atIndex:", void, .{ texture_, index_ });
-            }
-            pub fn setObjectTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return objc.msgSend(self_, "setObjectTextures:withRange:", void, .{ textures_, range_ });
-            }
-            pub fn setObjectSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectSamplerState:atIndex:", void, .{ sampler_, index_ });
-            }
-            pub fn setObjectSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setObjectSamplerStates:withRange:", void, .{ samplers_, range_ });
-            }
-            pub fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
-            }
-            pub fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return objc.msgSend(self_, "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
-            }
-            pub fn setObjectThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObjectThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
-            }
-            pub fn setMeshBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMeshBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
-            }
-            pub fn setMeshBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMeshBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setMeshBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMeshBufferOffset:atIndex:", void, .{ offset_, index_ });
-            }
-            pub fn setMeshBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setMeshBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setMeshTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMeshTexture:atIndex:", void, .{ texture_, index_ });
-            }
-            pub fn setMeshTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return objc.msgSend(self_, "setMeshTextures:withRange:", void, .{ textures_, range_ });
-            }
-            pub fn setMeshSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMeshSamplerState:atIndex:", void, .{ sampler_, index_ });
-            }
-            pub fn setMeshSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setMeshSamplerStates:withRange:", void, .{ samplers_, range_ });
-            }
-            pub fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
-            }
-            pub fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return objc.msgSend(self_, "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
-            }
-            pub fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return objc.msgSend(self_, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
-            }
-            pub fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return objc.msgSend(self_, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
-            }
-            pub fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return objc.msgSend(self_, "drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ indirectBuffer_, indirectBufferOffset_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
-            }
-            pub fn drawPrimitives_vertexStart_vertexCount_instanceCount(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_ });
-            }
-            pub fn drawPrimitives_vertexStart_vertexCount(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:", void, .{ primitiveType_, vertexStart_, vertexCount_ });
-            }
-            pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_ });
-            }
-            pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_ });
-            }
-            pub fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_ });
-            }
-            pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseVertex_: ns.Integer, baseInstance_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_ });
-            }
-            pub fn drawPrimitives_indirectBuffer_indirectBufferOffset(self_: *T, primitiveType_: PrimitiveType, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPrimitives:indirectBuffer:indirectBufferOffset:", void, .{ primitiveType_, indirectBuffer_, indirectBufferOffset_ });
-            }
-            pub fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *T, primitiveType_: PrimitiveType, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ primitiveType_, indexType_, indexBuffer_, indexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
-            }
-            pub fn textureBarrier(self_: *T) void {
-                return objc.msgSend(self_, "textureBarrier", void, .{});
-            }
-            pub fn updateFence_afterStages(self_: *T, fence_: *Fence, stages_: RenderStages) void {
-                return objc.msgSend(self_, "updateFence:afterStages:", void, .{ fence_, stages_ });
-            }
-            pub fn waitForFence_beforeStages(self_: *T, fence_: *Fence, stages_: RenderStages) void {
-                return objc.msgSend(self_, "waitForFence:beforeStages:", void, .{ fence_, stages_ });
-            }
-            pub fn setTessellationFactorBuffer_offset_instanceStride(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTessellationFactorBuffer:offset:instanceStride:", void, .{ buffer_, offset_, instanceStride_ });
-            }
-            pub fn setTessellationFactorScale(self_: *T, scale_: f32) void {
-                return objc.msgSend(self_, "setTessellationFactorScale:", void, .{scale_});
-            }
-            pub fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_ });
-            }
-            pub fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
-            }
-            pub fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_ });
-            }
-            pub fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
-            }
-            pub fn setTileBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
-            }
-            pub fn setTileBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
-            }
-            pub fn setTileBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileBufferOffset:atIndex:", void, .{ offset_, index_ });
-            }
-            pub fn setTileBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTileBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
-            }
-            pub fn setTileTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileTexture:atIndex:", void, .{ texture_, index_ });
-            }
-            pub fn setTileTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTileTextures:withRange:", void, .{ textures_, range_ });
-            }
-            pub fn setTileSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileSamplerState:atIndex:", void, .{ sampler_, index_ });
-            }
-            pub fn setTileSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTileSamplerStates:withRange:", void, .{ samplers_, range_ });
-            }
-            pub fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
-            }
-            pub fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
-            }
-            pub fn setTileVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
-            }
-            pub fn setTileVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTileVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
-            }
-            pub fn setTileIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
-            }
-            pub fn setTileIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return objc.msgSend(self_, "setTileIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
-            }
-            pub fn setTileAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
-            }
-            pub fn dispatchThreadsPerTile(self_: *T, threadsPerTile_: Size) void {
-                return objc.msgSend(self_, "dispatchThreadsPerTile:", void, .{threadsPerTile_});
-            }
-            pub fn setThreadgroupMemoryLength_offset_atIndex(self_: *T, length_: ns.UInteger, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setThreadgroupMemoryLength:offset:atIndex:", void, .{ length_, offset_, index_ });
-            }
-            pub fn useResource_usage(self_: *T, resource_: *Resource, usage_: ResourceUsage) void {
-                return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
-            }
-            pub fn useResources_count_usage(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
-                return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
-            }
-            pub fn useResource_usage_stages(self_: *T, resource_: *Resource, usage_: ResourceUsage, stages_: RenderStages) void {
-                return objc.msgSend(self_, "useResource:usage:stages:", void, .{ resource_, usage_, stages_ });
-            }
-            pub fn useResources_count_usage_stages(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage, stages_: RenderStages) void {
-                return objc.msgSend(self_, "useResources:count:usage:stages:", void, .{ resources_, count_, usage_, stages_ });
-            }
-            pub fn useHeap(self_: *T, heap_: *Heap) void {
-                return objc.msgSend(self_, "useHeap:", void, .{heap_});
-            }
-            pub fn useHeaps_count(self_: *T, heaps_: **const Heap, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
-            }
-            pub fn useHeap_stages(self_: *T, heap_: *Heap, stages_: RenderStages) void {
-                return objc.msgSend(self_, "useHeap:stages:", void, .{ heap_, stages_ });
-            }
-            pub fn useHeaps_count_stages(self_: *T, heaps_: **const Heap, count_: ns.UInteger, stages_: RenderStages) void {
-                return objc.msgSend(self_, "useHeaps:count:stages:", void, .{ heaps_, count_, stages_ });
-            }
-            pub fn executeCommandsInBuffer_withRange(self_: *T, indirectCommandBuffer_: *IndirectCommandBuffer, executionRange_: ns.Range) void {
-                return objc.msgSend(self_, "executeCommandsInBuffer:withRange:", void, .{ indirectCommandBuffer_, executionRange_ });
-            }
-            pub fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(self_: *T, indirectCommandbuffer_: *IndirectCommandBuffer, indirectRangeBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", void, .{ indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_ });
-            }
-            pub fn memoryBarrierWithScope_afterStages_beforeStages(self_: *T, scope_: BarrierScope, after_: RenderStages, before_: RenderStages) void {
-                return objc.msgSend(self_, "memoryBarrierWithScope:afterStages:beforeStages:", void, .{ scope_, after_, before_ });
-            }
-            pub fn memoryBarrierWithResources_count_afterStages_beforeStages(self_: *T, resources_: **const Resource, count_: ns.UInteger, after_: RenderStages, before_: RenderStages) void {
-                return objc.msgSend(self_, "memoryBarrierWithResources:count:afterStages:beforeStages:", void, .{ resources_, count_, after_, before_ });
-            }
-            pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
-            }
-            pub fn tileWidth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "tileWidth", ns.UInteger, .{});
-            }
-            pub fn tileHeight(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "tileHeight", ns.UInteger, .{});
-            }
-        };
+    pub fn setRenderPipelineState(self_: *@This(), pipelineState_: *RenderPipelineState) void {
+        return objc.msgSend(self_, "setRenderPipelineState:", void, .{pipelineState_});
+    }
+    pub fn setVertexBytes_length_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
+    }
+    pub fn setVertexBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setVertexBufferOffset_atIndex(self_: *@This(), offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBufferOffset:atIndex:", void, .{ offset_, index_ });
+    }
+    pub fn setVertexBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVertexBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
+    }
+    pub fn setVertexBuffers_offsets_attributeStrides_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVertexBuffers:offsets:attributeStrides:withRange:", void, .{ buffers_, offsets_, strides_, range_ });
+    }
+    pub fn setVertexBufferOffset_attributeStride_atIndex(self_: *@This(), offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBufferOffset:attributeStride:atIndex:", void, .{ offset_, stride_, index_ });
+    }
+    pub fn setVertexBytes_length_attributeStride_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexBytes:length:attributeStride:atIndex:", void, .{ bytes_, length_, stride_, index_ });
+    }
+    pub fn setVertexTexture_atIndex(self_: *@This(), texture_: ?*Texture, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexTexture:atIndex:", void, .{ texture_, index_ });
+    }
+    pub fn setVertexTextures_withRange(self_: *@This(), textures_: *?*const Texture, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVertexTextures:withRange:", void, .{ textures_, range_ });
+    }
+    pub fn setVertexSamplerState_atIndex(self_: *@This(), sampler_: ?*SamplerState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexSamplerState:atIndex:", void, .{ sampler_, index_ });
+    }
+    pub fn setVertexSamplerStates_withRange(self_: *@This(), samplers_: *?*const SamplerState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVertexSamplerStates:withRange:", void, .{ samplers_, range_ });
+    }
+    pub fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *@This(), sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
+    }
+    pub fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *@This(), samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
+    }
+    pub fn setVertexVisibleFunctionTable_atBufferIndex(self_: *@This(), functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
+    }
+    pub fn setVertexVisibleFunctionTables_withBufferRange(self_: *@This(), functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVertexVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
+    }
+    pub fn setVertexIntersectionFunctionTable_atBufferIndex(self_: *@This(), intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
+    }
+    pub fn setVertexIntersectionFunctionTables_withBufferRange(self_: *@This(), intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setVertexIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
+    }
+    pub fn setVertexAccelerationStructure_atBufferIndex(self_: *@This(), accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVertexAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
+    }
+    pub fn setViewport(self_: *@This(), viewport_: Viewport) void {
+        return objc.msgSend(self_, "setViewport:", void, .{viewport_});
+    }
+    pub fn setViewports_count(self_: *@This(), viewports_: *const Viewport, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "setViewports:count:", void, .{ viewports_, count_ });
+    }
+    pub fn setFrontFacingWinding(self_: *@This(), frontFacingWinding_: Winding) void {
+        return objc.msgSend(self_, "setFrontFacingWinding:", void, .{frontFacingWinding_});
+    }
+    pub fn setVertexAmplificationCount_viewMappings(self_: *@This(), count_: ns.UInteger, viewMappings_: ?*const VertexAmplificationViewMapping) void {
+        return objc.msgSend(self_, "setVertexAmplificationCount:viewMappings:", void, .{ count_, viewMappings_ });
+    }
+    pub fn setCullMode(self_: *@This(), cullMode_: CullMode) void {
+        return objc.msgSend(self_, "setCullMode:", void, .{cullMode_});
+    }
+    pub fn setDepthClipMode(self_: *@This(), depthClipMode_: DepthClipMode) void {
+        return objc.msgSend(self_, "setDepthClipMode:", void, .{depthClipMode_});
+    }
+    pub fn setDepthBias_slopeScale_clamp(self_: *@This(), depthBias_: f32, slopeScale_: f32, clamp_: f32) void {
+        return objc.msgSend(self_, "setDepthBias:slopeScale:clamp:", void, .{ depthBias_, slopeScale_, clamp_ });
+    }
+    pub fn setScissorRect(self_: *@This(), rect_: ScissorRect) void {
+        return objc.msgSend(self_, "setScissorRect:", void, .{rect_});
+    }
+    pub fn setScissorRects_count(self_: *@This(), scissorRects_: *const ScissorRect, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "setScissorRects:count:", void, .{ scissorRects_, count_ });
+    }
+    pub fn setTriangleFillMode(self_: *@This(), fillMode_: TriangleFillMode) void {
+        return objc.msgSend(self_, "setTriangleFillMode:", void, .{fillMode_});
+    }
+    pub fn setFragmentBytes_length_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
+    }
+    pub fn setFragmentBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setFragmentBufferOffset_atIndex(self_: *@This(), offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentBufferOffset:atIndex:", void, .{ offset_, index_ });
+    }
+    pub fn setFragmentBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFragmentBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setFragmentTexture_atIndex(self_: *@This(), texture_: ?*Texture, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentTexture:atIndex:", void, .{ texture_, index_ });
+    }
+    pub fn setFragmentTextures_withRange(self_: *@This(), textures_: *?*const Texture, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFragmentTextures:withRange:", void, .{ textures_, range_ });
+    }
+    pub fn setFragmentSamplerState_atIndex(self_: *@This(), sampler_: ?*SamplerState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentSamplerState:atIndex:", void, .{ sampler_, index_ });
+    }
+    pub fn setFragmentSamplerStates_withRange(self_: *@This(), samplers_: *?*const SamplerState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFragmentSamplerStates:withRange:", void, .{ samplers_, range_ });
+    }
+    pub fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *@This(), sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
+    }
+    pub fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *@This(), samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
+    }
+    pub fn setFragmentVisibleFunctionTable_atBufferIndex(self_: *@This(), functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
+    }
+    pub fn setFragmentVisibleFunctionTables_withBufferRange(self_: *@This(), functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFragmentVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
+    }
+    pub fn setFragmentIntersectionFunctionTable_atBufferIndex(self_: *@This(), intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
+    }
+    pub fn setFragmentIntersectionFunctionTables_withBufferRange(self_: *@This(), intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFragmentIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
+    }
+    pub fn setFragmentAccelerationStructure_atBufferIndex(self_: *@This(), accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFragmentAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
+    }
+    pub fn setBlendColorRed_green_blue_alpha(self_: *@This(), red_: f32, green_: f32, blue_: f32, alpha_: f32) void {
+        return objc.msgSend(self_, "setBlendColorRed:green:blue:alpha:", void, .{ red_, green_, blue_, alpha_ });
+    }
+    pub fn setDepthStencilState(self_: *@This(), depthStencilState_: ?*DepthStencilState) void {
+        return objc.msgSend(self_, "setDepthStencilState:", void, .{depthStencilState_});
+    }
+    pub fn setStencilReferenceValue(self_: *@This(), referenceValue_: u32) void {
+        return objc.msgSend(self_, "setStencilReferenceValue:", void, .{referenceValue_});
+    }
+    pub fn setStencilFrontReferenceValue_backReferenceValue(self_: *@This(), frontReferenceValue_: u32, backReferenceValue_: u32) void {
+        return objc.msgSend(self_, "setStencilFrontReferenceValue:backReferenceValue:", void, .{ frontReferenceValue_, backReferenceValue_ });
+    }
+    pub fn setVisibilityResultMode_offset(self_: *@This(), mode_: VisibilityResultMode, offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setVisibilityResultMode:offset:", void, .{ mode_, offset_ });
+    }
+    pub fn setColorStoreAction_atIndex(self_: *@This(), storeAction_: StoreAction, colorAttachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setColorStoreAction:atIndex:", void, .{ storeAction_, colorAttachmentIndex_ });
+    }
+    pub fn setDepthStoreAction(self_: *@This(), storeAction_: StoreAction) void {
+        return objc.msgSend(self_, "setDepthStoreAction:", void, .{storeAction_});
+    }
+    pub fn setStencilStoreAction(self_: *@This(), storeAction_: StoreAction) void {
+        return objc.msgSend(self_, "setStencilStoreAction:", void, .{storeAction_});
+    }
+    pub fn setColorStoreActionOptions_atIndex(self_: *@This(), storeActionOptions_: StoreActionOptions, colorAttachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setColorStoreActionOptions:atIndex:", void, .{ storeActionOptions_, colorAttachmentIndex_ });
+    }
+    pub fn setDepthStoreActionOptions(self_: *@This(), storeActionOptions_: StoreActionOptions) void {
+        return objc.msgSend(self_, "setDepthStoreActionOptions:", void, .{storeActionOptions_});
+    }
+    pub fn setStencilStoreActionOptions(self_: *@This(), storeActionOptions_: StoreActionOptions) void {
+        return objc.msgSend(self_, "setStencilStoreActionOptions:", void, .{storeActionOptions_});
+    }
+    pub fn setObjectBytes_length_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
+    }
+    pub fn setObjectBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setObjectBufferOffset_atIndex(self_: *@This(), offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectBufferOffset:atIndex:", void, .{ offset_, index_ });
+    }
+    pub fn setObjectBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setObjectBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setObjectTexture_atIndex(self_: *@This(), texture_: ?*Texture, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectTexture:atIndex:", void, .{ texture_, index_ });
+    }
+    pub fn setObjectTextures_withRange(self_: *@This(), textures_: *?*const Texture, range_: ns.Range) void {
+        return objc.msgSend(self_, "setObjectTextures:withRange:", void, .{ textures_, range_ });
+    }
+    pub fn setObjectSamplerState_atIndex(self_: *@This(), sampler_: ?*SamplerState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectSamplerState:atIndex:", void, .{ sampler_, index_ });
+    }
+    pub fn setObjectSamplerStates_withRange(self_: *@This(), samplers_: *?*const SamplerState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setObjectSamplerStates:withRange:", void, .{ samplers_, range_ });
+    }
+    pub fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *@This(), sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
+    }
+    pub fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *@This(), samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
+        return objc.msgSend(self_, "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
+    }
+    pub fn setObjectThreadgroupMemoryLength_atIndex(self_: *@This(), length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObjectThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
+    }
+    pub fn setMeshBytes_length_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMeshBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
+    }
+    pub fn setMeshBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMeshBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setMeshBufferOffset_atIndex(self_: *@This(), offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMeshBufferOffset:atIndex:", void, .{ offset_, index_ });
+    }
+    pub fn setMeshBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setMeshBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setMeshTexture_atIndex(self_: *@This(), texture_: ?*Texture, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMeshTexture:atIndex:", void, .{ texture_, index_ });
+    }
+    pub fn setMeshTextures_withRange(self_: *@This(), textures_: *?*const Texture, range_: ns.Range) void {
+        return objc.msgSend(self_, "setMeshTextures:withRange:", void, .{ textures_, range_ });
+    }
+    pub fn setMeshSamplerState_atIndex(self_: *@This(), sampler_: ?*SamplerState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMeshSamplerState:atIndex:", void, .{ sampler_, index_ });
+    }
+    pub fn setMeshSamplerStates_withRange(self_: *@This(), samplers_: *?*const SamplerState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setMeshSamplerStates:withRange:", void, .{ samplers_, range_ });
+    }
+    pub fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *@This(), sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
+    }
+    pub fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *@This(), samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
+        return objc.msgSend(self_, "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
+    }
+    pub fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *@This(), threadgroupsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
+        return objc.msgSend(self_, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
+    }
+    pub fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *@This(), threadsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
+        return objc.msgSend(self_, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
+    }
+    pub fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *@This(), indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
+        return objc.msgSend(self_, "drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ indirectBuffer_, indirectBufferOffset_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
+    }
+    pub fn drawPrimitives_vertexStart_vertexCount_instanceCount(self_: *@This(), primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_ });
+    }
+    pub fn drawPrimitives_vertexStart_vertexCount(self_: *@This(), primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:", void, .{ primitiveType_, vertexStart_, vertexCount_ });
+    }
+    pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(self_: *@This(), primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_ });
+    }
+    pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(self_: *@This(), primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_ });
+    }
+    pub fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(self_: *@This(), primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_ });
+    }
+    pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(self_: *@This(), primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseVertex_: ns.Integer, baseInstance_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_ });
+    }
+    pub fn drawPrimitives_indirectBuffer_indirectBufferOffset(self_: *@This(), primitiveType_: PrimitiveType, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPrimitives:indirectBuffer:indirectBufferOffset:", void, .{ primitiveType_, indirectBuffer_, indirectBufferOffset_ });
+    }
+    pub fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *@This(), primitiveType_: PrimitiveType, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ primitiveType_, indexType_, indexBuffer_, indexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
+    }
+    pub fn textureBarrier(self_: *@This()) void {
+        return objc.msgSend(self_, "textureBarrier", void, .{});
+    }
+    pub fn updateFence_afterStages(self_: *@This(), fence_: *Fence, stages_: RenderStages) void {
+        return objc.msgSend(self_, "updateFence:afterStages:", void, .{ fence_, stages_ });
+    }
+    pub fn waitForFence_beforeStages(self_: *@This(), fence_: *Fence, stages_: RenderStages) void {
+        return objc.msgSend(self_, "waitForFence:beforeStages:", void, .{ fence_, stages_ });
+    }
+    pub fn setTessellationFactorBuffer_offset_instanceStride(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTessellationFactorBuffer:offset:instanceStride:", void, .{ buffer_, offset_, instanceStride_ });
+    }
+    pub fn setTessellationFactorScale(self_: *@This(), scale_: f32) void {
+        return objc.msgSend(self_, "setTessellationFactorScale:", void, .{scale_});
+    }
+    pub fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(self_: *@This(), numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_ });
+    }
+    pub fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *@This(), numberOfPatchControlPoints_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
+    }
+    pub fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(self_: *@This(), numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_ });
+    }
+    pub fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *@This(), numberOfPatchControlPoints_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
+    }
+    pub fn setTileBytes_length_atIndex(self_: *@This(), bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
+    }
+    pub fn setTileBuffer_offset_atIndex(self_: *@This(), buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
+    }
+    pub fn setTileBufferOffset_atIndex(self_: *@This(), offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileBufferOffset:atIndex:", void, .{ offset_, index_ });
+    }
+    pub fn setTileBuffers_offsets_withRange(self_: *@This(), buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTileBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
+    }
+    pub fn setTileTexture_atIndex(self_: *@This(), texture_: ?*Texture, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileTexture:atIndex:", void, .{ texture_, index_ });
+    }
+    pub fn setTileTextures_withRange(self_: *@This(), textures_: *?*const Texture, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTileTextures:withRange:", void, .{ textures_, range_ });
+    }
+    pub fn setTileSamplerState_atIndex(self_: *@This(), sampler_: ?*SamplerState, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileSamplerState:atIndex:", void, .{ sampler_, index_ });
+    }
+    pub fn setTileSamplerStates_withRange(self_: *@This(), samplers_: *?*const SamplerState, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTileSamplerStates:withRange:", void, .{ samplers_, range_ });
+    }
+    pub fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *@This(), sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
+    }
+    pub fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *@This(), samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
+    }
+    pub fn setTileVisibleFunctionTable_atBufferIndex(self_: *@This(), functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
+    }
+    pub fn setTileVisibleFunctionTables_withBufferRange(self_: *@This(), functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTileVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
+    }
+    pub fn setTileIntersectionFunctionTable_atBufferIndex(self_: *@This(), intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
+    }
+    pub fn setTileIntersectionFunctionTables_withBufferRange(self_: *@This(), intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
+        return objc.msgSend(self_, "setTileIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
+    }
+    pub fn setTileAccelerationStructure_atBufferIndex(self_: *@This(), accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
+    }
+    pub fn dispatchThreadsPerTile(self_: *@This(), threadsPerTile_: Size) void {
+        return objc.msgSend(self_, "dispatchThreadsPerTile:", void, .{threadsPerTile_});
+    }
+    pub fn setThreadgroupMemoryLength_offset_atIndex(self_: *@This(), length_: ns.UInteger, offset_: ns.UInteger, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setThreadgroupMemoryLength:offset:atIndex:", void, .{ length_, offset_, index_ });
+    }
+    pub fn useResource_usage(self_: *@This(), resource_: *Resource, usage_: ResourceUsage) void {
+        return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
+    }
+    pub fn useResources_count_usage(self_: *@This(), resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
+        return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
+    }
+    pub fn useResource_usage_stages(self_: *@This(), resource_: *Resource, usage_: ResourceUsage, stages_: RenderStages) void {
+        return objc.msgSend(self_, "useResource:usage:stages:", void, .{ resource_, usage_, stages_ });
+    }
+    pub fn useResources_count_usage_stages(self_: *@This(), resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage, stages_: RenderStages) void {
+        return objc.msgSend(self_, "useResources:count:usage:stages:", void, .{ resources_, count_, usage_, stages_ });
+    }
+    pub fn useHeap(self_: *@This(), heap_: *Heap) void {
+        return objc.msgSend(self_, "useHeap:", void, .{heap_});
+    }
+    pub fn useHeaps_count(self_: *@This(), heaps_: **const Heap, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
+    }
+    pub fn useHeap_stages(self_: *@This(), heap_: *Heap, stages_: RenderStages) void {
+        return objc.msgSend(self_, "useHeap:stages:", void, .{ heap_, stages_ });
+    }
+    pub fn useHeaps_count_stages(self_: *@This(), heaps_: **const Heap, count_: ns.UInteger, stages_: RenderStages) void {
+        return objc.msgSend(self_, "useHeaps:count:stages:", void, .{ heaps_, count_, stages_ });
+    }
+    pub fn executeCommandsInBuffer_withRange(self_: *@This(), indirectCommandBuffer_: *IndirectCommandBuffer, executionRange_: ns.Range) void {
+        return objc.msgSend(self_, "executeCommandsInBuffer:withRange:", void, .{ indirectCommandBuffer_, executionRange_ });
+    }
+    pub fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(self_: *@This(), indirectCommandbuffer_: *IndirectCommandBuffer, indirectRangeBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", void, .{ indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_ });
+    }
+    pub fn memoryBarrierWithScope_afterStages_beforeStages(self_: *@This(), scope_: BarrierScope, after_: RenderStages, before_: RenderStages) void {
+        return objc.msgSend(self_, "memoryBarrierWithScope:afterStages:beforeStages:", void, .{ scope_, after_, before_ });
+    }
+    pub fn memoryBarrierWithResources_count_afterStages_beforeStages(self_: *@This(), resources_: **const Resource, count_: ns.UInteger, after_: RenderStages, before_: RenderStages) void {
+        return objc.msgSend(self_, "memoryBarrierWithResources:count:afterStages:beforeStages:", void, .{ resources_, count_, after_, before_ });
+    }
+    pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *@This(), sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
+        return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
+    }
+    pub fn tileWidth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "tileWidth", ns.UInteger, .{});
+    }
+    pub fn tileHeight(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "tileHeight", ns.UInteger, .{});
     }
 };
 
 pub const RenderPassAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn texture(self_: *T) ?*Texture {
-                return objc.msgSend(self_, "texture", ?*Texture, .{});
-            }
-            pub fn setTexture(self_: *T, texture_: ?*Texture) void {
-                return objc.msgSend(self_, "setTexture:", void, .{texture_});
-            }
-            pub fn level(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "level", ns.UInteger, .{});
-            }
-            pub fn setLevel(self_: *T, level_: ns.UInteger) void {
-                return objc.msgSend(self_, "setLevel:", void, .{level_});
-            }
-            pub fn slice(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "slice", ns.UInteger, .{});
-            }
-            pub fn setSlice(self_: *T, slice_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSlice:", void, .{slice_});
-            }
-            pub fn depthPlane(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "depthPlane", ns.UInteger, .{});
-            }
-            pub fn setDepthPlane(self_: *T, depthPlane_: ns.UInteger) void {
-                return objc.msgSend(self_, "setDepthPlane:", void, .{depthPlane_});
-            }
-            pub fn resolveTexture(self_: *T) ?*Texture {
-                return objc.msgSend(self_, "resolveTexture", ?*Texture, .{});
-            }
-            pub fn setResolveTexture(self_: *T, resolveTexture_: ?*Texture) void {
-                return objc.msgSend(self_, "setResolveTexture:", void, .{resolveTexture_});
-            }
-            pub fn resolveLevel(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "resolveLevel", ns.UInteger, .{});
-            }
-            pub fn setResolveLevel(self_: *T, resolveLevel_: ns.UInteger) void {
-                return objc.msgSend(self_, "setResolveLevel:", void, .{resolveLevel_});
-            }
-            pub fn resolveSlice(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "resolveSlice", ns.UInteger, .{});
-            }
-            pub fn setResolveSlice(self_: *T, resolveSlice_: ns.UInteger) void {
-                return objc.msgSend(self_, "setResolveSlice:", void, .{resolveSlice_});
-            }
-            pub fn resolveDepthPlane(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "resolveDepthPlane", ns.UInteger, .{});
-            }
-            pub fn setResolveDepthPlane(self_: *T, resolveDepthPlane_: ns.UInteger) void {
-                return objc.msgSend(self_, "setResolveDepthPlane:", void, .{resolveDepthPlane_});
-            }
-            pub fn loadAction(self_: *T) LoadAction {
-                return objc.msgSend(self_, "loadAction", LoadAction, .{});
-            }
-            pub fn setLoadAction(self_: *T, loadAction_: LoadAction) void {
-                return objc.msgSend(self_, "setLoadAction:", void, .{loadAction_});
-            }
-            pub fn storeAction(self_: *T) StoreAction {
-                return objc.msgSend(self_, "storeAction", StoreAction, .{});
-            }
-            pub fn setStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return objc.msgSend(self_, "setStoreAction:", void, .{storeAction_});
-            }
-            pub fn storeActionOptions(self_: *T) StoreActionOptions {
-                return objc.msgSend(self_, "storeActionOptions", StoreActionOptions, .{});
-            }
-            pub fn setStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return objc.msgSend(self_, "setStoreActionOptions:", void, .{storeActionOptions_});
-            }
-        };
+    pub fn texture(self_: *@This()) ?*Texture {
+        return objc.msgSend(self_, "texture", ?*Texture, .{});
+    }
+    pub fn setTexture(self_: *@This(), texture_: ?*Texture) void {
+        return objc.msgSend(self_, "setTexture:", void, .{texture_});
+    }
+    pub fn level(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "level", ns.UInteger, .{});
+    }
+    pub fn setLevel(self_: *@This(), level_: ns.UInteger) void {
+        return objc.msgSend(self_, "setLevel:", void, .{level_});
+    }
+    pub fn slice(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "slice", ns.UInteger, .{});
+    }
+    pub fn setSlice(self_: *@This(), slice_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSlice:", void, .{slice_});
+    }
+    pub fn depthPlane(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "depthPlane", ns.UInteger, .{});
+    }
+    pub fn setDepthPlane(self_: *@This(), depthPlane_: ns.UInteger) void {
+        return objc.msgSend(self_, "setDepthPlane:", void, .{depthPlane_});
+    }
+    pub fn resolveTexture(self_: *@This()) ?*Texture {
+        return objc.msgSend(self_, "resolveTexture", ?*Texture, .{});
+    }
+    pub fn setResolveTexture(self_: *@This(), resolveTexture_: ?*Texture) void {
+        return objc.msgSend(self_, "setResolveTexture:", void, .{resolveTexture_});
+    }
+    pub fn resolveLevel(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "resolveLevel", ns.UInteger, .{});
+    }
+    pub fn setResolveLevel(self_: *@This(), resolveLevel_: ns.UInteger) void {
+        return objc.msgSend(self_, "setResolveLevel:", void, .{resolveLevel_});
+    }
+    pub fn resolveSlice(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "resolveSlice", ns.UInteger, .{});
+    }
+    pub fn setResolveSlice(self_: *@This(), resolveSlice_: ns.UInteger) void {
+        return objc.msgSend(self_, "setResolveSlice:", void, .{resolveSlice_});
+    }
+    pub fn resolveDepthPlane(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "resolveDepthPlane", ns.UInteger, .{});
+    }
+    pub fn setResolveDepthPlane(self_: *@This(), resolveDepthPlane_: ns.UInteger) void {
+        return objc.msgSend(self_, "setResolveDepthPlane:", void, .{resolveDepthPlane_});
+    }
+    pub fn loadAction(self_: *@This()) LoadAction {
+        return objc.msgSend(self_, "loadAction", LoadAction, .{});
+    }
+    pub fn setLoadAction(self_: *@This(), loadAction_: LoadAction) void {
+        return objc.msgSend(self_, "setLoadAction:", void, .{loadAction_});
+    }
+    pub fn storeAction(self_: *@This()) StoreAction {
+        return objc.msgSend(self_, "storeAction", StoreAction, .{});
+    }
+    pub fn setStoreAction(self_: *@This(), storeAction_: StoreAction) void {
+        return objc.msgSend(self_, "setStoreAction:", void, .{storeAction_});
+    }
+    pub fn storeActionOptions(self_: *@This()) StoreActionOptions {
+        return objc.msgSend(self_, "storeActionOptions", StoreActionOptions, .{});
+    }
+    pub fn setStoreActionOptions(self_: *@This(), storeActionOptions_: StoreActionOptions) void {
+        return objc.msgSend(self_, "setStoreActionOptions:", void, .{storeActionOptions_});
     }
 };
 
 pub const RenderPassColorAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassColorAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassColorAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace RenderPassAttachmentDescriptor.Methods(T);
-
-            pub fn clearColor(self_: *T) ClearColor {
-                return objc.msgSend(self_, "clearColor", ClearColor, .{});
-            }
-            pub fn setClearColor(self_: *T, clearColor_: ClearColor) void {
-                return objc.msgSend(self_, "setClearColor:", void, .{clearColor_});
-            }
-        };
+    pub fn clearColor(self_: *@This()) ClearColor {
+        return objc.msgSend(self_, "clearColor", ClearColor, .{});
+    }
+    pub fn setClearColor(self_: *@This(), clearColor_: ClearColor) void {
+        return objc.msgSend(self_, "setClearColor:", void, .{clearColor_});
     }
 };
 
 pub const RenderPassDepthAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassDepthAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassDepthAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace RenderPassAttachmentDescriptor.Methods(T);
-
-            pub fn clearDepth(self_: *T) f64 {
-                return objc.msgSend(self_, "clearDepth", f64, .{});
-            }
-            pub fn setClearDepth(self_: *T, clearDepth_: f64) void {
-                return objc.msgSend(self_, "setClearDepth:", void, .{clearDepth_});
-            }
-            pub fn depthResolveFilter(self_: *T) MultisampleDepthResolveFilter {
-                return objc.msgSend(self_, "depthResolveFilter", MultisampleDepthResolveFilter, .{});
-            }
-            pub fn setDepthResolveFilter(self_: *T, depthResolveFilter_: MultisampleDepthResolveFilter) void {
-                return objc.msgSend(self_, "setDepthResolveFilter:", void, .{depthResolveFilter_});
-            }
-        };
+    pub fn clearDepth(self_: *@This()) f64 {
+        return objc.msgSend(self_, "clearDepth", f64, .{});
+    }
+    pub fn setClearDepth(self_: *@This(), clearDepth_: f64) void {
+        return objc.msgSend(self_, "setClearDepth:", void, .{clearDepth_});
+    }
+    pub fn depthResolveFilter(self_: *@This()) MultisampleDepthResolveFilter {
+        return objc.msgSend(self_, "depthResolveFilter", MultisampleDepthResolveFilter, .{});
+    }
+    pub fn setDepthResolveFilter(self_: *@This(), depthResolveFilter_: MultisampleDepthResolveFilter) void {
+        return objc.msgSend(self_, "setDepthResolveFilter:", void, .{depthResolveFilter_});
     }
 };
 
 pub const RenderPassStencilAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassStencilAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassStencilAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace RenderPassAttachmentDescriptor.Methods(T);
-
-            pub fn clearStencil(self_: *T) u32 {
-                return objc.msgSend(self_, "clearStencil", u32, .{});
-            }
-            pub fn setClearStencil(self_: *T, clearStencil_: u32) void {
-                return objc.msgSend(self_, "setClearStencil:", void, .{clearStencil_});
-            }
-            pub fn stencilResolveFilter(self_: *T) MultisampleStencilResolveFilter {
-                return objc.msgSend(self_, "stencilResolveFilter", MultisampleStencilResolveFilter, .{});
-            }
-            pub fn setStencilResolveFilter(self_: *T, stencilResolveFilter_: MultisampleStencilResolveFilter) void {
-                return objc.msgSend(self_, "setStencilResolveFilter:", void, .{stencilResolveFilter_});
-            }
-        };
+    pub fn clearStencil(self_: *@This()) u32 {
+        return objc.msgSend(self_, "clearStencil", u32, .{});
+    }
+    pub fn setClearStencil(self_: *@This(), clearStencil_: u32) void {
+        return objc.msgSend(self_, "setClearStencil:", void, .{clearStencil_});
+    }
+    pub fn stencilResolveFilter(self_: *@This()) MultisampleStencilResolveFilter {
+        return objc.msgSend(self_, "stencilResolveFilter", MultisampleStencilResolveFilter, .{});
+    }
+    pub fn setStencilResolveFilter(self_: *@This(), stencilResolveFilter_: MultisampleStencilResolveFilter) void {
+        return objc.msgSend(self_, "setStencilResolveFilter:", void, .{stencilResolveFilter_});
     }
 };
 
 pub const RenderPassColorAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassColorAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassColorAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *RenderPassColorAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPassColorAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*RenderPassColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *RenderPassColorAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPassColorAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: ?*RenderPassColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const RenderPassSampleBufferAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassSampleBufferAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
-            }
-            pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
-            }
-            pub fn startOfVertexSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "startOfVertexSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setStartOfVertexSampleIndex(self_: *T, startOfVertexSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStartOfVertexSampleIndex:", void, .{startOfVertexSampleIndex_});
-            }
-            pub fn endOfVertexSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "endOfVertexSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setEndOfVertexSampleIndex(self_: *T, endOfVertexSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setEndOfVertexSampleIndex:", void, .{endOfVertexSampleIndex_});
-            }
-            pub fn startOfFragmentSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "startOfFragmentSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setStartOfFragmentSampleIndex(self_: *T, startOfFragmentSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStartOfFragmentSampleIndex:", void, .{startOfFragmentSampleIndex_});
-            }
-            pub fn endOfFragmentSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "endOfFragmentSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setEndOfFragmentSampleIndex(self_: *T, endOfFragmentSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setEndOfFragmentSampleIndex:", void, .{endOfFragmentSampleIndex_});
-            }
-        };
+    pub fn sampleBuffer(self_: *@This()) ?*CounterSampleBuffer {
+        return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
+    }
+    pub fn setSampleBuffer(self_: *@This(), sampleBuffer_: ?*CounterSampleBuffer) void {
+        return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
+    }
+    pub fn startOfVertexSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "startOfVertexSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setStartOfVertexSampleIndex(self_: *@This(), startOfVertexSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStartOfVertexSampleIndex:", void, .{startOfVertexSampleIndex_});
+    }
+    pub fn endOfVertexSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "endOfVertexSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setEndOfVertexSampleIndex(self_: *@This(), endOfVertexSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setEndOfVertexSampleIndex:", void, .{endOfVertexSampleIndex_});
+    }
+    pub fn startOfFragmentSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "startOfFragmentSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setStartOfFragmentSampleIndex(self_: *@This(), startOfFragmentSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStartOfFragmentSampleIndex:", void, .{startOfFragmentSampleIndex_});
+    }
+    pub fn endOfFragmentSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "endOfFragmentSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setEndOfFragmentSampleIndex(self_: *@This(), endOfFragmentSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setEndOfFragmentSampleIndex:", void, .{endOfFragmentSampleIndex_});
     }
 };
 
 pub const RenderPassSampleBufferAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassSampleBufferAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *RenderPassSampleBufferAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*RenderPassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *RenderPassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: ?*RenderPassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const RenderPassDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPassDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPassDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn renderPassDescriptor() *RenderPassDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "renderPassDescriptor", *RenderPassDescriptor, .{});
-            }
-            pub fn setSamplePositions_count(self_: *T, positions_: ?*const SamplePosition, count_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSamplePositions:count:", void, .{ positions_, count_ });
-            }
-            pub fn getSamplePositions_count(self_: *T, positions_: ?*SamplePosition, count_: ns.UInteger) ns.UInteger {
-                return objc.msgSend(self_, "getSamplePositions:count:", ns.UInteger, .{ positions_, count_ });
-            }
-            pub fn colorAttachments(self_: *T) *RenderPassColorAttachmentDescriptorArray {
-                return objc.msgSend(self_, "colorAttachments", *RenderPassColorAttachmentDescriptorArray, .{});
-            }
-            pub fn depthAttachment(self_: *T) *RenderPassDepthAttachmentDescriptor {
-                return objc.msgSend(self_, "depthAttachment", *RenderPassDepthAttachmentDescriptor, .{});
-            }
-            pub fn setDepthAttachment(self_: *T, depthAttachment_: ?*RenderPassDepthAttachmentDescriptor) void {
-                return objc.msgSend(self_, "setDepthAttachment:", void, .{depthAttachment_});
-            }
-            pub fn stencilAttachment(self_: *T) *RenderPassStencilAttachmentDescriptor {
-                return objc.msgSend(self_, "stencilAttachment", *RenderPassStencilAttachmentDescriptor, .{});
-            }
-            pub fn setStencilAttachment(self_: *T, stencilAttachment_: ?*RenderPassStencilAttachmentDescriptor) void {
-                return objc.msgSend(self_, "setStencilAttachment:", void, .{stencilAttachment_});
-            }
-            pub fn visibilityResultBuffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "visibilityResultBuffer", ?*Buffer, .{});
-            }
-            pub fn setVisibilityResultBuffer(self_: *T, visibilityResultBuffer_: ?*Buffer) void {
-                return objc.msgSend(self_, "setVisibilityResultBuffer:", void, .{visibilityResultBuffer_});
-            }
-            pub fn renderTargetArrayLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "renderTargetArrayLength", ns.UInteger, .{});
-            }
-            pub fn setRenderTargetArrayLength(self_: *T, renderTargetArrayLength_: ns.UInteger) void {
-                return objc.msgSend(self_, "setRenderTargetArrayLength:", void, .{renderTargetArrayLength_});
-            }
-            pub fn imageblockSampleLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "imageblockSampleLength", ns.UInteger, .{});
-            }
-            pub fn setImageblockSampleLength(self_: *T, imageblockSampleLength_: ns.UInteger) void {
-                return objc.msgSend(self_, "setImageblockSampleLength:", void, .{imageblockSampleLength_});
-            }
-            pub fn threadgroupMemoryLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "threadgroupMemoryLength", ns.UInteger, .{});
-            }
-            pub fn setThreadgroupMemoryLength(self_: *T, threadgroupMemoryLength_: ns.UInteger) void {
-                return objc.msgSend(self_, "setThreadgroupMemoryLength:", void, .{threadgroupMemoryLength_});
-            }
-            pub fn tileWidth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "tileWidth", ns.UInteger, .{});
-            }
-            pub fn setTileWidth(self_: *T, tileWidth_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileWidth:", void, .{tileWidth_});
-            }
-            pub fn tileHeight(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "tileHeight", ns.UInteger, .{});
-            }
-            pub fn setTileHeight(self_: *T, tileHeight_: ns.UInteger) void {
-                return objc.msgSend(self_, "setTileHeight:", void, .{tileHeight_});
-            }
-            pub fn defaultRasterSampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "defaultRasterSampleCount", ns.UInteger, .{});
-            }
-            pub fn setDefaultRasterSampleCount(self_: *T, defaultRasterSampleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setDefaultRasterSampleCount:", void, .{defaultRasterSampleCount_});
-            }
-            pub fn renderTargetWidth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "renderTargetWidth", ns.UInteger, .{});
-            }
-            pub fn setRenderTargetWidth(self_: *T, renderTargetWidth_: ns.UInteger) void {
-                return objc.msgSend(self_, "setRenderTargetWidth:", void, .{renderTargetWidth_});
-            }
-            pub fn renderTargetHeight(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "renderTargetHeight", ns.UInteger, .{});
-            }
-            pub fn setRenderTargetHeight(self_: *T, renderTargetHeight_: ns.UInteger) void {
-                return objc.msgSend(self_, "setRenderTargetHeight:", void, .{renderTargetHeight_});
-            }
-            pub fn rasterizationRateMap(self_: *T) ?*RasterizationRateMap {
-                return objc.msgSend(self_, "rasterizationRateMap", ?*RasterizationRateMap, .{});
-            }
-            pub fn setRasterizationRateMap(self_: *T, rasterizationRateMap_: ?*RasterizationRateMap) void {
-                return objc.msgSend(self_, "setRasterizationRateMap:", void, .{rasterizationRateMap_});
-            }
-            pub fn sampleBufferAttachments(self_: *T) *RenderPassSampleBufferAttachmentDescriptorArray {
-                return objc.msgSend(self_, "sampleBufferAttachments", *RenderPassSampleBufferAttachmentDescriptorArray, .{});
-            }
-        };
+    pub fn renderPassDescriptor() *RenderPassDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "renderPassDescriptor", *RenderPassDescriptor, .{});
+    }
+    pub fn setSamplePositions_count(self_: *@This(), positions_: ?*const SamplePosition, count_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSamplePositions:count:", void, .{ positions_, count_ });
+    }
+    pub fn getSamplePositions_count(self_: *@This(), positions_: ?*SamplePosition, count_: ns.UInteger) ns.UInteger {
+        return objc.msgSend(self_, "getSamplePositions:count:", ns.UInteger, .{ positions_, count_ });
+    }
+    pub fn colorAttachments(self_: *@This()) *RenderPassColorAttachmentDescriptorArray {
+        return objc.msgSend(self_, "colorAttachments", *RenderPassColorAttachmentDescriptorArray, .{});
+    }
+    pub fn depthAttachment(self_: *@This()) *RenderPassDepthAttachmentDescriptor {
+        return objc.msgSend(self_, "depthAttachment", *RenderPassDepthAttachmentDescriptor, .{});
+    }
+    pub fn setDepthAttachment(self_: *@This(), depthAttachment_: ?*RenderPassDepthAttachmentDescriptor) void {
+        return objc.msgSend(self_, "setDepthAttachment:", void, .{depthAttachment_});
+    }
+    pub fn stencilAttachment(self_: *@This()) *RenderPassStencilAttachmentDescriptor {
+        return objc.msgSend(self_, "stencilAttachment", *RenderPassStencilAttachmentDescriptor, .{});
+    }
+    pub fn setStencilAttachment(self_: *@This(), stencilAttachment_: ?*RenderPassStencilAttachmentDescriptor) void {
+        return objc.msgSend(self_, "setStencilAttachment:", void, .{stencilAttachment_});
+    }
+    pub fn visibilityResultBuffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "visibilityResultBuffer", ?*Buffer, .{});
+    }
+    pub fn setVisibilityResultBuffer(self_: *@This(), visibilityResultBuffer_: ?*Buffer) void {
+        return objc.msgSend(self_, "setVisibilityResultBuffer:", void, .{visibilityResultBuffer_});
+    }
+    pub fn renderTargetArrayLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "renderTargetArrayLength", ns.UInteger, .{});
+    }
+    pub fn setRenderTargetArrayLength(self_: *@This(), renderTargetArrayLength_: ns.UInteger) void {
+        return objc.msgSend(self_, "setRenderTargetArrayLength:", void, .{renderTargetArrayLength_});
+    }
+    pub fn imageblockSampleLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "imageblockSampleLength", ns.UInteger, .{});
+    }
+    pub fn setImageblockSampleLength(self_: *@This(), imageblockSampleLength_: ns.UInteger) void {
+        return objc.msgSend(self_, "setImageblockSampleLength:", void, .{imageblockSampleLength_});
+    }
+    pub fn threadgroupMemoryLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "threadgroupMemoryLength", ns.UInteger, .{});
+    }
+    pub fn setThreadgroupMemoryLength(self_: *@This(), threadgroupMemoryLength_: ns.UInteger) void {
+        return objc.msgSend(self_, "setThreadgroupMemoryLength:", void, .{threadgroupMemoryLength_});
+    }
+    pub fn tileWidth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "tileWidth", ns.UInteger, .{});
+    }
+    pub fn setTileWidth(self_: *@This(), tileWidth_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileWidth:", void, .{tileWidth_});
+    }
+    pub fn tileHeight(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "tileHeight", ns.UInteger, .{});
+    }
+    pub fn setTileHeight(self_: *@This(), tileHeight_: ns.UInteger) void {
+        return objc.msgSend(self_, "setTileHeight:", void, .{tileHeight_});
+    }
+    pub fn defaultRasterSampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "defaultRasterSampleCount", ns.UInteger, .{});
+    }
+    pub fn setDefaultRasterSampleCount(self_: *@This(), defaultRasterSampleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setDefaultRasterSampleCount:", void, .{defaultRasterSampleCount_});
+    }
+    pub fn renderTargetWidth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "renderTargetWidth", ns.UInteger, .{});
+    }
+    pub fn setRenderTargetWidth(self_: *@This(), renderTargetWidth_: ns.UInteger) void {
+        return objc.msgSend(self_, "setRenderTargetWidth:", void, .{renderTargetWidth_});
+    }
+    pub fn renderTargetHeight(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "renderTargetHeight", ns.UInteger, .{});
+    }
+    pub fn setRenderTargetHeight(self_: *@This(), renderTargetHeight_: ns.UInteger) void {
+        return objc.msgSend(self_, "setRenderTargetHeight:", void, .{renderTargetHeight_});
+    }
+    pub fn rasterizationRateMap(self_: *@This()) ?*RasterizationRateMap {
+        return objc.msgSend(self_, "rasterizationRateMap", ?*RasterizationRateMap, .{});
+    }
+    pub fn setRasterizationRateMap(self_: *@This(), rasterizationRateMap_: ?*RasterizationRateMap) void {
+        return objc.msgSend(self_, "setRasterizationRateMap:", void, .{rasterizationRateMap_});
+    }
+    pub fn sampleBufferAttachments(self_: *@This()) *RenderPassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self_, "sampleBufferAttachments", *RenderPassSampleBufferAttachmentDescriptorArray, .{});
     }
 };
 
 pub const RenderPipelineColorAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPipelineColorAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPipelineColorAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn pixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
-            }
-            pub fn setPixelFormat(self_: *T, pixelFormat_: PixelFormat) void {
-                return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
-            }
-            pub fn isBlendingEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isBlendingEnabled", bool, .{});
-            }
-            pub fn setBlendingEnabled(self_: *T, blendingEnabled_: bool) void {
-                return objc.msgSend(self_, "setBlendingEnabled:", void, .{blendingEnabled_});
-            }
-            pub fn sourceRGBBlendFactor(self_: *T) BlendFactor {
-                return objc.msgSend(self_, "sourceRGBBlendFactor", BlendFactor, .{});
-            }
-            pub fn setSourceRGBBlendFactor(self_: *T, sourceRGBBlendFactor_: BlendFactor) void {
-                return objc.msgSend(self_, "setSourceRGBBlendFactor:", void, .{sourceRGBBlendFactor_});
-            }
-            pub fn destinationRGBBlendFactor(self_: *T) BlendFactor {
-                return objc.msgSend(self_, "destinationRGBBlendFactor", BlendFactor, .{});
-            }
-            pub fn setDestinationRGBBlendFactor(self_: *T, destinationRGBBlendFactor_: BlendFactor) void {
-                return objc.msgSend(self_, "setDestinationRGBBlendFactor:", void, .{destinationRGBBlendFactor_});
-            }
-            pub fn rgbBlendOperation(self_: *T) BlendOperation {
-                return objc.msgSend(self_, "rgbBlendOperation", BlendOperation, .{});
-            }
-            pub fn setRgbBlendOperation(self_: *T, rgbBlendOperation_: BlendOperation) void {
-                return objc.msgSend(self_, "setRgbBlendOperation:", void, .{rgbBlendOperation_});
-            }
-            pub fn sourceAlphaBlendFactor(self_: *T) BlendFactor {
-                return objc.msgSend(self_, "sourceAlphaBlendFactor", BlendFactor, .{});
-            }
-            pub fn setSourceAlphaBlendFactor(self_: *T, sourceAlphaBlendFactor_: BlendFactor) void {
-                return objc.msgSend(self_, "setSourceAlphaBlendFactor:", void, .{sourceAlphaBlendFactor_});
-            }
-            pub fn destinationAlphaBlendFactor(self_: *T) BlendFactor {
-                return objc.msgSend(self_, "destinationAlphaBlendFactor", BlendFactor, .{});
-            }
-            pub fn setDestinationAlphaBlendFactor(self_: *T, destinationAlphaBlendFactor_: BlendFactor) void {
-                return objc.msgSend(self_, "setDestinationAlphaBlendFactor:", void, .{destinationAlphaBlendFactor_});
-            }
-            pub fn alphaBlendOperation(self_: *T) BlendOperation {
-                return objc.msgSend(self_, "alphaBlendOperation", BlendOperation, .{});
-            }
-            pub fn setAlphaBlendOperation(self_: *T, alphaBlendOperation_: BlendOperation) void {
-                return objc.msgSend(self_, "setAlphaBlendOperation:", void, .{alphaBlendOperation_});
-            }
-            pub fn writeMask(self_: *T) ColorWriteMask {
-                return objc.msgSend(self_, "writeMask", ColorWriteMask, .{});
-            }
-            pub fn setWriteMask(self_: *T, writeMask_: ColorWriteMask) void {
-                return objc.msgSend(self_, "setWriteMask:", void, .{writeMask_});
-            }
-        };
+    pub fn pixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
+    }
+    pub fn setPixelFormat(self_: *@This(), pixelFormat_: PixelFormat) void {
+        return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
+    }
+    pub fn isBlendingEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isBlendingEnabled", bool, .{});
+    }
+    pub fn setBlendingEnabled(self_: *@This(), blendingEnabled_: bool) void {
+        return objc.msgSend(self_, "setBlendingEnabled:", void, .{blendingEnabled_});
+    }
+    pub fn sourceRGBBlendFactor(self_: *@This()) BlendFactor {
+        return objc.msgSend(self_, "sourceRGBBlendFactor", BlendFactor, .{});
+    }
+    pub fn setSourceRGBBlendFactor(self_: *@This(), sourceRGBBlendFactor_: BlendFactor) void {
+        return objc.msgSend(self_, "setSourceRGBBlendFactor:", void, .{sourceRGBBlendFactor_});
+    }
+    pub fn destinationRGBBlendFactor(self_: *@This()) BlendFactor {
+        return objc.msgSend(self_, "destinationRGBBlendFactor", BlendFactor, .{});
+    }
+    pub fn setDestinationRGBBlendFactor(self_: *@This(), destinationRGBBlendFactor_: BlendFactor) void {
+        return objc.msgSend(self_, "setDestinationRGBBlendFactor:", void, .{destinationRGBBlendFactor_});
+    }
+    pub fn rgbBlendOperation(self_: *@This()) BlendOperation {
+        return objc.msgSend(self_, "rgbBlendOperation", BlendOperation, .{});
+    }
+    pub fn setRgbBlendOperation(self_: *@This(), rgbBlendOperation_: BlendOperation) void {
+        return objc.msgSend(self_, "setRgbBlendOperation:", void, .{rgbBlendOperation_});
+    }
+    pub fn sourceAlphaBlendFactor(self_: *@This()) BlendFactor {
+        return objc.msgSend(self_, "sourceAlphaBlendFactor", BlendFactor, .{});
+    }
+    pub fn setSourceAlphaBlendFactor(self_: *@This(), sourceAlphaBlendFactor_: BlendFactor) void {
+        return objc.msgSend(self_, "setSourceAlphaBlendFactor:", void, .{sourceAlphaBlendFactor_});
+    }
+    pub fn destinationAlphaBlendFactor(self_: *@This()) BlendFactor {
+        return objc.msgSend(self_, "destinationAlphaBlendFactor", BlendFactor, .{});
+    }
+    pub fn setDestinationAlphaBlendFactor(self_: *@This(), destinationAlphaBlendFactor_: BlendFactor) void {
+        return objc.msgSend(self_, "setDestinationAlphaBlendFactor:", void, .{destinationAlphaBlendFactor_});
+    }
+    pub fn alphaBlendOperation(self_: *@This()) BlendOperation {
+        return objc.msgSend(self_, "alphaBlendOperation", BlendOperation, .{});
+    }
+    pub fn setAlphaBlendOperation(self_: *@This(), alphaBlendOperation_: BlendOperation) void {
+        return objc.msgSend(self_, "setAlphaBlendOperation:", void, .{alphaBlendOperation_});
+    }
+    pub fn writeMask(self_: *@This()) ColorWriteMask {
+        return objc.msgSend(self_, "writeMask", ColorWriteMask, .{});
+    }
+    pub fn setWriteMask(self_: *@This(), writeMask_: ColorWriteMask) void {
+        return objc.msgSend(self_, "setWriteMask:", void, .{writeMask_});
     }
 };
 
 pub const RenderPipelineReflection = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPipelineReflection", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPipelineReflection);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn vertexBindings(self_: *T) *ns.Array(*Binding) {
-                return objc.msgSend(self_, "vertexBindings", *ns.Array(*Binding), .{});
-            }
-            pub fn fragmentBindings(self_: *T) *ns.Array(*Binding) {
-                return objc.msgSend(self_, "fragmentBindings", *ns.Array(*Binding), .{});
-            }
-            pub fn tileBindings(self_: *T) *ns.Array(*Binding) {
-                return objc.msgSend(self_, "tileBindings", *ns.Array(*Binding), .{});
-            }
-            pub fn objectBindings(self_: *T) *ns.Array(*Binding) {
-                return objc.msgSend(self_, "objectBindings", *ns.Array(*Binding), .{});
-            }
-            pub fn meshBindings(self_: *T) *ns.Array(*Binding) {
-                return objc.msgSend(self_, "meshBindings", *ns.Array(*Binding), .{});
-            }
-            pub fn vertexArguments(self_: *T) ?*ns.Array(*Argument) {
-                return objc.msgSend(self_, "vertexArguments", ?*ns.Array(*Argument), .{});
-            }
-            pub fn fragmentArguments(self_: *T) ?*ns.Array(*Argument) {
-                return objc.msgSend(self_, "fragmentArguments", ?*ns.Array(*Argument), .{});
-            }
-            pub fn tileArguments(self_: *T) ?*ns.Array(*Argument) {
-                return objc.msgSend(self_, "tileArguments", ?*ns.Array(*Argument), .{});
-            }
-        };
+    pub fn vertexBindings(self_: *@This()) *ns.Array(*Binding) {
+        return objc.msgSend(self_, "vertexBindings", *ns.Array(*Binding), .{});
+    }
+    pub fn fragmentBindings(self_: *@This()) *ns.Array(*Binding) {
+        return objc.msgSend(self_, "fragmentBindings", *ns.Array(*Binding), .{});
+    }
+    pub fn tileBindings(self_: *@This()) *ns.Array(*Binding) {
+        return objc.msgSend(self_, "tileBindings", *ns.Array(*Binding), .{});
+    }
+    pub fn objectBindings(self_: *@This()) *ns.Array(*Binding) {
+        return objc.msgSend(self_, "objectBindings", *ns.Array(*Binding), .{});
+    }
+    pub fn meshBindings(self_: *@This()) *ns.Array(*Binding) {
+        return objc.msgSend(self_, "meshBindings", *ns.Array(*Binding), .{});
+    }
+    pub fn vertexArguments(self_: *@This()) ?*ns.Array(*Argument) {
+        return objc.msgSend(self_, "vertexArguments", ?*ns.Array(*Argument), .{});
+    }
+    pub fn fragmentArguments(self_: *@This()) ?*ns.Array(*Argument) {
+        return objc.msgSend(self_, "fragmentArguments", ?*ns.Array(*Argument), .{});
+    }
+    pub fn tileArguments(self_: *@This()) ?*ns.Array(*Argument) {
+        return objc.msgSend(self_, "tileArguments", ?*ns.Array(*Argument), .{});
     }
 };
 
 pub const RenderPipelineDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPipelineDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPipelineDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn vertexFunction(self_: *T) ?*Function {
-                return objc.msgSend(self_, "vertexFunction", ?*Function, .{});
-            }
-            pub fn setVertexFunction(self_: *T, vertexFunction_: ?*Function) void {
-                return objc.msgSend(self_, "setVertexFunction:", void, .{vertexFunction_});
-            }
-            pub fn fragmentFunction(self_: *T) ?*Function {
-                return objc.msgSend(self_, "fragmentFunction", ?*Function, .{});
-            }
-            pub fn setFragmentFunction(self_: *T, fragmentFunction_: ?*Function) void {
-                return objc.msgSend(self_, "setFragmentFunction:", void, .{fragmentFunction_});
-            }
-            pub fn vertexDescriptor(self_: *T) ?*VertexDescriptor {
-                return objc.msgSend(self_, "vertexDescriptor", ?*VertexDescriptor, .{});
-            }
-            pub fn setVertexDescriptor(self_: *T, vertexDescriptor_: ?*VertexDescriptor) void {
-                return objc.msgSend(self_, "setVertexDescriptor:", void, .{vertexDescriptor_});
-            }
-            pub fn sampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
-            }
-            pub fn setSampleCount(self_: *T, sampleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
-            }
-            pub fn rasterSampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
-            }
-            pub fn setRasterSampleCount(self_: *T, rasterSampleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
-            }
-            pub fn isAlphaToCoverageEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isAlphaToCoverageEnabled", bool, .{});
-            }
-            pub fn setAlphaToCoverageEnabled(self_: *T, alphaToCoverageEnabled_: bool) void {
-                return objc.msgSend(self_, "setAlphaToCoverageEnabled:", void, .{alphaToCoverageEnabled_});
-            }
-            pub fn isAlphaToOneEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isAlphaToOneEnabled", bool, .{});
-            }
-            pub fn setAlphaToOneEnabled(self_: *T, alphaToOneEnabled_: bool) void {
-                return objc.msgSend(self_, "setAlphaToOneEnabled:", void, .{alphaToOneEnabled_});
-            }
-            pub fn isRasterizationEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isRasterizationEnabled", bool, .{});
-            }
-            pub fn setRasterizationEnabled(self_: *T, rasterizationEnabled_: bool) void {
-                return objc.msgSend(self_, "setRasterizationEnabled:", void, .{rasterizationEnabled_});
-            }
-            pub fn maxVertexAmplificationCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxVertexAmplificationCount", ns.UInteger, .{});
-            }
-            pub fn setMaxVertexAmplificationCount(self_: *T, maxVertexAmplificationCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxVertexAmplificationCount:", void, .{maxVertexAmplificationCount_});
-            }
-            pub fn colorAttachments(self_: *T) *RenderPipelineColorAttachmentDescriptorArray {
-                return objc.msgSend(self_, "colorAttachments", *RenderPipelineColorAttachmentDescriptorArray, .{});
-            }
-            pub fn depthAttachmentPixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "depthAttachmentPixelFormat", PixelFormat, .{});
-            }
-            pub fn setDepthAttachmentPixelFormat(self_: *T, depthAttachmentPixelFormat_: PixelFormat) void {
-                return objc.msgSend(self_, "setDepthAttachmentPixelFormat:", void, .{depthAttachmentPixelFormat_});
-            }
-            pub fn stencilAttachmentPixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "stencilAttachmentPixelFormat", PixelFormat, .{});
-            }
-            pub fn setStencilAttachmentPixelFormat(self_: *T, stencilAttachmentPixelFormat_: PixelFormat) void {
-                return objc.msgSend(self_, "setStencilAttachmentPixelFormat:", void, .{stencilAttachmentPixelFormat_});
-            }
-            pub fn inputPrimitiveTopology(self_: *T) PrimitiveTopologyClass {
-                return objc.msgSend(self_, "inputPrimitiveTopology", PrimitiveTopologyClass, .{});
-            }
-            pub fn setInputPrimitiveTopology(self_: *T, inputPrimitiveTopology_: PrimitiveTopologyClass) void {
-                return objc.msgSend(self_, "setInputPrimitiveTopology:", void, .{inputPrimitiveTopology_});
-            }
-            pub fn tessellationPartitionMode(self_: *T) TessellationPartitionMode {
-                return objc.msgSend(self_, "tessellationPartitionMode", TessellationPartitionMode, .{});
-            }
-            pub fn setTessellationPartitionMode(self_: *T, tessellationPartitionMode_: TessellationPartitionMode) void {
-                return objc.msgSend(self_, "setTessellationPartitionMode:", void, .{tessellationPartitionMode_});
-            }
-            pub fn maxTessellationFactor(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTessellationFactor", ns.UInteger, .{});
-            }
-            pub fn setMaxTessellationFactor(self_: *T, maxTessellationFactor_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxTessellationFactor:", void, .{maxTessellationFactor_});
-            }
-            pub fn isTessellationFactorScaleEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isTessellationFactorScaleEnabled", bool, .{});
-            }
-            pub fn setTessellationFactorScaleEnabled(self_: *T, tessellationFactorScaleEnabled_: bool) void {
-                return objc.msgSend(self_, "setTessellationFactorScaleEnabled:", void, .{tessellationFactorScaleEnabled_});
-            }
-            pub fn tessellationFactorFormat(self_: *T) TessellationFactorFormat {
-                return objc.msgSend(self_, "tessellationFactorFormat", TessellationFactorFormat, .{});
-            }
-            pub fn setTessellationFactorFormat(self_: *T, tessellationFactorFormat_: TessellationFactorFormat) void {
-                return objc.msgSend(self_, "setTessellationFactorFormat:", void, .{tessellationFactorFormat_});
-            }
-            pub fn tessellationControlPointIndexType(self_: *T) TessellationControlPointIndexType {
-                return objc.msgSend(self_, "tessellationControlPointIndexType", TessellationControlPointIndexType, .{});
-            }
-            pub fn setTessellationControlPointIndexType(self_: *T, tessellationControlPointIndexType_: TessellationControlPointIndexType) void {
-                return objc.msgSend(self_, "setTessellationControlPointIndexType:", void, .{tessellationControlPointIndexType_});
-            }
-            pub fn tessellationFactorStepFunction(self_: *T) TessellationFactorStepFunction {
-                return objc.msgSend(self_, "tessellationFactorStepFunction", TessellationFactorStepFunction, .{});
-            }
-            pub fn setTessellationFactorStepFunction(self_: *T, tessellationFactorStepFunction_: TessellationFactorStepFunction) void {
-                return objc.msgSend(self_, "setTessellationFactorStepFunction:", void, .{tessellationFactorStepFunction_});
-            }
-            pub fn tessellationOutputWindingOrder(self_: *T) Winding {
-                return objc.msgSend(self_, "tessellationOutputWindingOrder", Winding, .{});
-            }
-            pub fn setTessellationOutputWindingOrder(self_: *T, tessellationOutputWindingOrder_: Winding) void {
-                return objc.msgSend(self_, "setTessellationOutputWindingOrder:", void, .{tessellationOutputWindingOrder_});
-            }
-            pub fn vertexBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return objc.msgSend(self_, "vertexBuffers", *PipelineBufferDescriptorArray, .{});
-            }
-            pub fn fragmentBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return objc.msgSend(self_, "fragmentBuffers", *PipelineBufferDescriptorArray, .{});
-            }
-            pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
-            }
-            pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
-                return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
-            }
-            pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
-            }
-            pub fn vertexPreloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return objc.msgSend(self_, "vertexPreloadedLibraries", *ns.Array(*DynamicLibrary), .{});
-            }
-            pub fn setVertexPreloadedLibraries(self_: *T, vertexPreloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return objc.msgSend(self_, "setVertexPreloadedLibraries:", void, .{vertexPreloadedLibraries_});
-            }
-            pub fn fragmentPreloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return objc.msgSend(self_, "fragmentPreloadedLibraries", *ns.Array(*DynamicLibrary), .{});
-            }
-            pub fn setFragmentPreloadedLibraries(self_: *T, fragmentPreloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return objc.msgSend(self_, "setFragmentPreloadedLibraries:", void, .{fragmentPreloadedLibraries_});
-            }
-            pub fn vertexLinkedFunctions(self_: *T) *LinkedFunctions {
-                return objc.msgSend(self_, "vertexLinkedFunctions", *LinkedFunctions, .{});
-            }
-            pub fn setVertexLinkedFunctions(self_: *T, vertexLinkedFunctions_: ?*LinkedFunctions) void {
-                return objc.msgSend(self_, "setVertexLinkedFunctions:", void, .{vertexLinkedFunctions_});
-            }
-            pub fn fragmentLinkedFunctions(self_: *T) *LinkedFunctions {
-                return objc.msgSend(self_, "fragmentLinkedFunctions", *LinkedFunctions, .{});
-            }
-            pub fn setFragmentLinkedFunctions(self_: *T, fragmentLinkedFunctions_: ?*LinkedFunctions) void {
-                return objc.msgSend(self_, "setFragmentLinkedFunctions:", void, .{fragmentLinkedFunctions_});
-            }
-            pub fn supportAddingVertexBinaryFunctions(self_: *T) bool {
-                return objc.msgSend(self_, "supportAddingVertexBinaryFunctions", bool, .{});
-            }
-            pub fn setSupportAddingVertexBinaryFunctions(self_: *T, supportAddingVertexBinaryFunctions_: bool) void {
-                return objc.msgSend(self_, "setSupportAddingVertexBinaryFunctions:", void, .{supportAddingVertexBinaryFunctions_});
-            }
-            pub fn supportAddingFragmentBinaryFunctions(self_: *T) bool {
-                return objc.msgSend(self_, "supportAddingFragmentBinaryFunctions", bool, .{});
-            }
-            pub fn setSupportAddingFragmentBinaryFunctions(self_: *T, supportAddingFragmentBinaryFunctions_: bool) void {
-                return objc.msgSend(self_, "setSupportAddingFragmentBinaryFunctions:", void, .{supportAddingFragmentBinaryFunctions_});
-            }
-            pub fn maxVertexCallStackDepth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxVertexCallStackDepth", ns.UInteger, .{});
-            }
-            pub fn setMaxVertexCallStackDepth(self_: *T, maxVertexCallStackDepth_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxVertexCallStackDepth:", void, .{maxVertexCallStackDepth_});
-            }
-            pub fn maxFragmentCallStackDepth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxFragmentCallStackDepth", ns.UInteger, .{});
-            }
-            pub fn setMaxFragmentCallStackDepth(self_: *T, maxFragmentCallStackDepth_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxFragmentCallStackDepth:", void, .{maxFragmentCallStackDepth_});
-            }
-        };
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn vertexFunction(self_: *@This()) ?*Function {
+        return objc.msgSend(self_, "vertexFunction", ?*Function, .{});
+    }
+    pub fn setVertexFunction(self_: *@This(), vertexFunction_: ?*Function) void {
+        return objc.msgSend(self_, "setVertexFunction:", void, .{vertexFunction_});
+    }
+    pub fn fragmentFunction(self_: *@This()) ?*Function {
+        return objc.msgSend(self_, "fragmentFunction", ?*Function, .{});
+    }
+    pub fn setFragmentFunction(self_: *@This(), fragmentFunction_: ?*Function) void {
+        return objc.msgSend(self_, "setFragmentFunction:", void, .{fragmentFunction_});
+    }
+    pub fn vertexDescriptor(self_: *@This()) ?*VertexDescriptor {
+        return objc.msgSend(self_, "vertexDescriptor", ?*VertexDescriptor, .{});
+    }
+    pub fn setVertexDescriptor(self_: *@This(), vertexDescriptor_: ?*VertexDescriptor) void {
+        return objc.msgSend(self_, "setVertexDescriptor:", void, .{vertexDescriptor_});
+    }
+    pub fn sampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
+    }
+    pub fn setSampleCount(self_: *@This(), sampleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
+    }
+    pub fn rasterSampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
+    }
+    pub fn setRasterSampleCount(self_: *@This(), rasterSampleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
+    }
+    pub fn isAlphaToCoverageEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isAlphaToCoverageEnabled", bool, .{});
+    }
+    pub fn setAlphaToCoverageEnabled(self_: *@This(), alphaToCoverageEnabled_: bool) void {
+        return objc.msgSend(self_, "setAlphaToCoverageEnabled:", void, .{alphaToCoverageEnabled_});
+    }
+    pub fn isAlphaToOneEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isAlphaToOneEnabled", bool, .{});
+    }
+    pub fn setAlphaToOneEnabled(self_: *@This(), alphaToOneEnabled_: bool) void {
+        return objc.msgSend(self_, "setAlphaToOneEnabled:", void, .{alphaToOneEnabled_});
+    }
+    pub fn isRasterizationEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isRasterizationEnabled", bool, .{});
+    }
+    pub fn setRasterizationEnabled(self_: *@This(), rasterizationEnabled_: bool) void {
+        return objc.msgSend(self_, "setRasterizationEnabled:", void, .{rasterizationEnabled_});
+    }
+    pub fn maxVertexAmplificationCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxVertexAmplificationCount", ns.UInteger, .{});
+    }
+    pub fn setMaxVertexAmplificationCount(self_: *@This(), maxVertexAmplificationCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxVertexAmplificationCount:", void, .{maxVertexAmplificationCount_});
+    }
+    pub fn colorAttachments(self_: *@This()) *RenderPipelineColorAttachmentDescriptorArray {
+        return objc.msgSend(self_, "colorAttachments", *RenderPipelineColorAttachmentDescriptorArray, .{});
+    }
+    pub fn depthAttachmentPixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "depthAttachmentPixelFormat", PixelFormat, .{});
+    }
+    pub fn setDepthAttachmentPixelFormat(self_: *@This(), depthAttachmentPixelFormat_: PixelFormat) void {
+        return objc.msgSend(self_, "setDepthAttachmentPixelFormat:", void, .{depthAttachmentPixelFormat_});
+    }
+    pub fn stencilAttachmentPixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "stencilAttachmentPixelFormat", PixelFormat, .{});
+    }
+    pub fn setStencilAttachmentPixelFormat(self_: *@This(), stencilAttachmentPixelFormat_: PixelFormat) void {
+        return objc.msgSend(self_, "setStencilAttachmentPixelFormat:", void, .{stencilAttachmentPixelFormat_});
+    }
+    pub fn inputPrimitiveTopology(self_: *@This()) PrimitiveTopologyClass {
+        return objc.msgSend(self_, "inputPrimitiveTopology", PrimitiveTopologyClass, .{});
+    }
+    pub fn setInputPrimitiveTopology(self_: *@This(), inputPrimitiveTopology_: PrimitiveTopologyClass) void {
+        return objc.msgSend(self_, "setInputPrimitiveTopology:", void, .{inputPrimitiveTopology_});
+    }
+    pub fn tessellationPartitionMode(self_: *@This()) TessellationPartitionMode {
+        return objc.msgSend(self_, "tessellationPartitionMode", TessellationPartitionMode, .{});
+    }
+    pub fn setTessellationPartitionMode(self_: *@This(), tessellationPartitionMode_: TessellationPartitionMode) void {
+        return objc.msgSend(self_, "setTessellationPartitionMode:", void, .{tessellationPartitionMode_});
+    }
+    pub fn maxTessellationFactor(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTessellationFactor", ns.UInteger, .{});
+    }
+    pub fn setMaxTessellationFactor(self_: *@This(), maxTessellationFactor_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxTessellationFactor:", void, .{maxTessellationFactor_});
+    }
+    pub fn isTessellationFactorScaleEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isTessellationFactorScaleEnabled", bool, .{});
+    }
+    pub fn setTessellationFactorScaleEnabled(self_: *@This(), tessellationFactorScaleEnabled_: bool) void {
+        return objc.msgSend(self_, "setTessellationFactorScaleEnabled:", void, .{tessellationFactorScaleEnabled_});
+    }
+    pub fn tessellationFactorFormat(self_: *@This()) TessellationFactorFormat {
+        return objc.msgSend(self_, "tessellationFactorFormat", TessellationFactorFormat, .{});
+    }
+    pub fn setTessellationFactorFormat(self_: *@This(), tessellationFactorFormat_: TessellationFactorFormat) void {
+        return objc.msgSend(self_, "setTessellationFactorFormat:", void, .{tessellationFactorFormat_});
+    }
+    pub fn tessellationControlPointIndexType(self_: *@This()) TessellationControlPointIndexType {
+        return objc.msgSend(self_, "tessellationControlPointIndexType", TessellationControlPointIndexType, .{});
+    }
+    pub fn setTessellationControlPointIndexType(self_: *@This(), tessellationControlPointIndexType_: TessellationControlPointIndexType) void {
+        return objc.msgSend(self_, "setTessellationControlPointIndexType:", void, .{tessellationControlPointIndexType_});
+    }
+    pub fn tessellationFactorStepFunction(self_: *@This()) TessellationFactorStepFunction {
+        return objc.msgSend(self_, "tessellationFactorStepFunction", TessellationFactorStepFunction, .{});
+    }
+    pub fn setTessellationFactorStepFunction(self_: *@This(), tessellationFactorStepFunction_: TessellationFactorStepFunction) void {
+        return objc.msgSend(self_, "setTessellationFactorStepFunction:", void, .{tessellationFactorStepFunction_});
+    }
+    pub fn tessellationOutputWindingOrder(self_: *@This()) Winding {
+        return objc.msgSend(self_, "tessellationOutputWindingOrder", Winding, .{});
+    }
+    pub fn setTessellationOutputWindingOrder(self_: *@This(), tessellationOutputWindingOrder_: Winding) void {
+        return objc.msgSend(self_, "setTessellationOutputWindingOrder:", void, .{tessellationOutputWindingOrder_});
+    }
+    pub fn vertexBuffers(self_: *@This()) *PipelineBufferDescriptorArray {
+        return objc.msgSend(self_, "vertexBuffers", *PipelineBufferDescriptorArray, .{});
+    }
+    pub fn fragmentBuffers(self_: *@This()) *PipelineBufferDescriptorArray {
+        return objc.msgSend(self_, "fragmentBuffers", *PipelineBufferDescriptorArray, .{});
+    }
+    pub fn supportIndirectCommandBuffers(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
+    }
+    pub fn setSupportIndirectCommandBuffers(self_: *@This(), supportIndirectCommandBuffers_: bool) void {
+        return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
+    }
+    pub fn binaryArchives(self_: *@This()) ?*ns.Array(*BinaryArchive) {
+        return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
+    }
+    pub fn setBinaryArchives(self_: *@This(), binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
+        return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
+    }
+    pub fn vertexPreloadedLibraries(self_: *@This()) *ns.Array(*DynamicLibrary) {
+        return objc.msgSend(self_, "vertexPreloadedLibraries", *ns.Array(*DynamicLibrary), .{});
+    }
+    pub fn setVertexPreloadedLibraries(self_: *@This(), vertexPreloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
+        return objc.msgSend(self_, "setVertexPreloadedLibraries:", void, .{vertexPreloadedLibraries_});
+    }
+    pub fn fragmentPreloadedLibraries(self_: *@This()) *ns.Array(*DynamicLibrary) {
+        return objc.msgSend(self_, "fragmentPreloadedLibraries", *ns.Array(*DynamicLibrary), .{});
+    }
+    pub fn setFragmentPreloadedLibraries(self_: *@This(), fragmentPreloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
+        return objc.msgSend(self_, "setFragmentPreloadedLibraries:", void, .{fragmentPreloadedLibraries_});
+    }
+    pub fn vertexLinkedFunctions(self_: *@This()) *LinkedFunctions {
+        return objc.msgSend(self_, "vertexLinkedFunctions", *LinkedFunctions, .{});
+    }
+    pub fn setVertexLinkedFunctions(self_: *@This(), vertexLinkedFunctions_: ?*LinkedFunctions) void {
+        return objc.msgSend(self_, "setVertexLinkedFunctions:", void, .{vertexLinkedFunctions_});
+    }
+    pub fn fragmentLinkedFunctions(self_: *@This()) *LinkedFunctions {
+        return objc.msgSend(self_, "fragmentLinkedFunctions", *LinkedFunctions, .{});
+    }
+    pub fn setFragmentLinkedFunctions(self_: *@This(), fragmentLinkedFunctions_: ?*LinkedFunctions) void {
+        return objc.msgSend(self_, "setFragmentLinkedFunctions:", void, .{fragmentLinkedFunctions_});
+    }
+    pub fn supportAddingVertexBinaryFunctions(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportAddingVertexBinaryFunctions", bool, .{});
+    }
+    pub fn setSupportAddingVertexBinaryFunctions(self_: *@This(), supportAddingVertexBinaryFunctions_: bool) void {
+        return objc.msgSend(self_, "setSupportAddingVertexBinaryFunctions:", void, .{supportAddingVertexBinaryFunctions_});
+    }
+    pub fn supportAddingFragmentBinaryFunctions(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportAddingFragmentBinaryFunctions", bool, .{});
+    }
+    pub fn setSupportAddingFragmentBinaryFunctions(self_: *@This(), supportAddingFragmentBinaryFunctions_: bool) void {
+        return objc.msgSend(self_, "setSupportAddingFragmentBinaryFunctions:", void, .{supportAddingFragmentBinaryFunctions_});
+    }
+    pub fn maxVertexCallStackDepth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxVertexCallStackDepth", ns.UInteger, .{});
+    }
+    pub fn setMaxVertexCallStackDepth(self_: *@This(), maxVertexCallStackDepth_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxVertexCallStackDepth:", void, .{maxVertexCallStackDepth_});
+    }
+    pub fn maxFragmentCallStackDepth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxFragmentCallStackDepth", ns.UInteger, .{});
+    }
+    pub fn setMaxFragmentCallStackDepth(self_: *@This(), maxFragmentCallStackDepth_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxFragmentCallStackDepth:", void, .{maxFragmentCallStackDepth_});
     }
 };
 
 pub const RenderPipelineFunctionsDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPipelineFunctionsDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPipelineFunctionsDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn vertexAdditionalBinaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return objc.msgSend(self_, "vertexAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
-            }
-            pub fn setVertexAdditionalBinaryFunctions(self_: *T, vertexAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
-                return objc.msgSend(self_, "setVertexAdditionalBinaryFunctions:", void, .{vertexAdditionalBinaryFunctions_});
-            }
-            pub fn fragmentAdditionalBinaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return objc.msgSend(self_, "fragmentAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
-            }
-            pub fn setFragmentAdditionalBinaryFunctions(self_: *T, fragmentAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
-                return objc.msgSend(self_, "setFragmentAdditionalBinaryFunctions:", void, .{fragmentAdditionalBinaryFunctions_});
-            }
-            pub fn tileAdditionalBinaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return objc.msgSend(self_, "tileAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
-            }
-            pub fn setTileAdditionalBinaryFunctions(self_: *T, tileAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
-                return objc.msgSend(self_, "setTileAdditionalBinaryFunctions:", void, .{tileAdditionalBinaryFunctions_});
-            }
-        };
+    pub fn vertexAdditionalBinaryFunctions(self_: *@This()) ?*ns.Array(*Function) {
+        return objc.msgSend(self_, "vertexAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
+    }
+    pub fn setVertexAdditionalBinaryFunctions(self_: *@This(), vertexAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
+        return objc.msgSend(self_, "setVertexAdditionalBinaryFunctions:", void, .{vertexAdditionalBinaryFunctions_});
+    }
+    pub fn fragmentAdditionalBinaryFunctions(self_: *@This()) ?*ns.Array(*Function) {
+        return objc.msgSend(self_, "fragmentAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
+    }
+    pub fn setFragmentAdditionalBinaryFunctions(self_: *@This(), fragmentAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
+        return objc.msgSend(self_, "setFragmentAdditionalBinaryFunctions:", void, .{fragmentAdditionalBinaryFunctions_});
+    }
+    pub fn tileAdditionalBinaryFunctions(self_: *@This()) ?*ns.Array(*Function) {
+        return objc.msgSend(self_, "tileAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
+    }
+    pub fn setTileAdditionalBinaryFunctions(self_: *@This(), tileAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
+        return objc.msgSend(self_, "setTileAdditionalBinaryFunctions:", void, .{tileAdditionalBinaryFunctions_});
     }
 };
 
 pub const RenderPipelineState = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPipelineState);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn imageblockMemoryLengthForDimensions(self_: *T, imageblockDimensions_: Size) ns.UInteger {
-                return objc.msgSend(self_, "imageblockMemoryLengthForDimensions:", ns.UInteger, .{imageblockDimensions_});
-            }
-            pub fn functionHandleWithFunction_stage(self_: *T, function_: *Function, stage_: RenderStages) ?*FunctionHandle {
-                return objc.msgSend(self_, "functionHandleWithFunction:stage:", ?*FunctionHandle, .{ function_, stage_ });
-            }
-            pub fn newVisibleFunctionTableWithDescriptor_stage(self_: *T, descriptor_: *VisibleFunctionTableDescriptor, stage_: RenderStages) ?*VisibleFunctionTable {
-                return objc.msgSend(self_, "newVisibleFunctionTableWithDescriptor:stage:", ?*VisibleFunctionTable, .{ descriptor_, stage_ });
-            }
-            pub fn newIntersectionFunctionTableWithDescriptor_stage(self_: *T, descriptor_: *IntersectionFunctionTableDescriptor, stage_: RenderStages) ?*IntersectionFunctionTable {
-                return objc.msgSend(self_, "newIntersectionFunctionTableWithDescriptor:stage:", ?*IntersectionFunctionTable, .{ descriptor_, stage_ });
-            }
-            pub fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(self_: *T, additionalBinaryFunctions_: *RenderPipelineFunctionsDescriptor, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return objc.msgSend(self_, "newRenderPipelineStateWithAdditionalBinaryFunctions:error:", ?*RenderPipelineState, .{ additionalBinaryFunctions_, error_ });
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
-            }
-            pub fn threadgroupSizeMatchesTileSize(self_: *T) bool {
-                return objc.msgSend(self_, "threadgroupSizeMatchesTileSize", bool, .{});
-            }
-            pub fn imageblockSampleLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "imageblockSampleLength", ns.UInteger, .{});
-            }
-            pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
-            }
-            pub fn maxTotalThreadsPerObjectThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerObjectThreadgroup", ns.UInteger, .{});
-            }
-            pub fn maxTotalThreadsPerMeshThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerMeshThreadgroup", ns.UInteger, .{});
-            }
-            pub fn objectThreadExecutionWidth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "objectThreadExecutionWidth", ns.UInteger, .{});
-            }
-            pub fn meshThreadExecutionWidth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "meshThreadExecutionWidth", ns.UInteger, .{});
-            }
-            pub fn maxTotalThreadgroupsPerMeshGrid(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadgroupsPerMeshGrid", ns.UInteger, .{});
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-        };
+    pub fn imageblockMemoryLengthForDimensions(self_: *@This(), imageblockDimensions_: Size) ns.UInteger {
+        return objc.msgSend(self_, "imageblockMemoryLengthForDimensions:", ns.UInteger, .{imageblockDimensions_});
+    }
+    pub fn functionHandleWithFunction_stage(self_: *@This(), function_: *Function, stage_: RenderStages) ?*FunctionHandle {
+        return objc.msgSend(self_, "functionHandleWithFunction:stage:", ?*FunctionHandle, .{ function_, stage_ });
+    }
+    pub fn newVisibleFunctionTableWithDescriptor_stage(self_: *@This(), descriptor_: *VisibleFunctionTableDescriptor, stage_: RenderStages) ?*VisibleFunctionTable {
+        return objc.msgSend(self_, "newVisibleFunctionTableWithDescriptor:stage:", ?*VisibleFunctionTable, .{ descriptor_, stage_ });
+    }
+    pub fn newIntersectionFunctionTableWithDescriptor_stage(self_: *@This(), descriptor_: *IntersectionFunctionTableDescriptor, stage_: RenderStages) ?*IntersectionFunctionTable {
+        return objc.msgSend(self_, "newIntersectionFunctionTableWithDescriptor:stage:", ?*IntersectionFunctionTable, .{ descriptor_, stage_ });
+    }
+    pub fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(self_: *@This(), additionalBinaryFunctions_: *RenderPipelineFunctionsDescriptor, error_: ?*?*ns.Error) ?*RenderPipelineState {
+        return objc.msgSend(self_, "newRenderPipelineStateWithAdditionalBinaryFunctions:error:", ?*RenderPipelineState, .{ additionalBinaryFunctions_, error_ });
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn maxTotalThreadsPerThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
+    }
+    pub fn threadgroupSizeMatchesTileSize(self_: *@This()) bool {
+        return objc.msgSend(self_, "threadgroupSizeMatchesTileSize", bool, .{});
+    }
+    pub fn imageblockSampleLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "imageblockSampleLength", ns.UInteger, .{});
+    }
+    pub fn supportIndirectCommandBuffers(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
+    }
+    pub fn maxTotalThreadsPerObjectThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerObjectThreadgroup", ns.UInteger, .{});
+    }
+    pub fn maxTotalThreadsPerMeshThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerMeshThreadgroup", ns.UInteger, .{});
+    }
+    pub fn objectThreadExecutionWidth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "objectThreadExecutionWidth", ns.UInteger, .{});
+    }
+    pub fn meshThreadExecutionWidth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "meshThreadExecutionWidth", ns.UInteger, .{});
+    }
+    pub fn maxTotalThreadgroupsPerMeshGrid(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadgroupsPerMeshGrid", ns.UInteger, .{});
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
     }
 };
 
 pub const RenderPipelineColorAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLRenderPipelineColorAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(RenderPipelineColorAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *RenderPipelineColorAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPipelineColorAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*RenderPipelineColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *RenderPipelineColorAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPipelineColorAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: ?*RenderPipelineColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const TileRenderPipelineColorAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLTileRenderPipelineColorAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(TileRenderPipelineColorAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn pixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
-            }
-            pub fn setPixelFormat(self_: *T, pixelFormat_: PixelFormat) void {
-                return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
-            }
-        };
+    pub fn pixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
+    }
+    pub fn setPixelFormat(self_: *@This(), pixelFormat_: PixelFormat) void {
+        return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
     }
 };
 
 pub const TileRenderPipelineColorAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLTileRenderPipelineColorAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(TileRenderPipelineColorAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *TileRenderPipelineColorAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *TileRenderPipelineColorAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: *TileRenderPipelineColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *TileRenderPipelineColorAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *TileRenderPipelineColorAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: *TileRenderPipelineColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const TileRenderPipelineDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLTileRenderPipelineDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(TileRenderPipelineDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn tileFunction(self_: *T) *Function {
-                return objc.msgSend(self_, "tileFunction", *Function, .{});
-            }
-            pub fn setTileFunction(self_: *T, tileFunction_: *Function) void {
-                return objc.msgSend(self_, "setTileFunction:", void, .{tileFunction_});
-            }
-            pub fn rasterSampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
-            }
-            pub fn setRasterSampleCount(self_: *T, rasterSampleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
-            }
-            pub fn colorAttachments(self_: *T) *TileRenderPipelineColorAttachmentDescriptorArray {
-                return objc.msgSend(self_, "colorAttachments", *TileRenderPipelineColorAttachmentDescriptorArray, .{});
-            }
-            pub fn threadgroupSizeMatchesTileSize(self_: *T) bool {
-                return objc.msgSend(self_, "threadgroupSizeMatchesTileSize", bool, .{});
-            }
-            pub fn setThreadgroupSizeMatchesTileSize(self_: *T, threadgroupSizeMatchesTileSize_: bool) void {
-                return objc.msgSend(self_, "setThreadgroupSizeMatchesTileSize:", void, .{threadgroupSizeMatchesTileSize_});
-            }
-            pub fn tileBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return objc.msgSend(self_, "tileBuffers", *PipelineBufferDescriptorArray, .{});
-            }
-            pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
-            }
-            pub fn setMaxTotalThreadsPerThreadgroup(self_: *T, maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
-            }
-            pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
-            }
-            pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
-            }
-            pub fn preloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return objc.msgSend(self_, "preloadedLibraries", *ns.Array(*DynamicLibrary), .{});
-            }
-            pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return objc.msgSend(self_, "setPreloadedLibraries:", void, .{preloadedLibraries_});
-            }
-            pub fn linkedFunctions(self_: *T) *LinkedFunctions {
-                return objc.msgSend(self_, "linkedFunctions", *LinkedFunctions, .{});
-            }
-            pub fn setLinkedFunctions(self_: *T, linkedFunctions_: ?*LinkedFunctions) void {
-                return objc.msgSend(self_, "setLinkedFunctions:", void, .{linkedFunctions_});
-            }
-            pub fn supportAddingBinaryFunctions(self_: *T) bool {
-                return objc.msgSend(self_, "supportAddingBinaryFunctions", bool, .{});
-            }
-            pub fn setSupportAddingBinaryFunctions(self_: *T, supportAddingBinaryFunctions_: bool) void {
-                return objc.msgSend(self_, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions_});
-            }
-            pub fn maxCallStackDepth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxCallStackDepth", ns.UInteger, .{});
-            }
-            pub fn setMaxCallStackDepth(self_: *T, maxCallStackDepth_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxCallStackDepth:", void, .{maxCallStackDepth_});
-            }
-        };
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn tileFunction(self_: *@This()) *Function {
+        return objc.msgSend(self_, "tileFunction", *Function, .{});
+    }
+    pub fn setTileFunction(self_: *@This(), tileFunction_: *Function) void {
+        return objc.msgSend(self_, "setTileFunction:", void, .{tileFunction_});
+    }
+    pub fn rasterSampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
+    }
+    pub fn setRasterSampleCount(self_: *@This(), rasterSampleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
+    }
+    pub fn colorAttachments(self_: *@This()) *TileRenderPipelineColorAttachmentDescriptorArray {
+        return objc.msgSend(self_, "colorAttachments", *TileRenderPipelineColorAttachmentDescriptorArray, .{});
+    }
+    pub fn threadgroupSizeMatchesTileSize(self_: *@This()) bool {
+        return objc.msgSend(self_, "threadgroupSizeMatchesTileSize", bool, .{});
+    }
+    pub fn setThreadgroupSizeMatchesTileSize(self_: *@This(), threadgroupSizeMatchesTileSize_: bool) void {
+        return objc.msgSend(self_, "setThreadgroupSizeMatchesTileSize:", void, .{threadgroupSizeMatchesTileSize_});
+    }
+    pub fn tileBuffers(self_: *@This()) *PipelineBufferDescriptorArray {
+        return objc.msgSend(self_, "tileBuffers", *PipelineBufferDescriptorArray, .{});
+    }
+    pub fn maxTotalThreadsPerThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
+    }
+    pub fn setMaxTotalThreadsPerThreadgroup(self_: *@This(), maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
+    }
+    pub fn binaryArchives(self_: *@This()) ?*ns.Array(*BinaryArchive) {
+        return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
+    }
+    pub fn setBinaryArchives(self_: *@This(), binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
+        return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
+    }
+    pub fn preloadedLibraries(self_: *@This()) *ns.Array(*DynamicLibrary) {
+        return objc.msgSend(self_, "preloadedLibraries", *ns.Array(*DynamicLibrary), .{});
+    }
+    pub fn setPreloadedLibraries(self_: *@This(), preloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
+        return objc.msgSend(self_, "setPreloadedLibraries:", void, .{preloadedLibraries_});
+    }
+    pub fn linkedFunctions(self_: *@This()) *LinkedFunctions {
+        return objc.msgSend(self_, "linkedFunctions", *LinkedFunctions, .{});
+    }
+    pub fn setLinkedFunctions(self_: *@This(), linkedFunctions_: ?*LinkedFunctions) void {
+        return objc.msgSend(self_, "setLinkedFunctions:", void, .{linkedFunctions_});
+    }
+    pub fn supportAddingBinaryFunctions(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportAddingBinaryFunctions", bool, .{});
+    }
+    pub fn setSupportAddingBinaryFunctions(self_: *@This(), supportAddingBinaryFunctions_: bool) void {
+        return objc.msgSend(self_, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions_});
+    }
+    pub fn maxCallStackDepth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxCallStackDepth", ns.UInteger, .{});
+    }
+    pub fn setMaxCallStackDepth(self_: *@This(), maxCallStackDepth_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxCallStackDepth:", void, .{maxCallStackDepth_});
     }
 };
 
 pub const MeshRenderPipelineDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLMeshRenderPipelineDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(MeshRenderPipelineDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn objectFunction(self_: *T) ?*Function {
-                return objc.msgSend(self_, "objectFunction", ?*Function, .{});
-            }
-            pub fn setObjectFunction(self_: *T, objectFunction_: ?*Function) void {
-                return objc.msgSend(self_, "setObjectFunction:", void, .{objectFunction_});
-            }
-            pub fn meshFunction(self_: *T) ?*Function {
-                return objc.msgSend(self_, "meshFunction", ?*Function, .{});
-            }
-            pub fn setMeshFunction(self_: *T, meshFunction_: ?*Function) void {
-                return objc.msgSend(self_, "setMeshFunction:", void, .{meshFunction_});
-            }
-            pub fn fragmentFunction(self_: *T) ?*Function {
-                return objc.msgSend(self_, "fragmentFunction", ?*Function, .{});
-            }
-            pub fn setFragmentFunction(self_: *T, fragmentFunction_: ?*Function) void {
-                return objc.msgSend(self_, "setFragmentFunction:", void, .{fragmentFunction_});
-            }
-            pub fn maxTotalThreadsPerObjectThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerObjectThreadgroup", ns.UInteger, .{});
-            }
-            pub fn setMaxTotalThreadsPerObjectThreadgroup(self_: *T, maxTotalThreadsPerObjectThreadgroup_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxTotalThreadsPerObjectThreadgroup:", void, .{maxTotalThreadsPerObjectThreadgroup_});
-            }
-            pub fn maxTotalThreadsPerMeshThreadgroup(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadsPerMeshThreadgroup", ns.UInteger, .{});
-            }
-            pub fn setMaxTotalThreadsPerMeshThreadgroup(self_: *T, maxTotalThreadsPerMeshThreadgroup_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxTotalThreadsPerMeshThreadgroup:", void, .{maxTotalThreadsPerMeshThreadgroup_});
-            }
-            pub fn objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T) bool {
-                return objc.msgSend(self_, "objectThreadgroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
-            }
-            pub fn setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T, objectThreadgroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
-                return objc.msgSend(self_, "setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:", void, .{objectThreadgroupSizeIsMultipleOfThreadExecutionWidth_});
-            }
-            pub fn meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T) bool {
-                return objc.msgSend(self_, "meshThreadgroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
-            }
-            pub fn setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T, meshThreadgroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
-                return objc.msgSend(self_, "setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:", void, .{meshThreadgroupSizeIsMultipleOfThreadExecutionWidth_});
-            }
-            pub fn payloadMemoryLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "payloadMemoryLength", ns.UInteger, .{});
-            }
-            pub fn setPayloadMemoryLength(self_: *T, payloadMemoryLength_: ns.UInteger) void {
-                return objc.msgSend(self_, "setPayloadMemoryLength:", void, .{payloadMemoryLength_});
-            }
-            pub fn maxTotalThreadgroupsPerMeshGrid(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxTotalThreadgroupsPerMeshGrid", ns.UInteger, .{});
-            }
-            pub fn setMaxTotalThreadgroupsPerMeshGrid(self_: *T, maxTotalThreadgroupsPerMeshGrid_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxTotalThreadgroupsPerMeshGrid:", void, .{maxTotalThreadgroupsPerMeshGrid_});
-            }
-            pub fn objectBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return objc.msgSend(self_, "objectBuffers", *PipelineBufferDescriptorArray, .{});
-            }
-            pub fn meshBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return objc.msgSend(self_, "meshBuffers", *PipelineBufferDescriptorArray, .{});
-            }
-            pub fn fragmentBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return objc.msgSend(self_, "fragmentBuffers", *PipelineBufferDescriptorArray, .{});
-            }
-            pub fn rasterSampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
-            }
-            pub fn setRasterSampleCount(self_: *T, rasterSampleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
-            }
-            pub fn isAlphaToCoverageEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isAlphaToCoverageEnabled", bool, .{});
-            }
-            pub fn setAlphaToCoverageEnabled(self_: *T, alphaToCoverageEnabled_: bool) void {
-                return objc.msgSend(self_, "setAlphaToCoverageEnabled:", void, .{alphaToCoverageEnabled_});
-            }
-            pub fn isAlphaToOneEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isAlphaToOneEnabled", bool, .{});
-            }
-            pub fn setAlphaToOneEnabled(self_: *T, alphaToOneEnabled_: bool) void {
-                return objc.msgSend(self_, "setAlphaToOneEnabled:", void, .{alphaToOneEnabled_});
-            }
-            pub fn isRasterizationEnabled(self_: *T) bool {
-                return objc.msgSend(self_, "isRasterizationEnabled", bool, .{});
-            }
-            pub fn setRasterizationEnabled(self_: *T, rasterizationEnabled_: bool) void {
-                return objc.msgSend(self_, "setRasterizationEnabled:", void, .{rasterizationEnabled_});
-            }
-            pub fn maxVertexAmplificationCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxVertexAmplificationCount", ns.UInteger, .{});
-            }
-            pub fn setMaxVertexAmplificationCount(self_: *T, maxVertexAmplificationCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxVertexAmplificationCount:", void, .{maxVertexAmplificationCount_});
-            }
-            pub fn colorAttachments(self_: *T) *RenderPipelineColorAttachmentDescriptorArray {
-                return objc.msgSend(self_, "colorAttachments", *RenderPipelineColorAttachmentDescriptorArray, .{});
-            }
-            pub fn depthAttachmentPixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "depthAttachmentPixelFormat", PixelFormat, .{});
-            }
-            pub fn setDepthAttachmentPixelFormat(self_: *T, depthAttachmentPixelFormat_: PixelFormat) void {
-                return objc.msgSend(self_, "setDepthAttachmentPixelFormat:", void, .{depthAttachmentPixelFormat_});
-            }
-            pub fn stencilAttachmentPixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "stencilAttachmentPixelFormat", PixelFormat, .{});
-            }
-            pub fn setStencilAttachmentPixelFormat(self_: *T, stencilAttachmentPixelFormat_: PixelFormat) void {
-                return objc.msgSend(self_, "setStencilAttachmentPixelFormat:", void, .{stencilAttachmentPixelFormat_});
-            }
-            pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
-            }
-            pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
-                return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
-            }
-            pub fn objectLinkedFunctions(self_: *T) *LinkedFunctions {
-                return objc.msgSend(self_, "objectLinkedFunctions", *LinkedFunctions, .{});
-            }
-            pub fn setObjectLinkedFunctions(self_: *T, objectLinkedFunctions_: ?*LinkedFunctions) void {
-                return objc.msgSend(self_, "setObjectLinkedFunctions:", void, .{objectLinkedFunctions_});
-            }
-            pub fn meshLinkedFunctions(self_: *T) *LinkedFunctions {
-                return objc.msgSend(self_, "meshLinkedFunctions", *LinkedFunctions, .{});
-            }
-            pub fn setMeshLinkedFunctions(self_: *T, meshLinkedFunctions_: ?*LinkedFunctions) void {
-                return objc.msgSend(self_, "setMeshLinkedFunctions:", void, .{meshLinkedFunctions_});
-            }
-            pub fn fragmentLinkedFunctions(self_: *T) *LinkedFunctions {
-                return objc.msgSend(self_, "fragmentLinkedFunctions", *LinkedFunctions, .{});
-            }
-            pub fn setFragmentLinkedFunctions(self_: *T, fragmentLinkedFunctions_: ?*LinkedFunctions) void {
-                return objc.msgSend(self_, "setFragmentLinkedFunctions:", void, .{fragmentLinkedFunctions_});
-            }
-        };
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn objectFunction(self_: *@This()) ?*Function {
+        return objc.msgSend(self_, "objectFunction", ?*Function, .{});
+    }
+    pub fn setObjectFunction(self_: *@This(), objectFunction_: ?*Function) void {
+        return objc.msgSend(self_, "setObjectFunction:", void, .{objectFunction_});
+    }
+    pub fn meshFunction(self_: *@This()) ?*Function {
+        return objc.msgSend(self_, "meshFunction", ?*Function, .{});
+    }
+    pub fn setMeshFunction(self_: *@This(), meshFunction_: ?*Function) void {
+        return objc.msgSend(self_, "setMeshFunction:", void, .{meshFunction_});
+    }
+    pub fn fragmentFunction(self_: *@This()) ?*Function {
+        return objc.msgSend(self_, "fragmentFunction", ?*Function, .{});
+    }
+    pub fn setFragmentFunction(self_: *@This(), fragmentFunction_: ?*Function) void {
+        return objc.msgSend(self_, "setFragmentFunction:", void, .{fragmentFunction_});
+    }
+    pub fn maxTotalThreadsPerObjectThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerObjectThreadgroup", ns.UInteger, .{});
+    }
+    pub fn setMaxTotalThreadsPerObjectThreadgroup(self_: *@This(), maxTotalThreadsPerObjectThreadgroup_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxTotalThreadsPerObjectThreadgroup:", void, .{maxTotalThreadsPerObjectThreadgroup_});
+    }
+    pub fn maxTotalThreadsPerMeshThreadgroup(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadsPerMeshThreadgroup", ns.UInteger, .{});
+    }
+    pub fn setMaxTotalThreadsPerMeshThreadgroup(self_: *@This(), maxTotalThreadsPerMeshThreadgroup_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxTotalThreadsPerMeshThreadgroup:", void, .{maxTotalThreadsPerMeshThreadgroup_});
+    }
+    pub fn objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *@This()) bool {
+        return objc.msgSend(self_, "objectThreadgroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
+    }
+    pub fn setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *@This(), objectThreadgroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
+        return objc.msgSend(self_, "setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:", void, .{objectThreadgroupSizeIsMultipleOfThreadExecutionWidth_});
+    }
+    pub fn meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *@This()) bool {
+        return objc.msgSend(self_, "meshThreadgroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
+    }
+    pub fn setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *@This(), meshThreadgroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
+        return objc.msgSend(self_, "setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:", void, .{meshThreadgroupSizeIsMultipleOfThreadExecutionWidth_});
+    }
+    pub fn payloadMemoryLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "payloadMemoryLength", ns.UInteger, .{});
+    }
+    pub fn setPayloadMemoryLength(self_: *@This(), payloadMemoryLength_: ns.UInteger) void {
+        return objc.msgSend(self_, "setPayloadMemoryLength:", void, .{payloadMemoryLength_});
+    }
+    pub fn maxTotalThreadgroupsPerMeshGrid(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxTotalThreadgroupsPerMeshGrid", ns.UInteger, .{});
+    }
+    pub fn setMaxTotalThreadgroupsPerMeshGrid(self_: *@This(), maxTotalThreadgroupsPerMeshGrid_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxTotalThreadgroupsPerMeshGrid:", void, .{maxTotalThreadgroupsPerMeshGrid_});
+    }
+    pub fn objectBuffers(self_: *@This()) *PipelineBufferDescriptorArray {
+        return objc.msgSend(self_, "objectBuffers", *PipelineBufferDescriptorArray, .{});
+    }
+    pub fn meshBuffers(self_: *@This()) *PipelineBufferDescriptorArray {
+        return objc.msgSend(self_, "meshBuffers", *PipelineBufferDescriptorArray, .{});
+    }
+    pub fn fragmentBuffers(self_: *@This()) *PipelineBufferDescriptorArray {
+        return objc.msgSend(self_, "fragmentBuffers", *PipelineBufferDescriptorArray, .{});
+    }
+    pub fn rasterSampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
+    }
+    pub fn setRasterSampleCount(self_: *@This(), rasterSampleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
+    }
+    pub fn isAlphaToCoverageEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isAlphaToCoverageEnabled", bool, .{});
+    }
+    pub fn setAlphaToCoverageEnabled(self_: *@This(), alphaToCoverageEnabled_: bool) void {
+        return objc.msgSend(self_, "setAlphaToCoverageEnabled:", void, .{alphaToCoverageEnabled_});
+    }
+    pub fn isAlphaToOneEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isAlphaToOneEnabled", bool, .{});
+    }
+    pub fn setAlphaToOneEnabled(self_: *@This(), alphaToOneEnabled_: bool) void {
+        return objc.msgSend(self_, "setAlphaToOneEnabled:", void, .{alphaToOneEnabled_});
+    }
+    pub fn isRasterizationEnabled(self_: *@This()) bool {
+        return objc.msgSend(self_, "isRasterizationEnabled", bool, .{});
+    }
+    pub fn setRasterizationEnabled(self_: *@This(), rasterizationEnabled_: bool) void {
+        return objc.msgSend(self_, "setRasterizationEnabled:", void, .{rasterizationEnabled_});
+    }
+    pub fn maxVertexAmplificationCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxVertexAmplificationCount", ns.UInteger, .{});
+    }
+    pub fn setMaxVertexAmplificationCount(self_: *@This(), maxVertexAmplificationCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxVertexAmplificationCount:", void, .{maxVertexAmplificationCount_});
+    }
+    pub fn colorAttachments(self_: *@This()) *RenderPipelineColorAttachmentDescriptorArray {
+        return objc.msgSend(self_, "colorAttachments", *RenderPipelineColorAttachmentDescriptorArray, .{});
+    }
+    pub fn depthAttachmentPixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "depthAttachmentPixelFormat", PixelFormat, .{});
+    }
+    pub fn setDepthAttachmentPixelFormat(self_: *@This(), depthAttachmentPixelFormat_: PixelFormat) void {
+        return objc.msgSend(self_, "setDepthAttachmentPixelFormat:", void, .{depthAttachmentPixelFormat_});
+    }
+    pub fn stencilAttachmentPixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "stencilAttachmentPixelFormat", PixelFormat, .{});
+    }
+    pub fn setStencilAttachmentPixelFormat(self_: *@This(), stencilAttachmentPixelFormat_: PixelFormat) void {
+        return objc.msgSend(self_, "setStencilAttachmentPixelFormat:", void, .{stencilAttachmentPixelFormat_});
+    }
+    pub fn supportIndirectCommandBuffers(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
+    }
+    pub fn setSupportIndirectCommandBuffers(self_: *@This(), supportIndirectCommandBuffers_: bool) void {
+        return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
+    }
+    pub fn objectLinkedFunctions(self_: *@This()) *LinkedFunctions {
+        return objc.msgSend(self_, "objectLinkedFunctions", *LinkedFunctions, .{});
+    }
+    pub fn setObjectLinkedFunctions(self_: *@This(), objectLinkedFunctions_: ?*LinkedFunctions) void {
+        return objc.msgSend(self_, "setObjectLinkedFunctions:", void, .{objectLinkedFunctions_});
+    }
+    pub fn meshLinkedFunctions(self_: *@This()) *LinkedFunctions {
+        return objc.msgSend(self_, "meshLinkedFunctions", *LinkedFunctions, .{});
+    }
+    pub fn setMeshLinkedFunctions(self_: *@This(), meshLinkedFunctions_: ?*LinkedFunctions) void {
+        return objc.msgSend(self_, "setMeshLinkedFunctions:", void, .{meshLinkedFunctions_});
+    }
+    pub fn fragmentLinkedFunctions(self_: *@This()) *LinkedFunctions {
+        return objc.msgSend(self_, "fragmentLinkedFunctions", *LinkedFunctions, .{});
+    }
+    pub fn setFragmentLinkedFunctions(self_: *@This(), fragmentLinkedFunctions_: ?*LinkedFunctions) void {
+        return objc.msgSend(self_, "setFragmentLinkedFunctions:", void, .{fragmentLinkedFunctions_});
     }
 };
 
 pub const Resource = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Resource);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn setPurgeableState(self_: *T, state_: PurgeableState) PurgeableState {
-                return objc.msgSend(self_, "setPurgeableState:", PurgeableState, .{state_});
-            }
-            pub fn makeAliasable(self_: *T) void {
-                return objc.msgSend(self_, "makeAliasable", void, .{});
-            }
-            pub fn isAliasable(self_: *T) bool {
-                return objc.msgSend(self_, "isAliasable", bool, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
-            }
-            pub fn storageMode(self_: *T) StorageMode {
-                return objc.msgSend(self_, "storageMode", StorageMode, .{});
-            }
-            pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
-            }
-            pub fn resourceOptions(self_: *T) ResourceOptions {
-                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
-            }
-            pub fn heap(self_: *T) ?*Heap {
-                return objc.msgSend(self_, "heap", ?*Heap, .{});
-            }
-            pub fn heapOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "heapOffset", ns.UInteger, .{});
-            }
-            pub fn allocatedSize(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "allocatedSize", ns.UInteger, .{});
-            }
-        };
+    pub fn setPurgeableState(self_: *@This(), state_: PurgeableState) PurgeableState {
+        return objc.msgSend(self_, "setPurgeableState:", PurgeableState, .{state_});
+    }
+    pub fn makeAliasable(self_: *@This()) void {
+        return objc.msgSend(self_, "makeAliasable", void, .{});
+    }
+    pub fn isAliasable(self_: *@This()) bool {
+        return objc.msgSend(self_, "isAliasable", bool, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn cpuCacheMode(self_: *@This()) CPUCacheMode {
+        return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
+    }
+    pub fn storageMode(self_: *@This()) StorageMode {
+        return objc.msgSend(self_, "storageMode", StorageMode, .{});
+    }
+    pub fn hazardTrackingMode(self_: *@This()) HazardTrackingMode {
+        return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
+    }
+    pub fn resourceOptions(self_: *@This()) ResourceOptions {
+        return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
+    }
+    pub fn heap(self_: *@This()) ?*Heap {
+        return objc.msgSend(self_, "heap", ?*Heap, .{});
+    }
+    pub fn heapOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "heapOffset", ns.UInteger, .{});
+    }
+    pub fn allocatedSize(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "allocatedSize", ns.UInteger, .{});
     }
 };
 
 pub const ResourceStateCommandEncoder = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ResourceStateCommandEncoder);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace CommandEncoder.Methods(T);
-
-            pub fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(self_: *T, texture_: *Texture, mode_: SparseTextureMappingMode, regions_: *const Region, mipLevels_: *const ns.UInteger, slices_: *const ns.UInteger, numRegions_: ns.UInteger) void {
-                return objc.msgSend(self_, "updateTextureMappings:mode:regions:mipLevels:slices:numRegions:", void, .{ texture_, mode_, regions_, mipLevels_, slices_, numRegions_ });
-            }
-            pub fn updateTextureMapping_mode_region_mipLevel_slice(self_: *T, texture_: *Texture, mode_: SparseTextureMappingMode, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger) void {
-                return objc.msgSend(self_, "updateTextureMapping:mode:region:mipLevel:slice:", void, .{ texture_, mode_, region_, mipLevel_, slice_ });
-            }
-            pub fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(self_: *T, texture_: *Texture, mode_: SparseTextureMappingMode, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return objc.msgSend(self_, "updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:", void, .{ texture_, mode_, indirectBuffer_, indirectBufferOffset_ });
-            }
-            pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "updateFence:", void, .{fence_});
-            }
-            pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
-            }
-            pub fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
-                return objc.msgSend(self_, "moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
-            }
-        };
+    pub fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(self_: *@This(), texture_: *Texture, mode_: SparseTextureMappingMode, regions_: *const Region, mipLevels_: *const ns.UInteger, slices_: *const ns.UInteger, numRegions_: ns.UInteger) void {
+        return objc.msgSend(self_, "updateTextureMappings:mode:regions:mipLevels:slices:numRegions:", void, .{ texture_, mode_, regions_, mipLevels_, slices_, numRegions_ });
+    }
+    pub fn updateTextureMapping_mode_region_mipLevel_slice(self_: *@This(), texture_: *Texture, mode_: SparseTextureMappingMode, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger) void {
+        return objc.msgSend(self_, "updateTextureMapping:mode:region:mipLevel:slice:", void, .{ texture_, mode_, region_, mipLevel_, slice_ });
+    }
+    pub fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(self_: *@This(), texture_: *Texture, mode_: SparseTextureMappingMode, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
+        return objc.msgSend(self_, "updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:", void, .{ texture_, mode_, indirectBuffer_, indirectBufferOffset_ });
+    }
+    pub fn updateFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "updateFence:", void, .{fence_});
+    }
+    pub fn waitForFence(self_: *@This(), fence_: *Fence) void {
+        return objc.msgSend(self_, "waitForFence:", void, .{fence_});
+    }
+    pub fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *@This(), sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
+        return objc.msgSend(self_, "moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
     }
 };
 
 pub const ResourceStatePassSampleBufferAttachmentDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLResourceStatePassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ResourceStatePassSampleBufferAttachmentDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
-            }
-            pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
-            }
-            pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
-            }
-            pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
-            }
-            pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
-            }
-        };
+    pub fn sampleBuffer(self_: *@This()) ?*CounterSampleBuffer {
+        return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
+    }
+    pub fn setSampleBuffer(self_: *@This(), sampleBuffer_: ?*CounterSampleBuffer) void {
+        return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
+    }
+    pub fn startOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setStartOfEncoderSampleIndex(self_: *@This(), startOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
+    }
+    pub fn endOfEncoderSampleIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
+    }
+    pub fn setEndOfEncoderSampleIndex(self_: *@This(), endOfEncoderSampleIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
     }
 };
 
 pub const ResourceStatePassSampleBufferAttachmentDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLResourceStatePassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ResourceStatePassSampleBufferAttachmentDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *ResourceStatePassSampleBufferAttachmentDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *ResourceStatePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*ResourceStatePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), attachmentIndex_: ns.UInteger) *ResourceStatePassSampleBufferAttachmentDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *ResourceStatePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attachment_: ?*ResourceStatePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
     }
 };
 
 pub const ResourceStatePassDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLResourceStatePassDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(ResourceStatePassDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn resourceStatePassDescriptor() *ResourceStatePassDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "resourceStatePassDescriptor", *ResourceStatePassDescriptor, .{});
-            }
-            pub fn sampleBufferAttachments(self_: *T) *ResourceStatePassSampleBufferAttachmentDescriptorArray {
-                return objc.msgSend(self_, "sampleBufferAttachments", *ResourceStatePassSampleBufferAttachmentDescriptorArray, .{});
-            }
-        };
+    pub fn resourceStatePassDescriptor() *ResourceStatePassDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "resourceStatePassDescriptor", *ResourceStatePassDescriptor, .{});
+    }
+    pub fn sampleBufferAttachments(self_: *@This()) *ResourceStatePassSampleBufferAttachmentDescriptorArray {
+        return objc.msgSend(self_, "sampleBufferAttachments", *ResourceStatePassSampleBufferAttachmentDescriptorArray, .{});
     }
 };
 
 pub const SamplerDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLSamplerDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(SamplerDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn minFilter(self_: *T) SamplerMinMagFilter {
-                return objc.msgSend(self_, "minFilter", SamplerMinMagFilter, .{});
-            }
-            pub fn setMinFilter(self_: *T, minFilter_: SamplerMinMagFilter) void {
-                return objc.msgSend(self_, "setMinFilter:", void, .{minFilter_});
-            }
-            pub fn magFilter(self_: *T) SamplerMinMagFilter {
-                return objc.msgSend(self_, "magFilter", SamplerMinMagFilter, .{});
-            }
-            pub fn setMagFilter(self_: *T, magFilter_: SamplerMinMagFilter) void {
-                return objc.msgSend(self_, "setMagFilter:", void, .{magFilter_});
-            }
-            pub fn mipFilter(self_: *T) SamplerMipFilter {
-                return objc.msgSend(self_, "mipFilter", SamplerMipFilter, .{});
-            }
-            pub fn setMipFilter(self_: *T, mipFilter_: SamplerMipFilter) void {
-                return objc.msgSend(self_, "setMipFilter:", void, .{mipFilter_});
-            }
-            pub fn maxAnisotropy(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "maxAnisotropy", ns.UInteger, .{});
-            }
-            pub fn setMaxAnisotropy(self_: *T, maxAnisotropy_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMaxAnisotropy:", void, .{maxAnisotropy_});
-            }
-            pub fn sAddressMode(self_: *T) SamplerAddressMode {
-                return objc.msgSend(self_, "sAddressMode", SamplerAddressMode, .{});
-            }
-            pub fn setSAddressMode(self_: *T, sAddressMode_: SamplerAddressMode) void {
-                return objc.msgSend(self_, "setSAddressMode:", void, .{sAddressMode_});
-            }
-            pub fn tAddressMode(self_: *T) SamplerAddressMode {
-                return objc.msgSend(self_, "tAddressMode", SamplerAddressMode, .{});
-            }
-            pub fn setTAddressMode(self_: *T, tAddressMode_: SamplerAddressMode) void {
-                return objc.msgSend(self_, "setTAddressMode:", void, .{tAddressMode_});
-            }
-            pub fn rAddressMode(self_: *T) SamplerAddressMode {
-                return objc.msgSend(self_, "rAddressMode", SamplerAddressMode, .{});
-            }
-            pub fn setRAddressMode(self_: *T, rAddressMode_: SamplerAddressMode) void {
-                return objc.msgSend(self_, "setRAddressMode:", void, .{rAddressMode_});
-            }
-            pub fn borderColor(self_: *T) SamplerBorderColor {
-                return objc.msgSend(self_, "borderColor", SamplerBorderColor, .{});
-            }
-            pub fn setBorderColor(self_: *T, borderColor_: SamplerBorderColor) void {
-                return objc.msgSend(self_, "setBorderColor:", void, .{borderColor_});
-            }
-            pub fn normalizedCoordinates(self_: *T) bool {
-                return objc.msgSend(self_, "normalizedCoordinates", bool, .{});
-            }
-            pub fn setNormalizedCoordinates(self_: *T, normalizedCoordinates_: bool) void {
-                return objc.msgSend(self_, "setNormalizedCoordinates:", void, .{normalizedCoordinates_});
-            }
-            pub fn lodMinClamp(self_: *T) f32 {
-                return objc.msgSend(self_, "lodMinClamp", f32, .{});
-            }
-            pub fn setLodMinClamp(self_: *T, lodMinClamp_: f32) void {
-                return objc.msgSend(self_, "setLodMinClamp:", void, .{lodMinClamp_});
-            }
-            pub fn lodMaxClamp(self_: *T) f32 {
-                return objc.msgSend(self_, "lodMaxClamp", f32, .{});
-            }
-            pub fn setLodMaxClamp(self_: *T, lodMaxClamp_: f32) void {
-                return objc.msgSend(self_, "setLodMaxClamp:", void, .{lodMaxClamp_});
-            }
-            pub fn lodAverage(self_: *T) bool {
-                return objc.msgSend(self_, "lodAverage", bool, .{});
-            }
-            pub fn setLodAverage(self_: *T, lodAverage_: bool) void {
-                return objc.msgSend(self_, "setLodAverage:", void, .{lodAverage_});
-            }
-            pub fn compareFunction(self_: *T) CompareFunction {
-                return objc.msgSend(self_, "compareFunction", CompareFunction, .{});
-            }
-            pub fn setCompareFunction(self_: *T, compareFunction_: CompareFunction) void {
-                return objc.msgSend(self_, "setCompareFunction:", void, .{compareFunction_});
-            }
-            pub fn supportArgumentBuffers(self_: *T) bool {
-                return objc.msgSend(self_, "supportArgumentBuffers", bool, .{});
-            }
-            pub fn setSupportArgumentBuffers(self_: *T, supportArgumentBuffers_: bool) void {
-                return objc.msgSend(self_, "setSupportArgumentBuffers:", void, .{supportArgumentBuffers_});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return objc.msgSend(self_, "setLabel:", void, .{label_});
-            }
-        };
+    pub fn minFilter(self_: *@This()) SamplerMinMagFilter {
+        return objc.msgSend(self_, "minFilter", SamplerMinMagFilter, .{});
+    }
+    pub fn setMinFilter(self_: *@This(), minFilter_: SamplerMinMagFilter) void {
+        return objc.msgSend(self_, "setMinFilter:", void, .{minFilter_});
+    }
+    pub fn magFilter(self_: *@This()) SamplerMinMagFilter {
+        return objc.msgSend(self_, "magFilter", SamplerMinMagFilter, .{});
+    }
+    pub fn setMagFilter(self_: *@This(), magFilter_: SamplerMinMagFilter) void {
+        return objc.msgSend(self_, "setMagFilter:", void, .{magFilter_});
+    }
+    pub fn mipFilter(self_: *@This()) SamplerMipFilter {
+        return objc.msgSend(self_, "mipFilter", SamplerMipFilter, .{});
+    }
+    pub fn setMipFilter(self_: *@This(), mipFilter_: SamplerMipFilter) void {
+        return objc.msgSend(self_, "setMipFilter:", void, .{mipFilter_});
+    }
+    pub fn maxAnisotropy(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "maxAnisotropy", ns.UInteger, .{});
+    }
+    pub fn setMaxAnisotropy(self_: *@This(), maxAnisotropy_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMaxAnisotropy:", void, .{maxAnisotropy_});
+    }
+    pub fn sAddressMode(self_: *@This()) SamplerAddressMode {
+        return objc.msgSend(self_, "sAddressMode", SamplerAddressMode, .{});
+    }
+    pub fn setSAddressMode(self_: *@This(), sAddressMode_: SamplerAddressMode) void {
+        return objc.msgSend(self_, "setSAddressMode:", void, .{sAddressMode_});
+    }
+    pub fn tAddressMode(self_: *@This()) SamplerAddressMode {
+        return objc.msgSend(self_, "tAddressMode", SamplerAddressMode, .{});
+    }
+    pub fn setTAddressMode(self_: *@This(), tAddressMode_: SamplerAddressMode) void {
+        return objc.msgSend(self_, "setTAddressMode:", void, .{tAddressMode_});
+    }
+    pub fn rAddressMode(self_: *@This()) SamplerAddressMode {
+        return objc.msgSend(self_, "rAddressMode", SamplerAddressMode, .{});
+    }
+    pub fn setRAddressMode(self_: *@This(), rAddressMode_: SamplerAddressMode) void {
+        return objc.msgSend(self_, "setRAddressMode:", void, .{rAddressMode_});
+    }
+    pub fn borderColor(self_: *@This()) SamplerBorderColor {
+        return objc.msgSend(self_, "borderColor", SamplerBorderColor, .{});
+    }
+    pub fn setBorderColor(self_: *@This(), borderColor_: SamplerBorderColor) void {
+        return objc.msgSend(self_, "setBorderColor:", void, .{borderColor_});
+    }
+    pub fn normalizedCoordinates(self_: *@This()) bool {
+        return objc.msgSend(self_, "normalizedCoordinates", bool, .{});
+    }
+    pub fn setNormalizedCoordinates(self_: *@This(), normalizedCoordinates_: bool) void {
+        return objc.msgSend(self_, "setNormalizedCoordinates:", void, .{normalizedCoordinates_});
+    }
+    pub fn lodMinClamp(self_: *@This()) f32 {
+        return objc.msgSend(self_, "lodMinClamp", f32, .{});
+    }
+    pub fn setLodMinClamp(self_: *@This(), lodMinClamp_: f32) void {
+        return objc.msgSend(self_, "setLodMinClamp:", void, .{lodMinClamp_});
+    }
+    pub fn lodMaxClamp(self_: *@This()) f32 {
+        return objc.msgSend(self_, "lodMaxClamp", f32, .{});
+    }
+    pub fn setLodMaxClamp(self_: *@This(), lodMaxClamp_: f32) void {
+        return objc.msgSend(self_, "setLodMaxClamp:", void, .{lodMaxClamp_});
+    }
+    pub fn lodAverage(self_: *@This()) bool {
+        return objc.msgSend(self_, "lodAverage", bool, .{});
+    }
+    pub fn setLodAverage(self_: *@This(), lodAverage_: bool) void {
+        return objc.msgSend(self_, "setLodAverage:", void, .{lodAverage_});
+    }
+    pub fn compareFunction(self_: *@This()) CompareFunction {
+        return objc.msgSend(self_, "compareFunction", CompareFunction, .{});
+    }
+    pub fn setCompareFunction(self_: *@This(), compareFunction_: CompareFunction) void {
+        return objc.msgSend(self_, "setCompareFunction:", void, .{compareFunction_});
+    }
+    pub fn supportArgumentBuffers(self_: *@This()) bool {
+        return objc.msgSend(self_, "supportArgumentBuffers", bool, .{});
+    }
+    pub fn setSupportArgumentBuffers(self_: *@This(), supportArgumentBuffers_: bool) void {
+        return objc.msgSend(self_, "setSupportArgumentBuffers:", void, .{supportArgumentBuffers_});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn setLabel(self_: *@This(), label_: ?*ns.String) void {
+        return objc.msgSend(self_, "setLabel:", void, .{label_});
     }
 };
 
 pub const SamplerState = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(SamplerState);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectProtocol.Methods(T);
-
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-        };
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
+    }
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
     }
 };
 
 pub const BufferLayoutDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLBufferLayoutDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BufferLayoutDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn stride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "stride", ns.UInteger, .{});
-            }
-            pub fn setStride(self_: *T, stride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStride:", void, .{stride_});
-            }
-            pub fn stepFunction(self_: *T) StepFunction {
-                return objc.msgSend(self_, "stepFunction", StepFunction, .{});
-            }
-            pub fn setStepFunction(self_: *T, stepFunction_: StepFunction) void {
-                return objc.msgSend(self_, "setStepFunction:", void, .{stepFunction_});
-            }
-            pub fn stepRate(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "stepRate", ns.UInteger, .{});
-            }
-            pub fn setStepRate(self_: *T, stepRate_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStepRate:", void, .{stepRate_});
-            }
-        };
+    pub fn stride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "stride", ns.UInteger, .{});
+    }
+    pub fn setStride(self_: *@This(), stride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStride:", void, .{stride_});
+    }
+    pub fn stepFunction(self_: *@This()) StepFunction {
+        return objc.msgSend(self_, "stepFunction", StepFunction, .{});
+    }
+    pub fn setStepFunction(self_: *@This(), stepFunction_: StepFunction) void {
+        return objc.msgSend(self_, "setStepFunction:", void, .{stepFunction_});
+    }
+    pub fn stepRate(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "stepRate", ns.UInteger, .{});
+    }
+    pub fn setStepRate(self_: *@This(), stepRate_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStepRate:", void, .{stepRate_});
     }
 };
 
 pub const BufferLayoutDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLBufferLayoutDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(BufferLayoutDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *BufferLayoutDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *BufferLayoutDescriptor, .{index_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, bufferDesc_: ?*BufferLayoutDescriptor, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ bufferDesc_, index_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), index_: ns.UInteger) *BufferLayoutDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *BufferLayoutDescriptor, .{index_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), bufferDesc_: ?*BufferLayoutDescriptor, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ bufferDesc_, index_ });
     }
 };
 
 pub const AttributeDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAttributeDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AttributeDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn format(self_: *T) AttributeFormat {
-                return objc.msgSend(self_, "format", AttributeFormat, .{});
-            }
-            pub fn setFormat(self_: *T, format_: AttributeFormat) void {
-                return objc.msgSend(self_, "setFormat:", void, .{format_});
-            }
-            pub fn offset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "offset", ns.UInteger, .{});
-            }
-            pub fn setOffset(self_: *T, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setOffset:", void, .{offset_});
-            }
-            pub fn bufferIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferIndex", ns.UInteger, .{});
-            }
-            pub fn setBufferIndex(self_: *T, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBufferIndex:", void, .{bufferIndex_});
-            }
-        };
+    pub fn format(self_: *@This()) AttributeFormat {
+        return objc.msgSend(self_, "format", AttributeFormat, .{});
+    }
+    pub fn setFormat(self_: *@This(), format_: AttributeFormat) void {
+        return objc.msgSend(self_, "setFormat:", void, .{format_});
+    }
+    pub fn offset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "offset", ns.UInteger, .{});
+    }
+    pub fn setOffset(self_: *@This(), offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setOffset:", void, .{offset_});
+    }
+    pub fn bufferIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferIndex", ns.UInteger, .{});
+    }
+    pub fn setBufferIndex(self_: *@This(), bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBufferIndex:", void, .{bufferIndex_});
     }
 };
 
 pub const AttributeDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLAttributeDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(AttributeDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *AttributeDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *AttributeDescriptor, .{index_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attributeDesc_: ?*AttributeDescriptor, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attributeDesc_, index_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), index_: ns.UInteger) *AttributeDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *AttributeDescriptor, .{index_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attributeDesc_: ?*AttributeDescriptor, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attributeDesc_, index_ });
     }
 };
 
 pub const StageInputOutputDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLStageInputOutputDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(StageInputOutputDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn stageInputOutputDescriptor() *StageInputOutputDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "stageInputOutputDescriptor", *StageInputOutputDescriptor, .{});
-            }
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-            pub fn layouts(self_: *T) *BufferLayoutDescriptorArray {
-                return objc.msgSend(self_, "layouts", *BufferLayoutDescriptorArray, .{});
-            }
-            pub fn attributes(self_: *T) *AttributeDescriptorArray {
-                return objc.msgSend(self_, "attributes", *AttributeDescriptorArray, .{});
-            }
-            pub fn indexType(self_: *T) IndexType {
-                return objc.msgSend(self_, "indexType", IndexType, .{});
-            }
-            pub fn setIndexType(self_: *T, indexType_: IndexType) void {
-                return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
-            }
-            pub fn indexBufferIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "indexBufferIndex", ns.UInteger, .{});
-            }
-            pub fn setIndexBufferIndex(self_: *T, indexBufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setIndexBufferIndex:", void, .{indexBufferIndex_});
-            }
-        };
+    pub fn stageInputOutputDescriptor() *StageInputOutputDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "stageInputOutputDescriptor", *StageInputOutputDescriptor, .{});
+    }
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
+    }
+    pub fn layouts(self_: *@This()) *BufferLayoutDescriptorArray {
+        return objc.msgSend(self_, "layouts", *BufferLayoutDescriptorArray, .{});
+    }
+    pub fn attributes(self_: *@This()) *AttributeDescriptorArray {
+        return objc.msgSend(self_, "attributes", *AttributeDescriptorArray, .{});
+    }
+    pub fn indexType(self_: *@This()) IndexType {
+        return objc.msgSend(self_, "indexType", IndexType, .{});
+    }
+    pub fn setIndexType(self_: *@This(), indexType_: IndexType) void {
+        return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
+    }
+    pub fn indexBufferIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "indexBufferIndex", ns.UInteger, .{});
+    }
+    pub fn setIndexBufferIndex(self_: *@This(), indexBufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setIndexBufferIndex:", void, .{indexBufferIndex_});
     }
 };
 
 pub const SharedTextureHandle = opaque {
     pub const InternalInfo = objc.ExternClass("MTLSharedTextureHandle", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(SharedTextureHandle);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.SecureCoding.Methods(T);
-
-            pub fn device(self_: *T) *Device {
-                return objc.msgSend(self_, "device", *Device, .{});
-            }
-            pub fn label(self_: *T) ?*ns.String {
-                return objc.msgSend(self_, "label", ?*ns.String, .{});
-            }
-        };
+    pub fn device(self_: *@This()) *Device {
+        return objc.msgSend(self_, "device", *Device, .{});
+    }
+    pub fn label(self_: *@This()) ?*ns.String {
+        return objc.msgSend(self_, "label", ?*ns.String, .{});
     }
 };
 
 pub const TextureDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLTextureDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(TextureDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(pixelFormat_: PixelFormat, width_: ns.UInteger, height_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "texture2DDescriptorWithPixelFormat:width:height:mipmapped:", *TextureDescriptor, .{ pixelFormat_, width_, height_, mipmapped_ });
-            }
-            pub fn textureCubeDescriptorWithPixelFormat_size_mipmapped(pixelFormat_: PixelFormat, size_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "textureCubeDescriptorWithPixelFormat:size:mipmapped:", *TextureDescriptor, .{ pixelFormat_, size_, mipmapped_ });
-            }
-            pub fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(pixelFormat_: PixelFormat, width_: ns.UInteger, resourceOptions_: ResourceOptions, usage_: TextureUsage) *TextureDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", *TextureDescriptor, .{ pixelFormat_, width_, resourceOptions_, usage_ });
-            }
-            pub fn textureType(self_: *T) TextureType {
-                return objc.msgSend(self_, "textureType", TextureType, .{});
-            }
-            pub fn setTextureType(self_: *T, textureType_: TextureType) void {
-                return objc.msgSend(self_, "setTextureType:", void, .{textureType_});
-            }
-            pub fn pixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
-            }
-            pub fn setPixelFormat(self_: *T, pixelFormat_: PixelFormat) void {
-                return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
-            }
-            pub fn width(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "width", ns.UInteger, .{});
-            }
-            pub fn setWidth(self_: *T, width_: ns.UInteger) void {
-                return objc.msgSend(self_, "setWidth:", void, .{width_});
-            }
-            pub fn height(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "height", ns.UInteger, .{});
-            }
-            pub fn setHeight(self_: *T, height_: ns.UInteger) void {
-                return objc.msgSend(self_, "setHeight:", void, .{height_});
-            }
-            pub fn depth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "depth", ns.UInteger, .{});
-            }
-            pub fn setDepth(self_: *T, depth_: ns.UInteger) void {
-                return objc.msgSend(self_, "setDepth:", void, .{depth_});
-            }
-            pub fn mipmapLevelCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "mipmapLevelCount", ns.UInteger, .{});
-            }
-            pub fn setMipmapLevelCount(self_: *T, mipmapLevelCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setMipmapLevelCount:", void, .{mipmapLevelCount_});
-            }
-            pub fn sampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
-            }
-            pub fn setSampleCount(self_: *T, sampleCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
-            }
-            pub fn arrayLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
-            }
-            pub fn setArrayLength(self_: *T, arrayLength_: ns.UInteger) void {
-                return objc.msgSend(self_, "setArrayLength:", void, .{arrayLength_});
-            }
-            pub fn resourceOptions(self_: *T) ResourceOptions {
-                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
-            }
-            pub fn setResourceOptions(self_: *T, resourceOptions_: ResourceOptions) void {
-                return objc.msgSend(self_, "setResourceOptions:", void, .{resourceOptions_});
-            }
-            pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
-            }
-            pub fn setCpuCacheMode(self_: *T, cpuCacheMode_: CPUCacheMode) void {
-                return objc.msgSend(self_, "setCpuCacheMode:", void, .{cpuCacheMode_});
-            }
-            pub fn storageMode(self_: *T) StorageMode {
-                return objc.msgSend(self_, "storageMode", StorageMode, .{});
-            }
-            pub fn setStorageMode(self_: *T, storageMode_: StorageMode) void {
-                return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
-            }
-            pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
-            }
-            pub fn setHazardTrackingMode(self_: *T, hazardTrackingMode_: HazardTrackingMode) void {
-                return objc.msgSend(self_, "setHazardTrackingMode:", void, .{hazardTrackingMode_});
-            }
-            pub fn usage(self_: *T) TextureUsage {
-                return objc.msgSend(self_, "usage", TextureUsage, .{});
-            }
-            pub fn setUsage(self_: *T, usage_: TextureUsage) void {
-                return objc.msgSend(self_, "setUsage:", void, .{usage_});
-            }
-            pub fn allowGPUOptimizedContents(self_: *T) bool {
-                return objc.msgSend(self_, "allowGPUOptimizedContents", bool, .{});
-            }
-            pub fn setAllowGPUOptimizedContents(self_: *T, allowGPUOptimizedContents_: bool) void {
-                return objc.msgSend(self_, "setAllowGPUOptimizedContents:", void, .{allowGPUOptimizedContents_});
-            }
-            pub fn compressionType(self_: *T) TextureCompressionType {
-                return objc.msgSend(self_, "compressionType", TextureCompressionType, .{});
-            }
-            pub fn setCompressionType(self_: *T, compressionType_: TextureCompressionType) void {
-                return objc.msgSend(self_, "setCompressionType:", void, .{compressionType_});
-            }
-            pub fn swizzle(self_: *T) TextureSwizzleChannels {
-                return objc.msgSend(self_, "swizzle", TextureSwizzleChannels, .{});
-            }
-            pub fn setSwizzle(self_: *T, swizzle_: TextureSwizzleChannels) void {
-                return objc.msgSend(self_, "setSwizzle:", void, .{swizzle_});
-            }
-        };
+    pub fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(pixelFormat_: PixelFormat, width_: ns.UInteger, height_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "texture2DDescriptorWithPixelFormat:width:height:mipmapped:", *TextureDescriptor, .{ pixelFormat_, width_, height_, mipmapped_ });
+    }
+    pub fn textureCubeDescriptorWithPixelFormat_size_mipmapped(pixelFormat_: PixelFormat, size_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "textureCubeDescriptorWithPixelFormat:size:mipmapped:", *TextureDescriptor, .{ pixelFormat_, size_, mipmapped_ });
+    }
+    pub fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(pixelFormat_: PixelFormat, width_: ns.UInteger, resourceOptions_: ResourceOptions, usage_: TextureUsage) *TextureDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", *TextureDescriptor, .{ pixelFormat_, width_, resourceOptions_, usage_ });
+    }
+    pub fn textureType(self_: *@This()) TextureType {
+        return objc.msgSend(self_, "textureType", TextureType, .{});
+    }
+    pub fn setTextureType(self_: *@This(), textureType_: TextureType) void {
+        return objc.msgSend(self_, "setTextureType:", void, .{textureType_});
+    }
+    pub fn pixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
+    }
+    pub fn setPixelFormat(self_: *@This(), pixelFormat_: PixelFormat) void {
+        return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
+    }
+    pub fn width(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "width", ns.UInteger, .{});
+    }
+    pub fn setWidth(self_: *@This(), width_: ns.UInteger) void {
+        return objc.msgSend(self_, "setWidth:", void, .{width_});
+    }
+    pub fn height(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "height", ns.UInteger, .{});
+    }
+    pub fn setHeight(self_: *@This(), height_: ns.UInteger) void {
+        return objc.msgSend(self_, "setHeight:", void, .{height_});
+    }
+    pub fn depth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "depth", ns.UInteger, .{});
+    }
+    pub fn setDepth(self_: *@This(), depth_: ns.UInteger) void {
+        return objc.msgSend(self_, "setDepth:", void, .{depth_});
+    }
+    pub fn mipmapLevelCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "mipmapLevelCount", ns.UInteger, .{});
+    }
+    pub fn setMipmapLevelCount(self_: *@This(), mipmapLevelCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setMipmapLevelCount:", void, .{mipmapLevelCount_});
+    }
+    pub fn sampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
+    }
+    pub fn setSampleCount(self_: *@This(), sampleCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
+    }
+    pub fn arrayLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
+    }
+    pub fn setArrayLength(self_: *@This(), arrayLength_: ns.UInteger) void {
+        return objc.msgSend(self_, "setArrayLength:", void, .{arrayLength_});
+    }
+    pub fn resourceOptions(self_: *@This()) ResourceOptions {
+        return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
+    }
+    pub fn setResourceOptions(self_: *@This(), resourceOptions_: ResourceOptions) void {
+        return objc.msgSend(self_, "setResourceOptions:", void, .{resourceOptions_});
+    }
+    pub fn cpuCacheMode(self_: *@This()) CPUCacheMode {
+        return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
+    }
+    pub fn setCpuCacheMode(self_: *@This(), cpuCacheMode_: CPUCacheMode) void {
+        return objc.msgSend(self_, "setCpuCacheMode:", void, .{cpuCacheMode_});
+    }
+    pub fn storageMode(self_: *@This()) StorageMode {
+        return objc.msgSend(self_, "storageMode", StorageMode, .{});
+    }
+    pub fn setStorageMode(self_: *@This(), storageMode_: StorageMode) void {
+        return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
+    }
+    pub fn hazardTrackingMode(self_: *@This()) HazardTrackingMode {
+        return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
+    }
+    pub fn setHazardTrackingMode(self_: *@This(), hazardTrackingMode_: HazardTrackingMode) void {
+        return objc.msgSend(self_, "setHazardTrackingMode:", void, .{hazardTrackingMode_});
+    }
+    pub fn usage(self_: *@This()) TextureUsage {
+        return objc.msgSend(self_, "usage", TextureUsage, .{});
+    }
+    pub fn setUsage(self_: *@This(), usage_: TextureUsage) void {
+        return objc.msgSend(self_, "setUsage:", void, .{usage_});
+    }
+    pub fn allowGPUOptimizedContents(self_: *@This()) bool {
+        return objc.msgSend(self_, "allowGPUOptimizedContents", bool, .{});
+    }
+    pub fn setAllowGPUOptimizedContents(self_: *@This(), allowGPUOptimizedContents_: bool) void {
+        return objc.msgSend(self_, "setAllowGPUOptimizedContents:", void, .{allowGPUOptimizedContents_});
+    }
+    pub fn compressionType(self_: *@This()) TextureCompressionType {
+        return objc.msgSend(self_, "compressionType", TextureCompressionType, .{});
+    }
+    pub fn setCompressionType(self_: *@This(), compressionType_: TextureCompressionType) void {
+        return objc.msgSend(self_, "setCompressionType:", void, .{compressionType_});
+    }
+    pub fn swizzle(self_: *@This()) TextureSwizzleChannels {
+        return objc.msgSend(self_, "swizzle", TextureSwizzleChannels, .{});
+    }
+    pub fn setSwizzle(self_: *@This(), swizzle_: TextureSwizzleChannels) void {
+        return objc.msgSend(self_, "setSwizzle:", void, .{swizzle_});
     }
 };
 
 pub const Texture = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(Texture);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Resource.Methods(T);
-
-            pub fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(self_: *T, pixelBytes_: *anyopaque, bytesPerRow_: ns.UInteger, bytesPerImage_: ns.UInteger, region_: Region, level_: ns.UInteger, slice_: ns.UInteger) void {
-                return objc.msgSend(self_, "getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:", void, .{ pixelBytes_, bytesPerRow_, bytesPerImage_, region_, level_, slice_ });
-            }
-            pub fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(self_: *T, region_: Region, level_: ns.UInteger, slice_: ns.UInteger, pixelBytes_: *const anyopaque, bytesPerRow_: ns.UInteger, bytesPerImage_: ns.UInteger) void {
-                return objc.msgSend(self_, "replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:", void, .{ region_, level_, slice_, pixelBytes_, bytesPerRow_, bytesPerImage_ });
-            }
-            pub fn getBytes_bytesPerRow_fromRegion_mipmapLevel(self_: *T, pixelBytes_: *anyopaque, bytesPerRow_: ns.UInteger, region_: Region, level_: ns.UInteger) void {
-                return objc.msgSend(self_, "getBytes:bytesPerRow:fromRegion:mipmapLevel:", void, .{ pixelBytes_, bytesPerRow_, region_, level_ });
-            }
-            pub fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(self_: *T, region_: Region, level_: ns.UInteger, pixelBytes_: *const anyopaque, bytesPerRow_: ns.UInteger) void {
-                return objc.msgSend(self_, "replaceRegion:mipmapLevel:withBytes:bytesPerRow:", void, .{ region_, level_, pixelBytes_, bytesPerRow_ });
-            }
-            pub fn newTextureViewWithPixelFormat(self_: *T, pixelFormat_: PixelFormat) ?*Texture {
-                return objc.msgSend(self_, "newTextureViewWithPixelFormat:", ?*Texture, .{pixelFormat_});
-            }
-            pub fn newTextureViewWithPixelFormat_textureType_levels_slices(self_: *T, pixelFormat_: PixelFormat, textureType_: TextureType, levelRange_: ns.Range, sliceRange_: ns.Range) ?*Texture {
-                return objc.msgSend(self_, "newTextureViewWithPixelFormat:textureType:levels:slices:", ?*Texture, .{ pixelFormat_, textureType_, levelRange_, sliceRange_ });
-            }
-            pub fn newSharedTextureHandle(self_: *T) ?*SharedTextureHandle {
-                return objc.msgSend(self_, "newSharedTextureHandle", ?*SharedTextureHandle, .{});
-            }
-            pub fn newRemoteTextureViewForDevice(self_: *T, device_: *Device) ?*Texture {
-                return objc.msgSend(self_, "newRemoteTextureViewForDevice:", ?*Texture, .{device_});
-            }
-            pub fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(self_: *T, pixelFormat_: PixelFormat, textureType_: TextureType, levelRange_: ns.Range, sliceRange_: ns.Range, swizzle_: TextureSwizzleChannels) ?*Texture {
-                return objc.msgSend(self_, "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:", ?*Texture, .{ pixelFormat_, textureType_, levelRange_, sliceRange_, swizzle_ });
-            }
-            pub fn rootResource(self_: *T) ?*Resource {
-                return objc.msgSend(self_, "rootResource", ?*Resource, .{});
-            }
-            pub fn parentTexture(self_: *T) ?*Texture {
-                return objc.msgSend(self_, "parentTexture", ?*Texture, .{});
-            }
-            pub fn parentRelativeLevel(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "parentRelativeLevel", ns.UInteger, .{});
-            }
-            pub fn parentRelativeSlice(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "parentRelativeSlice", ns.UInteger, .{});
-            }
-            pub fn buffer(self_: *T) ?*Buffer {
-                return objc.msgSend(self_, "buffer", ?*Buffer, .{});
-            }
-            pub fn bufferOffset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferOffset", ns.UInteger, .{});
-            }
-            pub fn bufferBytesPerRow(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferBytesPerRow", ns.UInteger, .{});
-            }
-            pub fn iosurface(self_: *T) IOSurfaceRef {
-                return objc.msgSend(self_, "iosurface", IOSurfaceRef, .{});
-            }
-            pub fn iosurfacePlane(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "iosurfacePlane", ns.UInteger, .{});
-            }
-            pub fn textureType(self_: *T) TextureType {
-                return objc.msgSend(self_, "textureType", TextureType, .{});
-            }
-            pub fn pixelFormat(self_: *T) PixelFormat {
-                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
-            }
-            pub fn width(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "width", ns.UInteger, .{});
-            }
-            pub fn height(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "height", ns.UInteger, .{});
-            }
-            pub fn depth(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "depth", ns.UInteger, .{});
-            }
-            pub fn mipmapLevelCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "mipmapLevelCount", ns.UInteger, .{});
-            }
-            pub fn sampleCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
-            }
-            pub fn arrayLength(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
-            }
-            pub fn usage(self_: *T) TextureUsage {
-                return objc.msgSend(self_, "usage", TextureUsage, .{});
-            }
-            pub fn isShareable(self_: *T) bool {
-                return objc.msgSend(self_, "isShareable", bool, .{});
-            }
-            pub fn isFramebufferOnly(self_: *T) bool {
-                return objc.msgSend(self_, "isFramebufferOnly", bool, .{});
-            }
-            pub fn firstMipmapInTail(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "firstMipmapInTail", ns.UInteger, .{});
-            }
-            pub fn tailSizeInBytes(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "tailSizeInBytes", ns.UInteger, .{});
-            }
-            pub fn isSparse(self_: *T) bool {
-                return objc.msgSend(self_, "isSparse", bool, .{});
-            }
-            pub fn allowGPUOptimizedContents(self_: *T) bool {
-                return objc.msgSend(self_, "allowGPUOptimizedContents", bool, .{});
-            }
-            pub fn compressionType(self_: *T) TextureCompressionType {
-                return objc.msgSend(self_, "compressionType", TextureCompressionType, .{});
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-            pub fn remoteStorageTexture(self_: *T) *Texture {
-                return objc.msgSend(self_, "remoteStorageTexture", *Texture, .{});
-            }
-            pub fn swizzle(self_: *T) TextureSwizzleChannels {
-                return objc.msgSend(self_, "swizzle", TextureSwizzleChannels, .{});
-            }
-        };
+    pub fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(self_: *@This(), pixelBytes_: *anyopaque, bytesPerRow_: ns.UInteger, bytesPerImage_: ns.UInteger, region_: Region, level_: ns.UInteger, slice_: ns.UInteger) void {
+        return objc.msgSend(self_, "getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:", void, .{ pixelBytes_, bytesPerRow_, bytesPerImage_, region_, level_, slice_ });
+    }
+    pub fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(self_: *@This(), region_: Region, level_: ns.UInteger, slice_: ns.UInteger, pixelBytes_: *const anyopaque, bytesPerRow_: ns.UInteger, bytesPerImage_: ns.UInteger) void {
+        return objc.msgSend(self_, "replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:", void, .{ region_, level_, slice_, pixelBytes_, bytesPerRow_, bytesPerImage_ });
+    }
+    pub fn getBytes_bytesPerRow_fromRegion_mipmapLevel(self_: *@This(), pixelBytes_: *anyopaque, bytesPerRow_: ns.UInteger, region_: Region, level_: ns.UInteger) void {
+        return objc.msgSend(self_, "getBytes:bytesPerRow:fromRegion:mipmapLevel:", void, .{ pixelBytes_, bytesPerRow_, region_, level_ });
+    }
+    pub fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(self_: *@This(), region_: Region, level_: ns.UInteger, pixelBytes_: *const anyopaque, bytesPerRow_: ns.UInteger) void {
+        return objc.msgSend(self_, "replaceRegion:mipmapLevel:withBytes:bytesPerRow:", void, .{ region_, level_, pixelBytes_, bytesPerRow_ });
+    }
+    pub fn newTextureViewWithPixelFormat(self_: *@This(), pixelFormat_: PixelFormat) ?*Texture {
+        return objc.msgSend(self_, "newTextureViewWithPixelFormat:", ?*Texture, .{pixelFormat_});
+    }
+    pub fn newTextureViewWithPixelFormat_textureType_levels_slices(self_: *@This(), pixelFormat_: PixelFormat, textureType_: TextureType, levelRange_: ns.Range, sliceRange_: ns.Range) ?*Texture {
+        return objc.msgSend(self_, "newTextureViewWithPixelFormat:textureType:levels:slices:", ?*Texture, .{ pixelFormat_, textureType_, levelRange_, sliceRange_ });
+    }
+    pub fn newSharedTextureHandle(self_: *@This()) ?*SharedTextureHandle {
+        return objc.msgSend(self_, "newSharedTextureHandle", ?*SharedTextureHandle, .{});
+    }
+    pub fn newRemoteTextureViewForDevice(self_: *@This(), device_: *Device) ?*Texture {
+        return objc.msgSend(self_, "newRemoteTextureViewForDevice:", ?*Texture, .{device_});
+    }
+    pub fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(self_: *@This(), pixelFormat_: PixelFormat, textureType_: TextureType, levelRange_: ns.Range, sliceRange_: ns.Range, swizzle_: TextureSwizzleChannels) ?*Texture {
+        return objc.msgSend(self_, "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:", ?*Texture, .{ pixelFormat_, textureType_, levelRange_, sliceRange_, swizzle_ });
+    }
+    pub fn rootResource(self_: *@This()) ?*Resource {
+        return objc.msgSend(self_, "rootResource", ?*Resource, .{});
+    }
+    pub fn parentTexture(self_: *@This()) ?*Texture {
+        return objc.msgSend(self_, "parentTexture", ?*Texture, .{});
+    }
+    pub fn parentRelativeLevel(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "parentRelativeLevel", ns.UInteger, .{});
+    }
+    pub fn parentRelativeSlice(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "parentRelativeSlice", ns.UInteger, .{});
+    }
+    pub fn buffer(self_: *@This()) ?*Buffer {
+        return objc.msgSend(self_, "buffer", ?*Buffer, .{});
+    }
+    pub fn bufferOffset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferOffset", ns.UInteger, .{});
+    }
+    pub fn bufferBytesPerRow(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferBytesPerRow", ns.UInteger, .{});
+    }
+    pub fn iosurface(self_: *@This()) IOSurfaceRef {
+        return objc.msgSend(self_, "iosurface", IOSurfaceRef, .{});
+    }
+    pub fn iosurfacePlane(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "iosurfacePlane", ns.UInteger, .{});
+    }
+    pub fn textureType(self_: *@This()) TextureType {
+        return objc.msgSend(self_, "textureType", TextureType, .{});
+    }
+    pub fn pixelFormat(self_: *@This()) PixelFormat {
+        return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
+    }
+    pub fn width(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "width", ns.UInteger, .{});
+    }
+    pub fn height(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "height", ns.UInteger, .{});
+    }
+    pub fn depth(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "depth", ns.UInteger, .{});
+    }
+    pub fn mipmapLevelCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "mipmapLevelCount", ns.UInteger, .{});
+    }
+    pub fn sampleCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
+    }
+    pub fn arrayLength(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
+    }
+    pub fn usage(self_: *@This()) TextureUsage {
+        return objc.msgSend(self_, "usage", TextureUsage, .{});
+    }
+    pub fn isShareable(self_: *@This()) bool {
+        return objc.msgSend(self_, "isShareable", bool, .{});
+    }
+    pub fn isFramebufferOnly(self_: *@This()) bool {
+        return objc.msgSend(self_, "isFramebufferOnly", bool, .{});
+    }
+    pub fn firstMipmapInTail(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "firstMipmapInTail", ns.UInteger, .{});
+    }
+    pub fn tailSizeInBytes(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "tailSizeInBytes", ns.UInteger, .{});
+    }
+    pub fn isSparse(self_: *@This()) bool {
+        return objc.msgSend(self_, "isSparse", bool, .{});
+    }
+    pub fn allowGPUOptimizedContents(self_: *@This()) bool {
+        return objc.msgSend(self_, "allowGPUOptimizedContents", bool, .{});
+    }
+    pub fn compressionType(self_: *@This()) TextureCompressionType {
+        return objc.msgSend(self_, "compressionType", TextureCompressionType, .{});
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
+    }
+    pub fn remoteStorageTexture(self_: *@This()) *Texture {
+        return objc.msgSend(self_, "remoteStorageTexture", *Texture, .{});
+    }
+    pub fn swizzle(self_: *@This()) TextureSwizzleChannels {
+        return objc.msgSend(self_, "swizzle", TextureSwizzleChannels, .{});
     }
 };
 
 pub const VertexBufferLayoutDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLVertexBufferLayoutDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VertexBufferLayoutDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn stride(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "stride", ns.UInteger, .{});
-            }
-            pub fn setStride(self_: *T, stride_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStride:", void, .{stride_});
-            }
-            pub fn stepFunction(self_: *T) VertexStepFunction {
-                return objc.msgSend(self_, "stepFunction", VertexStepFunction, .{});
-            }
-            pub fn setStepFunction(self_: *T, stepFunction_: VertexStepFunction) void {
-                return objc.msgSend(self_, "setStepFunction:", void, .{stepFunction_});
-            }
-            pub fn stepRate(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "stepRate", ns.UInteger, .{});
-            }
-            pub fn setStepRate(self_: *T, stepRate_: ns.UInteger) void {
-                return objc.msgSend(self_, "setStepRate:", void, .{stepRate_});
-            }
-        };
+    pub fn stride(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "stride", ns.UInteger, .{});
+    }
+    pub fn setStride(self_: *@This(), stride_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStride:", void, .{stride_});
+    }
+    pub fn stepFunction(self_: *@This()) VertexStepFunction {
+        return objc.msgSend(self_, "stepFunction", VertexStepFunction, .{});
+    }
+    pub fn setStepFunction(self_: *@This(), stepFunction_: VertexStepFunction) void {
+        return objc.msgSend(self_, "setStepFunction:", void, .{stepFunction_});
+    }
+    pub fn stepRate(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "stepRate", ns.UInteger, .{});
+    }
+    pub fn setStepRate(self_: *@This(), stepRate_: ns.UInteger) void {
+        return objc.msgSend(self_, "setStepRate:", void, .{stepRate_});
     }
 };
 
 pub const VertexBufferLayoutDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLVertexBufferLayoutDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VertexBufferLayoutDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *VertexBufferLayoutDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *VertexBufferLayoutDescriptor, .{index_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, bufferDesc_: ?*VertexBufferLayoutDescriptor, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ bufferDesc_, index_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), index_: ns.UInteger) *VertexBufferLayoutDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *VertexBufferLayoutDescriptor, .{index_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), bufferDesc_: ?*VertexBufferLayoutDescriptor, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ bufferDesc_, index_ });
     }
 };
 
 pub const VertexAttributeDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLVertexAttributeDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VertexAttributeDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn format(self_: *T) VertexFormat {
-                return objc.msgSend(self_, "format", VertexFormat, .{});
-            }
-            pub fn setFormat(self_: *T, format_: VertexFormat) void {
-                return objc.msgSend(self_, "setFormat:", void, .{format_});
-            }
-            pub fn offset(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "offset", ns.UInteger, .{});
-            }
-            pub fn setOffset(self_: *T, offset_: ns.UInteger) void {
-                return objc.msgSend(self_, "setOffset:", void, .{offset_});
-            }
-            pub fn bufferIndex(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "bufferIndex", ns.UInteger, .{});
-            }
-            pub fn setBufferIndex(self_: *T, bufferIndex_: ns.UInteger) void {
-                return objc.msgSend(self_, "setBufferIndex:", void, .{bufferIndex_});
-            }
-        };
+    pub fn format(self_: *@This()) VertexFormat {
+        return objc.msgSend(self_, "format", VertexFormat, .{});
+    }
+    pub fn setFormat(self_: *@This(), format_: VertexFormat) void {
+        return objc.msgSend(self_, "setFormat:", void, .{format_});
+    }
+    pub fn offset(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "offset", ns.UInteger, .{});
+    }
+    pub fn setOffset(self_: *@This(), offset_: ns.UInteger) void {
+        return objc.msgSend(self_, "setOffset:", void, .{offset_});
+    }
+    pub fn bufferIndex(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "bufferIndex", ns.UInteger, .{});
+    }
+    pub fn setBufferIndex(self_: *@This(), bufferIndex_: ns.UInteger) void {
+        return objc.msgSend(self_, "setBufferIndex:", void, .{bufferIndex_});
     }
 };
 
 pub const VertexAttributeDescriptorArray = opaque {
     pub const InternalInfo = objc.ExternClass("MTLVertexAttributeDescriptorArray", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VertexAttributeDescriptorArray);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-
-            pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *VertexAttributeDescriptor {
-                return objc.msgSend(self_, "objectAtIndexedSubscript:", *VertexAttributeDescriptor, .{index_});
-            }
-            pub fn setObject_atIndexedSubscript(self_: *T, attributeDesc_: ?*VertexAttributeDescriptor, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attributeDesc_, index_ });
-            }
-        };
+    pub fn objectAtIndexedSubscript(self_: *@This(), index_: ns.UInteger) *VertexAttributeDescriptor {
+        return objc.msgSend(self_, "objectAtIndexedSubscript:", *VertexAttributeDescriptor, .{index_});
+    }
+    pub fn setObject_atIndexedSubscript(self_: *@This(), attributeDesc_: ?*VertexAttributeDescriptor, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attributeDesc_, index_ });
     }
 };
 
 pub const VertexDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLVertexDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VertexDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn vertexDescriptor() *VertexDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "vertexDescriptor", *VertexDescriptor, .{});
-            }
-            pub fn reset(self_: *T) void {
-                return objc.msgSend(self_, "reset", void, .{});
-            }
-            pub fn layouts(self_: *T) *VertexBufferLayoutDescriptorArray {
-                return objc.msgSend(self_, "layouts", *VertexBufferLayoutDescriptorArray, .{});
-            }
-            pub fn attributes(self_: *T) *VertexAttributeDescriptorArray {
-                return objc.msgSend(self_, "attributes", *VertexAttributeDescriptorArray, .{});
-            }
-        };
+    pub fn vertexDescriptor() *VertexDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "vertexDescriptor", *VertexDescriptor, .{});
+    }
+    pub fn reset(self_: *@This()) void {
+        return objc.msgSend(self_, "reset", void, .{});
+    }
+    pub fn layouts(self_: *@This()) *VertexBufferLayoutDescriptorArray {
+        return objc.msgSend(self_, "layouts", *VertexBufferLayoutDescriptorArray, .{});
+    }
+    pub fn attributes(self_: *@This()) *VertexAttributeDescriptorArray {
+        return objc.msgSend(self_, "attributes", *VertexAttributeDescriptorArray, .{});
     }
 };
 
 pub const VisibleFunctionTableDescriptor = opaque {
     pub const InternalInfo = objc.ExternClass("MTLVisibleFunctionTableDescriptor", @This(), ns.ObjectInterface, &.{});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VisibleFunctionTableDescriptor);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ns.ObjectInterface.Methods(T);
-            pub usingnamespace ns.Copying.Methods(T);
-
-            pub fn visibleFunctionTableDescriptor() *VisibleFunctionTableDescriptor {
-                return objc.msgSend(T.InternalInfo.class(), "visibleFunctionTableDescriptor", *VisibleFunctionTableDescriptor, .{});
-            }
-            pub fn functionCount(self_: *T) ns.UInteger {
-                return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
-            }
-            pub fn setFunctionCount(self_: *T, functionCount_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFunctionCount:", void, .{functionCount_});
-            }
-        };
+    pub fn visibleFunctionTableDescriptor() *VisibleFunctionTableDescriptor {
+        return objc.msgSend(@This().InternalInfo.class(), "visibleFunctionTableDescriptor", *VisibleFunctionTableDescriptor, .{});
+    }
+    pub fn functionCount(self_: *@This()) ns.UInteger {
+        return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
+    }
+    pub fn setFunctionCount(self_: *@This(), functionCount_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFunctionCount:", void, .{functionCount_});
     }
 };
 
 pub const VisibleFunctionTable = opaque {
     pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
     pub const as = InternalInfo.as;
-    pub usingnamespace Methods(VisibleFunctionTable);
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
 
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Resource.Methods(T);
-
-            pub fn setFunction_atIndex(self_: *T, function_: ?*FunctionHandle, index_: ns.UInteger) void {
-                return objc.msgSend(self_, "setFunction:atIndex:", void, .{ function_, index_ });
-            }
-            pub fn setFunctions_withRange(self_: *T, functions_: *?*const FunctionHandle, range_: ns.Range) void {
-                return objc.msgSend(self_, "setFunctions:withRange:", void, .{ functions_, range_ });
-            }
-            pub fn gpuResourceID(self_: *T) ResourceID {
-                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
-            }
-        };
+    pub fn setFunction_atIndex(self_: *@This(), function_: ?*FunctionHandle, index_: ns.UInteger) void {
+        return objc.msgSend(self_, "setFunction:atIndex:", void, .{ function_, index_ });
+    }
+    pub fn setFunctions_withRange(self_: *@This(), functions_: *?*const FunctionHandle, range_: ns.Range) void {
+        return objc.msgSend(self_, "setFunctions:withRange:", void, .{ functions_, range_ });
+    }
+    pub fn gpuResourceID(self_: *@This()) ResourceID {
+        return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
     }
 };
