@@ -5,9 +5,8 @@ const ns = @import("foundation.zig");
 const objc = @import("objc.zig");
 
 pub const Layer = opaque {
-    pub fn class() *c.objc_class {
-        return class_Layer;
-    }
+    pub const InternalInfo = objc.ExternClass("CALayer", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Layer);
 
     pub fn Methods(comptime T: type) type {
@@ -18,6 +17,8 @@ pub const Layer = opaque {
 };
 
 pub const MetalDrawable = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{mtl.Drawable});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(MetalDrawable);
 
     pub fn Methods(comptime T: type) type {
@@ -35,9 +36,8 @@ pub const MetalDrawable = opaque {
 };
 
 pub const MetalLayer = opaque {
-    pub fn class() *c.objc_class {
-        return class_MetalLayer;
-    }
+    pub const InternalInfo = objc.ExternClass("CAMetalLayer", @This(), Layer, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(MetalLayer);
 
     pub fn Methods(comptime T: type) type {
@@ -119,10 +119,3 @@ pub const MetalLayer = opaque {
         };
     }
 };
-var class_Layer: *c.objc_class = undefined;
-var class_MetalLayer: *c.objc_class = undefined;
-
-pub fn init() void {
-    class_Layer = c.objc_getClass("CALayer").?;
-    class_MetalLayer = c.objc_getClass("CAMetalLayer").?;
-}

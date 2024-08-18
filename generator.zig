@@ -437,7 +437,7 @@ pub const Parser = struct {
                 try self.match(.kw_class);
                 const props = try self.parsePointerProps(is_const);
 
-                const t = Type{ .name = "c.objc_class" };
+                const t = Type{ .name = "objc.Class" };
 
                 const child = try self.allocator.create(Type);
                 child.* = t;
@@ -1062,34 +1062,6 @@ fn Generator(comptime WriterType: type) type {
         pub fn generate(self: *Self) !void {
             try self.generateEnumerations();
             try self.generateContainers();
-            try self.generateClasses();
-            try self.generateInit();
-        }
-
-        fn generateClasses(self: *Self) !void {
-            for (self.containers.items) |container| {
-                if (container.is_interface) {
-                    try self.writer.print("var class_", .{});
-                    try self.generateContainerName(container);
-                    try self.writer.print(": *c.objc_class = undefined;\n", .{});
-                }
-            }
-        }
-
-        fn generateInit(self: *Self) !void {
-            try self.writer.print("pub fn init() void {{\n", .{});
-            try self.generateInitClasses();
-            try self.writer.print("}}\n", .{});
-        }
-
-        fn generateInitClasses(self: *Self) !void {
-            for (self.containers.items) |container| {
-                if (container.is_interface) {
-                    try self.writer.print("    class_", .{});
-                    try self.generateContainerName(container);
-                    try self.writer.print(" = c.objc_getClass(\"{s}\").?;\n", .{container.name});
-                }
-            }
         }
 
         fn generateEnumerations(self: *Self) !void {
@@ -1136,28 +1108,37 @@ fn Generator(comptime WriterType: type) type {
                 try self.generateContainerName(container);
                 try self.writer.print(" = opaque {{\n", .{});
             }
-            if (container.super) |super| {
-                _ = super;
-                // try self.writer.print("    pub const Super = ", .{});
-                // try self.generateContainerName(super);
-                // try self.writer.print(";\n", .{});
-            }
-            if (container.protocols.items.len > 0) {
-                // try self.writer.print("    pub const ConformsTo = &[_]type{{ ", .{});
-                // var first = true;
-                // for (container.protocols.items) |protocol| {
-                //     if (!first)
-                //         try self.writer.writeAll(", ");
-                //     first = false;
-                //     try self.generateContainerName(protocol);
-                // }
-                // try self.writer.print(" }};\n", .{});
-            }
             if (container.is_interface) {
-                try self.writer.print("    pub fn class() *c.objc_class {{ return class_", .{});
-                try self.generateContainerName(container);
-                try self.writer.print("; }}\n", .{});
+                try self.writer.print("    pub const InternalInfo = objc.ExternClass(\"{s}\", @This(), ", .{
+                    container.name,
+                });
+                if (container.super) |super| {
+                    try self.generateContainerName(super);
+                } else {
+                    try self.writer.writeAll("c.object_type");
+                }
+                try self.writer.writeAll(", &.{");
+            } else {
+                try self.writer.writeAll("    pub const InternalInfo = objc.ExternProtocol(@This(), &.{");
             }
+            var first = true;
+            for (container.protocols.items) |protocol| {
+                // TODO: optimize this O(n) lookup. We don't want to create references to protocols
+                // we don't generate, but this isn't a great way to do it. I plan on reworking the
+                // container generation code to take other frameworks into account so things like
+                // app_kit.zig doesn't duplicate NSObject (for example). Once that is done it will
+                // be easier to do an O(1) global symbol lookup across all frameworks.
+                for (self.containers.items) |c| {
+                    if (std.mem.eql(u8, c.name, protocol.name)) {
+                        if (!first) try self.writer.writeAll(", ");
+                        first = false;
+                        try self.generateContainerName(protocol);
+                    }
+                }
+            }
+            try self.writer.writeAll("});\n");
+            try self.writer.writeAll("    pub const as = InternalInfo.as;\n");
+
             try self.writer.print("    pub usingnamespace Methods(", .{});
             try self.generateContainerName(container);
             try self.writer.print(");\n", .{});
@@ -1324,7 +1305,7 @@ fn Generator(comptime WriterType: type) type {
             if (method.instance) {
                 try self.writer.writeAll("*T");
             } else {
-                try self.writer.writeAll("*c.objc_class");
+                try self.writer.writeAll("*objc.Class");
             }
             try self.writer.writeAll(", *c.objc_selector");
             for (method.params.items) |param| {
@@ -1343,7 +1324,7 @@ fn Generator(comptime WriterType: type) type {
             if (method.instance) {
                 try self.writer.print("self_", .{});
             } else {
-                try self.writer.print("T.class()", .{});
+                try self.writer.print("T.InternalInfo.class()", .{});
             }
             try self.writer.print(", \"{s}\", ", .{method.name});
             try self.generateType(method.return_type);

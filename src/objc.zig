@@ -1,5 +1,5 @@
-const std = @import("std");
 const builtin = @import("builtin");
+const std = @import("std");
 
 extern fn objc_autoreleasePoolPop(pool: *anyopaque) void;
 extern fn objc_autoreleasePoolPush() *anyopaque;
@@ -7,8 +7,9 @@ extern fn objc_autoreleasePoolPush() *anyopaque;
 pub const autoreleasePoolPop = objc_autoreleasePoolPop;
 pub const autoreleasePoolPush = objc_autoreleasePoolPush;
 
-// APIs that are part of libobjc's public API.
-pub const Protocol = opaque {};
+const c = @import("c.zig");
+pub const Protocol = c.objc_object;
+pub const Class = c.objc_class;
 
 /// Calls `objc_msgSend(receiver, selector, args...)` (or `objc_msgSend_stret` if needed).
 ///
@@ -65,4 +66,74 @@ pub fn msgSend(receiver: anytype, comptime selector: []const u8, return_type: ty
     const msg_send_fn_name = comptime if (needs_stret) "objc_msgSend_stret" else if (needs_fpret) "objc_msgSend_fpret" else "objc_msgSend";
     const msg_send_fn = @extern(*const @Type(fn_type), .{ .name = msg_send_fn_name ++ "$" ++ selector });
     return @call(.auto, msg_send_fn, .{ receiver, undefined } ++ args);
+}
+
+pub fn ExternClass(comptime name: []const u8, T: type, SuperType: type, comptime protocols: []const type) type {
+    return struct {
+        pub fn class() *Class {
+            // This global asm lives inside the `class()` function so we only generate it if `class()` is actually called.
+            const GlobalAsm = struct {
+                comptime {
+                    // zig fmt: off
+                    asm (
+                        "    .section __DATA,__objc_classrefs,regular,no_dead_strip\n" ++
+                        "    .p2align 3, 0x0\n" ++
+                        "_OBJC_CLASSLIST_REFERENCES_$_" ++ name ++ ":\n" ++
+                        "    .quad _OBJC_CLASS_$_" ++ name
+                    );
+                    // zig fmt: on
+                }
+            };
+            _ = GlobalAsm;
+
+            var ptr: *anyopaque = undefined;
+            if (comptime builtin.cpu.arch == .x86_64) {
+                // zig fmt: off
+                asm (
+                    "movq _OBJC_CLASSLIST_REFERENCES_$_" ++ name ++ "(%rip), %[ptr]"
+                    : [ptr] "=r" (ptr),
+                );
+                // zig fmt: on
+            } else {
+                // zig fmt: off
+                asm (
+                    "adrp %[ptr], _OBJC_CLASSLIST_REFERENCES_$_" ++ name ++ "@PAGE\n" ++
+                    "ldr %[ptr], [%[ptr], _OBJC_CLASSLIST_REFERENCES_$_" ++ name ++ "@PAGEOFF]"
+                    : [ptr] "=r" (ptr),
+                );
+                // zig fmt: on
+            }
+            return @ptrCast(ptr);
+        }
+
+        pub fn canCastTo(comptime Base: type) bool {
+            if (Base == T) return true;
+            inline for (protocols) |P| {
+                if (P.InternalInfo.canCastTo(Base)) return true;
+            }
+            return SuperType.InternalInfo.canCastTo(Base);
+        }
+
+        pub fn as(self: *T, comptime Base: type) *Base {
+            if (comptime canCastTo(Base)) return @ptrCast(self);
+            @compileError("Cannot cast `" ++ @typeName(T) ++ "` to `" ++ @typeName(Base) ++ "`");
+        }
+    };
+}
+
+pub fn ExternProtocol(T: type, comptime super_protocols: []const type) type {
+    return struct {
+        pub fn canCastTo(comptime Base: type) bool {
+            if (Base == T) return true;
+            inline for (super_protocols) |P| {
+                if (P.InternalInfo.canCastTo(Base)) return true;
+            }
+            return false;
+        }
+
+        pub fn as(self: *T, comptime Base: type) *Base {
+            if (comptime canCastTo(Base)) return @ptrCast(self);
+            @compileError("Cannot cast `" ++ @typeName(T) ++ "` to `" ++ @typeName(Base) ++ "`");
+        }
+    };
 }
