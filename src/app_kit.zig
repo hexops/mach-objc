@@ -77,9 +77,8 @@ pub const WindowStyleMaskNonactivatingPanel: WindowStyleMask = 128;
 pub const WindowStyleMaskHUDWindow: WindowStyleMask = 8192;
 
 pub const Application = opaque {
-    pub fn class() *c.objc_class {
-        return class_Application;
-    }
+    pub const InternalInfo = objc.ExternClass("NSApplication", @This(), Responder, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Application);
 
     pub fn Methods(comptime T: type) type {
@@ -90,7 +89,7 @@ pub const Application = opaque {
                 return objc.msgSend(self_, "run", void, .{});
             }
             pub fn sharedApplication() *Application {
-                return objc.msgSend(T.class(), "sharedApplication", *Application, .{});
+                return objc.msgSend(T.InternalInfo.class(), "sharedApplication", *Application, .{});
             }
             pub fn setDelegate(self_: *T, delegate_: ?*ApplicationDelegate) void {
                 return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
@@ -100,9 +99,8 @@ pub const Application = opaque {
 };
 
 pub const Responder = opaque {
-    pub fn class() *c.objc_class {
-        return class_Responder;
-    }
+    pub const InternalInfo = objc.ExternClass("NSResponder", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Responder);
 
     pub fn Methods(comptime T: type) type {
@@ -113,9 +111,8 @@ pub const Responder = opaque {
 };
 
 pub const Window = opaque {
-    pub fn class() *c.objc_class {
-        return class_Window;
-    }
+    pub const InternalInfo = objc.ExternClass("NSWindow", @This(), Responder, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Window);
 
     pub fn Methods(comptime T: type) type {
@@ -148,9 +145,8 @@ pub const Window = opaque {
 };
 
 pub const Notification = opaque {
-    pub fn class() *c.objc_class {
-        return class_Notification;
-    }
+    pub const InternalInfo = objc.ExternClass("NSNotification", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Notification);
 
     pub fn Methods(comptime T: type) type {
@@ -168,24 +164,22 @@ pub const Notification = opaque {
 };
 
 pub const ObjectInterface = opaque {
-    pub fn class() *c.objc_class {
-        return class_ObjectInterface;
-    }
+    pub const InternalInfo = objc.ExternClass("NSObject", @This(), c.object_type, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ObjectInterface);
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub fn alloc() *T {
-                return objc.msgSend(T.class(), "alloc", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "alloc", *T, .{});
             }
         };
     }
 };
 
 pub const View = opaque {
-    pub fn class() *c.objc_class {
-        return class_View;
-    }
+    pub const InternalInfo = objc.ExternClass("NSView", @This(), Responder, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(View);
 
     pub fn Methods(comptime T: type) type {
@@ -203,9 +197,8 @@ pub const View = opaque {
 };
 
 pub const Screen = opaque {
-    pub fn class() *c.objc_class {
-        return class_Screen;
-    }
+    pub const InternalInfo = objc.ExternClass("NSScreen", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Screen);
 
     pub fn Methods(comptime T: type) type {
@@ -213,16 +206,18 @@ pub const Screen = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn screens() *Array(*Screen) {
-                return objc.msgSend(T.class(), "screens", *Array(*Screen), .{});
+                return objc.msgSend(T.InternalInfo.class(), "screens", *Array(*Screen), .{});
             }
             pub fn mainScreen() ?*Screen {
-                return objc.msgSend(T.class(), "mainScreen", ?*Screen, .{});
+                return objc.msgSend(T.InternalInfo.class(), "mainScreen", ?*Screen, .{});
             }
         };
     }
 };
 
 pub const ApplicationDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ ObjectProtocol, ObjectProtocol });
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ApplicationDelegate);
 
     pub fn Methods(comptime T: type) type {
@@ -237,6 +232,8 @@ pub const ApplicationDelegate = opaque {
 };
 
 pub const ObjectProtocol = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ObjectProtocol);
 
     pub fn Methods(comptime T: type) type {
@@ -247,19 +244,3 @@ pub const ObjectProtocol = opaque {
         };
     }
 };
-var class_Application: *c.objc_class = undefined;
-var class_Responder: *c.objc_class = undefined;
-var class_Window: *c.objc_class = undefined;
-var class_Notification: *c.objc_class = undefined;
-var class_ObjectInterface: *c.objc_class = undefined;
-var class_View: *c.objc_class = undefined;
-var class_Screen: *c.objc_class = undefined;
-pub fn init() void {
-    class_Application = c.objc_getClass("NSApplication").?;
-    class_Responder = c.objc_getClass("NSResponder").?;
-    class_Window = c.objc_getClass("NSWindow").?;
-    class_Notification = c.objc_getClass("NSNotification").?;
-    class_ObjectInterface = c.objc_getClass("NSObject").?;
-    class_View = c.objc_getClass("NSView").?;
-    class_Screen = c.objc_getClass("NSScreen").?;
-}

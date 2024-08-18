@@ -166,25 +166,22 @@ pub const Range = extern struct {
 
 pub fn Array(comptime ObjectType: type) type {
     return opaque {
-        const Self = @This();
-        pub const Super = ObjectInterface;
-        pub usingnamespace Methods(Self);
-        pub fn class() *c.objc_class {
-            return class_Array;
-        }
+        pub const InternalInfo = objc.ExternClass("NSArray", @This(), ObjectInterface, .{Copying});
+        pub const as = InternalInfo.as;
+        pub usingnamespace Methods(@This());
 
         pub fn Methods(comptime T: type) type {
             return struct {
                 pub usingnamespace ObjectInterface.Methods(T);
 
                 pub fn array() *T {
-                    return objc.msgSend(T.class(), "array", *T, .{});
+                    return objc.msgSend(T.InternalInfo.class(), "array", *T, .{});
                 }
                 pub fn arrayWithObject(anObject_: *ObjectType) *T {
-                    return objc.msgSend(T.class(), "arrayWithObject:", *T, .{anObject_});
+                    return objc.msgSend(T.InternalInfo.class(), "arrayWithObject:", *T, .{anObject_});
                 }
                 pub fn arrayWithObjects_count(objects_: **ObjectType, cnt_: UInteger) *T {
-                    return objc.msgSend(T.class(), "arrayWithObjects:count:", *T, .{ objects_, cnt_ });
+                    return objc.msgSend(T.InternalInfo.class(), "arrayWithObjects:count:", *T, .{ objects_, cnt_ });
                 }
                 pub fn initWithObjects_count(self_: *T, objects_: **ObjectType, cnt_: UInteger) *T {
                     return objc.msgSend(self_, "initWithObjects:count:", *T, .{ objects_, cnt_ });
@@ -203,51 +200,23 @@ pub fn Array(comptime ObjectType: type) type {
     };
 }
 
-pub const AutoreleasePool = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_AutoreleasePool;
-    }
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace ObjectInterface.Methods(T);
-
-            pub fn addObject(self_: *T, anObject_: *c.objc_object) void {
-                return objc.msgSend(self_, "addObject:", void, .{anObject_});
-            }
-            pub fn drain(self_: *T) void {
-                return objc.msgSend(self_, "drain", void, .{});
-            }
-            pub fn showPools() void {
-                return objc.msgSend(T.class(), "showPools", void, .{});
-            }
-        };
-    }
-};
-
 pub const Bundle = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Bundle;
-    }
+    pub const InternalInfo = objc.ExternClass("", @This(), ObjectInterface, .{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn mainBundle() *Bundle {
-                return objc.msgSend(T.class(), "mainBundle", *Bundle, .{});
+                return objc.msgSend(T.InternalInfo.class(), "mainBundle", *Bundle, .{});
             }
             pub fn bundleWithPath(path_: *String) *T {
-                return objc.msgSend(T.class(), "bundleWithPath:", *T, .{path_});
+                return objc.msgSend(T.InternalInfo.class(), "bundleWithPath:", *T, .{path_});
             }
             pub fn bundleWithURL(url_: *URL) *T {
-                return objc.msgSend(T.class(), "bundleWithURL:", *T, .{url_});
+                return objc.msgSend(T.InternalInfo.class(), "bundleWithURL:", *T, .{url_});
             }
             pub fn initWithPath(self_: *T, path_: *String) *T {
                 return objc.msgSend(self_, "initWithPath:", *T, .{path_});
@@ -256,10 +225,10 @@ pub const Bundle = opaque {
                 return objc.msgSend(self_, "initWithURL:", *T, .{url_});
             }
             pub fn allBundles() *Array(*Bundle) {
-                return objc.msgSend(T.class(), "allBundles", *Array(*Bundle), .{});
+                return objc.msgSend(T.InternalInfo.class(), "allBundles", *Array(*Bundle), .{});
             }
             pub fn allFrameworks() *Array(*Bundle) {
-                return objc.msgSend(T.class(), "allFrameworks", *Array(*Bundle), .{});
+                return objc.msgSend(T.InternalInfo.class(), "allFrameworks", *Array(*Bundle), .{});
             }
             pub fn load(self_: *T) bool {
                 return objc.msgSend(self_, "load", bool, .{});
@@ -346,41 +315,10 @@ pub const Bundle = opaque {
     }
 };
 
-pub const Coder = opaque {};
-
-pub const Condition = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub const ConformsTo = &[_]type{Locking};
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Condition;
-    }
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub usingnamespace Locking.Methods(T);
-            pub usingnamespace ObjectInterface.Methods(T);
-
-            pub fn wait(self_: *T) void {
-                return objc.msgSend(self_, "wait", void, .{});
-            }
-            pub fn waitUntilDate(self_: *T, limit_: *Date) bool {
-                return objc.msgSend(self_, "waitUntilDate:", bool, .{limit_});
-            }
-            pub fn signal(self_: *T) void {
-                return objc.msgSend(self_, "signal", void, .{});
-            }
-            pub fn broadcast(self_: *T) void {
-                return objc.msgSend(self_, "broadcast", void, .{});
-            }
-        };
-    }
-};
-
 pub const Copying = opaque {
-    const Self = @This();
-    pub usingnamespace Methods(Self);
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ObjectProtocol});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         _ = T;
@@ -389,12 +327,9 @@ pub const Copying = opaque {
 };
 
 pub const Data = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Data;
-    }
+    pub const InternalInfo = objc.ExternClass("NSData", @This(), ObjectInterface, &.{Copying});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
@@ -411,19 +346,16 @@ pub const Data = opaque {
 };
 
 pub const Date = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Date;
-    }
+    pub const InternalInfo = objc.ExternClass("NSDate", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn dateWithTimeIntervalSinceNow(secs_: TimeInterval) *T {
-                return objc.msgSend(T.class(), "dateWithTimeIntervalSinceNow:", *T, .{secs_});
+                return objc.msgSend(T.InternalInfo.class(), "dateWithTimeIntervalSinceNow:", *T, .{secs_});
             }
         };
     }
@@ -431,25 +363,22 @@ pub const Date = opaque {
 
 pub fn Dictionary(comptime KeyType: type, comptime ObjectType: type) type {
     return opaque {
-        const Self = @This();
-        pub const Super = ObjectInterface;
-        pub usingnamespace Methods(Self);
-        pub fn class() *c.objc_class {
-            return class_Dictionary;
-        }
+        pub const InternalInfo = objc.ExternClass("NSDictionary", @This(), ObjectInterface, &.{Copying});
+        pub const as = InternalInfo.as;
+        pub usingnamespace Methods(@This());
 
         pub fn Methods(comptime T: type) type {
             return struct {
                 pub usingnamespace ObjectInterface.Methods(T);
 
                 pub fn dictionary() *T {
-                    return objc.msgSend(T.class(), "dictionary", *T, .{});
+                    return objc.msgSend(T.InternalInfo.class(), "dictionary", *T, .{});
                 }
                 pub fn dictionaryWithObject_forKey(object_: *ObjectType, key_: *KeyType) *T {
-                    return objc.msgSend(T.class(), "dictionaryWithObject:forKey:", *T, .{ object_, key_ });
+                    return objc.msgSend(T.InternalInfo.class(), "dictionaryWithObject:forKey:", *T, .{ object_, key_ });
                 }
                 pub fn dictionaryWithObjects_forKeys_count(objects_: **ObjectType, keys_: **KeyType, cnt_: UInteger) *T {
-                    return objc.msgSend(T.class(), "dictionaryWithObjects:forKeys:count:", *T, .{ objects_, keys_, cnt_ });
+                    return objc.msgSend(T.InternalInfo.class(), "dictionaryWithObjects:forKeys:count:", *T, .{ objects_, keys_, cnt_ });
                 }
                 pub fn initWithObjects_forKeys_count(self_: *T, objects_: **ObjectType, keys_: **KeyType, cnt_: UInteger) *T {
                     return objc.msgSend(self_, "initWithObjects:forKeys:count:", *T, .{ objects_, keys_, cnt_ });
@@ -473,12 +402,9 @@ pub fn Dictionary(comptime KeyType: type, comptime ObjectType: type) type {
 
 pub fn Enumerator(comptime ObjectType: type) type {
     return opaque {
-        const Self = @This();
-        pub const Super = ObjectInterface;
-        pub usingnamespace Methods(Self);
-        pub fn class() *c.objc_class {
-            return class_Enumerator;
-        }
+        pub const InternalInfo = objc.ExternClass("NSEnumerator", @This(), ObjectInterface, &.{});
+        pub const as = InternalInfo.as;
+        pub usingnamespace Methods(@This());
 
         pub fn Methods(comptime T: type) type {
             return struct {
@@ -496,19 +422,16 @@ pub fn Enumerator(comptime ObjectType: type) type {
 }
 
 pub const Error = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Error;
-    }
+    pub const InternalInfo = objc.ExternClass("NSError", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn errorWithDomain_code_userInfo(domain_: ErrorDomain, code_: Integer, dict_: *Dictionary(ErrorUserInfoKey, ObjectProtocol)) *T {
-                return objc.msgSend(T.class(), "errorWithDomain:code:userInfo:", *T, .{ domain_, code_, dict_ });
+                return objc.msgSend(T.InternalInfo.class(), "errorWithDomain:code:userInfo:", *T, .{ domain_, code_, dict_ });
             }
             pub fn initWithDomain_code_userInfo(self_: *T, domain_: ErrorDomain, code_: Integer, dict_: *Dictionary(ErrorUserInfoKey, ObjectProtocol)) *T {
                 return objc.msgSend(self_, "initWithDomain:code:userInfo:", *T, .{ domain_, code_, dict_ });
@@ -538,39 +461,10 @@ pub const Error = opaque {
     }
 };
 
-pub const FastEnumeration = opaque {
-    const Self = @This();
-    pub usingnamespace Methods(Self);
-
-    pub fn Methods(comptime T: type) type {
-        _ = T;
-        return struct {};
-    }
-};
-
-pub const Locking = opaque {
-    const Self = @This();
-    pub usingnamespace Methods(Self);
-
-    pub fn Methods(comptime T: type) type {
-        return struct {
-            pub fn lock(self_: *T) void {
-                return objc.msgSend(self_, "lock", void, .{});
-            }
-            pub fn unlock(self_: *T) void {
-                return objc.msgSend(self_, "unlock", void, .{});
-            }
-        };
-    }
-};
-
 pub const Notification = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Notification;
-    }
+    pub const InternalInfo = objc.ExternClass("NSNotification", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
@@ -590,61 +484,58 @@ pub const Notification = opaque {
 };
 
 pub const Number = opaque {
-    const Self = @This();
-    pub const Super = Value;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Number;
-    }
+    pub const InternalInfo = objc.ExternClass("NSNumber", @This(), ObjectInterface, &.{Copying});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub usingnamespace Value.Methods(T);
 
             pub fn numberWithChar(value_: u8) *Number {
-                return objc.msgSend(T.class(), "numberWithChar:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithChar:", *Number, .{value_});
             }
             pub fn numberWithUnsignedChar(value_: u8) *Number {
-                return objc.msgSend(T.class(), "numberWithUnsignedChar:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithUnsignedChar:", *Number, .{value_});
             }
             pub fn numberWithShort(value_: c_short) *Number {
-                return objc.msgSend(T.class(), "numberWithShort:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithShort:", *Number, .{value_});
             }
             pub fn numberWithUnsignedShort(value_: c_ushort) *Number {
-                return objc.msgSend(T.class(), "numberWithUnsignedShort:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithUnsignedShort:", *Number, .{value_});
             }
             pub fn numberWithInt(value_: c_int) *Number {
-                return objc.msgSend(T.class(), "numberWithInt:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithInt:", *Number, .{value_});
             }
             pub fn numberWithUnsignedInt(value_: c_uint) *Number {
-                return objc.msgSend(T.class(), "numberWithUnsignedInt:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithUnsignedInt:", *Number, .{value_});
             }
             pub fn numberWithLong(value_: c_long) *Number {
-                return objc.msgSend(T.class(), "numberWithLong:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithLong:", *Number, .{value_});
             }
             pub fn numberWithUnsignedLong(value_: c_ulong) *Number {
-                return objc.msgSend(T.class(), "numberWithUnsignedLong:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithUnsignedLong:", *Number, .{value_});
             }
             pub fn numberWithLongLong(value_: c_longlong) *Number {
-                return objc.msgSend(T.class(), "numberWithLongLong:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithLongLong:", *Number, .{value_});
             }
             pub fn numberWithUnsignedLongLong(value_: c_ulonglong) *Number {
-                return objc.msgSend(T.class(), "numberWithUnsignedLongLong:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithUnsignedLongLong:", *Number, .{value_});
             }
             pub fn numberWithFloat(value_: f32) *Number {
-                return objc.msgSend(T.class(), "numberWithFloat:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithFloat:", *Number, .{value_});
             }
             pub fn numberWithDouble(value_: f64) *Number {
-                return objc.msgSend(T.class(), "numberWithDouble:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithDouble:", *Number, .{value_});
             }
             pub fn numberWithBool(value_: bool) *Number {
-                return objc.msgSend(T.class(), "numberWithBool:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithBool:", *Number, .{value_});
             }
             pub fn numberWithInteger(value_: Integer) *Number {
-                return objc.msgSend(T.class(), "numberWithInteger:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithInteger:", *Number, .{value_});
             }
             pub fn numberWithUnsignedInteger(value_: UInteger) *Number {
-                return objc.msgSend(T.class(), "numberWithUnsignedInteger:", *Number, .{value_});
+                return objc.msgSend(T.InternalInfo.class(), "numberWithUnsignedInteger:", *Number, .{value_});
             }
             pub fn initWithChar(self_: *T, value_: u8) *Number {
                 return objc.msgSend(self_, "initWithChar:", *Number, .{value_});
@@ -753,8 +644,9 @@ pub const Number = opaque {
 };
 
 pub const ObjectProtocol = opaque {
-    const Self = @This();
-    pub usingnamespace Methods(Self);
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
@@ -791,12 +683,9 @@ pub const ObjectProtocol = opaque {
 };
 
 pub const ObjectInterface = opaque {
-    const Self = @This();
-    pub const ConformsTo = &[_]type{ObjectProtocol};
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Object;
-    }
+    pub const InternalInfo = objc.ExternClass("NSObject", @This(), c.objc_object, &.{ObjectProtocol});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
@@ -806,29 +695,26 @@ pub const ObjectInterface = opaque {
                 return objc.msgSend(self_, "init", *T, .{});
             }
             pub fn new() *T {
-                return objc.msgSend(T.class(), "new", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "new", *T, .{});
             }
             pub fn alloc() *T {
-                return objc.msgSend(T.class(), "alloc", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "alloc", *T, .{});
             }
         };
     }
 };
 
 pub const ProcessInfo = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_ProcessInfo;
-    }
+    pub const InternalInfo = objc.ExternClass("NSProcessInfo", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn processInfo() *ProcessInfo {
-                return objc.msgSend(T.class(), "processInfo", *ProcessInfo, .{});
+                return objc.msgSend(T.InternalInfo.class(), "processInfo", *ProcessInfo, .{});
             }
             pub fn arguments(self_: *T) *Array(String) {
                 return objc.msgSend(self_, "arguments", *Array(String), .{});
@@ -938,9 +824,8 @@ pub const SecureCoding = opaque {
 };
 
 pub const String = opaque {
-    pub fn class() *c.objc_class {
-        return class_String;
-    }
+    pub const InternalInfo = objc.ExternClass("NSString", @This(), ObjectInterface, &.{Copying});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(String);
 
     pub fn Methods(comptime T: type) type {
@@ -1109,7 +994,7 @@ pub const String = opaque {
                 return objc.msgSend(self_, "lengthOfBytesUsingEncoding:", UInteger, .{enc_});
             }
             pub fn localizedNameOfStringEncoding(encoding_: StringEncoding) *String {
-                return objc.msgSend(T.class(), "localizedNameOfStringEncoding:", *String, .{encoding_});
+                return objc.msgSend(T.InternalInfo.class(), "localizedNameOfStringEncoding:", *String, .{encoding_});
             }
             pub fn componentsSeparatedByString(self_: *T, separator_: *String) *Array(*String) {
                 return objc.msgSend(self_, "componentsSeparatedByString:", *Array(*String), .{separator_});
@@ -1196,34 +1081,34 @@ pub const String = opaque {
                 return objc.msgSend(self_, "initWithBytesNoCopy:length:encoding:deallocator:", *T, .{ bytes_, len_, encoding_, deallocator_ });
             }
             pub fn string() *T {
-                return objc.msgSend(T.class(), "string", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "string", *T, .{});
             }
             pub fn stringWithString(string_: *String) *T {
-                return objc.msgSend(T.class(), "stringWithString:", *T, .{string_});
+                return objc.msgSend(T.InternalInfo.class(), "stringWithString:", *T, .{string_});
             }
             pub fn stringWithCharacters_length(characters_: *const unichar, length_: UInteger) *T {
-                return objc.msgSend(T.class(), "stringWithCharacters:length:", *T, .{ characters_, length_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithCharacters:length:", *T, .{ characters_, length_ });
             }
             pub fn stringWithUTF8String(nullTerminatedCString_: [*:0]const u8) *T {
-                return objc.msgSend(T.class(), "stringWithUTF8String:", *T, .{nullTerminatedCString_});
+                return objc.msgSend(T.InternalInfo.class(), "stringWithUTF8String:", *T, .{nullTerminatedCString_});
             }
             pub fn stringWithFormat(format_: *String) *T {
-                return objc.msgSend(T.class(), "stringWithFormat:", *T, .{format_});
+                return objc.msgSend(T.InternalInfo.class(), "stringWithFormat:", *T, .{format_});
             }
             pub fn localizedStringWithFormat(format_: *String) *T {
-                return objc.msgSend(T.class(), "localizedStringWithFormat:", *T, .{format_});
+                return objc.msgSend(T.InternalInfo.class(), "localizedStringWithFormat:", *T, .{format_});
             }
             pub fn stringWithValidatedFormat_validFormatSpecifiers_error(format_: *String, validFormatSpecifiers_: *String, error_: ?*?*Error) *T {
-                return objc.msgSend(T.class(), "stringWithValidatedFormat:validFormatSpecifiers:error:", *T, .{ format_, validFormatSpecifiers_, error_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithValidatedFormat:validFormatSpecifiers:error:", *T, .{ format_, validFormatSpecifiers_, error_ });
             }
             pub fn localizedStringWithValidatedFormat_validFormatSpecifiers_error(format_: *String, validFormatSpecifiers_: *String, error_: ?*?*Error) *T {
-                return objc.msgSend(T.class(), "localizedStringWithValidatedFormat:validFormatSpecifiers:error:", *T, .{ format_, validFormatSpecifiers_, error_ });
+                return objc.msgSend(T.InternalInfo.class(), "localizedStringWithValidatedFormat:validFormatSpecifiers:error:", *T, .{ format_, validFormatSpecifiers_, error_ });
             }
             pub fn initWithCString_encoding(self_: *T, nullTerminatedCString_: *const u8, encoding_: StringEncoding) *T {
                 return objc.msgSend(self_, "initWithCString:encoding:", *T, .{ nullTerminatedCString_, encoding_ });
             }
             pub fn stringWithCString_encoding(cString_: *const u8, enc_: StringEncoding) *T {
-                return objc.msgSend(T.class(), "stringWithCString:encoding:", *T, .{ cString_, enc_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithCString:encoding:", *T, .{ cString_, enc_ });
             }
             pub fn initWithContentsOfURL_encoding_error(self_: *T, url_: *URL, enc_: StringEncoding, error_: ?*?*Error) *T {
                 return objc.msgSend(self_, "initWithContentsOfURL:encoding:error:", *T, .{ url_, enc_, error_ });
@@ -1232,10 +1117,10 @@ pub const String = opaque {
                 return objc.msgSend(self_, "initWithContentsOfFile:encoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn stringWithContentsOfURL_encoding_error(url_: *URL, enc_: StringEncoding, error_: ?*?*Error) *T {
-                return objc.msgSend(T.class(), "stringWithContentsOfURL:encoding:error:", *T, .{ url_, enc_, error_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithContentsOfURL:encoding:error:", *T, .{ url_, enc_, error_ });
             }
             pub fn stringWithContentsOfFile_encoding_error(path_: *String, enc_: StringEncoding, error_: ?*?*Error) *T {
-                return objc.msgSend(T.class(), "stringWithContentsOfFile:encoding:error:", *T, .{ path_, enc_, error_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithContentsOfFile:encoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn initWithContentsOfURL_usedEncoding_error(self_: *T, url_: *URL, enc_: ?*StringEncoding, error_: ?*?*Error) *T {
                 return objc.msgSend(self_, "initWithContentsOfURL:usedEncoding:error:", *T, .{ url_, enc_, error_ });
@@ -1244,10 +1129,10 @@ pub const String = opaque {
                 return objc.msgSend(self_, "initWithContentsOfFile:usedEncoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn stringWithContentsOfURL_usedEncoding_error(url_: *URL, enc_: ?*StringEncoding, error_: ?*?*Error) *T {
-                return objc.msgSend(T.class(), "stringWithContentsOfURL:usedEncoding:error:", *T, .{ url_, enc_, error_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithContentsOfURL:usedEncoding:error:", *T, .{ url_, enc_, error_ });
             }
             pub fn stringWithContentsOfFile_usedEncoding_error(path_: *String, enc_: ?*StringEncoding, error_: ?*?*Error) *T {
-                return objc.msgSend(T.class(), "stringWithContentsOfFile:usedEncoding:error:", *T, .{ path_, enc_, error_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithContentsOfFile:usedEncoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn doubleValue(self_: *T) f64 {
                 return objc.msgSend(self_, "doubleValue", f64, .{});
@@ -1295,10 +1180,10 @@ pub const String = opaque {
                 return objc.msgSend(self_, "smallestEncoding", StringEncoding, .{});
             }
             pub fn availableStringEncodings() *const StringEncoding {
-                return objc.msgSend(T.class(), "availableStringEncodings", *const StringEncoding, .{});
+                return objc.msgSend(T.InternalInfo.class(), "availableStringEncodings", *const StringEncoding, .{});
             }
             pub fn defaultCStringEncoding() StringEncoding {
-                return objc.msgSend(T.class(), "defaultCStringEncoding", StringEncoding, .{});
+                return objc.msgSend(T.InternalInfo.class(), "defaultCStringEncoding", StringEncoding, .{});
             }
             pub fn decomposedStringWithCanonicalMapping(self_: *T) *String {
                 return objc.msgSend(self_, "decomposedStringWithCanonicalMapping", *String, .{});
@@ -1313,7 +1198,7 @@ pub const String = opaque {
                 return objc.msgSend(self_, "precomposedStringWithCompatibilityMapping", *String, .{});
             }
             // pub fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(data_: *Data, opts_: ?*Dictionary(StringEncodingDetectionOptionsKey, *c.objc_object), string_: ?*?*String, usedLossyConversion_: ?*bool) StringEncoding {
-            //     return @as(*const fn (*c.objc_class, *c.objc_selector, *Data, ?*Dictionary(StringEncodingDetectionOptionsKey, *c.objc_object), ?*?*String, ?*bool) callconv(.C) StringEncoding, @ptrCast(&c.objc_msgSend))(T.class(), "stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:", data_, opts_, string_, usedLossyConversion_);
+            //     return @as(*const fn (*c.objc_class, *c.objc_selector, *Data, ?*Dictionary(StringEncodingDetectionOptionsKey, *c.objc_object), ?*?*String, ?*bool) callconv(.C) StringEncoding, @ptrCast(&c.objc_msgSend))(T.InternalInfo.class(), "stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:", data_, opts_, string_, usedLossyConversion_);
             // }
             pub fn propertyList(self_: *T) *c.objc_object {
                 return objc.msgSend(self_, "propertyList", *c.objc_object, .{});
@@ -1352,10 +1237,10 @@ pub const String = opaque {
                 return objc.msgSend(self_, "initWithContentsOfURL:", ?*c.objc_object, .{url_});
             }
             pub fn stringWithContentsOfFile(path_: *String) ?*c.objc_object {
-                return objc.msgSend(T.class(), "stringWithContentsOfFile:", ?*c.objc_object, .{path_});
+                return objc.msgSend(T.InternalInfo.class(), "stringWithContentsOfFile:", ?*c.objc_object, .{path_});
             }
             pub fn stringWithContentsOfURL(url_: *URL) ?*c.objc_object {
-                return objc.msgSend(T.class(), "stringWithContentsOfURL:", ?*c.objc_object, .{url_});
+                return objc.msgSend(T.InternalInfo.class(), "stringWithContentsOfURL:", ?*c.objc_object, .{url_});
             }
             pub fn initWithCStringNoCopy_length_freeWhenDone(self_: *T, bytes_: *u8, length_: UInteger, freeBuffer_: bool) ?*c.objc_object {
                 return objc.msgSend(self_, "initWithCStringNoCopy:length:freeWhenDone:", ?*c.objc_object, .{ bytes_, length_, freeBuffer_ });
@@ -1367,10 +1252,10 @@ pub const String = opaque {
                 return objc.msgSend(self_, "initWithCString:", ?*c.objc_object, .{bytes_});
             }
             pub fn stringWithCString_length(bytes_: *const u8, length_: UInteger) ?*c.objc_object {
-                return objc.msgSend(T.class(), "stringWithCString:length:", ?*c.objc_object, .{ bytes_, length_ });
+                return objc.msgSend(T.InternalInfo.class(), "stringWithCString:length:", ?*c.objc_object, .{ bytes_, length_ });
             }
             pub fn stringWithCString(bytes_: *const u8) ?*c.objc_object {
-                return objc.msgSend(T.class(), "stringWithCString:", ?*c.objc_object, .{bytes_});
+                return objc.msgSend(T.InternalInfo.class(), "stringWithCString:", ?*c.objc_object, .{bytes_});
             }
             pub fn getCharacters(self_: *T, buffer_: *unichar) void {
                 return objc.msgSend(self_, "getCharacters:", void, .{buffer_});
@@ -1380,19 +1265,16 @@ pub const String = opaque {
 };
 
 pub const URL = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_URL;
-    }
+    pub const InternalInfo = objc.ExternClass("NSURL", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn fileURLWithPath(path_: *String) *URL {
-                return objc.msgSend(T.class(), "fileURLWithPath:", *URL, .{path_});
+                return objc.msgSend(T.InternalInfo.class(), "fileURLWithPath:", *URL, .{path_});
             }
             pub fn initWithString(self_: *T, URLString_: *String) *T {
                 return objc.msgSend(self_, "initWithString:", *T, .{URLString_});
@@ -1408,22 +1290,19 @@ pub const URL = opaque {
 };
 
 pub const Value = opaque {
-    const Self = @This();
-    pub const Super = ObjectInterface;
-    pub usingnamespace Methods(Self);
-    pub fn class() *c.objc_class {
-        return class_Value;
-    }
+    pub const InternalInfo = objc.ExternClass("NSValue", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub usingnamespace Methods(@This());
 
     pub fn Methods(comptime T: type) type {
         return struct {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn valueWithBytes_objCType(value_: *const anyopaque, type_: [*:0]const u8) *Value {
-                return objc.msgSend(T.class(), "valueWithBytes:objCType:", *Value, .{ value_, type_ });
+                return objc.msgSend(T.InternalInfo.class(), "valueWithBytes:objCType:", *Value, .{ value_, type_ });
             }
             pub fn valueWithPointer(pointer_: ?*const anyopaque) *Value {
-                return objc.msgSend(T.class(), "valueWithPointer:", *Value, .{pointer_});
+                return objc.msgSend(T.InternalInfo.class(), "valueWithPointer:", *Value, .{pointer_});
             }
             pub fn initWithBytes_objCType(self_: *T, value_: *const anyopaque, type_: [*:0]const u8) *T {
                 return objc.msgSend(self_, "initWithBytes:objCType:", *T, .{ value_, type_ });
@@ -1446,40 +1325,3 @@ pub const Value = opaque {
         };
     }
 };
-
-// ------------------------------------------------------------------------------------------------
-var class_Array: *c.objc_class = undefined;
-var class_AutoreleasePool: *c.objc_class = undefined;
-var class_Bundle: *c.objc_class = undefined;
-var class_Condition: *c.objc_class = undefined;
-var class_Data: *c.objc_class = undefined;
-var class_Date: *c.objc_class = undefined;
-var class_Dictionary: *c.objc_class = undefined;
-var class_Enumerator: *c.objc_class = undefined;
-var class_Error: *c.objc_class = undefined;
-var class_Notification: *c.objc_class = undefined;
-var class_Number: *c.objc_class = undefined;
-var class_Object: *c.objc_class = undefined;
-var class_ProcessInfo: *c.objc_class = undefined;
-var class_String: *c.objc_class = undefined;
-var class_URL: *c.objc_class = undefined;
-var class_Value: *c.objc_class = undefined;
-
-pub fn init() void {
-    class_Array = c.objc_getClass("NSArray").?;
-    class_AutoreleasePool = c.objc_getClass("NSAutoreleasePool").?;
-    class_Bundle = c.objc_getClass("NSBundle").?;
-    class_Condition = c.objc_getClass("NSCondition").?;
-    class_Data = c.objc_getClass("NSData").?;
-    class_Date = c.objc_getClass("NSDate").?;
-    class_Dictionary = c.objc_getClass("NSDictionary").?;
-    class_Enumerator = c.objc_getClass("NSEnumerator").?;
-    class_Error = c.objc_getClass("NSError").?;
-    class_Notification = c.objc_getClass("NSNotification").?;
-    class_Number = c.objc_getClass("NSNumber").?;
-    class_Object = c.objc_getClass("NSObject").?;
-    class_ProcessInfo = c.objc_getClass("NSProcessInfo").?;
-    class_String = c.objc_getClass("NSString").?;
-    class_URL = c.objc_getClass("NSURL").?;
-    class_Value = c.objc_getClass("NSValue").?;
-}

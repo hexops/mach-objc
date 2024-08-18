@@ -1193,9 +1193,8 @@ pub const VertexStepFunctionPerPatch: VertexStepFunction = 3;
 pub const VertexStepFunctionPerPatchControlPoint: VertexStepFunction = 4;
 
 pub const AccelerationStructureDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructureDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructureDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1214,9 +1213,8 @@ pub const AccelerationStructureDescriptor = opaque {
 };
 
 pub const AccelerationStructureGeometryDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructureGeometryDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureGeometryDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructureGeometryDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1277,9 +1275,8 @@ pub const AccelerationStructureGeometryDescriptor = opaque {
 };
 
 pub const PrimitiveAccelerationStructureDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_PrimitiveAccelerationStructureDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLPrimitiveAccelerationStructureDescriptor", @This(), AccelerationStructureDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(PrimitiveAccelerationStructureDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1287,7 +1284,7 @@ pub const PrimitiveAccelerationStructureDescriptor = opaque {
             pub usingnamespace AccelerationStructureDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return objc.msgSend(T.class(), "descriptor", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
             }
             pub fn geometryDescriptors(self_: *T) ?*ns.Array(*AccelerationStructureGeometryDescriptor) {
                 return objc.msgSend(self_, "geometryDescriptors", ?*ns.Array(*AccelerationStructureGeometryDescriptor), .{});
@@ -1330,9 +1327,8 @@ pub const PrimitiveAccelerationStructureDescriptor = opaque {
 };
 
 pub const AccelerationStructureTriangleGeometryDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructureTriangleGeometryDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureTriangleGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructureTriangleGeometryDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1340,7 +1336,7 @@ pub const AccelerationStructureTriangleGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return objc.msgSend(T.class(), "descriptor", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
             }
             pub fn vertexBuffer(self_: *T) ?*Buffer {
                 return objc.msgSend(self_, "vertexBuffer", ?*Buffer, .{});
@@ -1407,9 +1403,8 @@ pub const AccelerationStructureTriangleGeometryDescriptor = opaque {
 };
 
 pub const AccelerationStructureBoundingBoxGeometryDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructureBoundingBoxGeometryDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureBoundingBoxGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructureBoundingBoxGeometryDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1417,7 +1412,7 @@ pub const AccelerationStructureBoundingBoxGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return objc.msgSend(T.class(), "descriptor", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
             }
             pub fn boundingBoxBuffer(self_: *T) ?*Buffer {
                 return objc.msgSend(self_, "boundingBoxBuffer", ?*Buffer, .{});
@@ -1448,9 +1443,8 @@ pub const AccelerationStructureBoundingBoxGeometryDescriptor = opaque {
 };
 
 pub const MotionKeyframeData = opaque {
-    pub fn class() *c.objc_class {
-        return class_MotionKeyframeData;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLMotionKeyframeData", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(MotionKeyframeData);
 
     pub fn Methods(comptime T: type) type {
@@ -1458,7 +1452,7 @@ pub const MotionKeyframeData = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn data() *T {
-                return objc.msgSend(T.class(), "data", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "data", *T, .{});
             }
             pub fn buffer(self_: *T) ?*Buffer {
                 return objc.msgSend(self_, "buffer", ?*Buffer, .{});
@@ -1477,9 +1471,8 @@ pub const MotionKeyframeData = opaque {
 };
 
 pub const AccelerationStructureMotionTriangleGeometryDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructureMotionTriangleGeometryDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureMotionTriangleGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructureMotionTriangleGeometryDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1487,7 +1480,7 @@ pub const AccelerationStructureMotionTriangleGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return objc.msgSend(T.class(), "descriptor", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
             }
             pub fn vertexBuffers(self_: *T) *ns.Array(*MotionKeyframeData) {
                 return objc.msgSend(self_, "vertexBuffers", *ns.Array(*MotionKeyframeData), .{});
@@ -1548,9 +1541,8 @@ pub const AccelerationStructureMotionTriangleGeometryDescriptor = opaque {
 };
 
 pub const AccelerationStructureMotionBoundingBoxGeometryDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructureMotionBoundingBoxGeometryDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor", @This(), AccelerationStructureGeometryDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructureMotionBoundingBoxGeometryDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1558,7 +1550,7 @@ pub const AccelerationStructureMotionBoundingBoxGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return objc.msgSend(T.class(), "descriptor", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
             }
             pub fn boundingBoxBuffers(self_: *T) *ns.Array(*MotionKeyframeData) {
                 return objc.msgSend(self_, "boundingBoxBuffers", *ns.Array(*MotionKeyframeData), .{});
@@ -1583,9 +1575,8 @@ pub const AccelerationStructureMotionBoundingBoxGeometryDescriptor = opaque {
 };
 
 pub const InstanceAccelerationStructureDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_InstanceAccelerationStructureDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLInstanceAccelerationStructureDescriptor", @This(), AccelerationStructureDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(InstanceAccelerationStructureDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1593,7 +1584,7 @@ pub const InstanceAccelerationStructureDescriptor = opaque {
             pub usingnamespace AccelerationStructureDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return objc.msgSend(T.class(), "descriptor", *T, .{});
+                return objc.msgSend(T.InternalInfo.class(), "descriptor", *T, .{});
             }
             pub fn instanceDescriptorBuffer(self_: *T) ?*Buffer {
                 return objc.msgSend(self_, "instanceDescriptorBuffer", ?*Buffer, .{});
@@ -1654,6 +1645,8 @@ pub const InstanceAccelerationStructureDescriptor = opaque {
 };
 
 pub const AccelerationStructure = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructure);
 
     pub fn Methods(comptime T: type) type {
@@ -1671,6 +1664,8 @@ pub const AccelerationStructure = opaque {
 };
 
 pub const AccelerationStructureCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructureCommandEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -1724,9 +1719,8 @@ pub const AccelerationStructureCommandEncoder = opaque {
 };
 
 pub const AccelerationStructurePassSampleBufferAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructurePassSampleBufferAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructurePassSampleBufferAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1757,9 +1751,8 @@ pub const AccelerationStructurePassSampleBufferAttachmentDescriptor = opaque {
 };
 
 pub const AccelerationStructurePassSampleBufferAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructurePassSampleBufferAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructurePassSampleBufferAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -1777,9 +1770,8 @@ pub const AccelerationStructurePassSampleBufferAttachmentDescriptorArray = opaqu
 };
 
 pub const AccelerationStructurePassDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AccelerationStructurePassDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAccelerationStructurePassDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AccelerationStructurePassDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -1788,7 +1780,7 @@ pub const AccelerationStructurePassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn accelerationStructurePassDescriptor() *AccelerationStructurePassDescriptor {
-                return objc.msgSend(T.class(), "accelerationStructurePassDescriptor", *AccelerationStructurePassDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "accelerationStructurePassDescriptor", *AccelerationStructurePassDescriptor, .{});
             }
             pub fn sampleBufferAttachments(self_: *T) *AccelerationStructurePassSampleBufferAttachmentDescriptorArray {
                 return objc.msgSend(self_, "sampleBufferAttachments", *AccelerationStructurePassSampleBufferAttachmentDescriptorArray, .{});
@@ -1798,9 +1790,8 @@ pub const AccelerationStructurePassDescriptor = opaque {
 };
 
 pub const Type = opaque {
-    pub fn class() *c.objc_class {
-        return class_Type;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLType", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Type);
 
     pub fn Methods(comptime T: type) type {
@@ -1815,9 +1806,8 @@ pub const Type = opaque {
 };
 
 pub const StructMember = opaque {
-    pub fn class() *c.objc_class {
-        return class_StructMember;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLStructMember", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(StructMember);
 
     pub fn Methods(comptime T: type) type {
@@ -1853,9 +1843,8 @@ pub const StructMember = opaque {
 };
 
 pub const StructType = opaque {
-    pub fn class() *c.objc_class {
-        return class_StructType;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLStructType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(StructType);
 
     pub fn Methods(comptime T: type) type {
@@ -1873,9 +1862,8 @@ pub const StructType = opaque {
 };
 
 pub const ArrayType = opaque {
-    pub fn class() *c.objc_class {
-        return class_ArrayType;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLArrayType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ArrayType);
 
     pub fn Methods(comptime T: type) type {
@@ -1911,9 +1899,8 @@ pub const ArrayType = opaque {
 };
 
 pub const PointerType = opaque {
-    pub fn class() *c.objc_class {
-        return class_PointerType;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLPointerType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(PointerType);
 
     pub fn Methods(comptime T: type) type {
@@ -1946,9 +1933,8 @@ pub const PointerType = opaque {
 };
 
 pub const TextureReferenceType = opaque {
-    pub fn class() *c.objc_class {
-        return class_TextureReferenceType;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLTextureReferenceType", @This(), Type, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(TextureReferenceType);
 
     pub fn Methods(comptime T: type) type {
@@ -1972,9 +1958,8 @@ pub const TextureReferenceType = opaque {
 };
 
 pub const Argument = opaque {
-    pub fn class() *c.objc_class {
-        return class_Argument;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLArgument", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Argument);
 
     pub fn Methods(comptime T: type) type {
@@ -2034,6 +2019,8 @@ pub const Argument = opaque {
 };
 
 pub const Binding = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Binding);
 
     pub fn Methods(comptime T: type) type {
@@ -2063,6 +2050,8 @@ pub const Binding = opaque {
 };
 
 pub const BufferBinding = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BufferBinding);
 
     pub fn Methods(comptime T: type) type {
@@ -2089,6 +2078,8 @@ pub const BufferBinding = opaque {
 };
 
 pub const ThreadgroupBinding = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ThreadgroupBinding);
 
     pub fn Methods(comptime T: type) type {
@@ -2106,6 +2097,8 @@ pub const ThreadgroupBinding = opaque {
 };
 
 pub const TextureBinding = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(TextureBinding);
 
     pub fn Methods(comptime T: type) type {
@@ -2129,6 +2122,8 @@ pub const TextureBinding = opaque {
 };
 
 pub const ObjectPayloadBinding = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Binding});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ObjectPayloadBinding);
 
     pub fn Methods(comptime T: type) type {
@@ -2146,6 +2141,8 @@ pub const ObjectPayloadBinding = opaque {
 };
 
 pub const ArgumentEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ArgumentEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -2235,9 +2232,8 @@ pub const ArgumentEncoder = opaque {
 };
 
 pub const BinaryArchiveDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_BinaryArchiveDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLBinaryArchiveDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BinaryArchiveDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -2256,6 +2252,8 @@ pub const BinaryArchiveDescriptor = opaque {
 };
 
 pub const BinaryArchive = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BinaryArchive);
 
     pub fn Methods(comptime T: type) type {
@@ -2291,6 +2289,8 @@ pub const BinaryArchive = opaque {
 };
 
 pub const BlitCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BlitCommandEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -2377,9 +2377,8 @@ pub const BlitCommandEncoder = opaque {
 };
 
 pub const BlitPassSampleBufferAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_BlitPassSampleBufferAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLBlitPassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BlitPassSampleBufferAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -2410,9 +2409,8 @@ pub const BlitPassSampleBufferAttachmentDescriptor = opaque {
 };
 
 pub const BlitPassSampleBufferAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_BlitPassSampleBufferAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLBlitPassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BlitPassSampleBufferAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -2430,9 +2428,8 @@ pub const BlitPassSampleBufferAttachmentDescriptorArray = opaque {
 };
 
 pub const BlitPassDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_BlitPassDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLBlitPassDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BlitPassDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -2441,7 +2438,7 @@ pub const BlitPassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn blitPassDescriptor() *BlitPassDescriptor {
-                return objc.msgSend(T.class(), "blitPassDescriptor", *BlitPassDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "blitPassDescriptor", *BlitPassDescriptor, .{});
             }
             pub fn sampleBufferAttachments(self_: *T) *BlitPassSampleBufferAttachmentDescriptorArray {
                 return objc.msgSend(self_, "sampleBufferAttachments", *BlitPassSampleBufferAttachmentDescriptorArray, .{});
@@ -2451,6 +2448,8 @@ pub const BlitPassDescriptor = opaque {
 };
 
 pub const Buffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Buffer);
 
     pub fn Methods(comptime T: type) type {
@@ -2489,9 +2488,8 @@ pub const Buffer = opaque {
 };
 
 pub const CaptureDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_CaptureDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLCaptureDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CaptureDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -2522,9 +2520,8 @@ pub const CaptureDescriptor = opaque {
 };
 
 pub const CaptureManager = opaque {
-    pub fn class() *c.objc_class {
-        return class_CaptureManager;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLCaptureManager", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CaptureManager);
 
     pub fn Methods(comptime T: type) type {
@@ -2532,7 +2529,7 @@ pub const CaptureManager = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn sharedCaptureManager() *CaptureManager {
-                return objc.msgSend(T.class(), "sharedCaptureManager", *CaptureManager, .{});
+                return objc.msgSend(T.InternalInfo.class(), "sharedCaptureManager", *CaptureManager, .{});
             }
             pub fn newCaptureScopeWithDevice(self_: *T, device_: *Device) *CaptureScope {
                 return objc.msgSend(self_, "newCaptureScopeWithDevice:", *CaptureScope, .{device_});
@@ -2572,6 +2569,8 @@ pub const CaptureManager = opaque {
 };
 
 pub const CaptureScope = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CaptureScope);
 
     pub fn Methods(comptime T: type) type {
@@ -2601,9 +2600,8 @@ pub const CaptureScope = opaque {
 };
 
 pub const CommandBufferDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_CommandBufferDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLCommandBufferDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CommandBufferDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -2628,6 +2626,8 @@ pub const CommandBufferDescriptor = opaque {
 };
 
 pub const CommandBufferEncoderInfo = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CommandBufferEncoderInfo);
 
     pub fn Methods(comptime T: type) type {
@@ -2648,6 +2648,8 @@ pub const CommandBufferEncoderInfo = opaque {
 };
 
 pub const CommandBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CommandBuffer);
 
     pub fn Methods(comptime T: type) type {
@@ -2770,6 +2772,8 @@ pub const CommandBuffer = opaque {
 };
 
 pub const CommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CommandEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -2802,6 +2806,8 @@ pub const CommandEncoder = opaque {
 };
 
 pub const CommandQueue = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CommandQueue);
 
     pub fn Methods(comptime T: type) type {
@@ -2834,6 +2840,8 @@ pub const CommandQueue = opaque {
 };
 
 pub const ComputeCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ComputeCommandEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -2962,9 +2970,8 @@ pub const ComputeCommandEncoder = opaque {
 };
 
 pub const ComputePassSampleBufferAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_ComputePassSampleBufferAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLComputePassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ComputePassSampleBufferAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -2995,9 +3002,8 @@ pub const ComputePassSampleBufferAttachmentDescriptor = opaque {
 };
 
 pub const ComputePassSampleBufferAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_ComputePassSampleBufferAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLComputePassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ComputePassSampleBufferAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -3015,9 +3021,8 @@ pub const ComputePassSampleBufferAttachmentDescriptorArray = opaque {
 };
 
 pub const ComputePassDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_ComputePassDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLComputePassDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ComputePassDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -3026,7 +3031,7 @@ pub const ComputePassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn computePassDescriptor() *ComputePassDescriptor {
-                return objc.msgSend(T.class(), "computePassDescriptor", *ComputePassDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "computePassDescriptor", *ComputePassDescriptor, .{});
             }
             pub fn dispatchType(self_: *T) DispatchType {
                 return objc.msgSend(self_, "dispatchType", DispatchType, .{});
@@ -3042,9 +3047,8 @@ pub const ComputePassDescriptor = opaque {
 };
 
 pub const ComputePipelineReflection = opaque {
-    pub fn class() *c.objc_class {
-        return class_ComputePipelineReflection;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLComputePipelineReflection", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ComputePipelineReflection);
 
     pub fn Methods(comptime T: type) type {
@@ -3062,9 +3066,8 @@ pub const ComputePipelineReflection = opaque {
 };
 
 pub const ComputePipelineDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_ComputePipelineDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLComputePipelineDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ComputePipelineDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -3155,6 +3158,8 @@ pub const ComputePipelineDescriptor = opaque {
 };
 
 pub const ComputePipelineState = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ComputePipelineState);
 
     pub fn Methods(comptime T: type) type {
@@ -3202,6 +3207,8 @@ pub const ComputePipelineState = opaque {
 };
 
 pub const Counter = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Counter);
 
     pub fn Methods(comptime T: type) type {
@@ -3216,6 +3223,8 @@ pub const Counter = opaque {
 };
 
 pub const CounterSet = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CounterSet);
 
     pub fn Methods(comptime T: type) type {
@@ -3233,9 +3242,8 @@ pub const CounterSet = opaque {
 };
 
 pub const CounterSampleBufferDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_CounterSampleBufferDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLCounterSampleBufferDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CounterSampleBufferDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -3272,6 +3280,8 @@ pub const CounterSampleBufferDescriptor = opaque {
 };
 
 pub const CounterSampleBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CounterSampleBuffer);
 
     pub fn Methods(comptime T: type) type {
@@ -3295,9 +3305,8 @@ pub const CounterSampleBuffer = opaque {
 };
 
 pub const StencilDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_StencilDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLStencilDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(StencilDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -3346,9 +3355,8 @@ pub const StencilDescriptor = opaque {
 };
 
 pub const DepthStencilDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_DepthStencilDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLDepthStencilDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(DepthStencilDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -3391,6 +3399,8 @@ pub const DepthStencilDescriptor = opaque {
 };
 
 pub const DepthStencilState = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(DepthStencilState);
 
     pub fn Methods(comptime T: type) type {
@@ -3408,9 +3418,8 @@ pub const DepthStencilState = opaque {
 };
 
 pub const Architecture = opaque {
-    pub fn class() *c.objc_class {
-        return class_Architecture;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLArchitecture", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Architecture);
 
     pub fn Methods(comptime T: type) type {
@@ -3426,9 +3435,8 @@ pub const Architecture = opaque {
 };
 
 pub const ArgumentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_ArgumentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLArgumentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ArgumentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -3437,7 +3445,7 @@ pub const ArgumentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn argumentDescriptor() *ArgumentDescriptor {
-                return objc.msgSend(T.class(), "argumentDescriptor", *ArgumentDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "argumentDescriptor", *ArgumentDescriptor, .{});
             }
             pub fn dataType(self_: *T) DataType {
                 return objc.msgSend(self_, "dataType", DataType, .{});
@@ -3480,6 +3488,8 @@ pub const ArgumentDescriptor = opaque {
 };
 
 pub const Device = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Device);
 
     pub fn Methods(comptime T: type) type {
@@ -3842,6 +3852,8 @@ pub const Device = opaque {
 };
 
 pub const Drawable = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Drawable);
 
     pub fn Methods(comptime T: type) type {
@@ -3871,6 +3883,8 @@ pub const Drawable = opaque {
 };
 
 pub const DynamicLibrary = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(DynamicLibrary);
 
     pub fn Methods(comptime T: type) type {
@@ -3897,6 +3911,8 @@ pub const DynamicLibrary = opaque {
 };
 
 pub const Event = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Event);
 
     pub fn Methods(comptime T: type) type {
@@ -3917,9 +3933,8 @@ pub const Event = opaque {
 };
 
 pub const SharedEventListener = opaque {
-    pub fn class() *c.objc_class {
-        return class_SharedEventListener;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLSharedEventListener", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(SharedEventListener);
 
     pub fn Methods(comptime T: type) type {
@@ -3937,6 +3952,8 @@ pub const SharedEventListener = opaque {
 };
 
 pub const SharedEvent = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Event});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(SharedEvent);
 
     pub fn Methods(comptime T: type) type {
@@ -3960,9 +3977,8 @@ pub const SharedEvent = opaque {
 };
 
 pub const SharedEventHandle = opaque {
-    pub fn class() *c.objc_class {
-        return class_SharedEventHandle;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLSharedEventHandle", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(SharedEventHandle);
 
     pub fn Methods(comptime T: type) type {
@@ -3978,6 +3994,8 @@ pub const SharedEventHandle = opaque {
 };
 
 pub const Fence = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Fence);
 
     pub fn Methods(comptime T: type) type {
@@ -3998,9 +4016,8 @@ pub const Fence = opaque {
 };
 
 pub const FunctionConstantValues = opaque {
-    pub fn class() *c.objc_class {
-        return class_FunctionConstantValues;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLFunctionConstantValues", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionConstantValues);
 
     pub fn Methods(comptime T: type) type {
@@ -4025,9 +4042,8 @@ pub const FunctionConstantValues = opaque {
 };
 
 pub const FunctionDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_FunctionDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLFunctionDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -4036,7 +4052,7 @@ pub const FunctionDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn functionDescriptor() *FunctionDescriptor {
-                return objc.msgSend(T.class(), "functionDescriptor", *FunctionDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "functionDescriptor", *FunctionDescriptor, .{});
             }
             pub fn name(self_: *T) ?*ns.String {
                 return objc.msgSend(self_, "name", ?*ns.String, .{});
@@ -4073,9 +4089,8 @@ pub const FunctionDescriptor = opaque {
 };
 
 pub const IntersectionFunctionDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_IntersectionFunctionDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLIntersectionFunctionDescriptor", @This(), FunctionDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IntersectionFunctionDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -4087,6 +4102,8 @@ pub const IntersectionFunctionDescriptor = opaque {
 };
 
 pub const FunctionHandle = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionHandle);
 
     pub fn Methods(comptime T: type) type {
@@ -4107,6 +4124,8 @@ pub const FunctionHandle = opaque {
 };
 
 pub const LogContainer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(LogContainer);
 
     pub fn Methods(comptime T: type) type {
@@ -4117,6 +4136,8 @@ pub const LogContainer = opaque {
 };
 
 pub const FunctionLogDebugLocation = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionLogDebugLocation);
 
     pub fn Methods(comptime T: type) type {
@@ -4140,6 +4161,8 @@ pub const FunctionLogDebugLocation = opaque {
 };
 
 pub const FunctionLog = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionLog);
 
     pub fn Methods(comptime T: type) type {
@@ -4163,6 +4186,8 @@ pub const FunctionLog = opaque {
 };
 
 pub const FunctionStitchingAttribute = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionStitchingAttribute);
 
     pub fn Methods(comptime T: type) type {
@@ -4173,9 +4198,8 @@ pub const FunctionStitchingAttribute = opaque {
 };
 
 pub const FunctionStitchingAttributeAlwaysInline = opaque {
-    pub fn class() *c.objc_class {
-        return class_FunctionStitchingAttributeAlwaysInline;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingAttributeAlwaysInline", @This(), ns.ObjectInterface, &.{FunctionStitchingAttribute});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionStitchingAttributeAlwaysInline);
 
     pub fn Methods(comptime T: type) type {
@@ -4187,6 +4211,8 @@ pub const FunctionStitchingAttributeAlwaysInline = opaque {
 };
 
 pub const FunctionStitchingNode = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionStitchingNode);
 
     pub fn Methods(comptime T: type) type {
@@ -4198,9 +4224,8 @@ pub const FunctionStitchingNode = opaque {
 };
 
 pub const FunctionStitchingInputNode = opaque {
-    pub fn class() *c.objc_class {
-        return class_FunctionStitchingInputNode;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingInputNode", @This(), ns.ObjectInterface, &.{FunctionStitchingNode});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionStitchingInputNode);
 
     pub fn Methods(comptime T: type) type {
@@ -4222,9 +4247,8 @@ pub const FunctionStitchingInputNode = opaque {
 };
 
 pub const FunctionStitchingFunctionNode = opaque {
-    pub fn class() *c.objc_class {
-        return class_FunctionStitchingFunctionNode;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingFunctionNode", @This(), ns.ObjectInterface, &.{FunctionStitchingNode});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionStitchingFunctionNode);
 
     pub fn Methods(comptime T: type) type {
@@ -4258,9 +4282,8 @@ pub const FunctionStitchingFunctionNode = opaque {
 };
 
 pub const FunctionStitchingGraph = opaque {
-    pub fn class() *c.objc_class {
-        return class_FunctionStitchingGraph;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLFunctionStitchingGraph", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionStitchingGraph);
 
     pub fn Methods(comptime T: type) type {
@@ -4300,9 +4323,8 @@ pub const FunctionStitchingGraph = opaque {
 };
 
 pub const StitchedLibraryDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_StitchedLibraryDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLStitchedLibraryDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(StitchedLibraryDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -4327,9 +4349,8 @@ pub const StitchedLibraryDescriptor = opaque {
 };
 
 pub const HeapDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_HeapDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLHeapDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(HeapDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -4384,6 +4405,8 @@ pub const HeapDescriptor = opaque {
 };
 
 pub const Heap = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Heap);
 
     pub fn Methods(comptime T: type) type {
@@ -4458,9 +4481,8 @@ pub const Heap = opaque {
 };
 
 pub const IndirectCommandBufferDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_IndirectCommandBufferDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLIndirectCommandBufferDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IndirectCommandBufferDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -4545,6 +4567,8 @@ pub const IndirectCommandBufferDescriptor = opaque {
 };
 
 pub const IndirectCommandBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IndirectCommandBuffer);
 
     pub fn Methods(comptime T: type) type {
@@ -4571,6 +4595,8 @@ pub const IndirectCommandBuffer = opaque {
 };
 
 pub const IndirectRenderCommand = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IndirectRenderCommand);
 
     pub fn Methods(comptime T: type) type {
@@ -4630,6 +4656,8 @@ pub const IndirectRenderCommand = opaque {
 };
 
 pub const IndirectComputeCommand = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IndirectComputeCommand);
 
     pub fn Methods(comptime T: type) type {
@@ -4674,9 +4702,8 @@ pub const IndirectComputeCommand = opaque {
 };
 
 pub const IntersectionFunctionTableDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_IntersectionFunctionTableDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLIntersectionFunctionTableDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IntersectionFunctionTableDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -4685,7 +4712,7 @@ pub const IntersectionFunctionTableDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn intersectionFunctionTableDescriptor() *IntersectionFunctionTableDescriptor {
-                return objc.msgSend(T.class(), "intersectionFunctionTableDescriptor", *IntersectionFunctionTableDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "intersectionFunctionTableDescriptor", *IntersectionFunctionTableDescriptor, .{});
             }
             pub fn functionCount(self_: *T) ns.UInteger {
                 return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
@@ -4698,6 +4725,8 @@ pub const IntersectionFunctionTableDescriptor = opaque {
 };
 
 pub const IntersectionFunctionTable = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IntersectionFunctionTable);
 
     pub fn Methods(comptime T: type) type {
@@ -4742,6 +4771,8 @@ pub const IntersectionFunctionTable = opaque {
 };
 
 pub const IOCommandBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IOCommandBuffer);
 
     pub fn Methods(comptime T: type) type {
@@ -4807,6 +4838,8 @@ pub const IOCommandBuffer = opaque {
 };
 
 pub const IOCommandQueue = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IOCommandQueue);
 
     pub fn Methods(comptime T: type) type {
@@ -4833,6 +4866,8 @@ pub const IOCommandQueue = opaque {
 };
 
 pub const IOScratchBuffer = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IOScratchBuffer);
 
     pub fn Methods(comptime T: type) type {
@@ -4847,6 +4882,8 @@ pub const IOScratchBuffer = opaque {
 };
 
 pub const IOScratchBufferAllocator = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IOScratchBufferAllocator);
 
     pub fn Methods(comptime T: type) type {
@@ -4861,9 +4898,8 @@ pub const IOScratchBufferAllocator = opaque {
 };
 
 pub const IOCommandQueueDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_IOCommandQueueDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLIOCommandQueueDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IOCommandQueueDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -4906,6 +4942,8 @@ pub const IOCommandQueueDescriptor = opaque {
 };
 
 pub const IOFileHandle = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(IOFileHandle);
 
     pub fn Methods(comptime T: type) type {
@@ -4923,9 +4961,8 @@ pub const IOFileHandle = opaque {
 };
 
 pub const VertexAttribute = opaque {
-    pub fn class() *c.objc_class {
-        return class_VertexAttribute;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLVertexAttribute", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VertexAttribute);
 
     pub fn Methods(comptime T: type) type {
@@ -4955,9 +4992,8 @@ pub const VertexAttribute = opaque {
 };
 
 pub const Attribute = opaque {
-    pub fn class() *c.objc_class {
-        return class_Attribute;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAttribute", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Attribute);
 
     pub fn Methods(comptime T: type) type {
@@ -4987,9 +5023,8 @@ pub const Attribute = opaque {
 };
 
 pub const FunctionConstant = opaque {
-    pub fn class() *c.objc_class {
-        return class_FunctionConstant;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLFunctionConstant", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(FunctionConstant);
 
     pub fn Methods(comptime T: type) type {
@@ -5013,6 +5048,8 @@ pub const FunctionConstant = opaque {
 };
 
 pub const Function = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Function);
 
     pub fn Methods(comptime T: type) type {
@@ -5063,9 +5100,8 @@ pub const Function = opaque {
 };
 
 pub const CompileOptions = opaque {
-    pub fn class() *c.objc_class {
-        return class_CompileOptions;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLCompileOptions", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(CompileOptions);
 
     pub fn Methods(comptime T: type) type {
@@ -5144,6 +5180,8 @@ pub const CompileOptions = opaque {
 };
 
 pub const Library = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Library);
 
     pub fn Methods(comptime T: type) type {
@@ -5194,9 +5232,8 @@ pub const Library = opaque {
 };
 
 pub const LinkedFunctions = opaque {
-    pub fn class() *c.objc_class {
-        return class_LinkedFunctions;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLLinkedFunctions", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(LinkedFunctions);
 
     pub fn Methods(comptime T: type) type {
@@ -5205,7 +5242,7 @@ pub const LinkedFunctions = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn linkedFunctions() *LinkedFunctions {
-                return objc.msgSend(T.class(), "linkedFunctions", *LinkedFunctions, .{});
+                return objc.msgSend(T.InternalInfo.class(), "linkedFunctions", *LinkedFunctions, .{});
             }
             pub fn functions(self_: *T) ?*ns.Array(*Function) {
                 return objc.msgSend(self_, "functions", ?*ns.Array(*Function), .{});
@@ -5236,6 +5273,8 @@ pub const LinkedFunctions = opaque {
 };
 
 pub const ParallelRenderCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ParallelRenderCommandEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -5268,9 +5307,8 @@ pub const ParallelRenderCommandEncoder = opaque {
 };
 
 pub const PipelineBufferDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_PipelineBufferDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLPipelineBufferDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(PipelineBufferDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -5289,9 +5327,8 @@ pub const PipelineBufferDescriptor = opaque {
 };
 
 pub const PipelineBufferDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_PipelineBufferDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLPipelineBufferDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(PipelineBufferDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -5309,9 +5346,8 @@ pub const PipelineBufferDescriptorArray = opaque {
 };
 
 pub const RasterizationRateSampleArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_RasterizationRateSampleArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRasterizationRateSampleArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RasterizationRateSampleArray);
 
     pub fn Methods(comptime T: type) type {
@@ -5329,9 +5365,8 @@ pub const RasterizationRateSampleArray = opaque {
 };
 
 pub const RasterizationRateLayerDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RasterizationRateLayerDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRasterizationRateLayerDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RasterizationRateLayerDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -5370,9 +5405,8 @@ pub const RasterizationRateLayerDescriptor = opaque {
 };
 
 pub const RasterizationRateLayerArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_RasterizationRateLayerArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRasterizationRateLayerArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RasterizationRateLayerArray);
 
     pub fn Methods(comptime T: type) type {
@@ -5390,9 +5424,8 @@ pub const RasterizationRateLayerArray = opaque {
 };
 
 pub const RasterizationRateMapDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RasterizationRateMapDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRasterizationRateMapDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RasterizationRateMapDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -5401,13 +5434,13 @@ pub const RasterizationRateMapDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn rasterizationRateMapDescriptorWithScreenSize(screenSize_: Size) *RasterizationRateMapDescriptor {
-                return objc.msgSend(T.class(), "rasterizationRateMapDescriptorWithScreenSize:", *RasterizationRateMapDescriptor, .{screenSize_});
+                return objc.msgSend(T.InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:", *RasterizationRateMapDescriptor, .{screenSize_});
             }
             pub fn rasterizationRateMapDescriptorWithScreenSize_layer(screenSize_: Size, layer_: *RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
-                return objc.msgSend(T.class(), "rasterizationRateMapDescriptorWithScreenSize:layer:", *RasterizationRateMapDescriptor, .{ screenSize_, layer_ });
+                return objc.msgSend(T.InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:layer:", *RasterizationRateMapDescriptor, .{ screenSize_, layer_ });
             }
             pub fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(screenSize_: Size, layerCount_: ns.UInteger, layers_: **const RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
-                return objc.msgSend(T.class(), "rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:", *RasterizationRateMapDescriptor, .{ screenSize_, layerCount_, layers_ });
+                return objc.msgSend(T.InternalInfo.class(), "rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:", *RasterizationRateMapDescriptor, .{ screenSize_, layerCount_, layers_ });
             }
             pub fn layerAtIndex(self_: *T, layerIndex_: ns.UInteger) ?*RasterizationRateLayerDescriptor {
                 return objc.msgSend(self_, "layerAtIndex:", ?*RasterizationRateLayerDescriptor, .{layerIndex_});
@@ -5438,6 +5471,8 @@ pub const RasterizationRateMapDescriptor = opaque {
 };
 
 pub const RasterizationRateMap = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RasterizationRateMap);
 
     pub fn Methods(comptime T: type) type {
@@ -5479,6 +5514,8 @@ pub const RasterizationRateMap = opaque {
 };
 
 pub const RenderCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderCommandEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -5877,9 +5914,8 @@ pub const RenderCommandEncoder = opaque {
 };
 
 pub const RenderPassAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -5958,9 +5994,8 @@ pub const RenderPassAttachmentDescriptor = opaque {
 };
 
 pub const RenderPassColorAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassColorAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassColorAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassColorAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -5978,9 +6013,8 @@ pub const RenderPassColorAttachmentDescriptor = opaque {
 };
 
 pub const RenderPassDepthAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassDepthAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassDepthAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassDepthAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6004,9 +6038,8 @@ pub const RenderPassDepthAttachmentDescriptor = opaque {
 };
 
 pub const RenderPassStencilAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassStencilAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassStencilAttachmentDescriptor", @This(), RenderPassAttachmentDescriptor, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassStencilAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6030,9 +6063,8 @@ pub const RenderPassStencilAttachmentDescriptor = opaque {
 };
 
 pub const RenderPassColorAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassColorAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassColorAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassColorAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -6050,9 +6082,8 @@ pub const RenderPassColorAttachmentDescriptorArray = opaque {
 };
 
 pub const RenderPassSampleBufferAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassSampleBufferAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassSampleBufferAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6095,9 +6126,8 @@ pub const RenderPassSampleBufferAttachmentDescriptor = opaque {
 };
 
 pub const RenderPassSampleBufferAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassSampleBufferAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassSampleBufferAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -6115,9 +6145,8 @@ pub const RenderPassSampleBufferAttachmentDescriptorArray = opaque {
 };
 
 pub const RenderPassDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPassDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPassDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPassDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6126,7 +6155,7 @@ pub const RenderPassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn renderPassDescriptor() *RenderPassDescriptor {
-                return objc.msgSend(T.class(), "renderPassDescriptor", *RenderPassDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "renderPassDescriptor", *RenderPassDescriptor, .{});
             }
             pub fn setSamplePositions_count(self_: *T, positions_: ?*const SamplePosition, count_: ns.UInteger) void {
                 return objc.msgSend(self_, "setSamplePositions:count:", void, .{ positions_, count_ });
@@ -6217,9 +6246,8 @@ pub const RenderPassDescriptor = opaque {
 };
 
 pub const RenderPipelineColorAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPipelineColorAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPipelineColorAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPipelineColorAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6286,9 +6314,8 @@ pub const RenderPipelineColorAttachmentDescriptor = opaque {
 };
 
 pub const RenderPipelineReflection = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPipelineReflection;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPipelineReflection", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPipelineReflection);
 
     pub fn Methods(comptime T: type) type {
@@ -6324,9 +6351,8 @@ pub const RenderPipelineReflection = opaque {
 };
 
 pub const RenderPipelineDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPipelineDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPipelineDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPipelineDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6531,9 +6557,8 @@ pub const RenderPipelineDescriptor = opaque {
 };
 
 pub const RenderPipelineFunctionsDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPipelineFunctionsDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPipelineFunctionsDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPipelineFunctionsDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6564,6 +6589,8 @@ pub const RenderPipelineFunctionsDescriptor = opaque {
 };
 
 pub const RenderPipelineState = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPipelineState);
 
     pub fn Methods(comptime T: type) type {
@@ -6626,9 +6653,8 @@ pub const RenderPipelineState = opaque {
 };
 
 pub const RenderPipelineColorAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_RenderPipelineColorAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLRenderPipelineColorAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(RenderPipelineColorAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -6646,9 +6672,8 @@ pub const RenderPipelineColorAttachmentDescriptorArray = opaque {
 };
 
 pub const TileRenderPipelineColorAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_TileRenderPipelineColorAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLTileRenderPipelineColorAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(TileRenderPipelineColorAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6667,9 +6692,8 @@ pub const TileRenderPipelineColorAttachmentDescriptor = opaque {
 };
 
 pub const TileRenderPipelineColorAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_TileRenderPipelineColorAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLTileRenderPipelineColorAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(TileRenderPipelineColorAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -6687,9 +6711,8 @@ pub const TileRenderPipelineColorAttachmentDescriptorArray = opaque {
 };
 
 pub const TileRenderPipelineDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_TileRenderPipelineDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLTileRenderPipelineDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(TileRenderPipelineDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6771,9 +6794,8 @@ pub const TileRenderPipelineDescriptor = opaque {
 };
 
 pub const MeshRenderPipelineDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_MeshRenderPipelineDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLMeshRenderPipelineDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(MeshRenderPipelineDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -6927,6 +6949,8 @@ pub const MeshRenderPipelineDescriptor = opaque {
 };
 
 pub const Resource = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Resource);
 
     pub fn Methods(comptime T: type) type {
@@ -6977,6 +7001,8 @@ pub const Resource = opaque {
 };
 
 pub const ResourceStateCommandEncoder = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{CommandEncoder});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ResourceStateCommandEncoder);
 
     pub fn Methods(comptime T: type) type {
@@ -7006,9 +7032,8 @@ pub const ResourceStateCommandEncoder = opaque {
 };
 
 pub const ResourceStatePassSampleBufferAttachmentDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_ResourceStatePassSampleBufferAttachmentDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLResourceStatePassSampleBufferAttachmentDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ResourceStatePassSampleBufferAttachmentDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7039,9 +7064,8 @@ pub const ResourceStatePassSampleBufferAttachmentDescriptor = opaque {
 };
 
 pub const ResourceStatePassSampleBufferAttachmentDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_ResourceStatePassSampleBufferAttachmentDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLResourceStatePassSampleBufferAttachmentDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ResourceStatePassSampleBufferAttachmentDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -7059,9 +7083,8 @@ pub const ResourceStatePassSampleBufferAttachmentDescriptorArray = opaque {
 };
 
 pub const ResourceStatePassDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_ResourceStatePassDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLResourceStatePassDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(ResourceStatePassDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7070,7 +7093,7 @@ pub const ResourceStatePassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn resourceStatePassDescriptor() *ResourceStatePassDescriptor {
-                return objc.msgSend(T.class(), "resourceStatePassDescriptor", *ResourceStatePassDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "resourceStatePassDescriptor", *ResourceStatePassDescriptor, .{});
             }
             pub fn sampleBufferAttachments(self_: *T) *ResourceStatePassSampleBufferAttachmentDescriptorArray {
                 return objc.msgSend(self_, "sampleBufferAttachments", *ResourceStatePassSampleBufferAttachmentDescriptorArray, .{});
@@ -7080,9 +7103,8 @@ pub const ResourceStatePassDescriptor = opaque {
 };
 
 pub const SamplerDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_SamplerDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLSamplerDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(SamplerDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7185,6 +7207,8 @@ pub const SamplerDescriptor = opaque {
 };
 
 pub const SamplerState = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(SamplerState);
 
     pub fn Methods(comptime T: type) type {
@@ -7205,9 +7229,8 @@ pub const SamplerState = opaque {
 };
 
 pub const BufferLayoutDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_BufferLayoutDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLBufferLayoutDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BufferLayoutDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7238,9 +7261,8 @@ pub const BufferLayoutDescriptor = opaque {
 };
 
 pub const BufferLayoutDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_BufferLayoutDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLBufferLayoutDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(BufferLayoutDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -7258,9 +7280,8 @@ pub const BufferLayoutDescriptorArray = opaque {
 };
 
 pub const AttributeDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_AttributeDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAttributeDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AttributeDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7291,9 +7312,8 @@ pub const AttributeDescriptor = opaque {
 };
 
 pub const AttributeDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_AttributeDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLAttributeDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AttributeDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -7311,9 +7331,8 @@ pub const AttributeDescriptorArray = opaque {
 };
 
 pub const StageInputOutputDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_StageInputOutputDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLStageInputOutputDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(StageInputOutputDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7322,7 +7341,7 @@ pub const StageInputOutputDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn stageInputOutputDescriptor() *StageInputOutputDescriptor {
-                return objc.msgSend(T.class(), "stageInputOutputDescriptor", *StageInputOutputDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "stageInputOutputDescriptor", *StageInputOutputDescriptor, .{});
             }
             pub fn reset(self_: *T) void {
                 return objc.msgSend(self_, "reset", void, .{});
@@ -7350,9 +7369,8 @@ pub const StageInputOutputDescriptor = opaque {
 };
 
 pub const SharedTextureHandle = opaque {
-    pub fn class() *c.objc_class {
-        return class_SharedTextureHandle;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLSharedTextureHandle", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(SharedTextureHandle);
 
     pub fn Methods(comptime T: type) type {
@@ -7371,9 +7389,8 @@ pub const SharedTextureHandle = opaque {
 };
 
 pub const TextureDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_TextureDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLTextureDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(TextureDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7382,13 +7399,13 @@ pub const TextureDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(pixelFormat_: PixelFormat, width_: ns.UInteger, height_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
-                return objc.msgSend(T.class(), "texture2DDescriptorWithPixelFormat:width:height:mipmapped:", *TextureDescriptor, .{ pixelFormat_, width_, height_, mipmapped_ });
+                return objc.msgSend(T.InternalInfo.class(), "texture2DDescriptorWithPixelFormat:width:height:mipmapped:", *TextureDescriptor, .{ pixelFormat_, width_, height_, mipmapped_ });
             }
             pub fn textureCubeDescriptorWithPixelFormat_size_mipmapped(pixelFormat_: PixelFormat, size_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
-                return objc.msgSend(T.class(), "textureCubeDescriptorWithPixelFormat:size:mipmapped:", *TextureDescriptor, .{ pixelFormat_, size_, mipmapped_ });
+                return objc.msgSend(T.InternalInfo.class(), "textureCubeDescriptorWithPixelFormat:size:mipmapped:", *TextureDescriptor, .{ pixelFormat_, size_, mipmapped_ });
             }
             pub fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(pixelFormat_: PixelFormat, width_: ns.UInteger, resourceOptions_: ResourceOptions, usage_: TextureUsage) *TextureDescriptor {
-                return objc.msgSend(T.class(), "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", *TextureDescriptor, .{ pixelFormat_, width_, resourceOptions_, usage_ });
+                return objc.msgSend(T.InternalInfo.class(), "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", *TextureDescriptor, .{ pixelFormat_, width_, resourceOptions_, usage_ });
             }
             pub fn textureType(self_: *T) TextureType {
                 return objc.msgSend(self_, "textureType", TextureType, .{});
@@ -7491,6 +7508,8 @@ pub const TextureDescriptor = opaque {
 };
 
 pub const Texture = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(Texture);
 
     pub fn Methods(comptime T: type) type {
@@ -7613,9 +7632,8 @@ pub const Texture = opaque {
 };
 
 pub const VertexBufferLayoutDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_VertexBufferLayoutDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLVertexBufferLayoutDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VertexBufferLayoutDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7646,9 +7664,8 @@ pub const VertexBufferLayoutDescriptor = opaque {
 };
 
 pub const VertexBufferLayoutDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_VertexBufferLayoutDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLVertexBufferLayoutDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VertexBufferLayoutDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -7666,9 +7683,8 @@ pub const VertexBufferLayoutDescriptorArray = opaque {
 };
 
 pub const VertexAttributeDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_VertexAttributeDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLVertexAttributeDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VertexAttributeDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7699,9 +7715,8 @@ pub const VertexAttributeDescriptor = opaque {
 };
 
 pub const VertexAttributeDescriptorArray = opaque {
-    pub fn class() *c.objc_class {
-        return class_VertexAttributeDescriptorArray;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLVertexAttributeDescriptorArray", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VertexAttributeDescriptorArray);
 
     pub fn Methods(comptime T: type) type {
@@ -7719,9 +7734,8 @@ pub const VertexAttributeDescriptorArray = opaque {
 };
 
 pub const VertexDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_VertexDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLVertexDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VertexDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7730,7 +7744,7 @@ pub const VertexDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn vertexDescriptor() *VertexDescriptor {
-                return objc.msgSend(T.class(), "vertexDescriptor", *VertexDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "vertexDescriptor", *VertexDescriptor, .{});
             }
             pub fn reset(self_: *T) void {
                 return objc.msgSend(self_, "reset", void, .{});
@@ -7746,9 +7760,8 @@ pub const VertexDescriptor = opaque {
 };
 
 pub const VisibleFunctionTableDescriptor = opaque {
-    pub fn class() *c.objc_class {
-        return class_VisibleFunctionTableDescriptor;
-    }
+    pub const InternalInfo = objc.ExternClass("MTLVisibleFunctionTableDescriptor", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VisibleFunctionTableDescriptor);
 
     pub fn Methods(comptime T: type) type {
@@ -7757,7 +7770,7 @@ pub const VisibleFunctionTableDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn visibleFunctionTableDescriptor() *VisibleFunctionTableDescriptor {
-                return objc.msgSend(T.class(), "visibleFunctionTableDescriptor", *VisibleFunctionTableDescriptor, .{});
+                return objc.msgSend(T.InternalInfo.class(), "visibleFunctionTableDescriptor", *VisibleFunctionTableDescriptor, .{});
             }
             pub fn functionCount(self_: *T) ns.UInteger {
                 return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
@@ -7770,6 +7783,8 @@ pub const VisibleFunctionTableDescriptor = opaque {
 };
 
 pub const VisibleFunctionTable = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{Resource});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(VisibleFunctionTable);
 
     pub fn Methods(comptime T: type) type {
@@ -7788,195 +7803,3 @@ pub const VisibleFunctionTable = opaque {
         };
     }
 };
-var class_AccelerationStructureDescriptor: *c.objc_class = undefined;
-var class_AccelerationStructureGeometryDescriptor: *c.objc_class = undefined;
-var class_PrimitiveAccelerationStructureDescriptor: *c.objc_class = undefined;
-var class_AccelerationStructureTriangleGeometryDescriptor: *c.objc_class = undefined;
-var class_AccelerationStructureBoundingBoxGeometryDescriptor: *c.objc_class = undefined;
-var class_MotionKeyframeData: *c.objc_class = undefined;
-var class_AccelerationStructureMotionTriangleGeometryDescriptor: *c.objc_class = undefined;
-var class_AccelerationStructureMotionBoundingBoxGeometryDescriptor: *c.objc_class = undefined;
-var class_InstanceAccelerationStructureDescriptor: *c.objc_class = undefined;
-var class_AccelerationStructurePassSampleBufferAttachmentDescriptor: *c.objc_class = undefined;
-var class_AccelerationStructurePassSampleBufferAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_AccelerationStructurePassDescriptor: *c.objc_class = undefined;
-var class_Type: *c.objc_class = undefined;
-var class_StructMember: *c.objc_class = undefined;
-var class_StructType: *c.objc_class = undefined;
-var class_ArrayType: *c.objc_class = undefined;
-var class_PointerType: *c.objc_class = undefined;
-var class_TextureReferenceType: *c.objc_class = undefined;
-var class_Argument: *c.objc_class = undefined;
-var class_BinaryArchiveDescriptor: *c.objc_class = undefined;
-var class_BlitPassSampleBufferAttachmentDescriptor: *c.objc_class = undefined;
-var class_BlitPassSampleBufferAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_BlitPassDescriptor: *c.objc_class = undefined;
-var class_CaptureDescriptor: *c.objc_class = undefined;
-var class_CaptureManager: *c.objc_class = undefined;
-var class_CommandBufferDescriptor: *c.objc_class = undefined;
-var class_ComputePassSampleBufferAttachmentDescriptor: *c.objc_class = undefined;
-var class_ComputePassSampleBufferAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_ComputePassDescriptor: *c.objc_class = undefined;
-var class_ComputePipelineReflection: *c.objc_class = undefined;
-var class_ComputePipelineDescriptor: *c.objc_class = undefined;
-var class_CounterSampleBufferDescriptor: *c.objc_class = undefined;
-var class_StencilDescriptor: *c.objc_class = undefined;
-var class_DepthStencilDescriptor: *c.objc_class = undefined;
-var class_Architecture: *c.objc_class = undefined;
-var class_ArgumentDescriptor: *c.objc_class = undefined;
-var class_SharedEventListener: *c.objc_class = undefined;
-var class_SharedEventHandle: *c.objc_class = undefined;
-var class_FunctionConstantValues: *c.objc_class = undefined;
-var class_FunctionDescriptor: *c.objc_class = undefined;
-var class_IntersectionFunctionDescriptor: *c.objc_class = undefined;
-var class_FunctionStitchingAttributeAlwaysInline: *c.objc_class = undefined;
-var class_FunctionStitchingInputNode: *c.objc_class = undefined;
-var class_FunctionStitchingFunctionNode: *c.objc_class = undefined;
-var class_FunctionStitchingGraph: *c.objc_class = undefined;
-var class_StitchedLibraryDescriptor: *c.objc_class = undefined;
-var class_HeapDescriptor: *c.objc_class = undefined;
-var class_IndirectCommandBufferDescriptor: *c.objc_class = undefined;
-var class_IntersectionFunctionTableDescriptor: *c.objc_class = undefined;
-var class_IOCommandQueueDescriptor: *c.objc_class = undefined;
-var class_VertexAttribute: *c.objc_class = undefined;
-var class_Attribute: *c.objc_class = undefined;
-var class_FunctionConstant: *c.objc_class = undefined;
-var class_CompileOptions: *c.objc_class = undefined;
-var class_LinkedFunctions: *c.objc_class = undefined;
-var class_PipelineBufferDescriptor: *c.objc_class = undefined;
-var class_PipelineBufferDescriptorArray: *c.objc_class = undefined;
-var class_RasterizationRateSampleArray: *c.objc_class = undefined;
-var class_RasterizationRateLayerDescriptor: *c.objc_class = undefined;
-var class_RasterizationRateLayerArray: *c.objc_class = undefined;
-var class_RasterizationRateMapDescriptor: *c.objc_class = undefined;
-var class_RenderPassAttachmentDescriptor: *c.objc_class = undefined;
-var class_RenderPassColorAttachmentDescriptor: *c.objc_class = undefined;
-var class_RenderPassDepthAttachmentDescriptor: *c.objc_class = undefined;
-var class_RenderPassStencilAttachmentDescriptor: *c.objc_class = undefined;
-var class_RenderPassColorAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_RenderPassSampleBufferAttachmentDescriptor: *c.objc_class = undefined;
-var class_RenderPassSampleBufferAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_RenderPassDescriptor: *c.objc_class = undefined;
-var class_RenderPipelineColorAttachmentDescriptor: *c.objc_class = undefined;
-var class_RenderPipelineReflection: *c.objc_class = undefined;
-var class_RenderPipelineDescriptor: *c.objc_class = undefined;
-var class_RenderPipelineFunctionsDescriptor: *c.objc_class = undefined;
-var class_RenderPipelineColorAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_TileRenderPipelineColorAttachmentDescriptor: *c.objc_class = undefined;
-var class_TileRenderPipelineColorAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_TileRenderPipelineDescriptor: *c.objc_class = undefined;
-var class_MeshRenderPipelineDescriptor: *c.objc_class = undefined;
-var class_ResourceStatePassSampleBufferAttachmentDescriptor: *c.objc_class = undefined;
-var class_ResourceStatePassSampleBufferAttachmentDescriptorArray: *c.objc_class = undefined;
-var class_ResourceStatePassDescriptor: *c.objc_class = undefined;
-var class_SamplerDescriptor: *c.objc_class = undefined;
-var class_BufferLayoutDescriptor: *c.objc_class = undefined;
-var class_BufferLayoutDescriptorArray: *c.objc_class = undefined;
-var class_AttributeDescriptor: *c.objc_class = undefined;
-var class_AttributeDescriptorArray: *c.objc_class = undefined;
-var class_StageInputOutputDescriptor: *c.objc_class = undefined;
-var class_SharedTextureHandle: *c.objc_class = undefined;
-var class_TextureDescriptor: *c.objc_class = undefined;
-var class_VertexBufferLayoutDescriptor: *c.objc_class = undefined;
-var class_VertexBufferLayoutDescriptorArray: *c.objc_class = undefined;
-var class_VertexAttributeDescriptor: *c.objc_class = undefined;
-var class_VertexAttributeDescriptorArray: *c.objc_class = undefined;
-var class_VertexDescriptor: *c.objc_class = undefined;
-var class_VisibleFunctionTableDescriptor: *c.objc_class = undefined;
-pub fn init() void {
-    class_AccelerationStructureDescriptor = c.objc_getClass("MTLAccelerationStructureDescriptor").?;
-    class_AccelerationStructureGeometryDescriptor = c.objc_getClass("MTLAccelerationStructureGeometryDescriptor").?;
-    class_PrimitiveAccelerationStructureDescriptor = c.objc_getClass("MTLPrimitiveAccelerationStructureDescriptor").?;
-    class_AccelerationStructureTriangleGeometryDescriptor = c.objc_getClass("MTLAccelerationStructureTriangleGeometryDescriptor").?;
-    class_AccelerationStructureBoundingBoxGeometryDescriptor = c.objc_getClass("MTLAccelerationStructureBoundingBoxGeometryDescriptor").?;
-    class_MotionKeyframeData = c.objc_getClass("MTLMotionKeyframeData").?;
-    class_AccelerationStructureMotionTriangleGeometryDescriptor = c.objc_getClass("MTLAccelerationStructureMotionTriangleGeometryDescriptor").?;
-    class_AccelerationStructureMotionBoundingBoxGeometryDescriptor = c.objc_getClass("MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor").?;
-    class_InstanceAccelerationStructureDescriptor = c.objc_getClass("MTLInstanceAccelerationStructureDescriptor").?;
-    class_AccelerationStructurePassSampleBufferAttachmentDescriptor = c.objc_getClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptor").?;
-    class_AccelerationStructurePassSampleBufferAttachmentDescriptorArray = c.objc_getClass("MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray").?;
-    class_AccelerationStructurePassDescriptor = c.objc_getClass("MTLAccelerationStructurePassDescriptor").?;
-    class_Type = c.objc_getClass("MTLType").?;
-    class_StructMember = c.objc_getClass("MTLStructMember").?;
-    class_StructType = c.objc_getClass("MTLStructType").?;
-    class_ArrayType = c.objc_getClass("MTLArrayType").?;
-    class_PointerType = c.objc_getClass("MTLPointerType").?;
-    class_TextureReferenceType = c.objc_getClass("MTLTextureReferenceType").?;
-    class_Argument = c.objc_getClass("MTLArgument").?;
-    class_BinaryArchiveDescriptor = c.objc_getClass("MTLBinaryArchiveDescriptor").?;
-    class_BlitPassSampleBufferAttachmentDescriptor = c.objc_getClass("MTLBlitPassSampleBufferAttachmentDescriptor").?;
-    class_BlitPassSampleBufferAttachmentDescriptorArray = c.objc_getClass("MTLBlitPassSampleBufferAttachmentDescriptorArray").?;
-    class_BlitPassDescriptor = c.objc_getClass("MTLBlitPassDescriptor").?;
-    class_CaptureDescriptor = c.objc_getClass("MTLCaptureDescriptor").?;
-    class_CaptureManager = c.objc_getClass("MTLCaptureManager").?;
-    class_CommandBufferDescriptor = c.objc_getClass("MTLCommandBufferDescriptor").?;
-    class_ComputePassSampleBufferAttachmentDescriptor = c.objc_getClass("MTLComputePassSampleBufferAttachmentDescriptor").?;
-    class_ComputePassSampleBufferAttachmentDescriptorArray = c.objc_getClass("MTLComputePassSampleBufferAttachmentDescriptorArray").?;
-    class_ComputePassDescriptor = c.objc_getClass("MTLComputePassDescriptor").?;
-    class_ComputePipelineReflection = c.objc_getClass("MTLComputePipelineReflection").?;
-    class_ComputePipelineDescriptor = c.objc_getClass("MTLComputePipelineDescriptor").?;
-    class_CounterSampleBufferDescriptor = c.objc_getClass("MTLCounterSampleBufferDescriptor").?;
-    class_StencilDescriptor = c.objc_getClass("MTLStencilDescriptor").?;
-    class_DepthStencilDescriptor = c.objc_getClass("MTLDepthStencilDescriptor").?;
-    class_Architecture = c.objc_getClass("MTLArchitecture").?;
-    class_ArgumentDescriptor = c.objc_getClass("MTLArgumentDescriptor").?;
-    class_SharedEventListener = c.objc_getClass("MTLSharedEventListener").?;
-    class_SharedEventHandle = c.objc_getClass("MTLSharedEventHandle").?;
-    class_FunctionConstantValues = c.objc_getClass("MTLFunctionConstantValues").?;
-    class_FunctionDescriptor = c.objc_getClass("MTLFunctionDescriptor").?;
-    class_IntersectionFunctionDescriptor = c.objc_getClass("MTLIntersectionFunctionDescriptor").?;
-    class_FunctionStitchingAttributeAlwaysInline = c.objc_getClass("MTLFunctionStitchingAttributeAlwaysInline").?;
-    class_FunctionStitchingInputNode = c.objc_getClass("MTLFunctionStitchingInputNode").?;
-    class_FunctionStitchingFunctionNode = c.objc_getClass("MTLFunctionStitchingFunctionNode").?;
-    class_FunctionStitchingGraph = c.objc_getClass("MTLFunctionStitchingGraph").?;
-    class_StitchedLibraryDescriptor = c.objc_getClass("MTLStitchedLibraryDescriptor").?;
-    class_HeapDescriptor = c.objc_getClass("MTLHeapDescriptor").?;
-    class_IndirectCommandBufferDescriptor = c.objc_getClass("MTLIndirectCommandBufferDescriptor").?;
-    class_IntersectionFunctionTableDescriptor = c.objc_getClass("MTLIntersectionFunctionTableDescriptor").?;
-    class_IOCommandQueueDescriptor = c.objc_getClass("MTLIOCommandQueueDescriptor").?;
-    class_VertexAttribute = c.objc_getClass("MTLVertexAttribute").?;
-    class_Attribute = c.objc_getClass("MTLAttribute").?;
-    class_FunctionConstant = c.objc_getClass("MTLFunctionConstant").?;
-    class_CompileOptions = c.objc_getClass("MTLCompileOptions").?;
-    class_LinkedFunctions = c.objc_getClass("MTLLinkedFunctions").?;
-    class_PipelineBufferDescriptor = c.objc_getClass("MTLPipelineBufferDescriptor").?;
-    class_PipelineBufferDescriptorArray = c.objc_getClass("MTLPipelineBufferDescriptorArray").?;
-    class_RasterizationRateSampleArray = c.objc_getClass("MTLRasterizationRateSampleArray").?;
-    class_RasterizationRateLayerDescriptor = c.objc_getClass("MTLRasterizationRateLayerDescriptor").?;
-    class_RasterizationRateLayerArray = c.objc_getClass("MTLRasterizationRateLayerArray").?;
-    class_RasterizationRateMapDescriptor = c.objc_getClass("MTLRasterizationRateMapDescriptor").?;
-    class_RenderPassAttachmentDescriptor = c.objc_getClass("MTLRenderPassAttachmentDescriptor").?;
-    class_RenderPassColorAttachmentDescriptor = c.objc_getClass("MTLRenderPassColorAttachmentDescriptor").?;
-    class_RenderPassDepthAttachmentDescriptor = c.objc_getClass("MTLRenderPassDepthAttachmentDescriptor").?;
-    class_RenderPassStencilAttachmentDescriptor = c.objc_getClass("MTLRenderPassStencilAttachmentDescriptor").?;
-    class_RenderPassColorAttachmentDescriptorArray = c.objc_getClass("MTLRenderPassColorAttachmentDescriptorArray").?;
-    class_RenderPassSampleBufferAttachmentDescriptor = c.objc_getClass("MTLRenderPassSampleBufferAttachmentDescriptor").?;
-    class_RenderPassSampleBufferAttachmentDescriptorArray = c.objc_getClass("MTLRenderPassSampleBufferAttachmentDescriptorArray").?;
-    class_RenderPassDescriptor = c.objc_getClass("MTLRenderPassDescriptor").?;
-    class_RenderPipelineColorAttachmentDescriptor = c.objc_getClass("MTLRenderPipelineColorAttachmentDescriptor").?;
-    class_RenderPipelineReflection = c.objc_getClass("MTLRenderPipelineReflection").?;
-    class_RenderPipelineDescriptor = c.objc_getClass("MTLRenderPipelineDescriptor").?;
-    class_RenderPipelineFunctionsDescriptor = c.objc_getClass("MTLRenderPipelineFunctionsDescriptor").?;
-    class_RenderPipelineColorAttachmentDescriptorArray = c.objc_getClass("MTLRenderPipelineColorAttachmentDescriptorArray").?;
-    class_TileRenderPipelineColorAttachmentDescriptor = c.objc_getClass("MTLTileRenderPipelineColorAttachmentDescriptor").?;
-    class_TileRenderPipelineColorAttachmentDescriptorArray = c.objc_getClass("MTLTileRenderPipelineColorAttachmentDescriptorArray").?;
-    class_TileRenderPipelineDescriptor = c.objc_getClass("MTLTileRenderPipelineDescriptor").?;
-    class_MeshRenderPipelineDescriptor = c.objc_getClass("MTLMeshRenderPipelineDescriptor").?;
-    class_ResourceStatePassSampleBufferAttachmentDescriptor = c.objc_getClass("MTLResourceStatePassSampleBufferAttachmentDescriptor").?;
-    class_ResourceStatePassSampleBufferAttachmentDescriptorArray = c.objc_getClass("MTLResourceStatePassSampleBufferAttachmentDescriptorArray").?;
-    class_ResourceStatePassDescriptor = c.objc_getClass("MTLResourceStatePassDescriptor").?;
-    class_SamplerDescriptor = c.objc_getClass("MTLSamplerDescriptor").?;
-    class_BufferLayoutDescriptor = c.objc_getClass("MTLBufferLayoutDescriptor").?;
-    class_BufferLayoutDescriptorArray = c.objc_getClass("MTLBufferLayoutDescriptorArray").?;
-    class_AttributeDescriptor = c.objc_getClass("MTLAttributeDescriptor").?;
-    class_AttributeDescriptorArray = c.objc_getClass("MTLAttributeDescriptorArray").?;
-    class_StageInputOutputDescriptor = c.objc_getClass("MTLStageInputOutputDescriptor").?;
-    class_SharedTextureHandle = c.objc_getClass("MTLSharedTextureHandle").?;
-    class_TextureDescriptor = c.objc_getClass("MTLTextureDescriptor").?;
-    class_VertexBufferLayoutDescriptor = c.objc_getClass("MTLVertexBufferLayoutDescriptor").?;
-    class_VertexBufferLayoutDescriptorArray = c.objc_getClass("MTLVertexBufferLayoutDescriptorArray").?;
-    class_VertexAttributeDescriptor = c.objc_getClass("MTLVertexAttributeDescriptor").?;
-    class_VertexAttributeDescriptorArray = c.objc_getClass("MTLVertexAttributeDescriptorArray").?;
-    class_VertexDescriptor = c.objc_getClass("MTLVertexDescriptor").?;
-    class_VisibleFunctionTableDescriptor = c.objc_getClass("MTLVisibleFunctionTableDescriptor").?;
-}

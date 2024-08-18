@@ -67,9 +67,8 @@ pub const AVAudioSessionIOTypeNotSpecified: AVAudioSessionIOType = 0;
 pub const AVAudioSessionIOTypeAggregated: AVAudioSessionIOType = 1;
 
 pub const AVAudioSession = opaque {
-    pub fn class() *c.objc_class {
-        return class_AVAudioSession;
-    }
+    pub const InternalInfo = objc.ExternClass("AVAudioSession", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AVAudioSession);
 
     pub fn Methods(comptime T: type) type {
@@ -77,7 +76,7 @@ pub const AVAudioSession = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn sharedInstance() *AVAudioSession {
-                return objc.msgSend(T.class(), "sharedInstance", *AVAudioSession, .{});
+                return objc.msgSend(T.InternalInfo.class(), "sharedInstance", *AVAudioSession, .{});
             }
             pub fn setCategory_error(self_: *T, category_: AVAudioSessionCategory, outError_: ?*?*ns.Error) bool {
                 return objc.msgSend(self_, "setCategory:error:", bool, .{ category_, outError_ });
@@ -288,9 +287,8 @@ pub const AVAudioSession = opaque {
 };
 
 pub const AVAudioSessionPortDescription = opaque {
-    pub fn class() *c.objc_class {
-        return class_AVAudioSessionPortDescription;
-    }
+    pub const InternalInfo = objc.ExternClass("AVAudioSessionPortDescription", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AVAudioSessionPortDescription);
 
     pub fn Methods(comptime T: type) type {
@@ -332,9 +330,8 @@ pub const AVAudioSessionPortDescription = opaque {
 };
 
 pub const AVAudioSessionDataSourceDescription = opaque {
-    pub fn class() *c.objc_class {
-        return class_AVAudioSessionDataSourceDescription;
-    }
+    pub const InternalInfo = objc.ExternClass("AVAudioSessionDataSourceDescription", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AVAudioSessionDataSourceDescription);
 
     pub fn Methods(comptime T: type) type {
@@ -370,9 +367,8 @@ pub const AVAudioSessionDataSourceDescription = opaque {
 };
 
 pub const AVAudioSessionRouteDescription = opaque {
-    pub fn class() *c.objc_class {
-        return class_AVAudioSessionRouteDescription;
-    }
+    pub const InternalInfo = objc.ExternClass("AVAudioSessionRouteDescription", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AVAudioSessionRouteDescription);
 
     pub fn Methods(comptime T: type) type {
@@ -390,9 +386,8 @@ pub const AVAudioSessionRouteDescription = opaque {
 };
 
 pub const AVAudioSessionChannelDescription = opaque {
-    pub fn class() *c.objc_class {
-        return class_AVAudioSessionChannelDescription;
-    }
+    pub const InternalInfo = objc.ExternClass("AVAudioSessionChannelDescription", @This(), ns.ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AVAudioSessionChannelDescription);
 
     pub fn Methods(comptime T: type) type {
@@ -416,6 +411,8 @@ pub const AVAudioSessionChannelDescription = opaque {
 };
 
 pub const AVAudioSessionDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{});
+    pub const as = InternalInfo.as;
     pub usingnamespace Methods(AVAudioSessionDelegate);
 
     pub fn Methods(comptime T: type) type {
@@ -437,15 +434,3 @@ pub const AVAudioSessionDelegate = opaque {
         };
     }
 };
-var class_AVAudioSession: *c.objc_class = undefined;
-var class_AVAudioSessionPortDescription: *c.objc_class = undefined;
-var class_AVAudioSessionDataSourceDescription: *c.objc_class = undefined;
-var class_AVAudioSessionRouteDescription: *c.objc_class = undefined;
-var class_AVAudioSessionChannelDescription: *c.objc_class = undefined;
-pub fn init() void {
-    class_AVAudioSession = c.objc_getClass("AVAudioSession").?;
-    class_AVAudioSessionPortDescription = c.objc_getClass("AVAudioSessionPortDescription").?;
-    class_AVAudioSessionDataSourceDescription = c.objc_getClass("AVAudioSessionDataSourceDescription").?;
-    class_AVAudioSessionRouteDescription = c.objc_getClass("AVAudioSessionRouteDescription").?;
-    class_AVAudioSessionChannelDescription = c.objc_getClass("AVAudioSessionChannelDescription").?;
-}
