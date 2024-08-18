@@ -1,4 +1,5 @@
 const c = @import("c.zig");
+const objc = @import("objc.zig");
 const system = @import("system.zig");
 
 // ------------------------------------------------------------------------------------------------
@@ -177,25 +178,25 @@ pub fn Array(comptime ObjectType: type) type {
                 pub usingnamespace ObjectInterface.Methods(T);
 
                 pub fn array() *T {
-                    return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_array);
+                    return objc.msgSend(T.class(), "array", *T, .{});
                 }
                 pub fn arrayWithObject(anObject_: *ObjectType) *T {
-                    return @as(*const fn (*c.objc_class, *c.objc_selector, *ObjectType) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_arrayWithObject_, anObject_);
+                    return objc.msgSend(T.class(), "arrayWithObject:", *T, .{anObject_});
                 }
                 pub fn arrayWithObjects_count(objects_: **ObjectType, cnt_: UInteger) *T {
-                    return @as(*const fn (*c.objc_class, *c.objc_selector, **ObjectType, UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_arrayWithObjects_count_, objects_, cnt_);
+                    return objc.msgSend(T.class(), "arrayWithObjects:count:", *T, .{ objects_, cnt_ });
                 }
                 pub fn initWithObjects_count(self_: *T, objects_: **ObjectType, cnt_: UInteger) *T {
-                    return @as(*const fn (*T, *c.objc_selector, **ObjectType, UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithObjects_count_, objects_, cnt_);
+                    return objc.msgSend(self_, "initWithObjects:count:", *T, .{ objects_, cnt_ });
                 }
                 pub fn initWithCoder(self_: *T, coder_: *Coder) *T {
-                    return @as(*const fn (*T, *c.objc_selector, *Coder) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCoder_, coder_);
+                    return objc.msgSend(self_, "initWithCoder:", *T, .{coder_});
                 }
                 pub fn count(self_: *T) UInteger {
-                    return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_count);
+                    return objc.msgSend(self_, "count", UInteger, .{});
                 }
                 pub fn objectAtIndex(self_: *T, index_: UInteger) *ObjectType {
-                    return @as(*const fn (*T, *c.objc_selector, UInteger) callconv(.C) *ObjectType, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndex_, index_);
+                    return objc.msgSend(self_, "objectAtIndex:", *ObjectType, .{index_});
                 }
             };
         }
@@ -215,13 +216,13 @@ pub const AutoreleasePool = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn addObject(self_: *T, anObject_: *c.objc_object) void {
-                return @as(*const fn (*T, *c.objc_selector, *c.objc_object) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addObject_, anObject_);
+                return objc.msgSend(self_, "addObject:", void, .{anObject_});
             }
             pub fn drain(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drain);
+                return objc.msgSend(self_, "drain", void, .{});
             }
             pub fn showPools() void {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(T.class(), sel_showPools);
+                return objc.msgSend(T.class(), "showPools", void, .{});
             }
         };
     }
@@ -240,106 +241,106 @@ pub const Bundle = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn mainBundle() *Bundle {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *Bundle, @ptrCast(&c.objc_msgSend))(T.class(), sel_mainBundle);
+                return objc.msgSend(T.class(), "mainBundle", *Bundle, .{});
             }
             pub fn bundleWithPath(path_: *String) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_bundleWithPath_, path_);
+                return objc.msgSend(T.class(), "bundleWithPath:", *T, .{path_});
             }
             pub fn bundleWithURL(url_: *URL) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *URL) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_bundleWithURL_, url_);
+                return objc.msgSend(T.class(), "bundleWithURL:", *T, .{url_});
             }
             pub fn initWithPath(self_: *T, path_: *String) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithPath_, path_);
+                return objc.msgSend(self_, "initWithPath:", *T, .{path_});
             }
             pub fn initWithURL(self_: *T, url_: *URL) *T {
-                return @as(*const fn (*T, *c.objc_selector, *URL) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithURL_, url_);
+                return objc.msgSend(self_, "initWithURL:", *T, .{url_});
             }
             pub fn allBundles() *Array(*Bundle) {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *Array(*Bundle), @ptrCast(&c.objc_msgSend))(T.class(), sel_allBundles);
+                return objc.msgSend(T.class(), "allBundles", *Array(*Bundle), .{});
             }
             pub fn allFrameworks() *Array(*Bundle) {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *Array(*Bundle), @ptrCast(&c.objc_msgSend))(T.class(), sel_allFrameworks);
+                return objc.msgSend(T.class(), "allFrameworks", *Array(*Bundle), .{});
             }
             pub fn load(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_load);
+                return objc.msgSend(self_, "load", bool, .{});
             }
             pub fn unload(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_unload);
+                return objc.msgSend(self_, "unload", bool, .{});
             }
             pub fn isLoaded(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isLoaded);
+                return objc.msgSend(self_, "isLoaded", bool, .{});
             }
             pub fn preflightAndReturnError(self_: *T, error_: ?*?*Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, ?*?*Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_preflightAndReturnError_, error_);
+                return objc.msgSend(self_, "preflightAndReturnError:", bool, .{error_});
             }
             pub fn loadAndReturnError(self_: *T, error_: ?*?*Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, ?*?*Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_loadAndReturnError_, error_);
+                return objc.msgSend(self_, "loadAndReturnError:", bool, .{error_});
             }
             pub fn bundleURL(self_: *T) *URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *URL, @ptrCast(&c.objc_msgSend))(self_, sel_bundleURL);
+                return objc.msgSend(self_, "bundleURL", *URL, .{});
             }
             pub fn resourceURL(self_: *T) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_resourceURL);
+                return objc.msgSend(self_, "resourceURL", ?*URL, .{});
             }
             pub fn executableURL(self_: *T) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_executableURL);
+                return objc.msgSend(self_, "executableURL", ?*URL, .{});
             }
             pub fn URLForAuxiliaryExecutable(self_: *T, executableName_: *String) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_URLForAuxiliaryExecutable_, executableName_);
+                return objc.msgSend(self_, "URLForAuxiliaryExecutable:", ?*URL, .{executableName_});
             }
             pub fn privateFrameworksURL(self_: *T) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_privateFrameworksURL);
+                return objc.msgSend(self_, "privateFrameworksURL", ?*URL, .{});
             }
             pub fn sharedFrameworksURL(self_: *T) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_sharedFrameworksURL);
+                return objc.msgSend(self_, "sharedFrameworksURL", ?*URL, .{});
             }
             pub fn sharedSupportURL(self_: *T) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_sharedSupportURL);
+                return objc.msgSend(self_, "sharedSupportURL", ?*URL, .{});
             }
             pub fn builtInPlugInsURL(self_: *T) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_builtInPlugInsURL);
+                return objc.msgSend(self_, "builtInPlugInsURL", ?*URL, .{});
             }
             pub fn appStoreReceiptURL(self_: *T) ?*URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*URL, @ptrCast(&c.objc_msgSend))(self_, sel_appStoreReceiptURL);
+                return objc.msgSend(self_, "appStoreReceiptURL", ?*URL, .{});
             }
             pub fn bundlePath(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_bundlePath);
+                return objc.msgSend(self_, "bundlePath", *String, .{});
             }
             pub fn resourcePath(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_resourcePath);
+                return objc.msgSend(self_, "resourcePath", ?*String, .{});
             }
             pub fn executablePath(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_executablePath);
+                return objc.msgSend(self_, "executablePath", ?*String, .{});
             }
             pub fn pathForAuxiliaryExecutable(self_: *T, executableName_: *String) ?*String {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_pathForAuxiliaryExecutable_, executableName_);
+                return objc.msgSend(self_, "pathForAuxiliaryExecutable:", ?*String, .{executableName_});
             }
             pub fn privateFrameworksPath(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_privateFrameworksPath);
+                return objc.msgSend(self_, "privateFrameworksPath", ?*String, .{});
             }
             pub fn sharedFrameworksPath(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_sharedFrameworksPath);
+                return objc.msgSend(self_, "sharedFrameworksPath", ?*String, .{});
             }
             pub fn sharedSupportPath(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_sharedSupportPath);
+                return objc.msgSend(self_, "sharedSupportPath", ?*String, .{});
             }
             pub fn builtInPlugInsPath(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_builtInPlugInsPath);
+                return objc.msgSend(self_, "builtInPlugInsPath", ?*String, .{});
             }
             pub fn bundleIdentifier(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_bundleIdentifier);
+                return objc.msgSend(self_, "bundleIdentifier", ?*String, .{});
             }
             pub fn infoDictionary(self_: *T) *Dictionary(ErrorUserInfoKey, *ObjectProtocol) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Dictionary(ErrorUserInfoKey, *ObjectProtocol), @ptrCast(&c.objc_msgSend))(self_, sel_infoDictionary);
+                return objc.msgSend(self_, "infoDictionary", *Dictionary(ErrorUserInfoKey, *ObjectProtocol), .{});
             }
             pub fn localizedInfoDictionary(self_: *T) *Dictionary(ErrorUserInfoKey, *ObjectProtocol) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Dictionary(ErrorUserInfoKey, *ObjectProtocol), @ptrCast(&c.objc_msgSend))(self_, sel_localizedInfoDictionary);
+                return objc.msgSend(self_, "localizedInfoDictionary", *Dictionary(ErrorUserInfoKey, *ObjectProtocol), .{});
             }
             pub fn objectForInfoDictionaryKey(self_: *T, key_: *String) *c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_objectForInfoDictionaryKey_, key_);
+                return objc.msgSend(self_, "objectForInfoDictionaryKey:", *c.objc_object, .{key_});
             }
             pub fn localizedStringForKey_value_table(self_: *T, key_: *String, value_: ?*String, tableName_: ?*String) *String {
-                return @as(*const fn (*T, *c.objc_selector, *String, ?*String, ?*String) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_localizedStringForKey_value_table_, key_, value_, tableName_);
+                return objc.msgSend(self_, "localizedStringForKey:value:table:", *String, .{ key_, value_, tableName_ });
             }
         };
     }
@@ -362,16 +363,16 @@ pub const Condition = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn wait(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_wait);
+                return objc.msgSend(self_, "wait", void, .{});
             }
             pub fn waitUntilDate(self_: *T, limit_: *Date) bool {
-                return @as(*const fn (*T, *c.objc_selector, *Date) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_waitUntilDate_, limit_);
+                return objc.msgSend(self_, "waitUntilDate:", bool, .{limit_});
             }
             pub fn signal(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_signal);
+                return objc.msgSend(self_, "signal", void, .{});
             }
             pub fn broadcast(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_broadcast);
+                return objc.msgSend(self_, "broadcast", void, .{});
             }
         };
     }
@@ -400,10 +401,10 @@ pub const Data = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn mutableBytes(self_: *T) *const anyopaque {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *const anyopaque, @ptrCast(&c.objc_msgSend))(self_, sel_mutableBytes);
+                return objc.msgSend(self_, "mutableBytes", *const anyopaque, .{});
             }
             pub fn length(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_length);
+                return objc.msgSend(self_, "length", UInteger, .{});
             }
         };
     }
@@ -422,7 +423,7 @@ pub const Date = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn dateWithTimeIntervalSinceNow(secs_: TimeInterval) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, TimeInterval) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_dateWithTimeIntervalSinceNow_, secs_);
+                return objc.msgSend(T.class(), "dateWithTimeIntervalSinceNow:", *T, .{secs_});
             }
         };
     }
@@ -442,28 +443,28 @@ pub fn Dictionary(comptime KeyType: type, comptime ObjectType: type) type {
                 pub usingnamespace ObjectInterface.Methods(T);
 
                 pub fn dictionary() *T {
-                    return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_dictionary);
+                    return objc.msgSend(T.class(), "dictionary", *T, .{});
                 }
                 pub fn dictionaryWithObject_forKey(object_: *ObjectType, key_: *KeyType) *T {
-                    return @as(*const fn (*c.objc_class, *c.objc_selector, *ObjectType, *KeyType) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_dictionaryWithObject_forKey_, object_, key_);
+                    return objc.msgSend(T.class(), "dictionaryWithObject:forKey:", *T, .{ object_, key_ });
                 }
                 pub fn dictionaryWithObjects_forKeys_count(objects_: **ObjectType, keys_: **KeyType, cnt_: UInteger) *T {
-                    return @as(*const fn (*c.objc_class, *c.objc_selector, *ObjectType, *KeyType, UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_dictionaryWithObjects_forKeys_count_, objects_, keys_, cnt_);
+                    return objc.msgSend(T.class(), "dictionaryWithObjects:forKeys:count:", *T, .{ objects_, keys_, cnt_ });
                 }
                 pub fn initWithObjects_forKeys_count(self_: *T, objects_: **ObjectType, keys_: **KeyType, cnt_: UInteger) *T {
-                    return @as(*const fn (*T, *c.objc_selector, **ObjectType, **KeyType, UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithObjects_forKeys_count_, objects_, keys_, cnt_);
+                    return objc.msgSend(self_, "initWithObjects:forKeys:count:", *T, .{ objects_, keys_, cnt_ });
                 }
                 pub fn initWithCoder(self_: *T, coder_: *Coder) *T {
-                    return @as(*const fn (*T, *c.objc_selector, *Coder) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCoder_, coder_);
+                    return objc.msgSend(self_, "initWithCoder:", *T, .{coder_});
                 }
                 pub fn keyEnumerator(self_: *T) *Enumerator(KeyType) {
-                    return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Enumerator(KeyType), @ptrCast(&c.objc_msgSend))(self_, sel_keyEnumerator);
+                    return objc.msgSend(self_, "keyEnumerator", *Enumerator(KeyType), .{});
                 }
                 pub fn objectForKey(self_: *T, aKey_: *KeyType) *ObjectType {
-                    return @as(*const fn (*T, *c.objc_selector, *KeyType) callconv(.C) *ObjectType, @ptrCast(&c.objc_msgSend))(self_, sel_objectForKey_, aKey_);
+                    return objc.msgSend(self_, "objectForKey:", *ObjectType, .{aKey_});
                 }
                 pub fn count(self_: *T) UInteger {
-                    return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_count);
+                    return objc.msgSend(self_, "count", UInteger, .{});
                 }
             };
         }
@@ -484,10 +485,10 @@ pub fn Enumerator(comptime ObjectType: type) type {
                 pub usingnamespace ObjectInterface.Methods(T);
 
                 pub fn nextObject(self_: *T) *ObjectType {
-                    return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ObjectType, @ptrCast(&c.objc_msgSend))(self_, sel_nextObject);
+                    return objc.msgSend(self_, "nextObject", *ObjectType, .{});
                 }
                 pub fn allObjects(self_: *T) *Array(ObjectType) {
-                    return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Array(ObjectType), @ptrCast(&c.objc_msgSend))(self_, sel_allObjects);
+                    return objc.msgSend(self_, "allObjects", *Array(ObjectType), .{});
                 }
             };
         }
@@ -507,31 +508,31 @@ pub const Error = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn errorWithDomain_code_userInfo(domain_: ErrorDomain, code_: Integer, dict_: *Dictionary(ErrorUserInfoKey, ObjectProtocol)) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, ErrorDomain, Integer, *Dictionary(ErrorUserInfoKey, ObjectProtocol)) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_errorWithDomain_code_userInfo_, domain_, code_, dict_);
+                return objc.msgSend(T.class(), "errorWithDomain:code:userInfo:", *T, .{ domain_, code_, dict_ });
             }
             pub fn initWithDomain_code_userInfo(self_: *T, domain_: ErrorDomain, code_: Integer, dict_: *Dictionary(ErrorUserInfoKey, ObjectProtocol)) *T {
-                return @as(*const fn (*T, *c.objc_selector, ErrorDomain, Integer, *Dictionary(ErrorUserInfoKey, ObjectProtocol)) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithDomain_code_userInfo_, domain_, code_, dict_);
+                return objc.msgSend(self_, "initWithDomain:code:userInfo:", *T, .{ domain_, code_, dict_ });
             }
             pub fn code(self_: *T) Integer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Integer, @ptrCast(&c.objc_msgSend))(self_, sel_code);
+                return objc.msgSend(self_, "code", Integer, .{});
             }
             pub fn domain(self_: *T) ErrorDomain {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ErrorDomain, @ptrCast(&c.objc_msgSend))(self_, sel_domain);
+                return objc.msgSend(self_, "domain", ErrorDomain, .{});
             }
             pub fn userInfo(self_: *T) *Dictionary(ErrorUserInfoKey, ObjectProtocol) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Dictionary(ErrorUserInfoKey, ObjectProtocol), @ptrCast(&c.objc_msgSend))(self_, sel_userInfo);
+                return objc.msgSend(self_, "userInfo", *Dictionary(ErrorUserInfoKey, ObjectProtocol), .{});
             }
             pub fn localizedDescription(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_localizedDescription);
+                return objc.msgSend(self_, "localizedDescription", *String, .{});
             }
             pub fn localizedRecoveryOptions(self_: *T) ?*Array(*String) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Array(*String), @ptrCast(&c.objc_msgSend))(self_, sel_localizedRecoveryOptions);
+                return objc.msgSend(self_, "localizedRecoveryOptions", ?*Array(*String), .{});
             }
             pub fn localizedRecoverySuggestion(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_localizedRecoverySuggestion);
+                return objc.msgSend(self_, "localizedRecoverySuggestion", ?*String, .{});
             }
             pub fn localizedFailureReason(self_: *T) ?*String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_localizedFailureReason);
+                return objc.msgSend(self_, "localizedFailureReason", ?*String, .{});
             }
         };
     }
@@ -554,10 +555,10 @@ pub const Locking = opaque {
     pub fn Methods(comptime T: type) type {
         return struct {
             pub fn lock(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_lock);
+                return objc.msgSend(self_, "lock", void, .{});
             }
             pub fn unlock(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_unlock);
+                return objc.msgSend(self_, "unlock", void, .{});
             }
         };
     }
@@ -576,13 +577,13 @@ pub const Notification = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn name(self_: *T) NotificationName {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) NotificationName, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", NotificationName, .{});
             }
             pub fn object(self_: *T) ?*ObjectProtocol {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ObjectProtocol, @ptrCast(&c.objc_msgSend))(self_, sel_object);
+                return objc.msgSend(self_, "object", ?*ObjectProtocol, .{});
             }
             pub fn userInfo(self_: *T) ?*Dictionary(ObjectProtocol, ObjectProtocol) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Dictionary(ObjectProtocol, ObjectProtocol), @ptrCast(&c.objc_msgSend))(self_, sel_userInfo);
+                return objc.msgSend(self_, "userInfo", ?*Dictionary(ObjectProtocol, ObjectProtocol), .{});
             }
         };
     }
@@ -601,151 +602,151 @@ pub const Number = opaque {
             pub usingnamespace Value.Methods(T);
 
             pub fn numberWithChar(value_: u8) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, u8) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithChar_, value_);
+                return objc.msgSend(T.class(), "numberWithChar:", *Number, .{value_});
             }
             pub fn numberWithUnsignedChar(value_: u8) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, u8) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithUnsignedChar_, value_);
+                return objc.msgSend(T.class(), "numberWithUnsignedChar:", *Number, .{value_});
             }
             pub fn numberWithShort(value_: c_short) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_short) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithShort_, value_);
+                return objc.msgSend(T.class(), "numberWithShort:", *Number, .{value_});
             }
             pub fn numberWithUnsignedShort(value_: c_ushort) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_ushort) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithUnsignedShort_, value_);
+                return objc.msgSend(T.class(), "numberWithUnsignedShort:", *Number, .{value_});
             }
             pub fn numberWithInt(value_: c_int) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_int) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithInt_, value_);
+                return objc.msgSend(T.class(), "numberWithInt:", *Number, .{value_});
             }
             pub fn numberWithUnsignedInt(value_: c_uint) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_uint) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithUnsignedInt_, value_);
+                return objc.msgSend(T.class(), "numberWithUnsignedInt:", *Number, .{value_});
             }
             pub fn numberWithLong(value_: c_long) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_long) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithLong_, value_);
+                return objc.msgSend(T.class(), "numberWithLong:", *Number, .{value_});
             }
             pub fn numberWithUnsignedLong(value_: c_ulong) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_ulong) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithUnsignedLong_, value_);
+                return objc.msgSend(T.class(), "numberWithUnsignedLong:", *Number, .{value_});
             }
             pub fn numberWithLongLong(value_: c_longlong) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_longlong) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithLongLong_, value_);
+                return objc.msgSend(T.class(), "numberWithLongLong:", *Number, .{value_});
             }
             pub fn numberWithUnsignedLongLong(value_: c_ulonglong) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, c_ulonglong) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithUnsignedLongLong_, value_);
+                return objc.msgSend(T.class(), "numberWithUnsignedLongLong:", *Number, .{value_});
             }
             pub fn numberWithFloat(value_: f32) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, f32) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithFloat_, value_);
+                return objc.msgSend(T.class(), "numberWithFloat:", *Number, .{value_});
             }
             pub fn numberWithDouble(value_: f64) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, f64) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithDouble_, value_);
+                return objc.msgSend(T.class(), "numberWithDouble:", *Number, .{value_});
             }
             pub fn numberWithBool(value_: bool) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, bool) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithBool_, value_);
+                return objc.msgSend(T.class(), "numberWithBool:", *Number, .{value_});
             }
             pub fn numberWithInteger(value_: Integer) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, Integer) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithInteger_, value_);
+                return objc.msgSend(T.class(), "numberWithInteger:", *Number, .{value_});
             }
             pub fn numberWithUnsignedInteger(value_: UInteger) *Number {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, UInteger) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(T.class(), sel_numberWithUnsignedInteger_, value_);
+                return objc.msgSend(T.class(), "numberWithUnsignedInteger:", *Number, .{value_});
             }
             pub fn initWithChar(self_: *T, value_: u8) *Number {
-                return @as(*const fn (*T, *c.objc_selector, u8) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithChar_, value_);
+                return objc.msgSend(self_, "initWithChar:", *Number, .{value_});
             }
             pub fn initWithUnsignedChar(self_: *T, value_: u8) *Number {
-                return @as(*const fn (*T, *c.objc_selector, u8) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithUnsignedChar_, value_);
+                return objc.msgSend(self_, "initWithUnsignedChar:", *Number, .{value_});
             }
             pub fn initWithShort(self_: *T, value_: c_short) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_short) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithShort_, value_);
+                return objc.msgSend(self_, "initWithShort:", *Number, .{value_});
             }
             pub fn initWithUnsignedShort(self_: *T, value_: c_ushort) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_ushort) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithUnsignedShort_, value_);
+                return objc.msgSend(self_, "initWithUnsignedShort:", *Number, .{value_});
             }
             pub fn initWithInt(self_: *T, value_: c_int) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_int) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithInt_, value_);
+                return objc.msgSend(self_, "initWithInt:", *Number, .{value_});
             }
             pub fn initWithUnsignedInt(self_: *T, value_: c_uint) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_uint) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithUnsignedInt_, value_);
+                return objc.msgSend(self_, "initWithUnsignedInt:", *Number, .{value_});
             }
             pub fn initWithLong(self_: *T, value_: c_long) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_long) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithLong_, value_);
+                return objc.msgSend(self_, "initWithLong:", *Number, .{value_});
             }
             pub fn initWithUnsignedLong(self_: *T, value_: c_ulong) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_ulong) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithUnsignedLong_, value_);
+                return objc.msgSend(self_, "initWithUnsignedLong:", *Number, .{value_});
             }
             pub fn initWithLongLong(self_: *T, value_: c_longlong) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_longlong) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithLongLong_, value_);
+                return objc.msgSend(self_, "initWithLongLong:", *Number, .{value_});
             }
             pub fn initWithUnsignedLongLong(self_: *T, value_: c_ulonglong) *Number {
-                return @as(*const fn (*T, *c.objc_selector, c_ulonglong) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithUnsignedLongLong_, value_);
+                return objc.msgSend(self_, "initWithUnsignedLongLong:", *Number, .{value_});
             }
             pub fn initWithFloat(self_: *T, value_: f32) *Number {
-                return @as(*const fn (*T, *c.objc_selector, f32) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFloat_, value_);
+                return objc.msgSend(self_, "initWithFloat:", *Number, .{value_});
             }
             pub fn initWithDouble(self_: *T, value_: f64) *Number {
-                return @as(*const fn (*T, *c.objc_selector, f64) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithDouble_, value_);
+                return objc.msgSend(self_, "initWithDouble:", *Number, .{value_});
             }
             pub fn initWithBool(self_: *T, value_: bool) *Number {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBool_, value_);
+                return objc.msgSend(self_, "initWithBool:", *Number, .{value_});
             }
             pub fn initWithInteger(self_: *T, value_: Integer) *Number {
-                return @as(*const fn (*T, *c.objc_selector, Integer) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithInteger_, value_);
+                return objc.msgSend(self_, "initWithInteger:", *Number, .{value_});
             }
             pub fn initWithUnsignedInteger(self_: *T, value_: UInteger) *Number {
-                return @as(*const fn (*T, *c.objc_selector, UInteger) callconv(.C) *Number, @ptrCast(&c.objc_msgSend))(self_, sel_initWithUnsignedInteger_, value_);
+                return objc.msgSend(self_, "initWithUnsignedInteger:", *Number, .{value_});
             }
             pub fn charValue(self_: *T) u8 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u8, @ptrCast(&c.objc_msgSend))(self_, sel_charValue);
+                return objc.msgSend(self_, "charValue", u8, .{});
             }
             pub fn unsignedCharValue(self_: *T) u8 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u8, @ptrCast(&c.objc_msgSend))(self_, sel_unsignedCharValue);
+                return objc.msgSend(self_, "unsignedCharValue", u8, .{});
             }
             pub fn shortValue(self_: *T) c_short {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_short, @ptrCast(&c.objc_msgSend))(self_, sel_shortValue);
+                return objc.msgSend(self_, "shortValue", c_short, .{});
             }
             pub fn unsignedShortValue(self_: *T) c_ushort {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_ushort, @ptrCast(&c.objc_msgSend))(self_, sel_unsignedShortValue);
+                return objc.msgSend(self_, "unsignedShortValue", c_ushort, .{});
             }
             pub fn intValue(self_: *T) c_int {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_int, @ptrCast(&c.objc_msgSend))(self_, sel_intValue);
+                return objc.msgSend(self_, "intValue", c_int, .{});
             }
             pub fn unsignedIntValue(self_: *T) c_uint {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_uint, @ptrCast(&c.objc_msgSend))(self_, sel_unsignedIntValue);
+                return objc.msgSend(self_, "unsignedIntValue", c_uint, .{});
             }
             pub fn longValue(self_: *T) c_long {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_long, @ptrCast(&c.objc_msgSend))(self_, sel_longValue);
+                return objc.msgSend(self_, "longValue", c_long, .{});
             }
             pub fn unsignedLongValue(self_: *T) c_ulong {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_ulong, @ptrCast(&c.objc_msgSend))(self_, sel_unsignedLongValue);
+                return objc.msgSend(self_, "unsignedLongValue", c_ulong, .{});
             }
             pub fn longLongValue(self_: *T) c_longlong {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_longlong, @ptrCast(&c.objc_msgSend))(self_, sel_longLongValue);
+                return objc.msgSend(self_, "longLongValue", c_longlong, .{});
             }
             pub fn unsignedLongLongValue(self_: *T) c_ulonglong {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_ulonglong, @ptrCast(&c.objc_msgSend))(self_, sel_unsignedLongLongValue);
+                return objc.msgSend(self_, "unsignedLongLongValue", c_ulonglong, .{});
             }
             pub fn floatValue(self_: *T) f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f32, @ptrCast(&c.objc_msgSend))(self_, sel_floatValue);
+                return objc.msgSend(self_, "floatValue", f32, .{});
             }
             pub fn doubleValue(self_: *T) f64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f64, @ptrCast(&c.objc_msgSend))(self_, sel_doubleValue);
+                return objc.msgSend(self_, "doubleValue", f64, .{});
             }
             pub fn boolValue(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_boolValue);
+                return objc.msgSend(self_, "boolValue", bool, .{});
             }
             pub fn integerValue(self_: *T) Integer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Integer, @ptrCast(&c.objc_msgSend))(self_, sel_integerValue);
+                return objc.msgSend(self_, "integerValue", Integer, .{});
             }
             pub fn unsignedIntegerValue(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_unsignedIntegerValue);
+                return objc.msgSend(self_, "unsignedIntegerValue", UInteger, .{});
             }
             pub fn stringValue(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringValue);
+                return objc.msgSend(self_, "stringValue", *String, .{});
             }
             pub fn compare(self_: *T, otherNumber_: *Number) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *Number) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_compare_, otherNumber_);
+                return objc.msgSend(self_, "compare:", ComparisonResult, .{otherNumber_});
             }
             pub fn isEqualToNumber(self_: *T, number_: *Number) bool {
-                return @as(*const fn (*T, *c.objc_selector, *Number) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isEqualToNumber_, number_);
+                return objc.msgSend(self_, "isEqualToNumber:", bool, .{number_});
             }
             pub fn descriptionWithLocale(self_: *T, locale_: *c.objc_object) *String {
-                return @as(*const fn (*T, *c.objc_selector, *c.objc_object) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_descriptionWithLocale_, locale_);
+                return objc.msgSend(self_, "descriptionWithLocale:", *String, .{locale_});
             }
         };
     }
@@ -762,28 +763,28 @@ pub const ObjectProtocol = opaque {
                 return @as(*U, @ptrCast(self));
             }
             pub fn retain(self_: *T) *T {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_retain);
+                return objc.msgSend(self_, "retain", *T, .{});
             }
             pub fn release(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_release);
+                return objc.msgSend(self_, "release", void, .{});
             }
             pub fn autorelease(self_: *T) *T {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_autorelease);
+                return objc.msgSend(self_, "autorelease", *T, .{});
             }
             pub fn retainCount(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_retainCount);
+                return objc.msgSend(self_, "retainCount", UInteger, .{});
             }
             pub fn hash(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_hash);
+                return objc.msgSend(self_, "hash", UInteger, .{});
             }
             pub fn isEqual(self_: *T, object_: *c.objc_object) bool {
-                return @as(*const fn (*T, *c.objc_selector, *c.objc_object) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isEqual_, object_);
+                return objc.msgSend(self_, "isEqual:", bool, .{object_});
             }
             pub fn description(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_description);
+                return objc.msgSend(self_, "description", *String, .{});
             }
             pub fn debugDescription(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_debugDescription);
+                return objc.msgSend(self_, "debugDescription", *String, .{});
             }
         };
     }
@@ -802,13 +803,13 @@ pub const ObjectInterface = opaque {
             pub usingnamespace ObjectProtocol.Methods(T);
 
             pub fn init(self_: *T) *T {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_init);
+                return objc.msgSend(self_, "init", *T, .{});
             }
             pub fn new() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_new);
+                return objc.msgSend(T.class(), "new", *T, .{});
             }
             pub fn alloc() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_alloc);
+                return objc.msgSend(T.class(), "alloc", *T, .{});
             }
         };
     }
@@ -827,100 +828,100 @@ pub const ProcessInfo = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn processInfo() *ProcessInfo {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *ProcessInfo, @ptrCast(&c.objc_msgSend))(T.class(), sel_processInfo);
+                return objc.msgSend(T.class(), "processInfo", *ProcessInfo, .{});
             }
             pub fn arguments(self_: *T) *Array(String) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Array(String), @ptrCast(&c.objc_msgSend))(self_, sel_arguments);
+                return objc.msgSend(self_, "arguments", *Array(String), .{});
             }
             pub fn environment(self_: *T) *Dictionary(String, String) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Dictionary(String, String), @ptrCast(&c.objc_msgSend))(self_, sel_environment);
+                return objc.msgSend(self_, "environment", *Dictionary(String, String), .{});
             }
             pub fn hostName(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_hostName);
+                return objc.msgSend(self_, "hostName", *String, .{});
             }
             pub fn processName(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_processName);
+                return objc.msgSend(self_, "processName", *String, .{});
             }
             pub fn setProcessName(self_: *T, processName_: *String) void {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setProcessName_, processName_);
+                return objc.msgSend(self_, "setProcessName:", void, .{processName_});
             }
             pub fn processIdentifier(self_: *T) c_int {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_int, @ptrCast(&c.objc_msgSend))(self_, sel_processIdentifier);
+                return objc.msgSend(self_, "processIdentifier", c_int, .{});
             }
             pub fn globallyUniqueString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_globallyUniqueString);
+                return objc.msgSend(self_, "globallyUniqueString", *String, .{});
             }
             pub fn userName(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_userName);
+                return objc.msgSend(self_, "userName", *String, .{});
             }
             pub fn fullUserName(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_fullUserName);
+                return objc.msgSend(self_, "fullUserName", *String, .{});
             }
             pub fn operatingSystem(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_operatingSystem);
+                return objc.msgSend(self_, "operatingSystem", UInteger, .{});
             }
             pub fn operatingSystemVersion(self_: *T) OperatingSystemVersion {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) OperatingSystemVersion, @ptrCast(&c.objc_msgSend))(self_, sel_operatingSystemVersion);
+                return objc.msgSend(self_, "operatingSystemVersion", OperatingSystemVersion, .{});
             }
             pub fn operatingSystemVersionString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_operatingSystemVersionString);
+                return objc.msgSend(self_, "operatingSystemVersionString", *String, .{});
             }
             pub fn isOperatingSystemAtLeastVersion(self_: *T, version_: OperatingSystemVersion) bool {
-                return @as(*const fn (*T, *c.objc_selector, OperatingSystemVersion) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isOperatingSystemAtLeastVersion_, version_);
+                return objc.msgSend(self_, "isOperatingSystemAtLeastVersion:", bool, .{version_});
             }
             pub fn processorCount(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_processorCount);
+                return objc.msgSend(self_, "processorCount", UInteger, .{});
             }
             pub fn activeProcessorCount(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_activeProcessorCount);
+                return objc.msgSend(self_, "activeProcessorCount", UInteger, .{});
             }
             pub fn physicalMemory(self_: *T) c_ulonglong {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_ulonglong, @ptrCast(&c.objc_msgSend))(self_, sel_physicalMemory);
+                return objc.msgSend(self_, "physicalMemory", c_ulonglong, .{});
             }
             pub fn systemUptime(self_: *T) TimeInterval {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TimeInterval, @ptrCast(&c.objc_msgSend))(self_, sel_systemUptime);
+                return objc.msgSend(self_, "systemUptime", TimeInterval, .{});
             }
             pub fn disableSuddenTermination(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_disableSuddenTermination);
+                return objc.msgSend(self_, "disableSuddenTermination", void, .{});
             }
             pub fn enableSuddenTermination(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enableSuddenTermination);
+                return objc.msgSend(self_, "enableSuddenTermination", void, .{});
             }
             pub fn disableAutomaticTermination(self_: *T, reason_: *String) void {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_disableAutomaticTermination_, reason_);
+                return objc.msgSend(self_, "disableAutomaticTermination:", void, .{reason_});
             }
             pub fn enableAutomaticTermination(self_: *T, reason_: *String) void {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enableAutomaticTermination_, reason_);
+                return objc.msgSend(self_, "enableAutomaticTermination:", void, .{reason_});
             }
             pub fn automaticTerminationSupportEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_automaticTerminationSupportEnabled);
+                return objc.msgSend(self_, "automaticTerminationSupportEnabled", bool, .{});
             }
             pub fn setAutomaticTerminationSupportEnabled(self_: *T, automaticTerminationSupportEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAutomaticTerminationSupportEnabled_, automaticTerminationSupportEnabled_);
+                return objc.msgSend(self_, "setAutomaticTerminationSupportEnabled:", void, .{automaticTerminationSupportEnabled_});
             }
             pub fn beginActivityWithOptions_reason(self_: *T, options_: ActivityOptions, reason_: *String) *ObjectProtocol {
-                return @as(*const fn (*T, *c.objc_selector, ActivityOptions, *String) callconv(.C) *ObjectProtocol, @ptrCast(&c.objc_msgSend))(self_, sel_beginActivityWithOptions_reason_, options_, reason_);
+                return objc.msgSend(self_, "beginActivityWithOptions:reason:", *ObjectProtocol, .{ options_, reason_ });
             }
             pub fn endActivity(self_: *T, activity_: *ObjectProtocol) void {
-                return @as(*const fn (*T, *c.objc_selector, *ObjectProtocol) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_endActivity_, activity_);
+                return objc.msgSend(self_, "endActivity:", void, .{activity_});
             }
             // pub fn performActivityWithOptions_reason_usingBlock(self_: *T, options_: ActivityOptions, reason_: *String, block_: void) void {
-            //     return @as(*const fn (*T, *c.objc_selector, ActivityOptions, *String, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_performActivityWithOptions_reason_usingBlock_, options_, reason_, block_);
+            //     return @as(*const fn (*T, *c.objc_selector, ActivityOptions, *String, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, "performActivityWithOptions:reason:usingBlock:", options_, reason_, block_);
             // }
             // pub fn performExpiringActivityWithReason_usingBlock(self_: *T, reason_: *String, block_: void) void {
-            //     return @as(*const fn (*T, *c.objc_selector, *String, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_performExpiringActivityWithReason_usingBlock_, reason_, block_);
+            //     return @as(*const fn (*T, *c.objc_selector, *String, void) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, "performExpiringActivityWithReason:usingBlock:", reason_, block_);
             // }
             pub fn thermalState(self_: *T) ProcessInfoThermalState {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ProcessInfoThermalState, @ptrCast(&c.objc_msgSend))(self_, sel_thermalState);
+                return objc.msgSend(self_, "thermalState", ProcessInfoThermalState, .{});
             }
             pub fn isLowPowerModeEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isLowPowerModeEnabled);
+                return objc.msgSend(self_, "isLowPowerModeEnabled", bool, .{});
             }
             pub fn isiOSAppOnMac(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isiOSAppOnMac);
+                return objc.msgSend(self_, "isiOSAppOnMac", bool, .{});
             }
             pub fn isMacCatalystApp(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isMacCatalystApp);
+                return objc.msgSend(self_, "isMacCatalystApp", bool, .{});
             }
         };
     }
@@ -947,127 +948,127 @@ pub const String = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn characterAtIndex(self_: *T, index_: UInteger) unichar {
-                return @as(*const fn (*T, *c.objc_selector, UInteger) callconv(.C) unichar, @ptrCast(&c.objc_msgSend))(self_, sel_characterAtIndex_, index_);
+                return objc.msgSend(self_, "characterAtIndex:", unichar, .{index_});
             }
             pub fn initWithCoder(self_: *T, coder_: *Coder) *T {
-                return @as(*const fn (*T, *c.objc_selector, *Coder) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCoder_, coder_);
+                return objc.msgSend(self_, "initWithCoder:", *T, .{coder_});
             }
             pub fn length(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_length);
+                return objc.msgSend(self_, "length", UInteger, .{});
             }
             pub fn substringFromIndex(self_: *T, from_: UInteger) *String {
-                return @as(*const fn (*T, *c.objc_selector, UInteger) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_substringFromIndex_, from_);
+                return objc.msgSend(self_, "substringFromIndex:", *String, .{from_});
             }
             pub fn substringToIndex(self_: *T, to_: UInteger) *String {
-                return @as(*const fn (*T, *c.objc_selector, UInteger) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_substringToIndex_, to_);
+                return objc.msgSend(self_, "substringToIndex:", *String, .{to_});
             }
             pub fn substringWithRange(self_: *T, range_: Range) *String {
-                return @as(*const fn (*T, *c.objc_selector, Range) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_substringWithRange_, range_);
+                return objc.msgSend(self_, "substringWithRange:", *String, .{range_});
             }
             pub fn getCharacters_range(self_: *T, buffer_: *unichar, range_: Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *unichar, Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getCharacters_range_, buffer_, range_);
+                return objc.msgSend(self_, "getCharacters:range:", void, .{ buffer_, range_ });
             }
             pub fn compare(self_: *T, string_: *String) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_compare_, string_);
+                return objc.msgSend(self_, "compare:", ComparisonResult, .{string_});
             }
             pub fn compare_options(self_: *T, string_: *String, mask_: StringCompareOptions) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_compare_options_, string_, mask_);
+                return objc.msgSend(self_, "compare:options:", ComparisonResult, .{ string_, mask_ });
             }
             pub fn compare_options_range(self_: *T, string_: *String, mask_: StringCompareOptions, rangeOfReceiverToCompare_: Range) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions, Range) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_compare_options_range_, string_, mask_, rangeOfReceiverToCompare_);
+                return objc.msgSend(self_, "compare:options:range:", ComparisonResult, .{ string_, mask_, rangeOfReceiverToCompare_ });
             }
             pub fn compare_options_range_locale(self_: *T, string_: *String, mask_: StringCompareOptions, rangeOfReceiverToCompare_: Range, locale_: ?*c.objc_object) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions, Range, ?*c.objc_object) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_compare_options_range_locale_, string_, mask_, rangeOfReceiverToCompare_, locale_);
+                return objc.msgSend(self_, "compare:options:range:locale:", ComparisonResult, .{ string_, mask_, rangeOfReceiverToCompare_, locale_ });
             }
             pub fn caseInsensitiveCompare(self_: *T, string_: *String) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_caseInsensitiveCompare_, string_);
+                return objc.msgSend(self_, "caseInsensitiveCompare:", ComparisonResult, .{string_});
             }
             pub fn localizedCompare(self_: *T, string_: *String) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_localizedCompare_, string_);
+                return objc.msgSend(self_, "localizedCompare:", ComparisonResult, .{string_});
             }
             pub fn localizedCaseInsensitiveCompare(self_: *T, string_: *String) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_localizedCaseInsensitiveCompare_, string_);
+                return objc.msgSend(self_, "localizedCaseInsensitiveCompare:", ComparisonResult, .{string_});
             }
             pub fn localizedStandardCompare(self_: *T, string_: *String) ComparisonResult {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ComparisonResult, @ptrCast(&c.objc_msgSend))(self_, sel_localizedStandardCompare_, string_);
+                return objc.msgSend(self_, "localizedStandardCompare:", ComparisonResult, .{string_});
             }
             pub fn isEqualToString(self_: *T, aString_: *String) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isEqualToString_, aString_);
+                return objc.msgSend(self_, "isEqualToString:", bool, .{aString_});
             }
             pub fn hasPrefix(self_: *T, str_: *String) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_hasPrefix_, str_);
+                return objc.msgSend(self_, "hasPrefix:", bool, .{str_});
             }
             pub fn hasSuffix(self_: *T, str_: *String) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_hasSuffix_, str_);
+                return objc.msgSend(self_, "hasSuffix:", bool, .{str_});
             }
             pub fn commonPrefixWithString_options(self_: *T, str_: *String, mask_: StringCompareOptions) *String {
-                return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_commonPrefixWithString_options_, str_, mask_);
+                return objc.msgSend(self_, "commonPrefixWithString:options:", *String, .{ str_, mask_ });
             }
             pub fn containsString(self_: *T, str_: *String) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_containsString_, str_);
+                return objc.msgSend(self_, "containsString:", bool, .{str_});
             }
             pub fn localizedCaseInsensitiveContainsString(self_: *T, str_: *String) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_localizedCaseInsensitiveContainsString_, str_);
+                return objc.msgSend(self_, "localizedCaseInsensitiveContainsString:", bool, .{str_});
             }
             pub fn localizedStandardContainsString(self_: *T, str_: *String) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_localizedStandardContainsString_, str_);
+                return objc.msgSend(self_, "localizedStandardContainsString:", bool, .{str_});
             }
             pub fn localizedStandardRangeOfString(self_: *T, str_: *String) Range {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_localizedStandardRangeOfString_, str_);
+                return objc.msgSend(self_, "localizedStandardRangeOfString:", Range, .{str_});
             }
             pub fn rangeOfString(self_: *T, searchString_: *String) Range {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfString_, searchString_);
+                return objc.msgSend(self_, "rangeOfString:", Range, .{searchString_});
             }
             pub fn rangeOfString_options(self_: *T, searchString_: *String, mask_: StringCompareOptions) Range {
-                return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfString_options_, searchString_, mask_);
+                return objc.msgSend(self_, "rangeOfString:options:", Range, .{ searchString_, mask_ });
             }
             pub fn rangeOfString_options_range(self_: *T, searchString_: *String, mask_: StringCompareOptions, rangeOfReceiverToSearch_: Range) Range {
-                return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions, Range) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfString_options_range_, searchString_, mask_, rangeOfReceiverToSearch_);
+                return objc.msgSend(self_, "rangeOfString:options:range:", Range, .{ searchString_, mask_, rangeOfReceiverToSearch_ });
             }
             // pub fn rangeOfString_options_range_locale(self_: *T, searchString_: *String, mask_: StringCompareOptions, rangeOfReceiverToSearch_: Range, locale_: ?*Locale) Range {
-            //     return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions, Range, ?*Locale) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfString_options_range_locale_, searchString_, mask_, rangeOfReceiverToSearch_, locale_);
+            //     return @as(*const fn (*T, *c.objc_selector, *String, StringCompareOptions, Range, ?*Locale) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, "rangeOfString:options:range:locale:", searchString_, mask_, rangeOfReceiverToSearch_, locale_);
             // }
             // pub fn rangeOfCharacterFromSet(self_: *T, searchSet_: *CharacterSet) Range {
-            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfCharacterFromSet_, searchSet_);
+            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, "rangeOfCharacterFromSet:", searchSet_);
             // }
             // pub fn rangeOfCharacterFromSet_options(self_: *T, searchSet_: *CharacterSet, mask_: StringCompareOptions) Range {
-            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet, StringCompareOptions) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfCharacterFromSet_options_, searchSet_, mask_);
+            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet, StringCompareOptions) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, "rangeOfCharacterFromSet:options:", searchSet_, mask_);
             // }
             // pub fn rangeOfCharacterFromSet_options_range(self_: *T, searchSet_: *CharacterSet, mask_: StringCompareOptions, rangeOfReceiverToSearch_: Range) Range {
-            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet, StringCompareOptions, Range) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfCharacterFromSet_options_range_, searchSet_, mask_, rangeOfReceiverToSearch_);
+            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet, StringCompareOptions, Range) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, "rangeOfCharacterFromSet:options:range:", searchSet_, mask_, rangeOfReceiverToSearch_);
             // }
             pub fn rangeOfComposedCharacterSequenceAtIndex(self_: *T, index_: UInteger) Range {
-                return @as(*const fn (*T, *c.objc_selector, UInteger) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfComposedCharacterSequenceAtIndex_, index_);
+                return objc.msgSend(self_, "rangeOfComposedCharacterSequenceAtIndex:", Range, .{index_});
             }
             pub fn rangeOfComposedCharacterSequencesForRange(self_: *T, range_: Range) Range {
-                return @as(*const fn (*T, *c.objc_selector, Range) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_rangeOfComposedCharacterSequencesForRange_, range_);
+                return objc.msgSend(self_, "rangeOfComposedCharacterSequencesForRange:", Range, .{range_});
             }
             pub fn stringByAppendingString(self_: *T, aString_: *String) *String {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByAppendingString_, aString_);
+                return objc.msgSend(self_, "stringByAppendingString:", *String, .{aString_});
             }
             pub fn stringByAppendingFormat(self_: *T, format_: *String) *String {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByAppendingFormat_, format_);
+                return objc.msgSend(self_, "stringByAppendingFormat:", *String, .{format_});
             }
             // pub fn uppercaseStringWithLocale(self_: *T, locale_: ?*Locale) *String {
-            //     return @as(*const fn (*T, *c.objc_selector, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_uppercaseStringWithLocale_, locale_);
+            //     return @as(*const fn (*T, *c.objc_selector, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, "uppercaseStringWithLocale:", locale_);
             // }
             // pub fn lowercaseStringWithLocale(self_: *T, locale_: ?*Locale) *String {
-            //     return @as(*const fn (*T, *c.objc_selector, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_lowercaseStringWithLocale_, locale_);
+            //     return @as(*const fn (*T, *c.objc_selector, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, "lowercaseStringWithLocale:", locale_);
             // }
             // pub fn capitalizedStringWithLocale(self_: *T, locale_: ?*Locale) *String {
-            //     return @as(*const fn (*T, *c.objc_selector, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_capitalizedStringWithLocale_, locale_);
+            //     return @as(*const fn (*T, *c.objc_selector, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, "capitalizedStringWithLocale:", locale_);
             // }
             pub fn getLineStart_end_contentsEnd_forRange(self_: *T, startPtr_: ?*UInteger, lineEndPtr_: ?*UInteger, contentsEndPtr_: ?*UInteger, range_: Range) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*UInteger, ?*UInteger, ?*UInteger, Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getLineStart_end_contentsEnd_forRange_, startPtr_, lineEndPtr_, contentsEndPtr_, range_);
+                return objc.msgSend(self_, "getLineStart:end:contentsEnd:forRange:", void, .{ startPtr_, lineEndPtr_, contentsEndPtr_, range_ });
             }
             pub fn lineRangeForRange(self_: *T, range_: Range) Range {
-                return @as(*const fn (*T, *c.objc_selector, Range) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_lineRangeForRange_, range_);
+                return objc.msgSend(self_, "lineRangeForRange:", Range, .{range_});
             }
             pub fn getParagraphStart_end_contentsEnd_forRange(self_: *T, startPtr_: ?*UInteger, parEndPtr_: ?*UInteger, contentsEndPtr_: ?*UInteger, range_: Range) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*UInteger, ?*UInteger, ?*UInteger, Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getParagraphStart_end_contentsEnd_forRange_, startPtr_, parEndPtr_, contentsEndPtr_, range_);
+                return objc.msgSend(self_, "getParagraphStart:end:contentsEnd:forRange:", void, .{ startPtr_, parEndPtr_, contentsEndPtr_, range_ });
             }
             pub fn paragraphRangeForRange(self_: *T, range_: Range) Range {
-                return @as(*const fn (*T, *c.objc_selector, Range) callconv(.C) Range, @ptrCast(&c.objc_msgSend))(self_, sel_paragraphRangeForRange_, range_);
+                return objc.msgSend(self_, "paragraphRangeForRange:", Range, .{range_});
             }
             // pub fn enumerateSubstringsInRange_options_usingBlock(self_: *T, range_: Range, opts_: StringEnumerationOptions, context: anytype, comptime block_: fn (ctx: @TypeOf(context), _: ?*String, _: Range, _: Range, _: *bool) void) void {
             //     const Literal = BlockLiteral(@TypeOf(context));
@@ -1078,301 +1079,301 @@ pub const String = opaque {
             //     };
             //     const descriptor = BlockDescriptor{ .reserved = 0, .size = @sizeOf(Literal) };
             //     const block = Literal{ .isa = _NSConcreteStackBlock, .flags = 0, .reserved = 0, .invoke = @ptrCast(&Helper.cCallback), .descriptor = &descriptor, .context = context };
-            //     return @as(*const fn (*T, *c.objc_selector, Range, StringEnumerationOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enumerateSubstringsInRange_options_usingBlock_, range_, opts_, @ptrCast(&block));
+            //     return @as(*const fn (*T, *c.objc_selector, Range, StringEnumerationOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, "enumerateSubstringsInRange:options:usingBlock:", range_, opts_, @ptrCast(&block));
             // }
-            pub fn enumerateLinesUsingBlock(self_: *T, block_: *Block(fn(*String, bool) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enumerateLinesUsingBlock_, block_);
+            pub fn enumerateLinesUsingBlock(self_: *T, block_: *Block(fn (*String, bool) void)) void {
+                return objc.msgSend(self_, "enumerateLinesUsingBlock:", void, .{block_});
             }
             pub fn dataUsingEncoding_allowLossyConversion(self_: *T, encoding_: StringEncoding, lossy_: bool) ?*Data {
-                return @as(*const fn (*T, *c.objc_selector, StringEncoding, bool) callconv(.C) ?*Data, @ptrCast(&c.objc_msgSend))(self_, sel_dataUsingEncoding_allowLossyConversion_, encoding_, lossy_);
+                return objc.msgSend(self_, "dataUsingEncoding:allowLossyConversion:", ?*Data, .{ encoding_, lossy_ });
             }
             pub fn dataUsingEncoding(self_: *T, encoding_: StringEncoding) ?*Data {
-                return @as(*const fn (*T, *c.objc_selector, StringEncoding) callconv(.C) ?*Data, @ptrCast(&c.objc_msgSend))(self_, sel_dataUsingEncoding_, encoding_);
+                return objc.msgSend(self_, "dataUsingEncoding:", ?*Data, .{encoding_});
             }
             pub fn canBeConvertedToEncoding(self_: *T, encoding_: StringEncoding) bool {
-                return @as(*const fn (*T, *c.objc_selector, StringEncoding) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_canBeConvertedToEncoding_, encoding_);
+                return objc.msgSend(self_, "canBeConvertedToEncoding:", bool, .{encoding_});
             }
             pub fn cStringUsingEncoding(self_: *T, encoding_: StringEncoding) ?*const u8 {
-                return @as(*const fn (*T, *c.objc_selector, StringEncoding) callconv(.C) ?*const u8, @ptrCast(&c.objc_msgSend))(self_, sel_cStringUsingEncoding_, encoding_);
+                return objc.msgSend(self_, "cStringUsingEncoding:", ?*const u8, .{encoding_});
             }
             pub fn getCString_maxLength_encoding(self_: *T, buffer_: *u8, maxBufferCount_: UInteger, encoding_: StringEncoding) bool {
-                return @as(*const fn (*T, *c.objc_selector, *u8, UInteger, StringEncoding) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_getCString_maxLength_encoding_, buffer_, maxBufferCount_, encoding_);
+                return objc.msgSend(self_, "getCString:maxLength:encoding:", bool, .{ buffer_, maxBufferCount_, encoding_ });
             }
             // pub fn getBytes_maxLength_usedLength_encoding_options_range_remainingRange(self_: *T, buffer_: ?*anyopaque, maxBufferCount_: UInteger, usedBufferCount_: ?*UInteger, encoding_: StringEncoding, options_: StringEncodingConversionOptions, range_: Range, leftover_: RangePointer) bool {
-            //     return @as(*const fn (*T, *c.objc_selector, ?*anyopaque, UInteger, ?*UInteger, StringEncoding, StringEncodingConversionOptions, Range, RangePointer) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_getBytes_maxLength_usedLength_encoding_options_range_remainingRange_, buffer_, maxBufferCount_, usedBufferCount_, encoding_, options_, range_, leftover_);
+            //     return @as(*const fn (*T, *c.objc_selector, ?*anyopaque, UInteger, ?*UInteger, StringEncoding, StringEncodingConversionOptions, Range, RangePointer) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, "getBytes:maxLength:usedLength:encoding:options:range:remainingRange:", buffer_, maxBufferCount_, usedBufferCount_, encoding_, options_, range_, leftover_);
             // }
             pub fn maximumLengthOfBytesUsingEncoding(self_: *T, enc_: StringEncoding) UInteger {
-                return @as(*const fn (*T, *c.objc_selector, StringEncoding) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maximumLengthOfBytesUsingEncoding_, enc_);
+                return objc.msgSend(self_, "maximumLengthOfBytesUsingEncoding:", UInteger, .{enc_});
             }
             pub fn lengthOfBytesUsingEncoding(self_: *T, enc_: StringEncoding) UInteger {
-                return @as(*const fn (*T, *c.objc_selector, StringEncoding) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_lengthOfBytesUsingEncoding_, enc_);
+                return objc.msgSend(self_, "lengthOfBytesUsingEncoding:", UInteger, .{enc_});
             }
             pub fn localizedNameOfStringEncoding(encoding_: StringEncoding) *String {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, StringEncoding) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(T.class(), sel_localizedNameOfStringEncoding_, encoding_);
+                return objc.msgSend(T.class(), "localizedNameOfStringEncoding:", *String, .{encoding_});
             }
             pub fn componentsSeparatedByString(self_: *T, separator_: *String) *Array(*String) {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *Array(*String), @ptrCast(&c.objc_msgSend))(self_, sel_componentsSeparatedByString_, separator_);
+                return objc.msgSend(self_, "componentsSeparatedByString:", *Array(*String), .{separator_});
             }
             // pub fn componentsSeparatedByCharactersInSet(self_: *T, separator_: *CharacterSet) *Array(*String) {
-            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet) callconv(.C) *Array(*String), @ptrCast(&c.objc_msgSend))(self_, sel_componentsSeparatedByCharactersInSet_, separator_);
+            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet) callconv(.C) *Array(*String), @ptrCast(&c.objc_msgSend))(self_, "componentsSeparatedByCharactersInSet:", separator_);
             // }
             // pub fn stringByTrimmingCharactersInSet(self_: *T, set_: *CharacterSet) *String {
-            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByTrimmingCharactersInSet_, set_);
+            //     return @as(*const fn (*T, *c.objc_selector, *CharacterSet) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, "stringByTrimmingCharactersInSet:", set_);
             // }
             pub fn stringByPaddingToLength_withString_startingAtIndex(self_: *T, newLength_: UInteger, padString_: *String, padIndex_: UInteger) *String {
-                return @as(*const fn (*T, *c.objc_selector, UInteger, *String, UInteger) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByPaddingToLength_withString_startingAtIndex_, newLength_, padString_, padIndex_);
+                return objc.msgSend(self_, "stringByPaddingToLength:withString:startingAtIndex:", *String, .{ newLength_, padString_, padIndex_ });
             }
             // pub fn stringByFoldingWithOptions_locale(self_: *T, options_: StringCompareOptions, locale_: ?*Locale) *String {
-            //     return @as(*const fn (*T, *c.objc_selector, StringCompareOptions, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByFoldingWithOptions_locale_, options_, locale_);
+            //     return @as(*const fn (*T, *c.objc_selector, StringCompareOptions, ?*Locale) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, "stringByFoldingWithOptions:locale:", options_, locale_);
             // }
             pub fn stringByReplacingOccurrencesOfString_withString_options_range(self_: *T, target_: *String, replacement_: *String, options_: StringCompareOptions, searchRange_: Range) *String {
-                return @as(*const fn (*T, *c.objc_selector, *String, *String, StringCompareOptions, Range) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByReplacingOccurrencesOfString_withString_options_range_, target_, replacement_, options_, searchRange_);
+                return objc.msgSend(self_, "stringByReplacingOccurrencesOfString:withString:options:range:", *String, .{ target_, replacement_, options_, searchRange_ });
             }
             pub fn stringByReplacingOccurrencesOfString_withString(self_: *T, target_: *String, replacement_: *String) *String {
-                return @as(*const fn (*T, *c.objc_selector, *String, *String) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByReplacingOccurrencesOfString_withString_, target_, replacement_);
+                return objc.msgSend(self_, "stringByReplacingOccurrencesOfString:withString:", *String, .{ target_, replacement_ });
             }
             pub fn stringByReplacingCharactersInRange_withString(self_: *T, range_: Range, replacement_: *String) *String {
-                return @as(*const fn (*T, *c.objc_selector, Range, *String) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByReplacingCharactersInRange_withString_, range_, replacement_);
+                return objc.msgSend(self_, "stringByReplacingCharactersInRange:withString:", *String, .{ range_, replacement_ });
             }
             // pub fn stringByApplyingTransform_reverse(self_: *T, transform_: StringTransform, reverse_: bool) ?*String {
-            //     return @as(*const fn (*T, *c.objc_selector, StringTransform, bool) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, sel_stringByApplyingTransform_reverse_, transform_, reverse_);
+            //     return @as(*const fn (*T, *c.objc_selector, StringTransform, bool) callconv(.C) ?*String, @ptrCast(&c.objc_msgSend))(self_, "stringByApplyingTransform:reverse:", transform_, reverse_);
             // }
             pub fn writeToURL_atomically_encoding_error(self_: *T, url_: *URL, useAuxiliaryFile_: bool, enc_: StringEncoding, error_: ?*?*Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *URL, bool, StringEncoding, ?*?*Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_writeToURL_atomically_encoding_error_, url_, useAuxiliaryFile_, enc_, error_);
+                return objc.msgSend(self_, "writeToURL:atomically:encoding:error:", bool, .{ url_, useAuxiliaryFile_, enc_, error_ });
             }
             pub fn writeToFile_atomically_encoding_error(self_: *T, path_: *String, useAuxiliaryFile_: bool, enc_: StringEncoding, error_: ?*?*Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String, bool, StringEncoding, ?*?*Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_writeToFile_atomically_encoding_error_, path_, useAuxiliaryFile_, enc_, error_);
+                return objc.msgSend(self_, "writeToFile:atomically:encoding:error:", bool, .{ path_, useAuxiliaryFile_, enc_, error_ });
             }
             pub fn initWithCharactersNoCopy_length_freeWhenDone(self_: *T, characters_: *unichar, length_: UInteger, freeBuffer_: bool) *T {
-                return @as(*const fn (*T, *c.objc_selector, *unichar, UInteger, bool) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCharactersNoCopy_length_freeWhenDone_, characters_, length_, freeBuffer_);
+                return objc.msgSend(self_, "initWithCharactersNoCopy:length:freeWhenDone:", *T, .{ characters_, length_, freeBuffer_ });
             }
             pub fn initWithCharactersNoCopy_length_deallocator(self_: *T, chars_: *unichar, len_: UInteger, deallocator_: *Block(fn (*unichar, UInteger) void)) *T {
-                return @as(*const fn (*T, *c.objc_selector, *unichar, UInteger, *const anyopaque) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCharactersNoCopy_length_deallocator_, chars_, len_, deallocator_);
+                return objc.msgSend(self_, "initWithCharactersNoCopy:length:deallocator:", *T, .{ chars_, len_, deallocator_ });
             }
             pub fn initWithCharacters_length(self_: *T, characters_: *const unichar, length_: UInteger) *T {
-                return @as(*const fn (*T, *c.objc_selector, *const unichar, UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCharacters_length_, characters_, length_);
+                return objc.msgSend(self_, "initWithCharacters:length:", *T, .{ characters_, length_ });
             }
             pub fn initWithUTF8String(self_: *T, nullTerminatedCString_: [*:0]const u8) *T {
-                return @as(*const fn (*T, *c.objc_selector, [*:0]const u8) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithUTF8String_, nullTerminatedCString_);
+                return objc.msgSend(self_, "initWithUTF8String:", *T, .{nullTerminatedCString_});
             }
             pub fn initWithString(self_: *T, aString_: *String) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithString_, aString_);
+                return objc.msgSend(self_, "initWithString:", *T, .{aString_});
             }
             pub fn initWithFormat(self_: *T, format_: *String) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFormat_, format_);
+                return objc.msgSend(self_, "initWithFormat:", *T, .{format_});
             }
             // pub fn initWithFormat_arguments(self_: *T, format_: *String, argList_: va_list) *T {
-            //     return @as(*const fn (*T, *c.objc_selector, *String, va_list) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFormat_arguments_, format_, argList_);
+            //     return @as(*const fn (*T, *c.objc_selector, *String, va_list) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, "initWithFormat:arguments:", format_, argList_);
             // }
             pub fn initWithFormat_locale(self_: *T, format_: *String, locale_: ?*c.objc_object) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String, ?*c.objc_object) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFormat_locale_, format_, locale_);
+                return objc.msgSend(self_, "initWithFormat:locale:", *T, .{ format_, locale_ });
             }
             // pub fn initWithFormat_locale_arguments(self_: *T, format_: *String, locale_: ?*c.objc_object, argList_: va_list) *T {
-            //     return @as(*const fn (*T, *c.objc_selector, *String, ?*c.objc_object, va_list) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFormat_locale_arguments_, format_, locale_, argList_);
+            //     return @as(*const fn (*T, *c.objc_selector, *String, ?*c.objc_object, va_list) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, "initWithFormat:locale:arguments:", format_, locale_, argList_);
             // }
             pub fn initWithValidatedFormat_validFormatSpecifiers_error(self_: *T, format_: *String, validFormatSpecifiers_: *String, error_: ?*?*Error) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String, *String, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithValidatedFormat_validFormatSpecifiers_error_, format_, validFormatSpecifiers_, error_);
+                return objc.msgSend(self_, "initWithValidatedFormat:validFormatSpecifiers:error:", *T, .{ format_, validFormatSpecifiers_, error_ });
             }
             pub fn initWithValidatedFormat_validFormatSpecifiers_locale_error(self_: *T, format_: *String, validFormatSpecifiers_: *String, locale_: ?*c.objc_object, error_: ?*?*Error) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String, *String, ?*c.objc_object, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithValidatedFormat_validFormatSpecifiers_locale_error_, format_, validFormatSpecifiers_, locale_, error_);
+                return objc.msgSend(self_, "initWithValidatedFormat:validFormatSpecifiers:locale:error:", *T, .{ format_, validFormatSpecifiers_, locale_, error_ });
             }
             // pub fn initWithValidatedFormat_validFormatSpecifiers_arguments_error(self_: *T, format_: *String, validFormatSpecifiers_: *String, argList_: va_list, error_: ?*?*Error) *T {
-            //     return @as(*const fn (*T, *c.objc_selector, *String, *String, va_list, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithValidatedFormat_validFormatSpecifiers_arguments_error_, format_, validFormatSpecifiers_, argList_, error_);
+            //     return @as(*const fn (*T, *c.objc_selector, *String, *String, va_list, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, "initWithValidatedFormat:validFormatSpecifiers:arguments:error:", format_, validFormatSpecifiers_, argList_, error_);
             // }
             // pub fn initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error(self_: *T, format_: *String, validFormatSpecifiers_: *String, locale_: ?*c.objc_object, argList_: va_list, error_: ?*?*Error) *T {
-            //     return @as(*const fn (*T, *c.objc_selector, *String, *String, ?*c.objc_object, va_list, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error_, format_, validFormatSpecifiers_, locale_, argList_, error_);
+            //     return @as(*const fn (*T, *c.objc_selector, *String, *String, ?*c.objc_object, va_list, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, "initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:", format_, validFormatSpecifiers_, locale_, argList_, error_);
             // }
             pub fn initWithData_encoding(self_: *T, data_: *Data, encoding_: StringEncoding) *T {
-                return @as(*const fn (*T, *c.objc_selector, *Data, StringEncoding) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithData_encoding_, data_, encoding_);
+                return objc.msgSend(self_, "initWithData:encoding:", *T, .{ data_, encoding_ });
             }
             pub fn initWithBytes_length_encoding(self_: *T, bytes_: *const anyopaque, len_: UInteger, encoding_: StringEncoding) *T {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, UInteger, StringEncoding) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBytes_length_encoding_, bytes_, len_, encoding_);
+                return objc.msgSend(self_, "initWithBytes:length:encoding:", *T, .{ bytes_, len_, encoding_ });
             }
             pub fn initWithBytesNoCopy_length_encoding_freeWhenDone(self_: *T, bytes_: *anyopaque, len_: UInteger, encoding_: StringEncoding, freeBuffer_: bool) *T {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, UInteger, StringEncoding, bool) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBytesNoCopy_length_encoding_freeWhenDone_, bytes_, len_, encoding_, freeBuffer_);
+                return objc.msgSend(self_, "initWithBytesNoCopy:length:encoding:freeWhenDone:", *T, .{ bytes_, len_, encoding_, freeBuffer_ });
             }
             pub fn initWithBytesNoCopy_length_encoding_deallocator(self_: *T, bytes_: *anyopaque, len_: UInteger, encoding_: StringEncoding, deallocator_: *Block(fn (*anyopaque, UInteger) void)) *T {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, UInteger, StringEncoding, *const anyopaque) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBytesNoCopy_length_encoding_deallocator_, bytes_, len_, encoding_, deallocator_);
+                return objc.msgSend(self_, "initWithBytesNoCopy:length:encoding:deallocator:", *T, .{ bytes_, len_, encoding_, deallocator_ });
             }
             pub fn string() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_string);
+                return objc.msgSend(T.class(), "string", *T, .{});
             }
             pub fn stringWithString(string_: *String) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithString_, string_);
+                return objc.msgSend(T.class(), "stringWithString:", *T, .{string_});
             }
             pub fn stringWithCharacters_length(characters_: *const unichar, length_: UInteger) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *const unichar, UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithCharacters_length_, characters_, length_);
+                return objc.msgSend(T.class(), "stringWithCharacters:length:", *T, .{ characters_, length_ });
             }
             pub fn stringWithUTF8String(nullTerminatedCString_: [*:0]const u8) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, [*:0]const u8) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithUTF8String_, nullTerminatedCString_);
+                return objc.msgSend(T.class(), "stringWithUTF8String:", *T, .{nullTerminatedCString_});
             }
             pub fn stringWithFormat(format_: *String) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithFormat_, format_);
+                return objc.msgSend(T.class(), "stringWithFormat:", *T, .{format_});
             }
             pub fn localizedStringWithFormat(format_: *String) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_localizedStringWithFormat_, format_);
+                return objc.msgSend(T.class(), "localizedStringWithFormat:", *T, .{format_});
             }
             pub fn stringWithValidatedFormat_validFormatSpecifiers_error(format_: *String, validFormatSpecifiers_: *String, error_: ?*?*Error) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String, *String, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithValidatedFormat_validFormatSpecifiers_error_, format_, validFormatSpecifiers_, error_);
+                return objc.msgSend(T.class(), "stringWithValidatedFormat:validFormatSpecifiers:error:", *T, .{ format_, validFormatSpecifiers_, error_ });
             }
             pub fn localizedStringWithValidatedFormat_validFormatSpecifiers_error(format_: *String, validFormatSpecifiers_: *String, error_: ?*?*Error) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String, *String, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_localizedStringWithValidatedFormat_validFormatSpecifiers_error_, format_, validFormatSpecifiers_, error_);
+                return objc.msgSend(T.class(), "localizedStringWithValidatedFormat:validFormatSpecifiers:error:", *T, .{ format_, validFormatSpecifiers_, error_ });
             }
             pub fn initWithCString_encoding(self_: *T, nullTerminatedCString_: *const u8, encoding_: StringEncoding) *T {
-                return @as(*const fn (*T, *c.objc_selector, *const u8, StringEncoding) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCString_encoding_, nullTerminatedCString_, encoding_);
+                return objc.msgSend(self_, "initWithCString:encoding:", *T, .{ nullTerminatedCString_, encoding_ });
             }
             pub fn stringWithCString_encoding(cString_: *const u8, enc_: StringEncoding) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *const u8, StringEncoding) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithCString_encoding_, cString_, enc_);
+                return objc.msgSend(T.class(), "stringWithCString:encoding:", *T, .{ cString_, enc_ });
             }
             pub fn initWithContentsOfURL_encoding_error(self_: *T, url_: *URL, enc_: StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*T, *c.objc_selector, *URL, StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithContentsOfURL_encoding_error_, url_, enc_, error_);
+                return objc.msgSend(self_, "initWithContentsOfURL:encoding:error:", *T, .{ url_, enc_, error_ });
             }
             pub fn initWithContentsOfFile_encoding_error(self_: *T, path_: *String, enc_: StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String, StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithContentsOfFile_encoding_error_, path_, enc_, error_);
+                return objc.msgSend(self_, "initWithContentsOfFile:encoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn stringWithContentsOfURL_encoding_error(url_: *URL, enc_: StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *URL, StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithContentsOfURL_encoding_error_, url_, enc_, error_);
+                return objc.msgSend(T.class(), "stringWithContentsOfURL:encoding:error:", *T, .{ url_, enc_, error_ });
             }
             pub fn stringWithContentsOfFile_encoding_error(path_: *String, enc_: StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String, StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithContentsOfFile_encoding_error_, path_, enc_, error_);
+                return objc.msgSend(T.class(), "stringWithContentsOfFile:encoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn initWithContentsOfURL_usedEncoding_error(self_: *T, url_: *URL, enc_: ?*StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*T, *c.objc_selector, *URL, ?*StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithContentsOfURL_usedEncoding_error_, url_, enc_, error_);
+                return objc.msgSend(self_, "initWithContentsOfURL:usedEncoding:error:", *T, .{ url_, enc_, error_ });
             }
             pub fn initWithContentsOfFile_usedEncoding_error(self_: *T, path_: *String, enc_: ?*StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String, ?*StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithContentsOfFile_usedEncoding_error_, path_, enc_, error_);
+                return objc.msgSend(self_, "initWithContentsOfFile:usedEncoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn stringWithContentsOfURL_usedEncoding_error(url_: *URL, enc_: ?*StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *URL, ?*StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithContentsOfURL_usedEncoding_error_, url_, enc_, error_);
+                return objc.msgSend(T.class(), "stringWithContentsOfURL:usedEncoding:error:", *T, .{ url_, enc_, error_ });
             }
             pub fn stringWithContentsOfFile_usedEncoding_error(path_: *String, enc_: ?*StringEncoding, error_: ?*?*Error) *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String, ?*StringEncoding, ?*?*Error) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithContentsOfFile_usedEncoding_error_, path_, enc_, error_);
+                return objc.msgSend(T.class(), "stringWithContentsOfFile:usedEncoding:error:", *T, .{ path_, enc_, error_ });
             }
             pub fn doubleValue(self_: *T) f64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f64, @ptrCast(&c.objc_msgSend))(self_, sel_doubleValue);
+                return objc.msgSend(self_, "doubleValue", f64, .{});
             }
             pub fn floatValue(self_: *T) f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f32, @ptrCast(&c.objc_msgSend))(self_, sel_floatValue);
+                return objc.msgSend(self_, "floatValue", f32, .{});
             }
             pub fn intValue(self_: *T) c_int {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_int, @ptrCast(&c.objc_msgSend))(self_, sel_intValue);
+                return objc.msgSend(self_, "intValue", c_int, .{});
             }
             pub fn integerValue(self_: *T) Integer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Integer, @ptrCast(&c.objc_msgSend))(self_, sel_integerValue);
+                return objc.msgSend(self_, "integerValue", Integer, .{});
             }
             pub fn longLongValue(self_: *T) c_longlong {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) c_longlong, @ptrCast(&c.objc_msgSend))(self_, sel_longLongValue);
+                return objc.msgSend(self_, "longLongValue", c_longlong, .{});
             }
             pub fn boolValue(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_boolValue);
+                return objc.msgSend(self_, "boolValue", bool, .{});
             }
             pub fn uppercaseString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_uppercaseString);
+                return objc.msgSend(self_, "uppercaseString", *String, .{});
             }
             pub fn lowercaseString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_lowercaseString);
+                return objc.msgSend(self_, "lowercaseString", *String, .{});
             }
             pub fn capitalizedString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_capitalizedString);
+                return objc.msgSend(self_, "capitalizedString", *String, .{});
             }
             pub fn localizedUppercaseString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_localizedUppercaseString);
+                return objc.msgSend(self_, "localizedUppercaseString", *String, .{});
             }
             pub fn localizedLowercaseString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_localizedLowercaseString);
+                return objc.msgSend(self_, "localizedLowercaseString", *String, .{});
             }
             pub fn localizedCapitalizedString(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_localizedCapitalizedString);
+                return objc.msgSend(self_, "localizedCapitalizedString", *String, .{});
             }
             pub fn UTF8String(self_: *T) [*:0]const u8 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) [*:0]const u8, @ptrCast(&c.objc_msgSend))(self_, sel_UTF8String);
+                return objc.msgSend(self_, "UTF8String", [*:0]const u8, .{});
             }
             pub fn fastestEncoding(self_: *T) StringEncoding {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StringEncoding, @ptrCast(&c.objc_msgSend))(self_, sel_fastestEncoding);
+                return objc.msgSend(self_, "fastestEncoding", StringEncoding, .{});
             }
             pub fn smallestEncoding(self_: *T) StringEncoding {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StringEncoding, @ptrCast(&c.objc_msgSend))(self_, sel_smallestEncoding);
+                return objc.msgSend(self_, "smallestEncoding", StringEncoding, .{});
             }
             pub fn availableStringEncodings() *const StringEncoding {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *const StringEncoding, @ptrCast(&c.objc_msgSend))(T.class(), sel_availableStringEncodings);
+                return objc.msgSend(T.class(), "availableStringEncodings", *const StringEncoding, .{});
             }
             pub fn defaultCStringEncoding() StringEncoding {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) StringEncoding, @ptrCast(&c.objc_msgSend))(T.class(), sel_defaultCStringEncoding);
+                return objc.msgSend(T.class(), "defaultCStringEncoding", StringEncoding, .{});
             }
             pub fn decomposedStringWithCanonicalMapping(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_decomposedStringWithCanonicalMapping);
+                return objc.msgSend(self_, "decomposedStringWithCanonicalMapping", *String, .{});
             }
             pub fn precomposedStringWithCanonicalMapping(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_precomposedStringWithCanonicalMapping);
+                return objc.msgSend(self_, "precomposedStringWithCanonicalMapping", *String, .{});
             }
             pub fn decomposedStringWithCompatibilityMapping(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_decomposedStringWithCompatibilityMapping);
+                return objc.msgSend(self_, "decomposedStringWithCompatibilityMapping", *String, .{});
             }
             pub fn precomposedStringWithCompatibilityMapping(self_: *T) *String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *String, @ptrCast(&c.objc_msgSend))(self_, sel_precomposedStringWithCompatibilityMapping);
+                return objc.msgSend(self_, "precomposedStringWithCompatibilityMapping", *String, .{});
             }
             // pub fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(data_: *Data, opts_: ?*Dictionary(StringEncodingDetectionOptionsKey, *c.objc_object), string_: ?*?*String, usedLossyConversion_: ?*bool) StringEncoding {
-            //     return @as(*const fn (*c.objc_class, *c.objc_selector, *Data, ?*Dictionary(StringEncodingDetectionOptionsKey, *c.objc_object), ?*?*String, ?*bool) callconv(.C) StringEncoding, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringEncodingForData_encodingOptions_convertedString_usedLossyConversion_, data_, opts_, string_, usedLossyConversion_);
+            //     return @as(*const fn (*c.objc_class, *c.objc_selector, *Data, ?*Dictionary(StringEncodingDetectionOptionsKey, *c.objc_object), ?*?*String, ?*bool) callconv(.C) StringEncoding, @ptrCast(&c.objc_msgSend))(T.class(), "stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:", data_, opts_, string_, usedLossyConversion_);
             // }
             pub fn propertyList(self_: *T) *c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_propertyList);
+                return objc.msgSend(self_, "propertyList", *c.objc_object, .{});
             }
             // pub fn propertyListFromStringsFileFormat(self_: *T) ?*Dictionary {
-            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Dictionary, @ptrCast(&c.objc_msgSend))(self_, sel_propertyListFromStringsFileFormat);
+            //     return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Dictionary, @ptrCast(&c.objc_msgSend))(self_, "propertyListFromStringsFileFormat);"
             // }
             pub fn cString(self_: *T) ?*const u8 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*const u8, @ptrCast(&c.objc_msgSend))(self_, sel_cString);
+                return objc.msgSend(self_, "cString", ?*const u8, .{});
             }
             pub fn lossyCString(self_: *T) ?*const u8 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*const u8, @ptrCast(&c.objc_msgSend))(self_, sel_lossyCString);
+                return objc.msgSend(self_, "lossyCString", ?*const u8, .{});
             }
             pub fn cStringLength(self_: *T) UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_cStringLength);
+                return objc.msgSend(self_, "cStringLength", UInteger, .{});
             }
             pub fn getCString(self_: *T, bytes_: *u8) void {
-                return @as(*const fn (*T, *c.objc_selector, *u8) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getCString_, bytes_);
+                return objc.msgSend(self_, "getCString:", void, .{bytes_});
             }
             pub fn getCString_maxLength(self_: *T, bytes_: *u8, maxLength_: UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *u8, UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getCString_maxLength_, bytes_, maxLength_);
+                return objc.msgSend(self_, "getCString:maxLength:", void, .{ bytes_, maxLength_ });
             }
             // pub fn getCString_maxLength_range_remainingRange(self_: *T, bytes_: *u8, maxLength_: UInteger, aRange_: Range, leftoverRange_: RangePointer) void {
-            //     return @as(*const fn (*T, *c.objc_selector, *u8, UInteger, Range, RangePointer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getCString_maxLength_range_remainingRange_, bytes_, maxLength_, aRange_, leftoverRange_);
+            //     return @as(*const fn (*T, *c.objc_selector, *u8, UInteger, Range, RangePointer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, "getCString:maxLength:range:remainingRange:", bytes_, maxLength_, aRange_, leftoverRange_);
             // }
             pub fn writeToFile_atomically(self_: *T, path_: *String, useAuxiliaryFile_: bool) bool {
-                return @as(*const fn (*T, *c.objc_selector, *String, bool) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_writeToFile_atomically_, path_, useAuxiliaryFile_);
+                return objc.msgSend(self_, "writeToFile:atomically:", bool, .{ path_, useAuxiliaryFile_ });
             }
             pub fn writeToURL_atomically(self_: *T, url_: *URL, atomically_: bool) bool {
-                return @as(*const fn (*T, *c.objc_selector, *URL, bool) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_writeToURL_atomically_, url_, atomically_);
+                return objc.msgSend(self_, "writeToURL:atomically:", bool, .{ url_, atomically_ });
             }
             pub fn initWithContentsOfFile(self_: *T, path_: *String) ?*c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_initWithContentsOfFile_, path_);
+                return objc.msgSend(self_, "initWithContentsOfFile:", ?*c.objc_object, .{path_});
             }
             pub fn initWithContentsOfURL(self_: *T, url_: *URL) ?*c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector, *URL) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_initWithContentsOfURL_, url_);
+                return objc.msgSend(self_, "initWithContentsOfURL:", ?*c.objc_object, .{url_});
             }
             pub fn stringWithContentsOfFile(path_: *String) ?*c.objc_object {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithContentsOfFile_, path_);
+                return objc.msgSend(T.class(), "stringWithContentsOfFile:", ?*c.objc_object, .{path_});
             }
             pub fn stringWithContentsOfURL(url_: *URL) ?*c.objc_object {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *URL) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithContentsOfURL_, url_);
+                return objc.msgSend(T.class(), "stringWithContentsOfURL:", ?*c.objc_object, .{url_});
             }
             pub fn initWithCStringNoCopy_length_freeWhenDone(self_: *T, bytes_: *u8, length_: UInteger, freeBuffer_: bool) ?*c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector, *u8, UInteger, bool) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCStringNoCopy_length_freeWhenDone_, bytes_, length_, freeBuffer_);
+                return objc.msgSend(self_, "initWithCStringNoCopy:length:freeWhenDone:", ?*c.objc_object, .{ bytes_, length_, freeBuffer_ });
             }
             pub fn initWithCString_length(self_: *T, bytes_: *const u8, length_: UInteger) ?*c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector, *const u8, UInteger) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCString_length_, bytes_, length_);
+                return objc.msgSend(self_, "initWithCString:length:", ?*c.objc_object, .{ bytes_, length_ });
             }
             pub fn initWithCString(self_: *T, bytes_: *const u8) ?*c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector, *const u8) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCString_, bytes_);
+                return objc.msgSend(self_, "initWithCString:", ?*c.objc_object, .{bytes_});
             }
             pub fn stringWithCString_length(bytes_: *const u8, length_: UInteger) ?*c.objc_object {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *const u8, UInteger) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithCString_length_, bytes_, length_);
+                return objc.msgSend(T.class(), "stringWithCString:length:", ?*c.objc_object, .{ bytes_, length_ });
             }
             pub fn stringWithCString(bytes_: *const u8) ?*c.objc_object {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *const u8) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(T.class(), sel_stringWithCString_, bytes_);
+                return objc.msgSend(T.class(), "stringWithCString:", ?*c.objc_object, .{bytes_});
             }
             pub fn getCharacters(self_: *T, buffer_: *unichar) void {
-                return @as(*const fn (*T, *c.objc_selector, *unichar) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getCharacters_, buffer_);
+                return objc.msgSend(self_, "getCharacters:", void, .{buffer_});
             }
         };
     }
@@ -1391,16 +1392,16 @@ pub const URL = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn fileURLWithPath(path_: *String) *URL {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *String) callconv(.C) *URL, @ptrCast(&c.objc_msgSend))(T.class(), sel_fileURLWithPath_, path_);
+                return objc.msgSend(T.class(), "fileURLWithPath:", *URL, .{path_});
             }
             pub fn initWithString(self_: *T, URLString_: *String) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithString_, URLString_);
+                return objc.msgSend(self_, "initWithString:", *T, .{URLString_});
             }
             pub fn initFileURLWithPath(self_: *T, path_: *String) *T {
-                return @as(*const fn (*T, *c.objc_selector, *String) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initFileURLWithPath_, path_);
+                return objc.msgSend(self_, "initFileURLWithPath:", *T, .{path_});
             }
             pub fn fileSystemRepresentation(self_: *T) [*:0]const u8 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) [*:0]const u8, @ptrCast(&c.objc_msgSend))(self_, sel_fileSystemRepresentation);
+                return objc.msgSend(self_, "fileSystemRepresentation", [*:0]const u8, .{});
             }
         };
     }
@@ -1419,28 +1420,28 @@ pub const Value = opaque {
             pub usingnamespace ObjectInterface.Methods(T);
 
             pub fn valueWithBytes_objCType(value_: *const anyopaque, type_: [*:0]const u8) *Value {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, *const anyopaque, [*:0]const u8) callconv(.C) *Value, @ptrCast(&c.objc_msgSend))(T.class(), sel_valueWithBytes_objCType_, value_, type_);
+                return objc.msgSend(T.class(), "valueWithBytes:objCType:", *Value, .{ value_, type_ });
             }
             pub fn valueWithPointer(pointer_: ?*const anyopaque) *Value {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, ?*const anyopaque) callconv(.C) *Value, @ptrCast(&c.objc_msgSend))(T.class(), sel_valueWithPointer_, pointer_);
+                return objc.msgSend(T.class(), "valueWithPointer:", *Value, .{pointer_});
             }
             pub fn initWithBytes_objCType(self_: *T, value_: *const anyopaque, type_: [*:0]const u8) *T {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, [*:0]const u8) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithBytes_objCType_, value_, type_);
+                return objc.msgSend(self_, "initWithBytes:objCType:", *T, .{ value_, type_ });
             }
             pub fn initWithCoder(self_: *T, coder_: *Coder) *T {
-                return @as(*const fn (*T, *c.objc_selector, *Coder) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithCoder_, coder_);
+                return objc.msgSend(self_, "initWithCoder:", *T, .{coder_});
             }
             pub fn getValue_size(self_: *T, value_: *anyopaque, size_: UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getValue_size_, value_, size_);
+                return objc.msgSend(self_, "getValue:size:", void, .{ value_, size_ });
             }
             pub fn objCType(self_: *T) [*:0]const u8 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) [*:0]const u8, @ptrCast(&c.objc_msgSend))(self_, sel_objCType);
+                return objc.msgSend(self_, "objCType", [*:0]const u8, .{});
             }
             pub fn isEqualToValue(self_: *T, value_: *Value) bool {
-                return @as(*const fn (*T, *c.objc_selector, *Value) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isEqualToValue_, value_);
+                return objc.msgSend(self_, "isEqualToValue:", bool, .{value_});
             }
             pub fn pointerValue(self_: *T) ?*anyopaque {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*anyopaque, @ptrCast(&c.objc_msgSend))(self_, sel_pointerValue);
+                return objc.msgSend(self_, "pointerValue", ?*anyopaque, .{});
             }
         };
     }
@@ -1464,312 +1465,6 @@ var class_String: *c.objc_class = undefined;
 var class_URL: *c.objc_class = undefined;
 var class_Value: *c.objc_class = undefined;
 
-var sel_activeProcessorCount: *c.objc_selector = undefined;
-var sel_addObject_: *c.objc_selector = undefined;
-var sel_allBundles: *c.objc_selector = undefined;
-var sel_allFrameworks: *c.objc_selector = undefined;
-var sel_allObjects: *c.objc_selector = undefined;
-var sel_alloc: *c.objc_selector = undefined;
-var sel_appStoreReceiptURL: *c.objc_selector = undefined;
-var sel_arguments: *c.objc_selector = undefined;
-var sel_array: *c.objc_selector = undefined;
-var sel_arrayWithObject_: *c.objc_selector = undefined;
-var sel_arrayWithObjects_count_: *c.objc_selector = undefined;
-var sel_automaticTerminationSupportEnabled: *c.objc_selector = undefined;
-var sel_autorelease: *c.objc_selector = undefined;
-var sel_availableStringEncodings: *c.objc_selector = undefined;
-var sel_beginActivityWithOptions_reason_: *c.objc_selector = undefined;
-var sel_boolValue: *c.objc_selector = undefined;
-var sel_broadcast: *c.objc_selector = undefined;
-var sel_builtInPlugInsPath: *c.objc_selector = undefined;
-var sel_builtInPlugInsURL: *c.objc_selector = undefined;
-var sel_bundleIdentifier: *c.objc_selector = undefined;
-var sel_bundlePath: *c.objc_selector = undefined;
-var sel_bundleURL: *c.objc_selector = undefined;
-var sel_bundleWithPath_: *c.objc_selector = undefined;
-var sel_bundleWithURL_: *c.objc_selector = undefined;
-var sel_canBeConvertedToEncoding_: *c.objc_selector = undefined;
-var sel_capitalizedString: *c.objc_selector = undefined;
-var sel_capitalizedStringWithLocale_: *c.objc_selector = undefined;
-var sel_caseInsensitiveCompare_: *c.objc_selector = undefined;
-var sel_characterAtIndex_: *c.objc_selector = undefined;
-var sel_charValue: *c.objc_selector = undefined;
-var sel_code: *c.objc_selector = undefined;
-var sel_commonPrefixWithString_options_: *c.objc_selector = undefined;
-var sel_compare_: *c.objc_selector = undefined;
-var sel_compare_options_: *c.objc_selector = undefined;
-var sel_compare_options_range_: *c.objc_selector = undefined;
-var sel_compare_options_range_locale_: *c.objc_selector = undefined;
-var sel_componentsSeparatedByCharactersInSet_: *c.objc_selector = undefined;
-var sel_componentsSeparatedByString_: *c.objc_selector = undefined;
-var sel_containsString_: *c.objc_selector = undefined;
-var sel_count: *c.objc_selector = undefined;
-var sel_cString: *c.objc_selector = undefined;
-var sel_cStringLength: *c.objc_selector = undefined;
-var sel_cStringUsingEncoding_: *c.objc_selector = undefined;
-var sel_dataUsingEncoding_: *c.objc_selector = undefined;
-var sel_dataUsingEncoding_allowLossyConversion_: *c.objc_selector = undefined;
-var sel_dateWithTimeIntervalSinceNow_: *c.objc_selector = undefined;
-var sel_debugDescription: *c.objc_selector = undefined;
-var sel_decomposedStringWithCanonicalMapping: *c.objc_selector = undefined;
-var sel_decomposedStringWithCompatibilityMapping: *c.objc_selector = undefined;
-var sel_defaultCStringEncoding: *c.objc_selector = undefined;
-var sel_description: *c.objc_selector = undefined;
-var sel_descriptionWithLocale_: *c.objc_selector = undefined;
-var sel_dictionary: *c.objc_selector = undefined;
-var sel_dictionaryWithObject_forKey_: *c.objc_selector = undefined;
-var sel_dictionaryWithObjects_forKeys_count_: *c.objc_selector = undefined;
-var sel_disableAutomaticTermination_: *c.objc_selector = undefined;
-var sel_disableSuddenTermination: *c.objc_selector = undefined;
-var sel_domain: *c.objc_selector = undefined;
-var sel_doubleValue: *c.objc_selector = undefined;
-var sel_drain: *c.objc_selector = undefined;
-var sel_enableAutomaticTermination_: *c.objc_selector = undefined;
-var sel_enableSuddenTermination: *c.objc_selector = undefined;
-var sel_endActivity_: *c.objc_selector = undefined;
-var sel_enumerateLinesUsingBlock_: *c.objc_selector = undefined;
-var sel_enumerateSubstringsInRange_options_usingBlock_: *c.objc_selector = undefined;
-var sel_environment: *c.objc_selector = undefined;
-var sel_errorWithDomain_code_userInfo_: *c.objc_selector = undefined;
-var sel_executablePath: *c.objc_selector = undefined;
-var sel_executableURL: *c.objc_selector = undefined;
-var sel_fastestEncoding: *c.objc_selector = undefined;
-var sel_fileSystemRepresentation: *c.objc_selector = undefined;
-var sel_fileURLWithPath_: *c.objc_selector = undefined;
-var sel_floatValue: *c.objc_selector = undefined;
-var sel_fullUserName: *c.objc_selector = undefined;
-var sel_getBytes_maxLength_usedLength_encoding_options_range_remainingRange_: *c.objc_selector = undefined;
-var sel_getCharacters_: *c.objc_selector = undefined;
-var sel_getCharacters_range_: *c.objc_selector = undefined;
-var sel_getCString_: *c.objc_selector = undefined;
-var sel_getCString_maxLength_: *c.objc_selector = undefined;
-var sel_getCString_maxLength_encoding_: *c.objc_selector = undefined;
-var sel_getCString_maxLength_range_remainingRange_: *c.objc_selector = undefined;
-var sel_getLineStart_end_contentsEnd_forRange_: *c.objc_selector = undefined;
-var sel_getParagraphStart_end_contentsEnd_forRange_: *c.objc_selector = undefined;
-var sel_getValue_size_: *c.objc_selector = undefined;
-var sel_globallyUniqueString: *c.objc_selector = undefined;
-var sel_hash: *c.objc_selector = undefined;
-var sel_hasPrefix_: *c.objc_selector = undefined;
-var sel_hasSuffix_: *c.objc_selector = undefined;
-var sel_hostName: *c.objc_selector = undefined;
-var sel_infoDictionary: *c.objc_selector = undefined;
-var sel_init: *c.objc_selector = undefined;
-var sel_initFileURLWithPath_: *c.objc_selector = undefined;
-var sel_initWithBool_: *c.objc_selector = undefined;
-var sel_initWithBytes_length_encoding_: *c.objc_selector = undefined;
-var sel_initWithBytes_objCType_: *c.objc_selector = undefined;
-var sel_initWithBytesNoCopy_length_encoding_deallocator_: *c.objc_selector = undefined;
-var sel_initWithBytesNoCopy_length_encoding_freeWhenDone_: *c.objc_selector = undefined;
-var sel_initWithChar_: *c.objc_selector = undefined;
-var sel_initWithCharacters_length_: *c.objc_selector = undefined;
-var sel_initWithCharactersNoCopy_length_deallocator_: *c.objc_selector = undefined;
-var sel_initWithCharactersNoCopy_length_freeWhenDone_: *c.objc_selector = undefined;
-var sel_initWithCoder_: *c.objc_selector = undefined;
-var sel_initWithContentsOfFile_: *c.objc_selector = undefined;
-var sel_initWithContentsOfFile_encoding_error_: *c.objc_selector = undefined;
-var sel_initWithContentsOfFile_usedEncoding_error_: *c.objc_selector = undefined;
-var sel_initWithContentsOfURL_: *c.objc_selector = undefined;
-var sel_initWithContentsOfURL_encoding_error_: *c.objc_selector = undefined;
-var sel_initWithContentsOfURL_usedEncoding_error_: *c.objc_selector = undefined;
-var sel_initWithCString_: *c.objc_selector = undefined;
-var sel_initWithCString_encoding_: *c.objc_selector = undefined;
-var sel_initWithCString_length_: *c.objc_selector = undefined;
-var sel_initWithCStringNoCopy_length_freeWhenDone_: *c.objc_selector = undefined;
-var sel_initWithData_encoding_: *c.objc_selector = undefined;
-var sel_initWithDomain_code_userInfo_: *c.objc_selector = undefined;
-var sel_initWithDouble_: *c.objc_selector = undefined;
-var sel_initWithFloat_: *c.objc_selector = undefined;
-var sel_initWithFormat_: *c.objc_selector = undefined;
-var sel_initWithFormat_arguments_: *c.objc_selector = undefined;
-var sel_initWithFormat_locale_: *c.objc_selector = undefined;
-var sel_initWithFormat_locale_arguments_: *c.objc_selector = undefined;
-var sel_initWithInt_: *c.objc_selector = undefined;
-var sel_initWithInteger_: *c.objc_selector = undefined;
-var sel_initWithLong_: *c.objc_selector = undefined;
-var sel_initWithLongLong_: *c.objc_selector = undefined;
-var sel_initWithObjects_count_: *c.objc_selector = undefined;
-var sel_initWithObjects_forKeys_count_: *c.objc_selector = undefined;
-var sel_initWithPath_: *c.objc_selector = undefined;
-var sel_initWithShort_: *c.objc_selector = undefined;
-var sel_initWithString_: *c.objc_selector = undefined;
-var sel_initWithUnsignedChar_: *c.objc_selector = undefined;
-var sel_initWithUnsignedInt_: *c.objc_selector = undefined;
-var sel_initWithUnsignedInteger_: *c.objc_selector = undefined;
-var sel_initWithUnsignedLong_: *c.objc_selector = undefined;
-var sel_initWithUnsignedLongLong_: *c.objc_selector = undefined;
-var sel_initWithUnsignedShort_: *c.objc_selector = undefined;
-var sel_initWithURL_: *c.objc_selector = undefined;
-var sel_initWithUTF8String_: *c.objc_selector = undefined;
-var sel_initWithValidatedFormat_validFormatSpecifiers_arguments_error_: *c.objc_selector = undefined;
-var sel_initWithValidatedFormat_validFormatSpecifiers_error_: *c.objc_selector = undefined;
-var sel_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error_: *c.objc_selector = undefined;
-var sel_initWithValidatedFormat_validFormatSpecifiers_locale_error_: *c.objc_selector = undefined;
-var sel_integerValue: *c.objc_selector = undefined;
-var sel_intValue: *c.objc_selector = undefined;
-var sel_isEqual_: *c.objc_selector = undefined;
-var sel_isEqualToNumber_: *c.objc_selector = undefined;
-var sel_isEqualToString_: *c.objc_selector = undefined;
-var sel_isEqualToValue_: *c.objc_selector = undefined;
-var sel_isiOSAppOnMac: *c.objc_selector = undefined;
-var sel_isLoaded: *c.objc_selector = undefined;
-var sel_isLowPowerModeEnabled: *c.objc_selector = undefined;
-var sel_isMacCatalystApp: *c.objc_selector = undefined;
-var sel_isOperatingSystemAtLeastVersion_: *c.objc_selector = undefined;
-var sel_keyEnumerator: *c.objc_selector = undefined;
-var sel_length: *c.objc_selector = undefined;
-var sel_lengthOfBytesUsingEncoding_: *c.objc_selector = undefined;
-var sel_lineRangeForRange_: *c.objc_selector = undefined;
-var sel_load: *c.objc_selector = undefined;
-var sel_loadAndReturnError_: *c.objc_selector = undefined;
-var sel_localizedCapitalizedString: *c.objc_selector = undefined;
-var sel_localizedCaseInsensitiveCompare_: *c.objc_selector = undefined;
-var sel_localizedCaseInsensitiveContainsString_: *c.objc_selector = undefined;
-var sel_localizedCompare_: *c.objc_selector = undefined;
-var sel_localizedDescription: *c.objc_selector = undefined;
-var sel_localizedFailureReason: *c.objc_selector = undefined;
-var sel_localizedInfoDictionary: *c.objc_selector = undefined;
-var sel_localizedLowercaseString: *c.objc_selector = undefined;
-var sel_localizedNameOfStringEncoding_: *c.objc_selector = undefined;
-var sel_localizedRecoveryOptions: *c.objc_selector = undefined;
-var sel_localizedRecoverySuggestion: *c.objc_selector = undefined;
-var sel_localizedStandardCompare_: *c.objc_selector = undefined;
-var sel_localizedStandardContainsString_: *c.objc_selector = undefined;
-var sel_localizedStandardRangeOfString_: *c.objc_selector = undefined;
-var sel_localizedStringForKey_value_table_: *c.objc_selector = undefined;
-var sel_localizedStringWithFormat_: *c.objc_selector = undefined;
-var sel_localizedStringWithValidatedFormat_validFormatSpecifiers_error_: *c.objc_selector = undefined;
-var sel_localizedUppercaseString: *c.objc_selector = undefined;
-var sel_lock: *c.objc_selector = undefined;
-var sel_longLongValue: *c.objc_selector = undefined;
-var sel_longValue: *c.objc_selector = undefined;
-var sel_lossyCString: *c.objc_selector = undefined;
-var sel_lowercaseString: *c.objc_selector = undefined;
-var sel_lowercaseStringWithLocale_: *c.objc_selector = undefined;
-var sel_mainBundle: *c.objc_selector = undefined;
-var sel_maximumLengthOfBytesUsingEncoding_: *c.objc_selector = undefined;
-var sel_mutableBytes: *c.objc_selector = undefined;
-var sel_name: *c.objc_selector = undefined;
-var sel_new: *c.objc_selector = undefined;
-var sel_nextObject: *c.objc_selector = undefined;
-var sel_numberWithBool_: *c.objc_selector = undefined;
-var sel_numberWithChar_: *c.objc_selector = undefined;
-var sel_numberWithDouble_: *c.objc_selector = undefined;
-var sel_numberWithFloat_: *c.objc_selector = undefined;
-var sel_numberWithInt_: *c.objc_selector = undefined;
-var sel_numberWithInteger_: *c.objc_selector = undefined;
-var sel_numberWithLong_: *c.objc_selector = undefined;
-var sel_numberWithLongLong_: *c.objc_selector = undefined;
-var sel_numberWithShort_: *c.objc_selector = undefined;
-var sel_numberWithUnsignedChar_: *c.objc_selector = undefined;
-var sel_numberWithUnsignedInt_: *c.objc_selector = undefined;
-var sel_numberWithUnsignedInteger_: *c.objc_selector = undefined;
-var sel_numberWithUnsignedLong_: *c.objc_selector = undefined;
-var sel_numberWithUnsignedLongLong_: *c.objc_selector = undefined;
-var sel_numberWithUnsignedShort_: *c.objc_selector = undefined;
-var sel_objCType: *c.objc_selector = undefined;
-var sel_object: *c.objc_selector = undefined;
-var sel_objectAtIndex_: *c.objc_selector = undefined;
-var sel_objectForInfoDictionaryKey_: *c.objc_selector = undefined;
-var sel_objectForKey_: *c.objc_selector = undefined;
-var sel_operatingSystem: *c.objc_selector = undefined;
-var sel_operatingSystemVersion: *c.objc_selector = undefined;
-var sel_operatingSystemVersionString: *c.objc_selector = undefined;
-var sel_paragraphRangeForRange_: *c.objc_selector = undefined;
-var sel_pathForAuxiliaryExecutable_: *c.objc_selector = undefined;
-var sel_performActivityWithOptions_reason_usingBlock_: *c.objc_selector = undefined;
-var sel_performExpiringActivityWithReason_usingBlock_: *c.objc_selector = undefined;
-var sel_physicalMemory: *c.objc_selector = undefined;
-var sel_pointerValue: *c.objc_selector = undefined;
-var sel_precomposedStringWithCanonicalMapping: *c.objc_selector = undefined;
-var sel_precomposedStringWithCompatibilityMapping: *c.objc_selector = undefined;
-var sel_preflightAndReturnError_: *c.objc_selector = undefined;
-var sel_privateFrameworksPath: *c.objc_selector = undefined;
-var sel_privateFrameworksURL: *c.objc_selector = undefined;
-var sel_processIdentifier: *c.objc_selector = undefined;
-var sel_processInfo: *c.objc_selector = undefined;
-var sel_processName: *c.objc_selector = undefined;
-var sel_processorCount: *c.objc_selector = undefined;
-var sel_propertyList: *c.objc_selector = undefined;
-var sel_propertyListFromStringsFileFormat: *c.objc_selector = undefined;
-var sel_rangeOfCharacterFromSet_: *c.objc_selector = undefined;
-var sel_rangeOfCharacterFromSet_options_: *c.objc_selector = undefined;
-var sel_rangeOfCharacterFromSet_options_range_: *c.objc_selector = undefined;
-var sel_rangeOfComposedCharacterSequenceAtIndex_: *c.objc_selector = undefined;
-var sel_rangeOfComposedCharacterSequencesForRange_: *c.objc_selector = undefined;
-var sel_rangeOfString_: *c.objc_selector = undefined;
-var sel_rangeOfString_options_: *c.objc_selector = undefined;
-var sel_rangeOfString_options_range_: *c.objc_selector = undefined;
-var sel_rangeOfString_options_range_locale_: *c.objc_selector = undefined;
-var sel_release: *c.objc_selector = undefined;
-var sel_resourcePath: *c.objc_selector = undefined;
-var sel_resourceURL: *c.objc_selector = undefined;
-var sel_retain: *c.objc_selector = undefined;
-var sel_retainCount: *c.objc_selector = undefined;
-var sel_setAutomaticTerminationSupportEnabled_: *c.objc_selector = undefined;
-var sel_setProcessName_: *c.objc_selector = undefined;
-var sel_sharedFrameworksPath: *c.objc_selector = undefined;
-var sel_sharedFrameworksURL: *c.objc_selector = undefined;
-var sel_sharedSupportPath: *c.objc_selector = undefined;
-var sel_sharedSupportURL: *c.objc_selector = undefined;
-var sel_shortValue: *c.objc_selector = undefined;
-var sel_showPools: *c.objc_selector = undefined;
-var sel_signal: *c.objc_selector = undefined;
-var sel_smallestEncoding: *c.objc_selector = undefined;
-var sel_string: *c.objc_selector = undefined;
-var sel_stringByAppendingFormat_: *c.objc_selector = undefined;
-var sel_stringByAppendingString_: *c.objc_selector = undefined;
-var sel_stringByApplyingTransform_reverse_: *c.objc_selector = undefined;
-var sel_stringByFoldingWithOptions_locale_: *c.objc_selector = undefined;
-var sel_stringByPaddingToLength_withString_startingAtIndex_: *c.objc_selector = undefined;
-var sel_stringByReplacingCharactersInRange_withString_: *c.objc_selector = undefined;
-var sel_stringByReplacingOccurrencesOfString_withString_: *c.objc_selector = undefined;
-var sel_stringByReplacingOccurrencesOfString_withString_options_range_: *c.objc_selector = undefined;
-var sel_stringByTrimmingCharactersInSet_: *c.objc_selector = undefined;
-var sel_stringEncodingForData_encodingOptions_convertedString_usedLossyConversion_: *c.objc_selector = undefined;
-var sel_stringValue: *c.objc_selector = undefined;
-var sel_stringWithCharacters_length_: *c.objc_selector = undefined;
-var sel_stringWithContentsOfFile_: *c.objc_selector = undefined;
-var sel_stringWithContentsOfFile_encoding_error_: *c.objc_selector = undefined;
-var sel_stringWithContentsOfFile_usedEncoding_error_: *c.objc_selector = undefined;
-var sel_stringWithContentsOfURL_: *c.objc_selector = undefined;
-var sel_stringWithContentsOfURL_encoding_error_: *c.objc_selector = undefined;
-var sel_stringWithContentsOfURL_usedEncoding_error_: *c.objc_selector = undefined;
-var sel_stringWithCString_: *c.objc_selector = undefined;
-var sel_stringWithCString_encoding_: *c.objc_selector = undefined;
-var sel_stringWithCString_length_: *c.objc_selector = undefined;
-var sel_stringWithFormat_: *c.objc_selector = undefined;
-var sel_stringWithString_: *c.objc_selector = undefined;
-var sel_stringWithUTF8String_: *c.objc_selector = undefined;
-var sel_stringWithValidatedFormat_validFormatSpecifiers_error_: *c.objc_selector = undefined;
-var sel_substringFromIndex_: *c.objc_selector = undefined;
-var sel_substringToIndex_: *c.objc_selector = undefined;
-var sel_substringWithRange_: *c.objc_selector = undefined;
-var sel_systemUptime: *c.objc_selector = undefined;
-var sel_thermalState: *c.objc_selector = undefined;
-var sel_unload: *c.objc_selector = undefined;
-var sel_unlock: *c.objc_selector = undefined;
-var sel_unsignedCharValue: *c.objc_selector = undefined;
-var sel_unsignedIntegerValue: *c.objc_selector = undefined;
-var sel_unsignedIntValue: *c.objc_selector = undefined;
-var sel_unsignedLongLongValue: *c.objc_selector = undefined;
-var sel_unsignedLongValue: *c.objc_selector = undefined;
-var sel_unsignedShortValue: *c.objc_selector = undefined;
-var sel_uppercaseString: *c.objc_selector = undefined;
-var sel_uppercaseStringWithLocale_: *c.objc_selector = undefined;
-var sel_URLForAuxiliaryExecutable_: *c.objc_selector = undefined;
-var sel_userInfo: *c.objc_selector = undefined;
-var sel_userName: *c.objc_selector = undefined;
-var sel_UTF8String: *c.objc_selector = undefined;
-var sel_valueWithBytes_objCType_: *c.objc_selector = undefined;
-var sel_valueWithPointer_: *c.objc_selector = undefined;
-var sel_wait: *c.objc_selector = undefined;
-var sel_waitUntilDate_: *c.objc_selector = undefined;
-var sel_writeToFile_atomically_: *c.objc_selector = undefined;
-var sel_writeToFile_atomically_encoding_error_: *c.objc_selector = undefined;
-var sel_writeToURL_atomically_: *c.objc_selector = undefined;
-var sel_writeToURL_atomically_encoding_error_: *c.objc_selector = undefined;
-
 pub fn init() void {
     class_Array = c.objc_getClass("NSArray").?;
     class_AutoreleasePool = c.objc_getClass("NSAutoreleasePool").?;
@@ -1787,308 +1482,4 @@ pub fn init() void {
     class_String = c.objc_getClass("NSString").?;
     class_URL = c.objc_getClass("NSURL").?;
     class_Value = c.objc_getClass("NSValue").?;
-
-    sel_activeProcessorCount = c.sel_registerName("activeProcessorCount").?;
-    sel_addObject_ = c.sel_registerName("addObject:").?;
-    sel_allBundles = c.sel_registerName("allBundles").?;
-    sel_allFrameworks = c.sel_registerName("allFrameworks").?;
-    sel_allObjects = c.sel_registerName("allObjects").?;
-    sel_alloc = c.sel_registerName("alloc").?;
-    sel_arguments = c.sel_registerName("arguments").?;
-    sel_array = c.sel_registerName("array").?;
-    sel_arrayWithObject_ = c.sel_registerName("arrayWithObject:").?;
-    sel_arrayWithObjects_count_ = c.sel_registerName("arrayWithObjects:count:").?;
-    sel_automaticTerminationSupportEnabled = c.sel_registerName("automaticTerminationSupportEnabled").?;
-    sel_autorelease = c.sel_registerName("autorelease").?;
-    sel_availableStringEncodings = c.sel_registerName("availableStringEncodings").?;
-    sel_beginActivityWithOptions_reason_ = c.sel_registerName("beginActivityWithOptions:reason:").?;
-    sel_boolValue = c.sel_registerName("boolValue").?;
-    sel_broadcast = c.sel_registerName("broadcast").?;
-    sel_builtInPlugInsPath = c.sel_registerName("builtInPlugInsPath").?;
-    sel_builtInPlugInsURL = c.sel_registerName("builtInPlugInsURL").?;
-    sel_bundleIdentifier = c.sel_registerName("bundleIdentifier").?;
-    sel_bundlePath = c.sel_registerName("bundlePath").?;
-    sel_bundleURL = c.sel_registerName("bundleURL").?;
-    sel_bundleWithPath_ = c.sel_registerName("bundleWithPath:").?;
-    sel_bundleWithURL_ = c.sel_registerName("bundleWithURL:").?;
-    sel_canBeConvertedToEncoding_ = c.sel_registerName("canBeConvertedToEncoding:").?;
-    sel_capitalizedString = c.sel_registerName("capitalizedString").?;
-    sel_capitalizedStringWithLocale_ = c.sel_registerName("capitalizedStringWithLocale:").?;
-    sel_caseInsensitiveCompare_ = c.sel_registerName("caseInsensitiveCompare:").?;
-    sel_characterAtIndex_ = c.sel_registerName("characterAtIndex:").?;
-    sel_charValue = c.sel_registerName("charValue").?;
-    sel_code = c.sel_registerName("code").?;
-    sel_commonPrefixWithString_options_ = c.sel_registerName("commonPrefixWithString:options:").?;
-    sel_compare_ = c.sel_registerName("compare:").?;
-    sel_compare_options_ = c.sel_registerName("compare:options:").?;
-    sel_compare_options_range_ = c.sel_registerName("compare:options:range:").?;
-    sel_compare_options_range_locale_ = c.sel_registerName("compare:options:range:locale:").?;
-    sel_componentsSeparatedByCharactersInSet_ = c.sel_registerName("componentsSeparatedByCharactersInSet:").?;
-    sel_componentsSeparatedByString_ = c.sel_registerName("componentsSeparatedByString:").?;
-    sel_containsString_ = c.sel_registerName("containsString:").?;
-    sel_count = c.sel_registerName("count").?;
-    sel_cString = c.sel_registerName("cString").?;
-    sel_cStringLength = c.sel_registerName("cStringLength").?;
-    sel_cStringUsingEncoding_ = c.sel_registerName("cStringUsingEncoding:").?;
-    sel_dataUsingEncoding_ = c.sel_registerName("dataUsingEncoding:").?;
-    sel_dataUsingEncoding_allowLossyConversion_ = c.sel_registerName("dataUsingEncoding:allowLossyConversion:").?;
-    sel_dateWithTimeIntervalSinceNow_ = c.sel_registerName("dateWithTimeIntervalSinceNow:").?;
-    sel_debugDescription = c.sel_registerName("debugDescription").?;
-    sel_decomposedStringWithCanonicalMapping = c.sel_registerName("decomposedStringWithCanonicalMapping").?;
-    sel_decomposedStringWithCompatibilityMapping = c.sel_registerName("decomposedStringWithCompatibilityMapping").?;
-    sel_defaultCStringEncoding = c.sel_registerName("defaultCStringEncoding").?;
-    sel_description = c.sel_registerName("description").?;
-    sel_descriptionWithLocale_ = c.sel_registerName("descriptionWithLocale:").?;
-    sel_dictionary = c.sel_registerName("dictionary").?;
-    sel_dictionaryWithObject_forKey_ = c.sel_registerName("dictionaryWithObject:forKey:").?;
-    sel_dictionaryWithObjects_forKeys_count_ = c.sel_registerName("dictionaryWithObjects:forKeys:count:").?;
-    sel_disableAutomaticTermination_ = c.sel_registerName("disableAutomaticTermination:").?;
-    sel_disableSuddenTermination = c.sel_registerName("disableSuddenTermination").?;
-    sel_domain = c.sel_registerName("domain").?;
-    sel_doubleValue = c.sel_registerName("doubleValue").?;
-    sel_drain = c.sel_registerName("drain").?;
-    sel_enableAutomaticTermination_ = c.sel_registerName("enableAutomaticTermination:").?;
-    sel_enableSuddenTermination = c.sel_registerName("enableSuddenTermination").?;
-    sel_endActivity_ = c.sel_registerName("endActivity:").?;
-    sel_enumerateLinesUsingBlock_ = c.sel_registerName("enumerateLinesUsingBlock:").?;
-    sel_enumerateSubstringsInRange_options_usingBlock_ = c.sel_registerName("enumerateSubstringsInRange:options:usingBlock:").?;
-    sel_environment = c.sel_registerName("environment").?;
-    sel_errorWithDomain_code_userInfo_ = c.sel_registerName("errorWithDomain:code:userInfo:").?;
-    sel_executablePath = c.sel_registerName("executablePath").?;
-    sel_executableURL = c.sel_registerName("executableURL").?;
-    sel_fastestEncoding = c.sel_registerName("fastestEncoding").?;
-    sel_fileURLWithPath_ = c.sel_registerName("fileURLWithPath:").?;
-    sel_floatValue = c.sel_registerName("floatValue").?;
-    sel_fullUserName = c.sel_registerName("fullUserName").?;
-    sel_getBytes_maxLength_usedLength_encoding_options_range_remainingRange_ = c.sel_registerName("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:").?;
-    sel_getCharacters_ = c.sel_registerName("getCharacters:").?;
-    sel_getCharacters_range_ = c.sel_registerName("getCharacters:range:").?;
-    sel_getCString_ = c.sel_registerName("getCString:").?;
-    sel_getCString_maxLength_ = c.sel_registerName("getCString:maxLength:").?;
-    sel_getCString_maxLength_encoding_ = c.sel_registerName("getCString:maxLength:encoding:").?;
-    sel_getCString_maxLength_range_remainingRange_ = c.sel_registerName("getCString:maxLength:range:remainingRange:").?;
-    sel_getLineStart_end_contentsEnd_forRange_ = c.sel_registerName("getLineStart:end:contentsEnd:forRange:").?;
-    sel_getParagraphStart_end_contentsEnd_forRange_ = c.sel_registerName("getParagraphStart:end:contentsEnd:forRange:").?;
-    sel_getValue_size_ = c.sel_registerName("getValue:size:").?;
-    sel_globallyUniqueString = c.sel_registerName("globallyUniqueString").?;
-    sel_hash = c.sel_registerName("hash").?;
-    sel_hasPrefix_ = c.sel_registerName("hasPrefix:").?;
-    sel_hasSuffix_ = c.sel_registerName("hasSuffix:").?;
-    sel_hostName = c.sel_registerName("hostName").?;
-    sel_infoDictionary = c.sel_registerName("infoDictionary").?;
-    sel_init = c.sel_registerName("init").?;
-    sel_initFileURLWithPath_ = c.sel_registerName("initFileURLWithPath:").?;
-    sel_initWithBool_ = c.sel_registerName("initWithBool:").?;
-    sel_initWithBytes_length_encoding_ = c.sel_registerName("initWithBytes:length:encoding:").?;
-    sel_initWithBytes_objCType_ = c.sel_registerName("initWithBytes:objCType:").?;
-    sel_initWithBytesNoCopy_length_encoding_deallocator_ = c.sel_registerName("initWithBytesNoCopy:length:encoding:deallocator:").?;
-    sel_initWithBytesNoCopy_length_encoding_freeWhenDone_ = c.sel_registerName("initWithBytesNoCopy:length:encoding:freeWhenDone:").?;
-    sel_initWithChar_ = c.sel_registerName("initWithChar:").?;
-    sel_initWithCharacters_length_ = c.sel_registerName("initWithCharacters:length:").?;
-    sel_initWithCharactersNoCopy_length_deallocator_ = c.sel_registerName("initWithCharactersNoCopy:length:deallocator:").?;
-    sel_initWithCharactersNoCopy_length_freeWhenDone_ = c.sel_registerName("initWithCharactersNoCopy:length:freeWhenDone:").?;
-    sel_initWithCoder_ = c.sel_registerName("initWithCoder:").?;
-    sel_initWithContentsOfFile_ = c.sel_registerName("initWithContentsOfFile:").?;
-    sel_initWithContentsOfFile_encoding_error_ = c.sel_registerName("initWithContentsOfFile:encoding:error:").?;
-    sel_initWithContentsOfFile_usedEncoding_error_ = c.sel_registerName("initWithContentsOfFile:usedEncoding:error:").?;
-    sel_initWithContentsOfURL_ = c.sel_registerName("initWithContentsOfURL:").?;
-    sel_initWithContentsOfURL_encoding_error_ = c.sel_registerName("initWithContentsOfURL:encoding:error:").?;
-    sel_initWithContentsOfURL_usedEncoding_error_ = c.sel_registerName("initWithContentsOfURL:usedEncoding:error:").?;
-    sel_initWithCString_ = c.sel_registerName("initWithCString:").?;
-    sel_initWithCString_encoding_ = c.sel_registerName("initWithCString:encoding:").?;
-    sel_initWithCString_length_ = c.sel_registerName("initWithCString:length:").?;
-    sel_initWithCStringNoCopy_length_freeWhenDone_ = c.sel_registerName("initWithCStringNoCopy:length:freeWhenDone:").?;
-    sel_initWithData_encoding_ = c.sel_registerName("initWithData:encoding:").?;
-    sel_initWithDomain_code_userInfo_ = c.sel_registerName("initWithDomain:code:userInfo:").?;
-    sel_initWithDouble_ = c.sel_registerName("initWithDouble:").?;
-    sel_initWithFloat_ = c.sel_registerName("initWithFloat:").?;
-    sel_initWithFormat_ = c.sel_registerName("initWithFormat:").?;
-    sel_initWithFormat_arguments_ = c.sel_registerName("initWithFormat:arguments:").?;
-    sel_initWithFormat_locale_ = c.sel_registerName("initWithFormat:locale:").?;
-    sel_initWithFormat_locale_arguments_ = c.sel_registerName("initWithFormat:locale:arguments:").?;
-    sel_initWithInt_ = c.sel_registerName("initWithInt:").?;
-    sel_initWithInteger_ = c.sel_registerName("initWithInteger:").?;
-    sel_initWithLong_ = c.sel_registerName("initWithLong:").?;
-    sel_initWithLongLong_ = c.sel_registerName("initWithLongLong:").?;
-    sel_initWithObjects_count_ = c.sel_registerName("initWithObjects:count:").?;
-    sel_initWithObjects_forKeys_count_ = c.sel_registerName("initWithObjects:forKeys:count:").?;
-    sel_initWithPath_ = c.sel_registerName("initWithPath:").?;
-    sel_initWithShort_ = c.sel_registerName("initWithShort:").?;
-    sel_initWithString_ = c.sel_registerName("initWithString:").?;
-    sel_initWithUnsignedChar_ = c.sel_registerName("initWithUnsignedChar:").?;
-    sel_initWithUnsignedInt_ = c.sel_registerName("initWithUnsignedInt:").?;
-    sel_initWithUnsignedInteger_ = c.sel_registerName("initWithUnsignedInteger:").?;
-    sel_initWithUnsignedLong_ = c.sel_registerName("initWithUnsignedLong:").?;
-    sel_initWithUnsignedLongLong_ = c.sel_registerName("initWithUnsignedLongLong:").?;
-    sel_initWithUnsignedShort_ = c.sel_registerName("initWithUnsignedShort:").?;
-    sel_initWithURL_ = c.sel_registerName("initWithURL:").?;
-    sel_initWithUTF8String_ = c.sel_registerName("initWithUTF8String:").?;
-    sel_initWithValidatedFormat_validFormatSpecifiers_arguments_error_ = c.sel_registerName("initWithValidatedFormat:validFormatSpecifiers:arguments:error:").?;
-    sel_initWithValidatedFormat_validFormatSpecifiers_error_ = c.sel_registerName("initWithValidatedFormat:validFormatSpecifiers:error:").?;
-    sel_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error_ = c.sel_registerName("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:").?;
-    sel_initWithValidatedFormat_validFormatSpecifiers_locale_error_ = c.sel_registerName("initWithValidatedFormat:validFormatSpecifiers:locale:error:").?;
-    sel_integerValue = c.sel_registerName("integerValue").?;
-    sel_intValue = c.sel_registerName("intValue").?;
-    sel_isEqual_ = c.sel_registerName("isEqual:").?;
-    sel_isEqualToNumber_ = c.sel_registerName("isEqualToNumber:").?;
-    sel_isEqualToString_ = c.sel_registerName("isEqualToString:").?;
-    sel_isEqualToValue_ = c.sel_registerName("isEqualToValue:").?;
-    sel_isiOSAppOnMac = c.sel_registerName("isiOSAppOnMac").?;
-    sel_isLoaded = c.sel_registerName("isLoaded").?;
-    sel_isLowPowerModeEnabled = c.sel_registerName("isLowPowerModeEnabled").?;
-    sel_isMacCatalystApp = c.sel_registerName("isMacCatalystApp").?;
-    sel_isOperatingSystemAtLeastVersion_ = c.sel_registerName("isOperatingSystemAtLeastVersion:").?;
-    sel_keyEnumerator = c.sel_registerName("keyEnumerator").?;
-    sel_length = c.sel_registerName("length").?;
-    sel_lengthOfBytesUsingEncoding_ = c.sel_registerName("lengthOfBytesUsingEncoding:").?;
-    sel_lineRangeForRange_ = c.sel_registerName("lineRangeForRange:").?;
-    sel_load = c.sel_registerName("load").?;
-    sel_loadAndReturnError_ = c.sel_registerName("loadAndReturnError:").?;
-    sel_localizedCapitalizedString = c.sel_registerName("localizedCapitalizedString").?;
-    sel_localizedCaseInsensitiveCompare_ = c.sel_registerName("localizedCaseInsensitiveCompare:").?;
-    sel_localizedCaseInsensitiveContainsString_ = c.sel_registerName("localizedCaseInsensitiveContainsString:").?;
-    sel_localizedCompare_ = c.sel_registerName("localizedCompare:").?;
-    sel_localizedDescription = c.sel_registerName("localizedDescription").?;
-    sel_localizedFailureReason = c.sel_registerName("localizedFailureReason").?;
-    sel_localizedInfoDictionary = c.sel_registerName("localizedInfoDictionary").?;
-    sel_localizedLowercaseString = c.sel_registerName("localizedLowercaseString").?;
-    sel_localizedNameOfStringEncoding_ = c.sel_registerName("localizedNameOfStringEncoding:").?;
-    sel_localizedRecoveryOptions = c.sel_registerName("localizedRecoveryOptions").?;
-    sel_localizedRecoverySuggestion = c.sel_registerName("localizedRecoverySuggestion").?;
-    sel_localizedStandardCompare_ = c.sel_registerName("localizedStandardCompare:").?;
-    sel_localizedStandardContainsString_ = c.sel_registerName("localizedStandardContainsString:").?;
-    sel_localizedStandardRangeOfString_ = c.sel_registerName("localizedStandardRangeOfString:").?;
-    sel_localizedStringForKey_value_table_ = c.sel_registerName("localizedStringForKey:value:table:").?;
-    sel_localizedStringWithFormat_ = c.sel_registerName("localizedStringWithFormat:").?;
-    sel_localizedStringWithValidatedFormat_validFormatSpecifiers_error_ = c.sel_registerName("localizedStringWithValidatedFormat:validFormatSpecifiers:error:").?;
-    sel_localizedUppercaseString = c.sel_registerName("localizedUppercaseString").?;
-    sel_lock = c.sel_registerName("lock").?;
-    sel_longLongValue = c.sel_registerName("longLongValue").?;
-    sel_longValue = c.sel_registerName("longValue").?;
-    sel_lossyCString = c.sel_registerName("lossyCString").?;
-    sel_lowercaseString = c.sel_registerName("lowercaseString").?;
-    sel_lowercaseStringWithLocale_ = c.sel_registerName("lowercaseStringWithLocale:").?;
-    sel_mainBundle = c.sel_registerName("mainBundle").?;
-    sel_maximumLengthOfBytesUsingEncoding_ = c.sel_registerName("maximumLengthOfBytesUsingEncoding:").?;
-    sel_mutableBytes = c.sel_registerName("mutableBytes").?;
-    sel_name = c.sel_registerName("name").?;
-    sel_new = c.sel_registerName("new").?;
-    sel_nextObject = c.sel_registerName("nextObject").?;
-    sel_numberWithBool_ = c.sel_registerName("numberWithBool:").?;
-    sel_numberWithChar_ = c.sel_registerName("numberWithChar:").?;
-    sel_numberWithDouble_ = c.sel_registerName("numberWithDouble:").?;
-    sel_numberWithFloat_ = c.sel_registerName("numberWithFloat:").?;
-    sel_numberWithInt_ = c.sel_registerName("numberWithInt:").?;
-    sel_numberWithInteger_ = c.sel_registerName("numberWithInteger:").?;
-    sel_numberWithLong_ = c.sel_registerName("numberWithLong:").?;
-    sel_numberWithLongLong_ = c.sel_registerName("numberWithLongLong:").?;
-    sel_numberWithShort_ = c.sel_registerName("numberWithShort:").?;
-    sel_numberWithUnsignedChar_ = c.sel_registerName("numberWithUnsignedChar:").?;
-    sel_numberWithUnsignedInt_ = c.sel_registerName("numberWithUnsignedInt:").?;
-    sel_numberWithUnsignedInteger_ = c.sel_registerName("numberWithUnsignedInteger:").?;
-    sel_numberWithUnsignedLong_ = c.sel_registerName("numberWithUnsignedLong:").?;
-    sel_numberWithUnsignedLongLong_ = c.sel_registerName("numberWithUnsignedLongLong:").?;
-    sel_numberWithUnsignedShort_ = c.sel_registerName("numberWithUnsignedShort:").?;
-    sel_objCType = c.sel_registerName("objCType").?;
-    sel_object = c.sel_registerName("object").?;
-    sel_objectAtIndex_ = c.sel_registerName("objectAtIndex:").?;
-    sel_objectForInfoDictionaryKey_ = c.sel_registerName("objectForInfoDictionaryKey:").?;
-    sel_objectForKey_ = c.sel_registerName("objectForKey:").?;
-    sel_operatingSystem = c.sel_registerName("operatingSystem").?;
-    sel_operatingSystemVersion = c.sel_registerName("operatingSystemVersion").?;
-    sel_operatingSystemVersionString = c.sel_registerName("operatingSystemVersionString").?;
-    sel_paragraphRangeForRange_ = c.sel_registerName("paragraphRangeForRange:").?;
-    sel_pathForAuxiliaryExecutable_ = c.sel_registerName("pathForAuxiliaryExecutable:").?;
-    sel_performActivityWithOptions_reason_usingBlock_ = c.sel_registerName("performActivityWithOptions:reason:usingBlock:").?;
-    sel_performExpiringActivityWithReason_usingBlock_ = c.sel_registerName("performExpiringActivityWithReason:usingBlock:").?;
-    sel_physicalMemory = c.sel_registerName("physicalMemory").?;
-    sel_pointerValue = c.sel_registerName("pointerValue").?;
-    sel_precomposedStringWithCanonicalMapping = c.sel_registerName("precomposedStringWithCanonicalMapping").?;
-    sel_precomposedStringWithCompatibilityMapping = c.sel_registerName("precomposedStringWithCompatibilityMapping").?;
-    sel_preflightAndReturnError_ = c.sel_registerName("preflightAndReturnError:").?;
-    sel_privateFrameworksPath = c.sel_registerName("privateFrameworksPath").?;
-    sel_privateFrameworksURL = c.sel_registerName("privateFrameworksURL").?;
-    sel_processIdentifier = c.sel_registerName("processIdentifier").?;
-    sel_processInfo = c.sel_registerName("processInfo").?;
-    sel_processName = c.sel_registerName("processName").?;
-    sel_processorCount = c.sel_registerName("processorCount").?;
-    sel_propertyList = c.sel_registerName("propertyList").?;
-    sel_propertyListFromStringsFileFormat = c.sel_registerName("propertyListFromStringsFileFormat").?;
-    sel_rangeOfCharacterFromSet_ = c.sel_registerName("rangeOfCharacterFromSet:").?;
-    sel_rangeOfCharacterFromSet_options_ = c.sel_registerName("rangeOfCharacterFromSet:options:").?;
-    sel_rangeOfCharacterFromSet_options_range_ = c.sel_registerName("rangeOfCharacterFromSet:options:range:").?;
-    sel_rangeOfComposedCharacterSequenceAtIndex_ = c.sel_registerName("rangeOfComposedCharacterSequenceAtIndex:").?;
-    sel_rangeOfComposedCharacterSequencesForRange_ = c.sel_registerName("rangeOfComposedCharacterSequencesForRange:").?;
-    sel_rangeOfString_ = c.sel_registerName("rangeOfString:").?;
-    sel_rangeOfString_options_ = c.sel_registerName("rangeOfString:options:").?;
-    sel_rangeOfString_options_range_ = c.sel_registerName("rangeOfString:options:range:").?;
-    sel_rangeOfString_options_range_locale_ = c.sel_registerName("rangeOfString:options:range:locale:").?;
-    sel_release = c.sel_registerName("release").?;
-    sel_resourcePath = c.sel_registerName("resourcePath").?;
-    sel_resourceURL = c.sel_registerName("resourceURL").?;
-    sel_retain = c.sel_registerName("retain").?;
-    sel_retainCount = c.sel_registerName("retainCount").?;
-    sel_setAutomaticTerminationSupportEnabled_ = c.sel_registerName("setAutomaticTerminationSupportEnabled:").?;
-    sel_setProcessName_ = c.sel_registerName("setProcessName:").?;
-    sel_sharedFrameworksPath = c.sel_registerName("sharedFrameworksPath").?;
-    sel_sharedFrameworksURL = c.sel_registerName("sharedFrameworksURL").?;
-    sel_sharedSupportPath = c.sel_registerName("sharedSupportPath").?;
-    sel_sharedSupportURL = c.sel_registerName("sharedSupportURL").?;
-    sel_shortValue = c.sel_registerName("shortValue").?;
-    sel_showPools = c.sel_registerName("showPools").?;
-    sel_signal = c.sel_registerName("signal").?;
-    sel_smallestEncoding = c.sel_registerName("smallestEncoding").?;
-    sel_string = c.sel_registerName("string").?;
-    sel_stringByAppendingFormat_ = c.sel_registerName("stringByAppendingFormat:").?;
-    sel_stringByAppendingString_ = c.sel_registerName("stringByAppendingString:").?;
-    sel_stringByApplyingTransform_reverse_ = c.sel_registerName("stringByApplyingTransform:reverse:").?;
-    sel_stringByFoldingWithOptions_locale_ = c.sel_registerName("stringByFoldingWithOptions:locale:").?;
-    sel_stringByPaddingToLength_withString_startingAtIndex_ = c.sel_registerName("stringByPaddingToLength:withString:startingAtIndex:").?;
-    sel_stringByReplacingCharactersInRange_withString_ = c.sel_registerName("stringByReplacingCharactersInRange:withString:").?;
-    sel_stringByReplacingOccurrencesOfString_withString_ = c.sel_registerName("stringByReplacingOccurrencesOfString:withString:").?;
-    sel_stringByReplacingOccurrencesOfString_withString_options_range_ = c.sel_registerName("stringByReplacingOccurrencesOfString:withString:options:range:").?;
-    sel_stringByTrimmingCharactersInSet_ = c.sel_registerName("stringByTrimmingCharactersInSet:").?;
-    sel_stringEncodingForData_encodingOptions_convertedString_usedLossyConversion_ = c.sel_registerName("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:").?;
-    sel_stringValue = c.sel_registerName("stringValue").?;
-    sel_stringWithCharacters_length_ = c.sel_registerName("stringWithCharacters:length:").?;
-    sel_stringWithContentsOfFile_ = c.sel_registerName("stringWithContentsOfFile:").?;
-    sel_stringWithContentsOfFile_encoding_error_ = c.sel_registerName("stringWithContentsOfFile:encoding:error:").?;
-    sel_stringWithContentsOfFile_usedEncoding_error_ = c.sel_registerName("stringWithContentsOfFile:usedEncoding:error:").?;
-    sel_stringWithContentsOfURL_ = c.sel_registerName("stringWithContentsOfURL:").?;
-    sel_stringWithContentsOfURL_encoding_error_ = c.sel_registerName("stringWithContentsOfURL:encoding:error:").?;
-    sel_stringWithContentsOfURL_usedEncoding_error_ = c.sel_registerName("stringWithContentsOfURL:usedEncoding:error:").?;
-    sel_stringWithCString_ = c.sel_registerName("stringWithCString:").?;
-    sel_stringWithCString_encoding_ = c.sel_registerName("stringWithCString:encoding:").?;
-    sel_stringWithCString_length_ = c.sel_registerName("stringWithCString:length:").?;
-    sel_stringWithFormat_ = c.sel_registerName("stringWithFormat:").?;
-    sel_stringWithString_ = c.sel_registerName("stringWithString:").?;
-    sel_stringWithUTF8String_ = c.sel_registerName("stringWithUTF8String:").?;
-    sel_stringWithValidatedFormat_validFormatSpecifiers_error_ = c.sel_registerName("stringWithValidatedFormat:validFormatSpecifiers:error:").?;
-    sel_substringFromIndex_ = c.sel_registerName("substringFromIndex:").?;
-    sel_substringToIndex_ = c.sel_registerName("substringToIndex:").?;
-    sel_substringWithRange_ = c.sel_registerName("substringWithRange:").?;
-    sel_systemUptime = c.sel_registerName("systemUptime").?;
-    sel_thermalState = c.sel_registerName("thermalState").?;
-    sel_unload = c.sel_registerName("unload").?;
-    sel_unlock = c.sel_registerName("unlock").?;
-    sel_unsignedCharValue = c.sel_registerName("unsignedCharValue").?;
-    sel_unsignedIntegerValue = c.sel_registerName("unsignedIntegerValue").?;
-    sel_unsignedIntValue = c.sel_registerName("unsignedIntValue").?;
-    sel_unsignedLongLongValue = c.sel_registerName("unsignedLongLongValue").?;
-    sel_unsignedLongValue = c.sel_registerName("unsignedLongValue").?;
-    sel_unsignedShortValue = c.sel_registerName("unsignedShortValue").?;
-    sel_uppercaseString = c.sel_registerName("uppercaseString").?;
-    sel_uppercaseStringWithLocale_ = c.sel_registerName("uppercaseStringWithLocale:").?;
-    sel_URLForAuxiliaryExecutable_ = c.sel_registerName("URLForAuxiliaryExecutable:").?;
-    sel_userInfo = c.sel_registerName("userInfo").?;
-    sel_userName = c.sel_registerName("userName").?;
-    sel_UTF8String = c.sel_registerName("UTF8String").?;
-    sel_valueWithBytes_objCType_ = c.sel_registerName("valueWithBytes:objCType:").?;
-    sel_valueWithPointer_ = c.sel_registerName("valueWithPointer:").?;
-    sel_wait = c.sel_registerName("wait").?;
-    sel_waitUntilDate_ = c.sel_registerName("waitUntilDate:").?;
-    sel_writeToFile_atomically_ = c.sel_registerName("writeToFile:atomically:").?;
-    sel_writeToFile_atomically_encoding_error_ = c.sel_registerName("writeToFile:atomically:encoding:error:").?;
-    sel_writeToURL_atomically_ = c.sel_registerName("writeToURL:atomically:").?;
-    sel_writeToURL_atomically_encoding_error_ = c.sel_registerName("writeToURL:atomically:encoding:error:").?;
 }

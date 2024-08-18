@@ -1,6 +1,7 @@
 const c = @import("c.zig");
 const cf = @import("core_foundation.zig");
 const ns = @import("foundation.zig");
+const objc = @import("objc.zig");
 
 // ------------------------------------------------------------------------------------------------
 // Opaque types
@@ -1203,10 +1204,10 @@ pub const AccelerationStructureDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn usage(self_: *T) AccelerationStructureUsage {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) AccelerationStructureUsage, @ptrCast(&c.objc_msgSend))(self_, sel_usage);
+                return objc.msgSend(self_, "usage", AccelerationStructureUsage, .{});
             }
             pub fn setUsage(self_: *T, usage_: AccelerationStructureUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, AccelerationStructureUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setUsage_, usage_);
+                return objc.msgSend(self_, "setUsage:", void, .{usage_});
             }
         };
     }
@@ -1224,52 +1225,52 @@ pub const AccelerationStructureGeometryDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn intersectionFunctionTableOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_intersectionFunctionTableOffset);
+                return objc.msgSend(self_, "intersectionFunctionTableOffset", ns.UInteger, .{});
             }
             pub fn setIntersectionFunctionTableOffset(self_: *T, intersectionFunctionTableOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIntersectionFunctionTableOffset_, intersectionFunctionTableOffset_);
+                return objc.msgSend(self_, "setIntersectionFunctionTableOffset:", void, .{intersectionFunctionTableOffset_});
             }
             pub fn @"opaque"(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_opaque);
+                return objc.msgSend(self_, "opaque", bool, .{});
             }
             pub fn setOpaque(self_: *T, opaque_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaque_, opaque_);
+                return objc.msgSend(self_, "setOpaque:", void, .{opaque_});
             }
             pub fn allowDuplicateIntersectionFunctionInvocation(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_allowDuplicateIntersectionFunctionInvocation);
+                return objc.msgSend(self_, "allowDuplicateIntersectionFunctionInvocation", bool, .{});
             }
             pub fn setAllowDuplicateIntersectionFunctionInvocation(self_: *T, allowDuplicateIntersectionFunctionInvocation_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAllowDuplicateIntersectionFunctionInvocation_, allowDuplicateIntersectionFunctionInvocation_);
+                return objc.msgSend(self_, "setAllowDuplicateIntersectionFunctionInvocation:", void, .{allowDuplicateIntersectionFunctionInvocation_});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn primitiveDataBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_primitiveDataBuffer);
+                return objc.msgSend(self_, "primitiveDataBuffer", ?*Buffer, .{});
             }
             pub fn setPrimitiveDataBuffer(self_: *T, primitiveDataBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPrimitiveDataBuffer_, primitiveDataBuffer_);
+                return objc.msgSend(self_, "setPrimitiveDataBuffer:", void, .{primitiveDataBuffer_});
             }
             pub fn primitiveDataBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_primitiveDataBufferOffset);
+                return objc.msgSend(self_, "primitiveDataBufferOffset", ns.UInteger, .{});
             }
             pub fn setPrimitiveDataBufferOffset(self_: *T, primitiveDataBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPrimitiveDataBufferOffset_, primitiveDataBufferOffset_);
+                return objc.msgSend(self_, "setPrimitiveDataBufferOffset:", void, .{primitiveDataBufferOffset_});
             }
             pub fn primitiveDataStride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_primitiveDataStride);
+                return objc.msgSend(self_, "primitiveDataStride", ns.UInteger, .{});
             }
             pub fn setPrimitiveDataStride(self_: *T, primitiveDataStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPrimitiveDataStride_, primitiveDataStride_);
+                return objc.msgSend(self_, "setPrimitiveDataStride:", void, .{primitiveDataStride_});
             }
             pub fn primitiveDataElementSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_primitiveDataElementSize);
+                return objc.msgSend(self_, "primitiveDataElementSize", ns.UInteger, .{});
             }
             pub fn setPrimitiveDataElementSize(self_: *T, primitiveDataElementSize_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPrimitiveDataElementSize_, primitiveDataElementSize_);
+                return objc.msgSend(self_, "setPrimitiveDataElementSize:", void, .{primitiveDataElementSize_});
             }
         };
     }
@@ -1286,43 +1287,43 @@ pub const PrimitiveAccelerationStructureDescriptor = opaque {
             pub usingnamespace AccelerationStructureDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
+                return objc.msgSend(T.class(), "descriptor", *T, .{});
             }
             pub fn geometryDescriptors(self_: *T) ?*ns.Array(*AccelerationStructureGeometryDescriptor) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*AccelerationStructureGeometryDescriptor), @ptrCast(&c.objc_msgSend))(self_, sel_geometryDescriptors);
+                return objc.msgSend(self_, "geometryDescriptors", ?*ns.Array(*AccelerationStructureGeometryDescriptor), .{});
             }
             pub fn setGeometryDescriptors(self_: *T, geometryDescriptors_: ?*ns.Array(*AccelerationStructureGeometryDescriptor)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*AccelerationStructureGeometryDescriptor)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setGeometryDescriptors_, geometryDescriptors_);
+                return objc.msgSend(self_, "setGeometryDescriptors:", void, .{geometryDescriptors_});
             }
             pub fn motionStartBorderMode(self_: *T) MotionBorderMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) MotionBorderMode, @ptrCast(&c.objc_msgSend))(self_, sel_motionStartBorderMode);
+                return objc.msgSend(self_, "motionStartBorderMode", MotionBorderMode, .{});
             }
             pub fn setMotionStartBorderMode(self_: *T, motionStartBorderMode_: MotionBorderMode) void {
-                return @as(*const fn (*T, *c.objc_selector, MotionBorderMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionStartBorderMode_, motionStartBorderMode_);
+                return objc.msgSend(self_, "setMotionStartBorderMode:", void, .{motionStartBorderMode_});
             }
             pub fn motionEndBorderMode(self_: *T) MotionBorderMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) MotionBorderMode, @ptrCast(&c.objc_msgSend))(self_, sel_motionEndBorderMode);
+                return objc.msgSend(self_, "motionEndBorderMode", MotionBorderMode, .{});
             }
             pub fn setMotionEndBorderMode(self_: *T, motionEndBorderMode_: MotionBorderMode) void {
-                return @as(*const fn (*T, *c.objc_selector, MotionBorderMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionEndBorderMode_, motionEndBorderMode_);
+                return objc.msgSend(self_, "setMotionEndBorderMode:", void, .{motionEndBorderMode_});
             }
             pub fn motionStartTime(self_: *T) f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f32, @ptrCast(&c.objc_msgSend))(self_, sel_motionStartTime);
+                return objc.msgSend(self_, "motionStartTime", f32, .{});
             }
             pub fn setMotionStartTime(self_: *T, motionStartTime_: f32) void {
-                return @as(*const fn (*T, *c.objc_selector, f32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionStartTime_, motionStartTime_);
+                return objc.msgSend(self_, "setMotionStartTime:", void, .{motionStartTime_});
             }
             pub fn motionEndTime(self_: *T) f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f32, @ptrCast(&c.objc_msgSend))(self_, sel_motionEndTime);
+                return objc.msgSend(self_, "motionEndTime", f32, .{});
             }
             pub fn setMotionEndTime(self_: *T, motionEndTime_: f32) void {
-                return @as(*const fn (*T, *c.objc_selector, f32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionEndTime_, motionEndTime_);
+                return objc.msgSend(self_, "setMotionEndTime:", void, .{motionEndTime_});
             }
             pub fn motionKeyframeCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_motionKeyframeCount);
+                return objc.msgSend(self_, "motionKeyframeCount", ns.UInteger, .{});
             }
             pub fn setMotionKeyframeCount(self_: *T, motionKeyframeCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionKeyframeCount_, motionKeyframeCount_);
+                return objc.msgSend(self_, "setMotionKeyframeCount:", void, .{motionKeyframeCount_});
             }
         };
     }
@@ -1339,67 +1340,67 @@ pub const AccelerationStructureTriangleGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
+                return objc.msgSend(T.class(), "descriptor", *T, .{});
             }
             pub fn vertexBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_vertexBuffer);
+                return objc.msgSend(self_, "vertexBuffer", ?*Buffer, .{});
             }
             pub fn setVertexBuffer(self_: *T, vertexBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffer_, vertexBuffer_);
+                return objc.msgSend(self_, "setVertexBuffer:", void, .{vertexBuffer_});
             }
             pub fn vertexBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_vertexBufferOffset);
+                return objc.msgSend(self_, "vertexBufferOffset", ns.UInteger, .{});
             }
             pub fn setVertexBufferOffset(self_: *T, vertexBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBufferOffset_, vertexBufferOffset_);
+                return objc.msgSend(self_, "setVertexBufferOffset:", void, .{vertexBufferOffset_});
             }
             pub fn vertexFormat(self_: *T) AttributeFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) AttributeFormat, @ptrCast(&c.objc_msgSend))(self_, sel_vertexFormat);
+                return objc.msgSend(self_, "vertexFormat", AttributeFormat, .{});
             }
             pub fn setVertexFormat(self_: *T, vertexFormat_: AttributeFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, AttributeFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexFormat_, vertexFormat_);
+                return objc.msgSend(self_, "setVertexFormat:", void, .{vertexFormat_});
             }
             pub fn vertexStride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_vertexStride);
+                return objc.msgSend(self_, "vertexStride", ns.UInteger, .{});
             }
             pub fn setVertexStride(self_: *T, vertexStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexStride_, vertexStride_);
+                return objc.msgSend(self_, "setVertexStride:", void, .{vertexStride_});
             }
             pub fn indexBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_indexBuffer);
+                return objc.msgSend(self_, "indexBuffer", ?*Buffer, .{});
             }
             pub fn setIndexBuffer(self_: *T, indexBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexBuffer_, indexBuffer_);
+                return objc.msgSend(self_, "setIndexBuffer:", void, .{indexBuffer_});
             }
             pub fn indexBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_indexBufferOffset);
+                return objc.msgSend(self_, "indexBufferOffset", ns.UInteger, .{});
             }
             pub fn setIndexBufferOffset(self_: *T, indexBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexBufferOffset_, indexBufferOffset_);
+                return objc.msgSend(self_, "setIndexBufferOffset:", void, .{indexBufferOffset_});
             }
             pub fn indexType(self_: *T) IndexType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IndexType, @ptrCast(&c.objc_msgSend))(self_, sel_indexType);
+                return objc.msgSend(self_, "indexType", IndexType, .{});
             }
             pub fn setIndexType(self_: *T, indexType_: IndexType) void {
-                return @as(*const fn (*T, *c.objc_selector, IndexType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexType_, indexType_);
+                return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
             }
             pub fn triangleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_triangleCount);
+                return objc.msgSend(self_, "triangleCount", ns.UInteger, .{});
             }
             pub fn setTriangleCount(self_: *T, triangleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTriangleCount_, triangleCount_);
+                return objc.msgSend(self_, "setTriangleCount:", void, .{triangleCount_});
             }
             pub fn transformationMatrixBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_transformationMatrixBuffer);
+                return objc.msgSend(self_, "transformationMatrixBuffer", ?*Buffer, .{});
             }
             pub fn setTransformationMatrixBuffer(self_: *T, transformationMatrixBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTransformationMatrixBuffer_, transformationMatrixBuffer_);
+                return objc.msgSend(self_, "setTransformationMatrixBuffer:", void, .{transformationMatrixBuffer_});
             }
             pub fn transformationMatrixBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_transformationMatrixBufferOffset);
+                return objc.msgSend(self_, "transformationMatrixBufferOffset", ns.UInteger, .{});
             }
             pub fn setTransformationMatrixBufferOffset(self_: *T, transformationMatrixBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTransformationMatrixBufferOffset_, transformationMatrixBufferOffset_);
+                return objc.msgSend(self_, "setTransformationMatrixBufferOffset:", void, .{transformationMatrixBufferOffset_});
             }
         };
     }
@@ -1416,31 +1417,31 @@ pub const AccelerationStructureBoundingBoxGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
+                return objc.msgSend(T.class(), "descriptor", *T, .{});
             }
             pub fn boundingBoxBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxBuffer);
+                return objc.msgSend(self_, "boundingBoxBuffer", ?*Buffer, .{});
             }
             pub fn setBoundingBoxBuffer(self_: *T, boundingBoxBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxBuffer_, boundingBoxBuffer_);
+                return objc.msgSend(self_, "setBoundingBoxBuffer:", void, .{boundingBoxBuffer_});
             }
             pub fn boundingBoxBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxBufferOffset);
+                return objc.msgSend(self_, "boundingBoxBufferOffset", ns.UInteger, .{});
             }
             pub fn setBoundingBoxBufferOffset(self_: *T, boundingBoxBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxBufferOffset_, boundingBoxBufferOffset_);
+                return objc.msgSend(self_, "setBoundingBoxBufferOffset:", void, .{boundingBoxBufferOffset_});
             }
             pub fn boundingBoxStride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxStride);
+                return objc.msgSend(self_, "boundingBoxStride", ns.UInteger, .{});
             }
             pub fn setBoundingBoxStride(self_: *T, boundingBoxStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxStride_, boundingBoxStride_);
+                return objc.msgSend(self_, "setBoundingBoxStride:", void, .{boundingBoxStride_});
             }
             pub fn boundingBoxCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxCount);
+                return objc.msgSend(self_, "boundingBoxCount", ns.UInteger, .{});
             }
             pub fn setBoundingBoxCount(self_: *T, boundingBoxCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxCount_, boundingBoxCount_);
+                return objc.msgSend(self_, "setBoundingBoxCount:", void, .{boundingBoxCount_});
             }
         };
     }
@@ -1457,19 +1458,19 @@ pub const MotionKeyframeData = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn data() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_data);
+                return objc.msgSend(T.class(), "data", *T, .{});
             }
             pub fn buffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_buffer);
+                return objc.msgSend(self_, "buffer", ?*Buffer, .{});
             }
             pub fn setBuffer(self_: *T, buffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffer_, buffer_);
+                return objc.msgSend(self_, "setBuffer:", void, .{buffer_});
             }
             pub fn offset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_offset);
+                return objc.msgSend(self_, "offset", ns.UInteger, .{});
             }
             pub fn setOffset(self_: *T, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOffset_, offset_);
+                return objc.msgSend(self_, "setOffset:", void, .{offset_});
             }
         };
     }
@@ -1486,61 +1487,61 @@ pub const AccelerationStructureMotionTriangleGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
+                return objc.msgSend(T.class(), "descriptor", *T, .{});
             }
             pub fn vertexBuffers(self_: *T) *ns.Array(*MotionKeyframeData) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*MotionKeyframeData), @ptrCast(&c.objc_msgSend))(self_, sel_vertexBuffers);
+                return objc.msgSend(self_, "vertexBuffers", *ns.Array(*MotionKeyframeData), .{});
             }
             pub fn setVertexBuffers(self_: *T, vertexBuffers_: *ns.Array(*MotionKeyframeData)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*MotionKeyframeData)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffers_, vertexBuffers_);
+                return objc.msgSend(self_, "setVertexBuffers:", void, .{vertexBuffers_});
             }
             pub fn vertexFormat(self_: *T) AttributeFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) AttributeFormat, @ptrCast(&c.objc_msgSend))(self_, sel_vertexFormat);
+                return objc.msgSend(self_, "vertexFormat", AttributeFormat, .{});
             }
             pub fn setVertexFormat(self_: *T, vertexFormat_: AttributeFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, AttributeFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexFormat_, vertexFormat_);
+                return objc.msgSend(self_, "setVertexFormat:", void, .{vertexFormat_});
             }
             pub fn vertexStride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_vertexStride);
+                return objc.msgSend(self_, "vertexStride", ns.UInteger, .{});
             }
             pub fn setVertexStride(self_: *T, vertexStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexStride_, vertexStride_);
+                return objc.msgSend(self_, "setVertexStride:", void, .{vertexStride_});
             }
             pub fn indexBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_indexBuffer);
+                return objc.msgSend(self_, "indexBuffer", ?*Buffer, .{});
             }
             pub fn setIndexBuffer(self_: *T, indexBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexBuffer_, indexBuffer_);
+                return objc.msgSend(self_, "setIndexBuffer:", void, .{indexBuffer_});
             }
             pub fn indexBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_indexBufferOffset);
+                return objc.msgSend(self_, "indexBufferOffset", ns.UInteger, .{});
             }
             pub fn setIndexBufferOffset(self_: *T, indexBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexBufferOffset_, indexBufferOffset_);
+                return objc.msgSend(self_, "setIndexBufferOffset:", void, .{indexBufferOffset_});
             }
             pub fn indexType(self_: *T) IndexType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IndexType, @ptrCast(&c.objc_msgSend))(self_, sel_indexType);
+                return objc.msgSend(self_, "indexType", IndexType, .{});
             }
             pub fn setIndexType(self_: *T, indexType_: IndexType) void {
-                return @as(*const fn (*T, *c.objc_selector, IndexType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexType_, indexType_);
+                return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
             }
             pub fn triangleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_triangleCount);
+                return objc.msgSend(self_, "triangleCount", ns.UInteger, .{});
             }
             pub fn setTriangleCount(self_: *T, triangleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTriangleCount_, triangleCount_);
+                return objc.msgSend(self_, "setTriangleCount:", void, .{triangleCount_});
             }
             pub fn transformationMatrixBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_transformationMatrixBuffer);
+                return objc.msgSend(self_, "transformationMatrixBuffer", ?*Buffer, .{});
             }
             pub fn setTransformationMatrixBuffer(self_: *T, transformationMatrixBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTransformationMatrixBuffer_, transformationMatrixBuffer_);
+                return objc.msgSend(self_, "setTransformationMatrixBuffer:", void, .{transformationMatrixBuffer_});
             }
             pub fn transformationMatrixBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_transformationMatrixBufferOffset);
+                return objc.msgSend(self_, "transformationMatrixBufferOffset", ns.UInteger, .{});
             }
             pub fn setTransformationMatrixBufferOffset(self_: *T, transformationMatrixBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTransformationMatrixBufferOffset_, transformationMatrixBufferOffset_);
+                return objc.msgSend(self_, "setTransformationMatrixBufferOffset:", void, .{transformationMatrixBufferOffset_});
             }
         };
     }
@@ -1557,25 +1558,25 @@ pub const AccelerationStructureMotionBoundingBoxGeometryDescriptor = opaque {
             pub usingnamespace AccelerationStructureGeometryDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
+                return objc.msgSend(T.class(), "descriptor", *T, .{});
             }
             pub fn boundingBoxBuffers(self_: *T) *ns.Array(*MotionKeyframeData) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*MotionKeyframeData), @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxBuffers);
+                return objc.msgSend(self_, "boundingBoxBuffers", *ns.Array(*MotionKeyframeData), .{});
             }
             pub fn setBoundingBoxBuffers(self_: *T, boundingBoxBuffers_: *ns.Array(*MotionKeyframeData)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*MotionKeyframeData)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxBuffers_, boundingBoxBuffers_);
+                return objc.msgSend(self_, "setBoundingBoxBuffers:", void, .{boundingBoxBuffers_});
             }
             pub fn boundingBoxStride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxStride);
+                return objc.msgSend(self_, "boundingBoxStride", ns.UInteger, .{});
             }
             pub fn setBoundingBoxStride(self_: *T, boundingBoxStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxStride_, boundingBoxStride_);
+                return objc.msgSend(self_, "setBoundingBoxStride:", void, .{boundingBoxStride_});
             }
             pub fn boundingBoxCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_boundingBoxCount);
+                return objc.msgSend(self_, "boundingBoxCount", ns.UInteger, .{});
             }
             pub fn setBoundingBoxCount(self_: *T, boundingBoxCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBoundingBoxCount_, boundingBoxCount_);
+                return objc.msgSend(self_, "setBoundingBoxCount:", void, .{boundingBoxCount_});
             }
         };
     }
@@ -1592,61 +1593,61 @@ pub const InstanceAccelerationStructureDescriptor = opaque {
             pub usingnamespace AccelerationStructureDescriptor.Methods(T);
 
             pub fn descriptor() *T {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(T.class(), sel_descriptor);
+                return objc.msgSend(T.class(), "descriptor", *T, .{});
             }
             pub fn instanceDescriptorBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_instanceDescriptorBuffer);
+                return objc.msgSend(self_, "instanceDescriptorBuffer", ?*Buffer, .{});
             }
             pub fn setInstanceDescriptorBuffer(self_: *T, instanceDescriptorBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstanceDescriptorBuffer_, instanceDescriptorBuffer_);
+                return objc.msgSend(self_, "setInstanceDescriptorBuffer:", void, .{instanceDescriptorBuffer_});
             }
             pub fn instanceDescriptorBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_instanceDescriptorBufferOffset);
+                return objc.msgSend(self_, "instanceDescriptorBufferOffset", ns.UInteger, .{});
             }
             pub fn setInstanceDescriptorBufferOffset(self_: *T, instanceDescriptorBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstanceDescriptorBufferOffset_, instanceDescriptorBufferOffset_);
+                return objc.msgSend(self_, "setInstanceDescriptorBufferOffset:", void, .{instanceDescriptorBufferOffset_});
             }
             pub fn instanceDescriptorStride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_instanceDescriptorStride);
+                return objc.msgSend(self_, "instanceDescriptorStride", ns.UInteger, .{});
             }
             pub fn setInstanceDescriptorStride(self_: *T, instanceDescriptorStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstanceDescriptorStride_, instanceDescriptorStride_);
+                return objc.msgSend(self_, "setInstanceDescriptorStride:", void, .{instanceDescriptorStride_});
             }
             pub fn instanceCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_instanceCount);
+                return objc.msgSend(self_, "instanceCount", ns.UInteger, .{});
             }
             pub fn setInstanceCount(self_: *T, instanceCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstanceCount_, instanceCount_);
+                return objc.msgSend(self_, "setInstanceCount:", void, .{instanceCount_});
             }
             pub fn instancedAccelerationStructures(self_: *T) ?*ns.Array(*AccelerationStructure) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*AccelerationStructure), @ptrCast(&c.objc_msgSend))(self_, sel_instancedAccelerationStructures);
+                return objc.msgSend(self_, "instancedAccelerationStructures", ?*ns.Array(*AccelerationStructure), .{});
             }
             pub fn setInstancedAccelerationStructures(self_: *T, instancedAccelerationStructures_: ?*ns.Array(*AccelerationStructure)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*AccelerationStructure)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstancedAccelerationStructures_, instancedAccelerationStructures_);
+                return objc.msgSend(self_, "setInstancedAccelerationStructures:", void, .{instancedAccelerationStructures_});
             }
             pub fn instanceDescriptorType(self_: *T) AccelerationStructureInstanceDescriptorType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) AccelerationStructureInstanceDescriptorType, @ptrCast(&c.objc_msgSend))(self_, sel_instanceDescriptorType);
+                return objc.msgSend(self_, "instanceDescriptorType", AccelerationStructureInstanceDescriptorType, .{});
             }
             pub fn setInstanceDescriptorType(self_: *T, instanceDescriptorType_: AccelerationStructureInstanceDescriptorType) void {
-                return @as(*const fn (*T, *c.objc_selector, AccelerationStructureInstanceDescriptorType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstanceDescriptorType_, instanceDescriptorType_);
+                return objc.msgSend(self_, "setInstanceDescriptorType:", void, .{instanceDescriptorType_});
             }
             pub fn motionTransformBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_motionTransformBuffer);
+                return objc.msgSend(self_, "motionTransformBuffer", ?*Buffer, .{});
             }
             pub fn setMotionTransformBuffer(self_: *T, motionTransformBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionTransformBuffer_, motionTransformBuffer_);
+                return objc.msgSend(self_, "setMotionTransformBuffer:", void, .{motionTransformBuffer_});
             }
             pub fn motionTransformBufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_motionTransformBufferOffset);
+                return objc.msgSend(self_, "motionTransformBufferOffset", ns.UInteger, .{});
             }
             pub fn setMotionTransformBufferOffset(self_: *T, motionTransformBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionTransformBufferOffset_, motionTransformBufferOffset_);
+                return objc.msgSend(self_, "setMotionTransformBufferOffset:", void, .{motionTransformBufferOffset_});
             }
             pub fn motionTransformCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_motionTransformCount);
+                return objc.msgSend(self_, "motionTransformCount", ns.UInteger, .{});
             }
             pub fn setMotionTransformCount(self_: *T, motionTransformCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMotionTransformCount_, motionTransformCount_);
+                return objc.msgSend(self_, "setMotionTransformCount:", void, .{motionTransformCount_});
             }
         };
     }
@@ -1660,10 +1661,10 @@ pub const AccelerationStructure = opaque {
             pub usingnamespace Resource.Methods(T);
 
             pub fn size(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_size);
+                return objc.msgSend(self_, "size", ns.UInteger, .{});
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
         };
     }
@@ -1677,46 +1678,46 @@ pub const AccelerationStructureCommandEncoder = opaque {
             pub usingnamespace CommandEncoder.Methods(T);
 
             pub fn buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset(self_: *T, accelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, scratchBuffer_: *Buffer, scratchBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructure, *AccelerationStructureDescriptor, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset_, accelerationStructure_, descriptor_, scratchBuffer_, scratchBufferOffset_);
+                return objc.msgSend(self_, "buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:", void, .{ accelerationStructure_, descriptor_, scratchBuffer_, scratchBufferOffset_ });
             }
             pub fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, destinationAccelerationStructure_: ?*AccelerationStructure, scratchBuffer_: ?*Buffer, scratchBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructure, *AccelerationStructureDescriptor, ?*AccelerationStructure, ?*Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_, sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_);
+                return objc.msgSend(self_, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:", void, .{ sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_ });
             }
             pub fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, descriptor_: *AccelerationStructureDescriptor, destinationAccelerationStructure_: ?*AccelerationStructure, scratchBuffer_: ?*Buffer, scratchBufferOffset_: ns.UInteger, options_: AccelerationStructureRefitOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructure, *AccelerationStructureDescriptor, ?*AccelerationStructure, ?*Buffer, ns.UInteger, AccelerationStructureRefitOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options_, sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_, options_);
+                return objc.msgSend(self_, "refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:", void, .{ sourceAccelerationStructure_, descriptor_, destinationAccelerationStructure_, scratchBuffer_, scratchBufferOffset_, options_ });
             }
             pub fn copyAccelerationStructure_toAccelerationStructure(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, destinationAccelerationStructure_: *AccelerationStructure) void {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructure, *AccelerationStructure) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyAccelerationStructure_toAccelerationStructure_, sourceAccelerationStructure_, destinationAccelerationStructure_);
+                return objc.msgSend(self_, "copyAccelerationStructure:toAccelerationStructure:", void, .{ sourceAccelerationStructure_, destinationAccelerationStructure_ });
             }
             pub fn writeCompactedAccelerationStructureSize_toBuffer_offset(self_: *T, accelerationStructure_: *AccelerationStructure, buffer_: *Buffer, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructure, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_writeCompactedAccelerationStructureSize_toBuffer_offset_, accelerationStructure_, buffer_, offset_);
+                return objc.msgSend(self_, "writeCompactedAccelerationStructureSize:toBuffer:offset:", void, .{ accelerationStructure_, buffer_, offset_ });
             }
             pub fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(self_: *T, accelerationStructure_: *AccelerationStructure, buffer_: *Buffer, offset_: ns.UInteger, sizeDataType_: DataType) void {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructure, *Buffer, ns.UInteger, DataType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType_, accelerationStructure_, buffer_, offset_, sizeDataType_);
+                return objc.msgSend(self_, "writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:", void, .{ accelerationStructure_, buffer_, offset_, sizeDataType_ });
             }
             pub fn copyAndCompactAccelerationStructure_toAccelerationStructure(self_: *T, sourceAccelerationStructure_: *AccelerationStructure, destinationAccelerationStructure_: *AccelerationStructure) void {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructure, *AccelerationStructure) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyAndCompactAccelerationStructure_toAccelerationStructure_, sourceAccelerationStructure_, destinationAccelerationStructure_);
+                return objc.msgSend(self_, "copyAndCompactAccelerationStructure:toAccelerationStructure:", void, .{ sourceAccelerationStructure_, destinationAccelerationStructure_ });
             }
             pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateFence_, fence_);
+                return objc.msgSend(self_, "updateFence:", void, .{fence_});
             }
             pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitForFence_, fence_);
+                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
             }
             pub fn useResource_usage(self_: *T, resource_: *Resource, usage_: ResourceUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, *Resource, ResourceUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResource_usage_, resource_, usage_);
+                return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
             }
             pub fn useResources_count_usage(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Resource, ns.UInteger, ResourceUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResources_count_usage_, resources_, count_, usage_);
+                return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
             }
             pub fn useHeap(self_: *T, heap_: *Heap) void {
-                return @as(*const fn (*T, *c.objc_selector, *Heap) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeap_, heap_);
+                return objc.msgSend(self_, "useHeap:", void, .{heap_});
             }
             pub fn useHeaps_count(self_: *T, heaps_: **const Heap, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Heap, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeaps_count_, heaps_, count_);
+                return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
             }
             pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, *CounterSampleBuffer, ns.UInteger, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCountersInBuffer_atSampleIndex_withBarrier_, sampleBuffer_, sampleIndex_, barrier_);
+                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
             }
         };
     }
@@ -1734,22 +1735,22 @@ pub const AccelerationStructurePassSampleBufferAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CounterSampleBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBuffer);
+                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
             }
             pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*CounterSampleBuffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleBuffer_, sampleBuffer_);
+                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
             }
             pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_startOfEncoderSampleIndex);
+                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStartOfEncoderSampleIndex_, startOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
             }
             pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_endOfEncoderSampleIndex);
+                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEndOfEncoderSampleIndex_, endOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
             }
         };
     }
@@ -1766,10 +1767,10 @@ pub const AccelerationStructurePassSampleBufferAttachmentDescriptorArray = opaqu
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *AccelerationStructurePassSampleBufferAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *AccelerationStructurePassSampleBufferAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *AccelerationStructurePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*AccelerationStructurePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*AccelerationStructurePassSampleBufferAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -1787,10 +1788,10 @@ pub const AccelerationStructurePassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn accelerationStructurePassDescriptor() *AccelerationStructurePassDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *AccelerationStructurePassDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_accelerationStructurePassDescriptor);
+                return objc.msgSend(T.class(), "accelerationStructurePassDescriptor", *AccelerationStructurePassDescriptor, .{});
             }
             pub fn sampleBufferAttachments(self_: *T) *AccelerationStructurePassSampleBufferAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *AccelerationStructurePassSampleBufferAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBufferAttachments);
+                return objc.msgSend(self_, "sampleBufferAttachments", *AccelerationStructurePassSampleBufferAttachmentDescriptorArray, .{});
             }
         };
     }
@@ -1807,7 +1808,7 @@ pub const Type = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn dataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_dataType);
+                return objc.msgSend(self_, "dataType", DataType, .{});
             }
         };
     }
@@ -1824,28 +1825,28 @@ pub const StructMember = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn structType(self_: *T) ?*StructType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*StructType, @ptrCast(&c.objc_msgSend))(self_, sel_structType);
+                return objc.msgSend(self_, "structType", ?*StructType, .{});
             }
             pub fn arrayType(self_: *T) ?*ArrayType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ArrayType, @ptrCast(&c.objc_msgSend))(self_, sel_arrayType);
+                return objc.msgSend(self_, "arrayType", ?*ArrayType, .{});
             }
             pub fn textureReferenceType(self_: *T) ?*TextureReferenceType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*TextureReferenceType, @ptrCast(&c.objc_msgSend))(self_, sel_textureReferenceType);
+                return objc.msgSend(self_, "textureReferenceType", ?*TextureReferenceType, .{});
             }
             pub fn pointerType(self_: *T) ?*PointerType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*PointerType, @ptrCast(&c.objc_msgSend))(self_, sel_pointerType);
+                return objc.msgSend(self_, "pointerType", ?*PointerType, .{});
             }
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn offset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_offset);
+                return objc.msgSend(self_, "offset", ns.UInteger, .{});
             }
             pub fn dataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_dataType);
+                return objc.msgSend(self_, "dataType", DataType, .{});
             }
             pub fn argumentIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_argumentIndex);
+                return objc.msgSend(self_, "argumentIndex", ns.UInteger, .{});
             }
         };
     }
@@ -1862,10 +1863,10 @@ pub const StructType = opaque {
             pub usingnamespace Type.Methods(T);
 
             pub fn memberByName(self_: *T, name_: *ns.String) ?*StructMember {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) ?*StructMember, @ptrCast(&c.objc_msgSend))(self_, sel_memberByName_, name_);
+                return objc.msgSend(self_, "memberByName:", ?*StructMember, .{name_});
             }
             pub fn members(self_: *T) *ns.Array(*StructMember) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*StructMember), @ptrCast(&c.objc_msgSend))(self_, sel_members);
+                return objc.msgSend(self_, "members", *ns.Array(*StructMember), .{});
             }
         };
     }
@@ -1882,28 +1883,28 @@ pub const ArrayType = opaque {
             pub usingnamespace Type.Methods(T);
 
             pub fn elementStructType(self_: *T) ?*StructType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*StructType, @ptrCast(&c.objc_msgSend))(self_, sel_elementStructType);
+                return objc.msgSend(self_, "elementStructType", ?*StructType, .{});
             }
             pub fn elementArrayType(self_: *T) ?*ArrayType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ArrayType, @ptrCast(&c.objc_msgSend))(self_, sel_elementArrayType);
+                return objc.msgSend(self_, "elementArrayType", ?*ArrayType, .{});
             }
             pub fn elementTextureReferenceType(self_: *T) ?*TextureReferenceType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*TextureReferenceType, @ptrCast(&c.objc_msgSend))(self_, sel_elementTextureReferenceType);
+                return objc.msgSend(self_, "elementTextureReferenceType", ?*TextureReferenceType, .{});
             }
             pub fn elementPointerType(self_: *T) ?*PointerType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*PointerType, @ptrCast(&c.objc_msgSend))(self_, sel_elementPointerType);
+                return objc.msgSend(self_, "elementPointerType", ?*PointerType, .{});
             }
             pub fn elementType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_elementType);
+                return objc.msgSend(self_, "elementType", DataType, .{});
             }
             pub fn arrayLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_arrayLength);
+                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
             }
             pub fn stride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_stride);
+                return objc.msgSend(self_, "stride", ns.UInteger, .{});
             }
             pub fn argumentIndexStride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_argumentIndexStride);
+                return objc.msgSend(self_, "argumentIndexStride", ns.UInteger, .{});
             }
         };
     }
@@ -1920,25 +1921,25 @@ pub const PointerType = opaque {
             pub usingnamespace Type.Methods(T);
 
             pub fn elementStructType(self_: *T) ?*StructType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*StructType, @ptrCast(&c.objc_msgSend))(self_, sel_elementStructType);
+                return objc.msgSend(self_, "elementStructType", ?*StructType, .{});
             }
             pub fn elementArrayType(self_: *T) ?*ArrayType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ArrayType, @ptrCast(&c.objc_msgSend))(self_, sel_elementArrayType);
+                return objc.msgSend(self_, "elementArrayType", ?*ArrayType, .{});
             }
             pub fn elementType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_elementType);
+                return objc.msgSend(self_, "elementType", DataType, .{});
             }
             pub fn access(self_: *T) BindingAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+                return objc.msgSend(self_, "access", BindingAccess, .{});
             }
             pub fn alignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_alignment);
+                return objc.msgSend(self_, "alignment", ns.UInteger, .{});
             }
             pub fn dataSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_dataSize);
+                return objc.msgSend(self_, "dataSize", ns.UInteger, .{});
             }
             pub fn elementIsArgumentBuffer(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_elementIsArgumentBuffer);
+                return objc.msgSend(self_, "elementIsArgumentBuffer", bool, .{});
             }
         };
     }
@@ -1955,16 +1956,16 @@ pub const TextureReferenceType = opaque {
             pub usingnamespace Type.Methods(T);
 
             pub fn textureDataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_textureDataType);
+                return objc.msgSend(self_, "textureDataType", DataType, .{});
             }
             pub fn textureType(self_: *T) TextureType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
+                return objc.msgSend(self_, "textureType", TextureType, .{});
             }
             pub fn access(self_: *T) BindingAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+                return objc.msgSend(self_, "access", BindingAccess, .{});
             }
             pub fn isDepthTexture(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isDepthTexture);
+                return objc.msgSend(self_, "isDepthTexture", bool, .{});
             }
         };
     }
@@ -1981,52 +1982,52 @@ pub const Argument = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn @"type"(self_: *T) ArgumentType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", ArgumentType, .{});
             }
             pub fn access(self_: *T) BindingAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+                return objc.msgSend(self_, "access", BindingAccess, .{});
             }
             pub fn index(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_index);
+                return objc.msgSend(self_, "index", ns.UInteger, .{});
             }
             pub fn isActive(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isActive);
+                return objc.msgSend(self_, "isActive", bool, .{});
             }
             pub fn bufferAlignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferAlignment);
+                return objc.msgSend(self_, "bufferAlignment", ns.UInteger, .{});
             }
             pub fn bufferDataSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferDataSize);
+                return objc.msgSend(self_, "bufferDataSize", ns.UInteger, .{});
             }
             pub fn bufferDataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_bufferDataType);
+                return objc.msgSend(self_, "bufferDataType", DataType, .{});
             }
             pub fn bufferStructType(self_: *T) ?*StructType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*StructType, @ptrCast(&c.objc_msgSend))(self_, sel_bufferStructType);
+                return objc.msgSend(self_, "bufferStructType", ?*StructType, .{});
             }
             pub fn bufferPointerType(self_: *T) ?*PointerType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*PointerType, @ptrCast(&c.objc_msgSend))(self_, sel_bufferPointerType);
+                return objc.msgSend(self_, "bufferPointerType", ?*PointerType, .{});
             }
             pub fn threadgroupMemoryAlignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_threadgroupMemoryAlignment);
+                return objc.msgSend(self_, "threadgroupMemoryAlignment", ns.UInteger, .{});
             }
             pub fn threadgroupMemoryDataSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_threadgroupMemoryDataSize);
+                return objc.msgSend(self_, "threadgroupMemoryDataSize", ns.UInteger, .{});
             }
             pub fn textureType(self_: *T) TextureType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
+                return objc.msgSend(self_, "textureType", TextureType, .{});
             }
             pub fn textureDataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_textureDataType);
+                return objc.msgSend(self_, "textureDataType", DataType, .{});
             }
             pub fn isDepthTexture(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isDepthTexture);
+                return objc.msgSend(self_, "isDepthTexture", bool, .{});
             }
             pub fn arrayLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_arrayLength);
+                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
             }
         };
     }
@@ -2040,22 +2041,22 @@ pub const Binding = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn @"type"(self_: *T) BindingType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", BindingType, .{});
             }
             pub fn access(self_: *T) BindingAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+                return objc.msgSend(self_, "access", BindingAccess, .{});
             }
             pub fn index(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_index);
+                return objc.msgSend(self_, "index", ns.UInteger, .{});
             }
             pub fn isUsed(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isUsed);
+                return objc.msgSend(self_, "isUsed", bool, .{});
             }
             pub fn isArgument(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isArgument);
+                return objc.msgSend(self_, "isArgument", bool, .{});
             }
         };
     }
@@ -2069,19 +2070,19 @@ pub const BufferBinding = opaque {
             pub usingnamespace Binding.Methods(T);
 
             pub fn bufferAlignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferAlignment);
+                return objc.msgSend(self_, "bufferAlignment", ns.UInteger, .{});
             }
             pub fn bufferDataSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferDataSize);
+                return objc.msgSend(self_, "bufferDataSize", ns.UInteger, .{});
             }
             pub fn bufferDataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_bufferDataType);
+                return objc.msgSend(self_, "bufferDataType", DataType, .{});
             }
             pub fn bufferStructType(self_: *T) ?*StructType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*StructType, @ptrCast(&c.objc_msgSend))(self_, sel_bufferStructType);
+                return objc.msgSend(self_, "bufferStructType", ?*StructType, .{});
             }
             pub fn bufferPointerType(self_: *T) ?*PointerType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*PointerType, @ptrCast(&c.objc_msgSend))(self_, sel_bufferPointerType);
+                return objc.msgSend(self_, "bufferPointerType", ?*PointerType, .{});
             }
         };
     }
@@ -2095,10 +2096,10 @@ pub const ThreadgroupBinding = opaque {
             pub usingnamespace Binding.Methods(T);
 
             pub fn threadgroupMemoryAlignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_threadgroupMemoryAlignment);
+                return objc.msgSend(self_, "threadgroupMemoryAlignment", ns.UInteger, .{});
             }
             pub fn threadgroupMemoryDataSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_threadgroupMemoryDataSize);
+                return objc.msgSend(self_, "threadgroupMemoryDataSize", ns.UInteger, .{});
             }
         };
     }
@@ -2112,16 +2113,16 @@ pub const TextureBinding = opaque {
             pub usingnamespace Binding.Methods(T);
 
             pub fn textureType(self_: *T) TextureType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
+                return objc.msgSend(self_, "textureType", TextureType, .{});
             }
             pub fn textureDataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_textureDataType);
+                return objc.msgSend(self_, "textureDataType", DataType, .{});
             }
             pub fn isDepthTexture(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isDepthTexture);
+                return objc.msgSend(self_, "isDepthTexture", bool, .{});
             }
             pub fn arrayLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_arrayLength);
+                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
             }
         };
     }
@@ -2135,10 +2136,10 @@ pub const ObjectPayloadBinding = opaque {
             pub usingnamespace Binding.Methods(T);
 
             pub fn objectPayloadAlignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_objectPayloadAlignment);
+                return objc.msgSend(self_, "objectPayloadAlignment", ns.UInteger, .{});
             }
             pub fn objectPayloadDataSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_objectPayloadDataSize);
+                return objc.msgSend(self_, "objectPayloadDataSize", ns.UInteger, .{});
             }
         };
     }
@@ -2152,82 +2153,82 @@ pub const ArgumentEncoder = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn setArgumentBuffer_offset(self_: *T, argumentBuffer_: ?*Buffer, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArgumentBuffer_offset_, argumentBuffer_, offset_);
+                return objc.msgSend(self_, "setArgumentBuffer:offset:", void, .{ argumentBuffer_, offset_ });
             }
             pub fn setArgumentBuffer_startOffset_arrayElement(self_: *T, argumentBuffer_: ?*Buffer, startOffset_: ns.UInteger, arrayElement_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArgumentBuffer_startOffset_arrayElement_, argumentBuffer_, startOffset_, arrayElement_);
+                return objc.msgSend(self_, "setArgumentBuffer:startOffset:arrayElement:", void, .{ argumentBuffer_, startOffset_, arrayElement_ });
             }
             pub fn setBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTexture_atIndex_, texture_, index_);
+                return objc.msgSend(self_, "setTexture:atIndex:", void, .{ texture_, index_ });
             }
             pub fn setTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Texture, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTextures_withRange_, textures_, range_);
+                return objc.msgSend(self_, "setTextures:withRange:", void, .{ textures_, range_ });
             }
             pub fn setSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSamplerState_atIndex_, sampler_, index_);
+                return objc.msgSend(self_, "setSamplerState:atIndex:", void, .{ sampler_, index_ });
             }
             pub fn setSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSamplerStates_withRange_, samplers_, range_);
+                return objc.msgSend(self_, "setSamplerStates:withRange:", void, .{ samplers_, range_ });
             }
             pub fn constantDataAtIndex(self_: *T, index_: ns.UInteger) *anyopaque {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *anyopaque, @ptrCast(&c.objc_msgSend))(self_, sel_constantDataAtIndex_, index_);
+                return objc.msgSend(self_, "constantDataAtIndex:", *anyopaque, .{index_});
             }
             pub fn setRenderPipelineState_atIndex(self_: *T, pipeline_: ?*RenderPipelineState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RenderPipelineState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRenderPipelineState_atIndex_, pipeline_, index_);
+                return objc.msgSend(self_, "setRenderPipelineState:atIndex:", void, .{ pipeline_, index_ });
             }
             pub fn setRenderPipelineStates_withRange(self_: *T, pipelines_: *?*const RenderPipelineState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const RenderPipelineState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRenderPipelineStates_withRange_, pipelines_, range_);
+                return objc.msgSend(self_, "setRenderPipelineStates:withRange:", void, .{ pipelines_, range_ });
             }
             pub fn setComputePipelineState_atIndex(self_: *T, pipeline_: ?*ComputePipelineState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ComputePipelineState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setComputePipelineState_atIndex_, pipeline_, index_);
+                return objc.msgSend(self_, "setComputePipelineState:atIndex:", void, .{ pipeline_, index_ });
             }
             pub fn setComputePipelineStates_withRange(self_: *T, pipelines_: *?*const ComputePipelineState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const ComputePipelineState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setComputePipelineStates_withRange_, pipelines_, range_);
+                return objc.msgSend(self_, "setComputePipelineStates:withRange:", void, .{ pipelines_, range_ });
             }
             pub fn setIndirectCommandBuffer_atIndex(self_: *T, indirectCommandBuffer_: ?*IndirectCommandBuffer, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*IndirectCommandBuffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndirectCommandBuffer_atIndex_, indirectCommandBuffer_, index_);
+                return objc.msgSend(self_, "setIndirectCommandBuffer:atIndex:", void, .{ indirectCommandBuffer_, index_ });
             }
             pub fn setIndirectCommandBuffers_withRange(self_: *T, buffers_: *?*const IndirectCommandBuffer, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const IndirectCommandBuffer, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndirectCommandBuffers_withRange_, buffers_, range_);
+                return objc.msgSend(self_, "setIndirectCommandBuffers:withRange:", void, .{ buffers_, range_ });
             }
             pub fn setAccelerationStructure_atIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*AccelerationStructure, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAccelerationStructure_atIndex_, accelerationStructure_, index_);
+                return objc.msgSend(self_, "setAccelerationStructure:atIndex:", void, .{ accelerationStructure_, index_ });
             }
             pub fn newArgumentEncoderForBufferAtIndex(self_: *T, index_: ns.UInteger) ?*ArgumentEncoder {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ?*ArgumentEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_newArgumentEncoderForBufferAtIndex_, index_);
+                return objc.msgSend(self_, "newArgumentEncoderForBufferAtIndex:", ?*ArgumentEncoder, .{index_});
             }
             pub fn setVisibleFunctionTable_atIndex(self_: *T, visibleFunctionTable_: ?*VisibleFunctionTable, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTable_atIndex_, visibleFunctionTable_, index_);
+                return objc.msgSend(self_, "setVisibleFunctionTable:atIndex:", void, .{ visibleFunctionTable_, index_ });
             }
             pub fn setVisibleFunctionTables_withRange(self_: *T, visibleFunctionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const VisibleFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTables_withRange_, visibleFunctionTables_, range_);
+                return objc.msgSend(self_, "setVisibleFunctionTables:withRange:", void, .{ visibleFunctionTables_, range_ });
             }
             pub fn setIntersectionFunctionTable_atIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*IntersectionFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIntersectionFunctionTable_atIndex_, intersectionFunctionTable_, index_);
+                return objc.msgSend(self_, "setIntersectionFunctionTable:atIndex:", void, .{ intersectionFunctionTable_, index_ });
             }
             pub fn setIntersectionFunctionTables_withRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const IntersectionFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIntersectionFunctionTables_withRange_, intersectionFunctionTables_, range_);
+                return objc.msgSend(self_, "setIntersectionFunctionTables:withRange:", void, .{ intersectionFunctionTables_, range_ });
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn encodedLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_encodedLength);
+                return objc.msgSend(self_, "encodedLength", ns.UInteger, .{});
             }
             pub fn alignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_alignment);
+                return objc.msgSend(self_, "alignment", ns.UInteger, .{});
             }
         };
     }
@@ -2245,10 +2246,10 @@ pub const BinaryArchiveDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn url(self_: *T) ?*ns.URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.URL, @ptrCast(&c.objc_msgSend))(self_, sel_url);
+                return objc.msgSend(self_, "url", ?*ns.URL, .{});
             }
             pub fn setUrl(self_: *T, url_: ?*ns.URL) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.URL) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setUrl_, url_);
+                return objc.msgSend(self_, "setUrl:", void, .{url_});
             }
         };
     }
@@ -2262,28 +2263,28 @@ pub const BinaryArchive = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn addComputePipelineFunctionsWithDescriptor_error(self_: *T, descriptor_: *ComputePipelineDescriptor, error_: ?*?*ns.Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *ComputePipelineDescriptor, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_addComputePipelineFunctionsWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "addComputePipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
             }
             pub fn addRenderPipelineFunctionsWithDescriptor_error(self_: *T, descriptor_: *RenderPipelineDescriptor, error_: ?*?*ns.Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_addRenderPipelineFunctionsWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "addRenderPipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
             }
             pub fn addTileRenderPipelineFunctionsWithDescriptor_error(self_: *T, descriptor_: *TileRenderPipelineDescriptor, error_: ?*?*ns.Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *TileRenderPipelineDescriptor, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_addTileRenderPipelineFunctionsWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "addTileRenderPipelineFunctionsWithDescriptor:error:", bool, .{ descriptor_, error_ });
             }
             pub fn serializeToURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_serializeToURL_error_, url_, error_);
+                return objc.msgSend(self_, "serializeToURL:error:", bool, .{ url_, error_ });
             }
             pub fn addFunctionWithDescriptor_library_error(self_: *T, descriptor_: *FunctionDescriptor, library_: *Library, error_: ?*?*ns.Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, *Library, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_addFunctionWithDescriptor_library_error_, descriptor_, library_, error_);
+                return objc.msgSend(self_, "addFunctionWithDescriptor:library:error:", bool, .{ descriptor_, library_, error_ });
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
         };
     }
@@ -2297,79 +2298,79 @@ pub const BlitCommandEncoder = opaque {
             pub usingnamespace CommandEncoder.Methods(T);
 
             pub fn synchronizeResource(self_: *T, resource_: *Resource) void {
-                return @as(*const fn (*T, *c.objc_selector, *Resource) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_synchronizeResource_, resource_);
+                return objc.msgSend(self_, "synchronizeResource:", void, .{resource_});
             }
             pub fn synchronizeTexture_slice_level(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_synchronizeTexture_slice_level_, texture_, slice_, level_);
+                return objc.msgSend(self_, "synchronizeTexture:slice:level:", void, .{ texture_, slice_, level_ });
             }
             pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger, Origin, Size, *Texture, ns.UInteger, ns.UInteger, Origin) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_, sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_);
+                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
             }
             pub fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *T, sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger, Size, *Texture, ns.UInteger, ns.UInteger, Origin) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_, sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_);
+                return objc.msgSend(self_, "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
             }
             pub fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(self_: *T, sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin, options_: BlitOption) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger, Size, *Texture, ns.UInteger, ns.UInteger, Origin, BlitOption) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options_, sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_, options_);
+                return objc.msgSend(self_, "copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:", void, .{ sourceBuffer_, sourceOffset_, sourceBytesPerRow_, sourceBytesPerImage_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_, options_ });
             }
             pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, destinationBytesPerRow_: ns.UInteger, destinationBytesPerImage_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger, Origin, Size, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_, sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_);
+                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_ });
             }
             pub fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, destinationBytesPerRow_: ns.UInteger, destinationBytesPerImage_: ns.UInteger, options_: BlitOption) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger, Origin, Size, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger, BlitOption) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options_, sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_, options_);
+                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationBuffer_, destinationOffset_, destinationBytesPerRow_, destinationBytesPerImage_, options_ });
             }
             pub fn generateMipmapsForTexture(self_: *T, texture_: *Texture) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_generateMipmapsForTexture_, texture_);
+                return objc.msgSend(self_, "generateMipmapsForTexture:", void, .{texture_});
             }
             pub fn fillBuffer_range_value(self_: *T, buffer_: *Buffer, range_: ns.Range, value_: u8) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.Range, u8) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_fillBuffer_range_value_, buffer_, range_, value_);
+                return objc.msgSend(self_, "fillBuffer:range:value:", void, .{ buffer_, range_, value_ });
             }
             pub fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, sliceCount_: ns.UInteger, levelCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger, *Texture, ns.UInteger, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount_, sourceTexture_, sourceSlice_, sourceLevel_, destinationTexture_, destinationSlice_, destinationLevel_, sliceCount_, levelCount_);
+                return objc.msgSend(self_, "copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, destinationTexture_, destinationSlice_, destinationLevel_, sliceCount_, levelCount_ });
             }
             pub fn copyFromTexture_toTexture(self_: *T, sourceTexture_: *Texture, destinationTexture_: *Texture) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, *Texture) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromTexture_toTexture_, sourceTexture_, destinationTexture_);
+                return objc.msgSend(self_, "copyFromTexture:toTexture:", void, .{ sourceTexture_, destinationTexture_ });
             }
             pub fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(self_: *T, sourceBuffer_: *Buffer, sourceOffset_: ns.UInteger, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger, size_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_, sourceBuffer_, sourceOffset_, destinationBuffer_, destinationOffset_, size_);
+                return objc.msgSend(self_, "copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:", void, .{ sourceBuffer_, sourceOffset_, destinationBuffer_, destinationOffset_, size_ });
             }
             pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateFence_, fence_);
+                return objc.msgSend(self_, "updateFence:", void, .{fence_});
             }
             pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitForFence_, fence_);
+                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
             }
             pub fn getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset(self_: *T, texture_: *Texture, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger, resetCounters_: bool, countersBuffer_: *Buffer, countersBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, Region, ns.UInteger, ns.UInteger, bool, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset_, texture_, region_, mipLevel_, slice_, resetCounters_, countersBuffer_, countersBufferOffset_);
+                return objc.msgSend(self_, "getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:", void, .{ texture_, region_, mipLevel_, slice_, resetCounters_, countersBuffer_, countersBufferOffset_ });
             }
             pub fn resetTextureAccessCounters_region_mipLevel_slice(self_: *T, texture_: *Texture, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, Region, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_resetTextureAccessCounters_region_mipLevel_slice_, texture_, region_, mipLevel_, slice_);
+                return objc.msgSend(self_, "resetTextureAccessCounters:region:mipLevel:slice:", void, .{ texture_, region_, mipLevel_, slice_ });
             }
             pub fn optimizeContentsForGPUAccess(self_: *T, texture_: *Texture) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_optimizeContentsForGPUAccess_, texture_);
+                return objc.msgSend(self_, "optimizeContentsForGPUAccess:", void, .{texture_});
             }
             pub fn optimizeContentsForGPUAccess_slice_level(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_optimizeContentsForGPUAccess_slice_level_, texture_, slice_, level_);
+                return objc.msgSend(self_, "optimizeContentsForGPUAccess:slice:level:", void, .{ texture_, slice_, level_ });
             }
             pub fn optimizeContentsForCPUAccess(self_: *T, texture_: *Texture) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_optimizeContentsForCPUAccess_, texture_);
+                return objc.msgSend(self_, "optimizeContentsForCPUAccess:", void, .{texture_});
             }
             pub fn optimizeContentsForCPUAccess_slice_level(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_optimizeContentsForCPUAccess_slice_level_, texture_, slice_, level_);
+                return objc.msgSend(self_, "optimizeContentsForCPUAccess:slice:level:", void, .{ texture_, slice_, level_ });
             }
             pub fn resetCommandsInBuffer_withRange(self_: *T, buffer_: *IndirectCommandBuffer, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBuffer, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_resetCommandsInBuffer_withRange_, buffer_, range_);
+                return objc.msgSend(self_, "resetCommandsInBuffer:withRange:", void, .{ buffer_, range_ });
             }
             pub fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(self_: *T, source_: *IndirectCommandBuffer, sourceRange_: ns.Range, destination_: *IndirectCommandBuffer, destinationIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBuffer, ns.Range, *IndirectCommandBuffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyIndirectCommandBuffer_sourceRange_destination_destinationIndex_, source_, sourceRange_, destination_, destinationIndex_);
+                return objc.msgSend(self_, "copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:", void, .{ source_, sourceRange_, destination_, destinationIndex_ });
             }
             pub fn optimizeIndirectCommandBuffer_withRange(self_: *T, indirectCommandBuffer_: *IndirectCommandBuffer, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBuffer, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_optimizeIndirectCommandBuffer_withRange_, indirectCommandBuffer_, range_);
+                return objc.msgSend(self_, "optimizeIndirectCommandBuffer:withRange:", void, .{ indirectCommandBuffer_, range_ });
             }
             pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, *CounterSampleBuffer, ns.UInteger, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCountersInBuffer_atSampleIndex_withBarrier_, sampleBuffer_, sampleIndex_, barrier_);
+                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
             }
             pub fn resolveCounters_inRange_destinationBuffer_destinationOffset(self_: *T, sampleBuffer_: *CounterSampleBuffer, range_: ns.Range, destinationBuffer_: *Buffer, destinationOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *CounterSampleBuffer, ns.Range, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_resolveCounters_inRange_destinationBuffer_destinationOffset_, sampleBuffer_, range_, destinationBuffer_, destinationOffset_);
+                return objc.msgSend(self_, "resolveCounters:inRange:destinationBuffer:destinationOffset:", void, .{ sampleBuffer_, range_, destinationBuffer_, destinationOffset_ });
             }
         };
     }
@@ -2387,22 +2388,22 @@ pub const BlitPassSampleBufferAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CounterSampleBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBuffer);
+                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
             }
             pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*CounterSampleBuffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleBuffer_, sampleBuffer_);
+                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
             }
             pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_startOfEncoderSampleIndex);
+                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStartOfEncoderSampleIndex_, startOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
             }
             pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_endOfEncoderSampleIndex);
+                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEndOfEncoderSampleIndex_, endOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
             }
         };
     }
@@ -2419,10 +2420,10 @@ pub const BlitPassSampleBufferAttachmentDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *BlitPassSampleBufferAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *BlitPassSampleBufferAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *BlitPassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*BlitPassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*BlitPassSampleBufferAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -2440,10 +2441,10 @@ pub const BlitPassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn blitPassDescriptor() *BlitPassDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *BlitPassDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_blitPassDescriptor);
+                return objc.msgSend(T.class(), "blitPassDescriptor", *BlitPassDescriptor, .{});
             }
             pub fn sampleBufferAttachments(self_: *T) *BlitPassSampleBufferAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *BlitPassSampleBufferAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBufferAttachments);
+                return objc.msgSend(self_, "sampleBufferAttachments", *BlitPassSampleBufferAttachmentDescriptorArray, .{});
             }
         };
     }
@@ -2457,31 +2458,31 @@ pub const Buffer = opaque {
             pub usingnamespace Resource.Methods(T);
 
             pub fn contents(self_: *T) *anyopaque {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *anyopaque, @ptrCast(&c.objc_msgSend))(self_, sel_contents);
+                return objc.msgSend(self_, "contents", *anyopaque, .{});
             }
             pub fn didModifyRange(self_: *T, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_didModifyRange_, range_);
+                return objc.msgSend(self_, "didModifyRange:", void, .{range_});
             }
             pub fn newTextureWithDescriptor_offset_bytesPerRow(self_: *T, descriptor_: *TextureDescriptor, offset_: ns.UInteger, bytesPerRow_: ns.UInteger) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor, ns.UInteger, ns.UInteger) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureWithDescriptor_offset_bytesPerRow_, descriptor_, offset_, bytesPerRow_);
+                return objc.msgSend(self_, "newTextureWithDescriptor:offset:bytesPerRow:", ?*Texture, .{ descriptor_, offset_, bytesPerRow_ });
             }
             pub fn addDebugMarker_range(self_: *T, marker_: *ns.String, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addDebugMarker_range_, marker_, range_);
+                return objc.msgSend(self_, "addDebugMarker:range:", void, .{ marker_, range_ });
             }
             pub fn removeAllDebugMarkers(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_removeAllDebugMarkers);
+                return objc.msgSend(self_, "removeAllDebugMarkers", void, .{});
             }
             pub fn newRemoteBufferViewForDevice(self_: *T, device_: *Device) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector, *Device) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newRemoteBufferViewForDevice_, device_);
+                return objc.msgSend(self_, "newRemoteBufferViewForDevice:", ?*Buffer, .{device_});
             }
             pub fn length(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_length);
+                return objc.msgSend(self_, "length", ns.UInteger, .{});
             }
             pub fn remoteStorageBuffer(self_: *T) *Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_remoteStorageBuffer);
+                return objc.msgSend(self_, "remoteStorageBuffer", *Buffer, .{});
             }
             pub fn gpuAddress(self_: *T) u64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u64, @ptrCast(&c.objc_msgSend))(self_, sel_gpuAddress);
+                return objc.msgSend(self_, "gpuAddress", u64, .{});
             }
         };
     }
@@ -2499,22 +2500,22 @@ pub const CaptureDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn captureObject(self_: *T) ?*c.objc_object {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*c.objc_object, @ptrCast(&c.objc_msgSend))(self_, sel_captureObject);
+                return objc.msgSend(self_, "captureObject", ?*c.objc_object, .{});
             }
             pub fn setCaptureObject(self_: *T, captureObject_: ?*c.objc_object) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*c.objc_object) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCaptureObject_, captureObject_);
+                return objc.msgSend(self_, "setCaptureObject:", void, .{captureObject_});
             }
             pub fn destination(self_: *T) CaptureDestination {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CaptureDestination, @ptrCast(&c.objc_msgSend))(self_, sel_destination);
+                return objc.msgSend(self_, "destination", CaptureDestination, .{});
             }
             pub fn setDestination(self_: *T, destination_: CaptureDestination) void {
-                return @as(*const fn (*T, *c.objc_selector, CaptureDestination) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDestination_, destination_);
+                return objc.msgSend(self_, "setDestination:", void, .{destination_});
             }
             pub fn outputURL(self_: *T) ?*ns.URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.URL, @ptrCast(&c.objc_msgSend))(self_, sel_outputURL);
+                return objc.msgSend(self_, "outputURL", ?*ns.URL, .{});
             }
             pub fn setOutputURL(self_: *T, outputURL_: ?*ns.URL) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.URL) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOutputURL_, outputURL_);
+                return objc.msgSend(self_, "setOutputURL:", void, .{outputURL_});
             }
         };
     }
@@ -2531,40 +2532,40 @@ pub const CaptureManager = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn sharedCaptureManager() *CaptureManager {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *CaptureManager, @ptrCast(&c.objc_msgSend))(T.class(), sel_sharedCaptureManager);
+                return objc.msgSend(T.class(), "sharedCaptureManager", *CaptureManager, .{});
             }
             pub fn newCaptureScopeWithDevice(self_: *T, device_: *Device) *CaptureScope {
-                return @as(*const fn (*T, *c.objc_selector, *Device) callconv(.C) *CaptureScope, @ptrCast(&c.objc_msgSend))(self_, sel_newCaptureScopeWithDevice_, device_);
+                return objc.msgSend(self_, "newCaptureScopeWithDevice:", *CaptureScope, .{device_});
             }
             pub fn newCaptureScopeWithCommandQueue(self_: *T, commandQueue_: *CommandQueue) *CaptureScope {
-                return @as(*const fn (*T, *c.objc_selector, *CommandQueue) callconv(.C) *CaptureScope, @ptrCast(&c.objc_msgSend))(self_, sel_newCaptureScopeWithCommandQueue_, commandQueue_);
+                return objc.msgSend(self_, "newCaptureScopeWithCommandQueue:", *CaptureScope, .{commandQueue_});
             }
             pub fn supportsDestination(self_: *T, destination_: CaptureDestination) bool {
-                return @as(*const fn (*T, *c.objc_selector, CaptureDestination) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsDestination_, destination_);
+                return objc.msgSend(self_, "supportsDestination:", bool, .{destination_});
             }
             pub fn startCaptureWithDescriptor_error(self_: *T, descriptor_: *CaptureDescriptor, error_: ?*?*ns.Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *CaptureDescriptor, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_startCaptureWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "startCaptureWithDescriptor:error:", bool, .{ descriptor_, error_ });
             }
             pub fn startCaptureWithDevice(self_: *T, device_: *Device) void {
-                return @as(*const fn (*T, *c.objc_selector, *Device) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_startCaptureWithDevice_, device_);
+                return objc.msgSend(self_, "startCaptureWithDevice:", void, .{device_});
             }
             pub fn startCaptureWithCommandQueue(self_: *T, commandQueue_: *CommandQueue) void {
-                return @as(*const fn (*T, *c.objc_selector, *CommandQueue) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_startCaptureWithCommandQueue_, commandQueue_);
+                return objc.msgSend(self_, "startCaptureWithCommandQueue:", void, .{commandQueue_});
             }
             pub fn startCaptureWithScope(self_: *T, captureScope_: *CaptureScope) void {
-                return @as(*const fn (*T, *c.objc_selector, *CaptureScope) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_startCaptureWithScope_, captureScope_);
+                return objc.msgSend(self_, "startCaptureWithScope:", void, .{captureScope_});
             }
             pub fn stopCapture(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_stopCapture);
+                return objc.msgSend(self_, "stopCapture", void, .{});
             }
             pub fn defaultCaptureScope(self_: *T) ?*CaptureScope {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CaptureScope, @ptrCast(&c.objc_msgSend))(self_, sel_defaultCaptureScope);
+                return objc.msgSend(self_, "defaultCaptureScope", ?*CaptureScope, .{});
             }
             pub fn setDefaultCaptureScope(self_: *T, defaultCaptureScope_: ?*CaptureScope) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*CaptureScope) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDefaultCaptureScope_, defaultCaptureScope_);
+                return objc.msgSend(self_, "setDefaultCaptureScope:", void, .{defaultCaptureScope_});
             }
             pub fn isCapturing(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isCapturing);
+                return objc.msgSend(self_, "isCapturing", bool, .{});
             }
         };
     }
@@ -2578,22 +2579,22 @@ pub const CaptureScope = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn beginScope(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_beginScope);
+                return objc.msgSend(self_, "beginScope", void, .{});
             }
             pub fn endScope(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_endScope);
+                return objc.msgSend(self_, "endScope", void, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn commandQueue(self_: *T) ?*CommandQueue {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CommandQueue, @ptrCast(&c.objc_msgSend))(self_, sel_commandQueue);
+                return objc.msgSend(self_, "commandQueue", ?*CommandQueue, .{});
             }
         };
     }
@@ -2611,16 +2612,16 @@ pub const CommandBufferDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn retainedReferences(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_retainedReferences);
+                return objc.msgSend(self_, "retainedReferences", bool, .{});
             }
             pub fn setRetainedReferences(self_: *T, retainedReferences_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRetainedReferences_, retainedReferences_);
+                return objc.msgSend(self_, "setRetainedReferences:", void, .{retainedReferences_});
             }
             pub fn errorOptions(self_: *T) CommandBufferErrorOption {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CommandBufferErrorOption, @ptrCast(&c.objc_msgSend))(self_, sel_errorOptions);
+                return objc.msgSend(self_, "errorOptions", CommandBufferErrorOption, .{});
             }
             pub fn setErrorOptions(self_: *T, errorOptions_: CommandBufferErrorOption) void {
-                return @as(*const fn (*T, *c.objc_selector, CommandBufferErrorOption) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setErrorOptions_, errorOptions_);
+                return objc.msgSend(self_, "setErrorOptions:", void, .{errorOptions_});
             }
         };
     }
@@ -2634,13 +2635,13 @@ pub const CommandBufferEncoderInfo = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn label(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", *ns.String, .{});
             }
             pub fn debugSignposts(self_: *T) *ns.Array(*ns.String) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*ns.String), @ptrCast(&c.objc_msgSend))(self_, sel_debugSignposts);
+                return objc.msgSend(self_, "debugSignposts", *ns.Array(*ns.String), .{});
             }
             pub fn errorState(self_: *T) CommandEncoderErrorState {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CommandEncoderErrorState, @ptrCast(&c.objc_msgSend))(self_, sel_errorState);
+                return objc.msgSend(self_, "errorState", CommandEncoderErrorState, .{});
             }
         };
     }
@@ -2654,115 +2655,115 @@ pub const CommandBuffer = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn enqueue(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enqueue);
+                return objc.msgSend(self_, "enqueue", void, .{});
             }
             pub fn commit(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_commit);
+                return objc.msgSend(self_, "commit", void, .{});
             }
             pub fn addScheduledHandler(self_: *T, block_: *ns.Block(fn (*CommandBuffer) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addScheduledHandler_, block_);
+                return objc.msgSend(self_, "addScheduledHandler:", void, .{block_});
             }
             pub fn presentDrawable(self_: *T, drawable_: *Drawable) void {
-                return @as(*const fn (*T, *c.objc_selector, *Drawable) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_presentDrawable_, drawable_);
+                return objc.msgSend(self_, "presentDrawable:", void, .{drawable_});
             }
             pub fn presentDrawable_atTime(self_: *T, drawable_: *Drawable, presentationTime_: cf.TimeInterval) void {
-                return @as(*const fn (*T, *c.objc_selector, *Drawable, cf.TimeInterval) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_presentDrawable_atTime_, drawable_, presentationTime_);
+                return objc.msgSend(self_, "presentDrawable:atTime:", void, .{ drawable_, presentationTime_ });
             }
             pub fn presentDrawable_afterMinimumDuration(self_: *T, drawable_: *Drawable, duration_: cf.TimeInterval) void {
-                return @as(*const fn (*T, *c.objc_selector, *Drawable, cf.TimeInterval) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_presentDrawable_afterMinimumDuration_, drawable_, duration_);
+                return objc.msgSend(self_, "presentDrawable:afterMinimumDuration:", void, .{ drawable_, duration_ });
             }
             pub fn waitUntilScheduled(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitUntilScheduled);
+                return objc.msgSend(self_, "waitUntilScheduled", void, .{});
             }
             pub fn addCompletedHandler(self_: *T, block_: *ns.Block(fn (*CommandBuffer) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addCompletedHandler_, block_);
+                return objc.msgSend(self_, "addCompletedHandler:", void, .{block_});
             }
             pub fn waitUntilCompleted(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitUntilCompleted);
+                return objc.msgSend(self_, "waitUntilCompleted", void, .{});
             }
             pub fn blitCommandEncoder(self_: *T) ?*BlitCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*BlitCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_blitCommandEncoder);
+                return objc.msgSend(self_, "blitCommandEncoder", ?*BlitCommandEncoder, .{});
             }
             pub fn renderCommandEncoderWithDescriptor(self_: *T, renderPassDescriptor_: *RenderPassDescriptor) ?*RenderCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPassDescriptor) callconv(.C) ?*RenderCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_renderCommandEncoderWithDescriptor_, renderPassDescriptor_);
+                return objc.msgSend(self_, "renderCommandEncoderWithDescriptor:", ?*RenderCommandEncoder, .{renderPassDescriptor_});
             }
             pub fn computeCommandEncoderWithDescriptor(self_: *T, computePassDescriptor_: *ComputePassDescriptor) ?*ComputeCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *ComputePassDescriptor) callconv(.C) ?*ComputeCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_computeCommandEncoderWithDescriptor_, computePassDescriptor_);
+                return objc.msgSend(self_, "computeCommandEncoderWithDescriptor:", ?*ComputeCommandEncoder, .{computePassDescriptor_});
             }
             pub fn blitCommandEncoderWithDescriptor(self_: *T, blitPassDescriptor_: *BlitPassDescriptor) ?*BlitCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *BlitPassDescriptor) callconv(.C) ?*BlitCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_blitCommandEncoderWithDescriptor_, blitPassDescriptor_);
+                return objc.msgSend(self_, "blitCommandEncoderWithDescriptor:", ?*BlitCommandEncoder, .{blitPassDescriptor_});
             }
             pub fn computeCommandEncoder(self_: *T) ?*ComputeCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ComputeCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_computeCommandEncoder);
+                return objc.msgSend(self_, "computeCommandEncoder", ?*ComputeCommandEncoder, .{});
             }
             pub fn computeCommandEncoderWithDispatchType(self_: *T, dispatchType_: DispatchType) ?*ComputeCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector, DispatchType) callconv(.C) ?*ComputeCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_computeCommandEncoderWithDispatchType_, dispatchType_);
+                return objc.msgSend(self_, "computeCommandEncoderWithDispatchType:", ?*ComputeCommandEncoder, .{dispatchType_});
             }
             pub fn encodeWaitForEvent_value(self_: *T, event_: *Event, value_: u64) void {
-                return @as(*const fn (*T, *c.objc_selector, *Event, u64) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_encodeWaitForEvent_value_, event_, value_);
+                return objc.msgSend(self_, "encodeWaitForEvent:value:", void, .{ event_, value_ });
             }
             pub fn encodeSignalEvent_value(self_: *T, event_: *Event, value_: u64) void {
-                return @as(*const fn (*T, *c.objc_selector, *Event, u64) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_encodeSignalEvent_value_, event_, value_);
+                return objc.msgSend(self_, "encodeSignalEvent:value:", void, .{ event_, value_ });
             }
             pub fn parallelRenderCommandEncoderWithDescriptor(self_: *T, renderPassDescriptor_: *RenderPassDescriptor) ?*ParallelRenderCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPassDescriptor) callconv(.C) ?*ParallelRenderCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_parallelRenderCommandEncoderWithDescriptor_, renderPassDescriptor_);
+                return objc.msgSend(self_, "parallelRenderCommandEncoderWithDescriptor:", ?*ParallelRenderCommandEncoder, .{renderPassDescriptor_});
             }
             pub fn resourceStateCommandEncoder(self_: *T) ?*ResourceStateCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ResourceStateCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_resourceStateCommandEncoder);
+                return objc.msgSend(self_, "resourceStateCommandEncoder", ?*ResourceStateCommandEncoder, .{});
             }
             pub fn resourceStateCommandEncoderWithDescriptor(self_: *T, resourceStatePassDescriptor_: *ResourceStatePassDescriptor) ?*ResourceStateCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *ResourceStatePassDescriptor) callconv(.C) ?*ResourceStateCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_resourceStateCommandEncoderWithDescriptor_, resourceStatePassDescriptor_);
+                return objc.msgSend(self_, "resourceStateCommandEncoderWithDescriptor:", ?*ResourceStateCommandEncoder, .{resourceStatePassDescriptor_});
             }
             pub fn accelerationStructureCommandEncoder(self_: *T) ?*AccelerationStructureCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*AccelerationStructureCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_accelerationStructureCommandEncoder);
+                return objc.msgSend(self_, "accelerationStructureCommandEncoder", ?*AccelerationStructureCommandEncoder, .{});
             }
             pub fn accelerationStructureCommandEncoderWithDescriptor(self_: *T, descriptor_: *AccelerationStructurePassDescriptor) *AccelerationStructureCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructurePassDescriptor) callconv(.C) *AccelerationStructureCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_accelerationStructureCommandEncoderWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "accelerationStructureCommandEncoderWithDescriptor:", *AccelerationStructureCommandEncoder, .{descriptor_});
             }
             pub fn pushDebugGroup(self_: *T, string_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_pushDebugGroup_, string_);
+                return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
             }
             pub fn popDebugGroup(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_popDebugGroup);
+                return objc.msgSend(self_, "popDebugGroup", void, .{});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn commandQueue(self_: *T) *CommandQueue {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *CommandQueue, @ptrCast(&c.objc_msgSend))(self_, sel_commandQueue);
+                return objc.msgSend(self_, "commandQueue", *CommandQueue, .{});
             }
             pub fn retainedReferences(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_retainedReferences);
+                return objc.msgSend(self_, "retainedReferences", bool, .{});
             }
             pub fn errorOptions(self_: *T) CommandBufferErrorOption {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CommandBufferErrorOption, @ptrCast(&c.objc_msgSend))(self_, sel_errorOptions);
+                return objc.msgSend(self_, "errorOptions", CommandBufferErrorOption, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn kernelStartTime(self_: *T) cf.TimeInterval {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) cf.TimeInterval, @ptrCast(&c.objc_msgSend))(self_, sel_kernelStartTime);
+                return objc.msgSend(self_, "kernelStartTime", cf.TimeInterval, .{});
             }
             pub fn kernelEndTime(self_: *T) cf.TimeInterval {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) cf.TimeInterval, @ptrCast(&c.objc_msgSend))(self_, sel_kernelEndTime);
+                return objc.msgSend(self_, "kernelEndTime", cf.TimeInterval, .{});
             }
             pub fn logs(self_: *T) *LogContainer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LogContainer, @ptrCast(&c.objc_msgSend))(self_, sel_logs);
+                return objc.msgSend(self_, "logs", *LogContainer, .{});
             }
             pub fn GPUStartTime(self_: *T) cf.TimeInterval {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) cf.TimeInterval, @ptrCast(&c.objc_msgSend))(self_, sel_GPUStartTime);
+                return objc.msgSend(self_, "GPUStartTime", cf.TimeInterval, .{});
             }
             pub fn GPUEndTime(self_: *T) cf.TimeInterval {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) cf.TimeInterval, @ptrCast(&c.objc_msgSend))(self_, sel_GPUEndTime);
+                return objc.msgSend(self_, "GPUEndTime", cf.TimeInterval, .{});
             }
             pub fn status(self_: *T) CommandBufferStatus {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CommandBufferStatus, @ptrCast(&c.objc_msgSend))(self_, sel_status);
+                return objc.msgSend(self_, "status", CommandBufferStatus, .{});
             }
             pub fn @"error"(self_: *T) ?*ns.Error {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Error, @ptrCast(&c.objc_msgSend))(self_, sel_error);
+                return objc.msgSend(self_, "error", ?*ns.Error, .{});
             }
         };
     }
@@ -2776,25 +2777,25 @@ pub const CommandEncoder = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn endEncoding(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_endEncoding);
+                return objc.msgSend(self_, "endEncoding", void, .{});
             }
             pub fn insertDebugSignpost(self_: *T, string_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_insertDebugSignpost_, string_);
+                return objc.msgSend(self_, "insertDebugSignpost:", void, .{string_});
             }
             pub fn pushDebugGroup(self_: *T, string_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_pushDebugGroup_, string_);
+                return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
             }
             pub fn popDebugGroup(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_popDebugGroup);
+                return objc.msgSend(self_, "popDebugGroup", void, .{});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
         };
     }
@@ -2808,25 +2809,25 @@ pub const CommandQueue = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn commandBuffer(self_: *T) ?*CommandBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CommandBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_commandBuffer);
+                return objc.msgSend(self_, "commandBuffer", ?*CommandBuffer, .{});
             }
             pub fn commandBufferWithDescriptor(self_: *T, descriptor_: *CommandBufferDescriptor) ?*CommandBuffer {
-                return @as(*const fn (*T, *c.objc_selector, *CommandBufferDescriptor) callconv(.C) ?*CommandBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_commandBufferWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "commandBufferWithDescriptor:", ?*CommandBuffer, .{descriptor_});
             }
             pub fn commandBufferWithUnretainedReferences(self_: *T) ?*CommandBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CommandBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_commandBufferWithUnretainedReferences);
+                return objc.msgSend(self_, "commandBufferWithUnretainedReferences", ?*CommandBuffer, .{});
             }
             pub fn insertDebugCaptureBoundary(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_insertDebugCaptureBoundary);
+                return objc.msgSend(self_, "insertDebugCaptureBoundary", void, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
         };
     }
@@ -2840,121 +2841,121 @@ pub const ComputeCommandEncoder = opaque {
             pub usingnamespace CommandEncoder.Methods(T);
 
             pub fn setComputePipelineState(self_: *T, state_: *ComputePipelineState) void {
-                return @as(*const fn (*T, *c.objc_selector, *ComputePipelineState) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setComputePipelineState_, state_);
+                return objc.msgSend(self_, "setComputePipelineState:", void, .{state_});
             }
             pub fn setBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBytes_length_atIndex_, bytes_, length_, index_);
+                return objc.msgSend(self_, "setBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
             }
             pub fn setBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBufferOffset_atIndex_, offset_, index_);
+                return objc.msgSend(self_, "setBufferOffset:atIndex:", void, .{ offset_, index_ });
             }
             pub fn setBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
+                return objc.msgSend(self_, "setBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
             }
             pub fn setBuffers_offsets_attributeStrides_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffers_offsets_attributeStrides_withRange_, buffers_, offsets_, strides_, range_);
+                return objc.msgSend(self_, "setBuffers:offsets:attributeStrides:withRange:", void, .{ buffers_, offsets_, strides_, range_ });
             }
             pub fn setBufferOffset_attributeStride_atIndex(self_: *T, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBufferOffset_attributeStride_atIndex_, offset_, stride_, index_);
+                return objc.msgSend(self_, "setBufferOffset:attributeStride:atIndex:", void, .{ offset_, stride_, index_ });
             }
             pub fn setBytes_length_attributeStride_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBytes_length_attributeStride_atIndex_, bytes_, length_, stride_, index_);
+                return objc.msgSend(self_, "setBytes:length:attributeStride:atIndex:", void, .{ bytes_, length_, stride_, index_ });
             }
             pub fn setVisibleFunctionTable_atBufferIndex(self_: *T, visibleFunctionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTable_atBufferIndex_, visibleFunctionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setVisibleFunctionTable:atBufferIndex:", void, .{ visibleFunctionTable_, bufferIndex_ });
             }
             pub fn setVisibleFunctionTables_withBufferRange(self_: *T, visibleFunctionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const VisibleFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTables_withBufferRange_, visibleFunctionTables_, range_);
+                return objc.msgSend(self_, "setVisibleFunctionTables:withBufferRange:", void, .{ visibleFunctionTables_, range_ });
             }
             pub fn setIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*IntersectionFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIntersectionFunctionTable_atBufferIndex_, intersectionFunctionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
             }
             pub fn setIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const IntersectionFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIntersectionFunctionTables_withBufferRange_, intersectionFunctionTables_, range_);
+                return objc.msgSend(self_, "setIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
             }
             pub fn setAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*AccelerationStructure, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAccelerationStructure_atBufferIndex_, accelerationStructure_, bufferIndex_);
+                return objc.msgSend(self_, "setAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
             }
             pub fn setTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTexture_atIndex_, texture_, index_);
+                return objc.msgSend(self_, "setTexture:atIndex:", void, .{ texture_, index_ });
             }
             pub fn setTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Texture, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTextures_withRange_, textures_, range_);
+                return objc.msgSend(self_, "setTextures:withRange:", void, .{ textures_, range_ });
             }
             pub fn setSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSamplerState_atIndex_, sampler_, index_);
+                return objc.msgSend(self_, "setSamplerState:atIndex:", void, .{ sampler_, index_ });
             }
             pub fn setSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSamplerStates_withRange_, samplers_, range_);
+                return objc.msgSend(self_, "setSamplerStates:withRange:", void, .{ samplers_, range_ });
             }
             pub fn setSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, f32, f32, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSamplerState_lodMinClamp_lodMaxClamp_atIndex_, sampler_, lodMinClamp_, lodMaxClamp_, index_);
+                return objc.msgSend(self_, "setSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
             }
             pub fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, *const f32, *const f32, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSamplerStates_lodMinClamps_lodMaxClamps_withRange_, samplers_, lodMinClamps_, lodMaxClamps_, range_);
+                return objc.msgSend(self_, "setSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
             }
             pub fn setThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setThreadgroupMemoryLength_atIndex_, length_, index_);
+                return objc.msgSend(self_, "setThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
             }
             pub fn setImageblockWidth_height(self_: *T, width_: ns.UInteger, height_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setImageblockWidth_height_, width_, height_);
+                return objc.msgSend(self_, "setImageblockWidth:height:", void, .{ width_, height_ });
             }
             pub fn setStageInRegion(self_: *T, region_: Region) void {
-                return @as(*const fn (*T, *c.objc_selector, Region) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStageInRegion_, region_);
+                return objc.msgSend(self_, "setStageInRegion:", void, .{region_});
             }
             pub fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(self_: *T, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStageInRegionWithIndirectBuffer_indirectBufferOffset_, indirectBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "setStageInRegionWithIndirectBuffer:indirectBufferOffset:", void, .{ indirectBuffer_, indirectBufferOffset_ });
             }
             pub fn dispatchThreadgroups_threadsPerThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_dispatchThreadgroups_threadsPerThreadgroup_, threadgroupsPerGrid_, threadsPerThreadgroup_);
+                return objc.msgSend(self_, "dispatchThreadgroups:threadsPerThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerThreadgroup_ });
             }
             pub fn dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup(self_: *T, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger, threadsPerThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup_, indirectBuffer_, indirectBufferOffset_, threadsPerThreadgroup_);
+                return objc.msgSend(self_, "dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:", void, .{ indirectBuffer_, indirectBufferOffset_, threadsPerThreadgroup_ });
             }
             pub fn dispatchThreads_threadsPerThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_dispatchThreads_threadsPerThreadgroup_, threadsPerGrid_, threadsPerThreadgroup_);
+                return objc.msgSend(self_, "dispatchThreads:threadsPerThreadgroup:", void, .{ threadsPerGrid_, threadsPerThreadgroup_ });
             }
             pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateFence_, fence_);
+                return objc.msgSend(self_, "updateFence:", void, .{fence_});
             }
             pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitForFence_, fence_);
+                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
             }
             pub fn useResource_usage(self_: *T, resource_: *Resource, usage_: ResourceUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, *Resource, ResourceUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResource_usage_, resource_, usage_);
+                return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
             }
             pub fn useResources_count_usage(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Resource, ns.UInteger, ResourceUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResources_count_usage_, resources_, count_, usage_);
+                return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
             }
             pub fn useHeap(self_: *T, heap_: *Heap) void {
-                return @as(*const fn (*T, *c.objc_selector, *Heap) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeap_, heap_);
+                return objc.msgSend(self_, "useHeap:", void, .{heap_});
             }
             pub fn useHeaps_count(self_: *T, heaps_: **const Heap, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Heap, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeaps_count_, heaps_, count_);
+                return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
             }
             pub fn executeCommandsInBuffer_withRange(self_: *T, indirectCommandBuffer_: *IndirectCommandBuffer, executionRange_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBuffer, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_executeCommandsInBuffer_withRange_, indirectCommandBuffer_, executionRange_);
+                return objc.msgSend(self_, "executeCommandsInBuffer:withRange:", void, .{ indirectCommandBuffer_, executionRange_ });
             }
             pub fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(self_: *T, indirectCommandbuffer_: *IndirectCommandBuffer, indirectRangeBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBuffer, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_executeCommandsInBuffer_indirectBuffer_indirectBufferOffset_, indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", void, .{ indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_ });
             }
             pub fn memoryBarrierWithScope(self_: *T, scope_: BarrierScope) void {
-                return @as(*const fn (*T, *c.objc_selector, BarrierScope) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_memoryBarrierWithScope_, scope_);
+                return objc.msgSend(self_, "memoryBarrierWithScope:", void, .{scope_});
             }
             pub fn memoryBarrierWithResources_count(self_: *T, resources_: **const Resource, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Resource, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_memoryBarrierWithResources_count_, resources_, count_);
+                return objc.msgSend(self_, "memoryBarrierWithResources:count:", void, .{ resources_, count_ });
             }
             pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, *CounterSampleBuffer, ns.UInteger, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCountersInBuffer_atSampleIndex_withBarrier_, sampleBuffer_, sampleIndex_, barrier_);
+                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
             }
             pub fn dispatchType(self_: *T) DispatchType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DispatchType, @ptrCast(&c.objc_msgSend))(self_, sel_dispatchType);
+                return objc.msgSend(self_, "dispatchType", DispatchType, .{});
             }
         };
     }
@@ -2972,22 +2973,22 @@ pub const ComputePassSampleBufferAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CounterSampleBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBuffer);
+                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
             }
             pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*CounterSampleBuffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleBuffer_, sampleBuffer_);
+                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
             }
             pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_startOfEncoderSampleIndex);
+                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStartOfEncoderSampleIndex_, startOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
             }
             pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_endOfEncoderSampleIndex);
+                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEndOfEncoderSampleIndex_, endOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
             }
         };
     }
@@ -3004,10 +3005,10 @@ pub const ComputePassSampleBufferAttachmentDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *ComputePassSampleBufferAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *ComputePassSampleBufferAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *ComputePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*ComputePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ComputePassSampleBufferAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -3025,16 +3026,16 @@ pub const ComputePassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn computePassDescriptor() *ComputePassDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *ComputePassDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_computePassDescriptor);
+                return objc.msgSend(T.class(), "computePassDescriptor", *ComputePassDescriptor, .{});
             }
             pub fn dispatchType(self_: *T) DispatchType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DispatchType, @ptrCast(&c.objc_msgSend))(self_, sel_dispatchType);
+                return objc.msgSend(self_, "dispatchType", DispatchType, .{});
             }
             pub fn setDispatchType(self_: *T, dispatchType_: DispatchType) void {
-                return @as(*const fn (*T, *c.objc_selector, DispatchType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDispatchType_, dispatchType_);
+                return objc.msgSend(self_, "setDispatchType:", void, .{dispatchType_});
             }
             pub fn sampleBufferAttachments(self_: *T) *ComputePassSampleBufferAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ComputePassSampleBufferAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBufferAttachments);
+                return objc.msgSend(self_, "sampleBufferAttachments", *ComputePassSampleBufferAttachmentDescriptorArray, .{});
             }
         };
     }
@@ -3051,10 +3052,10 @@ pub const ComputePipelineReflection = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn bindings(self_: *T) *ns.Array(*Binding) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Binding), @ptrCast(&c.objc_msgSend))(self_, sel_bindings);
+                return objc.msgSend(self_, "bindings", *ns.Array(*Binding), .{});
             }
             pub fn arguments(self_: *T) *ns.Array(*Argument) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Argument), @ptrCast(&c.objc_msgSend))(self_, sel_arguments);
+                return objc.msgSend(self_, "arguments", *ns.Array(*Argument), .{});
             }
         };
     }
@@ -3072,82 +3073,82 @@ pub const ComputePipelineDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn computeFunction(self_: *T) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_computeFunction);
+                return objc.msgSend(self_, "computeFunction", ?*Function, .{});
             }
             pub fn setComputeFunction(self_: *T, computeFunction_: ?*Function) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Function) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setComputeFunction_, computeFunction_);
+                return objc.msgSend(self_, "setComputeFunction:", void, .{computeFunction_});
             }
             pub fn threadGroupSizeIsMultipleOfThreadExecutionWidth(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_threadGroupSizeIsMultipleOfThreadExecutionWidth);
+                return objc.msgSend(self_, "threadGroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
             }
             pub fn setThreadGroupSizeIsMultipleOfThreadExecutionWidth(self_: *T, threadGroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setThreadGroupSizeIsMultipleOfThreadExecutionWidth_, threadGroupSizeIsMultipleOfThreadExecutionWidth_);
+                return objc.msgSend(self_, "setThreadGroupSizeIsMultipleOfThreadExecutionWidth:", void, .{threadGroupSizeIsMultipleOfThreadExecutionWidth_});
             }
             pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
             }
             pub fn setMaxTotalThreadsPerThreadgroup(self_: *T, maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTotalThreadsPerThreadgroup_, maxTotalThreadsPerThreadgroup_);
+                return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
             }
             pub fn stageInputDescriptor(self_: *T) ?*StageInputOutputDescriptor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*StageInputOutputDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_stageInputDescriptor);
+                return objc.msgSend(self_, "stageInputDescriptor", ?*StageInputOutputDescriptor, .{});
             }
             pub fn setStageInputDescriptor(self_: *T, stageInputDescriptor_: ?*StageInputOutputDescriptor) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*StageInputOutputDescriptor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStageInputDescriptor_, stageInputDescriptor_);
+                return objc.msgSend(self_, "setStageInputDescriptor:", void, .{stageInputDescriptor_});
             }
             pub fn buffers(self_: *T) *PipelineBufferDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *PipelineBufferDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_buffers);
+                return objc.msgSend(self_, "buffers", *PipelineBufferDescriptorArray, .{});
             }
             pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportIndirectCommandBuffers);
+                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
             }
             pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportIndirectCommandBuffers_, supportIndirectCommandBuffers_);
+                return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
             }
             pub fn insertLibraries(self_: *T) ?*ns.Array(*DynamicLibrary) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*DynamicLibrary), @ptrCast(&c.objc_msgSend))(self_, sel_insertLibraries);
+                return objc.msgSend(self_, "insertLibraries", ?*ns.Array(*DynamicLibrary), .{});
             }
             pub fn setInsertLibraries(self_: *T, insertLibraries_: ?*ns.Array(*DynamicLibrary)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*DynamicLibrary)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInsertLibraries_, insertLibraries_);
+                return objc.msgSend(self_, "setInsertLibraries:", void, .{insertLibraries_});
             }
             pub fn preloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*DynamicLibrary), @ptrCast(&c.objc_msgSend))(self_, sel_preloadedLibraries);
+                return objc.msgSend(self_, "preloadedLibraries", *ns.Array(*DynamicLibrary), .{});
             }
             pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*DynamicLibrary)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreloadedLibraries_, preloadedLibraries_);
+                return objc.msgSend(self_, "setPreloadedLibraries:", void, .{preloadedLibraries_});
             }
             pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*BinaryArchive), @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
             }
             pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*BinaryArchive)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
             }
             pub fn linkedFunctions(self_: *T) ?*LinkedFunctions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_linkedFunctions);
+                return objc.msgSend(self_, "linkedFunctions", ?*LinkedFunctions, .{});
             }
             pub fn setLinkedFunctions(self_: *T, linkedFunctions_: ?*LinkedFunctions) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLinkedFunctions_, linkedFunctions_);
+                return objc.msgSend(self_, "setLinkedFunctions:", void, .{linkedFunctions_});
             }
             pub fn supportAddingBinaryFunctions(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportAddingBinaryFunctions);
+                return objc.msgSend(self_, "supportAddingBinaryFunctions", bool, .{});
             }
             pub fn setSupportAddingBinaryFunctions(self_: *T, supportAddingBinaryFunctions_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportAddingBinaryFunctions_, supportAddingBinaryFunctions_);
+                return objc.msgSend(self_, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions_});
             }
             pub fn maxCallStackDepth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxCallStackDepth);
+                return objc.msgSend(self_, "maxCallStackDepth", ns.UInteger, .{});
             }
             pub fn setMaxCallStackDepth(self_: *T, maxCallStackDepth_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxCallStackDepth_, maxCallStackDepth_);
+                return objc.msgSend(self_, "setMaxCallStackDepth:", void, .{maxCallStackDepth_});
             }
         };
     }
@@ -3161,40 +3162,40 @@ pub const ComputePipelineState = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn imageblockMemoryLengthForDimensions(self_: *T, imageblockDimensions_: Size) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector, Size) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_imageblockMemoryLengthForDimensions_, imageblockDimensions_);
+                return objc.msgSend(self_, "imageblockMemoryLengthForDimensions:", ns.UInteger, .{imageblockDimensions_});
             }
             pub fn functionHandleWithFunction(self_: *T, function_: *Function) ?*FunctionHandle {
-                return @as(*const fn (*T, *c.objc_selector, *Function) callconv(.C) ?*FunctionHandle, @ptrCast(&c.objc_msgSend))(self_, sel_functionHandleWithFunction_, function_);
+                return objc.msgSend(self_, "functionHandleWithFunction:", ?*FunctionHandle, .{function_});
             }
             pub fn newComputePipelineStateWithAdditionalBinaryFunctions_error(self_: *T, functions_: *ns.Array(*Function), error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*Function), ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithAdditionalBinaryFunctions_error_, functions_, error_);
+                return objc.msgSend(self_, "newComputePipelineStateWithAdditionalBinaryFunctions:error:", ?*ComputePipelineState, .{ functions_, error_ });
             }
             pub fn newVisibleFunctionTableWithDescriptor(self_: *T, descriptor_: *VisibleFunctionTableDescriptor) ?*VisibleFunctionTable {
-                return @as(*const fn (*T, *c.objc_selector, *VisibleFunctionTableDescriptor) callconv(.C) ?*VisibleFunctionTable, @ptrCast(&c.objc_msgSend))(self_, sel_newVisibleFunctionTableWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newVisibleFunctionTableWithDescriptor:", ?*VisibleFunctionTable, .{descriptor_});
             }
             pub fn newIntersectionFunctionTableWithDescriptor(self_: *T, descriptor_: *IntersectionFunctionTableDescriptor) ?*IntersectionFunctionTable {
-                return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionTableDescriptor) callconv(.C) ?*IntersectionFunctionTable, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionTableWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newIntersectionFunctionTableWithDescriptor:", ?*IntersectionFunctionTable, .{descriptor_});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
             }
             pub fn threadExecutionWidth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_threadExecutionWidth);
+                return objc.msgSend(self_, "threadExecutionWidth", ns.UInteger, .{});
             }
             pub fn staticThreadgroupMemoryLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_staticThreadgroupMemoryLength);
+                return objc.msgSend(self_, "staticThreadgroupMemoryLength", ns.UInteger, .{});
             }
             pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportIndirectCommandBuffers);
+                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
         };
     }
@@ -3208,7 +3209,7 @@ pub const Counter = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
         };
     }
@@ -3222,10 +3223,10 @@ pub const CounterSet = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn counters(self_: *T) *ns.Array(*Counter) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Counter), @ptrCast(&c.objc_msgSend))(self_, sel_counters);
+                return objc.msgSend(self_, "counters", *ns.Array(*Counter), .{});
             }
         };
     }
@@ -3243,28 +3244,28 @@ pub const CounterSampleBufferDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn counterSet(self_: *T) ?*CounterSet {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CounterSet, @ptrCast(&c.objc_msgSend))(self_, sel_counterSet);
+                return objc.msgSend(self_, "counterSet", ?*CounterSet, .{});
             }
             pub fn setCounterSet(self_: *T, counterSet_: ?*CounterSet) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*CounterSet) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCounterSet_, counterSet_);
+                return objc.msgSend(self_, "setCounterSet:", void, .{counterSet_});
             }
             pub fn label(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", *ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn storageMode(self_: *T) StorageMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StorageMode, @ptrCast(&c.objc_msgSend))(self_, sel_storageMode);
+                return objc.msgSend(self_, "storageMode", StorageMode, .{});
             }
             pub fn setStorageMode(self_: *T, storageMode_: StorageMode) void {
-                return @as(*const fn (*T, *c.objc_selector, StorageMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStorageMode_, storageMode_);
+                return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
             }
             pub fn sampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCount);
+                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
             }
             pub fn setSampleCount(self_: *T, sampleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleCount_, sampleCount_);
+                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
             }
         };
     }
@@ -3278,16 +3279,16 @@ pub const CounterSampleBuffer = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn resolveCounterRange(self_: *T, range_: ns.Range) ?*ns.Data {
-                return @as(*const fn (*T, *c.objc_selector, ns.Range) callconv(.C) ?*ns.Data, @ptrCast(&c.objc_msgSend))(self_, sel_resolveCounterRange_, range_);
+                return objc.msgSend(self_, "resolveCounterRange:", ?*ns.Data, .{range_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn label(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", *ns.String, .{});
             }
             pub fn sampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCount);
+                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
             }
         };
     }
@@ -3305,40 +3306,40 @@ pub const StencilDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn stencilCompareFunction(self_: *T) CompareFunction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CompareFunction, @ptrCast(&c.objc_msgSend))(self_, sel_stencilCompareFunction);
+                return objc.msgSend(self_, "stencilCompareFunction", CompareFunction, .{});
             }
             pub fn setStencilCompareFunction(self_: *T, stencilCompareFunction_: CompareFunction) void {
-                return @as(*const fn (*T, *c.objc_selector, CompareFunction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilCompareFunction_, stencilCompareFunction_);
+                return objc.msgSend(self_, "setStencilCompareFunction:", void, .{stencilCompareFunction_});
             }
             pub fn stencilFailureOperation(self_: *T) StencilOperation {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StencilOperation, @ptrCast(&c.objc_msgSend))(self_, sel_stencilFailureOperation);
+                return objc.msgSend(self_, "stencilFailureOperation", StencilOperation, .{});
             }
             pub fn setStencilFailureOperation(self_: *T, stencilFailureOperation_: StencilOperation) void {
-                return @as(*const fn (*T, *c.objc_selector, StencilOperation) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilFailureOperation_, stencilFailureOperation_);
+                return objc.msgSend(self_, "setStencilFailureOperation:", void, .{stencilFailureOperation_});
             }
             pub fn depthFailureOperation(self_: *T) StencilOperation {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StencilOperation, @ptrCast(&c.objc_msgSend))(self_, sel_depthFailureOperation);
+                return objc.msgSend(self_, "depthFailureOperation", StencilOperation, .{});
             }
             pub fn setDepthFailureOperation(self_: *T, depthFailureOperation_: StencilOperation) void {
-                return @as(*const fn (*T, *c.objc_selector, StencilOperation) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthFailureOperation_, depthFailureOperation_);
+                return objc.msgSend(self_, "setDepthFailureOperation:", void, .{depthFailureOperation_});
             }
             pub fn depthStencilPassOperation(self_: *T) StencilOperation {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StencilOperation, @ptrCast(&c.objc_msgSend))(self_, sel_depthStencilPassOperation);
+                return objc.msgSend(self_, "depthStencilPassOperation", StencilOperation, .{});
             }
             pub fn setDepthStencilPassOperation(self_: *T, depthStencilPassOperation_: StencilOperation) void {
-                return @as(*const fn (*T, *c.objc_selector, StencilOperation) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthStencilPassOperation_, depthStencilPassOperation_);
+                return objc.msgSend(self_, "setDepthStencilPassOperation:", void, .{depthStencilPassOperation_});
             }
             pub fn readMask(self_: *T) u32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u32, @ptrCast(&c.objc_msgSend))(self_, sel_readMask);
+                return objc.msgSend(self_, "readMask", u32, .{});
             }
             pub fn setReadMask(self_: *T, readMask_: u32) void {
-                return @as(*const fn (*T, *c.objc_selector, u32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setReadMask_, readMask_);
+                return objc.msgSend(self_, "setReadMask:", void, .{readMask_});
             }
             pub fn writeMask(self_: *T) u32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u32, @ptrCast(&c.objc_msgSend))(self_, sel_writeMask);
+                return objc.msgSend(self_, "writeMask", u32, .{});
             }
             pub fn setWriteMask(self_: *T, writeMask_: u32) void {
-                return @as(*const fn (*T, *c.objc_selector, u32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setWriteMask_, writeMask_);
+                return objc.msgSend(self_, "setWriteMask:", void, .{writeMask_});
             }
         };
     }
@@ -3356,34 +3357,34 @@ pub const DepthStencilDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn depthCompareFunction(self_: *T) CompareFunction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CompareFunction, @ptrCast(&c.objc_msgSend))(self_, sel_depthCompareFunction);
+                return objc.msgSend(self_, "depthCompareFunction", CompareFunction, .{});
             }
             pub fn setDepthCompareFunction(self_: *T, depthCompareFunction_: CompareFunction) void {
-                return @as(*const fn (*T, *c.objc_selector, CompareFunction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthCompareFunction_, depthCompareFunction_);
+                return objc.msgSend(self_, "setDepthCompareFunction:", void, .{depthCompareFunction_});
             }
             pub fn isDepthWriteEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isDepthWriteEnabled);
+                return objc.msgSend(self_, "isDepthWriteEnabled", bool, .{});
             }
             pub fn setDepthWriteEnabled(self_: *T, depthWriteEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthWriteEnabled_, depthWriteEnabled_);
+                return objc.msgSend(self_, "setDepthWriteEnabled:", void, .{depthWriteEnabled_});
             }
             pub fn frontFaceStencil(self_: *T) *StencilDescriptor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *StencilDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_frontFaceStencil);
+                return objc.msgSend(self_, "frontFaceStencil", *StencilDescriptor, .{});
             }
             pub fn setFrontFaceStencil(self_: *T, frontFaceStencil_: ?*StencilDescriptor) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*StencilDescriptor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFrontFaceStencil_, frontFaceStencil_);
+                return objc.msgSend(self_, "setFrontFaceStencil:", void, .{frontFaceStencil_});
             }
             pub fn backFaceStencil(self_: *T) *StencilDescriptor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *StencilDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_backFaceStencil);
+                return objc.msgSend(self_, "backFaceStencil", *StencilDescriptor, .{});
             }
             pub fn setBackFaceStencil(self_: *T, backFaceStencil_: ?*StencilDescriptor) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*StencilDescriptor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBackFaceStencil_, backFaceStencil_);
+                return objc.msgSend(self_, "setBackFaceStencil:", void, .{backFaceStencil_});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
         };
     }
@@ -3397,10 +3398,10 @@ pub const DepthStencilState = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
         };
     }
@@ -3418,7 +3419,7 @@ pub const Architecture = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
         };
     }
@@ -3436,43 +3437,43 @@ pub const ArgumentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn argumentDescriptor() *ArgumentDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *ArgumentDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_argumentDescriptor);
+                return objc.msgSend(T.class(), "argumentDescriptor", *ArgumentDescriptor, .{});
             }
             pub fn dataType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_dataType);
+                return objc.msgSend(self_, "dataType", DataType, .{});
             }
             pub fn setDataType(self_: *T, dataType_: DataType) void {
-                return @as(*const fn (*T, *c.objc_selector, DataType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDataType_, dataType_);
+                return objc.msgSend(self_, "setDataType:", void, .{dataType_});
             }
             pub fn index(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_index);
+                return objc.msgSend(self_, "index", ns.UInteger, .{});
             }
             pub fn setIndex(self_: *T, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndex_, index_);
+                return objc.msgSend(self_, "setIndex:", void, .{index_});
             }
             pub fn arrayLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_arrayLength);
+                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
             }
             pub fn setArrayLength(self_: *T, arrayLength_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArrayLength_, arrayLength_);
+                return objc.msgSend(self_, "setArrayLength:", void, .{arrayLength_});
             }
             pub fn access(self_: *T) BindingAccess {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BindingAccess, @ptrCast(&c.objc_msgSend))(self_, sel_access);
+                return objc.msgSend(self_, "access", BindingAccess, .{});
             }
             pub fn setAccess(self_: *T, access_: BindingAccess) void {
-                return @as(*const fn (*T, *c.objc_selector, BindingAccess) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAccess_, access_);
+                return objc.msgSend(self_, "setAccess:", void, .{access_});
             }
             pub fn textureType(self_: *T) TextureType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
+                return objc.msgSend(self_, "textureType", TextureType, .{});
             }
             pub fn setTextureType(self_: *T, textureType_: TextureType) void {
-                return @as(*const fn (*T, *c.objc_selector, TextureType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTextureType_, textureType_);
+                return objc.msgSend(self_, "setTextureType:", void, .{textureType_});
             }
             pub fn constantBlockAlignment(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_constantBlockAlignment);
+                return objc.msgSend(self_, "constantBlockAlignment", ns.UInteger, .{});
             }
             pub fn setConstantBlockAlignment(self_: *T, constantBlockAlignment_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setConstantBlockAlignment_, constantBlockAlignment_);
+                return objc.msgSend(self_, "setConstantBlockAlignment:", void, .{constantBlockAlignment_});
             }
         };
     }
@@ -3486,355 +3487,355 @@ pub const Device = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn newCommandQueue(self_: *T) ?*CommandQueue {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CommandQueue, @ptrCast(&c.objc_msgSend))(self_, sel_newCommandQueue);
+                return objc.msgSend(self_, "newCommandQueue", ?*CommandQueue, .{});
             }
             pub fn newCommandQueueWithMaxCommandBufferCount(self_: *T, maxCommandBufferCount_: ns.UInteger) ?*CommandQueue {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ?*CommandQueue, @ptrCast(&c.objc_msgSend))(self_, sel_newCommandQueueWithMaxCommandBufferCount_, maxCommandBufferCount_);
+                return objc.msgSend(self_, "newCommandQueueWithMaxCommandBufferCount:", ?*CommandQueue, .{maxCommandBufferCount_});
             }
             pub fn heapTextureSizeAndAlignWithDescriptor(self_: *T, desc_: *TextureDescriptor) SizeAndAlign {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor) callconv(.C) SizeAndAlign, @ptrCast(&c.objc_msgSend))(self_, sel_heapTextureSizeAndAlignWithDescriptor_, desc_);
+                return objc.msgSend(self_, "heapTextureSizeAndAlignWithDescriptor:", SizeAndAlign, .{desc_});
             }
             pub fn heapBufferSizeAndAlignWithLength_options(self_: *T, length_: ns.UInteger, options_: ResourceOptions) SizeAndAlign {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ResourceOptions) callconv(.C) SizeAndAlign, @ptrCast(&c.objc_msgSend))(self_, sel_heapBufferSizeAndAlignWithLength_options_, length_, options_);
+                return objc.msgSend(self_, "heapBufferSizeAndAlignWithLength:options:", SizeAndAlign, .{ length_, options_ });
             }
             pub fn newHeapWithDescriptor(self_: *T, descriptor_: *HeapDescriptor) ?*Heap {
-                return @as(*const fn (*T, *c.objc_selector, *HeapDescriptor) callconv(.C) ?*Heap, @ptrCast(&c.objc_msgSend))(self_, sel_newHeapWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newHeapWithDescriptor:", ?*Heap, .{descriptor_});
             }
             pub fn newBufferWithLength_options(self_: *T, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ResourceOptions) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithLength_options_, length_, options_);
+                return objc.msgSend(self_, "newBufferWithLength:options:", ?*Buffer, .{ length_, options_ });
             }
             pub fn newBufferWithBytes_length_options(self_: *T, pointer_: *const anyopaque, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ResourceOptions) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytes_length_options_, pointer_, length_, options_);
+                return objc.msgSend(self_, "newBufferWithBytes:length:options:", ?*Buffer, .{ pointer_, length_, options_ });
             }
             pub fn newBufferWithBytesNoCopy_length_options_deallocator(self_: *T, pointer_: *anyopaque, length_: ns.UInteger, options_: ResourceOptions, deallocator_: *ns.Block(fn (*anyopaque, ns.UInteger) void)) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, ResourceOptions, *const anyopaque) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithBytesNoCopy_length_options_deallocator_, pointer_, length_, options_, deallocator_);
+                return objc.msgSend(self_, "newBufferWithBytesNoCopy:length:options:deallocator:", ?*Buffer, .{ pointer_, length_, options_, deallocator_ });
             }
             pub fn newDepthStencilStateWithDescriptor(self_: *T, descriptor_: *DepthStencilDescriptor) ?*DepthStencilState {
-                return @as(*const fn (*T, *c.objc_selector, *DepthStencilDescriptor) callconv(.C) ?*DepthStencilState, @ptrCast(&c.objc_msgSend))(self_, sel_newDepthStencilStateWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newDepthStencilStateWithDescriptor:", ?*DepthStencilState, .{descriptor_});
             }
             pub fn newTextureWithDescriptor(self_: *T, descriptor_: *TextureDescriptor) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newTextureWithDescriptor:", ?*Texture, .{descriptor_});
             }
             pub fn newTextureWithDescriptor_iosurface_plane(self_: *T, descriptor_: *TextureDescriptor, iosurface_: IOSurfaceRef, plane_: ns.UInteger) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor, IOSurfaceRef, ns.UInteger) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureWithDescriptor_iosurface_plane_, descriptor_, iosurface_, plane_);
+                return objc.msgSend(self_, "newTextureWithDescriptor:iosurface:plane:", ?*Texture, .{ descriptor_, iosurface_, plane_ });
             }
             pub fn newSharedTextureWithDescriptor(self_: *T, descriptor_: *TextureDescriptor) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newSharedTextureWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newSharedTextureWithDescriptor:", ?*Texture, .{descriptor_});
             }
             pub fn newSharedTextureWithHandle(self_: *T, sharedHandle_: *SharedTextureHandle) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *SharedTextureHandle) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newSharedTextureWithHandle_, sharedHandle_);
+                return objc.msgSend(self_, "newSharedTextureWithHandle:", ?*Texture, .{sharedHandle_});
             }
             pub fn newSamplerStateWithDescriptor(self_: *T, descriptor_: *SamplerDescriptor) ?*SamplerState {
-                return @as(*const fn (*T, *c.objc_selector, *SamplerDescriptor) callconv(.C) ?*SamplerState, @ptrCast(&c.objc_msgSend))(self_, sel_newSamplerStateWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newSamplerStateWithDescriptor:", ?*SamplerState, .{descriptor_});
             }
             pub fn newDefaultLibrary(self_: *T) ?*Library {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newDefaultLibrary);
+                return objc.msgSend(self_, "newDefaultLibrary", ?*Library, .{});
             }
             pub fn newDefaultLibraryWithBundle_error(self_: *T, bundle_: *ns.Bundle, error_: ?*?*ns.Error) ?*Library {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Bundle, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newDefaultLibraryWithBundle_error_, bundle_, error_);
+                return objc.msgSend(self_, "newDefaultLibraryWithBundle:error:", ?*Library, .{ bundle_, error_ });
             }
             pub fn newLibraryWithFile_error(self_: *T, filepath_: *ns.String, error_: ?*?*ns.Error) ?*Library {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithFile_error_, filepath_, error_);
+                return objc.msgSend(self_, "newLibraryWithFile:error:", ?*Library, .{ filepath_, error_ });
             }
             pub fn newLibraryWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*Library {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithURL_error_, url_, error_);
+                return objc.msgSend(self_, "newLibraryWithURL:error:", ?*Library, .{ url_, error_ });
             }
             pub fn newLibraryWithData_error(self_: *T, data_: dispatch_data_t, error_: ?*?*ns.Error) ?*Library {
-                return @as(*const fn (*T, *c.objc_selector, dispatch_data_t, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithData_error_, data_, error_);
+                return objc.msgSend(self_, "newLibraryWithData:error:", ?*Library, .{ data_, error_ });
             }
             pub fn newLibraryWithSource_options_error(self_: *T, source_: *ns.String, options_: ?*CompileOptions, error_: ?*?*ns.Error) ?*Library {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, ?*CompileOptions, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithSource_options_error_, source_, options_, error_);
+                return objc.msgSend(self_, "newLibraryWithSource:options:error:", ?*Library, .{ source_, options_, error_ });
             }
             pub fn newLibraryWithSource_options_completionHandler(self_: *T, source_: *ns.String, options_: ?*CompileOptions, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, ?*CompileOptions, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithSource_options_completionHandler_, source_, options_, completionHandler_);
+                return objc.msgSend(self_, "newLibraryWithSource:options:completionHandler:", void, .{ source_, options_, completionHandler_ });
             }
             pub fn newLibraryWithStitchedDescriptor_error(self_: *T, descriptor_: *StitchedLibraryDescriptor, error_: ?*?*ns.Error) ?*Library {
-                return @as(*const fn (*T, *c.objc_selector, *StitchedLibraryDescriptor, ?*?*ns.Error) callconv(.C) ?*Library, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithStitchedDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "newLibraryWithStitchedDescriptor:error:", ?*Library, .{ descriptor_, error_ });
             }
             pub fn newLibraryWithStitchedDescriptor_completionHandler(self_: *T, descriptor_: *StitchedLibraryDescriptor, completionHandler_: *ns.Block(fn (?*Library, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *StitchedLibraryDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newLibraryWithStitchedDescriptor_completionHandler_, descriptor_, completionHandler_);
+                return objc.msgSend(self_, "newLibraryWithStitchedDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
             }
             pub fn newRenderPipelineStateWithDescriptor_error(self_: *T, descriptor_: *RenderPipelineDescriptor, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:error:", ?*RenderPipelineState, .{ descriptor_, error_ });
             }
             pub fn newRenderPipelineStateWithDescriptor_options_reflection_error(self_: *T, descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, PipelineOption, ?*AutoreleasedRenderPipelineReflection, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
             }
             pub fn newRenderPipelineStateWithDescriptor_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, completionHandler_: *ns.Block(fn (?*RenderPipelineState, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_completionHandler_, descriptor_, completionHandler_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
             }
             pub fn newRenderPipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *RenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
             }
             pub fn newComputePipelineStateWithFunction_error(self_: *T, computeFunction_: *Function, error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *Function, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_error_, computeFunction_, error_);
+                return objc.msgSend(self_, "newComputePipelineStateWithFunction:error:", ?*ComputePipelineState, .{ computeFunction_, error_ });
             }
             pub fn newComputePipelineStateWithFunction_options_reflection_error(self_: *T, computeFunction_: *Function, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *Function, PipelineOption, ?*AutoreleasedComputePipelineReflection, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_options_reflection_error_, computeFunction_, options_, reflection_, error_);
+                return objc.msgSend(self_, "newComputePipelineStateWithFunction:options:reflection:error:", ?*ComputePipelineState, .{ computeFunction_, options_, reflection_, error_ });
             }
             pub fn newComputePipelineStateWithFunction_completionHandler(self_: *T, computeFunction_: *Function, completionHandler_: *ns.Block(fn (?*ComputePipelineState, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *Function, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_completionHandler_, computeFunction_, completionHandler_);
+                return objc.msgSend(self_, "newComputePipelineStateWithFunction:completionHandler:", void, .{ computeFunction_, completionHandler_ });
             }
             pub fn newComputePipelineStateWithFunction_options_completionHandler(self_: *T, computeFunction_: *Function, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *Function, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithFunction_options_completionHandler_, computeFunction_, options_, completionHandler_);
+                return objc.msgSend(self_, "newComputePipelineStateWithFunction:options:completionHandler:", void, .{ computeFunction_, options_, completionHandler_ });
             }
             pub fn newComputePipelineStateWithDescriptor_options_reflection_error(self_: *T, descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedComputePipelineReflection, error_: ?*?*ns.Error) ?*ComputePipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *ComputePipelineDescriptor, PipelineOption, ?*AutoreleasedComputePipelineReflection, ?*?*ns.Error) callconv(.C) ?*ComputePipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
+                return objc.msgSend(self_, "newComputePipelineStateWithDescriptor:options:reflection:error:", ?*ComputePipelineState, .{ descriptor_, options_, reflection_, error_ });
             }
             pub fn newComputePipelineStateWithDescriptor_options_completionHandler(self_: *T, descriptor_: *ComputePipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*ComputePipelineState, *ComputePipelineReflection, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ComputePipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newComputePipelineStateWithDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
+                return objc.msgSend(self_, "newComputePipelineStateWithDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
             }
             pub fn newFence(self_: *T) ?*Fence {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Fence, @ptrCast(&c.objc_msgSend))(self_, sel_newFence);
+                return objc.msgSend(self_, "newFence", ?*Fence, .{});
             }
             pub fn supportsFeatureSet(self_: *T, featureSet_: FeatureSet) bool {
-                return @as(*const fn (*T, *c.objc_selector, FeatureSet) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsFeatureSet_, featureSet_);
+                return objc.msgSend(self_, "supportsFeatureSet:", bool, .{featureSet_});
             }
             pub fn supportsFamily(self_: *T, gpuFamily_: GPUFamily) bool {
-                return @as(*const fn (*T, *c.objc_selector, GPUFamily) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsFamily_, gpuFamily_);
+                return objc.msgSend(self_, "supportsFamily:", bool, .{gpuFamily_});
             }
             pub fn supportsTextureSampleCount(self_: *T, sampleCount_: ns.UInteger) bool {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsTextureSampleCount_, sampleCount_);
+                return objc.msgSend(self_, "supportsTextureSampleCount:", bool, .{sampleCount_});
             }
             pub fn minimumLinearTextureAlignmentForPixelFormat(self_: *T, format_: PixelFormat) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_minimumLinearTextureAlignmentForPixelFormat_, format_);
+                return objc.msgSend(self_, "minimumLinearTextureAlignmentForPixelFormat:", ns.UInteger, .{format_});
             }
             pub fn minimumTextureBufferAlignmentForPixelFormat(self_: *T, format_: PixelFormat) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_minimumTextureBufferAlignmentForPixelFormat_, format_);
+                return objc.msgSend(self_, "minimumTextureBufferAlignmentForPixelFormat:", ns.UInteger, .{format_});
             }
             pub fn newRenderPipelineStateWithTileDescriptor_options_reflection_error(self_: *T, descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *TileRenderPipelineDescriptor, PipelineOption, ?*AutoreleasedRenderPipelineReflection, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithTileDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithTileDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
             }
             pub fn newRenderPipelineStateWithTileDescriptor_options_completionHandler(self_: *T, descriptor_: *TileRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *TileRenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithTileDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithTileDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
             }
             pub fn newRenderPipelineStateWithMeshDescriptor_options_reflection_error(self_: *T, descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, reflection_: ?*AutoreleasedRenderPipelineReflection, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *MeshRenderPipelineDescriptor, PipelineOption, ?*AutoreleasedRenderPipelineReflection, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithMeshDescriptor_options_reflection_error_, descriptor_, options_, reflection_, error_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithMeshDescriptor:options:reflection:error:", ?*RenderPipelineState, .{ descriptor_, options_, reflection_, error_ });
             }
             pub fn newRenderPipelineStateWithMeshDescriptor_options_completionHandler(self_: *T, descriptor_: *MeshRenderPipelineDescriptor, options_: PipelineOption, completionHandler_: *ns.Block(fn (?*RenderPipelineState, *RenderPipelineReflection, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *MeshRenderPipelineDescriptor, PipelineOption, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithMeshDescriptor_options_completionHandler_, descriptor_, options_, completionHandler_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithMeshDescriptor:options:completionHandler:", void, .{ descriptor_, options_, completionHandler_ });
             }
             pub fn getDefaultSamplePositions_count(self_: *T, positions_: *SamplePosition, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *SamplePosition, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getDefaultSamplePositions_count_, positions_, count_);
+                return objc.msgSend(self_, "getDefaultSamplePositions:count:", void, .{ positions_, count_ });
             }
             pub fn newArgumentEncoderWithArguments(self_: *T, arguments_: *ns.Array(*ArgumentDescriptor)) ?*ArgumentEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*ArgumentDescriptor)) callconv(.C) ?*ArgumentEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_newArgumentEncoderWithArguments_, arguments_);
+                return objc.msgSend(self_, "newArgumentEncoderWithArguments:", ?*ArgumentEncoder, .{arguments_});
             }
             pub fn supportsRasterizationRateMapWithLayerCount(self_: *T, layerCount_: ns.UInteger) bool {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsRasterizationRateMapWithLayerCount_, layerCount_);
+                return objc.msgSend(self_, "supportsRasterizationRateMapWithLayerCount:", bool, .{layerCount_});
             }
             pub fn newRasterizationRateMapWithDescriptor(self_: *T, descriptor_: *RasterizationRateMapDescriptor) ?*RasterizationRateMap {
-                return @as(*const fn (*T, *c.objc_selector, *RasterizationRateMapDescriptor) callconv(.C) ?*RasterizationRateMap, @ptrCast(&c.objc_msgSend))(self_, sel_newRasterizationRateMapWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newRasterizationRateMapWithDescriptor:", ?*RasterizationRateMap, .{descriptor_});
             }
             pub fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(self_: *T, descriptor_: *IndirectCommandBufferDescriptor, maxCount_: ns.UInteger, options_: ResourceOptions) ?*IndirectCommandBuffer {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBufferDescriptor, ns.UInteger, ResourceOptions) callconv(.C) ?*IndirectCommandBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_newIndirectCommandBufferWithDescriptor_maxCommandCount_options_, descriptor_, maxCount_, options_);
+                return objc.msgSend(self_, "newIndirectCommandBufferWithDescriptor:maxCommandCount:options:", ?*IndirectCommandBuffer, .{ descriptor_, maxCount_, options_ });
             }
             pub fn newEvent(self_: *T) ?*Event {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Event, @ptrCast(&c.objc_msgSend))(self_, sel_newEvent);
+                return objc.msgSend(self_, "newEvent", ?*Event, .{});
             }
             pub fn newSharedEvent(self_: *T) ?*SharedEvent {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*SharedEvent, @ptrCast(&c.objc_msgSend))(self_, sel_newSharedEvent);
+                return objc.msgSend(self_, "newSharedEvent", ?*SharedEvent, .{});
             }
             pub fn newSharedEventWithHandle(self_: *T, sharedEventHandle_: *SharedEventHandle) ?*SharedEvent {
-                return @as(*const fn (*T, *c.objc_selector, *SharedEventHandle) callconv(.C) ?*SharedEvent, @ptrCast(&c.objc_msgSend))(self_, sel_newSharedEventWithHandle_, sharedEventHandle_);
+                return objc.msgSend(self_, "newSharedEventWithHandle:", ?*SharedEvent, .{sharedEventHandle_});
             }
             pub fn newIOHandleWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, ?*?*ns.Error) callconv(.C) ?*IOFileHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newIOHandleWithURL_error_, url_, error_);
+                return objc.msgSend(self_, "newIOHandleWithURL:error:", ?*IOFileHandle, .{ url_, error_ });
             }
             pub fn newIOCommandQueueWithDescriptor_error(self_: *T, descriptor_: *IOCommandQueueDescriptor, error_: ?*?*ns.Error) ?*IOCommandQueue {
-                return @as(*const fn (*T, *c.objc_selector, *IOCommandQueueDescriptor, ?*?*ns.Error) callconv(.C) ?*IOCommandQueue, @ptrCast(&c.objc_msgSend))(self_, sel_newIOCommandQueueWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "newIOCommandQueueWithDescriptor:error:", ?*IOCommandQueue, .{ descriptor_, error_ });
             }
             pub fn newIOHandleWithURL_compressionMethod_error(self_: *T, url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, IOCompressionMethod, ?*?*ns.Error) callconv(.C) ?*IOFileHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newIOHandleWithURL_compressionMethod_error_, url_, compressionMethod_, error_);
+                return objc.msgSend(self_, "newIOHandleWithURL:compressionMethod:error:", ?*IOFileHandle, .{ url_, compressionMethod_, error_ });
             }
             pub fn newIOFileHandleWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, ?*?*ns.Error) callconv(.C) ?*IOFileHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newIOFileHandleWithURL_error_, url_, error_);
+                return objc.msgSend(self_, "newIOFileHandleWithURL:error:", ?*IOFileHandle, .{ url_, error_ });
             }
             pub fn newIOFileHandleWithURL_compressionMethod_error(self_: *T, url_: *ns.URL, compressionMethod_: IOCompressionMethod, error_: ?*?*ns.Error) ?*IOFileHandle {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, IOCompressionMethod, ?*?*ns.Error) callconv(.C) ?*IOFileHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newIOFileHandleWithURL_compressionMethod_error_, url_, compressionMethod_, error_);
+                return objc.msgSend(self_, "newIOFileHandleWithURL:compressionMethod:error:", ?*IOFileHandle, .{ url_, compressionMethod_, error_ });
             }
             pub fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(self_: *T, textureType_: TextureType, pixelFormat_: PixelFormat, sampleCount_: ns.UInteger) Size {
-                return @as(*const fn (*T, *c.objc_selector, TextureType, PixelFormat, ns.UInteger) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_sparseTileSizeWithTextureType_pixelFormat_sampleCount_, textureType_, pixelFormat_, sampleCount_);
+                return objc.msgSend(self_, "sparseTileSizeWithTextureType:pixelFormat:sampleCount:", Size, .{ textureType_, pixelFormat_, sampleCount_ });
             }
             pub fn convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions(self_: *T, pixelRegions_: *const Region, tileRegions_: *Region, tileSize_: Size, mode_: SparseTextureRegionAlignmentMode, numRegions_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const Region, *Region, Size, SparseTextureRegionAlignmentMode, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions_, pixelRegions_, tileRegions_, tileSize_, mode_, numRegions_);
+                return objc.msgSend(self_, "convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:", void, .{ pixelRegions_, tileRegions_, tileSize_, mode_, numRegions_ });
             }
             pub fn convertSparseTileRegions_toPixelRegions_withTileSize_numRegions(self_: *T, tileRegions_: *const Region, pixelRegions_: *Region, tileSize_: Size, numRegions_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const Region, *Region, Size, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_convertSparseTileRegions_toPixelRegions_withTileSize_numRegions_, tileRegions_, pixelRegions_, tileSize_, numRegions_);
+                return objc.msgSend(self_, "convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:", void, .{ tileRegions_, pixelRegions_, tileSize_, numRegions_ });
             }
             pub fn sparseTileSizeInBytesForSparsePageSize(self_: *T, sparsePageSize_: SparsePageSize) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector, SparsePageSize) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_sparseTileSizeInBytesForSparsePageSize_, sparsePageSize_);
+                return objc.msgSend(self_, "sparseTileSizeInBytesForSparsePageSize:", ns.UInteger, .{sparsePageSize_});
             }
             pub fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(self_: *T, textureType_: TextureType, pixelFormat_: PixelFormat, sampleCount_: ns.UInteger, sparsePageSize_: SparsePageSize) Size {
-                return @as(*const fn (*T, *c.objc_selector, TextureType, PixelFormat, ns.UInteger, SparsePageSize) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize_, textureType_, pixelFormat_, sampleCount_, sparsePageSize_);
+                return objc.msgSend(self_, "sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:", Size, .{ textureType_, pixelFormat_, sampleCount_, sparsePageSize_ });
             }
             pub fn newCounterSampleBufferWithDescriptor_error(self_: *T, descriptor_: *CounterSampleBufferDescriptor, error_: ?*?*ns.Error) ?*CounterSampleBuffer {
-                return @as(*const fn (*T, *c.objc_selector, *CounterSampleBufferDescriptor, ?*?*ns.Error) callconv(.C) ?*CounterSampleBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_newCounterSampleBufferWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "newCounterSampleBufferWithDescriptor:error:", ?*CounterSampleBuffer, .{ descriptor_, error_ });
             }
             pub fn sampleTimestamps_gpuTimestamp(self_: *T, cpuTimestamp_: *Timestamp, gpuTimestamp_: *Timestamp) void {
-                return @as(*const fn (*T, *c.objc_selector, *Timestamp, *Timestamp) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_sampleTimestamps_gpuTimestamp_, cpuTimestamp_, gpuTimestamp_);
+                return objc.msgSend(self_, "sampleTimestamps:gpuTimestamp:", void, .{ cpuTimestamp_, gpuTimestamp_ });
             }
             pub fn newArgumentEncoderWithBufferBinding(self_: *T, bufferBinding_: *BufferBinding) *ArgumentEncoder {
-                return @as(*const fn (*T, *c.objc_selector, *BufferBinding) callconv(.C) *ArgumentEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_newArgumentEncoderWithBufferBinding_, bufferBinding_);
+                return objc.msgSend(self_, "newArgumentEncoderWithBufferBinding:", *ArgumentEncoder, .{bufferBinding_});
             }
             pub fn supportsCounterSampling(self_: *T, samplingPoint_: CounterSamplingPoint) bool {
-                return @as(*const fn (*T, *c.objc_selector, CounterSamplingPoint) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsCounterSampling_, samplingPoint_);
+                return objc.msgSend(self_, "supportsCounterSampling:", bool, .{samplingPoint_});
             }
             pub fn supportsVertexAmplificationCount(self_: *T, count_: ns.UInteger) bool {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsVertexAmplificationCount_, count_);
+                return objc.msgSend(self_, "supportsVertexAmplificationCount:", bool, .{count_});
             }
             pub fn newDynamicLibrary_error(self_: *T, library_: *Library, error_: ?*?*ns.Error) ?*DynamicLibrary {
-                return @as(*const fn (*T, *c.objc_selector, *Library, ?*?*ns.Error) callconv(.C) ?*DynamicLibrary, @ptrCast(&c.objc_msgSend))(self_, sel_newDynamicLibrary_error_, library_, error_);
+                return objc.msgSend(self_, "newDynamicLibrary:error:", ?*DynamicLibrary, .{ library_, error_ });
             }
             pub fn newDynamicLibraryWithURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) ?*DynamicLibrary {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, ?*?*ns.Error) callconv(.C) ?*DynamicLibrary, @ptrCast(&c.objc_msgSend))(self_, sel_newDynamicLibraryWithURL_error_, url_, error_);
+                return objc.msgSend(self_, "newDynamicLibraryWithURL:error:", ?*DynamicLibrary, .{ url_, error_ });
             }
             pub fn newBinaryArchiveWithDescriptor_error(self_: *T, descriptor_: *BinaryArchiveDescriptor, error_: ?*?*ns.Error) ?*BinaryArchive {
-                return @as(*const fn (*T, *c.objc_selector, *BinaryArchiveDescriptor, ?*?*ns.Error) callconv(.C) ?*BinaryArchive, @ptrCast(&c.objc_msgSend))(self_, sel_newBinaryArchiveWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "newBinaryArchiveWithDescriptor:error:", ?*BinaryArchive, .{ descriptor_, error_ });
             }
             pub fn accelerationStructureSizesWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) AccelerationStructureSizes {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructureDescriptor) callconv(.C) AccelerationStructureSizes, @ptrCast(&c.objc_msgSend))(self_, sel_accelerationStructureSizesWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "accelerationStructureSizesWithDescriptor:", AccelerationStructureSizes, .{descriptor_});
             }
             pub fn newAccelerationStructureWithSize(self_: *T, size_: ns.UInteger) ?*AccelerationStructure {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ?*AccelerationStructure, @ptrCast(&c.objc_msgSend))(self_, sel_newAccelerationStructureWithSize_, size_);
+                return objc.msgSend(self_, "newAccelerationStructureWithSize:", ?*AccelerationStructure, .{size_});
             }
             pub fn newAccelerationStructureWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) ?*AccelerationStructure {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructureDescriptor) callconv(.C) ?*AccelerationStructure, @ptrCast(&c.objc_msgSend))(self_, sel_newAccelerationStructureWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:", ?*AccelerationStructure, .{descriptor_});
             }
             pub fn heapAccelerationStructureSizeAndAlignWithSize(self_: *T, size_: ns.UInteger) SizeAndAlign {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) SizeAndAlign, @ptrCast(&c.objc_msgSend))(self_, sel_heapAccelerationStructureSizeAndAlignWithSize_, size_);
+                return objc.msgSend(self_, "heapAccelerationStructureSizeAndAlignWithSize:", SizeAndAlign, .{size_});
             }
             pub fn heapAccelerationStructureSizeAndAlignWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) SizeAndAlign {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructureDescriptor) callconv(.C) SizeAndAlign, @ptrCast(&c.objc_msgSend))(self_, sel_heapAccelerationStructureSizeAndAlignWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "heapAccelerationStructureSizeAndAlignWithDescriptor:", SizeAndAlign, .{descriptor_});
             }
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn registryID(self_: *T) u64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u64, @ptrCast(&c.objc_msgSend))(self_, sel_registryID);
+                return objc.msgSend(self_, "registryID", u64, .{});
             }
             pub fn architecture(self_: *T) *Architecture {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Architecture, @ptrCast(&c.objc_msgSend))(self_, sel_architecture);
+                return objc.msgSend(self_, "architecture", *Architecture, .{});
             }
             pub fn maxThreadsPerThreadgroup(self_: *T) Size {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_maxThreadsPerThreadgroup);
+                return objc.msgSend(self_, "maxThreadsPerThreadgroup", Size, .{});
             }
             pub fn isLowPower(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isLowPower);
+                return objc.msgSend(self_, "isLowPower", bool, .{});
             }
             pub fn isHeadless(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isHeadless);
+                return objc.msgSend(self_, "isHeadless", bool, .{});
             }
             pub fn isRemovable(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isRemovable);
+                return objc.msgSend(self_, "isRemovable", bool, .{});
             }
             pub fn hasUnifiedMemory(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_hasUnifiedMemory);
+                return objc.msgSend(self_, "hasUnifiedMemory", bool, .{});
             }
             pub fn recommendedMaxWorkingSetSize(self_: *T) u64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u64, @ptrCast(&c.objc_msgSend))(self_, sel_recommendedMaxWorkingSetSize);
+                return objc.msgSend(self_, "recommendedMaxWorkingSetSize", u64, .{});
             }
             pub fn location(self_: *T) DeviceLocation {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DeviceLocation, @ptrCast(&c.objc_msgSend))(self_, sel_location);
+                return objc.msgSend(self_, "location", DeviceLocation, .{});
             }
             pub fn locationNumber(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_locationNumber);
+                return objc.msgSend(self_, "locationNumber", ns.UInteger, .{});
             }
             pub fn maxTransferRate(self_: *T) u64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u64, @ptrCast(&c.objc_msgSend))(self_, sel_maxTransferRate);
+                return objc.msgSend(self_, "maxTransferRate", u64, .{});
             }
             pub fn isDepth24Stencil8PixelFormatSupported(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isDepth24Stencil8PixelFormatSupported);
+                return objc.msgSend(self_, "isDepth24Stencil8PixelFormatSupported", bool, .{});
             }
             pub fn readWriteTextureSupport(self_: *T) ReadWriteTextureTier {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ReadWriteTextureTier, @ptrCast(&c.objc_msgSend))(self_, sel_readWriteTextureSupport);
+                return objc.msgSend(self_, "readWriteTextureSupport", ReadWriteTextureTier, .{});
             }
             pub fn argumentBuffersSupport(self_: *T) ArgumentBuffersTier {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ArgumentBuffersTier, @ptrCast(&c.objc_msgSend))(self_, sel_argumentBuffersSupport);
+                return objc.msgSend(self_, "argumentBuffersSupport", ArgumentBuffersTier, .{});
             }
             pub fn areRasterOrderGroupsSupported(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_areRasterOrderGroupsSupported);
+                return objc.msgSend(self_, "areRasterOrderGroupsSupported", bool, .{});
             }
             pub fn supports32BitFloatFiltering(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supports32BitFloatFiltering);
+                return objc.msgSend(self_, "supports32BitFloatFiltering", bool, .{});
             }
             pub fn supports32BitMSAA(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supports32BitMSAA);
+                return objc.msgSend(self_, "supports32BitMSAA", bool, .{});
             }
             pub fn supportsQueryTextureLOD(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsQueryTextureLOD);
+                return objc.msgSend(self_, "supportsQueryTextureLOD", bool, .{});
             }
             pub fn supportsBCTextureCompression(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsBCTextureCompression);
+                return objc.msgSend(self_, "supportsBCTextureCompression", bool, .{});
             }
             pub fn supportsPullModelInterpolation(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsPullModelInterpolation);
+                return objc.msgSend(self_, "supportsPullModelInterpolation", bool, .{});
             }
             pub fn areBarycentricCoordsSupported(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_areBarycentricCoordsSupported);
+                return objc.msgSend(self_, "areBarycentricCoordsSupported", bool, .{});
             }
             pub fn supportsShaderBarycentricCoordinates(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsShaderBarycentricCoordinates);
+                return objc.msgSend(self_, "supportsShaderBarycentricCoordinates", bool, .{});
             }
             pub fn currentAllocatedSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_currentAllocatedSize);
+                return objc.msgSend(self_, "currentAllocatedSize", ns.UInteger, .{});
             }
             pub fn maxThreadgroupMemoryLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxThreadgroupMemoryLength);
+                return objc.msgSend(self_, "maxThreadgroupMemoryLength", ns.UInteger, .{});
             }
             pub fn maxArgumentBufferSamplerCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxArgumentBufferSamplerCount);
+                return objc.msgSend(self_, "maxArgumentBufferSamplerCount", ns.UInteger, .{});
             }
             pub fn areProgrammableSamplePositionsSupported(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_areProgrammableSamplePositionsSupported);
+                return objc.msgSend(self_, "areProgrammableSamplePositionsSupported", bool, .{});
             }
             pub fn peerGroupID(self_: *T) u64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u64, @ptrCast(&c.objc_msgSend))(self_, sel_peerGroupID);
+                return objc.msgSend(self_, "peerGroupID", u64, .{});
             }
             pub fn peerIndex(self_: *T) u32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u32, @ptrCast(&c.objc_msgSend))(self_, sel_peerIndex);
+                return objc.msgSend(self_, "peerIndex", u32, .{});
             }
             pub fn peerCount(self_: *T) u32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u32, @ptrCast(&c.objc_msgSend))(self_, sel_peerCount);
+                return objc.msgSend(self_, "peerCount", u32, .{});
             }
             pub fn sparseTileSizeInBytes(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_sparseTileSizeInBytes);
+                return objc.msgSend(self_, "sparseTileSizeInBytes", ns.UInteger, .{});
             }
             pub fn maxBufferLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxBufferLength);
+                return objc.msgSend(self_, "maxBufferLength", ns.UInteger, .{});
             }
             pub fn counterSets(self_: *T) ?*ns.Array(*CounterSet) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*CounterSet), @ptrCast(&c.objc_msgSend))(self_, sel_counterSets);
+                return objc.msgSend(self_, "counterSets", ?*ns.Array(*CounterSet), .{});
             }
             pub fn supportsDynamicLibraries(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsDynamicLibraries);
+                return objc.msgSend(self_, "supportsDynamicLibraries", bool, .{});
             }
             pub fn supportsRenderDynamicLibraries(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsRenderDynamicLibraries);
+                return objc.msgSend(self_, "supportsRenderDynamicLibraries", bool, .{});
             }
             pub fn supportsRaytracing(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsRaytracing);
+                return objc.msgSend(self_, "supportsRaytracing", bool, .{});
             }
             pub fn supportsFunctionPointers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsFunctionPointers);
+                return objc.msgSend(self_, "supportsFunctionPointers", bool, .{});
             }
             pub fn supportsFunctionPointersFromRender(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsFunctionPointersFromRender);
+                return objc.msgSend(self_, "supportsFunctionPointersFromRender", bool, .{});
             }
             pub fn supportsRaytracingFromRender(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsRaytracingFromRender);
+                return objc.msgSend(self_, "supportsRaytracingFromRender", bool, .{});
             }
             pub fn supportsPrimitiveMotionBlur(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportsPrimitiveMotionBlur);
+                return objc.msgSend(self_, "supportsPrimitiveMotionBlur", bool, .{});
             }
             pub fn shouldMaximizeConcurrentCompilation(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_shouldMaximizeConcurrentCompilation);
+                return objc.msgSend(self_, "shouldMaximizeConcurrentCompilation", bool, .{});
             }
             pub fn setShouldMaximizeConcurrentCompilation(self_: *T, shouldMaximizeConcurrentCompilation_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setShouldMaximizeConcurrentCompilation_, shouldMaximizeConcurrentCompilation_);
+                return objc.msgSend(self_, "setShouldMaximizeConcurrentCompilation:", void, .{shouldMaximizeConcurrentCompilation_});
             }
             pub fn maximumConcurrentCompilationTaskCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maximumConcurrentCompilationTaskCount);
+                return objc.msgSend(self_, "maximumConcurrentCompilationTaskCount", ns.UInteger, .{});
             }
         };
     }
@@ -3848,22 +3849,22 @@ pub const Drawable = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn present(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_present);
+                return objc.msgSend(self_, "present", void, .{});
             }
             pub fn presentAtTime(self_: *T, presentationTime_: cf.TimeInterval) void {
-                return @as(*const fn (*T, *c.objc_selector, cf.TimeInterval) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_presentAtTime_, presentationTime_);
+                return objc.msgSend(self_, "presentAtTime:", void, .{presentationTime_});
             }
             pub fn presentAfterMinimumDuration(self_: *T, duration_: cf.TimeInterval) void {
-                return @as(*const fn (*T, *c.objc_selector, cf.TimeInterval) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_presentAfterMinimumDuration_, duration_);
+                return objc.msgSend(self_, "presentAfterMinimumDuration:", void, .{duration_});
             }
             pub fn addPresentedHandler(self_: *T, block_: *ns.Block(fn (*Drawable) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addPresentedHandler_, block_);
+                return objc.msgSend(self_, "addPresentedHandler:", void, .{block_});
             }
             pub fn presentedTime(self_: *T) cf.TimeInterval {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) cf.TimeInterval, @ptrCast(&c.objc_msgSend))(self_, sel_presentedTime);
+                return objc.msgSend(self_, "presentedTime", cf.TimeInterval, .{});
             }
             pub fn drawableID(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_drawableID);
+                return objc.msgSend(self_, "drawableID", ns.UInteger, .{});
             }
         };
     }
@@ -3877,19 +3878,19 @@ pub const DynamicLibrary = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn serializeToURL_error(self_: *T, url_: *ns.URL, error_: ?*?*ns.Error) bool {
-                return @as(*const fn (*T, *c.objc_selector, *ns.URL, ?*?*ns.Error) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_serializeToURL_error_, url_, error_);
+                return objc.msgSend(self_, "serializeToURL:error:", bool, .{ url_, error_ });
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn installName(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_installName);
+                return objc.msgSend(self_, "installName", *ns.String, .{});
             }
         };
     }
@@ -3903,13 +3904,13 @@ pub const Event = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn device(self_: *T) ?*Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", ?*Device, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
         };
     }
@@ -3926,10 +3927,10 @@ pub const SharedEventListener = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn initWithDispatchQueue(self_: *T, dispatchQueue_: dispatch_queue_t) *T {
-                return @as(*const fn (*T, *c.objc_selector, dispatch_queue_t) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithDispatchQueue_, dispatchQueue_);
+                return objc.msgSend(self_, "initWithDispatchQueue:", *T, .{dispatchQueue_});
             }
             pub fn dispatchQueue(self_: *T) dispatch_queue_t {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) dispatch_queue_t, @ptrCast(&c.objc_msgSend))(self_, sel_dispatchQueue);
+                return objc.msgSend(self_, "dispatchQueue", dispatch_queue_t, .{});
             }
         };
     }
@@ -3943,16 +3944,16 @@ pub const SharedEvent = opaque {
             pub usingnamespace Event.Methods(T);
 
             pub fn notifyListener_atValue_block(self_: *T, listener_: *SharedEventListener, value_: u64, block_: *ns.Block(fn (*SharedEvent, u64) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *SharedEventListener, u64, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_notifyListener_atValue_block_, listener_, value_, block_);
+                return objc.msgSend(self_, "notifyListener:atValue:block:", void, .{ listener_, value_, block_ });
             }
             pub fn newSharedEventHandle(self_: *T) *SharedEventHandle {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *SharedEventHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newSharedEventHandle);
+                return objc.msgSend(self_, "newSharedEventHandle", *SharedEventHandle, .{});
             }
             pub fn signaledValue(self_: *T) u64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u64, @ptrCast(&c.objc_msgSend))(self_, sel_signaledValue);
+                return objc.msgSend(self_, "signaledValue", u64, .{});
             }
             pub fn setSignaledValue(self_: *T, signaledValue_: u64) void {
-                return @as(*const fn (*T, *c.objc_selector, u64) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSignaledValue_, signaledValue_);
+                return objc.msgSend(self_, "setSignaledValue:", void, .{signaledValue_});
             }
         };
     }
@@ -3970,7 +3971,7 @@ pub const SharedEventHandle = opaque {
             pub usingnamespace ns.SecureCoding.Methods(T);
 
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
         };
     }
@@ -3984,13 +3985,13 @@ pub const Fence = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
         };
     }
@@ -4008,16 +4009,16 @@ pub const FunctionConstantValues = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn setConstantValue_type_atIndex(self_: *T, value_: *const anyopaque, type_: DataType, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, DataType, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setConstantValue_type_atIndex_, value_, type_, index_);
+                return objc.msgSend(self_, "setConstantValue:type:atIndex:", void, .{ value_, type_, index_ });
             }
             pub fn setConstantValues_type_withRange(self_: *T, values_: *const anyopaque, type_: DataType, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, DataType, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setConstantValues_type_withRange_, values_, type_, range_);
+                return objc.msgSend(self_, "setConstantValues:type:withRange:", void, .{ values_, type_, range_ });
             }
             pub fn setConstantValue_type_withName(self_: *T, value_: *const anyopaque, type_: DataType, name_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, DataType, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setConstantValue_type_withName_, value_, type_, name_);
+                return objc.msgSend(self_, "setConstantValue:type:withName:", void, .{ value_, type_, name_ });
             }
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
         };
     }
@@ -4035,37 +4036,37 @@ pub const FunctionDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn functionDescriptor() *FunctionDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *FunctionDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_functionDescriptor);
+                return objc.msgSend(T.class(), "functionDescriptor", *FunctionDescriptor, .{});
             }
             pub fn name(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", ?*ns.String, .{});
             }
             pub fn setName(self_: *T, name_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setName_, name_);
+                return objc.msgSend(self_, "setName:", void, .{name_});
             }
             pub fn specializedName(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_specializedName);
+                return objc.msgSend(self_, "specializedName", ?*ns.String, .{});
             }
             pub fn setSpecializedName(self_: *T, specializedName_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSpecializedName_, specializedName_);
+                return objc.msgSend(self_, "setSpecializedName:", void, .{specializedName_});
             }
             pub fn constantValues(self_: *T) ?*FunctionConstantValues {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*FunctionConstantValues, @ptrCast(&c.objc_msgSend))(self_, sel_constantValues);
+                return objc.msgSend(self_, "constantValues", ?*FunctionConstantValues, .{});
             }
             pub fn setConstantValues(self_: *T, constantValues_: ?*FunctionConstantValues) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*FunctionConstantValues) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setConstantValues_, constantValues_);
+                return objc.msgSend(self_, "setConstantValues:", void, .{constantValues_});
             }
             pub fn options(self_: *T) FunctionOptions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) FunctionOptions, @ptrCast(&c.objc_msgSend))(self_, sel_options);
+                return objc.msgSend(self_, "options", FunctionOptions, .{});
             }
             pub fn setOptions(self_: *T, options_: FunctionOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, FunctionOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOptions_, options_);
+                return objc.msgSend(self_, "setOptions:", void, .{options_});
             }
             pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*BinaryArchive), @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
             }
             pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*BinaryArchive)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
             }
         };
     }
@@ -4093,13 +4094,13 @@ pub const FunctionHandle = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn functionType(self_: *T) FunctionType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) FunctionType, @ptrCast(&c.objc_msgSend))(self_, sel_functionType);
+                return objc.msgSend(self_, "functionType", FunctionType, .{});
             }
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
         };
     }
@@ -4123,16 +4124,16 @@ pub const FunctionLogDebugLocation = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn functionName(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_functionName);
+                return objc.msgSend(self_, "functionName", ?*ns.String, .{});
             }
             pub fn URL(self_: *T) ?*ns.URL {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.URL, @ptrCast(&c.objc_msgSend))(self_, sel_URL);
+                return objc.msgSend(self_, "URL", ?*ns.URL, .{});
             }
             pub fn line(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_line);
+                return objc.msgSend(self_, "line", ns.UInteger, .{});
             }
             pub fn column(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_column);
+                return objc.msgSend(self_, "column", ns.UInteger, .{});
             }
         };
     }
@@ -4146,16 +4147,16 @@ pub const FunctionLog = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn @"type"(self_: *T) FunctionLogType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) FunctionLogType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", FunctionLogType, .{});
             }
             pub fn encoderLabel(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_encoderLabel);
+                return objc.msgSend(self_, "encoderLabel", ?*ns.String, .{});
             }
             pub fn function(self_: *T) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_function);
+                return objc.msgSend(self_, "function", ?*Function, .{});
             }
             pub fn debugLocation(self_: *T) ?*FunctionLogDebugLocation {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*FunctionLogDebugLocation, @ptrCast(&c.objc_msgSend))(self_, sel_debugLocation);
+                return objc.msgSend(self_, "debugLocation", ?*FunctionLogDebugLocation, .{});
             }
         };
     }
@@ -4208,13 +4209,13 @@ pub const FunctionStitchingInputNode = opaque {
             pub usingnamespace FunctionStitchingNode.Methods(T);
 
             pub fn initWithArgumentIndex(self_: *T, argument_: ns.UInteger) *T {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithArgumentIndex_, argument_);
+                return objc.msgSend(self_, "initWithArgumentIndex:", *T, .{argument_});
             }
             pub fn argumentIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_argumentIndex);
+                return objc.msgSend(self_, "argumentIndex", ns.UInteger, .{});
             }
             pub fn setArgumentIndex(self_: *T, argumentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArgumentIndex_, argumentIndex_);
+                return objc.msgSend(self_, "setArgumentIndex:", void, .{argumentIndex_});
             }
         };
     }
@@ -4232,25 +4233,25 @@ pub const FunctionStitchingFunctionNode = opaque {
             pub usingnamespace FunctionStitchingNode.Methods(T);
 
             pub fn initWithName_arguments_controlDependencies(self_: *T, name_: *ns.String, arguments_: *ns.Array(*FunctionStitchingNode), controlDependencies_: *ns.Array(*FunctionStitchingFunctionNode)) *T {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, *ns.Array(*FunctionStitchingNode), *ns.Array(*FunctionStitchingFunctionNode)) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithName_arguments_controlDependencies_, name_, arguments_, controlDependencies_);
+                return objc.msgSend(self_, "initWithName:arguments:controlDependencies:", *T, .{ name_, arguments_, controlDependencies_ });
             }
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn setName(self_: *T, name_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setName_, name_);
+                return objc.msgSend(self_, "setName:", void, .{name_});
             }
             pub fn arguments(self_: *T) *ns.Array(*FunctionStitchingNode) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*FunctionStitchingNode), @ptrCast(&c.objc_msgSend))(self_, sel_arguments);
+                return objc.msgSend(self_, "arguments", *ns.Array(*FunctionStitchingNode), .{});
             }
             pub fn setArguments(self_: *T, arguments_: *ns.Array(*FunctionStitchingNode)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*FunctionStitchingNode)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArguments_, arguments_);
+                return objc.msgSend(self_, "setArguments:", void, .{arguments_});
             }
             pub fn controlDependencies(self_: *T) *ns.Array(*FunctionStitchingFunctionNode) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*FunctionStitchingFunctionNode), @ptrCast(&c.objc_msgSend))(self_, sel_controlDependencies);
+                return objc.msgSend(self_, "controlDependencies", *ns.Array(*FunctionStitchingFunctionNode), .{});
             }
             pub fn setControlDependencies(self_: *T, controlDependencies_: *ns.Array(*FunctionStitchingFunctionNode)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*FunctionStitchingFunctionNode)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setControlDependencies_, controlDependencies_);
+                return objc.msgSend(self_, "setControlDependencies:", void, .{controlDependencies_});
             }
         };
     }
@@ -4268,31 +4269,31 @@ pub const FunctionStitchingGraph = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn initWithFunctionName_nodes_outputNode_attributes(self_: *T, functionName_: *ns.String, nodes_: *ns.Array(*FunctionStitchingFunctionNode), outputNode_: ?*FunctionStitchingFunctionNode, attributes_: *ns.Array(*FunctionStitchingAttribute)) *T {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, *ns.Array(*FunctionStitchingFunctionNode), ?*FunctionStitchingFunctionNode, *ns.Array(*FunctionStitchingAttribute)) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithFunctionName_nodes_outputNode_attributes_, functionName_, nodes_, outputNode_, attributes_);
+                return objc.msgSend(self_, "initWithFunctionName:nodes:outputNode:attributes:", *T, .{ functionName_, nodes_, outputNode_, attributes_ });
             }
             pub fn functionName(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_functionName);
+                return objc.msgSend(self_, "functionName", *ns.String, .{});
             }
             pub fn setFunctionName(self_: *T, functionName_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctionName_, functionName_);
+                return objc.msgSend(self_, "setFunctionName:", void, .{functionName_});
             }
             pub fn nodes(self_: *T) *ns.Array(*FunctionStitchingFunctionNode) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*FunctionStitchingFunctionNode), @ptrCast(&c.objc_msgSend))(self_, sel_nodes);
+                return objc.msgSend(self_, "nodes", *ns.Array(*FunctionStitchingFunctionNode), .{});
             }
             pub fn setNodes(self_: *T, nodes_: *ns.Array(*FunctionStitchingFunctionNode)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*FunctionStitchingFunctionNode)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setNodes_, nodes_);
+                return objc.msgSend(self_, "setNodes:", void, .{nodes_});
             }
             pub fn outputNode(self_: *T) ?*FunctionStitchingFunctionNode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*FunctionStitchingFunctionNode, @ptrCast(&c.objc_msgSend))(self_, sel_outputNode);
+                return objc.msgSend(self_, "outputNode", ?*FunctionStitchingFunctionNode, .{});
             }
             pub fn setOutputNode(self_: *T, outputNode_: ?*FunctionStitchingFunctionNode) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*FunctionStitchingFunctionNode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOutputNode_, outputNode_);
+                return objc.msgSend(self_, "setOutputNode:", void, .{outputNode_});
             }
             pub fn attributes(self_: *T) *ns.Array(*FunctionStitchingAttribute) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*FunctionStitchingAttribute), @ptrCast(&c.objc_msgSend))(self_, sel_attributes);
+                return objc.msgSend(self_, "attributes", *ns.Array(*FunctionStitchingAttribute), .{});
             }
             pub fn setAttributes(self_: *T, attributes_: *ns.Array(*FunctionStitchingAttribute)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*FunctionStitchingAttribute)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAttributes_, attributes_);
+                return objc.msgSend(self_, "setAttributes:", void, .{attributes_});
             }
         };
     }
@@ -4310,16 +4311,16 @@ pub const StitchedLibraryDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn functionGraphs(self_: *T) *ns.Array(*FunctionStitchingGraph) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*FunctionStitchingGraph), @ptrCast(&c.objc_msgSend))(self_, sel_functionGraphs);
+                return objc.msgSend(self_, "functionGraphs", *ns.Array(*FunctionStitchingGraph), .{});
             }
             pub fn setFunctionGraphs(self_: *T, functionGraphs_: *ns.Array(*FunctionStitchingGraph)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*FunctionStitchingGraph)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctionGraphs_, functionGraphs_);
+                return objc.msgSend(self_, "setFunctionGraphs:", void, .{functionGraphs_});
             }
             pub fn functions(self_: *T) *ns.Array(*Function) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Function), @ptrCast(&c.objc_msgSend))(self_, sel_functions);
+                return objc.msgSend(self_, "functions", *ns.Array(*Function), .{});
             }
             pub fn setFunctions(self_: *T, functions_: *ns.Array(*Function)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*Function)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_, functions_);
+                return objc.msgSend(self_, "setFunctions:", void, .{functions_});
             }
         };
     }
@@ -4337,46 +4338,46 @@ pub const HeapDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn size(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_size);
+                return objc.msgSend(self_, "size", ns.UInteger, .{});
             }
             pub fn setSize(self_: *T, size_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSize_, size_);
+                return objc.msgSend(self_, "setSize:", void, .{size_});
             }
             pub fn storageMode(self_: *T) StorageMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StorageMode, @ptrCast(&c.objc_msgSend))(self_, sel_storageMode);
+                return objc.msgSend(self_, "storageMode", StorageMode, .{});
             }
             pub fn setStorageMode(self_: *T, storageMode_: StorageMode) void {
-                return @as(*const fn (*T, *c.objc_selector, StorageMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStorageMode_, storageMode_);
+                return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
             }
             pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CPUCacheMode, @ptrCast(&c.objc_msgSend))(self_, sel_cpuCacheMode);
+                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
             }
             pub fn setCpuCacheMode(self_: *T, cpuCacheMode_: CPUCacheMode) void {
-                return @as(*const fn (*T, *c.objc_selector, CPUCacheMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCpuCacheMode_, cpuCacheMode_);
+                return objc.msgSend(self_, "setCpuCacheMode:", void, .{cpuCacheMode_});
             }
             pub fn sparsePageSize(self_: *T) SparsePageSize {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SparsePageSize, @ptrCast(&c.objc_msgSend))(self_, sel_sparsePageSize);
+                return objc.msgSend(self_, "sparsePageSize", SparsePageSize, .{});
             }
             pub fn setSparsePageSize(self_: *T, sparsePageSize_: SparsePageSize) void {
-                return @as(*const fn (*T, *c.objc_selector, SparsePageSize) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSparsePageSize_, sparsePageSize_);
+                return objc.msgSend(self_, "setSparsePageSize:", void, .{sparsePageSize_});
             }
             pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) HazardTrackingMode, @ptrCast(&c.objc_msgSend))(self_, sel_hazardTrackingMode);
+                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
             }
             pub fn setHazardTrackingMode(self_: *T, hazardTrackingMode_: HazardTrackingMode) void {
-                return @as(*const fn (*T, *c.objc_selector, HazardTrackingMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setHazardTrackingMode_, hazardTrackingMode_);
+                return objc.msgSend(self_, "setHazardTrackingMode:", void, .{hazardTrackingMode_});
             }
             pub fn resourceOptions(self_: *T) ResourceOptions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceOptions, @ptrCast(&c.objc_msgSend))(self_, sel_resourceOptions);
+                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
             }
             pub fn setResourceOptions(self_: *T, resourceOptions_: ResourceOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, ResourceOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setResourceOptions_, resourceOptions_);
+                return objc.msgSend(self_, "setResourceOptions:", void, .{resourceOptions_});
             }
             pub fn @"type"(self_: *T) HeapType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) HeapType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", HeapType, .{});
             }
             pub fn setType(self_: *T, type_: HeapType) void {
-                return @as(*const fn (*T, *c.objc_selector, HeapType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setType_, type_);
+                return objc.msgSend(self_, "setType:", void, .{type_});
             }
         };
     }
@@ -4390,67 +4391,67 @@ pub const Heap = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn maxAvailableSizeWithAlignment(self_: *T, alignment_: ns.UInteger) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxAvailableSizeWithAlignment_, alignment_);
+                return objc.msgSend(self_, "maxAvailableSizeWithAlignment:", ns.UInteger, .{alignment_});
             }
             pub fn newBufferWithLength_options(self_: *T, length_: ns.UInteger, options_: ResourceOptions) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ResourceOptions) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithLength_options_, length_, options_);
+                return objc.msgSend(self_, "newBufferWithLength:options:", ?*Buffer, .{ length_, options_ });
             }
             pub fn newTextureWithDescriptor(self_: *T, descriptor_: *TextureDescriptor) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newTextureWithDescriptor:", ?*Texture, .{descriptor_});
             }
             pub fn setPurgeableState(self_: *T, state_: PurgeableState) PurgeableState {
-                return @as(*const fn (*T, *c.objc_selector, PurgeableState) callconv(.C) PurgeableState, @ptrCast(&c.objc_msgSend))(self_, sel_setPurgeableState_, state_);
+                return objc.msgSend(self_, "setPurgeableState:", PurgeableState, .{state_});
             }
             pub fn newBufferWithLength_options_offset(self_: *T, length_: ns.UInteger, options_: ResourceOptions, offset_: ns.UInteger) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ResourceOptions, ns.UInteger) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_newBufferWithLength_options_offset_, length_, options_, offset_);
+                return objc.msgSend(self_, "newBufferWithLength:options:offset:", ?*Buffer, .{ length_, options_, offset_ });
             }
             pub fn newTextureWithDescriptor_offset(self_: *T, descriptor_: *TextureDescriptor, offset_: ns.UInteger) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *TextureDescriptor, ns.UInteger) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureWithDescriptor_offset_, descriptor_, offset_);
+                return objc.msgSend(self_, "newTextureWithDescriptor:offset:", ?*Texture, .{ descriptor_, offset_ });
             }
             pub fn newAccelerationStructureWithSize(self_: *T, size_: ns.UInteger) ?*AccelerationStructure {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ?*AccelerationStructure, @ptrCast(&c.objc_msgSend))(self_, sel_newAccelerationStructureWithSize_, size_);
+                return objc.msgSend(self_, "newAccelerationStructureWithSize:", ?*AccelerationStructure, .{size_});
             }
             pub fn newAccelerationStructureWithDescriptor(self_: *T, descriptor_: *AccelerationStructureDescriptor) ?*AccelerationStructure {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructureDescriptor) callconv(.C) ?*AccelerationStructure, @ptrCast(&c.objc_msgSend))(self_, sel_newAccelerationStructureWithDescriptor_, descriptor_);
+                return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:", ?*AccelerationStructure, .{descriptor_});
             }
             pub fn newAccelerationStructureWithSize_offset(self_: *T, size_: ns.UInteger, offset_: ns.UInteger) ?*AccelerationStructure {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) ?*AccelerationStructure, @ptrCast(&c.objc_msgSend))(self_, sel_newAccelerationStructureWithSize_offset_, size_, offset_);
+                return objc.msgSend(self_, "newAccelerationStructureWithSize:offset:", ?*AccelerationStructure, .{ size_, offset_ });
             }
             pub fn newAccelerationStructureWithDescriptor_offset(self_: *T, descriptor_: *AccelerationStructureDescriptor, offset_: ns.UInteger) ?*AccelerationStructure {
-                return @as(*const fn (*T, *c.objc_selector, *AccelerationStructureDescriptor, ns.UInteger) callconv(.C) ?*AccelerationStructure, @ptrCast(&c.objc_msgSend))(self_, sel_newAccelerationStructureWithDescriptor_offset_, descriptor_, offset_);
+                return objc.msgSend(self_, "newAccelerationStructureWithDescriptor:offset:", ?*AccelerationStructure, .{ descriptor_, offset_ });
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn storageMode(self_: *T) StorageMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StorageMode, @ptrCast(&c.objc_msgSend))(self_, sel_storageMode);
+                return objc.msgSend(self_, "storageMode", StorageMode, .{});
             }
             pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CPUCacheMode, @ptrCast(&c.objc_msgSend))(self_, sel_cpuCacheMode);
+                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
             }
             pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) HazardTrackingMode, @ptrCast(&c.objc_msgSend))(self_, sel_hazardTrackingMode);
+                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
             }
             pub fn resourceOptions(self_: *T) ResourceOptions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceOptions, @ptrCast(&c.objc_msgSend))(self_, sel_resourceOptions);
+                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
             }
             pub fn size(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_size);
+                return objc.msgSend(self_, "size", ns.UInteger, .{});
             }
             pub fn usedSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_usedSize);
+                return objc.msgSend(self_, "usedSize", ns.UInteger, .{});
             }
             pub fn currentAllocatedSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_currentAllocatedSize);
+                return objc.msgSend(self_, "currentAllocatedSize", ns.UInteger, .{});
             }
             pub fn @"type"(self_: *T) HeapType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) HeapType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", HeapType, .{});
             }
         };
     }
@@ -4468,76 +4469,76 @@ pub const IndirectCommandBufferDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn commandTypes(self_: *T) IndirectCommandType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IndirectCommandType, @ptrCast(&c.objc_msgSend))(self_, sel_commandTypes);
+                return objc.msgSend(self_, "commandTypes", IndirectCommandType, .{});
             }
             pub fn setCommandTypes(self_: *T, commandTypes_: IndirectCommandType) void {
-                return @as(*const fn (*T, *c.objc_selector, IndirectCommandType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCommandTypes_, commandTypes_);
+                return objc.msgSend(self_, "setCommandTypes:", void, .{commandTypes_});
             }
             pub fn inheritPipelineState(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_inheritPipelineState);
+                return objc.msgSend(self_, "inheritPipelineState", bool, .{});
             }
             pub fn setInheritPipelineState(self_: *T, inheritPipelineState_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInheritPipelineState_, inheritPipelineState_);
+                return objc.msgSend(self_, "setInheritPipelineState:", void, .{inheritPipelineState_});
             }
             pub fn inheritBuffers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_inheritBuffers);
+                return objc.msgSend(self_, "inheritBuffers", bool, .{});
             }
             pub fn setInheritBuffers(self_: *T, inheritBuffers_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInheritBuffers_, inheritBuffers_);
+                return objc.msgSend(self_, "setInheritBuffers:", void, .{inheritBuffers_});
             }
             pub fn maxVertexBufferBindCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxVertexBufferBindCount);
+                return objc.msgSend(self_, "maxVertexBufferBindCount", ns.UInteger, .{});
             }
             pub fn setMaxVertexBufferBindCount(self_: *T, maxVertexBufferBindCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxVertexBufferBindCount_, maxVertexBufferBindCount_);
+                return objc.msgSend(self_, "setMaxVertexBufferBindCount:", void, .{maxVertexBufferBindCount_});
             }
             pub fn maxFragmentBufferBindCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxFragmentBufferBindCount);
+                return objc.msgSend(self_, "maxFragmentBufferBindCount", ns.UInteger, .{});
             }
             pub fn setMaxFragmentBufferBindCount(self_: *T, maxFragmentBufferBindCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxFragmentBufferBindCount_, maxFragmentBufferBindCount_);
+                return objc.msgSend(self_, "setMaxFragmentBufferBindCount:", void, .{maxFragmentBufferBindCount_});
             }
             pub fn maxKernelBufferBindCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxKernelBufferBindCount);
+                return objc.msgSend(self_, "maxKernelBufferBindCount", ns.UInteger, .{});
             }
             pub fn setMaxKernelBufferBindCount(self_: *T, maxKernelBufferBindCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxKernelBufferBindCount_, maxKernelBufferBindCount_);
+                return objc.msgSend(self_, "setMaxKernelBufferBindCount:", void, .{maxKernelBufferBindCount_});
             }
             pub fn maxKernelThreadgroupMemoryBindCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxKernelThreadgroupMemoryBindCount);
+                return objc.msgSend(self_, "maxKernelThreadgroupMemoryBindCount", ns.UInteger, .{});
             }
             pub fn setMaxKernelThreadgroupMemoryBindCount(self_: *T, maxKernelThreadgroupMemoryBindCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxKernelThreadgroupMemoryBindCount_, maxKernelThreadgroupMemoryBindCount_);
+                return objc.msgSend(self_, "setMaxKernelThreadgroupMemoryBindCount:", void, .{maxKernelThreadgroupMemoryBindCount_});
             }
             pub fn maxObjectBufferBindCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxObjectBufferBindCount);
+                return objc.msgSend(self_, "maxObjectBufferBindCount", ns.UInteger, .{});
             }
             pub fn setMaxObjectBufferBindCount(self_: *T, maxObjectBufferBindCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxObjectBufferBindCount_, maxObjectBufferBindCount_);
+                return objc.msgSend(self_, "setMaxObjectBufferBindCount:", void, .{maxObjectBufferBindCount_});
             }
             pub fn maxMeshBufferBindCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxMeshBufferBindCount);
+                return objc.msgSend(self_, "maxMeshBufferBindCount", ns.UInteger, .{});
             }
             pub fn setMaxMeshBufferBindCount(self_: *T, maxMeshBufferBindCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxMeshBufferBindCount_, maxMeshBufferBindCount_);
+                return objc.msgSend(self_, "setMaxMeshBufferBindCount:", void, .{maxMeshBufferBindCount_});
             }
             pub fn maxObjectThreadgroupMemoryBindCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxObjectThreadgroupMemoryBindCount);
+                return objc.msgSend(self_, "maxObjectThreadgroupMemoryBindCount", ns.UInteger, .{});
             }
             pub fn setMaxObjectThreadgroupMemoryBindCount(self_: *T, maxObjectThreadgroupMemoryBindCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxObjectThreadgroupMemoryBindCount_, maxObjectThreadgroupMemoryBindCount_);
+                return objc.msgSend(self_, "setMaxObjectThreadgroupMemoryBindCount:", void, .{maxObjectThreadgroupMemoryBindCount_});
             }
             pub fn supportRayTracing(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportRayTracing);
+                return objc.msgSend(self_, "supportRayTracing", bool, .{});
             }
             pub fn setSupportRayTracing(self_: *T, supportRayTracing_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportRayTracing_, supportRayTracing_);
+                return objc.msgSend(self_, "setSupportRayTracing:", void, .{supportRayTracing_});
             }
             pub fn supportDynamicAttributeStride(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportDynamicAttributeStride);
+                return objc.msgSend(self_, "supportDynamicAttributeStride", bool, .{});
             }
             pub fn setSupportDynamicAttributeStride(self_: *T, supportDynamicAttributeStride_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportDynamicAttributeStride_, supportDynamicAttributeStride_);
+                return objc.msgSend(self_, "setSupportDynamicAttributeStride:", void, .{supportDynamicAttributeStride_});
             }
         };
     }
@@ -4551,19 +4552,19 @@ pub const IndirectCommandBuffer = opaque {
             pub usingnamespace Resource.Methods(T);
 
             pub fn resetWithRange(self_: *T, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_resetWithRange_, range_);
+                return objc.msgSend(self_, "resetWithRange:", void, .{range_});
             }
             pub fn indirectRenderCommandAtIndex(self_: *T, commandIndex_: ns.UInteger) *IndirectRenderCommand {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *IndirectRenderCommand, @ptrCast(&c.objc_msgSend))(self_, sel_indirectRenderCommandAtIndex_, commandIndex_);
+                return objc.msgSend(self_, "indirectRenderCommandAtIndex:", *IndirectRenderCommand, .{commandIndex_});
             }
             pub fn indirectComputeCommandAtIndex(self_: *T, commandIndex_: ns.UInteger) *IndirectComputeCommand {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *IndirectComputeCommand, @ptrCast(&c.objc_msgSend))(self_, sel_indirectComputeCommandAtIndex_, commandIndex_);
+                return objc.msgSend(self_, "indirectComputeCommandAtIndex:", *IndirectComputeCommand, .{commandIndex_});
             }
             pub fn size(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_size);
+                return objc.msgSend(self_, "size", ns.UInteger, .{});
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
         };
     }
@@ -4577,52 +4578,52 @@ pub const IndirectRenderCommand = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn setRenderPipelineState(self_: *T, pipelineState_: *RenderPipelineState) void {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineState) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRenderPipelineState_, pipelineState_);
+                return objc.msgSend(self_, "setRenderPipelineState:", void, .{pipelineState_});
             }
             pub fn setVertexBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setVertexBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setFragmentBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setFragmentBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
+                return objc.msgSend(self_, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
             }
             pub fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger, buffer_: *Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger, ?*Buffer, ns.UInteger, ns.UInteger, ns.UInteger, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride_, numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_);
+                return objc.msgSend(self_, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_ });
             }
             pub fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger, buffer_: *Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger, ?*Buffer, ns.UInteger, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride_, numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_);
+                return objc.msgSend(self_, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_, buffer_, offset_, instanceStride_ });
             }
             pub fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance_, primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_);
+                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_ });
             }
             pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseVertex_: ns.Integer, baseInstance_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, IndexType, *Buffer, ns.UInteger, ns.UInteger, ns.Integer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance_, primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_);
+                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_ });
             }
             pub fn setObjectThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectThreadgroupMemoryLength_atIndex_, length_, index_);
+                return objc.msgSend(self_, "setObjectThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
             }
             pub fn setObjectBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setObjectBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setMeshBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setMeshBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_, threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_);
+                return objc.msgSend(self_, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
             }
             pub fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_, threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_);
+                return objc.msgSend(self_, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
             }
             pub fn setBarrier(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBarrier);
+                return objc.msgSend(self_, "setBarrier", void, .{});
             }
             pub fn clearBarrier(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_clearBarrier);
+                return objc.msgSend(self_, "clearBarrier", void, .{});
             }
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
         };
     }
@@ -4636,37 +4637,37 @@ pub const IndirectComputeCommand = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn setComputePipelineState(self_: *T, pipelineState_: *ComputePipelineState) void {
-                return @as(*const fn (*T, *c.objc_selector, *ComputePipelineState) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setComputePipelineState_, pipelineState_);
+                return objc.msgSend(self_, "setComputePipelineState:", void, .{pipelineState_});
             }
             pub fn setKernelBuffer_offset_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setKernelBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setKernelBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setKernelBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setKernelBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
+                return objc.msgSend(self_, "setKernelBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
             }
             pub fn concurrentDispatchThreadgroups_threadsPerThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_concurrentDispatchThreadgroups_threadsPerThreadgroup_, threadgroupsPerGrid_, threadsPerThreadgroup_);
+                return objc.msgSend(self_, "concurrentDispatchThreadgroups:threadsPerThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerThreadgroup_ });
             }
             pub fn concurrentDispatchThreads_threadsPerThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_concurrentDispatchThreads_threadsPerThreadgroup_, threadsPerGrid_, threadsPerThreadgroup_);
+                return objc.msgSend(self_, "concurrentDispatchThreads:threadsPerThreadgroup:", void, .{ threadsPerGrid_, threadsPerThreadgroup_ });
             }
             pub fn setBarrier(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBarrier);
+                return objc.msgSend(self_, "setBarrier", void, .{});
             }
             pub fn clearBarrier(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_clearBarrier);
+                return objc.msgSend(self_, "clearBarrier", void, .{});
             }
             pub fn setImageblockWidth_height(self_: *T, width_: ns.UInteger, height_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setImageblockWidth_height_, width_, height_);
+                return objc.msgSend(self_, "setImageblockWidth:height:", void, .{ width_, height_ });
             }
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
             pub fn setThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setThreadgroupMemoryLength_atIndex_, length_, index_);
+                return objc.msgSend(self_, "setThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
             }
             pub fn setStageInRegion(self_: *T, region_: Region) void {
-                return @as(*const fn (*T, *c.objc_selector, Region) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStageInRegion_, region_);
+                return objc.msgSend(self_, "setStageInRegion:", void, .{region_});
             }
         };
     }
@@ -4684,13 +4685,13 @@ pub const IntersectionFunctionTableDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn intersectionFunctionTableDescriptor() *IntersectionFunctionTableDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *IntersectionFunctionTableDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_intersectionFunctionTableDescriptor);
+                return objc.msgSend(T.class(), "intersectionFunctionTableDescriptor", *IntersectionFunctionTableDescriptor, .{});
             }
             pub fn functionCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_functionCount);
+                return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
             }
             pub fn setFunctionCount(self_: *T, functionCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctionCount_, functionCount_);
+                return objc.msgSend(self_, "setFunctionCount:", void, .{functionCount_});
             }
         };
     }
@@ -4704,37 +4705,37 @@ pub const IntersectionFunctionTable = opaque {
             pub usingnamespace Resource.Methods(T);
 
             pub fn setBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setFunction_atIndex(self_: *T, function_: ?*FunctionHandle, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*FunctionHandle, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunction_atIndex_, function_, index_);
+                return objc.msgSend(self_, "setFunction:atIndex:", void, .{ function_, index_ });
             }
             pub fn setFunctions_withRange(self_: *T, functions_: *?*const FunctionHandle, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const FunctionHandle, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_withRange_, functions_, range_);
+                return objc.msgSend(self_, "setFunctions:withRange:", void, .{ functions_, range_ });
             }
             pub fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(self_: *T, signature_: IntersectionFunctionSignature, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, IntersectionFunctionSignature, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex_, signature_, index_);
+                return objc.msgSend(self_, "setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:", void, .{ signature_, index_ });
             }
             pub fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(self_: *T, signature_: IntersectionFunctionSignature, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, IntersectionFunctionSignature, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaqueTriangleIntersectionFunctionWithSignature_withRange_, signature_, range_);
+                return objc.msgSend(self_, "setOpaqueTriangleIntersectionFunctionWithSignature:withRange:", void, .{ signature_, range_ });
             }
             pub fn setOpaqueCurveIntersectionFunctionWithSignature_atIndex(self_: *T, signature_: IntersectionFunctionSignature, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, IntersectionFunctionSignature, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaqueCurveIntersectionFunctionWithSignature_atIndex_, signature_, index_);
+                return objc.msgSend(self_, "setOpaqueCurveIntersectionFunctionWithSignature:atIndex:", void, .{ signature_, index_ });
             }
             pub fn setOpaqueCurveIntersectionFunctionWithSignature_withRange(self_: *T, signature_: IntersectionFunctionSignature, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, IntersectionFunctionSignature, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOpaqueCurveIntersectionFunctionWithSignature_withRange_, signature_, range_);
+                return objc.msgSend(self_, "setOpaqueCurveIntersectionFunctionWithSignature:withRange:", void, .{ signature_, range_ });
             }
             pub fn setVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTable_atBufferIndex_, functionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
             }
             pub fn setVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, bufferRange_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const VisibleFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibleFunctionTables_withBufferRange_, functionTables_, bufferRange_);
+                return objc.msgSend(self_, "setVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, bufferRange_ });
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
         };
     }
@@ -4748,58 +4749,58 @@ pub const IOCommandBuffer = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn addCompletedHandler(self_: *T, block_: *ns.Block(fn (*IOCommandBuffer) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addCompletedHandler_, block_);
+                return objc.msgSend(self_, "addCompletedHandler:", void, .{block_});
             }
             pub fn loadBytes_size_sourceHandle_sourceHandleOffset(self_: *T, pointer_: *anyopaque, size_: ns.UInteger, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, *IOFileHandle, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_loadBytes_size_sourceHandle_sourceHandleOffset_, pointer_, size_, sourceHandle_, sourceHandleOffset_);
+                return objc.msgSend(self_, "loadBytes:size:sourceHandle:sourceHandleOffset:", void, .{ pointer_, size_, sourceHandle_, sourceHandleOffset_ });
             }
             pub fn loadBuffer_offset_size_sourceHandle_sourceHandleOffset(self_: *T, buffer_: *Buffer, offset_: ns.UInteger, size_: ns.UInteger, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, ns.UInteger, *IOFileHandle, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_loadBuffer_offset_size_sourceHandle_sourceHandleOffset_, buffer_, offset_, size_, sourceHandle_, sourceHandleOffset_);
+                return objc.msgSend(self_, "loadBuffer:offset:size:sourceHandle:sourceHandleOffset:", void, .{ buffer_, offset_, size_, sourceHandle_, sourceHandleOffset_ });
             }
             pub fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(self_: *T, texture_: *Texture, slice_: ns.UInteger, level_: ns.UInteger, size_: Size, sourceBytesPerRow_: ns.UInteger, sourceBytesPerImage_: ns.UInteger, destinationOrigin_: Origin, sourceHandle_: *IOFileHandle, sourceHandleOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger, Size, ns.UInteger, ns.UInteger, Origin, *IOFileHandle, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset_, texture_, slice_, level_, size_, sourceBytesPerRow_, sourceBytesPerImage_, destinationOrigin_, sourceHandle_, sourceHandleOffset_);
+                return objc.msgSend(self_, "loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:", void, .{ texture_, slice_, level_, size_, sourceBytesPerRow_, sourceBytesPerImage_, destinationOrigin_, sourceHandle_, sourceHandleOffset_ });
             }
             pub fn copyStatusToBuffer_offset(self_: *T, buffer_: *Buffer, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyStatusToBuffer_offset_, buffer_, offset_);
+                return objc.msgSend(self_, "copyStatusToBuffer:offset:", void, .{ buffer_, offset_ });
             }
             pub fn commit(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_commit);
+                return objc.msgSend(self_, "commit", void, .{});
             }
             pub fn waitUntilCompleted(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitUntilCompleted);
+                return objc.msgSend(self_, "waitUntilCompleted", void, .{});
             }
             pub fn tryCancel(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_tryCancel);
+                return objc.msgSend(self_, "tryCancel", void, .{});
             }
             pub fn addBarrier(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_addBarrier);
+                return objc.msgSend(self_, "addBarrier", void, .{});
             }
             pub fn pushDebugGroup(self_: *T, string_: *ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_pushDebugGroup_, string_);
+                return objc.msgSend(self_, "pushDebugGroup:", void, .{string_});
             }
             pub fn popDebugGroup(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_popDebugGroup);
+                return objc.msgSend(self_, "popDebugGroup", void, .{});
             }
             pub fn enqueue(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enqueue);
+                return objc.msgSend(self_, "enqueue", void, .{});
             }
             pub fn waitForEvent_value(self_: *T, event_: *SharedEvent, value_: u64) void {
-                return @as(*const fn (*T, *c.objc_selector, *SharedEvent, u64) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitForEvent_value_, event_, value_);
+                return objc.msgSend(self_, "waitForEvent:value:", void, .{ event_, value_ });
             }
             pub fn signalEvent_value(self_: *T, event_: *SharedEvent, value_: u64) void {
-                return @as(*const fn (*T, *c.objc_selector, *SharedEvent, u64) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_signalEvent_value_, event_, value_);
+                return objc.msgSend(self_, "signalEvent:value:", void, .{ event_, value_ });
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn status(self_: *T) IOStatus {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IOStatus, @ptrCast(&c.objc_msgSend))(self_, sel_status);
+                return objc.msgSend(self_, "status", IOStatus, .{});
             }
             pub fn @"error"(self_: *T) ?*ns.Error {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Error, @ptrCast(&c.objc_msgSend))(self_, sel_error);
+                return objc.msgSend(self_, "error", ?*ns.Error, .{});
             }
         };
     }
@@ -4813,19 +4814,19 @@ pub const IOCommandQueue = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn enqueueBarrier(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_enqueueBarrier);
+                return objc.msgSend(self_, "enqueueBarrier", void, .{});
             }
             pub fn commandBuffer(self_: *T) *IOCommandBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *IOCommandBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_commandBuffer);
+                return objc.msgSend(self_, "commandBuffer", *IOCommandBuffer, .{});
             }
             pub fn commandBufferWithUnretainedReferences(self_: *T) *IOCommandBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *IOCommandBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_commandBufferWithUnretainedReferences);
+                return objc.msgSend(self_, "commandBufferWithUnretainedReferences", *IOCommandBuffer, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
         };
     }
@@ -4839,7 +4840,7 @@ pub const IOScratchBuffer = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn buffer(self_: *T) *Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_buffer);
+                return objc.msgSend(self_, "buffer", *Buffer, .{});
             }
         };
     }
@@ -4853,7 +4854,7 @@ pub const IOScratchBufferAllocator = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn newScratchBufferWithMinimumSize(self_: *T, minimumSize_: ns.UInteger) ?*IOScratchBuffer {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ?*IOScratchBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_newScratchBufferWithMinimumSize_, minimumSize_);
+                return objc.msgSend(self_, "newScratchBufferWithMinimumSize:", ?*IOScratchBuffer, .{minimumSize_});
             }
         };
     }
@@ -4871,34 +4872,34 @@ pub const IOCommandQueueDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn maxCommandBufferCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxCommandBufferCount);
+                return objc.msgSend(self_, "maxCommandBufferCount", ns.UInteger, .{});
             }
             pub fn setMaxCommandBufferCount(self_: *T, maxCommandBufferCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxCommandBufferCount_, maxCommandBufferCount_);
+                return objc.msgSend(self_, "setMaxCommandBufferCount:", void, .{maxCommandBufferCount_});
             }
             pub fn priority(self_: *T) IOPriority {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IOPriority, @ptrCast(&c.objc_msgSend))(self_, sel_priority);
+                return objc.msgSend(self_, "priority", IOPriority, .{});
             }
             pub fn setPriority(self_: *T, priority_: IOPriority) void {
-                return @as(*const fn (*T, *c.objc_selector, IOPriority) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPriority_, priority_);
+                return objc.msgSend(self_, "setPriority:", void, .{priority_});
             }
             pub fn @"type"(self_: *T) IOCommandQueueType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IOCommandQueueType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", IOCommandQueueType, .{});
             }
             pub fn setType(self_: *T, type_: IOCommandQueueType) void {
-                return @as(*const fn (*T, *c.objc_selector, IOCommandQueueType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setType_, type_);
+                return objc.msgSend(self_, "setType:", void, .{type_});
             }
             pub fn maxCommandsInFlight(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxCommandsInFlight);
+                return objc.msgSend(self_, "maxCommandsInFlight", ns.UInteger, .{});
             }
             pub fn setMaxCommandsInFlight(self_: *T, maxCommandsInFlight_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxCommandsInFlight_, maxCommandsInFlight_);
+                return objc.msgSend(self_, "setMaxCommandsInFlight:", void, .{maxCommandsInFlight_});
             }
             pub fn scratchBufferAllocator(self_: *T) ?*IOScratchBufferAllocator {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*IOScratchBufferAllocator, @ptrCast(&c.objc_msgSend))(self_, sel_scratchBufferAllocator);
+                return objc.msgSend(self_, "scratchBufferAllocator", ?*IOScratchBufferAllocator, .{});
             }
             pub fn setScratchBufferAllocator(self_: *T, scratchBufferAllocator_: ?*IOScratchBufferAllocator) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*IOScratchBufferAllocator) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setScratchBufferAllocator_, scratchBufferAllocator_);
+                return objc.msgSend(self_, "setScratchBufferAllocator:", void, .{scratchBufferAllocator_});
             }
         };
     }
@@ -4912,10 +4913,10 @@ pub const IOFileHandle = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
         };
     }
@@ -4932,22 +4933,22 @@ pub const VertexAttribute = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn attributeIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_attributeIndex);
+                return objc.msgSend(self_, "attributeIndex", ns.UInteger, .{});
             }
             pub fn attributeType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_attributeType);
+                return objc.msgSend(self_, "attributeType", DataType, .{});
             }
             pub fn isActive(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isActive);
+                return objc.msgSend(self_, "isActive", bool, .{});
             }
             pub fn isPatchData(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isPatchData);
+                return objc.msgSend(self_, "isPatchData", bool, .{});
             }
             pub fn isPatchControlPointData(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isPatchControlPointData);
+                return objc.msgSend(self_, "isPatchControlPointData", bool, .{});
             }
         };
     }
@@ -4964,22 +4965,22 @@ pub const Attribute = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn attributeIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_attributeIndex);
+                return objc.msgSend(self_, "attributeIndex", ns.UInteger, .{});
             }
             pub fn attributeType(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_attributeType);
+                return objc.msgSend(self_, "attributeType", DataType, .{});
             }
             pub fn isActive(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isActive);
+                return objc.msgSend(self_, "isActive", bool, .{});
             }
             pub fn isPatchData(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isPatchData);
+                return objc.msgSend(self_, "isPatchData", bool, .{});
             }
             pub fn isPatchControlPointData(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isPatchControlPointData);
+                return objc.msgSend(self_, "isPatchControlPointData", bool, .{});
             }
         };
     }
@@ -4996,16 +4997,16 @@ pub const FunctionConstant = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn @"type"(self_: *T) DataType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) DataType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", DataType, .{});
             }
             pub fn index(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_index);
+                return objc.msgSend(self_, "index", ns.UInteger, .{});
             }
             pub fn required(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_required);
+                return objc.msgSend(self_, "required", bool, .{});
             }
         };
     }
@@ -5019,43 +5020,43 @@ pub const Function = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn newArgumentEncoderWithBufferIndex(self_: *T, bufferIndex_: ns.UInteger) *ArgumentEncoder {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *ArgumentEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_newArgumentEncoderWithBufferIndex_, bufferIndex_);
+                return objc.msgSend(self_, "newArgumentEncoderWithBufferIndex:", *ArgumentEncoder, .{bufferIndex_});
             }
             pub fn newArgumentEncoderWithBufferIndex_reflection(self_: *T, bufferIndex_: ns.UInteger, reflection_: ?*AutoreleasedArgument) *ArgumentEncoder {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ?*AutoreleasedArgument) callconv(.C) *ArgumentEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_newArgumentEncoderWithBufferIndex_reflection_, bufferIndex_, reflection_);
+                return objc.msgSend(self_, "newArgumentEncoderWithBufferIndex:reflection:", *ArgumentEncoder, .{ bufferIndex_, reflection_ });
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn functionType(self_: *T) FunctionType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) FunctionType, @ptrCast(&c.objc_msgSend))(self_, sel_functionType);
+                return objc.msgSend(self_, "functionType", FunctionType, .{});
             }
             pub fn patchType(self_: *T) PatchType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PatchType, @ptrCast(&c.objc_msgSend))(self_, sel_patchType);
+                return objc.msgSend(self_, "patchType", PatchType, .{});
             }
             pub fn patchControlPointCount(self_: *T) ns.Integer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.Integer, @ptrCast(&c.objc_msgSend))(self_, sel_patchControlPointCount);
+                return objc.msgSend(self_, "patchControlPointCount", ns.Integer, .{});
             }
             pub fn vertexAttributes(self_: *T) ?*ns.Array(*VertexAttribute) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*VertexAttribute), @ptrCast(&c.objc_msgSend))(self_, sel_vertexAttributes);
+                return objc.msgSend(self_, "vertexAttributes", ?*ns.Array(*VertexAttribute), .{});
             }
             pub fn stageInputAttributes(self_: *T) ?*ns.Array(*Attribute) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Attribute), @ptrCast(&c.objc_msgSend))(self_, sel_stageInputAttributes);
+                return objc.msgSend(self_, "stageInputAttributes", ?*ns.Array(*Attribute), .{});
             }
             pub fn name(self_: *T) *ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_name);
+                return objc.msgSend(self_, "name", *ns.String, .{});
             }
             pub fn functionConstantsDictionary(self_: *T) *ns.Dictionary(*ns.String, *FunctionConstant) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Dictionary(*ns.String, *FunctionConstant), @ptrCast(&c.objc_msgSend))(self_, sel_functionConstantsDictionary);
+                return objc.msgSend(self_, "functionConstantsDictionary", *ns.Dictionary(*ns.String, *FunctionConstant), .{});
             }
             pub fn options(self_: *T) FunctionOptions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) FunctionOptions, @ptrCast(&c.objc_msgSend))(self_, sel_options);
+                return objc.msgSend(self_, "options", FunctionOptions, .{});
             }
         };
     }
@@ -5073,70 +5074,70 @@ pub const CompileOptions = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn preprocessorMacros(self_: *T) ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol), @ptrCast(&c.objc_msgSend))(self_, sel_preprocessorMacros);
+                return objc.msgSend(self_, "preprocessorMacros", ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol), .{});
             }
             pub fn setPreprocessorMacros(self_: *T, preprocessorMacros_: ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Dictionary(*ns.String, *ns.ObjectProtocol)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreprocessorMacros_, preprocessorMacros_);
+                return objc.msgSend(self_, "setPreprocessorMacros:", void, .{preprocessorMacros_});
             }
             pub fn fastMathEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_fastMathEnabled);
+                return objc.msgSend(self_, "fastMathEnabled", bool, .{});
             }
             pub fn setFastMathEnabled(self_: *T, fastMathEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFastMathEnabled_, fastMathEnabled_);
+                return objc.msgSend(self_, "setFastMathEnabled:", void, .{fastMathEnabled_});
             }
             pub fn languageVersion(self_: *T) LanguageVersion {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) LanguageVersion, @ptrCast(&c.objc_msgSend))(self_, sel_languageVersion);
+                return objc.msgSend(self_, "languageVersion", LanguageVersion, .{});
             }
             pub fn setLanguageVersion(self_: *T, languageVersion_: LanguageVersion) void {
-                return @as(*const fn (*T, *c.objc_selector, LanguageVersion) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLanguageVersion_, languageVersion_);
+                return objc.msgSend(self_, "setLanguageVersion:", void, .{languageVersion_});
             }
             pub fn libraryType(self_: *T) LibraryType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) LibraryType, @ptrCast(&c.objc_msgSend))(self_, sel_libraryType);
+                return objc.msgSend(self_, "libraryType", LibraryType, .{});
             }
             pub fn setLibraryType(self_: *T, libraryType_: LibraryType) void {
-                return @as(*const fn (*T, *c.objc_selector, LibraryType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLibraryType_, libraryType_);
+                return objc.msgSend(self_, "setLibraryType:", void, .{libraryType_});
             }
             pub fn installName(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_installName);
+                return objc.msgSend(self_, "installName", ?*ns.String, .{});
             }
             pub fn setInstallName(self_: *T, installName_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInstallName_, installName_);
+                return objc.msgSend(self_, "setInstallName:", void, .{installName_});
             }
             pub fn libraries(self_: *T) ?*ns.Array(*DynamicLibrary) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*DynamicLibrary), @ptrCast(&c.objc_msgSend))(self_, sel_libraries);
+                return objc.msgSend(self_, "libraries", ?*ns.Array(*DynamicLibrary), .{});
             }
             pub fn setLibraries(self_: *T, libraries_: ?*ns.Array(*DynamicLibrary)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*DynamicLibrary)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLibraries_, libraries_);
+                return objc.msgSend(self_, "setLibraries:", void, .{libraries_});
             }
             pub fn preserveInvariance(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_preserveInvariance);
+                return objc.msgSend(self_, "preserveInvariance", bool, .{});
             }
             pub fn setPreserveInvariance(self_: *T, preserveInvariance_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreserveInvariance_, preserveInvariance_);
+                return objc.msgSend(self_, "setPreserveInvariance:", void, .{preserveInvariance_});
             }
             pub fn optimizationLevel(self_: *T) LibraryOptimizationLevel {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) LibraryOptimizationLevel, @ptrCast(&c.objc_msgSend))(self_, sel_optimizationLevel);
+                return objc.msgSend(self_, "optimizationLevel", LibraryOptimizationLevel, .{});
             }
             pub fn setOptimizationLevel(self_: *T, optimizationLevel_: LibraryOptimizationLevel) void {
-                return @as(*const fn (*T, *c.objc_selector, LibraryOptimizationLevel) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOptimizationLevel_, optimizationLevel_);
+                return objc.msgSend(self_, "setOptimizationLevel:", void, .{optimizationLevel_});
             }
             pub fn compileSymbolVisibility(self_: *T) CompileSymbolVisibility {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CompileSymbolVisibility, @ptrCast(&c.objc_msgSend))(self_, sel_compileSymbolVisibility);
+                return objc.msgSend(self_, "compileSymbolVisibility", CompileSymbolVisibility, .{});
             }
             pub fn setCompileSymbolVisibility(self_: *T, compileSymbolVisibility_: CompileSymbolVisibility) void {
-                return @as(*const fn (*T, *c.objc_selector, CompileSymbolVisibility) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCompileSymbolVisibility_, compileSymbolVisibility_);
+                return objc.msgSend(self_, "setCompileSymbolVisibility:", void, .{compileSymbolVisibility_});
             }
             pub fn allowReferencingUndefinedSymbols(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_allowReferencingUndefinedSymbols);
+                return objc.msgSend(self_, "allowReferencingUndefinedSymbols", bool, .{});
             }
             pub fn setAllowReferencingUndefinedSymbols(self_: *T, allowReferencingUndefinedSymbols_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAllowReferencingUndefinedSymbols_, allowReferencingUndefinedSymbols_);
+                return objc.msgSend(self_, "setAllowReferencingUndefinedSymbols:", void, .{allowReferencingUndefinedSymbols_});
             }
             pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
             }
             pub fn setMaxTotalThreadsPerThreadgroup(self_: *T, maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTotalThreadsPerThreadgroup_, maxTotalThreadsPerThreadgroup_);
+                return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
             }
         };
     }
@@ -5150,43 +5151,43 @@ pub const Library = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn newFunctionWithName(self_: *T, functionName_: *ns.String) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_, functionName_);
+                return objc.msgSend(self_, "newFunctionWithName:", ?*Function, .{functionName_});
             }
             pub fn newFunctionWithName_constantValues_error(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, error_: ?*?*ns.Error) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_error_, name_, constantValues_, error_);
+                return objc.msgSend(self_, "newFunctionWithName:constantValues:error:", ?*Function, .{ name_, constantValues_, error_ });
             }
             pub fn newFunctionWithName_constantValues_completionHandler(self_: *T, name_: *ns.String, constantValues_: *FunctionConstantValues, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.String, *FunctionConstantValues, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithName_constantValues_completionHandler_, name_, constantValues_, completionHandler_);
+                return objc.msgSend(self_, "newFunctionWithName:constantValues:completionHandler:", void, .{ name_, constantValues_, completionHandler_ });
             }
             pub fn newFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *FunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
+                return objc.msgSend(self_, "newFunctionWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
             }
             pub fn newFunctionWithDescriptor_error(self_: *T, descriptor_: *FunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector, *FunctionDescriptor, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newFunctionWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "newFunctionWithDescriptor:error:", ?*Function, .{ descriptor_, error_ });
             }
             pub fn newIntersectionFunctionWithDescriptor_completionHandler(self_: *T, descriptor_: *IntersectionFunctionDescriptor, completionHandler_: *ns.Block(fn (?*Function, ?*ns.Error) void)) void {
-                return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, *const anyopaque) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_completionHandler_, descriptor_, completionHandler_);
+                return objc.msgSend(self_, "newIntersectionFunctionWithDescriptor:completionHandler:", void, .{ descriptor_, completionHandler_ });
             }
             pub fn newIntersectionFunctionWithDescriptor_error(self_: *T, descriptor_: *IntersectionFunctionDescriptor, error_: ?*?*ns.Error) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionDescriptor, ?*?*ns.Error) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionWithDescriptor_error_, descriptor_, error_);
+                return objc.msgSend(self_, "newIntersectionFunctionWithDescriptor:error:", ?*Function, .{ descriptor_, error_ });
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn functionNames(self_: *T) *ns.Array(*ns.String) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*ns.String), @ptrCast(&c.objc_msgSend))(self_, sel_functionNames);
+                return objc.msgSend(self_, "functionNames", *ns.Array(*ns.String), .{});
             }
             pub fn @"type"(self_: *T) LibraryType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) LibraryType, @ptrCast(&c.objc_msgSend))(self_, sel_type);
+                return objc.msgSend(self_, "type", LibraryType, .{});
             }
             pub fn installName(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_installName);
+                return objc.msgSend(self_, "installName", ?*ns.String, .{});
             }
         };
     }
@@ -5204,31 +5205,31 @@ pub const LinkedFunctions = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn linkedFunctions() *LinkedFunctions {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(T.class(), sel_linkedFunctions);
+                return objc.msgSend(T.class(), "linkedFunctions", *LinkedFunctions, .{});
             }
             pub fn functions(self_: *T) ?*ns.Array(*Function) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Function), @ptrCast(&c.objc_msgSend))(self_, sel_functions);
+                return objc.msgSend(self_, "functions", ?*ns.Array(*Function), .{});
             }
             pub fn setFunctions(self_: *T, functions_: ?*ns.Array(*Function)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*Function)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_, functions_);
+                return objc.msgSend(self_, "setFunctions:", void, .{functions_});
             }
             pub fn binaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Function), @ptrCast(&c.objc_msgSend))(self_, sel_binaryFunctions);
+                return objc.msgSend(self_, "binaryFunctions", ?*ns.Array(*Function), .{});
             }
             pub fn setBinaryFunctions(self_: *T, binaryFunctions_: ?*ns.Array(*Function)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*Function)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryFunctions_, binaryFunctions_);
+                return objc.msgSend(self_, "setBinaryFunctions:", void, .{binaryFunctions_});
             }
             pub fn groups(self_: *T) ?*ns.Dictionary(*ns.String, *ns.Array(*Function)) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Dictionary(*ns.String, *ns.Array(*Function)), @ptrCast(&c.objc_msgSend))(self_, sel_groups);
+                return objc.msgSend(self_, "groups", ?*ns.Dictionary(*ns.String, *ns.Array(*Function)), .{});
             }
             pub fn setGroups(self_: *T, groups_: ?*ns.Dictionary(*ns.String, *ns.Array(*Function))) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Dictionary(*ns.String, *ns.Array(*Function))) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setGroups_, groups_);
+                return objc.msgSend(self_, "setGroups:", void, .{groups_});
             }
             pub fn privateFunctions(self_: *T) ?*ns.Array(*Function) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Function), @ptrCast(&c.objc_msgSend))(self_, sel_privateFunctions);
+                return objc.msgSend(self_, "privateFunctions", ?*ns.Array(*Function), .{});
             }
             pub fn setPrivateFunctions(self_: *T, privateFunctions_: ?*ns.Array(*Function)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*Function)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPrivateFunctions_, privateFunctions_);
+                return objc.msgSend(self_, "setPrivateFunctions:", void, .{privateFunctions_});
             }
         };
     }
@@ -5242,25 +5243,25 @@ pub const ParallelRenderCommandEncoder = opaque {
             pub usingnamespace CommandEncoder.Methods(T);
 
             pub fn renderCommandEncoder(self_: *T) ?*RenderCommandEncoder {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*RenderCommandEncoder, @ptrCast(&c.objc_msgSend))(self_, sel_renderCommandEncoder);
+                return objc.msgSend(self_, "renderCommandEncoder", ?*RenderCommandEncoder, .{});
             }
             pub fn setColorStoreAction_atIndex(self_: *T, storeAction_: StoreAction, colorAttachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreAction, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setColorStoreAction_atIndex_, storeAction_, colorAttachmentIndex_);
+                return objc.msgSend(self_, "setColorStoreAction:atIndex:", void, .{ storeAction_, colorAttachmentIndex_ });
             }
             pub fn setDepthStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreAction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthStoreAction_, storeAction_);
+                return objc.msgSend(self_, "setDepthStoreAction:", void, .{storeAction_});
             }
             pub fn setStencilStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreAction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilStoreAction_, storeAction_);
+                return objc.msgSend(self_, "setStencilStoreAction:", void, .{storeAction_});
             }
             pub fn setColorStoreActionOptions_atIndex(self_: *T, storeActionOptions_: StoreActionOptions, colorAttachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreActionOptions, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setColorStoreActionOptions_atIndex_, storeActionOptions_, colorAttachmentIndex_);
+                return objc.msgSend(self_, "setColorStoreActionOptions:atIndex:", void, .{ storeActionOptions_, colorAttachmentIndex_ });
             }
             pub fn setDepthStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreActionOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthStoreActionOptions_, storeActionOptions_);
+                return objc.msgSend(self_, "setDepthStoreActionOptions:", void, .{storeActionOptions_});
             }
             pub fn setStencilStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreActionOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilStoreActionOptions_, storeActionOptions_);
+                return objc.msgSend(self_, "setStencilStoreActionOptions:", void, .{storeActionOptions_});
             }
         };
     }
@@ -5278,10 +5279,10 @@ pub const PipelineBufferDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn mutability(self_: *T) Mutability {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Mutability, @ptrCast(&c.objc_msgSend))(self_, sel_mutability);
+                return objc.msgSend(self_, "mutability", Mutability, .{});
             }
             pub fn setMutability(self_: *T, mutability_: Mutability) void {
-                return @as(*const fn (*T, *c.objc_selector, Mutability) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMutability_, mutability_);
+                return objc.msgSend(self_, "setMutability:", void, .{mutability_});
             }
         };
     }
@@ -5298,10 +5299,10 @@ pub const PipelineBufferDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, bufferIndex_: ns.UInteger) *PipelineBufferDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *PipelineBufferDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, bufferIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *PipelineBufferDescriptor, .{bufferIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, buffer_: ?*PipelineBufferDescriptor, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*PipelineBufferDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, buffer_, bufferIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ buffer_, bufferIndex_ });
             }
         };
     }
@@ -5318,10 +5319,10 @@ pub const RasterizationRateSampleArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *ns.Number {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *ns.Number, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, index_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *ns.Number, .{index_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, value_: *ns.Number, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Number, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, value_, index_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ value_, index_ });
             }
         };
     }
@@ -5338,31 +5339,31 @@ pub const RasterizationRateLayerDescriptor = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn initWithSampleCount(self_: *T, sampleCount_: Size) *T {
-                return @as(*const fn (*T, *c.objc_selector, Size) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithSampleCount_, sampleCount_);
+                return objc.msgSend(self_, "initWithSampleCount:", *T, .{sampleCount_});
             }
             pub fn initWithSampleCount_horizontal_vertical(self_: *T, sampleCount_: Size, horizontal_: *const f32, vertical_: *const f32) *T {
-                return @as(*const fn (*T, *c.objc_selector, Size, *const f32, *const f32) callconv(.C) *T, @ptrCast(&c.objc_msgSend))(self_, sel_initWithSampleCount_horizontal_vertical_, sampleCount_, horizontal_, vertical_);
+                return objc.msgSend(self_, "initWithSampleCount:horizontal:vertical:", *T, .{ sampleCount_, horizontal_, vertical_ });
             }
             pub fn sampleCount(self_: *T) Size {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCount);
+                return objc.msgSend(self_, "sampleCount", Size, .{});
             }
             pub fn maxSampleCount(self_: *T) Size {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_maxSampleCount);
+                return objc.msgSend(self_, "maxSampleCount", Size, .{});
             }
             pub fn horizontalSampleStorage(self_: *T) *f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *f32, @ptrCast(&c.objc_msgSend))(self_, sel_horizontalSampleStorage);
+                return objc.msgSend(self_, "horizontalSampleStorage", *f32, .{});
             }
             pub fn verticalSampleStorage(self_: *T) *f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *f32, @ptrCast(&c.objc_msgSend))(self_, sel_verticalSampleStorage);
+                return objc.msgSend(self_, "verticalSampleStorage", *f32, .{});
             }
             pub fn horizontal(self_: *T) *RasterizationRateSampleArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RasterizationRateSampleArray, @ptrCast(&c.objc_msgSend))(self_, sel_horizontal);
+                return objc.msgSend(self_, "horizontal", *RasterizationRateSampleArray, .{});
             }
             pub fn vertical(self_: *T) *RasterizationRateSampleArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RasterizationRateSampleArray, @ptrCast(&c.objc_msgSend))(self_, sel_vertical);
+                return objc.msgSend(self_, "vertical", *RasterizationRateSampleArray, .{});
             }
             pub fn setSampleCount(self_: *T, sampleCount_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleCount_, sampleCount_);
+                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
             }
         };
     }
@@ -5379,10 +5380,10 @@ pub const RasterizationRateLayerArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, layerIndex_: ns.UInteger) ?*RasterizationRateLayerDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ?*RasterizationRateLayerDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, layerIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", ?*RasterizationRateLayerDescriptor, .{layerIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, layer_: ?*RasterizationRateLayerDescriptor, layerIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RasterizationRateLayerDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, layer_, layerIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ layer_, layerIndex_ });
             }
         };
     }
@@ -5400,37 +5401,37 @@ pub const RasterizationRateMapDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn rasterizationRateMapDescriptorWithScreenSize(screenSize_: Size) *RasterizationRateMapDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, Size) callconv(.C) *RasterizationRateMapDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_rasterizationRateMapDescriptorWithScreenSize_, screenSize_);
+                return objc.msgSend(T.class(), "rasterizationRateMapDescriptorWithScreenSize:", *RasterizationRateMapDescriptor, .{screenSize_});
             }
             pub fn rasterizationRateMapDescriptorWithScreenSize_layer(screenSize_: Size, layer_: *RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, Size, *RasterizationRateLayerDescriptor) callconv(.C) *RasterizationRateMapDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_rasterizationRateMapDescriptorWithScreenSize_layer_, screenSize_, layer_);
+                return objc.msgSend(T.class(), "rasterizationRateMapDescriptorWithScreenSize:layer:", *RasterizationRateMapDescriptor, .{ screenSize_, layer_ });
             }
             pub fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(screenSize_: Size, layerCount_: ns.UInteger, layers_: **const RasterizationRateLayerDescriptor) *RasterizationRateMapDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, Size, ns.UInteger, **const RasterizationRateLayerDescriptor) callconv(.C) *RasterizationRateMapDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_rasterizationRateMapDescriptorWithScreenSize_layerCount_layers_, screenSize_, layerCount_, layers_);
+                return objc.msgSend(T.class(), "rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:", *RasterizationRateMapDescriptor, .{ screenSize_, layerCount_, layers_ });
             }
             pub fn layerAtIndex(self_: *T, layerIndex_: ns.UInteger) ?*RasterizationRateLayerDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) ?*RasterizationRateLayerDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_layerAtIndex_, layerIndex_);
+                return objc.msgSend(self_, "layerAtIndex:", ?*RasterizationRateLayerDescriptor, .{layerIndex_});
             }
             pub fn setLayer_atIndex(self_: *T, layer_: ?*RasterizationRateLayerDescriptor, layerIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RasterizationRateLayerDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLayer_atIndex_, layer_, layerIndex_);
+                return objc.msgSend(self_, "setLayer:atIndex:", void, .{ layer_, layerIndex_ });
             }
             pub fn layers(self_: *T) *RasterizationRateLayerArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RasterizationRateLayerArray, @ptrCast(&c.objc_msgSend))(self_, sel_layers);
+                return objc.msgSend(self_, "layers", *RasterizationRateLayerArray, .{});
             }
             pub fn screenSize(self_: *T) Size {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_screenSize);
+                return objc.msgSend(self_, "screenSize", Size, .{});
             }
             pub fn setScreenSize(self_: *T, screenSize_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setScreenSize_, screenSize_);
+                return objc.msgSend(self_, "setScreenSize:", void, .{screenSize_});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn layerCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_layerCount);
+                return objc.msgSend(self_, "layerCount", ns.UInteger, .{});
             }
         };
     }
@@ -5444,34 +5445,34 @@ pub const RasterizationRateMap = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn copyParameterDataToBuffer_offset(self_: *T, buffer_: *Buffer, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_copyParameterDataToBuffer_offset_, buffer_, offset_);
+                return objc.msgSend(self_, "copyParameterDataToBuffer:offset:", void, .{ buffer_, offset_ });
             }
             pub fn physicalSizeForLayer(self_: *T, layerIndex_: ns.UInteger) Size {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_physicalSizeForLayer_, layerIndex_);
+                return objc.msgSend(self_, "physicalSizeForLayer:", Size, .{layerIndex_});
             }
             pub fn mapScreenToPhysicalCoordinates_forLayer(self_: *T, screenCoordinates_: Coordinate2D, layerIndex_: ns.UInteger) Coordinate2D {
-                return @as(*const fn (*T, *c.objc_selector, Coordinate2D, ns.UInteger) callconv(.C) Coordinate2D, @ptrCast(&c.objc_msgSend))(self_, sel_mapScreenToPhysicalCoordinates_forLayer_, screenCoordinates_, layerIndex_);
+                return objc.msgSend(self_, "mapScreenToPhysicalCoordinates:forLayer:", Coordinate2D, .{ screenCoordinates_, layerIndex_ });
             }
             pub fn mapPhysicalToScreenCoordinates_forLayer(self_: *T, physicalCoordinates_: Coordinate2D, layerIndex_: ns.UInteger) Coordinate2D {
-                return @as(*const fn (*T, *c.objc_selector, Coordinate2D, ns.UInteger) callconv(.C) Coordinate2D, @ptrCast(&c.objc_msgSend))(self_, sel_mapPhysicalToScreenCoordinates_forLayer_, physicalCoordinates_, layerIndex_);
+                return objc.msgSend(self_, "mapPhysicalToScreenCoordinates:forLayer:", Coordinate2D, .{ physicalCoordinates_, layerIndex_ });
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn screenSize(self_: *T) Size {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_screenSize);
+                return objc.msgSend(self_, "screenSize", Size, .{});
             }
             pub fn physicalGranularity(self_: *T) Size {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Size, @ptrCast(&c.objc_msgSend))(self_, sel_physicalGranularity);
+                return objc.msgSend(self_, "physicalGranularity", Size, .{});
             }
             pub fn layerCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_layerCount);
+                return objc.msgSend(self_, "layerCount", ns.UInteger, .{});
             }
             pub fn parameterBufferSizeAndAlign(self_: *T) SizeAndAlign {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SizeAndAlign, @ptrCast(&c.objc_msgSend))(self_, sel_parameterBufferSizeAndAlign);
+                return objc.msgSend(self_, "parameterBufferSizeAndAlign", SizeAndAlign, .{});
             }
         };
     }
@@ -5485,391 +5486,391 @@ pub const RenderCommandEncoder = opaque {
             pub usingnamespace CommandEncoder.Methods(T);
 
             pub fn setRenderPipelineState(self_: *T, pipelineState_: *RenderPipelineState) void {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineState) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRenderPipelineState_, pipelineState_);
+                return objc.msgSend(self_, "setRenderPipelineState:", void, .{pipelineState_});
             }
             pub fn setVertexBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBytes_length_atIndex_, bytes_, length_, index_);
+                return objc.msgSend(self_, "setVertexBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
             }
             pub fn setVertexBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setVertexBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setVertexBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBufferOffset_atIndex_, offset_, index_);
+                return objc.msgSend(self_, "setVertexBufferOffset:atIndex:", void, .{ offset_, index_ });
             }
             pub fn setVertexBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setVertexBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setVertexBuffer_offset_attributeStride_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffer_offset_attributeStride_atIndex_, buffer_, offset_, stride_, index_);
+                return objc.msgSend(self_, "setVertexBuffer:offset:attributeStride:atIndex:", void, .{ buffer_, offset_, stride_, index_ });
             }
             pub fn setVertexBuffers_offsets_attributeStrides_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, strides_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBuffers_offsets_attributeStrides_withRange_, buffers_, offsets_, strides_, range_);
+                return objc.msgSend(self_, "setVertexBuffers:offsets:attributeStrides:withRange:", void, .{ buffers_, offsets_, strides_, range_ });
             }
             pub fn setVertexBufferOffset_attributeStride_atIndex(self_: *T, offset_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBufferOffset_attributeStride_atIndex_, offset_, stride_, index_);
+                return objc.msgSend(self_, "setVertexBufferOffset:attributeStride:atIndex:", void, .{ offset_, stride_, index_ });
             }
             pub fn setVertexBytes_length_attributeStride_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, stride_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexBytes_length_attributeStride_atIndex_, bytes_, length_, stride_, index_);
+                return objc.msgSend(self_, "setVertexBytes:length:attributeStride:atIndex:", void, .{ bytes_, length_, stride_, index_ });
             }
             pub fn setVertexTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexTexture_atIndex_, texture_, index_);
+                return objc.msgSend(self_, "setVertexTexture:atIndex:", void, .{ texture_, index_ });
             }
             pub fn setVertexTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Texture, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexTextures_withRange_, textures_, range_);
+                return objc.msgSend(self_, "setVertexTextures:withRange:", void, .{ textures_, range_ });
             }
             pub fn setVertexSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexSamplerState_atIndex_, sampler_, index_);
+                return objc.msgSend(self_, "setVertexSamplerState:atIndex:", void, .{ sampler_, index_ });
             }
             pub fn setVertexSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexSamplerStates_withRange_, samplers_, range_);
+                return objc.msgSend(self_, "setVertexSamplerStates:withRange:", void, .{ samplers_, range_ });
             }
             pub fn setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, f32, f32, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex_, sampler_, lodMinClamp_, lodMaxClamp_, index_);
+                return objc.msgSend(self_, "setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
             }
             pub fn setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, *const f32, *const f32, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange_, samplers_, lodMinClamps_, lodMaxClamps_, range_);
+                return objc.msgSend(self_, "setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
             }
             pub fn setVertexVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexVisibleFunctionTable_atBufferIndex_, functionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setVertexVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
             }
             pub fn setVertexVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const VisibleFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexVisibleFunctionTables_withBufferRange_, functionTables_, range_);
+                return objc.msgSend(self_, "setVertexVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
             }
             pub fn setVertexIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*IntersectionFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexIntersectionFunctionTable_atBufferIndex_, intersectionFunctionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setVertexIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
             }
             pub fn setVertexIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const IntersectionFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexIntersectionFunctionTables_withBufferRange_, intersectionFunctionTables_, range_);
+                return objc.msgSend(self_, "setVertexIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
             }
             pub fn setVertexAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*AccelerationStructure, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexAccelerationStructure_atBufferIndex_, accelerationStructure_, bufferIndex_);
+                return objc.msgSend(self_, "setVertexAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
             }
             pub fn setViewport(self_: *T, viewport_: Viewport) void {
-                return @as(*const fn (*T, *c.objc_selector, Viewport) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setViewport_, viewport_);
+                return objc.msgSend(self_, "setViewport:", void, .{viewport_});
             }
             pub fn setViewports_count(self_: *T, viewports_: *const Viewport, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const Viewport, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setViewports_count_, viewports_, count_);
+                return objc.msgSend(self_, "setViewports:count:", void, .{ viewports_, count_ });
             }
             pub fn setFrontFacingWinding(self_: *T, frontFacingWinding_: Winding) void {
-                return @as(*const fn (*T, *c.objc_selector, Winding) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFrontFacingWinding_, frontFacingWinding_);
+                return objc.msgSend(self_, "setFrontFacingWinding:", void, .{frontFacingWinding_});
             }
             pub fn setVertexAmplificationCount_viewMappings(self_: *T, count_: ns.UInteger, viewMappings_: ?*const VertexAmplificationViewMapping) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ?*const VertexAmplificationViewMapping) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexAmplificationCount_viewMappings_, count_, viewMappings_);
+                return objc.msgSend(self_, "setVertexAmplificationCount:viewMappings:", void, .{ count_, viewMappings_ });
             }
             pub fn setCullMode(self_: *T, cullMode_: CullMode) void {
-                return @as(*const fn (*T, *c.objc_selector, CullMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCullMode_, cullMode_);
+                return objc.msgSend(self_, "setCullMode:", void, .{cullMode_});
             }
             pub fn setDepthClipMode(self_: *T, depthClipMode_: DepthClipMode) void {
-                return @as(*const fn (*T, *c.objc_selector, DepthClipMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthClipMode_, depthClipMode_);
+                return objc.msgSend(self_, "setDepthClipMode:", void, .{depthClipMode_});
             }
             pub fn setDepthBias_slopeScale_clamp(self_: *T, depthBias_: f32, slopeScale_: f32, clamp_: f32) void {
-                return @as(*const fn (*T, *c.objc_selector, f32, f32, f32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthBias_slopeScale_clamp_, depthBias_, slopeScale_, clamp_);
+                return objc.msgSend(self_, "setDepthBias:slopeScale:clamp:", void, .{ depthBias_, slopeScale_, clamp_ });
             }
             pub fn setScissorRect(self_: *T, rect_: ScissorRect) void {
-                return @as(*const fn (*T, *c.objc_selector, ScissorRect) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setScissorRect_, rect_);
+                return objc.msgSend(self_, "setScissorRect:", void, .{rect_});
             }
             pub fn setScissorRects_count(self_: *T, scissorRects_: *const ScissorRect, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const ScissorRect, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setScissorRects_count_, scissorRects_, count_);
+                return objc.msgSend(self_, "setScissorRects:count:", void, .{ scissorRects_, count_ });
             }
             pub fn setTriangleFillMode(self_: *T, fillMode_: TriangleFillMode) void {
-                return @as(*const fn (*T, *c.objc_selector, TriangleFillMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTriangleFillMode_, fillMode_);
+                return objc.msgSend(self_, "setTriangleFillMode:", void, .{fillMode_});
             }
             pub fn setFragmentBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentBytes_length_atIndex_, bytes_, length_, index_);
+                return objc.msgSend(self_, "setFragmentBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
             }
             pub fn setFragmentBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setFragmentBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setFragmentBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentBufferOffset_atIndex_, offset_, index_);
+                return objc.msgSend(self_, "setFragmentBufferOffset:atIndex:", void, .{ offset_, index_ });
             }
             pub fn setFragmentBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setFragmentBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setFragmentTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentTexture_atIndex_, texture_, index_);
+                return objc.msgSend(self_, "setFragmentTexture:atIndex:", void, .{ texture_, index_ });
             }
             pub fn setFragmentTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Texture, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentTextures_withRange_, textures_, range_);
+                return objc.msgSend(self_, "setFragmentTextures:withRange:", void, .{ textures_, range_ });
             }
             pub fn setFragmentSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentSamplerState_atIndex_, sampler_, index_);
+                return objc.msgSend(self_, "setFragmentSamplerState:atIndex:", void, .{ sampler_, index_ });
             }
             pub fn setFragmentSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentSamplerStates_withRange_, samplers_, range_);
+                return objc.msgSend(self_, "setFragmentSamplerStates:withRange:", void, .{ samplers_, range_ });
             }
             pub fn setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, f32, f32, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex_, sampler_, lodMinClamp_, lodMaxClamp_, index_);
+                return objc.msgSend(self_, "setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
             }
             pub fn setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, *const f32, *const f32, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange_, samplers_, lodMinClamps_, lodMaxClamps_, range_);
+                return objc.msgSend(self_, "setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
             }
             pub fn setFragmentVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentVisibleFunctionTable_atBufferIndex_, functionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setFragmentVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
             }
             pub fn setFragmentVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const VisibleFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentVisibleFunctionTables_withBufferRange_, functionTables_, range_);
+                return objc.msgSend(self_, "setFragmentVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
             }
             pub fn setFragmentIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*IntersectionFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentIntersectionFunctionTable_atBufferIndex_, intersectionFunctionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setFragmentIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
             }
             pub fn setFragmentIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const IntersectionFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentIntersectionFunctionTables_withBufferRange_, intersectionFunctionTables_, range_);
+                return objc.msgSend(self_, "setFragmentIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
             }
             pub fn setFragmentAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*AccelerationStructure, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentAccelerationStructure_atBufferIndex_, accelerationStructure_, bufferIndex_);
+                return objc.msgSend(self_, "setFragmentAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
             }
             pub fn setBlendColorRed_green_blue_alpha(self_: *T, red_: f32, green_: f32, blue_: f32, alpha_: f32) void {
-                return @as(*const fn (*T, *c.objc_selector, f32, f32, f32, f32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBlendColorRed_green_blue_alpha_, red_, green_, blue_, alpha_);
+                return objc.msgSend(self_, "setBlendColorRed:green:blue:alpha:", void, .{ red_, green_, blue_, alpha_ });
             }
             pub fn setDepthStencilState(self_: *T, depthStencilState_: ?*DepthStencilState) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*DepthStencilState) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthStencilState_, depthStencilState_);
+                return objc.msgSend(self_, "setDepthStencilState:", void, .{depthStencilState_});
             }
             pub fn setStencilReferenceValue(self_: *T, referenceValue_: u32) void {
-                return @as(*const fn (*T, *c.objc_selector, u32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilReferenceValue_, referenceValue_);
+                return objc.msgSend(self_, "setStencilReferenceValue:", void, .{referenceValue_});
             }
             pub fn setStencilFrontReferenceValue_backReferenceValue(self_: *T, frontReferenceValue_: u32, backReferenceValue_: u32) void {
-                return @as(*const fn (*T, *c.objc_selector, u32, u32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilFrontReferenceValue_backReferenceValue_, frontReferenceValue_, backReferenceValue_);
+                return objc.msgSend(self_, "setStencilFrontReferenceValue:backReferenceValue:", void, .{ frontReferenceValue_, backReferenceValue_ });
             }
             pub fn setVisibilityResultMode_offset(self_: *T, mode_: VisibilityResultMode, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, VisibilityResultMode, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibilityResultMode_offset_, mode_, offset_);
+                return objc.msgSend(self_, "setVisibilityResultMode:offset:", void, .{ mode_, offset_ });
             }
             pub fn setColorStoreAction_atIndex(self_: *T, storeAction_: StoreAction, colorAttachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreAction, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setColorStoreAction_atIndex_, storeAction_, colorAttachmentIndex_);
+                return objc.msgSend(self_, "setColorStoreAction:atIndex:", void, .{ storeAction_, colorAttachmentIndex_ });
             }
             pub fn setDepthStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreAction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthStoreAction_, storeAction_);
+                return objc.msgSend(self_, "setDepthStoreAction:", void, .{storeAction_});
             }
             pub fn setStencilStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreAction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilStoreAction_, storeAction_);
+                return objc.msgSend(self_, "setStencilStoreAction:", void, .{storeAction_});
             }
             pub fn setColorStoreActionOptions_atIndex(self_: *T, storeActionOptions_: StoreActionOptions, colorAttachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreActionOptions, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setColorStoreActionOptions_atIndex_, storeActionOptions_, colorAttachmentIndex_);
+                return objc.msgSend(self_, "setColorStoreActionOptions:atIndex:", void, .{ storeActionOptions_, colorAttachmentIndex_ });
             }
             pub fn setDepthStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreActionOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthStoreActionOptions_, storeActionOptions_);
+                return objc.msgSend(self_, "setDepthStoreActionOptions:", void, .{storeActionOptions_});
             }
             pub fn setStencilStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreActionOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilStoreActionOptions_, storeActionOptions_);
+                return objc.msgSend(self_, "setStencilStoreActionOptions:", void, .{storeActionOptions_});
             }
             pub fn setObjectBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectBytes_length_atIndex_, bytes_, length_, index_);
+                return objc.msgSend(self_, "setObjectBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
             }
             pub fn setObjectBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setObjectBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setObjectBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectBufferOffset_atIndex_, offset_, index_);
+                return objc.msgSend(self_, "setObjectBufferOffset:atIndex:", void, .{ offset_, index_ });
             }
             pub fn setObjectBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setObjectBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setObjectTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectTexture_atIndex_, texture_, index_);
+                return objc.msgSend(self_, "setObjectTexture:atIndex:", void, .{ texture_, index_ });
             }
             pub fn setObjectTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Texture, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectTextures_withRange_, textures_, range_);
+                return objc.msgSend(self_, "setObjectTextures:withRange:", void, .{ textures_, range_ });
             }
             pub fn setObjectSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectSamplerState_atIndex_, sampler_, index_);
+                return objc.msgSend(self_, "setObjectSamplerState:atIndex:", void, .{ sampler_, index_ });
             }
             pub fn setObjectSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectSamplerStates_withRange_, samplers_, range_);
+                return objc.msgSend(self_, "setObjectSamplerStates:withRange:", void, .{ samplers_, range_ });
             }
             pub fn setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, f32, f32, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex_, sampler_, lodMinClamp_, lodMaxClamp_, index_);
+                return objc.msgSend(self_, "setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
             }
             pub fn setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, *const f32, *const f32, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange_, samplers_, lodMinClamps_, lodMaxClamps_, range_);
+                return objc.msgSend(self_, "setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
             }
             pub fn setObjectThreadgroupMemoryLength_atIndex(self_: *T, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectThreadgroupMemoryLength_atIndex_, length_, index_);
+                return objc.msgSend(self_, "setObjectThreadgroupMemoryLength:atIndex:", void, .{ length_, index_ });
             }
             pub fn setMeshBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshBytes_length_atIndex_, bytes_, length_, index_);
+                return objc.msgSend(self_, "setMeshBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
             }
             pub fn setMeshBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setMeshBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setMeshBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshBufferOffset_atIndex_, offset_, index_);
+                return objc.msgSend(self_, "setMeshBufferOffset:atIndex:", void, .{ offset_, index_ });
             }
             pub fn setMeshBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setMeshBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setMeshTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshTexture_atIndex_, texture_, index_);
+                return objc.msgSend(self_, "setMeshTexture:atIndex:", void, .{ texture_, index_ });
             }
             pub fn setMeshTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Texture, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshTextures_withRange_, textures_, range_);
+                return objc.msgSend(self_, "setMeshTextures:withRange:", void, .{ textures_, range_ });
             }
             pub fn setMeshSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshSamplerState_atIndex_, sampler_, index_);
+                return objc.msgSend(self_, "setMeshSamplerState:atIndex:", void, .{ sampler_, index_ });
             }
             pub fn setMeshSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshSamplerStates_withRange_, samplers_, range_);
+                return objc.msgSend(self_, "setMeshSamplerStates:withRange:", void, .{ samplers_, range_ });
             }
             pub fn setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, f32, f32, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex_, sampler_, lodMinClamp_, lodMaxClamp_, index_);
+                return objc.msgSend(self_, "setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
             }
             pub fn setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, *const f32, *const f32, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange_, samplers_, lodMinClamps_, lodMaxClamps_, range_);
+                return objc.msgSend(self_, "setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
             }
             pub fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadgroupsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_, threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_);
+                return objc.msgSend(self_, "drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadgroupsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
             }
             pub fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, threadsPerGrid_: Size, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_, threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_);
+                return objc.msgSend(self_, "drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ threadsPerGrid_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
             }
             pub fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(self_: *T, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger, threadsPerObjectThreadgroup_: Size, threadsPerMeshThreadgroup_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, *Buffer, ns.UInteger, Size, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_, indirectBuffer_, indirectBufferOffset_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_);
+                return objc.msgSend(self_, "drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:", void, .{ indirectBuffer_, indirectBufferOffset_, threadsPerObjectThreadgroup_, threadsPerMeshThreadgroup_ });
             }
             pub fn drawPrimitives_vertexStart_vertexCount_instanceCount(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPrimitives_vertexStart_vertexCount_instanceCount_, primitiveType_, vertexStart_, vertexCount_, instanceCount_);
+                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_ });
             }
             pub fn drawPrimitives_vertexStart_vertexCount(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPrimitives_vertexStart_vertexCount_, primitiveType_, vertexStart_, vertexCount_);
+                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:", void, .{ primitiveType_, vertexStart_, vertexCount_ });
             }
             pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, IndexType, *Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_, primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_);
+                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_ });
             }
             pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, IndexType, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_, primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_);
+                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_ });
             }
             pub fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(self_: *T, primitiveType_: PrimitiveType, vertexStart_: ns.UInteger, vertexCount_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance_, primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_);
+                return objc.msgSend(self_, "drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:", void, .{ primitiveType_, vertexStart_, vertexCount_, instanceCount_, baseInstance_ });
             }
             pub fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(self_: *T, primitiveType_: PrimitiveType, indexCount_: ns.UInteger, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseVertex_: ns.Integer, baseInstance_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, ns.UInteger, IndexType, *Buffer, ns.UInteger, ns.UInteger, ns.Integer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance_, primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_);
+                return objc.msgSend(self_, "drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:", void, .{ primitiveType_, indexCount_, indexType_, indexBuffer_, indexBufferOffset_, instanceCount_, baseVertex_, baseInstance_ });
             }
             pub fn drawPrimitives_indirectBuffer_indirectBufferOffset(self_: *T, primitiveType_: PrimitiveType, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPrimitives_indirectBuffer_indirectBufferOffset_, primitiveType_, indirectBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "drawPrimitives:indirectBuffer:indirectBufferOffset:", void, .{ primitiveType_, indirectBuffer_, indirectBufferOffset_ });
             }
             pub fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *T, primitiveType_: PrimitiveType, indexType_: IndexType, indexBuffer_: *Buffer, indexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveType, IndexType, *Buffer, ns.UInteger, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset_, primitiveType_, indexType_, indexBuffer_, indexBufferOffset_, indirectBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ primitiveType_, indexType_, indexBuffer_, indexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
             }
             pub fn textureBarrier(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_textureBarrier);
+                return objc.msgSend(self_, "textureBarrier", void, .{});
             }
             pub fn updateFence_afterStages(self_: *T, fence_: *Fence, stages_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateFence_afterStages_, fence_, stages_);
+                return objc.msgSend(self_, "updateFence:afterStages:", void, .{ fence_, stages_ });
             }
             pub fn waitForFence_beforeStages(self_: *T, fence_: *Fence, stages_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitForFence_beforeStages_, fence_, stages_);
+                return objc.msgSend(self_, "waitForFence:beforeStages:", void, .{ fence_, stages_ });
             }
             pub fn setTessellationFactorBuffer_offset_instanceStride(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, instanceStride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationFactorBuffer_offset_instanceStride_, buffer_, offset_, instanceStride_);
+                return objc.msgSend(self_, "setTessellationFactorBuffer:offset:instanceStride:", void, .{ buffer_, offset_, instanceStride_ });
             }
             pub fn setTessellationFactorScale(self_: *T, scale_: f32) void {
-                return @as(*const fn (*T, *c.objc_selector, f32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationFactorScale_, scale_);
+                return objc.msgSend(self_, "setTessellationFactorScale:", void, .{scale_});
             }
             pub fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger, ?*Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_, numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_);
+                return objc.msgSend(self_, "drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, instanceCount_, baseInstance_ });
             }
             pub fn drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ?*Buffer, ns.UInteger, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset_, numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
             }
             pub fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchStart_: ns.UInteger, patchCount_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, instanceCount_: ns.UInteger, baseInstance_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger, ?*Buffer, ns.UInteger, *Buffer, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_, numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_);
+                return objc.msgSend(self_, "drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:", void, .{ numberOfPatchControlPoints_, patchStart_, patchCount_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, instanceCount_, baseInstance_ });
             }
             pub fn drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset(self_: *T, numberOfPatchControlPoints_: ns.UInteger, patchIndexBuffer_: ?*Buffer, patchIndexBufferOffset_: ns.UInteger, controlPointIndexBuffer_: *Buffer, controlPointIndexBufferOffset_: ns.UInteger, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ?*Buffer, ns.UInteger, *Buffer, ns.UInteger, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset_, numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:", void, .{ numberOfPatchControlPoints_, patchIndexBuffer_, patchIndexBufferOffset_, controlPointIndexBuffer_, controlPointIndexBufferOffset_, indirectBuffer_, indirectBufferOffset_ });
             }
             pub fn setTileBytes_length_atIndex(self_: *T, bytes_: *const anyopaque, length_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *const anyopaque, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileBytes_length_atIndex_, bytes_, length_, index_);
+                return objc.msgSend(self_, "setTileBytes:length:atIndex:", void, .{ bytes_, length_, index_ });
             }
             pub fn setTileBuffer_offset_atIndex(self_: *T, buffer_: ?*Buffer, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileBuffer_offset_atIndex_, buffer_, offset_, index_);
+                return objc.msgSend(self_, "setTileBuffer:offset:atIndex:", void, .{ buffer_, offset_, index_ });
             }
             pub fn setTileBufferOffset_atIndex(self_: *T, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileBufferOffset_atIndex_, offset_, index_);
+                return objc.msgSend(self_, "setTileBufferOffset:atIndex:", void, .{ offset_, index_ });
             }
             pub fn setTileBuffers_offsets_withRange(self_: *T, buffers_: *?*const Buffer, offsets_: *const ns.UInteger, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Buffer, *const ns.UInteger, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileBuffers_offsets_withRange_, buffers_, offsets_, range_);
+                return objc.msgSend(self_, "setTileBuffers:offsets:withRange:", void, .{ buffers_, offsets_, range_ });
             }
             pub fn setTileTexture_atIndex(self_: *T, texture_: ?*Texture, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileTexture_atIndex_, texture_, index_);
+                return objc.msgSend(self_, "setTileTexture:atIndex:", void, .{ texture_, index_ });
             }
             pub fn setTileTextures_withRange(self_: *T, textures_: *?*const Texture, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const Texture, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileTextures_withRange_, textures_, range_);
+                return objc.msgSend(self_, "setTileTextures:withRange:", void, .{ textures_, range_ });
             }
             pub fn setTileSamplerState_atIndex(self_: *T, sampler_: ?*SamplerState, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileSamplerState_atIndex_, sampler_, index_);
+                return objc.msgSend(self_, "setTileSamplerState:atIndex:", void, .{ sampler_, index_ });
             }
             pub fn setTileSamplerStates_withRange(self_: *T, samplers_: *?*const SamplerState, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileSamplerStates_withRange_, samplers_, range_);
+                return objc.msgSend(self_, "setTileSamplerStates:withRange:", void, .{ samplers_, range_ });
             }
             pub fn setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex(self_: *T, sampler_: ?*SamplerState, lodMinClamp_: f32, lodMaxClamp_: f32, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplerState, f32, f32, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex_, sampler_, lodMinClamp_, lodMaxClamp_, index_);
+                return objc.msgSend(self_, "setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:", void, .{ sampler_, lodMinClamp_, lodMaxClamp_, index_ });
             }
             pub fn setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange(self_: *T, samplers_: *?*const SamplerState, lodMinClamps_: *const f32, lodMaxClamps_: *const f32, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const SamplerState, *const f32, *const f32, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange_, samplers_, lodMinClamps_, lodMaxClamps_, range_);
+                return objc.msgSend(self_, "setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:", void, .{ samplers_, lodMinClamps_, lodMaxClamps_, range_ });
             }
             pub fn setTileVisibleFunctionTable_atBufferIndex(self_: *T, functionTable_: ?*VisibleFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VisibleFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileVisibleFunctionTable_atBufferIndex_, functionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setTileVisibleFunctionTable:atBufferIndex:", void, .{ functionTable_, bufferIndex_ });
             }
             pub fn setTileVisibleFunctionTables_withBufferRange(self_: *T, functionTables_: *?*const VisibleFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const VisibleFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileVisibleFunctionTables_withBufferRange_, functionTables_, range_);
+                return objc.msgSend(self_, "setTileVisibleFunctionTables:withBufferRange:", void, .{ functionTables_, range_ });
             }
             pub fn setTileIntersectionFunctionTable_atBufferIndex(self_: *T, intersectionFunctionTable_: ?*IntersectionFunctionTable, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*IntersectionFunctionTable, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileIntersectionFunctionTable_atBufferIndex_, intersectionFunctionTable_, bufferIndex_);
+                return objc.msgSend(self_, "setTileIntersectionFunctionTable:atBufferIndex:", void, .{ intersectionFunctionTable_, bufferIndex_ });
             }
             pub fn setTileIntersectionFunctionTables_withBufferRange(self_: *T, intersectionFunctionTables_: *?*const IntersectionFunctionTable, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const IntersectionFunctionTable, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileIntersectionFunctionTables_withBufferRange_, intersectionFunctionTables_, range_);
+                return objc.msgSend(self_, "setTileIntersectionFunctionTables:withBufferRange:", void, .{ intersectionFunctionTables_, range_ });
             }
             pub fn setTileAccelerationStructure_atBufferIndex(self_: *T, accelerationStructure_: ?*AccelerationStructure, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*AccelerationStructure, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileAccelerationStructure_atBufferIndex_, accelerationStructure_, bufferIndex_);
+                return objc.msgSend(self_, "setTileAccelerationStructure:atBufferIndex:", void, .{ accelerationStructure_, bufferIndex_ });
             }
             pub fn dispatchThreadsPerTile(self_: *T, threadsPerTile_: Size) void {
-                return @as(*const fn (*T, *c.objc_selector, Size) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_dispatchThreadsPerTile_, threadsPerTile_);
+                return objc.msgSend(self_, "dispatchThreadsPerTile:", void, .{threadsPerTile_});
             }
             pub fn setThreadgroupMemoryLength_offset_atIndex(self_: *T, length_: ns.UInteger, offset_: ns.UInteger, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setThreadgroupMemoryLength_offset_atIndex_, length_, offset_, index_);
+                return objc.msgSend(self_, "setThreadgroupMemoryLength:offset:atIndex:", void, .{ length_, offset_, index_ });
             }
             pub fn useResource_usage(self_: *T, resource_: *Resource, usage_: ResourceUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, *Resource, ResourceUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResource_usage_, resource_, usage_);
+                return objc.msgSend(self_, "useResource:usage:", void, .{ resource_, usage_ });
             }
             pub fn useResources_count_usage(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Resource, ns.UInteger, ResourceUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResources_count_usage_, resources_, count_, usage_);
+                return objc.msgSend(self_, "useResources:count:usage:", void, .{ resources_, count_, usage_ });
             }
             pub fn useResource_usage_stages(self_: *T, resource_: *Resource, usage_: ResourceUsage, stages_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, *Resource, ResourceUsage, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResource_usage_stages_, resource_, usage_, stages_);
+                return objc.msgSend(self_, "useResource:usage:stages:", void, .{ resource_, usage_, stages_ });
             }
             pub fn useResources_count_usage_stages(self_: *T, resources_: **const Resource, count_: ns.UInteger, usage_: ResourceUsage, stages_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Resource, ns.UInteger, ResourceUsage, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useResources_count_usage_stages_, resources_, count_, usage_, stages_);
+                return objc.msgSend(self_, "useResources:count:usage:stages:", void, .{ resources_, count_, usage_, stages_ });
             }
             pub fn useHeap(self_: *T, heap_: *Heap) void {
-                return @as(*const fn (*T, *c.objc_selector, *Heap) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeap_, heap_);
+                return objc.msgSend(self_, "useHeap:", void, .{heap_});
             }
             pub fn useHeaps_count(self_: *T, heaps_: **const Heap, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Heap, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeaps_count_, heaps_, count_);
+                return objc.msgSend(self_, "useHeaps:count:", void, .{ heaps_, count_ });
             }
             pub fn useHeap_stages(self_: *T, heap_: *Heap, stages_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, *Heap, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeap_stages_, heap_, stages_);
+                return objc.msgSend(self_, "useHeap:stages:", void, .{ heap_, stages_ });
             }
             pub fn useHeaps_count_stages(self_: *T, heaps_: **const Heap, count_: ns.UInteger, stages_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Heap, ns.UInteger, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_useHeaps_count_stages_, heaps_, count_, stages_);
+                return objc.msgSend(self_, "useHeaps:count:stages:", void, .{ heaps_, count_, stages_ });
             }
             pub fn executeCommandsInBuffer_withRange(self_: *T, indirectCommandBuffer_: *IndirectCommandBuffer, executionRange_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBuffer, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_executeCommandsInBuffer_withRange_, indirectCommandBuffer_, executionRange_);
+                return objc.msgSend(self_, "executeCommandsInBuffer:withRange:", void, .{ indirectCommandBuffer_, executionRange_ });
             }
             pub fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(self_: *T, indirectCommandbuffer_: *IndirectCommandBuffer, indirectRangeBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *IndirectCommandBuffer, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_executeCommandsInBuffer_indirectBuffer_indirectBufferOffset_, indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:", void, .{ indirectCommandbuffer_, indirectRangeBuffer_, indirectBufferOffset_ });
             }
             pub fn memoryBarrierWithScope_afterStages_beforeStages(self_: *T, scope_: BarrierScope, after_: RenderStages, before_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, BarrierScope, RenderStages, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_memoryBarrierWithScope_afterStages_beforeStages_, scope_, after_, before_);
+                return objc.msgSend(self_, "memoryBarrierWithScope:afterStages:beforeStages:", void, .{ scope_, after_, before_ });
             }
             pub fn memoryBarrierWithResources_count_afterStages_beforeStages(self_: *T, resources_: **const Resource, count_: ns.UInteger, after_: RenderStages, before_: RenderStages) void {
-                return @as(*const fn (*T, *c.objc_selector, **const Resource, ns.UInteger, RenderStages, RenderStages) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_memoryBarrierWithResources_count_afterStages_beforeStages_, resources_, count_, after_, before_);
+                return objc.msgSend(self_, "memoryBarrierWithResources:count:afterStages:beforeStages:", void, .{ resources_, count_, after_, before_ });
             }
             pub fn sampleCountersInBuffer_atSampleIndex_withBarrier(self_: *T, sampleBuffer_: *CounterSampleBuffer, sampleIndex_: ns.UInteger, barrier_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, *CounterSampleBuffer, ns.UInteger, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCountersInBuffer_atSampleIndex_withBarrier_, sampleBuffer_, sampleIndex_, barrier_);
+                return objc.msgSend(self_, "sampleCountersInBuffer:atSampleIndex:withBarrier:", void, .{ sampleBuffer_, sampleIndex_, barrier_ });
             }
             pub fn tileWidth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_tileWidth);
+                return objc.msgSend(self_, "tileWidth", ns.UInteger, .{});
             }
             pub fn tileHeight(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_tileHeight);
+                return objc.msgSend(self_, "tileHeight", ns.UInteger, .{});
             }
         };
     }
@@ -5887,70 +5888,70 @@ pub const RenderPassAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn texture(self_: *T) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_texture);
+                return objc.msgSend(self_, "texture", ?*Texture, .{});
             }
             pub fn setTexture(self_: *T, texture_: ?*Texture) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTexture_, texture_);
+                return objc.msgSend(self_, "setTexture:", void, .{texture_});
             }
             pub fn level(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_level);
+                return objc.msgSend(self_, "level", ns.UInteger, .{});
             }
             pub fn setLevel(self_: *T, level_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLevel_, level_);
+                return objc.msgSend(self_, "setLevel:", void, .{level_});
             }
             pub fn slice(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_slice);
+                return objc.msgSend(self_, "slice", ns.UInteger, .{});
             }
             pub fn setSlice(self_: *T, slice_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSlice_, slice_);
+                return objc.msgSend(self_, "setSlice:", void, .{slice_});
             }
             pub fn depthPlane(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_depthPlane);
+                return objc.msgSend(self_, "depthPlane", ns.UInteger, .{});
             }
             pub fn setDepthPlane(self_: *T, depthPlane_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthPlane_, depthPlane_);
+                return objc.msgSend(self_, "setDepthPlane:", void, .{depthPlane_});
             }
             pub fn resolveTexture(self_: *T) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_resolveTexture);
+                return objc.msgSend(self_, "resolveTexture", ?*Texture, .{});
             }
             pub fn setResolveTexture(self_: *T, resolveTexture_: ?*Texture) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Texture) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setResolveTexture_, resolveTexture_);
+                return objc.msgSend(self_, "setResolveTexture:", void, .{resolveTexture_});
             }
             pub fn resolveLevel(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_resolveLevel);
+                return objc.msgSend(self_, "resolveLevel", ns.UInteger, .{});
             }
             pub fn setResolveLevel(self_: *T, resolveLevel_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setResolveLevel_, resolveLevel_);
+                return objc.msgSend(self_, "setResolveLevel:", void, .{resolveLevel_});
             }
             pub fn resolveSlice(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_resolveSlice);
+                return objc.msgSend(self_, "resolveSlice", ns.UInteger, .{});
             }
             pub fn setResolveSlice(self_: *T, resolveSlice_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setResolveSlice_, resolveSlice_);
+                return objc.msgSend(self_, "setResolveSlice:", void, .{resolveSlice_});
             }
             pub fn resolveDepthPlane(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_resolveDepthPlane);
+                return objc.msgSend(self_, "resolveDepthPlane", ns.UInteger, .{});
             }
             pub fn setResolveDepthPlane(self_: *T, resolveDepthPlane_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setResolveDepthPlane_, resolveDepthPlane_);
+                return objc.msgSend(self_, "setResolveDepthPlane:", void, .{resolveDepthPlane_});
             }
             pub fn loadAction(self_: *T) LoadAction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) LoadAction, @ptrCast(&c.objc_msgSend))(self_, sel_loadAction);
+                return objc.msgSend(self_, "loadAction", LoadAction, .{});
             }
             pub fn setLoadAction(self_: *T, loadAction_: LoadAction) void {
-                return @as(*const fn (*T, *c.objc_selector, LoadAction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLoadAction_, loadAction_);
+                return objc.msgSend(self_, "setLoadAction:", void, .{loadAction_});
             }
             pub fn storeAction(self_: *T) StoreAction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StoreAction, @ptrCast(&c.objc_msgSend))(self_, sel_storeAction);
+                return objc.msgSend(self_, "storeAction", StoreAction, .{});
             }
             pub fn setStoreAction(self_: *T, storeAction_: StoreAction) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreAction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStoreAction_, storeAction_);
+                return objc.msgSend(self_, "setStoreAction:", void, .{storeAction_});
             }
             pub fn storeActionOptions(self_: *T) StoreActionOptions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StoreActionOptions, @ptrCast(&c.objc_msgSend))(self_, sel_storeActionOptions);
+                return objc.msgSend(self_, "storeActionOptions", StoreActionOptions, .{});
             }
             pub fn setStoreActionOptions(self_: *T, storeActionOptions_: StoreActionOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, StoreActionOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStoreActionOptions_, storeActionOptions_);
+                return objc.msgSend(self_, "setStoreActionOptions:", void, .{storeActionOptions_});
             }
         };
     }
@@ -5967,10 +5968,10 @@ pub const RenderPassColorAttachmentDescriptor = opaque {
             pub usingnamespace RenderPassAttachmentDescriptor.Methods(T);
 
             pub fn clearColor(self_: *T) ClearColor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ClearColor, @ptrCast(&c.objc_msgSend))(self_, sel_clearColor);
+                return objc.msgSend(self_, "clearColor", ClearColor, .{});
             }
             pub fn setClearColor(self_: *T, clearColor_: ClearColor) void {
-                return @as(*const fn (*T, *c.objc_selector, ClearColor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setClearColor_, clearColor_);
+                return objc.msgSend(self_, "setClearColor:", void, .{clearColor_});
             }
         };
     }
@@ -5987,16 +5988,16 @@ pub const RenderPassDepthAttachmentDescriptor = opaque {
             pub usingnamespace RenderPassAttachmentDescriptor.Methods(T);
 
             pub fn clearDepth(self_: *T) f64 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f64, @ptrCast(&c.objc_msgSend))(self_, sel_clearDepth);
+                return objc.msgSend(self_, "clearDepth", f64, .{});
             }
             pub fn setClearDepth(self_: *T, clearDepth_: f64) void {
-                return @as(*const fn (*T, *c.objc_selector, f64) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setClearDepth_, clearDepth_);
+                return objc.msgSend(self_, "setClearDepth:", void, .{clearDepth_});
             }
             pub fn depthResolveFilter(self_: *T) MultisampleDepthResolveFilter {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) MultisampleDepthResolveFilter, @ptrCast(&c.objc_msgSend))(self_, sel_depthResolveFilter);
+                return objc.msgSend(self_, "depthResolveFilter", MultisampleDepthResolveFilter, .{});
             }
             pub fn setDepthResolveFilter(self_: *T, depthResolveFilter_: MultisampleDepthResolveFilter) void {
-                return @as(*const fn (*T, *c.objc_selector, MultisampleDepthResolveFilter) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthResolveFilter_, depthResolveFilter_);
+                return objc.msgSend(self_, "setDepthResolveFilter:", void, .{depthResolveFilter_});
             }
         };
     }
@@ -6013,16 +6014,16 @@ pub const RenderPassStencilAttachmentDescriptor = opaque {
             pub usingnamespace RenderPassAttachmentDescriptor.Methods(T);
 
             pub fn clearStencil(self_: *T) u32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) u32, @ptrCast(&c.objc_msgSend))(self_, sel_clearStencil);
+                return objc.msgSend(self_, "clearStencil", u32, .{});
             }
             pub fn setClearStencil(self_: *T, clearStencil_: u32) void {
-                return @as(*const fn (*T, *c.objc_selector, u32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setClearStencil_, clearStencil_);
+                return objc.msgSend(self_, "setClearStencil:", void, .{clearStencil_});
             }
             pub fn stencilResolveFilter(self_: *T) MultisampleStencilResolveFilter {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) MultisampleStencilResolveFilter, @ptrCast(&c.objc_msgSend))(self_, sel_stencilResolveFilter);
+                return objc.msgSend(self_, "stencilResolveFilter", MultisampleStencilResolveFilter, .{});
             }
             pub fn setStencilResolveFilter(self_: *T, stencilResolveFilter_: MultisampleStencilResolveFilter) void {
-                return @as(*const fn (*T, *c.objc_selector, MultisampleStencilResolveFilter) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilResolveFilter_, stencilResolveFilter_);
+                return objc.msgSend(self_, "setStencilResolveFilter:", void, .{stencilResolveFilter_});
             }
         };
     }
@@ -6039,10 +6040,10 @@ pub const RenderPassColorAttachmentDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *RenderPassColorAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *RenderPassColorAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPassColorAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*RenderPassColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RenderPassColorAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -6060,34 +6061,34 @@ pub const RenderPassSampleBufferAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CounterSampleBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBuffer);
+                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
             }
             pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*CounterSampleBuffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleBuffer_, sampleBuffer_);
+                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
             }
             pub fn startOfVertexSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_startOfVertexSampleIndex);
+                return objc.msgSend(self_, "startOfVertexSampleIndex", ns.UInteger, .{});
             }
             pub fn setStartOfVertexSampleIndex(self_: *T, startOfVertexSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStartOfVertexSampleIndex_, startOfVertexSampleIndex_);
+                return objc.msgSend(self_, "setStartOfVertexSampleIndex:", void, .{startOfVertexSampleIndex_});
             }
             pub fn endOfVertexSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_endOfVertexSampleIndex);
+                return objc.msgSend(self_, "endOfVertexSampleIndex", ns.UInteger, .{});
             }
             pub fn setEndOfVertexSampleIndex(self_: *T, endOfVertexSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEndOfVertexSampleIndex_, endOfVertexSampleIndex_);
+                return objc.msgSend(self_, "setEndOfVertexSampleIndex:", void, .{endOfVertexSampleIndex_});
             }
             pub fn startOfFragmentSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_startOfFragmentSampleIndex);
+                return objc.msgSend(self_, "startOfFragmentSampleIndex", ns.UInteger, .{});
             }
             pub fn setStartOfFragmentSampleIndex(self_: *T, startOfFragmentSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStartOfFragmentSampleIndex_, startOfFragmentSampleIndex_);
+                return objc.msgSend(self_, "setStartOfFragmentSampleIndex:", void, .{startOfFragmentSampleIndex_});
             }
             pub fn endOfFragmentSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_endOfFragmentSampleIndex);
+                return objc.msgSend(self_, "endOfFragmentSampleIndex", ns.UInteger, .{});
             }
             pub fn setEndOfFragmentSampleIndex(self_: *T, endOfFragmentSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEndOfFragmentSampleIndex_, endOfFragmentSampleIndex_);
+                return objc.msgSend(self_, "setEndOfFragmentSampleIndex:", void, .{endOfFragmentSampleIndex_});
             }
         };
     }
@@ -6104,10 +6105,10 @@ pub const RenderPassSampleBufferAttachmentDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *RenderPassSampleBufferAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *RenderPassSampleBufferAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*RenderPassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RenderPassSampleBufferAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -6125,91 +6126,91 @@ pub const RenderPassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn renderPassDescriptor() *RenderPassDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *RenderPassDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_renderPassDescriptor);
+                return objc.msgSend(T.class(), "renderPassDescriptor", *RenderPassDescriptor, .{});
             }
             pub fn setSamplePositions_count(self_: *T, positions_: ?*const SamplePosition, count_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*const SamplePosition, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSamplePositions_count_, positions_, count_);
+                return objc.msgSend(self_, "setSamplePositions:count:", void, .{ positions_, count_ });
             }
             pub fn getSamplePositions_count(self_: *T, positions_: ?*SamplePosition, count_: ns.UInteger) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector, ?*SamplePosition, ns.UInteger) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_getSamplePositions_count_, positions_, count_);
+                return objc.msgSend(self_, "getSamplePositions:count:", ns.UInteger, .{ positions_, count_ });
             }
             pub fn colorAttachments(self_: *T) *RenderPassColorAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RenderPassColorAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_colorAttachments);
+                return objc.msgSend(self_, "colorAttachments", *RenderPassColorAttachmentDescriptorArray, .{});
             }
             pub fn depthAttachment(self_: *T) *RenderPassDepthAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RenderPassDepthAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_depthAttachment);
+                return objc.msgSend(self_, "depthAttachment", *RenderPassDepthAttachmentDescriptor, .{});
             }
             pub fn setDepthAttachment(self_: *T, depthAttachment_: ?*RenderPassDepthAttachmentDescriptor) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RenderPassDepthAttachmentDescriptor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthAttachment_, depthAttachment_);
+                return objc.msgSend(self_, "setDepthAttachment:", void, .{depthAttachment_});
             }
             pub fn stencilAttachment(self_: *T) *RenderPassStencilAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RenderPassStencilAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_stencilAttachment);
+                return objc.msgSend(self_, "stencilAttachment", *RenderPassStencilAttachmentDescriptor, .{});
             }
             pub fn setStencilAttachment(self_: *T, stencilAttachment_: ?*RenderPassStencilAttachmentDescriptor) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RenderPassStencilAttachmentDescriptor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilAttachment_, stencilAttachment_);
+                return objc.msgSend(self_, "setStencilAttachment:", void, .{stencilAttachment_});
             }
             pub fn visibilityResultBuffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_visibilityResultBuffer);
+                return objc.msgSend(self_, "visibilityResultBuffer", ?*Buffer, .{});
             }
             pub fn setVisibilityResultBuffer(self_: *T, visibilityResultBuffer_: ?*Buffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Buffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVisibilityResultBuffer_, visibilityResultBuffer_);
+                return objc.msgSend(self_, "setVisibilityResultBuffer:", void, .{visibilityResultBuffer_});
             }
             pub fn renderTargetArrayLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_renderTargetArrayLength);
+                return objc.msgSend(self_, "renderTargetArrayLength", ns.UInteger, .{});
             }
             pub fn setRenderTargetArrayLength(self_: *T, renderTargetArrayLength_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRenderTargetArrayLength_, renderTargetArrayLength_);
+                return objc.msgSend(self_, "setRenderTargetArrayLength:", void, .{renderTargetArrayLength_});
             }
             pub fn imageblockSampleLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_imageblockSampleLength);
+                return objc.msgSend(self_, "imageblockSampleLength", ns.UInteger, .{});
             }
             pub fn setImageblockSampleLength(self_: *T, imageblockSampleLength_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setImageblockSampleLength_, imageblockSampleLength_);
+                return objc.msgSend(self_, "setImageblockSampleLength:", void, .{imageblockSampleLength_});
             }
             pub fn threadgroupMemoryLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_threadgroupMemoryLength);
+                return objc.msgSend(self_, "threadgroupMemoryLength", ns.UInteger, .{});
             }
             pub fn setThreadgroupMemoryLength(self_: *T, threadgroupMemoryLength_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setThreadgroupMemoryLength_, threadgroupMemoryLength_);
+                return objc.msgSend(self_, "setThreadgroupMemoryLength:", void, .{threadgroupMemoryLength_});
             }
             pub fn tileWidth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_tileWidth);
+                return objc.msgSend(self_, "tileWidth", ns.UInteger, .{});
             }
             pub fn setTileWidth(self_: *T, tileWidth_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileWidth_, tileWidth_);
+                return objc.msgSend(self_, "setTileWidth:", void, .{tileWidth_});
             }
             pub fn tileHeight(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_tileHeight);
+                return objc.msgSend(self_, "tileHeight", ns.UInteger, .{});
             }
             pub fn setTileHeight(self_: *T, tileHeight_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileHeight_, tileHeight_);
+                return objc.msgSend(self_, "setTileHeight:", void, .{tileHeight_});
             }
             pub fn defaultRasterSampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_defaultRasterSampleCount);
+                return objc.msgSend(self_, "defaultRasterSampleCount", ns.UInteger, .{});
             }
             pub fn setDefaultRasterSampleCount(self_: *T, defaultRasterSampleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDefaultRasterSampleCount_, defaultRasterSampleCount_);
+                return objc.msgSend(self_, "setDefaultRasterSampleCount:", void, .{defaultRasterSampleCount_});
             }
             pub fn renderTargetWidth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_renderTargetWidth);
+                return objc.msgSend(self_, "renderTargetWidth", ns.UInteger, .{});
             }
             pub fn setRenderTargetWidth(self_: *T, renderTargetWidth_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRenderTargetWidth_, renderTargetWidth_);
+                return objc.msgSend(self_, "setRenderTargetWidth:", void, .{renderTargetWidth_});
             }
             pub fn renderTargetHeight(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_renderTargetHeight);
+                return objc.msgSend(self_, "renderTargetHeight", ns.UInteger, .{});
             }
             pub fn setRenderTargetHeight(self_: *T, renderTargetHeight_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRenderTargetHeight_, renderTargetHeight_);
+                return objc.msgSend(self_, "setRenderTargetHeight:", void, .{renderTargetHeight_});
             }
             pub fn rasterizationRateMap(self_: *T) ?*RasterizationRateMap {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*RasterizationRateMap, @ptrCast(&c.objc_msgSend))(self_, sel_rasterizationRateMap);
+                return objc.msgSend(self_, "rasterizationRateMap", ?*RasterizationRateMap, .{});
             }
             pub fn setRasterizationRateMap(self_: *T, rasterizationRateMap_: ?*RasterizationRateMap) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RasterizationRateMap) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRasterizationRateMap_, rasterizationRateMap_);
+                return objc.msgSend(self_, "setRasterizationRateMap:", void, .{rasterizationRateMap_});
             }
             pub fn sampleBufferAttachments(self_: *T) *RenderPassSampleBufferAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RenderPassSampleBufferAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBufferAttachments);
+                return objc.msgSend(self_, "sampleBufferAttachments", *RenderPassSampleBufferAttachmentDescriptorArray, .{});
             }
         };
     }
@@ -6227,58 +6228,58 @@ pub const RenderPipelineColorAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn pixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_pixelFormat);
+                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
             }
             pub fn setPixelFormat(self_: *T, pixelFormat_: PixelFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPixelFormat_, pixelFormat_);
+                return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
             }
             pub fn isBlendingEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isBlendingEnabled);
+                return objc.msgSend(self_, "isBlendingEnabled", bool, .{});
             }
             pub fn setBlendingEnabled(self_: *T, blendingEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBlendingEnabled_, blendingEnabled_);
+                return objc.msgSend(self_, "setBlendingEnabled:", void, .{blendingEnabled_});
             }
             pub fn sourceRGBBlendFactor(self_: *T) BlendFactor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BlendFactor, @ptrCast(&c.objc_msgSend))(self_, sel_sourceRGBBlendFactor);
+                return objc.msgSend(self_, "sourceRGBBlendFactor", BlendFactor, .{});
             }
             pub fn setSourceRGBBlendFactor(self_: *T, sourceRGBBlendFactor_: BlendFactor) void {
-                return @as(*const fn (*T, *c.objc_selector, BlendFactor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSourceRGBBlendFactor_, sourceRGBBlendFactor_);
+                return objc.msgSend(self_, "setSourceRGBBlendFactor:", void, .{sourceRGBBlendFactor_});
             }
             pub fn destinationRGBBlendFactor(self_: *T) BlendFactor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BlendFactor, @ptrCast(&c.objc_msgSend))(self_, sel_destinationRGBBlendFactor);
+                return objc.msgSend(self_, "destinationRGBBlendFactor", BlendFactor, .{});
             }
             pub fn setDestinationRGBBlendFactor(self_: *T, destinationRGBBlendFactor_: BlendFactor) void {
-                return @as(*const fn (*T, *c.objc_selector, BlendFactor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDestinationRGBBlendFactor_, destinationRGBBlendFactor_);
+                return objc.msgSend(self_, "setDestinationRGBBlendFactor:", void, .{destinationRGBBlendFactor_});
             }
             pub fn rgbBlendOperation(self_: *T) BlendOperation {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BlendOperation, @ptrCast(&c.objc_msgSend))(self_, sel_rgbBlendOperation);
+                return objc.msgSend(self_, "rgbBlendOperation", BlendOperation, .{});
             }
             pub fn setRgbBlendOperation(self_: *T, rgbBlendOperation_: BlendOperation) void {
-                return @as(*const fn (*T, *c.objc_selector, BlendOperation) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRgbBlendOperation_, rgbBlendOperation_);
+                return objc.msgSend(self_, "setRgbBlendOperation:", void, .{rgbBlendOperation_});
             }
             pub fn sourceAlphaBlendFactor(self_: *T) BlendFactor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BlendFactor, @ptrCast(&c.objc_msgSend))(self_, sel_sourceAlphaBlendFactor);
+                return objc.msgSend(self_, "sourceAlphaBlendFactor", BlendFactor, .{});
             }
             pub fn setSourceAlphaBlendFactor(self_: *T, sourceAlphaBlendFactor_: BlendFactor) void {
-                return @as(*const fn (*T, *c.objc_selector, BlendFactor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSourceAlphaBlendFactor_, sourceAlphaBlendFactor_);
+                return objc.msgSend(self_, "setSourceAlphaBlendFactor:", void, .{sourceAlphaBlendFactor_});
             }
             pub fn destinationAlphaBlendFactor(self_: *T) BlendFactor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BlendFactor, @ptrCast(&c.objc_msgSend))(self_, sel_destinationAlphaBlendFactor);
+                return objc.msgSend(self_, "destinationAlphaBlendFactor", BlendFactor, .{});
             }
             pub fn setDestinationAlphaBlendFactor(self_: *T, destinationAlphaBlendFactor_: BlendFactor) void {
-                return @as(*const fn (*T, *c.objc_selector, BlendFactor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDestinationAlphaBlendFactor_, destinationAlphaBlendFactor_);
+                return objc.msgSend(self_, "setDestinationAlphaBlendFactor:", void, .{destinationAlphaBlendFactor_});
             }
             pub fn alphaBlendOperation(self_: *T) BlendOperation {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) BlendOperation, @ptrCast(&c.objc_msgSend))(self_, sel_alphaBlendOperation);
+                return objc.msgSend(self_, "alphaBlendOperation", BlendOperation, .{});
             }
             pub fn setAlphaBlendOperation(self_: *T, alphaBlendOperation_: BlendOperation) void {
-                return @as(*const fn (*T, *c.objc_selector, BlendOperation) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAlphaBlendOperation_, alphaBlendOperation_);
+                return objc.msgSend(self_, "setAlphaBlendOperation:", void, .{alphaBlendOperation_});
             }
             pub fn writeMask(self_: *T) ColorWriteMask {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ColorWriteMask, @ptrCast(&c.objc_msgSend))(self_, sel_writeMask);
+                return objc.msgSend(self_, "writeMask", ColorWriteMask, .{});
             }
             pub fn setWriteMask(self_: *T, writeMask_: ColorWriteMask) void {
-                return @as(*const fn (*T, *c.objc_selector, ColorWriteMask) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setWriteMask_, writeMask_);
+                return objc.msgSend(self_, "setWriteMask:", void, .{writeMask_});
             }
         };
     }
@@ -6295,28 +6296,28 @@ pub const RenderPipelineReflection = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn vertexBindings(self_: *T) *ns.Array(*Binding) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Binding), @ptrCast(&c.objc_msgSend))(self_, sel_vertexBindings);
+                return objc.msgSend(self_, "vertexBindings", *ns.Array(*Binding), .{});
             }
             pub fn fragmentBindings(self_: *T) *ns.Array(*Binding) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Binding), @ptrCast(&c.objc_msgSend))(self_, sel_fragmentBindings);
+                return objc.msgSend(self_, "fragmentBindings", *ns.Array(*Binding), .{});
             }
             pub fn tileBindings(self_: *T) *ns.Array(*Binding) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Binding), @ptrCast(&c.objc_msgSend))(self_, sel_tileBindings);
+                return objc.msgSend(self_, "tileBindings", *ns.Array(*Binding), .{});
             }
             pub fn objectBindings(self_: *T) *ns.Array(*Binding) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Binding), @ptrCast(&c.objc_msgSend))(self_, sel_objectBindings);
+                return objc.msgSend(self_, "objectBindings", *ns.Array(*Binding), .{});
             }
             pub fn meshBindings(self_: *T) *ns.Array(*Binding) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*Binding), @ptrCast(&c.objc_msgSend))(self_, sel_meshBindings);
+                return objc.msgSend(self_, "meshBindings", *ns.Array(*Binding), .{});
             }
             pub fn vertexArguments(self_: *T) ?*ns.Array(*Argument) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Argument), @ptrCast(&c.objc_msgSend))(self_, sel_vertexArguments);
+                return objc.msgSend(self_, "vertexArguments", ?*ns.Array(*Argument), .{});
             }
             pub fn fragmentArguments(self_: *T) ?*ns.Array(*Argument) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Argument), @ptrCast(&c.objc_msgSend))(self_, sel_fragmentArguments);
+                return objc.msgSend(self_, "fragmentArguments", ?*ns.Array(*Argument), .{});
             }
             pub fn tileArguments(self_: *T) ?*ns.Array(*Argument) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Argument), @ptrCast(&c.objc_msgSend))(self_, sel_tileArguments);
+                return objc.msgSend(self_, "tileArguments", ?*ns.Array(*Argument), .{});
             }
         };
     }
@@ -6334,196 +6335,196 @@ pub const RenderPipelineDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn vertexFunction(self_: *T) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_vertexFunction);
+                return objc.msgSend(self_, "vertexFunction", ?*Function, .{});
             }
             pub fn setVertexFunction(self_: *T, vertexFunction_: ?*Function) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Function) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexFunction_, vertexFunction_);
+                return objc.msgSend(self_, "setVertexFunction:", void, .{vertexFunction_});
             }
             pub fn fragmentFunction(self_: *T) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentFunction);
+                return objc.msgSend(self_, "fragmentFunction", ?*Function, .{});
             }
             pub fn setFragmentFunction(self_: *T, fragmentFunction_: ?*Function) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Function) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentFunction_, fragmentFunction_);
+                return objc.msgSend(self_, "setFragmentFunction:", void, .{fragmentFunction_});
             }
             pub fn vertexDescriptor(self_: *T) ?*VertexDescriptor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*VertexDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_vertexDescriptor);
+                return objc.msgSend(self_, "vertexDescriptor", ?*VertexDescriptor, .{});
             }
             pub fn setVertexDescriptor(self_: *T, vertexDescriptor_: ?*VertexDescriptor) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VertexDescriptor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexDescriptor_, vertexDescriptor_);
+                return objc.msgSend(self_, "setVertexDescriptor:", void, .{vertexDescriptor_});
             }
             pub fn sampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCount);
+                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
             }
             pub fn setSampleCount(self_: *T, sampleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleCount_, sampleCount_);
+                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
             }
             pub fn rasterSampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_rasterSampleCount);
+                return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
             }
             pub fn setRasterSampleCount(self_: *T, rasterSampleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRasterSampleCount_, rasterSampleCount_);
+                return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
             }
             pub fn isAlphaToCoverageEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isAlphaToCoverageEnabled);
+                return objc.msgSend(self_, "isAlphaToCoverageEnabled", bool, .{});
             }
             pub fn setAlphaToCoverageEnabled(self_: *T, alphaToCoverageEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAlphaToCoverageEnabled_, alphaToCoverageEnabled_);
+                return objc.msgSend(self_, "setAlphaToCoverageEnabled:", void, .{alphaToCoverageEnabled_});
             }
             pub fn isAlphaToOneEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isAlphaToOneEnabled);
+                return objc.msgSend(self_, "isAlphaToOneEnabled", bool, .{});
             }
             pub fn setAlphaToOneEnabled(self_: *T, alphaToOneEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAlphaToOneEnabled_, alphaToOneEnabled_);
+                return objc.msgSend(self_, "setAlphaToOneEnabled:", void, .{alphaToOneEnabled_});
             }
             pub fn isRasterizationEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isRasterizationEnabled);
+                return objc.msgSend(self_, "isRasterizationEnabled", bool, .{});
             }
             pub fn setRasterizationEnabled(self_: *T, rasterizationEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRasterizationEnabled_, rasterizationEnabled_);
+                return objc.msgSend(self_, "setRasterizationEnabled:", void, .{rasterizationEnabled_});
             }
             pub fn maxVertexAmplificationCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxVertexAmplificationCount);
+                return objc.msgSend(self_, "maxVertexAmplificationCount", ns.UInteger, .{});
             }
             pub fn setMaxVertexAmplificationCount(self_: *T, maxVertexAmplificationCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxVertexAmplificationCount_, maxVertexAmplificationCount_);
+                return objc.msgSend(self_, "setMaxVertexAmplificationCount:", void, .{maxVertexAmplificationCount_});
             }
             pub fn colorAttachments(self_: *T) *RenderPipelineColorAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RenderPipelineColorAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_colorAttachments);
+                return objc.msgSend(self_, "colorAttachments", *RenderPipelineColorAttachmentDescriptorArray, .{});
             }
             pub fn depthAttachmentPixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_depthAttachmentPixelFormat);
+                return objc.msgSend(self_, "depthAttachmentPixelFormat", PixelFormat, .{});
             }
             pub fn setDepthAttachmentPixelFormat(self_: *T, depthAttachmentPixelFormat_: PixelFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthAttachmentPixelFormat_, depthAttachmentPixelFormat_);
+                return objc.msgSend(self_, "setDepthAttachmentPixelFormat:", void, .{depthAttachmentPixelFormat_});
             }
             pub fn stencilAttachmentPixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_stencilAttachmentPixelFormat);
+                return objc.msgSend(self_, "stencilAttachmentPixelFormat", PixelFormat, .{});
             }
             pub fn setStencilAttachmentPixelFormat(self_: *T, stencilAttachmentPixelFormat_: PixelFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilAttachmentPixelFormat_, stencilAttachmentPixelFormat_);
+                return objc.msgSend(self_, "setStencilAttachmentPixelFormat:", void, .{stencilAttachmentPixelFormat_});
             }
             pub fn inputPrimitiveTopology(self_: *T) PrimitiveTopologyClass {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PrimitiveTopologyClass, @ptrCast(&c.objc_msgSend))(self_, sel_inputPrimitiveTopology);
+                return objc.msgSend(self_, "inputPrimitiveTopology", PrimitiveTopologyClass, .{});
             }
             pub fn setInputPrimitiveTopology(self_: *T, inputPrimitiveTopology_: PrimitiveTopologyClass) void {
-                return @as(*const fn (*T, *c.objc_selector, PrimitiveTopologyClass) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setInputPrimitiveTopology_, inputPrimitiveTopology_);
+                return objc.msgSend(self_, "setInputPrimitiveTopology:", void, .{inputPrimitiveTopology_});
             }
             pub fn tessellationPartitionMode(self_: *T) TessellationPartitionMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TessellationPartitionMode, @ptrCast(&c.objc_msgSend))(self_, sel_tessellationPartitionMode);
+                return objc.msgSend(self_, "tessellationPartitionMode", TessellationPartitionMode, .{});
             }
             pub fn setTessellationPartitionMode(self_: *T, tessellationPartitionMode_: TessellationPartitionMode) void {
-                return @as(*const fn (*T, *c.objc_selector, TessellationPartitionMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationPartitionMode_, tessellationPartitionMode_);
+                return objc.msgSend(self_, "setTessellationPartitionMode:", void, .{tessellationPartitionMode_});
             }
             pub fn maxTessellationFactor(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTessellationFactor);
+                return objc.msgSend(self_, "maxTessellationFactor", ns.UInteger, .{});
             }
             pub fn setMaxTessellationFactor(self_: *T, maxTessellationFactor_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTessellationFactor_, maxTessellationFactor_);
+                return objc.msgSend(self_, "setMaxTessellationFactor:", void, .{maxTessellationFactor_});
             }
             pub fn isTessellationFactorScaleEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isTessellationFactorScaleEnabled);
+                return objc.msgSend(self_, "isTessellationFactorScaleEnabled", bool, .{});
             }
             pub fn setTessellationFactorScaleEnabled(self_: *T, tessellationFactorScaleEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationFactorScaleEnabled_, tessellationFactorScaleEnabled_);
+                return objc.msgSend(self_, "setTessellationFactorScaleEnabled:", void, .{tessellationFactorScaleEnabled_});
             }
             pub fn tessellationFactorFormat(self_: *T) TessellationFactorFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TessellationFactorFormat, @ptrCast(&c.objc_msgSend))(self_, sel_tessellationFactorFormat);
+                return objc.msgSend(self_, "tessellationFactorFormat", TessellationFactorFormat, .{});
             }
             pub fn setTessellationFactorFormat(self_: *T, tessellationFactorFormat_: TessellationFactorFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, TessellationFactorFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationFactorFormat_, tessellationFactorFormat_);
+                return objc.msgSend(self_, "setTessellationFactorFormat:", void, .{tessellationFactorFormat_});
             }
             pub fn tessellationControlPointIndexType(self_: *T) TessellationControlPointIndexType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TessellationControlPointIndexType, @ptrCast(&c.objc_msgSend))(self_, sel_tessellationControlPointIndexType);
+                return objc.msgSend(self_, "tessellationControlPointIndexType", TessellationControlPointIndexType, .{});
             }
             pub fn setTessellationControlPointIndexType(self_: *T, tessellationControlPointIndexType_: TessellationControlPointIndexType) void {
-                return @as(*const fn (*T, *c.objc_selector, TessellationControlPointIndexType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationControlPointIndexType_, tessellationControlPointIndexType_);
+                return objc.msgSend(self_, "setTessellationControlPointIndexType:", void, .{tessellationControlPointIndexType_});
             }
             pub fn tessellationFactorStepFunction(self_: *T) TessellationFactorStepFunction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TessellationFactorStepFunction, @ptrCast(&c.objc_msgSend))(self_, sel_tessellationFactorStepFunction);
+                return objc.msgSend(self_, "tessellationFactorStepFunction", TessellationFactorStepFunction, .{});
             }
             pub fn setTessellationFactorStepFunction(self_: *T, tessellationFactorStepFunction_: TessellationFactorStepFunction) void {
-                return @as(*const fn (*T, *c.objc_selector, TessellationFactorStepFunction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationFactorStepFunction_, tessellationFactorStepFunction_);
+                return objc.msgSend(self_, "setTessellationFactorStepFunction:", void, .{tessellationFactorStepFunction_});
             }
             pub fn tessellationOutputWindingOrder(self_: *T) Winding {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) Winding, @ptrCast(&c.objc_msgSend))(self_, sel_tessellationOutputWindingOrder);
+                return objc.msgSend(self_, "tessellationOutputWindingOrder", Winding, .{});
             }
             pub fn setTessellationOutputWindingOrder(self_: *T, tessellationOutputWindingOrder_: Winding) void {
-                return @as(*const fn (*T, *c.objc_selector, Winding) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTessellationOutputWindingOrder_, tessellationOutputWindingOrder_);
+                return objc.msgSend(self_, "setTessellationOutputWindingOrder:", void, .{tessellationOutputWindingOrder_});
             }
             pub fn vertexBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *PipelineBufferDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_vertexBuffers);
+                return objc.msgSend(self_, "vertexBuffers", *PipelineBufferDescriptorArray, .{});
             }
             pub fn fragmentBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *PipelineBufferDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentBuffers);
+                return objc.msgSend(self_, "fragmentBuffers", *PipelineBufferDescriptorArray, .{});
             }
             pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportIndirectCommandBuffers);
+                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
             }
             pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportIndirectCommandBuffers_, supportIndirectCommandBuffers_);
+                return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
             }
             pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*BinaryArchive), @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
             }
             pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*BinaryArchive)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
             }
             pub fn vertexPreloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*DynamicLibrary), @ptrCast(&c.objc_msgSend))(self_, sel_vertexPreloadedLibraries);
+                return objc.msgSend(self_, "vertexPreloadedLibraries", *ns.Array(*DynamicLibrary), .{});
             }
             pub fn setVertexPreloadedLibraries(self_: *T, vertexPreloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*DynamicLibrary)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexPreloadedLibraries_, vertexPreloadedLibraries_);
+                return objc.msgSend(self_, "setVertexPreloadedLibraries:", void, .{vertexPreloadedLibraries_});
             }
             pub fn fragmentPreloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*DynamicLibrary), @ptrCast(&c.objc_msgSend))(self_, sel_fragmentPreloadedLibraries);
+                return objc.msgSend(self_, "fragmentPreloadedLibraries", *ns.Array(*DynamicLibrary), .{});
             }
             pub fn setFragmentPreloadedLibraries(self_: *T, fragmentPreloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*DynamicLibrary)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentPreloadedLibraries_, fragmentPreloadedLibraries_);
+                return objc.msgSend(self_, "setFragmentPreloadedLibraries:", void, .{fragmentPreloadedLibraries_});
             }
             pub fn vertexLinkedFunctions(self_: *T) *LinkedFunctions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_vertexLinkedFunctions);
+                return objc.msgSend(self_, "vertexLinkedFunctions", *LinkedFunctions, .{});
             }
             pub fn setVertexLinkedFunctions(self_: *T, vertexLinkedFunctions_: ?*LinkedFunctions) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexLinkedFunctions_, vertexLinkedFunctions_);
+                return objc.msgSend(self_, "setVertexLinkedFunctions:", void, .{vertexLinkedFunctions_});
             }
             pub fn fragmentLinkedFunctions(self_: *T) *LinkedFunctions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentLinkedFunctions);
+                return objc.msgSend(self_, "fragmentLinkedFunctions", *LinkedFunctions, .{});
             }
             pub fn setFragmentLinkedFunctions(self_: *T, fragmentLinkedFunctions_: ?*LinkedFunctions) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentLinkedFunctions_, fragmentLinkedFunctions_);
+                return objc.msgSend(self_, "setFragmentLinkedFunctions:", void, .{fragmentLinkedFunctions_});
             }
             pub fn supportAddingVertexBinaryFunctions(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportAddingVertexBinaryFunctions);
+                return objc.msgSend(self_, "supportAddingVertexBinaryFunctions", bool, .{});
             }
             pub fn setSupportAddingVertexBinaryFunctions(self_: *T, supportAddingVertexBinaryFunctions_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportAddingVertexBinaryFunctions_, supportAddingVertexBinaryFunctions_);
+                return objc.msgSend(self_, "setSupportAddingVertexBinaryFunctions:", void, .{supportAddingVertexBinaryFunctions_});
             }
             pub fn supportAddingFragmentBinaryFunctions(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportAddingFragmentBinaryFunctions);
+                return objc.msgSend(self_, "supportAddingFragmentBinaryFunctions", bool, .{});
             }
             pub fn setSupportAddingFragmentBinaryFunctions(self_: *T, supportAddingFragmentBinaryFunctions_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportAddingFragmentBinaryFunctions_, supportAddingFragmentBinaryFunctions_);
+                return objc.msgSend(self_, "setSupportAddingFragmentBinaryFunctions:", void, .{supportAddingFragmentBinaryFunctions_});
             }
             pub fn maxVertexCallStackDepth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxVertexCallStackDepth);
+                return objc.msgSend(self_, "maxVertexCallStackDepth", ns.UInteger, .{});
             }
             pub fn setMaxVertexCallStackDepth(self_: *T, maxVertexCallStackDepth_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxVertexCallStackDepth_, maxVertexCallStackDepth_);
+                return objc.msgSend(self_, "setMaxVertexCallStackDepth:", void, .{maxVertexCallStackDepth_});
             }
             pub fn maxFragmentCallStackDepth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxFragmentCallStackDepth);
+                return objc.msgSend(self_, "maxFragmentCallStackDepth", ns.UInteger, .{});
             }
             pub fn setMaxFragmentCallStackDepth(self_: *T, maxFragmentCallStackDepth_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxFragmentCallStackDepth_, maxFragmentCallStackDepth_);
+                return objc.msgSend(self_, "setMaxFragmentCallStackDepth:", void, .{maxFragmentCallStackDepth_});
             }
         };
     }
@@ -6541,22 +6542,22 @@ pub const RenderPipelineFunctionsDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn vertexAdditionalBinaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Function), @ptrCast(&c.objc_msgSend))(self_, sel_vertexAdditionalBinaryFunctions);
+                return objc.msgSend(self_, "vertexAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
             }
             pub fn setVertexAdditionalBinaryFunctions(self_: *T, vertexAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*Function)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setVertexAdditionalBinaryFunctions_, vertexAdditionalBinaryFunctions_);
+                return objc.msgSend(self_, "setVertexAdditionalBinaryFunctions:", void, .{vertexAdditionalBinaryFunctions_});
             }
             pub fn fragmentAdditionalBinaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Function), @ptrCast(&c.objc_msgSend))(self_, sel_fragmentAdditionalBinaryFunctions);
+                return objc.msgSend(self_, "fragmentAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
             }
             pub fn setFragmentAdditionalBinaryFunctions(self_: *T, fragmentAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*Function)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentAdditionalBinaryFunctions_, fragmentAdditionalBinaryFunctions_);
+                return objc.msgSend(self_, "setFragmentAdditionalBinaryFunctions:", void, .{fragmentAdditionalBinaryFunctions_});
             }
             pub fn tileAdditionalBinaryFunctions(self_: *T) ?*ns.Array(*Function) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*Function), @ptrCast(&c.objc_msgSend))(self_, sel_tileAdditionalBinaryFunctions);
+                return objc.msgSend(self_, "tileAdditionalBinaryFunctions", ?*ns.Array(*Function), .{});
             }
             pub fn setTileAdditionalBinaryFunctions(self_: *T, tileAdditionalBinaryFunctions_: ?*ns.Array(*Function)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*Function)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileAdditionalBinaryFunctions_, tileAdditionalBinaryFunctions_);
+                return objc.msgSend(self_, "setTileAdditionalBinaryFunctions:", void, .{tileAdditionalBinaryFunctions_});
             }
         };
     }
@@ -6570,55 +6571,55 @@ pub const RenderPipelineState = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn imageblockMemoryLengthForDimensions(self_: *T, imageblockDimensions_: Size) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector, Size) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_imageblockMemoryLengthForDimensions_, imageblockDimensions_);
+                return objc.msgSend(self_, "imageblockMemoryLengthForDimensions:", ns.UInteger, .{imageblockDimensions_});
             }
             pub fn functionHandleWithFunction_stage(self_: *T, function_: *Function, stage_: RenderStages) ?*FunctionHandle {
-                return @as(*const fn (*T, *c.objc_selector, *Function, RenderStages) callconv(.C) ?*FunctionHandle, @ptrCast(&c.objc_msgSend))(self_, sel_functionHandleWithFunction_stage_, function_, stage_);
+                return objc.msgSend(self_, "functionHandleWithFunction:stage:", ?*FunctionHandle, .{ function_, stage_ });
             }
             pub fn newVisibleFunctionTableWithDescriptor_stage(self_: *T, descriptor_: *VisibleFunctionTableDescriptor, stage_: RenderStages) ?*VisibleFunctionTable {
-                return @as(*const fn (*T, *c.objc_selector, *VisibleFunctionTableDescriptor, RenderStages) callconv(.C) ?*VisibleFunctionTable, @ptrCast(&c.objc_msgSend))(self_, sel_newVisibleFunctionTableWithDescriptor_stage_, descriptor_, stage_);
+                return objc.msgSend(self_, "newVisibleFunctionTableWithDescriptor:stage:", ?*VisibleFunctionTable, .{ descriptor_, stage_ });
             }
             pub fn newIntersectionFunctionTableWithDescriptor_stage(self_: *T, descriptor_: *IntersectionFunctionTableDescriptor, stage_: RenderStages) ?*IntersectionFunctionTable {
-                return @as(*const fn (*T, *c.objc_selector, *IntersectionFunctionTableDescriptor, RenderStages) callconv(.C) ?*IntersectionFunctionTable, @ptrCast(&c.objc_msgSend))(self_, sel_newIntersectionFunctionTableWithDescriptor_stage_, descriptor_, stage_);
+                return objc.msgSend(self_, "newIntersectionFunctionTableWithDescriptor:stage:", ?*IntersectionFunctionTable, .{ descriptor_, stage_ });
             }
             pub fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(self_: *T, additionalBinaryFunctions_: *RenderPipelineFunctionsDescriptor, error_: ?*?*ns.Error) ?*RenderPipelineState {
-                return @as(*const fn (*T, *c.objc_selector, *RenderPipelineFunctionsDescriptor, ?*?*ns.Error) callconv(.C) ?*RenderPipelineState, @ptrCast(&c.objc_msgSend))(self_, sel_newRenderPipelineStateWithAdditionalBinaryFunctions_error_, additionalBinaryFunctions_, error_);
+                return objc.msgSend(self_, "newRenderPipelineStateWithAdditionalBinaryFunctions:error:", ?*RenderPipelineState, .{ additionalBinaryFunctions_, error_ });
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
             }
             pub fn threadgroupSizeMatchesTileSize(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_threadgroupSizeMatchesTileSize);
+                return objc.msgSend(self_, "threadgroupSizeMatchesTileSize", bool, .{});
             }
             pub fn imageblockSampleLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_imageblockSampleLength);
+                return objc.msgSend(self_, "imageblockSampleLength", ns.UInteger, .{});
             }
             pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportIndirectCommandBuffers);
+                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
             }
             pub fn maxTotalThreadsPerObjectThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerObjectThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerObjectThreadgroup", ns.UInteger, .{});
             }
             pub fn maxTotalThreadsPerMeshThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerMeshThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerMeshThreadgroup", ns.UInteger, .{});
             }
             pub fn objectThreadExecutionWidth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_objectThreadExecutionWidth);
+                return objc.msgSend(self_, "objectThreadExecutionWidth", ns.UInteger, .{});
             }
             pub fn meshThreadExecutionWidth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_meshThreadExecutionWidth);
+                return objc.msgSend(self_, "meshThreadExecutionWidth", ns.UInteger, .{});
             }
             pub fn maxTotalThreadgroupsPerMeshGrid(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadgroupsPerMeshGrid);
+                return objc.msgSend(self_, "maxTotalThreadgroupsPerMeshGrid", ns.UInteger, .{});
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
         };
     }
@@ -6635,10 +6636,10 @@ pub const RenderPipelineColorAttachmentDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *RenderPipelineColorAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *RenderPipelineColorAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *RenderPipelineColorAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*RenderPipelineColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*RenderPipelineColorAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -6656,10 +6657,10 @@ pub const TileRenderPipelineColorAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn pixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_pixelFormat);
+                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
             }
             pub fn setPixelFormat(self_: *T, pixelFormat_: PixelFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPixelFormat_, pixelFormat_);
+                return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
             }
         };
     }
@@ -6676,10 +6677,10 @@ pub const TileRenderPipelineColorAttachmentDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *TileRenderPipelineColorAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *TileRenderPipelineColorAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *TileRenderPipelineColorAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: *TileRenderPipelineColorAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *TileRenderPipelineColorAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -6697,73 +6698,73 @@ pub const TileRenderPipelineDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn tileFunction(self_: *T) *Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Function, @ptrCast(&c.objc_msgSend))(self_, sel_tileFunction);
+                return objc.msgSend(self_, "tileFunction", *Function, .{});
             }
             pub fn setTileFunction(self_: *T, tileFunction_: *Function) void {
-                return @as(*const fn (*T, *c.objc_selector, *Function) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTileFunction_, tileFunction_);
+                return objc.msgSend(self_, "setTileFunction:", void, .{tileFunction_});
             }
             pub fn rasterSampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_rasterSampleCount);
+                return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
             }
             pub fn setRasterSampleCount(self_: *T, rasterSampleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRasterSampleCount_, rasterSampleCount_);
+                return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
             }
             pub fn colorAttachments(self_: *T) *TileRenderPipelineColorAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *TileRenderPipelineColorAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_colorAttachments);
+                return objc.msgSend(self_, "colorAttachments", *TileRenderPipelineColorAttachmentDescriptorArray, .{});
             }
             pub fn threadgroupSizeMatchesTileSize(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_threadgroupSizeMatchesTileSize);
+                return objc.msgSend(self_, "threadgroupSizeMatchesTileSize", bool, .{});
             }
             pub fn setThreadgroupSizeMatchesTileSize(self_: *T, threadgroupSizeMatchesTileSize_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setThreadgroupSizeMatchesTileSize_, threadgroupSizeMatchesTileSize_);
+                return objc.msgSend(self_, "setThreadgroupSizeMatchesTileSize:", void, .{threadgroupSizeMatchesTileSize_});
             }
             pub fn tileBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *PipelineBufferDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_tileBuffers);
+                return objc.msgSend(self_, "tileBuffers", *PipelineBufferDescriptorArray, .{});
             }
             pub fn maxTotalThreadsPerThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerThreadgroup", ns.UInteger, .{});
             }
             pub fn setMaxTotalThreadsPerThreadgroup(self_: *T, maxTotalThreadsPerThreadgroup_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTotalThreadsPerThreadgroup_, maxTotalThreadsPerThreadgroup_);
+                return objc.msgSend(self_, "setMaxTotalThreadsPerThreadgroup:", void, .{maxTotalThreadsPerThreadgroup_});
             }
             pub fn binaryArchives(self_: *T) ?*ns.Array(*BinaryArchive) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.Array(*BinaryArchive), @ptrCast(&c.objc_msgSend))(self_, sel_binaryArchives);
+                return objc.msgSend(self_, "binaryArchives", ?*ns.Array(*BinaryArchive), .{});
             }
             pub fn setBinaryArchives(self_: *T, binaryArchives_: ?*ns.Array(*BinaryArchive)) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.Array(*BinaryArchive)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBinaryArchives_, binaryArchives_);
+                return objc.msgSend(self_, "setBinaryArchives:", void, .{binaryArchives_});
             }
             pub fn preloadedLibraries(self_: *T) *ns.Array(*DynamicLibrary) {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ns.Array(*DynamicLibrary), @ptrCast(&c.objc_msgSend))(self_, sel_preloadedLibraries);
+                return objc.msgSend(self_, "preloadedLibraries", *ns.Array(*DynamicLibrary), .{});
             }
             pub fn setPreloadedLibraries(self_: *T, preloadedLibraries_: *ns.Array(*DynamicLibrary)) void {
-                return @as(*const fn (*T, *c.objc_selector, *ns.Array(*DynamicLibrary)) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPreloadedLibraries_, preloadedLibraries_);
+                return objc.msgSend(self_, "setPreloadedLibraries:", void, .{preloadedLibraries_});
             }
             pub fn linkedFunctions(self_: *T) *LinkedFunctions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_linkedFunctions);
+                return objc.msgSend(self_, "linkedFunctions", *LinkedFunctions, .{});
             }
             pub fn setLinkedFunctions(self_: *T, linkedFunctions_: ?*LinkedFunctions) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLinkedFunctions_, linkedFunctions_);
+                return objc.msgSend(self_, "setLinkedFunctions:", void, .{linkedFunctions_});
             }
             pub fn supportAddingBinaryFunctions(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportAddingBinaryFunctions);
+                return objc.msgSend(self_, "supportAddingBinaryFunctions", bool, .{});
             }
             pub fn setSupportAddingBinaryFunctions(self_: *T, supportAddingBinaryFunctions_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportAddingBinaryFunctions_, supportAddingBinaryFunctions_);
+                return objc.msgSend(self_, "setSupportAddingBinaryFunctions:", void, .{supportAddingBinaryFunctions_});
             }
             pub fn maxCallStackDepth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxCallStackDepth);
+                return objc.msgSend(self_, "maxCallStackDepth", ns.UInteger, .{});
             }
             pub fn setMaxCallStackDepth(self_: *T, maxCallStackDepth_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxCallStackDepth_, maxCallStackDepth_);
+                return objc.msgSend(self_, "setMaxCallStackDepth:", void, .{maxCallStackDepth_});
             }
         };
     }
@@ -6781,145 +6782,145 @@ pub const MeshRenderPipelineDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn objectFunction(self_: *T) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_objectFunction);
+                return objc.msgSend(self_, "objectFunction", ?*Function, .{});
             }
             pub fn setObjectFunction(self_: *T, objectFunction_: ?*Function) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Function) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectFunction_, objectFunction_);
+                return objc.msgSend(self_, "setObjectFunction:", void, .{objectFunction_});
             }
             pub fn meshFunction(self_: *T) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_meshFunction);
+                return objc.msgSend(self_, "meshFunction", ?*Function, .{});
             }
             pub fn setMeshFunction(self_: *T, meshFunction_: ?*Function) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Function) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshFunction_, meshFunction_);
+                return objc.msgSend(self_, "setMeshFunction:", void, .{meshFunction_});
             }
             pub fn fragmentFunction(self_: *T) ?*Function {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Function, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentFunction);
+                return objc.msgSend(self_, "fragmentFunction", ?*Function, .{});
             }
             pub fn setFragmentFunction(self_: *T, fragmentFunction_: ?*Function) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*Function) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentFunction_, fragmentFunction_);
+                return objc.msgSend(self_, "setFragmentFunction:", void, .{fragmentFunction_});
             }
             pub fn maxTotalThreadsPerObjectThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerObjectThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerObjectThreadgroup", ns.UInteger, .{});
             }
             pub fn setMaxTotalThreadsPerObjectThreadgroup(self_: *T, maxTotalThreadsPerObjectThreadgroup_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTotalThreadsPerObjectThreadgroup_, maxTotalThreadsPerObjectThreadgroup_);
+                return objc.msgSend(self_, "setMaxTotalThreadsPerObjectThreadgroup:", void, .{maxTotalThreadsPerObjectThreadgroup_});
             }
             pub fn maxTotalThreadsPerMeshThreadgroup(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadsPerMeshThreadgroup);
+                return objc.msgSend(self_, "maxTotalThreadsPerMeshThreadgroup", ns.UInteger, .{});
             }
             pub fn setMaxTotalThreadsPerMeshThreadgroup(self_: *T, maxTotalThreadsPerMeshThreadgroup_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTotalThreadsPerMeshThreadgroup_, maxTotalThreadsPerMeshThreadgroup_);
+                return objc.msgSend(self_, "setMaxTotalThreadsPerMeshThreadgroup:", void, .{maxTotalThreadsPerMeshThreadgroup_});
             }
             pub fn objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_objectThreadgroupSizeIsMultipleOfThreadExecutionWidth);
+                return objc.msgSend(self_, "objectThreadgroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
             }
             pub fn setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T, objectThreadgroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth_, objectThreadgroupSizeIsMultipleOfThreadExecutionWidth_);
+                return objc.msgSend(self_, "setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:", void, .{objectThreadgroupSizeIsMultipleOfThreadExecutionWidth_});
             }
             pub fn meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_meshThreadgroupSizeIsMultipleOfThreadExecutionWidth);
+                return objc.msgSend(self_, "meshThreadgroupSizeIsMultipleOfThreadExecutionWidth", bool, .{});
             }
             pub fn setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(self_: *T, meshThreadgroupSizeIsMultipleOfThreadExecutionWidth_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth_, meshThreadgroupSizeIsMultipleOfThreadExecutionWidth_);
+                return objc.msgSend(self_, "setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:", void, .{meshThreadgroupSizeIsMultipleOfThreadExecutionWidth_});
             }
             pub fn payloadMemoryLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_payloadMemoryLength);
+                return objc.msgSend(self_, "payloadMemoryLength", ns.UInteger, .{});
             }
             pub fn setPayloadMemoryLength(self_: *T, payloadMemoryLength_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPayloadMemoryLength_, payloadMemoryLength_);
+                return objc.msgSend(self_, "setPayloadMemoryLength:", void, .{payloadMemoryLength_});
             }
             pub fn maxTotalThreadgroupsPerMeshGrid(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxTotalThreadgroupsPerMeshGrid);
+                return objc.msgSend(self_, "maxTotalThreadgroupsPerMeshGrid", ns.UInteger, .{});
             }
             pub fn setMaxTotalThreadgroupsPerMeshGrid(self_: *T, maxTotalThreadgroupsPerMeshGrid_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxTotalThreadgroupsPerMeshGrid_, maxTotalThreadgroupsPerMeshGrid_);
+                return objc.msgSend(self_, "setMaxTotalThreadgroupsPerMeshGrid:", void, .{maxTotalThreadgroupsPerMeshGrid_});
             }
             pub fn objectBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *PipelineBufferDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_objectBuffers);
+                return objc.msgSend(self_, "objectBuffers", *PipelineBufferDescriptorArray, .{});
             }
             pub fn meshBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *PipelineBufferDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_meshBuffers);
+                return objc.msgSend(self_, "meshBuffers", *PipelineBufferDescriptorArray, .{});
             }
             pub fn fragmentBuffers(self_: *T) *PipelineBufferDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *PipelineBufferDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentBuffers);
+                return objc.msgSend(self_, "fragmentBuffers", *PipelineBufferDescriptorArray, .{});
             }
             pub fn rasterSampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_rasterSampleCount);
+                return objc.msgSend(self_, "rasterSampleCount", ns.UInteger, .{});
             }
             pub fn setRasterSampleCount(self_: *T, rasterSampleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRasterSampleCount_, rasterSampleCount_);
+                return objc.msgSend(self_, "setRasterSampleCount:", void, .{rasterSampleCount_});
             }
             pub fn isAlphaToCoverageEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isAlphaToCoverageEnabled);
+                return objc.msgSend(self_, "isAlphaToCoverageEnabled", bool, .{});
             }
             pub fn setAlphaToCoverageEnabled(self_: *T, alphaToCoverageEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAlphaToCoverageEnabled_, alphaToCoverageEnabled_);
+                return objc.msgSend(self_, "setAlphaToCoverageEnabled:", void, .{alphaToCoverageEnabled_});
             }
             pub fn isAlphaToOneEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isAlphaToOneEnabled);
+                return objc.msgSend(self_, "isAlphaToOneEnabled", bool, .{});
             }
             pub fn setAlphaToOneEnabled(self_: *T, alphaToOneEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAlphaToOneEnabled_, alphaToOneEnabled_);
+                return objc.msgSend(self_, "setAlphaToOneEnabled:", void, .{alphaToOneEnabled_});
             }
             pub fn isRasterizationEnabled(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isRasterizationEnabled);
+                return objc.msgSend(self_, "isRasterizationEnabled", bool, .{});
             }
             pub fn setRasterizationEnabled(self_: *T, rasterizationEnabled_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRasterizationEnabled_, rasterizationEnabled_);
+                return objc.msgSend(self_, "setRasterizationEnabled:", void, .{rasterizationEnabled_});
             }
             pub fn maxVertexAmplificationCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxVertexAmplificationCount);
+                return objc.msgSend(self_, "maxVertexAmplificationCount", ns.UInteger, .{});
             }
             pub fn setMaxVertexAmplificationCount(self_: *T, maxVertexAmplificationCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxVertexAmplificationCount_, maxVertexAmplificationCount_);
+                return objc.msgSend(self_, "setMaxVertexAmplificationCount:", void, .{maxVertexAmplificationCount_});
             }
             pub fn colorAttachments(self_: *T) *RenderPipelineColorAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *RenderPipelineColorAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_colorAttachments);
+                return objc.msgSend(self_, "colorAttachments", *RenderPipelineColorAttachmentDescriptorArray, .{});
             }
             pub fn depthAttachmentPixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_depthAttachmentPixelFormat);
+                return objc.msgSend(self_, "depthAttachmentPixelFormat", PixelFormat, .{});
             }
             pub fn setDepthAttachmentPixelFormat(self_: *T, depthAttachmentPixelFormat_: PixelFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepthAttachmentPixelFormat_, depthAttachmentPixelFormat_);
+                return objc.msgSend(self_, "setDepthAttachmentPixelFormat:", void, .{depthAttachmentPixelFormat_});
             }
             pub fn stencilAttachmentPixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_stencilAttachmentPixelFormat);
+                return objc.msgSend(self_, "stencilAttachmentPixelFormat", PixelFormat, .{});
             }
             pub fn setStencilAttachmentPixelFormat(self_: *T, stencilAttachmentPixelFormat_: PixelFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStencilAttachmentPixelFormat_, stencilAttachmentPixelFormat_);
+                return objc.msgSend(self_, "setStencilAttachmentPixelFormat:", void, .{stencilAttachmentPixelFormat_});
             }
             pub fn supportIndirectCommandBuffers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportIndirectCommandBuffers);
+                return objc.msgSend(self_, "supportIndirectCommandBuffers", bool, .{});
             }
             pub fn setSupportIndirectCommandBuffers(self_: *T, supportIndirectCommandBuffers_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportIndirectCommandBuffers_, supportIndirectCommandBuffers_);
+                return objc.msgSend(self_, "setSupportIndirectCommandBuffers:", void, .{supportIndirectCommandBuffers_});
             }
             pub fn objectLinkedFunctions(self_: *T) *LinkedFunctions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_objectLinkedFunctions);
+                return objc.msgSend(self_, "objectLinkedFunctions", *LinkedFunctions, .{});
             }
             pub fn setObjectLinkedFunctions(self_: *T, objectLinkedFunctions_: ?*LinkedFunctions) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObjectLinkedFunctions_, objectLinkedFunctions_);
+                return objc.msgSend(self_, "setObjectLinkedFunctions:", void, .{objectLinkedFunctions_});
             }
             pub fn meshLinkedFunctions(self_: *T) *LinkedFunctions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_meshLinkedFunctions);
+                return objc.msgSend(self_, "meshLinkedFunctions", *LinkedFunctions, .{});
             }
             pub fn setMeshLinkedFunctions(self_: *T, meshLinkedFunctions_: ?*LinkedFunctions) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMeshLinkedFunctions_, meshLinkedFunctions_);
+                return objc.msgSend(self_, "setMeshLinkedFunctions:", void, .{meshLinkedFunctions_});
             }
             pub fn fragmentLinkedFunctions(self_: *T) *LinkedFunctions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *LinkedFunctions, @ptrCast(&c.objc_msgSend))(self_, sel_fragmentLinkedFunctions);
+                return objc.msgSend(self_, "fragmentLinkedFunctions", *LinkedFunctions, .{});
             }
             pub fn setFragmentLinkedFunctions(self_: *T, fragmentLinkedFunctions_: ?*LinkedFunctions) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*LinkedFunctions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFragmentLinkedFunctions_, fragmentLinkedFunctions_);
+                return objc.msgSend(self_, "setFragmentLinkedFunctions:", void, .{fragmentLinkedFunctions_});
             }
         };
     }
@@ -6933,43 +6934,43 @@ pub const Resource = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn setPurgeableState(self_: *T, state_: PurgeableState) PurgeableState {
-                return @as(*const fn (*T, *c.objc_selector, PurgeableState) callconv(.C) PurgeableState, @ptrCast(&c.objc_msgSend))(self_, sel_setPurgeableState_, state_);
+                return objc.msgSend(self_, "setPurgeableState:", PurgeableState, .{state_});
             }
             pub fn makeAliasable(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_makeAliasable);
+                return objc.msgSend(self_, "makeAliasable", void, .{});
             }
             pub fn isAliasable(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isAliasable);
+                return objc.msgSend(self_, "isAliasable", bool, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CPUCacheMode, @ptrCast(&c.objc_msgSend))(self_, sel_cpuCacheMode);
+                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
             }
             pub fn storageMode(self_: *T) StorageMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StorageMode, @ptrCast(&c.objc_msgSend))(self_, sel_storageMode);
+                return objc.msgSend(self_, "storageMode", StorageMode, .{});
             }
             pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) HazardTrackingMode, @ptrCast(&c.objc_msgSend))(self_, sel_hazardTrackingMode);
+                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
             }
             pub fn resourceOptions(self_: *T) ResourceOptions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceOptions, @ptrCast(&c.objc_msgSend))(self_, sel_resourceOptions);
+                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
             }
             pub fn heap(self_: *T) ?*Heap {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Heap, @ptrCast(&c.objc_msgSend))(self_, sel_heap);
+                return objc.msgSend(self_, "heap", ?*Heap, .{});
             }
             pub fn heapOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_heapOffset);
+                return objc.msgSend(self_, "heapOffset", ns.UInteger, .{});
             }
             pub fn allocatedSize(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_allocatedSize);
+                return objc.msgSend(self_, "allocatedSize", ns.UInteger, .{});
             }
         };
     }
@@ -6983,22 +6984,22 @@ pub const ResourceStateCommandEncoder = opaque {
             pub usingnamespace CommandEncoder.Methods(T);
 
             pub fn updateTextureMappings_mode_regions_mipLevels_slices_numRegions(self_: *T, texture_: *Texture, mode_: SparseTextureMappingMode, regions_: *const Region, mipLevels_: *const ns.UInteger, slices_: *const ns.UInteger, numRegions_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, SparseTextureMappingMode, *const Region, *const ns.UInteger, *const ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateTextureMappings_mode_regions_mipLevels_slices_numRegions_, texture_, mode_, regions_, mipLevels_, slices_, numRegions_);
+                return objc.msgSend(self_, "updateTextureMappings:mode:regions:mipLevels:slices:numRegions:", void, .{ texture_, mode_, regions_, mipLevels_, slices_, numRegions_ });
             }
             pub fn updateTextureMapping_mode_region_mipLevel_slice(self_: *T, texture_: *Texture, mode_: SparseTextureMappingMode, region_: Region, mipLevel_: ns.UInteger, slice_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, SparseTextureMappingMode, Region, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateTextureMapping_mode_region_mipLevel_slice_, texture_, mode_, region_, mipLevel_, slice_);
+                return objc.msgSend(self_, "updateTextureMapping:mode:region:mipLevel:slice:", void, .{ texture_, mode_, region_, mipLevel_, slice_ });
             }
             pub fn updateTextureMapping_mode_indirectBuffer_indirectBufferOffset(self_: *T, texture_: *Texture, mode_: SparseTextureMappingMode, indirectBuffer_: *Buffer, indirectBufferOffset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, SparseTextureMappingMode, *Buffer, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateTextureMapping_mode_indirectBuffer_indirectBufferOffset_, texture_, mode_, indirectBuffer_, indirectBufferOffset_);
+                return objc.msgSend(self_, "updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:", void, .{ texture_, mode_, indirectBuffer_, indirectBufferOffset_ });
             }
             pub fn updateFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_updateFence_, fence_);
+                return objc.msgSend(self_, "updateFence:", void, .{fence_});
             }
             pub fn waitForFence(self_: *T, fence_: *Fence) void {
-                return @as(*const fn (*T, *c.objc_selector, *Fence) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_waitForFence_, fence_);
+                return objc.msgSend(self_, "waitForFence:", void, .{fence_});
             }
             pub fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(self_: *T, sourceTexture_: *Texture, sourceSlice_: ns.UInteger, sourceLevel_: ns.UInteger, sourceOrigin_: Origin, sourceSize_: Size, destinationTexture_: *Texture, destinationSlice_: ns.UInteger, destinationLevel_: ns.UInteger, destinationOrigin_: Origin) void {
-                return @as(*const fn (*T, *c.objc_selector, *Texture, ns.UInteger, ns.UInteger, Origin, Size, *Texture, ns.UInteger, ns.UInteger, Origin) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_, sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_);
+                return objc.msgSend(self_, "moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:", void, .{ sourceTexture_, sourceSlice_, sourceLevel_, sourceOrigin_, sourceSize_, destinationTexture_, destinationSlice_, destinationLevel_, destinationOrigin_ });
             }
         };
     }
@@ -7016,22 +7017,22 @@ pub const ResourceStatePassSampleBufferAttachmentDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn sampleBuffer(self_: *T) ?*CounterSampleBuffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*CounterSampleBuffer, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBuffer);
+                return objc.msgSend(self_, "sampleBuffer", ?*CounterSampleBuffer, .{});
             }
             pub fn setSampleBuffer(self_: *T, sampleBuffer_: ?*CounterSampleBuffer) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*CounterSampleBuffer) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleBuffer_, sampleBuffer_);
+                return objc.msgSend(self_, "setSampleBuffer:", void, .{sampleBuffer_});
             }
             pub fn startOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_startOfEncoderSampleIndex);
+                return objc.msgSend(self_, "startOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setStartOfEncoderSampleIndex(self_: *T, startOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStartOfEncoderSampleIndex_, startOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setStartOfEncoderSampleIndex:", void, .{startOfEncoderSampleIndex_});
             }
             pub fn endOfEncoderSampleIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_endOfEncoderSampleIndex);
+                return objc.msgSend(self_, "endOfEncoderSampleIndex", ns.UInteger, .{});
             }
             pub fn setEndOfEncoderSampleIndex(self_: *T, endOfEncoderSampleIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setEndOfEncoderSampleIndex_, endOfEncoderSampleIndex_);
+                return objc.msgSend(self_, "setEndOfEncoderSampleIndex:", void, .{endOfEncoderSampleIndex_});
             }
         };
     }
@@ -7048,10 +7049,10 @@ pub const ResourceStatePassSampleBufferAttachmentDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, attachmentIndex_: ns.UInteger) *ResourceStatePassSampleBufferAttachmentDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *ResourceStatePassSampleBufferAttachmentDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, attachmentIndex_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *ResourceStatePassSampleBufferAttachmentDescriptor, .{attachmentIndex_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attachment_: ?*ResourceStatePassSampleBufferAttachmentDescriptor, attachmentIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ResourceStatePassSampleBufferAttachmentDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attachment_, attachmentIndex_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attachment_, attachmentIndex_ });
             }
         };
     }
@@ -7069,10 +7070,10 @@ pub const ResourceStatePassDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn resourceStatePassDescriptor() *ResourceStatePassDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *ResourceStatePassDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_resourceStatePassDescriptor);
+                return objc.msgSend(T.class(), "resourceStatePassDescriptor", *ResourceStatePassDescriptor, .{});
             }
             pub fn sampleBufferAttachments(self_: *T) *ResourceStatePassSampleBufferAttachmentDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *ResourceStatePassSampleBufferAttachmentDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_sampleBufferAttachments);
+                return objc.msgSend(self_, "sampleBufferAttachments", *ResourceStatePassSampleBufferAttachmentDescriptorArray, .{});
             }
         };
     }
@@ -7090,94 +7091,94 @@ pub const SamplerDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn minFilter(self_: *T) SamplerMinMagFilter {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SamplerMinMagFilter, @ptrCast(&c.objc_msgSend))(self_, sel_minFilter);
+                return objc.msgSend(self_, "minFilter", SamplerMinMagFilter, .{});
             }
             pub fn setMinFilter(self_: *T, minFilter_: SamplerMinMagFilter) void {
-                return @as(*const fn (*T, *c.objc_selector, SamplerMinMagFilter) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMinFilter_, minFilter_);
+                return objc.msgSend(self_, "setMinFilter:", void, .{minFilter_});
             }
             pub fn magFilter(self_: *T) SamplerMinMagFilter {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SamplerMinMagFilter, @ptrCast(&c.objc_msgSend))(self_, sel_magFilter);
+                return objc.msgSend(self_, "magFilter", SamplerMinMagFilter, .{});
             }
             pub fn setMagFilter(self_: *T, magFilter_: SamplerMinMagFilter) void {
-                return @as(*const fn (*T, *c.objc_selector, SamplerMinMagFilter) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMagFilter_, magFilter_);
+                return objc.msgSend(self_, "setMagFilter:", void, .{magFilter_});
             }
             pub fn mipFilter(self_: *T) SamplerMipFilter {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SamplerMipFilter, @ptrCast(&c.objc_msgSend))(self_, sel_mipFilter);
+                return objc.msgSend(self_, "mipFilter", SamplerMipFilter, .{});
             }
             pub fn setMipFilter(self_: *T, mipFilter_: SamplerMipFilter) void {
-                return @as(*const fn (*T, *c.objc_selector, SamplerMipFilter) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMipFilter_, mipFilter_);
+                return objc.msgSend(self_, "setMipFilter:", void, .{mipFilter_});
             }
             pub fn maxAnisotropy(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_maxAnisotropy);
+                return objc.msgSend(self_, "maxAnisotropy", ns.UInteger, .{});
             }
             pub fn setMaxAnisotropy(self_: *T, maxAnisotropy_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMaxAnisotropy_, maxAnisotropy_);
+                return objc.msgSend(self_, "setMaxAnisotropy:", void, .{maxAnisotropy_});
             }
             pub fn sAddressMode(self_: *T) SamplerAddressMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SamplerAddressMode, @ptrCast(&c.objc_msgSend))(self_, sel_sAddressMode);
+                return objc.msgSend(self_, "sAddressMode", SamplerAddressMode, .{});
             }
             pub fn setSAddressMode(self_: *T, sAddressMode_: SamplerAddressMode) void {
-                return @as(*const fn (*T, *c.objc_selector, SamplerAddressMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSAddressMode_, sAddressMode_);
+                return objc.msgSend(self_, "setSAddressMode:", void, .{sAddressMode_});
             }
             pub fn tAddressMode(self_: *T) SamplerAddressMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SamplerAddressMode, @ptrCast(&c.objc_msgSend))(self_, sel_tAddressMode);
+                return objc.msgSend(self_, "tAddressMode", SamplerAddressMode, .{});
             }
             pub fn setTAddressMode(self_: *T, tAddressMode_: SamplerAddressMode) void {
-                return @as(*const fn (*T, *c.objc_selector, SamplerAddressMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTAddressMode_, tAddressMode_);
+                return objc.msgSend(self_, "setTAddressMode:", void, .{tAddressMode_});
             }
             pub fn rAddressMode(self_: *T) SamplerAddressMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SamplerAddressMode, @ptrCast(&c.objc_msgSend))(self_, sel_rAddressMode);
+                return objc.msgSend(self_, "rAddressMode", SamplerAddressMode, .{});
             }
             pub fn setRAddressMode(self_: *T, rAddressMode_: SamplerAddressMode) void {
-                return @as(*const fn (*T, *c.objc_selector, SamplerAddressMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setRAddressMode_, rAddressMode_);
+                return objc.msgSend(self_, "setRAddressMode:", void, .{rAddressMode_});
             }
             pub fn borderColor(self_: *T) SamplerBorderColor {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) SamplerBorderColor, @ptrCast(&c.objc_msgSend))(self_, sel_borderColor);
+                return objc.msgSend(self_, "borderColor", SamplerBorderColor, .{});
             }
             pub fn setBorderColor(self_: *T, borderColor_: SamplerBorderColor) void {
-                return @as(*const fn (*T, *c.objc_selector, SamplerBorderColor) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBorderColor_, borderColor_);
+                return objc.msgSend(self_, "setBorderColor:", void, .{borderColor_});
             }
             pub fn normalizedCoordinates(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_normalizedCoordinates);
+                return objc.msgSend(self_, "normalizedCoordinates", bool, .{});
             }
             pub fn setNormalizedCoordinates(self_: *T, normalizedCoordinates_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setNormalizedCoordinates_, normalizedCoordinates_);
+                return objc.msgSend(self_, "setNormalizedCoordinates:", void, .{normalizedCoordinates_});
             }
             pub fn lodMinClamp(self_: *T) f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f32, @ptrCast(&c.objc_msgSend))(self_, sel_lodMinClamp);
+                return objc.msgSend(self_, "lodMinClamp", f32, .{});
             }
             pub fn setLodMinClamp(self_: *T, lodMinClamp_: f32) void {
-                return @as(*const fn (*T, *c.objc_selector, f32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLodMinClamp_, lodMinClamp_);
+                return objc.msgSend(self_, "setLodMinClamp:", void, .{lodMinClamp_});
             }
             pub fn lodMaxClamp(self_: *T) f32 {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) f32, @ptrCast(&c.objc_msgSend))(self_, sel_lodMaxClamp);
+                return objc.msgSend(self_, "lodMaxClamp", f32, .{});
             }
             pub fn setLodMaxClamp(self_: *T, lodMaxClamp_: f32) void {
-                return @as(*const fn (*T, *c.objc_selector, f32) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLodMaxClamp_, lodMaxClamp_);
+                return objc.msgSend(self_, "setLodMaxClamp:", void, .{lodMaxClamp_});
             }
             pub fn lodAverage(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_lodAverage);
+                return objc.msgSend(self_, "lodAverage", bool, .{});
             }
             pub fn setLodAverage(self_: *T, lodAverage_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLodAverage_, lodAverage_);
+                return objc.msgSend(self_, "setLodAverage:", void, .{lodAverage_});
             }
             pub fn compareFunction(self_: *T) CompareFunction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CompareFunction, @ptrCast(&c.objc_msgSend))(self_, sel_compareFunction);
+                return objc.msgSend(self_, "compareFunction", CompareFunction, .{});
             }
             pub fn setCompareFunction(self_: *T, compareFunction_: CompareFunction) void {
-                return @as(*const fn (*T, *c.objc_selector, CompareFunction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCompareFunction_, compareFunction_);
+                return objc.msgSend(self_, "setCompareFunction:", void, .{compareFunction_});
             }
             pub fn supportArgumentBuffers(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_supportArgumentBuffers);
+                return objc.msgSend(self_, "supportArgumentBuffers", bool, .{});
             }
             pub fn setSupportArgumentBuffers(self_: *T, supportArgumentBuffers_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSupportArgumentBuffers_, supportArgumentBuffers_);
+                return objc.msgSend(self_, "setSupportArgumentBuffers:", void, .{supportArgumentBuffers_});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn setLabel(self_: *T, label_: ?*ns.String) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*ns.String) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setLabel_, label_);
+                return objc.msgSend(self_, "setLabel:", void, .{label_});
             }
         };
     }
@@ -7191,13 +7192,13 @@ pub const SamplerState = opaque {
             pub usingnamespace ns.ObjectProtocol.Methods(T);
 
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
         };
     }
@@ -7215,22 +7216,22 @@ pub const BufferLayoutDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn stride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_stride);
+                return objc.msgSend(self_, "stride", ns.UInteger, .{});
             }
             pub fn setStride(self_: *T, stride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStride_, stride_);
+                return objc.msgSend(self_, "setStride:", void, .{stride_});
             }
             pub fn stepFunction(self_: *T) StepFunction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StepFunction, @ptrCast(&c.objc_msgSend))(self_, sel_stepFunction);
+                return objc.msgSend(self_, "stepFunction", StepFunction, .{});
             }
             pub fn setStepFunction(self_: *T, stepFunction_: StepFunction) void {
-                return @as(*const fn (*T, *c.objc_selector, StepFunction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStepFunction_, stepFunction_);
+                return objc.msgSend(self_, "setStepFunction:", void, .{stepFunction_});
             }
             pub fn stepRate(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_stepRate);
+                return objc.msgSend(self_, "stepRate", ns.UInteger, .{});
             }
             pub fn setStepRate(self_: *T, stepRate_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStepRate_, stepRate_);
+                return objc.msgSend(self_, "setStepRate:", void, .{stepRate_});
             }
         };
     }
@@ -7247,10 +7248,10 @@ pub const BufferLayoutDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *BufferLayoutDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *BufferLayoutDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, index_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *BufferLayoutDescriptor, .{index_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, bufferDesc_: ?*BufferLayoutDescriptor, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*BufferLayoutDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, bufferDesc_, index_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ bufferDesc_, index_ });
             }
         };
     }
@@ -7268,22 +7269,22 @@ pub const AttributeDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn format(self_: *T) AttributeFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) AttributeFormat, @ptrCast(&c.objc_msgSend))(self_, sel_format);
+                return objc.msgSend(self_, "format", AttributeFormat, .{});
             }
             pub fn setFormat(self_: *T, format_: AttributeFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, AttributeFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFormat_, format_);
+                return objc.msgSend(self_, "setFormat:", void, .{format_});
             }
             pub fn offset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_offset);
+                return objc.msgSend(self_, "offset", ns.UInteger, .{});
             }
             pub fn setOffset(self_: *T, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOffset_, offset_);
+                return objc.msgSend(self_, "setOffset:", void, .{offset_});
             }
             pub fn bufferIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferIndex);
+                return objc.msgSend(self_, "bufferIndex", ns.UInteger, .{});
             }
             pub fn setBufferIndex(self_: *T, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBufferIndex_, bufferIndex_);
+                return objc.msgSend(self_, "setBufferIndex:", void, .{bufferIndex_});
             }
         };
     }
@@ -7300,10 +7301,10 @@ pub const AttributeDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *AttributeDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *AttributeDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, index_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *AttributeDescriptor, .{index_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attributeDesc_: ?*AttributeDescriptor, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*AttributeDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attributeDesc_, index_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attributeDesc_, index_ });
             }
         };
     }
@@ -7321,28 +7322,28 @@ pub const StageInputOutputDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn stageInputOutputDescriptor() *StageInputOutputDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *StageInputOutputDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_stageInputOutputDescriptor);
+                return objc.msgSend(T.class(), "stageInputOutputDescriptor", *StageInputOutputDescriptor, .{});
             }
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
             pub fn layouts(self_: *T) *BufferLayoutDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *BufferLayoutDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_layouts);
+                return objc.msgSend(self_, "layouts", *BufferLayoutDescriptorArray, .{});
             }
             pub fn attributes(self_: *T) *AttributeDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *AttributeDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_attributes);
+                return objc.msgSend(self_, "attributes", *AttributeDescriptorArray, .{});
             }
             pub fn indexType(self_: *T) IndexType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IndexType, @ptrCast(&c.objc_msgSend))(self_, sel_indexType);
+                return objc.msgSend(self_, "indexType", IndexType, .{});
             }
             pub fn setIndexType(self_: *T, indexType_: IndexType) void {
-                return @as(*const fn (*T, *c.objc_selector, IndexType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexType_, indexType_);
+                return objc.msgSend(self_, "setIndexType:", void, .{indexType_});
             }
             pub fn indexBufferIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_indexBufferIndex);
+                return objc.msgSend(self_, "indexBufferIndex", ns.UInteger, .{});
             }
             pub fn setIndexBufferIndex(self_: *T, indexBufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setIndexBufferIndex_, indexBufferIndex_);
+                return objc.msgSend(self_, "setIndexBufferIndex:", void, .{indexBufferIndex_});
             }
         };
     }
@@ -7360,10 +7361,10 @@ pub const SharedTextureHandle = opaque {
             pub usingnamespace ns.SecureCoding.Methods(T);
 
             pub fn device(self_: *T) *Device {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Device, @ptrCast(&c.objc_msgSend))(self_, sel_device);
+                return objc.msgSend(self_, "device", *Device, .{});
             }
             pub fn label(self_: *T) ?*ns.String {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*ns.String, @ptrCast(&c.objc_msgSend))(self_, sel_label);
+                return objc.msgSend(self_, "label", ?*ns.String, .{});
             }
         };
     }
@@ -7381,109 +7382,109 @@ pub const TextureDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn texture2DDescriptorWithPixelFormat_width_height_mipmapped(pixelFormat_: PixelFormat, width_: ns.UInteger, height_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, PixelFormat, ns.UInteger, ns.UInteger, bool) callconv(.C) *TextureDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_texture2DDescriptorWithPixelFormat_width_height_mipmapped_, pixelFormat_, width_, height_, mipmapped_);
+                return objc.msgSend(T.class(), "texture2DDescriptorWithPixelFormat:width:height:mipmapped:", *TextureDescriptor, .{ pixelFormat_, width_, height_, mipmapped_ });
             }
             pub fn textureCubeDescriptorWithPixelFormat_size_mipmapped(pixelFormat_: PixelFormat, size_: ns.UInteger, mipmapped_: bool) *TextureDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, PixelFormat, ns.UInteger, bool) callconv(.C) *TextureDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_textureCubeDescriptorWithPixelFormat_size_mipmapped_, pixelFormat_, size_, mipmapped_);
+                return objc.msgSend(T.class(), "textureCubeDescriptorWithPixelFormat:size:mipmapped:", *TextureDescriptor, .{ pixelFormat_, size_, mipmapped_ });
             }
             pub fn textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage(pixelFormat_: PixelFormat, width_: ns.UInteger, resourceOptions_: ResourceOptions, usage_: TextureUsage) *TextureDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector, PixelFormat, ns.UInteger, ResourceOptions, TextureUsage) callconv(.C) *TextureDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage_, pixelFormat_, width_, resourceOptions_, usage_);
+                return objc.msgSend(T.class(), "textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:", *TextureDescriptor, .{ pixelFormat_, width_, resourceOptions_, usage_ });
             }
             pub fn textureType(self_: *T) TextureType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
+                return objc.msgSend(self_, "textureType", TextureType, .{});
             }
             pub fn setTextureType(self_: *T, textureType_: TextureType) void {
-                return @as(*const fn (*T, *c.objc_selector, TextureType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setTextureType_, textureType_);
+                return objc.msgSend(self_, "setTextureType:", void, .{textureType_});
             }
             pub fn pixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_pixelFormat);
+                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
             }
             pub fn setPixelFormat(self_: *T, pixelFormat_: PixelFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setPixelFormat_, pixelFormat_);
+                return objc.msgSend(self_, "setPixelFormat:", void, .{pixelFormat_});
             }
             pub fn width(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_width);
+                return objc.msgSend(self_, "width", ns.UInteger, .{});
             }
             pub fn setWidth(self_: *T, width_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setWidth_, width_);
+                return objc.msgSend(self_, "setWidth:", void, .{width_});
             }
             pub fn height(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_height);
+                return objc.msgSend(self_, "height", ns.UInteger, .{});
             }
             pub fn setHeight(self_: *T, height_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setHeight_, height_);
+                return objc.msgSend(self_, "setHeight:", void, .{height_});
             }
             pub fn depth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_depth);
+                return objc.msgSend(self_, "depth", ns.UInteger, .{});
             }
             pub fn setDepth(self_: *T, depth_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setDepth_, depth_);
+                return objc.msgSend(self_, "setDepth:", void, .{depth_});
             }
             pub fn mipmapLevelCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_mipmapLevelCount);
+                return objc.msgSend(self_, "mipmapLevelCount", ns.UInteger, .{});
             }
             pub fn setMipmapLevelCount(self_: *T, mipmapLevelCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setMipmapLevelCount_, mipmapLevelCount_);
+                return objc.msgSend(self_, "setMipmapLevelCount:", void, .{mipmapLevelCount_});
             }
             pub fn sampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCount);
+                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
             }
             pub fn setSampleCount(self_: *T, sampleCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSampleCount_, sampleCount_);
+                return objc.msgSend(self_, "setSampleCount:", void, .{sampleCount_});
             }
             pub fn arrayLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_arrayLength);
+                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
             }
             pub fn setArrayLength(self_: *T, arrayLength_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setArrayLength_, arrayLength_);
+                return objc.msgSend(self_, "setArrayLength:", void, .{arrayLength_});
             }
             pub fn resourceOptions(self_: *T) ResourceOptions {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceOptions, @ptrCast(&c.objc_msgSend))(self_, sel_resourceOptions);
+                return objc.msgSend(self_, "resourceOptions", ResourceOptions, .{});
             }
             pub fn setResourceOptions(self_: *T, resourceOptions_: ResourceOptions) void {
-                return @as(*const fn (*T, *c.objc_selector, ResourceOptions) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setResourceOptions_, resourceOptions_);
+                return objc.msgSend(self_, "setResourceOptions:", void, .{resourceOptions_});
             }
             pub fn cpuCacheMode(self_: *T) CPUCacheMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) CPUCacheMode, @ptrCast(&c.objc_msgSend))(self_, sel_cpuCacheMode);
+                return objc.msgSend(self_, "cpuCacheMode", CPUCacheMode, .{});
             }
             pub fn setCpuCacheMode(self_: *T, cpuCacheMode_: CPUCacheMode) void {
-                return @as(*const fn (*T, *c.objc_selector, CPUCacheMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCpuCacheMode_, cpuCacheMode_);
+                return objc.msgSend(self_, "setCpuCacheMode:", void, .{cpuCacheMode_});
             }
             pub fn storageMode(self_: *T) StorageMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) StorageMode, @ptrCast(&c.objc_msgSend))(self_, sel_storageMode);
+                return objc.msgSend(self_, "storageMode", StorageMode, .{});
             }
             pub fn setStorageMode(self_: *T, storageMode_: StorageMode) void {
-                return @as(*const fn (*T, *c.objc_selector, StorageMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStorageMode_, storageMode_);
+                return objc.msgSend(self_, "setStorageMode:", void, .{storageMode_});
             }
             pub fn hazardTrackingMode(self_: *T) HazardTrackingMode {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) HazardTrackingMode, @ptrCast(&c.objc_msgSend))(self_, sel_hazardTrackingMode);
+                return objc.msgSend(self_, "hazardTrackingMode", HazardTrackingMode, .{});
             }
             pub fn setHazardTrackingMode(self_: *T, hazardTrackingMode_: HazardTrackingMode) void {
-                return @as(*const fn (*T, *c.objc_selector, HazardTrackingMode) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setHazardTrackingMode_, hazardTrackingMode_);
+                return objc.msgSend(self_, "setHazardTrackingMode:", void, .{hazardTrackingMode_});
             }
             pub fn usage(self_: *T) TextureUsage {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureUsage, @ptrCast(&c.objc_msgSend))(self_, sel_usage);
+                return objc.msgSend(self_, "usage", TextureUsage, .{});
             }
             pub fn setUsage(self_: *T, usage_: TextureUsage) void {
-                return @as(*const fn (*T, *c.objc_selector, TextureUsage) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setUsage_, usage_);
+                return objc.msgSend(self_, "setUsage:", void, .{usage_});
             }
             pub fn allowGPUOptimizedContents(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_allowGPUOptimizedContents);
+                return objc.msgSend(self_, "allowGPUOptimizedContents", bool, .{});
             }
             pub fn setAllowGPUOptimizedContents(self_: *T, allowGPUOptimizedContents_: bool) void {
-                return @as(*const fn (*T, *c.objc_selector, bool) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setAllowGPUOptimizedContents_, allowGPUOptimizedContents_);
+                return objc.msgSend(self_, "setAllowGPUOptimizedContents:", void, .{allowGPUOptimizedContents_});
             }
             pub fn compressionType(self_: *T) TextureCompressionType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureCompressionType, @ptrCast(&c.objc_msgSend))(self_, sel_compressionType);
+                return objc.msgSend(self_, "compressionType", TextureCompressionType, .{});
             }
             pub fn setCompressionType(self_: *T, compressionType_: TextureCompressionType) void {
-                return @as(*const fn (*T, *c.objc_selector, TextureCompressionType) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setCompressionType_, compressionType_);
+                return objc.msgSend(self_, "setCompressionType:", void, .{compressionType_});
             }
             pub fn swizzle(self_: *T) TextureSwizzleChannels {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureSwizzleChannels, @ptrCast(&c.objc_msgSend))(self_, sel_swizzle);
+                return objc.msgSend(self_, "swizzle", TextureSwizzleChannels, .{});
             }
             pub fn setSwizzle(self_: *T, swizzle_: TextureSwizzleChannels) void {
-                return @as(*const fn (*T, *c.objc_selector, TextureSwizzleChannels) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setSwizzle_, swizzle_);
+                return objc.msgSend(self_, "setSwizzle:", void, .{swizzle_});
             }
         };
     }
@@ -7497,115 +7498,115 @@ pub const Texture = opaque {
             pub usingnamespace Resource.Methods(T);
 
             pub fn getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice(self_: *T, pixelBytes_: *anyopaque, bytesPerRow_: ns.UInteger, bytesPerImage_: ns.UInteger, region_: Region, level_: ns.UInteger, slice_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, ns.UInteger, Region, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice_, pixelBytes_, bytesPerRow_, bytesPerImage_, region_, level_, slice_);
+                return objc.msgSend(self_, "getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:", void, .{ pixelBytes_, bytesPerRow_, bytesPerImage_, region_, level_, slice_ });
             }
             pub fn replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage(self_: *T, region_: Region, level_: ns.UInteger, slice_: ns.UInteger, pixelBytes_: *const anyopaque, bytesPerRow_: ns.UInteger, bytesPerImage_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, Region, ns.UInteger, ns.UInteger, *const anyopaque, ns.UInteger, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage_, region_, level_, slice_, pixelBytes_, bytesPerRow_, bytesPerImage_);
+                return objc.msgSend(self_, "replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:", void, .{ region_, level_, slice_, pixelBytes_, bytesPerRow_, bytesPerImage_ });
             }
             pub fn getBytes_bytesPerRow_fromRegion_mipmapLevel(self_: *T, pixelBytes_: *anyopaque, bytesPerRow_: ns.UInteger, region_: Region, level_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, *anyopaque, ns.UInteger, Region, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_getBytes_bytesPerRow_fromRegion_mipmapLevel_, pixelBytes_, bytesPerRow_, region_, level_);
+                return objc.msgSend(self_, "getBytes:bytesPerRow:fromRegion:mipmapLevel:", void, .{ pixelBytes_, bytesPerRow_, region_, level_ });
             }
             pub fn replaceRegion_mipmapLevel_withBytes_bytesPerRow(self_: *T, region_: Region, level_: ns.UInteger, pixelBytes_: *const anyopaque, bytesPerRow_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, Region, ns.UInteger, *const anyopaque, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_replaceRegion_mipmapLevel_withBytes_bytesPerRow_, region_, level_, pixelBytes_, bytesPerRow_);
+                return objc.msgSend(self_, "replaceRegion:mipmapLevel:withBytes:bytesPerRow:", void, .{ region_, level_, pixelBytes_, bytesPerRow_ });
             }
             pub fn newTextureViewWithPixelFormat(self_: *T, pixelFormat_: PixelFormat) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureViewWithPixelFormat_, pixelFormat_);
+                return objc.msgSend(self_, "newTextureViewWithPixelFormat:", ?*Texture, .{pixelFormat_});
             }
             pub fn newTextureViewWithPixelFormat_textureType_levels_slices(self_: *T, pixelFormat_: PixelFormat, textureType_: TextureType, levelRange_: ns.Range, sliceRange_: ns.Range) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat, TextureType, ns.Range, ns.Range) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureViewWithPixelFormat_textureType_levels_slices_, pixelFormat_, textureType_, levelRange_, sliceRange_);
+                return objc.msgSend(self_, "newTextureViewWithPixelFormat:textureType:levels:slices:", ?*Texture, .{ pixelFormat_, textureType_, levelRange_, sliceRange_ });
             }
             pub fn newSharedTextureHandle(self_: *T) ?*SharedTextureHandle {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*SharedTextureHandle, @ptrCast(&c.objc_msgSend))(self_, sel_newSharedTextureHandle);
+                return objc.msgSend(self_, "newSharedTextureHandle", ?*SharedTextureHandle, .{});
             }
             pub fn newRemoteTextureViewForDevice(self_: *T, device_: *Device) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, *Device) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newRemoteTextureViewForDevice_, device_);
+                return objc.msgSend(self_, "newRemoteTextureViewForDevice:", ?*Texture, .{device_});
             }
             pub fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(self_: *T, pixelFormat_: PixelFormat, textureType_: TextureType, levelRange_: ns.Range, sliceRange_: ns.Range, swizzle_: TextureSwizzleChannels) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector, PixelFormat, TextureType, ns.Range, ns.Range, TextureSwizzleChannels) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_newTextureViewWithPixelFormat_textureType_levels_slices_swizzle_, pixelFormat_, textureType_, levelRange_, sliceRange_, swizzle_);
+                return objc.msgSend(self_, "newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:", ?*Texture, .{ pixelFormat_, textureType_, levelRange_, sliceRange_, swizzle_ });
             }
             pub fn rootResource(self_: *T) ?*Resource {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Resource, @ptrCast(&c.objc_msgSend))(self_, sel_rootResource);
+                return objc.msgSend(self_, "rootResource", ?*Resource, .{});
             }
             pub fn parentTexture(self_: *T) ?*Texture {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Texture, @ptrCast(&c.objc_msgSend))(self_, sel_parentTexture);
+                return objc.msgSend(self_, "parentTexture", ?*Texture, .{});
             }
             pub fn parentRelativeLevel(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_parentRelativeLevel);
+                return objc.msgSend(self_, "parentRelativeLevel", ns.UInteger, .{});
             }
             pub fn parentRelativeSlice(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_parentRelativeSlice);
+                return objc.msgSend(self_, "parentRelativeSlice", ns.UInteger, .{});
             }
             pub fn buffer(self_: *T) ?*Buffer {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ?*Buffer, @ptrCast(&c.objc_msgSend))(self_, sel_buffer);
+                return objc.msgSend(self_, "buffer", ?*Buffer, .{});
             }
             pub fn bufferOffset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferOffset);
+                return objc.msgSend(self_, "bufferOffset", ns.UInteger, .{});
             }
             pub fn bufferBytesPerRow(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferBytesPerRow);
+                return objc.msgSend(self_, "bufferBytesPerRow", ns.UInteger, .{});
             }
             pub fn iosurface(self_: *T) IOSurfaceRef {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) IOSurfaceRef, @ptrCast(&c.objc_msgSend))(self_, sel_iosurface);
+                return objc.msgSend(self_, "iosurface", IOSurfaceRef, .{});
             }
             pub fn iosurfacePlane(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_iosurfacePlane);
+                return objc.msgSend(self_, "iosurfacePlane", ns.UInteger, .{});
             }
             pub fn textureType(self_: *T) TextureType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureType, @ptrCast(&c.objc_msgSend))(self_, sel_textureType);
+                return objc.msgSend(self_, "textureType", TextureType, .{});
             }
             pub fn pixelFormat(self_: *T) PixelFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) PixelFormat, @ptrCast(&c.objc_msgSend))(self_, sel_pixelFormat);
+                return objc.msgSend(self_, "pixelFormat", PixelFormat, .{});
             }
             pub fn width(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_width);
+                return objc.msgSend(self_, "width", ns.UInteger, .{});
             }
             pub fn height(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_height);
+                return objc.msgSend(self_, "height", ns.UInteger, .{});
             }
             pub fn depth(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_depth);
+                return objc.msgSend(self_, "depth", ns.UInteger, .{});
             }
             pub fn mipmapLevelCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_mipmapLevelCount);
+                return objc.msgSend(self_, "mipmapLevelCount", ns.UInteger, .{});
             }
             pub fn sampleCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_sampleCount);
+                return objc.msgSend(self_, "sampleCount", ns.UInteger, .{});
             }
             pub fn arrayLength(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_arrayLength);
+                return objc.msgSend(self_, "arrayLength", ns.UInteger, .{});
             }
             pub fn usage(self_: *T) TextureUsage {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureUsage, @ptrCast(&c.objc_msgSend))(self_, sel_usage);
+                return objc.msgSend(self_, "usage", TextureUsage, .{});
             }
             pub fn isShareable(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isShareable);
+                return objc.msgSend(self_, "isShareable", bool, .{});
             }
             pub fn isFramebufferOnly(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isFramebufferOnly);
+                return objc.msgSend(self_, "isFramebufferOnly", bool, .{});
             }
             pub fn firstMipmapInTail(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_firstMipmapInTail);
+                return objc.msgSend(self_, "firstMipmapInTail", ns.UInteger, .{});
             }
             pub fn tailSizeInBytes(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_tailSizeInBytes);
+                return objc.msgSend(self_, "tailSizeInBytes", ns.UInteger, .{});
             }
             pub fn isSparse(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_isSparse);
+                return objc.msgSend(self_, "isSparse", bool, .{});
             }
             pub fn allowGPUOptimizedContents(self_: *T) bool {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) bool, @ptrCast(&c.objc_msgSend))(self_, sel_allowGPUOptimizedContents);
+                return objc.msgSend(self_, "allowGPUOptimizedContents", bool, .{});
             }
             pub fn compressionType(self_: *T) TextureCompressionType {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureCompressionType, @ptrCast(&c.objc_msgSend))(self_, sel_compressionType);
+                return objc.msgSend(self_, "compressionType", TextureCompressionType, .{});
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
             pub fn remoteStorageTexture(self_: *T) *Texture {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *Texture, @ptrCast(&c.objc_msgSend))(self_, sel_remoteStorageTexture);
+                return objc.msgSend(self_, "remoteStorageTexture", *Texture, .{});
             }
             pub fn swizzle(self_: *T) TextureSwizzleChannels {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) TextureSwizzleChannels, @ptrCast(&c.objc_msgSend))(self_, sel_swizzle);
+                return objc.msgSend(self_, "swizzle", TextureSwizzleChannels, .{});
             }
         };
     }
@@ -7623,22 +7624,22 @@ pub const VertexBufferLayoutDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn stride(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_stride);
+                return objc.msgSend(self_, "stride", ns.UInteger, .{});
             }
             pub fn setStride(self_: *T, stride_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStride_, stride_);
+                return objc.msgSend(self_, "setStride:", void, .{stride_});
             }
             pub fn stepFunction(self_: *T) VertexStepFunction {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) VertexStepFunction, @ptrCast(&c.objc_msgSend))(self_, sel_stepFunction);
+                return objc.msgSend(self_, "stepFunction", VertexStepFunction, .{});
             }
             pub fn setStepFunction(self_: *T, stepFunction_: VertexStepFunction) void {
-                return @as(*const fn (*T, *c.objc_selector, VertexStepFunction) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStepFunction_, stepFunction_);
+                return objc.msgSend(self_, "setStepFunction:", void, .{stepFunction_});
             }
             pub fn stepRate(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_stepRate);
+                return objc.msgSend(self_, "stepRate", ns.UInteger, .{});
             }
             pub fn setStepRate(self_: *T, stepRate_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setStepRate_, stepRate_);
+                return objc.msgSend(self_, "setStepRate:", void, .{stepRate_});
             }
         };
     }
@@ -7655,10 +7656,10 @@ pub const VertexBufferLayoutDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *VertexBufferLayoutDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *VertexBufferLayoutDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, index_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *VertexBufferLayoutDescriptor, .{index_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, bufferDesc_: ?*VertexBufferLayoutDescriptor, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VertexBufferLayoutDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, bufferDesc_, index_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ bufferDesc_, index_ });
             }
         };
     }
@@ -7676,22 +7677,22 @@ pub const VertexAttributeDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn format(self_: *T) VertexFormat {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) VertexFormat, @ptrCast(&c.objc_msgSend))(self_, sel_format);
+                return objc.msgSend(self_, "format", VertexFormat, .{});
             }
             pub fn setFormat(self_: *T, format_: VertexFormat) void {
-                return @as(*const fn (*T, *c.objc_selector, VertexFormat) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFormat_, format_);
+                return objc.msgSend(self_, "setFormat:", void, .{format_});
             }
             pub fn offset(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_offset);
+                return objc.msgSend(self_, "offset", ns.UInteger, .{});
             }
             pub fn setOffset(self_: *T, offset_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setOffset_, offset_);
+                return objc.msgSend(self_, "setOffset:", void, .{offset_});
             }
             pub fn bufferIndex(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_bufferIndex);
+                return objc.msgSend(self_, "bufferIndex", ns.UInteger, .{});
             }
             pub fn setBufferIndex(self_: *T, bufferIndex_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setBufferIndex_, bufferIndex_);
+                return objc.msgSend(self_, "setBufferIndex:", void, .{bufferIndex_});
             }
         };
     }
@@ -7708,10 +7709,10 @@ pub const VertexAttributeDescriptorArray = opaque {
             pub usingnamespace ns.ObjectInterface.Methods(T);
 
             pub fn objectAtIndexedSubscript(self_: *T, index_: ns.UInteger) *VertexAttributeDescriptor {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) *VertexAttributeDescriptor, @ptrCast(&c.objc_msgSend))(self_, sel_objectAtIndexedSubscript_, index_);
+                return objc.msgSend(self_, "objectAtIndexedSubscript:", *VertexAttributeDescriptor, .{index_});
             }
             pub fn setObject_atIndexedSubscript(self_: *T, attributeDesc_: ?*VertexAttributeDescriptor, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*VertexAttributeDescriptor, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setObject_atIndexedSubscript_, attributeDesc_, index_);
+                return objc.msgSend(self_, "setObject:atIndexedSubscript:", void, .{ attributeDesc_, index_ });
             }
         };
     }
@@ -7729,16 +7730,16 @@ pub const VertexDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn vertexDescriptor() *VertexDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *VertexDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_vertexDescriptor);
+                return objc.msgSend(T.class(), "vertexDescriptor", *VertexDescriptor, .{});
             }
             pub fn reset(self_: *T) void {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_reset);
+                return objc.msgSend(self_, "reset", void, .{});
             }
             pub fn layouts(self_: *T) *VertexBufferLayoutDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *VertexBufferLayoutDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_layouts);
+                return objc.msgSend(self_, "layouts", *VertexBufferLayoutDescriptorArray, .{});
             }
             pub fn attributes(self_: *T) *VertexAttributeDescriptorArray {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) *VertexAttributeDescriptorArray, @ptrCast(&c.objc_msgSend))(self_, sel_attributes);
+                return objc.msgSend(self_, "attributes", *VertexAttributeDescriptorArray, .{});
             }
         };
     }
@@ -7756,13 +7757,13 @@ pub const VisibleFunctionTableDescriptor = opaque {
             pub usingnamespace ns.Copying.Methods(T);
 
             pub fn visibleFunctionTableDescriptor() *VisibleFunctionTableDescriptor {
-                return @as(*const fn (*c.objc_class, *c.objc_selector) callconv(.C) *VisibleFunctionTableDescriptor, @ptrCast(&c.objc_msgSend))(T.class(), sel_visibleFunctionTableDescriptor);
+                return objc.msgSend(T.class(), "visibleFunctionTableDescriptor", *VisibleFunctionTableDescriptor, .{});
             }
             pub fn functionCount(self_: *T) ns.UInteger {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ns.UInteger, @ptrCast(&c.objc_msgSend))(self_, sel_functionCount);
+                return objc.msgSend(self_, "functionCount", ns.UInteger, .{});
             }
             pub fn setFunctionCount(self_: *T, functionCount_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctionCount_, functionCount_);
+                return objc.msgSend(self_, "setFunctionCount:", void, .{functionCount_});
             }
         };
     }
@@ -7776,13 +7777,13 @@ pub const VisibleFunctionTable = opaque {
             pub usingnamespace Resource.Methods(T);
 
             pub fn setFunction_atIndex(self_: *T, function_: ?*FunctionHandle, index_: ns.UInteger) void {
-                return @as(*const fn (*T, *c.objc_selector, ?*FunctionHandle, ns.UInteger) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunction_atIndex_, function_, index_);
+                return objc.msgSend(self_, "setFunction:atIndex:", void, .{ function_, index_ });
             }
             pub fn setFunctions_withRange(self_: *T, functions_: *?*const FunctionHandle, range_: ns.Range) void {
-                return @as(*const fn (*T, *c.objc_selector, *?*const FunctionHandle, ns.Range) callconv(.C) void, @ptrCast(&c.objc_msgSend))(self_, sel_setFunctions_withRange_, functions_, range_);
+                return objc.msgSend(self_, "setFunctions:withRange:", void, .{ functions_, range_ });
             }
             pub fn gpuResourceID(self_: *T) ResourceID {
-                return @as(*const fn (*T, *c.objc_selector) callconv(.C) ResourceID, @ptrCast(&c.objc_msgSend))(self_, sel_gpuResourceID);
+                return objc.msgSend(self_, "gpuResourceID", ResourceID, .{});
             }
         };
     }
@@ -7882,1092 +7883,6 @@ var class_VertexAttributeDescriptor: *c.objc_class = undefined;
 var class_VertexAttributeDescriptorArray: *c.objc_class = undefined;
 var class_VertexDescriptor: *c.objc_class = undefined;
 var class_VisibleFunctionTableDescriptor: *c.objc_class = undefined;
-var sel_optimizeContentsForGPUAccess_slice_level_: *c.objc_selector = undefined;
-var sel_setStorageMode_: *c.objc_selector = undefined;
-var sel_setMaxKernelThreadgroupMemoryBindCount_: *c.objc_selector = undefined;
-var sel_setOptions_: *c.objc_selector = undefined;
-var sel_status: *c.objc_selector = undefined;
-var sel_width: *c.objc_selector = undefined;
-var sel_copyAndCompactAccelerationStructure_toAccelerationStructure_: *c.objc_selector = undefined;
-var sel_newTextureWithDescriptor_iosurface_plane_: *c.objc_selector = undefined;
-var sel_computeCommandEncoder: *c.objc_selector = undefined;
-var sel_functionHandleWithFunction_: *c.objc_selector = undefined;
-var sel_setRasterizationRateMap_: *c.objc_selector = undefined;
-var sel_remoteStorageTexture: *c.objc_selector = undefined;
-var sel_setMeshSamplerState_atIndex_: *c.objc_selector = undefined;
-var sel_setTileBufferOffset_atIndex_: *c.objc_selector = undefined;
-var sel_controlDependencies: *c.objc_selector = undefined;
-var sel_maxTransferRate: *c.objc_selector = undefined;
-var sel_maxAvailableSizeWithAlignment_: *c.objc_selector = undefined;
-var sel_computePassDescriptor: *c.objc_selector = undefined;
-var sel_setMeshBuffers_offsets_withRange_: *c.objc_selector = undefined;
-var sel_buffer: *c.objc_selector = undefined;
-var sel_maxVertexAmplificationCount: *c.objc_selector = undefined;
-var sel_texture2DDescriptorWithPixelFormat_width_height_mipmapped_: *c.objc_selector = undefined;
-var sel_setRetainedReferences_: *c.objc_selector = undefined;
-var sel_newTextureViewWithPixelFormat_textureType_levels_slices_swizzle_: *c.objc_selector = undefined;
-var sel_newSharedEventHandle: *c.objc_selector = undefined;
-var sel_objectPayloadAlignment: *c.objc_selector = undefined;
-var sel_setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex_: *c.objc_selector = undefined;
-var sel_setFunctionCount_: *c.objc_selector = undefined;
-var sel_depthAttachment: *c.objc_selector = undefined;
-var sel_preloadedLibraries: *c.objc_selector = undefined;
-var sel_setVertexTexture_atIndex_: *c.objc_selector = undefined;
-var sel_arguments: *c.objc_selector = undefined;
-var sel_setSamplerState_lodMinClamp_lodMaxClamp_atIndex_: *c.objc_selector = undefined;
-var sel_counterSet: *c.objc_selector = undefined;
-var sel_copyStatusToBuffer_offset_: *c.objc_selector = undefined;
-var sel_setObjectBytes_length_atIndex_: *c.objc_selector = undefined;
-var sel_setDataType_: *c.objc_selector = undefined;
-var sel_endScope: *c.objc_selector = undefined;
-var sel_allowDuplicateIntersectionFunctionInvocation: *c.objc_selector = undefined;
-var sel_setAllowDuplicateIntersectionFunctionInvocation_: *c.objc_selector = undefined;
-var sel_motionKeyframeCount: *c.objc_selector = undefined;
-var sel_setSampleCount_: *c.objc_selector = undefined;
-var sel_setFunctions_withRange_: *c.objc_selector = undefined;
-var sel_setConstantBlockAlignment_: *c.objc_selector = undefined;
-var sel_clearColor: *c.objc_selector = undefined;
-var sel_supportsTextureSampleCount_: *c.objc_selector = undefined;
-var sel_setWidth_: *c.objc_selector = undefined;
-var sel_setHeight_: *c.objc_selector = undefined;
-var sel_setFunction_atIndex_: *c.objc_selector = undefined;
-var sel_newTextureWithDescriptor_offset_: *c.objc_selector = undefined;
-var sel_setMotionTransformBuffer_: *c.objc_selector = undefined;
-var sel_setLayer_atIndex_: *c.objc_selector = undefined;
-var sel_name: *c.objc_selector = undefined;
-var sel_allocatedSize: *c.objc_selector = undefined;
-var sel_newLibraryWithFile_error_: *c.objc_selector = undefined;
-var sel_isArgument: *c.objc_selector = undefined;
-var sel_setDestination_: *c.objc_selector = undefined;
-var sel_backFaceStencil: *c.objc_selector = undefined;
-var sel_setStencilReferenceValue_: *c.objc_selector = undefined;
-var sel_endOfFragmentSampleIndex: *c.objc_selector = undefined;
-var sel_setTessellationFactorScaleEnabled_: *c.objc_selector = undefined;
-var sel_format: *c.objc_selector = undefined;
-var sel_commit: *c.objc_selector = undefined;
-var sel_tessellationFactorStepFunction: *c.objc_selector = undefined;
-var sel_debugSignposts: *c.objc_selector = undefined;
-var sel_resourceStateCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
-var sel_setTileVisibleFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_tessellationFactorFormat: *c.objc_selector = undefined;
-var sel_setVertexAmplificationCount_viewMappings_: *c.objc_selector = undefined;
-var sel_setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex_: *c.objc_selector = undefined;
-var sel_elementPointerType: *c.objc_selector = undefined;
-var sel_accelerationStructurePassDescriptor: *c.objc_selector = undefined;
-var sel_device: *c.objc_selector = undefined;
-var sel_setMotionStartTime_: *c.objc_selector = undefined;
-var sel_maxCommandBufferCount: *c.objc_selector = undefined;
-var sel_setLibraryType_: *c.objc_selector = undefined;
-var sel_dataType: *c.objc_selector = undefined;
-var sel_newDynamicLibrary_error_: *c.objc_selector = undefined;
-var sel_tileAdditionalBinaryFunctions: *c.objc_selector = undefined;
-var sel_physicalSizeForLayer_: *c.objc_selector = undefined;
-var sel_imageblockMemoryLengthForDimensions_: *c.objc_selector = undefined;
-var sel_firstMipmapInTail: *c.objc_selector = undefined;
-var sel_tileWidth: *c.objc_selector = undefined;
-var sel_elementArrayType: *c.objc_selector = undefined;
-var sel_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_: *c.objc_selector = undefined;
-var sel_setSamplePositions_count_: *c.objc_selector = undefined;
-var sel_setObjectFunction_: *c.objc_selector = undefined;
-var sel_supportsFunctionPointers: *c.objc_selector = undefined;
-var sel_sharedCaptureManager: *c.objc_selector = undefined;
-var sel_newComputePipelineStateWithFunction_completionHandler_: *c.objc_selector = undefined;
-var sel_getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset_: *c.objc_selector = undefined;
-var sel_setMaxTotalThreadsPerMeshThreadgroup_: *c.objc_selector = undefined;
-var sel_newVisibleFunctionTableWithDescriptor_: *c.objc_selector = undefined;
-var sel_setInheritBuffers_: *c.objc_selector = undefined;
-var sel_setPayloadMemoryLength_: *c.objc_selector = undefined;
-var sel_registryID: *c.objc_selector = undefined;
-var sel_supportsRaytracingFromRender: *c.objc_selector = undefined;
-var sel_newIntersectionFunctionWithDescriptor_completionHandler_: *c.objc_selector = undefined;
-var sel_indexBufferOffset: *c.objc_selector = undefined;
-var sel_setVisibleFunctionTable_atIndex_: *c.objc_selector = undefined;
-var sel_gpuAddress: *c.objc_selector = undefined;
-var sel_setVisibilityResultBuffer_: *c.objc_selector = undefined;
-var sel_loadBuffer_offset_size_sourceHandle_sourceHandleOffset_: *c.objc_selector = undefined;
-var sel_stencilAttachmentPixelFormat: *c.objc_selector = undefined;
-var sel_setIntersectionFunctionTables_withRange_: *c.objc_selector = undefined;
-var sel_setSize_: *c.objc_selector = undefined;
-var sel_setVertexVisibleFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_compressionType: *c.objc_selector = undefined;
-var sel_setErrorOptions_: *c.objc_selector = undefined;
-var sel_setCaptureObject_: *c.objc_selector = undefined;
-var sel_updateFence_: *c.objc_selector = undefined;
-var sel_waitForFence_beforeStages_: *c.objc_selector = undefined;
-var sel_setStencilResolveFilter_: *c.objc_selector = undefined;
-var sel_swizzle: *c.objc_selector = undefined;
-var sel_sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize_: *c.objc_selector = undefined;
-var sel_frontFaceStencil: *c.objc_selector = undefined;
-var sel_setMaxAnisotropy_: *c.objc_selector = undefined;
-var sel_drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride_: *c.objc_selector = undefined;
-var sel_depthStencilPassOperation: *c.objc_selector = undefined;
-var sel_mapScreenToPhysicalCoordinates_forLayer_: *c.objc_selector = undefined;
-var sel_setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex_: *c.objc_selector = undefined;
-var sel_vertexBuffer: *c.objc_selector = undefined;
-var sel_visibilityResultBuffer: *c.objc_selector = undefined;
-var sel_maxFragmentCallStackDepth: *c.objc_selector = undefined;
-var sel_setFragmentAccelerationStructure_atBufferIndex_: *c.objc_selector = undefined;
-var sel_presentAfterMinimumDuration_: *c.objc_selector = undefined;
-var sel_newCommandQueueWithMaxCommandBufferCount_: *c.objc_selector = undefined;
-var sel_elementTextureReferenceType: *c.objc_selector = undefined;
-var sel_dispatchQueue: *c.objc_selector = undefined;
-var sel_setTileAdditionalBinaryFunctions_: *c.objc_selector = undefined;
-var sel_setEndOfVertexSampleIndex_: *c.objc_selector = undefined;
-var sel_stride: *c.objc_selector = undefined;
-var sel_setIndexType_: *c.objc_selector = undefined;
-var sel_addDebugMarker_range_: *c.objc_selector = undefined;
-var sel_motionEndTime: *c.objc_selector = undefined;
-var sel_setDepthWriteEnabled_: *c.objc_selector = undefined;
-var sel_setRenderPipelineState_: *c.objc_selector = undefined;
-var sel_setVertexBytes_length_attributeStride_atIndex_: *c.objc_selector = undefined;
-var sel_sampleBuffer: *c.objc_selector = undefined;
-var sel_newLibraryWithData_error_: *c.objc_selector = undefined;
-var sel_tileHeight: *c.objc_selector = undefined;
-var sel_setHazardTrackingMode_: *c.objc_selector = undefined;
-var sel_elementIsArgumentBuffer: *c.objc_selector = undefined;
-var sel_setVertexIntersectionFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_setComputePipelineStates_withRange_: *c.objc_selector = undefined;
-var sel_init: *c.objc_selector = undefined;
-var sel_setMaxFragmentBufferBindCount_: *c.objc_selector = undefined;
-var sel_setInstancedAccelerationStructures_: *c.objc_selector = undefined;
-var sel_presentDrawable_afterMinimumDuration_: *c.objc_selector = undefined;
-var sel_options: *c.objc_selector = undefined;
-var sel_patchControlPointCount: *c.objc_selector = undefined;
-var sel_stencilCompareFunction: *c.objc_selector = undefined;
-var sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_: *c.objc_selector = undefined;
-var sel_newLibraryWithSource_options_completionHandler_: *c.objc_selector = undefined;
-var sel_newAccelerationStructureWithDescriptor_offset_: *c.objc_selector = undefined;
-var sel_setObjectThreadgroupMemoryLength_atIndex_: *c.objc_selector = undefined;
-var sel_minimumLinearTextureAlignmentForPixelFormat_: *c.objc_selector = undefined;
-var sel_setBarrier: *c.objc_selector = undefined;
-var sel_setMeshFunction_: *c.objc_selector = undefined;
-var sel_transformationMatrixBufferOffset: *c.objc_selector = undefined;
-var sel_slice: *c.objc_selector = undefined;
-var sel_newBufferWithLength_options_: *c.objc_selector = undefined;
-var sel_initWithFunctionName_nodes_outputNode_attributes_: *c.objc_selector = undefined;
-var sel_physicalGranularity: *c.objc_selector = undefined;
-var sel_meshLinkedFunctions: *c.objc_selector = undefined;
-var sel_setFragmentFunction_: *c.objc_selector = undefined;
-var sel_renderTargetArrayLength: *c.objc_selector = undefined;
-var sel_setVertexBuffer_offset_atIndex_: *c.objc_selector = undefined;
-var sel_maxTotalThreadgroupsPerMeshGrid: *c.objc_selector = undefined;
-var sel_rasterizationRateMap: *c.objc_selector = undefined;
-var sel_setMeshLinkedFunctions_: *c.objc_selector = undefined;
-var sel_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex_: *c.objc_selector = undefined;
-var sel_setMipmapLevelCount_: *c.objc_selector = undefined;
-var sel_newComputePipelineStateWithFunction_options_completionHandler_: *c.objc_selector = undefined;
-var sel_attributeType: *c.objc_selector = undefined;
-var sel_newIOCommandQueueWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_setFragmentTexture_atIndex_: *c.objc_selector = undefined;
-var sel_destinationAlphaBlendFactor: *c.objc_selector = undefined;
-var sel_setAlphaBlendOperation_: *c.objc_selector = undefined;
-var sel_newRemoteBufferViewForDevice_: *c.objc_selector = undefined;
-var sel_setFragmentSamplerStates_withRange_: *c.objc_selector = undefined;
-var sel_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options_: *c.objc_selector = undefined;
-var sel_horizontalSampleStorage: *c.objc_selector = undefined;
-var sel_writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType_: *c.objc_selector = undefined;
-var sel_allowReferencingUndefinedSymbols: *c.objc_selector = undefined;
-var sel_setFragmentSamplerState_atIndex_: *c.objc_selector = undefined;
-var sel_setTriangleCount_: *c.objc_selector = undefined;
-var sel_setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange_: *c.objc_selector = undefined;
-var sel_borderColor: *c.objc_selector = undefined;
-var sel_arrayType: *c.objc_selector = undefined;
-var sel_debugLocation: *c.objc_selector = undefined;
-var sel_setFrontFacingWinding_: *c.objc_selector = undefined;
-var sel_meshThreadExecutionWidth: *c.objc_selector = undefined;
-var sel_parentTexture: *c.objc_selector = undefined;
-var sel_sampleBufferAttachments: *c.objc_selector = undefined;
-var sel_setBackFaceStencil_: *c.objc_selector = undefined;
-var sel_sampleCountersInBuffer_atSampleIndex_withBarrier_: *c.objc_selector = undefined;
-var sel_setSignaledValue_: *c.objc_selector = undefined;
-var sel_peerCount: *c.objc_selector = undefined;
-var sel_setCpuCacheMode_: *c.objc_selector = undefined;
-var sel_startCaptureWithDevice_: *c.objc_selector = undefined;
-var sel_indirectComputeCommandAtIndex_: *c.objc_selector = undefined;
-var sel_tryCancel: *c.objc_selector = undefined;
-var sel_isPatchControlPointData: *c.objc_selector = undefined;
-var sel_newArgumentEncoderWithBufferIndex_reflection_: *c.objc_selector = undefined;
-var sel_tAddressMode: *c.objc_selector = undefined;
-var sel_height: *c.objc_selector = undefined;
-var sel_resourceOptions: *c.objc_selector = undefined;
-var sel_setBinaryFunctions_: *c.objc_selector = undefined;
-var sel_blitCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
-var sel_setMaxObjectBufferBindCount_: *c.objc_selector = undefined;
-var sel_setBlendColorRed_green_blue_alpha_: *c.objc_selector = undefined;
-var sel_setTriangleFillMode_: *c.objc_selector = undefined;
-var sel_setLabel_: *c.objc_selector = undefined;
-var sel_setSwizzle_: *c.objc_selector = undefined;
-var sel_renderPassDescriptor: *c.objc_selector = undefined;
-var sel_newDefaultLibrary: *c.objc_selector = undefined;
-var sel_synchronizeTexture_slice_level_: *c.objc_selector = undefined;
-var sel_newIOFileHandleWithURL_compressionMethod_error_: *c.objc_selector = undefined;
-var sel_bufferDataType: *c.objc_selector = undefined;
-var sel_setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange_: *c.objc_selector = undefined;
-var sel_boundingBoxBufferOffset: *c.objc_selector = undefined;
-var sel_setPrimitiveDataElementSize_: *c.objc_selector = undefined;
-var sel_GPUEndTime: *c.objc_selector = undefined;
-var sel_reset: *c.objc_selector = undefined;
-var sel_supports32BitFloatFiltering: *c.objc_selector = undefined;
-var sel_memoryBarrierWithScope_: *c.objc_selector = undefined;
-var sel_setInstanceDescriptorBufferOffset_: *c.objc_selector = undefined;
-var sel_setInsertLibraries_: *c.objc_selector = undefined;
-var sel_memoryBarrierWithResources_count_: *c.objc_selector = undefined;
-var sel_maxAnisotropy: *c.objc_selector = undefined;
-var sel_constantDataAtIndex_: *c.objc_selector = undefined;
-var sel_mipmapLevelCount: *c.objc_selector = undefined;
-var sel_setIntersectionFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_setVertexBuffer_offset_attributeStride_atIndex_: *c.objc_selector = undefined;
-var sel_tileBindings: *c.objc_selector = undefined;
-var sel_instanceDescriptorType: *c.objc_selector = undefined;
-var sel_setDepthResolveFilter_: *c.objc_selector = undefined;
-var sel_setUsage_: *c.objc_selector = undefined;
-var sel_tileFunction: *c.objc_selector = undefined;
-var sel_motionStartTime: *c.objc_selector = undefined;
-var sel_setAccelerationStructure_atIndex_: *c.objc_selector = undefined;
-var sel_setMaxTotalThreadsPerThreadgroup_: *c.objc_selector = undefined;
-var sel_stencilResolveFilter: *c.objc_selector = undefined;
-var sel_visibleFunctionTableDescriptor: *c.objc_selector = undefined;
-var sel_renderCommandEncoder: *c.objc_selector = undefined;
-var sel_bufferBytesPerRow: *c.objc_selector = undefined;
-var sel_layerCount: *c.objc_selector = undefined;
-var sel_newArgumentEncoderWithArguments_: *c.objc_selector = undefined;
-var sel_newScratchBufferWithMinimumSize_: *c.objc_selector = undefined;
-var sel_setFormat_: *c.objc_selector = undefined;
-var sel_setAllowGPUOptimizedContents_: *c.objc_selector = undefined;
-var sel_data: *c.objc_selector = undefined;
-var sel_isDepthWriteEnabled: *c.objc_selector = undefined;
-var sel_present: *c.objc_selector = undefined;
-var sel_setTileAccelerationStructure_atBufferIndex_: *c.objc_selector = undefined;
-var sel_setPreloadedLibraries_: *c.objc_selector = undefined;
-var sel_functionName: *c.objc_selector = undefined;
-var sel_setMaxTotalThreadgroupsPerMeshGrid_: *c.objc_selector = undefined;
-var sel_setTAddressMode_: *c.objc_selector = undefined;
-var sel_objectBindings: *c.objc_selector = undefined;
-var sel_mutability: *c.objc_selector = undefined;
-var sel_setTessellationOutputWindingOrder_: *c.objc_selector = undefined;
-var sel_serializeToURL_error_: *c.objc_selector = undefined;
-var sel_objectThreadExecutionWidth: *c.objc_selector = undefined;
-var sel_newTextureWithDescriptor_: *c.objc_selector = undefined;
-var sel_setVertexIntersectionFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_setDepthPlane_: *c.objc_selector = undefined;
-var sel_useHeap_stages_: *c.objc_selector = undefined;
-var sel_optimizeContentsForCPUAccess_: *c.objc_selector = undefined;
-var sel_setVertexDescriptor_: *c.objc_selector = undefined;
-var sel_startCaptureWithScope_: *c.objc_selector = undefined;
-var sel_heap: *c.objc_selector = undefined;
-var sel_drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_: *c.objc_selector = undefined;
-var sel_supports32BitMSAA: *c.objc_selector = undefined;
-var sel_setArguments_: *c.objc_selector = undefined;
-var sel_setTessellationFactorStepFunction_: *c.objc_selector = undefined;
-var sel_renderCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
-var sel_newBufferWithLength_options_offset_: *c.objc_selector = undefined;
-var sel_objectFunction: *c.objc_selector = undefined;
-var sel_isFramebufferOnly: *c.objc_selector = undefined;
-var sel_inheritPipelineState: *c.objc_selector = undefined;
-var sel_setDefaultCaptureScope_: *c.objc_selector = undefined;
-var sel_boundingBoxBuffer: *c.objc_selector = undefined;
-var sel_setMaxCommandsInFlight_: *c.objc_selector = undefined;
-var sel_location: *c.objc_selector = undefined;
-var sel_newBufferWithBytes_length_options_: *c.objc_selector = undefined;
-var sel_addPresentedHandler_: *c.objc_selector = undefined;
-var sel_setRenderTargetHeight_: *c.objc_selector = undefined;
-var sel_setStepRate_: *c.objc_selector = undefined;
-var sel_executeCommandsInBuffer_withRange_: *c.objc_selector = undefined;
-var sel_languageVersion: *c.objc_selector = undefined;
-var sel_vertexFormat: *c.objc_selector = undefined;
-var sel_setDepthBias_slopeScale_clamp_: *c.objc_selector = undefined;
-var sel_tessellationPartitionMode: *c.objc_selector = undefined;
-var sel_magFilter: *c.objc_selector = undefined;
-var sel_getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice_: *c.objc_selector = undefined;
-var sel_newCommandQueue: *c.objc_selector = undefined;
-var sel_newFunctionWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex_: *c.objc_selector = undefined;
-var sel_setSupportArgumentBuffers_: *c.objc_selector = undefined;
-var sel_isPatchData: *c.objc_selector = undefined;
-var sel_meshFunction: *c.objc_selector = undefined;
-var sel_outputURL: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithDescriptor_completionHandler_: *c.objc_selector = undefined;
-var sel_heapOffset: *c.objc_selector = undefined;
-var sel_setStencilCompareFunction_: *c.objc_selector = undefined;
-var sel_privateFunctions: *c.objc_selector = undefined;
-var sel_setIndexBufferIndex_: *c.objc_selector = undefined;
-var sel_setMaxVertexCallStackDepth_: *c.objc_selector = undefined;
-var sel_maxMeshBufferBindCount: *c.objc_selector = undefined;
-var sel_setDepthStencilState_: *c.objc_selector = undefined;
-var sel_geometryDescriptors: *c.objc_selector = undefined;
-var sel_boundingBoxStride: *c.objc_selector = undefined;
-var sel_drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_: *c.objc_selector = undefined;
-var sel_commandBufferWithUnretainedReferences: *c.objc_selector = undefined;
-var sel_setCounterSet_: *c.objc_selector = undefined;
-var sel_setScissorRects_count_: *c.objc_selector = undefined;
-var sel_setRenderTargetArrayLength_: *c.objc_selector = undefined;
-var sel_threadgroupMemoryAlignment: *c.objc_selector = undefined;
-var sel_dispatchThreadgroups_threadsPerThreadgroup_: *c.objc_selector = undefined;
-var sel_setFragmentIntersectionFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_areBarycentricCoordsSupported: *c.objc_selector = undefined;
-var sel_setLoadAction_: *c.objc_selector = undefined;
-var sel_setTileBuffers_offsets_withRange_: *c.objc_selector = undefined;
-var sel_synchronizeResource_: *c.objc_selector = undefined;
-var sel_logs: *c.objc_selector = undefined;
-var sel_newVisibleFunctionTableWithDescriptor_stage_: *c.objc_selector = undefined;
-var sel_getBytes_bytesPerRow_fromRegion_mipmapLevel_: *c.objc_selector = undefined;
-var sel_architecture: *c.objc_selector = undefined;
-var sel_groups: *c.objc_selector = undefined;
-var sel_setDepthClipMode_: *c.objc_selector = undefined;
-var sel_motionTransformBufferOffset: *c.objc_selector = undefined;
-var sel_setMaxTotalThreadsPerObjectThreadgroup_: *c.objc_selector = undefined;
-var sel_setTileTextures_withRange_: *c.objc_selector = undefined;
-var sel_computeFunction: *c.objc_selector = undefined;
-var sel_setVertexFunction_: *c.objc_selector = undefined;
-var sel_type: *c.objc_selector = undefined;
-var sel_setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex_: *c.objc_selector = undefined;
-var sel_waitUntilScheduled: *c.objc_selector = undefined;
-var sel_setThreadGroupSizeIsMultipleOfThreadExecutionWidth_: *c.objc_selector = undefined;
-var sel_allowGPUOptimizedContents: *c.objc_selector = undefined;
-var sel_primitiveDataElementSize: *c.objc_selector = undefined;
-var sel_isAlphaToOneEnabled: *c.objc_selector = undefined;
-var sel_getDefaultSamplePositions_count_: *c.objc_selector = undefined;
-var sel_setBufferIndex_: *c.objc_selector = undefined;
-var sel_setMotionEndBorderMode_: *c.objc_selector = undefined;
-var sel_maxVertexBufferBindCount: *c.objc_selector = undefined;
-var sel_opaque: *c.objc_selector = undefined;
-var sel_drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
-var sel_setStoreActionOptions_: *c.objc_selector = undefined;
-var sel_label: *c.objc_selector = undefined;
-var sel_setScratchBufferAllocator_: *c.objc_selector = undefined;
-var sel_setStageInRegion_: *c.objc_selector = undefined;
-var sel_counters: *c.objc_selector = undefined;
-var sel_rasterizationRateMapDescriptorWithScreenSize_layerCount_layers_: *c.objc_selector = undefined;
-var sel_setTileBuffer_offset_atIndex_: *c.objc_selector = undefined;
-var sel_setBuffer_: *c.objc_selector = undefined;
-var sel_startOfVertexSampleIndex: *c.objc_selector = undefined;
-var sel_supportsPullModelInterpolation: *c.objc_selector = undefined;
-var sel_preserveInvariance: *c.objc_selector = undefined;
-var sel_setColorStoreAction_atIndex_: *c.objc_selector = undefined;
-var sel_drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_: *c.objc_selector = undefined;
-var sel_compileSymbolVisibility: *c.objc_selector = undefined;
-var sel_setImageblockSampleLength_: *c.objc_selector = undefined;
-var sel_setRasterSampleCount_: *c.objc_selector = undefined;
-var sel_meshThreadgroupSizeIsMultipleOfThreadExecutionWidth: *c.objc_selector = undefined;
-var sel_objectPayloadDataSize: *c.objc_selector = undefined;
-var sel_fragmentArguments: *c.objc_selector = undefined;
-var sel_setObjectTexture_atIndex_: *c.objc_selector = undefined;
-var sel_meshBuffers: *c.objc_selector = undefined;
-var sel_newSharedTextureWithDescriptor_: *c.objc_selector = undefined;
-var sel_endOfVertexSampleIndex: *c.objc_selector = undefined;
-var sel_meshBindings: *c.objc_selector = undefined;
-var sel_setStride_: *c.objc_selector = undefined;
-var sel_isShareable: *c.objc_selector = undefined;
-var sel_dispatchType: *c.objc_selector = undefined;
-var sel_level: *c.objc_selector = undefined;
-var sel_setThreadgroupMemoryLength_atIndex_: *c.objc_selector = undefined;
-var sel_setResourceOptions_: *c.objc_selector = undefined;
-var sel_libraryType: *c.objc_selector = undefined;
-var sel_usage: *c.objc_selector = undefined;
-var sel_setEndOfEncoderSampleIndex_: *c.objc_selector = undefined;
-var sel_presentAtTime_: *c.objc_selector = undefined;
-var sel_setVertexBytes_length_atIndex_: *c.objc_selector = undefined;
-var sel_newIntersectionFunctionTableWithDescriptor_: *c.objc_selector = undefined;
-var sel_stopCapture: *c.objc_selector = undefined;
-var sel_setAlphaToOneEnabled_: *c.objc_selector = undefined;
-var sel_isBlendingEnabled: *c.objc_selector = undefined;
-var sel_setLevel_: *c.objc_selector = undefined;
-var sel_fragmentBindings: *c.objc_selector = undefined;
-var sel_setViewport_: *c.objc_selector = undefined;
-var sel_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_: *c.objc_selector = undefined;
-var sel_setObject_atIndexedSubscript_: *c.objc_selector = undefined;
-var sel_setStoreAction_: *c.objc_selector = undefined;
-var sel_setVertexSamplerState_atIndex_: *c.objc_selector = undefined;
-var sel_setVertexSamplerStates_withRange_: *c.objc_selector = undefined;
-var sel_notifyListener_atValue_block_: *c.objc_selector = undefined;
-var sel_addFunctionWithDescriptor_library_error_: *c.objc_selector = undefined;
-var sel_popDebugGroup: *c.objc_selector = undefined;
-var sel_setBoundingBoxBuffer_: *c.objc_selector = undefined;
-var sel_resetCommandsInBuffer_withRange_: *c.objc_selector = undefined;
-var sel_vertexBindings: *c.objc_selector = undefined;
-var sel_functionCount: *c.objc_selector = undefined;
-var sel_gpuResourceID: *c.objc_selector = undefined;
-var sel_textureType: *c.objc_selector = undefined;
-var sel_setVisibleFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_updateTextureMapping_mode_region_mipLevel_slice_: *c.objc_selector = undefined;
-var sel_setVertexBufferOffset_attributeStride_atIndex_: *c.objc_selector = undefined;
-var sel_maxSampleCount: *c.objc_selector = undefined;
-var sel_buffers: *c.objc_selector = undefined;
-var sel_buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset_: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithMeshDescriptor_options_reflection_error_: *c.objc_selector = undefined;
-var sel_setIndirectCommandBuffer_atIndex_: *c.objc_selector = undefined;
-var sel_moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_: *c.objc_selector = undefined;
-var sel_setMeshBytes_length_atIndex_: *c.objc_selector = undefined;
-var sel_functionType: *c.objc_selector = undefined;
-var sel_setType_: *c.objc_selector = undefined;
-var sel_optimizationLevel: *c.objc_selector = undefined;
-var sel_setDepthStoreActionOptions_: *c.objc_selector = undefined;
-var sel_payloadMemoryLength: *c.objc_selector = undefined;
-var sel_setVertexFormat_: *c.objc_selector = undefined;
-var sel_setInstanceDescriptorStride_: *c.objc_selector = undefined;
-var sel_depthCompareFunction: *c.objc_selector = undefined;
-var sel_errorState: *c.objc_selector = undefined;
-var sel_threadGroupSizeIsMultipleOfThreadExecutionWidth: *c.objc_selector = undefined;
-var sel_newAccelerationStructureWithDescriptor_: *c.objc_selector = undefined;
-var sel_installName: *c.objc_selector = undefined;
-var sel_setLanguageVersion_: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_setRenderPipelineState_atIndex_: *c.objc_selector = undefined;
-var sel_supportRayTracing: *c.objc_selector = undefined;
-var sel_rasterizationRateMapDescriptorWithScreenSize_layer_: *c.objc_selector = undefined;
-var sel_threadgroupMemoryLength: *c.objc_selector = undefined;
-var sel_tileArguments: *c.objc_selector = undefined;
-var sel_boundingBoxCount: *c.objc_selector = undefined;
-var sel_elementType: *c.objc_selector = undefined;
-var sel_depthFailureOperation: *c.objc_selector = undefined;
-var sel_textureReferenceType: *c.objc_selector = undefined;
-var sel_useHeap_: *c.objc_selector = undefined;
-var sel_newComputePipelineStateWithDescriptor_options_completionHandler_: *c.objc_selector = undefined;
-var sel_peerIndex: *c.objc_selector = undefined;
-var sel_setControlDependencies_: *c.objc_selector = undefined;
-var sel_endOfEncoderSampleIndex: *c.objc_selector = undefined;
-var sel_maxObjectBufferBindCount: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithAdditionalBinaryFunctions_error_: *c.objc_selector = undefined;
-var sel_setStageInRegionWithIndirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
-var sel_heapAccelerationStructureSizeAndAlignWithDescriptor_: *c.objc_selector = undefined;
-var sel_addTileRenderPipelineFunctionsWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_convertSparseTileRegions_toPixelRegions_withTileSize_numRegions_: *c.objc_selector = undefined;
-var sel_setArgumentBuffer_offset_: *c.objc_selector = undefined;
-var sel_setSparsePageSize_: *c.objc_selector = undefined;
-var sel_stageInputOutputDescriptor: *c.objc_selector = undefined;
-var sel_setTileSamplerStates_withRange_: *c.objc_selector = undefined;
-var sel_setBuffers_offsets_attributeStrides_withRange_: *c.objc_selector = undefined;
-var sel_parallelRenderCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
-var sel_setAccelerationStructure_atBufferIndex_: *c.objc_selector = undefined;
-var sel_newSharedEventWithHandle_: *c.objc_selector = undefined;
-var sel_stencilAttachment: *c.objc_selector = undefined;
-var sel_newComputePipelineStateWithFunction_error_: *c.objc_selector = undefined;
-var sel_setClearColor_: *c.objc_selector = undefined;
-var sel_setMaxMeshBufferBindCount_: *c.objc_selector = undefined;
-var sel_generateMipmapsForTexture_: *c.objc_selector = undefined;
-var sel_setStencilAttachment_: *c.objc_selector = undefined;
-var sel_insertDebugCaptureBoundary: *c.objc_selector = undefined;
-var sel_optimizeContentsForCPUAccess_slice_level_: *c.objc_selector = undefined;
-var sel_setFrontFaceStencil_: *c.objc_selector = undefined;
-var sel_copyParameterDataToBuffer_offset_: *c.objc_selector = undefined;
-var sel_supportAddingFragmentBinaryFunctions: *c.objc_selector = undefined;
-var sel_beginScope: *c.objc_selector = undefined;
-var sel_textureBarrier: *c.objc_selector = undefined;
-var sel_useResource_usage_stages_: *c.objc_selector = undefined;
-var sel_setFragmentVisibleFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_specializedName: *c.objc_selector = undefined;
-var sel_stencilFailureOperation: *c.objc_selector = undefined;
-var sel_commandTypes: *c.objc_selector = undefined;
-var sel_setRenderPipelineStates_withRange_: *c.objc_selector = undefined;
-var sel_setComputePipelineState_atIndex_: *c.objc_selector = undefined;
-var sel_supportIndirectCommandBuffers: *c.objc_selector = undefined;
-var sel_setStencilStoreAction_: *c.objc_selector = undefined;
-var sel_objectLinkedFunctions: *c.objc_selector = undefined;
-var sel_setMipFilter_: *c.objc_selector = undefined;
-var sel_newFence: *c.objc_selector = undefined;
-var sel_setPurgeableState_: *c.objc_selector = undefined;
-var sel_textureDataType: *c.objc_selector = undefined;
-var sel_isAlphaToCoverageEnabled: *c.objc_selector = undefined;
-var sel_destination: *c.objc_selector = undefined;
-var sel_setResolveDepthPlane_: *c.objc_selector = undefined;
-var sel_setImageblockWidth_height_: *c.objc_selector = undefined;
-var sel_setSourceRGBBlendFactor_: *c.objc_selector = undefined;
-var sel_newSharedTextureWithHandle_: *c.objc_selector = undefined;
-var sel_setVisibleFunctionTables_withRange_: *c.objc_selector = undefined;
-var sel_indexBufferIndex: *c.objc_selector = undefined;
-var sel_setMeshBufferOffset_atIndex_: *c.objc_selector = undefined;
-var sel_setPriority_: *c.objc_selector = undefined;
-var sel_binaryArchives: *c.objc_selector = undefined;
-var sel_resolveCounters_inRange_destinationBuffer_destinationOffset_: *c.objc_selector = undefined;
-var sel_setBuffer_offset_atIndex_: *c.objc_selector = undefined;
-var sel_functions: *c.objc_selector = undefined;
-var sel_readMask: *c.objc_selector = undefined;
-var sel_computeCommandEncoderWithDispatchType_: *c.objc_selector = undefined;
-var sel_isSparse: *c.objc_selector = undefined;
-var sel_setMeshSamplerStates_withRange_: *c.objc_selector = undefined;
-var sel_setFunctions_: *c.objc_selector = undefined;
-var sel_supportsPrimitiveMotionBlur: *c.objc_selector = undefined;
-var sel_setShouldMaximizeConcurrentCompilation_: *c.objc_selector = undefined;
-var sel_setClearStencil_: *c.objc_selector = undefined;
-var sel_minFilter: *c.objc_selector = undefined;
-var sel_setDestinationRGBBlendFactor_: *c.objc_selector = undefined;
-var sel_setNormalizedCoordinates_: *c.objc_selector = undefined;
-var sel_addScheduledHandler_: *c.objc_selector = undefined;
-var sel_isDepth24Stencil8PixelFormatSupported: *c.objc_selector = undefined;
-var sel_setTileVisibleFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_memoryBarrierWithResources_count_afterStages_beforeStages_: *c.objc_selector = undefined;
-var sel_vertexBuffers: *c.objc_selector = undefined;
-var sel_setTextures_withRange_: *c.objc_selector = undefined;
-var sel_setStartOfVertexSampleIndex_: *c.objc_selector = undefined;
-var sel_setMeshTextures_withRange_: *c.objc_selector = undefined;
-var sel_encodeSignalEvent_value_: *c.objc_selector = undefined;
-var sel_descriptor: *c.objc_selector = undefined;
-var sel_setTransformationMatrixBufferOffset_: *c.objc_selector = undefined;
-var sel_startOfEncoderSampleIndex: *c.objc_selector = undefined;
-var sel_newIOHandleWithURL_compressionMethod_error_: *c.objc_selector = undefined;
-var sel_heapAccelerationStructureSizeAndAlignWithSize_: *c.objc_selector = undefined;
-var sel_maxBufferLength: *c.objc_selector = undefined;
-var sel_setBoundingBoxBuffers_: *c.objc_selector = undefined;
-var sel_writeMask: *c.objc_selector = undefined;
-var sel_textureCubeDescriptorWithPixelFormat_size_mipmapped_: *c.objc_selector = undefined;
-var sel_staticThreadgroupMemoryLength: *c.objc_selector = undefined;
-var sel_newTextureViewWithPixelFormat_textureType_levels_slices_: *c.objc_selector = undefined;
-var sel_setLinkedFunctions_: *c.objc_selector = undefined;
-var sel_colorAttachments: *c.objc_selector = undefined;
-var sel_setOpaqueCurveIntersectionFunctionWithSignature_withRange_: *c.objc_selector = undefined;
-var sel_maxCallStackDepth: *c.objc_selector = undefined;
-var sel_supportsFamily_: *c.objc_selector = undefined;
-var sel_sparsePageSize: *c.objc_selector = undefined;
-var sel_setPrimitiveDataStride_: *c.objc_selector = undefined;
-var sel_resourceStateCommandEncoder: *c.objc_selector = undefined;
-var sel_setSampleBuffer_: *c.objc_selector = undefined;
-var sel_setObjectBuffers_offsets_withRange_: *c.objc_selector = undefined;
-var sel_isDepthTexture: *c.objc_selector = undefined;
-var sel_setComputeFunction_: *c.objc_selector = undefined;
-var sel_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_: *c.objc_selector = undefined;
-var sel_setObjectLinkedFunctions_: *c.objc_selector = undefined;
-var sel_parentRelativeSlice: *c.objc_selector = undefined;
-var sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_: *c.objc_selector = undefined;
-var sel_setMaxFragmentCallStackDepth_: *c.objc_selector = undefined;
-var sel_primitiveDataStride: *c.objc_selector = undefined;
-var sel_instanceDescriptorBuffer: *c.objc_selector = undefined;
-var sel_setIndex_: *c.objc_selector = undefined;
-var sel_setSupportAddingFragmentBinaryFunctions_: *c.objc_selector = undefined;
-var sel_setSpecializedName_: *c.objc_selector = undefined;
-var sel_copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount_: *c.objc_selector = undefined;
-var sel_initWithName_arguments_controlDependencies_: *c.objc_selector = undefined;
-var sel_setInstanceCount_: *c.objc_selector = undefined;
-var sel_structType: *c.objc_selector = undefined;
-var sel_setCommandTypes_: *c.objc_selector = undefined;
-var sel_layers: *c.objc_selector = undefined;
-var sel_vertexPreloadedLibraries: *c.objc_selector = undefined;
-var sel_stepRate: *c.objc_selector = undefined;
-var sel_URL: *c.objc_selector = undefined;
-var sel_isAliasable: *c.objc_selector = undefined;
-var sel_layouts: *c.objc_selector = undefined;
-var sel_setBinaryArchives_: *c.objc_selector = undefined;
-var sel_maxThreadgroupMemoryLength: *c.objc_selector = undefined;
-var sel_setOpaqueCurveIntersectionFunctionWithSignature_atIndex_: *c.objc_selector = undefined;
-var sel_setMaxVertexAmplificationCount_: *c.objc_selector = undefined;
-var sel_supportsFunctionPointersFromRender: *c.objc_selector = undefined;
-var sel_supportAddingBinaryFunctions: *c.objc_selector = undefined;
-var sel_setOpaqueTriangleIntersectionFunctionWithSignature_withRange_: *c.objc_selector = undefined;
-var sel_updateTextureMappings_mode_regions_mipLevels_slices_numRegions_: *c.objc_selector = undefined;
-var sel_motionStartBorderMode: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithDescriptor_options_completionHandler_: *c.objc_selector = undefined;
-var sel_startOfFragmentSampleIndex: *c.objc_selector = undefined;
-var sel_removeAllDebugMarkers: *c.objc_selector = undefined;
-var sel_kernelEndTime: *c.objc_selector = undefined;
-var sel_isUsed: *c.objc_selector = undefined;
-var sel_indirectRenderCommandAtIndex_: *c.objc_selector = undefined;
-var sel_setTessellationFactorFormat_: *c.objc_selector = undefined;
-var sel_constantBlockAlignment: *c.objc_selector = undefined;
-var sel_updateFence_afterStages_: *c.objc_selector = undefined;
-var sel_setMotionEndTime_: *c.objc_selector = undefined;
-var sel_setComputePipelineState_: *c.objc_selector = undefined;
-var sel_horizontal: *c.objc_selector = undefined;
-var sel_setObjectTextures_withRange_: *c.objc_selector = undefined;
-var sel_dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup_: *c.objc_selector = undefined;
-var sel_setScreenSize_: *c.objc_selector = undefined;
-var sel_textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage_: *c.objc_selector = undefined;
-var sel_copyAccelerationStructure_toAccelerationStructure_: *c.objc_selector = undefined;
-var sel_setAttributes_: *c.objc_selector = undefined;
-var sel_resetWithRange_: *c.objc_selector = undefined;
-var sel_setFragmentBuffers_offsets_withRange_: *c.objc_selector = undefined;
-var sel_compareFunction: *c.objc_selector = undefined;
-var sel_newRasterizationRateMapWithDescriptor_: *c.objc_selector = undefined;
-var sel_setScissorRect_: *c.objc_selector = undefined;
-var sel_setStencilFrontReferenceValue_backReferenceValue_: *c.objc_selector = undefined;
-var sel_fragmentBuffers: *c.objc_selector = undefined;
-var sel_instanceDescriptorBufferOffset: *c.objc_selector = undefined;
-var sel_setOptimizationLevel_: *c.objc_selector = undefined;
-var sel_parameterBufferSizeAndAlign: *c.objc_selector = undefined;
-var sel_instanceDescriptorStride: *c.objc_selector = undefined;
-var sel_setDefaultRasterSampleCount_: *c.objc_selector = undefined;
-var sel_alphaBlendOperation: *c.objc_selector = undefined;
-var sel_setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth_: *c.objc_selector = undefined;
-var sel_setResolveSlice_: *c.objc_selector = undefined;
-var sel_setBuffers_offsets_withRange_: *c.objc_selector = undefined;
-var sel_elementStructType: *c.objc_selector = undefined;
-var sel_isHeadless: *c.objc_selector = undefined;
-var sel_areProgrammableSamplePositionsSupported: *c.objc_selector = undefined;
-var sel_useHeaps_count_stages_: *c.objc_selector = undefined;
-var sel_newFunctionWithName_constantValues_error_: *c.objc_selector = undefined;
-var sel_setPreserveInvariance_: *c.objc_selector = undefined;
-var sel_remoteStorageBuffer: *c.objc_selector = undefined;
-var sel_boundingBoxBuffers: *c.objc_selector = undefined;
-var sel_setDestinationAlphaBlendFactor_: *c.objc_selector = undefined;
-var sel_setBufferOffset_atIndex_: *c.objc_selector = undefined;
-var sel_drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride_: *c.objc_selector = undefined;
-var sel_drawableID: *c.objc_selector = undefined;
-var sel_setVertexTextures_withRange_: *c.objc_selector = undefined;
-var sel_commandBufferWithDescriptor_: *c.objc_selector = undefined;
-var sel_retainedReferences: *c.objc_selector = undefined;
-var sel_setRgbBlendOperation_: *c.objc_selector = undefined;
-var sel_rasterizationRateMapDescriptorWithScreenSize_: *c.objc_selector = undefined;
-var sel_setSupportAddingVertexBinaryFunctions_: *c.objc_selector = undefined;
-var sel_depth: *c.objc_selector = undefined;
-var sel_indexBuffer: *c.objc_selector = undefined;
-var sel_setConstantValue_type_withName_: *c.objc_selector = undefined;
-var sel_initWithSampleCount_horizontal_vertical_: *c.objc_selector = undefined;
-var sel_newArgumentEncoderWithBufferIndex_: *c.objc_selector = undefined;
-var sel_functionNames: *c.objc_selector = undefined;
-var sel_inputPrimitiveTopology: *c.objc_selector = undefined;
-var sel_libraries: *c.objc_selector = undefined;
-var sel_setTileWidth_: *c.objc_selector = undefined;
-var sel_storeActionOptions: *c.objc_selector = undefined;
-var sel_threadgroupSizeMatchesTileSize: *c.objc_selector = undefined;
-var sel_setMinFilter_: *c.objc_selector = undefined;
-var sel_usedSize: *c.objc_selector = undefined;
-var sel_setStepFunction_: *c.objc_selector = undefined;
-var sel_waitForFence_: *c.objc_selector = undefined;
-var sel_setTessellationFactorBuffer_offset_instanceStride_: *c.objc_selector = undefined;
-var sel_setThreadgroupMemoryLength_offset_atIndex_: *c.objc_selector = undefined;
-var sel_setPrivateFunctions_: *c.objc_selector = undefined;
-var sel_screenSize: *c.objc_selector = undefined;
-var sel_updateTextureMapping_mode_indirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
-var sel_commandQueue: *c.objc_selector = undefined;
-var sel_accelerationStructureCommandEncoder: *c.objc_selector = undefined;
-var sel_line: *c.objc_selector = undefined;
-var sel_newRemoteTextureViewForDevice_: *c.objc_selector = undefined;
-var sel_setColorStoreActionOptions_atIndex_: *c.objc_selector = undefined;
-var sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options_: *c.objc_selector = undefined;
-var sel_setReadMask_: *c.objc_selector = undefined;
-var sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_: *c.objc_selector = undefined;
-var sel_convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions_: *c.objc_selector = undefined;
-var sel_setInputPrimitiveTopology_: *c.objc_selector = undefined;
-var sel_initWithDispatchQueue_: *c.objc_selector = undefined;
-var sel_offset: *c.objc_selector = undefined;
-var sel_executeCommandsInBuffer_indirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
-var sel_linkedFunctions: *c.objc_selector = undefined;
-var sel_newLibraryWithURL_error_: *c.objc_selector = undefined;
-var sel_setStencilFailureOperation_: *c.objc_selector = undefined;
-var sel_isRasterizationEnabled: *c.objc_selector = undefined;
-var sel_bufferOffset: *c.objc_selector = undefined;
-var sel_argumentDescriptor: *c.objc_selector = undefined;
-var sel_dispatchThreadsPerTile_: *c.objc_selector = undefined;
-var sel_hasUnifiedMemory: *c.objc_selector = undefined;
-var sel_encoderLabel: *c.objc_selector = undefined;
-var sel_signaledValue: *c.objc_selector = undefined;
-var sel_setDepthStoreAction_: *c.objc_selector = undefined;
-var sel_objectThreadgroupSizeIsMultipleOfThreadExecutionWidth: *c.objc_selector = undefined;
-var sel_maxTotalThreadsPerThreadgroup: *c.objc_selector = undefined;
-var sel_setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange_: *c.objc_selector = undefined;
-var sel_supportAddingVertexBinaryFunctions: *c.objc_selector = undefined;
-var sel_newAccelerationStructureWithSize_: *c.objc_selector = undefined;
-var sel_objectAtIndexedSubscript_: *c.objc_selector = undefined;
-var sel_setIntersectionFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_fragmentFunction: *c.objc_selector = undefined;
-var sel_setIndexBufferOffset_: *c.objc_selector = undefined;
-var sel_insertDebugSignpost_: *c.objc_selector = undefined;
-var sel_setMeshBuffer_offset_atIndex_: *c.objc_selector = undefined;
-var sel_newIOFileHandleWithURL_error_: *c.objc_selector = undefined;
-var sel_presentedTime: *c.objc_selector = undefined;
-var sel_sampleTimestamps_gpuTimestamp_: *c.objc_selector = undefined;
-var sel_functionDescriptor: *c.objc_selector = undefined;
-var sel_depthPlane: *c.objc_selector = undefined;
-var sel_fillBuffer_range_value_: *c.objc_selector = undefined;
-var sel_useResources_count_usage_stages_: *c.objc_selector = undefined;
-var sel_setSupportDynamicAttributeStride_: *c.objc_selector = undefined;
-var sel_setVisibleFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_encodedLength: *c.objc_selector = undefined;
-var sel_setObjectSamplerState_atIndex_: *c.objc_selector = undefined;
-var sel_setFragmentIntersectionFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_shouldMaximizeConcurrentCompilation: *c.objc_selector = undefined;
-var sel_GPUStartTime: *c.objc_selector = undefined;
-var sel_primitiveDataBuffer: *c.objc_selector = undefined;
-var sel_isActive: *c.objc_selector = undefined;
-var sel_commandBuffer: *c.objc_selector = undefined;
-var sel_insertLibraries: *c.objc_selector = undefined;
-var sel_maxKernelThreadgroupMemoryBindCount: *c.objc_selector = undefined;
-var sel_tailSizeInBytes: *c.objc_selector = undefined;
-var sel_setCompressionType_: *c.objc_selector = undefined;
-var sel_column: *c.objc_selector = undefined;
-var sel_enqueueBarrier: *c.objc_selector = undefined;
-var sel_isTessellationFactorScaleEnabled: *c.objc_selector = undefined;
-var sel_setUrl_: *c.objc_selector = undefined;
-var sel_loadBytes_size_sourceHandle_sourceHandleOffset_: *c.objc_selector = undefined;
-var sel_setRasterizationEnabled_: *c.objc_selector = undefined;
-var sel_maxKernelBufferBindCount: *c.objc_selector = undefined;
-var sel_supportsBCTextureCompression: *c.objc_selector = undefined;
-var sel_argumentBuffersSupport: *c.objc_selector = undefined;
-var sel_setStartOfFragmentSampleIndex_: *c.objc_selector = undefined;
-var sel_setSamplerStates_lodMinClamps_lodMaxClamps_withRange_: *c.objc_selector = undefined;
-var sel_newFunctionWithName_constantValues_completionHandler_: *c.objc_selector = undefined;
-var sel_verticalSampleStorage: *c.objc_selector = undefined;
-var sel_setPreprocessorMacros_: *c.objc_selector = undefined;
-var sel_setStageInputDescriptor_: *c.objc_selector = undefined;
-var sel_setCullMode_: *c.objc_selector = undefined;
-var sel_motionTransformCount: *c.objc_selector = undefined;
-var sel_maxCommandsInFlight: *c.objc_selector = undefined;
-var sel_setDepthCompareFunction_: *c.objc_selector = undefined;
-var sel_setDepthStencilPassOperation_: *c.objc_selector = undefined;
-var sel_setTileSamplerState_atIndex_: *c.objc_selector = undefined;
-var sel_motionEndBorderMode: *c.objc_selector = undefined;
-var sel_areRasterOrderGroupsSupported: *c.objc_selector = undefined;
-var sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance_: *c.objc_selector = undefined;
-var sel_setPixelFormat_: *c.objc_selector = undefined;
-var sel_setLibraries_: *c.objc_selector = undefined;
-var sel_setTextureType_: *c.objc_selector = undefined;
-var sel_newArgumentEncoderForBufferAtIndex_: *c.objc_selector = undefined;
-var sel_setKernelBuffer_offset_attributeStride_atIndex_: *c.objc_selector = undefined;
-var sel_newFunctionWithDescriptor_completionHandler_: *c.objc_selector = undefined;
-var sel_newFunctionWithName_: *c.objc_selector = undefined;
-var sel_makeAliasable: *c.objc_selector = undefined;
-var sel_newIntersectionFunctionWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_bufferAlignment: *c.objc_selector = undefined;
-var sel_isRemovable: *c.objc_selector = undefined;
-var sel_dispatchThreads_threadsPerThreadgroup_: *c.objc_selector = undefined;
-var sel_setIntersectionFunctionTable_atIndex_: *c.objc_selector = undefined;
-var sel_clearDepth: *c.objc_selector = undefined;
-var sel_rgbBlendOperation: *c.objc_selector = undefined;
-var sel_getSamplePositions_count_: *c.objc_selector = undefined;
-var sel_setDepthAttachmentPixelFormat_: *c.objc_selector = undefined;
-var sel_dataSize: *c.objc_selector = undefined;
-var sel_sourceAlphaBlendFactor: *c.objc_selector = undefined;
-var sel_threadExecutionWidth: *c.objc_selector = undefined;
-var sel_supportsDynamicLibraries: *c.objc_selector = undefined;
-var sel_setMeshTexture_atIndex_: *c.objc_selector = undefined;
-var sel_loadAction: *c.objc_selector = undefined;
-var sel_sampleCount: *c.objc_selector = undefined;
-var sel_locationNumber: *c.objc_selector = undefined;
-var sel_newAccelerationStructureWithSize_offset_: *c.objc_selector = undefined;
-var sel_isCapturing: *c.objc_selector = undefined;
-var sel_bufferIndex: *c.objc_selector = undefined;
-var sel_index: *c.objc_selector = undefined;
-var sel_recommendedMaxWorkingSetSize: *c.objc_selector = undefined;
-var sel_arrayLength: *c.objc_selector = undefined;
-var sel_newLibraryWithSource_options_error_: *c.objc_selector = undefined;
-var sel_setSourceAlphaBlendFactor_: *c.objc_selector = undefined;
-var sel_newDynamicLibraryWithURL_error_: *c.objc_selector = undefined;
-var sel_heapTextureSizeAndAlignWithDescriptor_: *c.objc_selector = undefined;
-var sel_stageInputAttributes: *c.objc_selector = undefined;
-var sel_members: *c.objc_selector = undefined;
-var sel_setFragmentAdditionalBinaryFunctions_: *c.objc_selector = undefined;
-var sel_setTexture_atIndex_: *c.objc_selector = undefined;
-var sel_captureObject: *c.objc_selector = undefined;
-var sel_addBarrier: *c.objc_selector = undefined;
-var sel_supportArgumentBuffers: *c.objc_selector = undefined;
-var sel_vertexStride: *c.objc_selector = undefined;
-var sel_setBoundingBoxStride_: *c.objc_selector = undefined;
-var sel_setStartOfEncoderSampleIndex_: *c.objc_selector = undefined;
-var sel_setMagFilter_: *c.objc_selector = undefined;
-var sel_setArgumentIndex_: *c.objc_selector = undefined;
-var sel_parentRelativeLevel: *c.objc_selector = undefined;
-var sel_newCaptureScopeWithCommandQueue_: *c.objc_selector = undefined;
-var sel_setSlice_: *c.objc_selector = undefined;
-var sel_pixelFormat: *c.objc_selector = undefined;
-var sel_argumentIndexStride: *c.objc_selector = undefined;
-var sel_kernelStartTime: *c.objc_selector = undefined;
-var sel_destinationRGBBlendFactor: *c.objc_selector = undefined;
-var sel_rasterSampleCount: *c.objc_selector = undefined;
-var sel_maxArgumentBufferSamplerCount: *c.objc_selector = undefined;
-var sel_argumentIndex: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithDescriptor_options_reflection_error_: *c.objc_selector = undefined;
-var sel_normalizedCoordinates: *c.objc_selector = undefined;
-var sel_setVertexAccelerationStructure_atBufferIndex_: *c.objc_selector = undefined;
-var sel_heapBufferSizeAndAlignWithLength_options_: *c.objc_selector = undefined;
-var sel_drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
-var sel_currentAllocatedSize: *c.objc_selector = undefined;
-var sel_objectBuffers: *c.objc_selector = undefined;
-var sel_accelerationStructureCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
-var sel_drawPrimitives_vertexStart_vertexCount_: *c.objc_selector = undefined;
-var sel_alignment: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithTileDescriptor_options_reflection_error_: *c.objc_selector = undefined;
-var sel_resolveDepthPlane: *c.objc_selector = undefined;
-var sel_threadgroupMemoryDataSize: *c.objc_selector = undefined;
-var sel_setConstantValues_type_withRange_: *c.objc_selector = undefined;
-var sel_newComputePipelineStateWithDescriptor_options_reflection_error_: *c.objc_selector = undefined;
-var sel_fragmentLinkedFunctions: *c.objc_selector = undefined;
-var sel_setIndirectCommandBuffers_withRange_: *c.objc_selector = undefined;
-var sel_startCaptureWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_setBuffer_offset_attributeStride_atIndex_: *c.objc_selector = undefined;
-var sel_function: *c.objc_selector = undefined;
-var sel_intersectionFunctionTableOffset: *c.objc_selector = undefined;
-var sel_fragmentAdditionalBinaryFunctions: *c.objc_selector = undefined;
-var sel_blitPassDescriptor: *c.objc_selector = undefined;
-var sel_preprocessorMacros: *c.objc_selector = undefined;
-var sel_sourceRGBBlendFactor: *c.objc_selector = undefined;
-var sel_blitCommandEncoder: *c.objc_selector = undefined;
-var sel_setInstallName_: *c.objc_selector = undefined;
-var sel_lodMaxClamp: *c.objc_selector = undefined;
-var sel_setVertexBuffers_: *c.objc_selector = undefined;
-var sel_defaultCaptureScope: *c.objc_selector = undefined;
-var sel_signalEvent_value_: *c.objc_selector = undefined;
-var sel_setEndOfFragmentSampleIndex_: *c.objc_selector = undefined;
-var sel_tileBuffers: *c.objc_selector = undefined;
-var sel_vertexArguments: *c.objc_selector = undefined;
-var sel_setOutputNode_: *c.objc_selector = undefined;
-var sel_vertexFunction: *c.objc_selector = undefined;
-var sel_drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_: *c.objc_selector = undefined;
-var sel_required: *c.objc_selector = undefined;
-var sel_setTessellationControlPointIndexType_: *c.objc_selector = undefined;
-var sel_mipFilter: *c.objc_selector = undefined;
-var sel_setInheritPipelineState_: *c.objc_selector = undefined;
-var sel_maximumConcurrentCompilationTaskCount: *c.objc_selector = undefined;
-var sel_setSAddressMode_: *c.objc_selector = undefined;
-var sel_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options_: *c.objc_selector = undefined;
-var sel_newIndirectCommandBufferWithDescriptor_maxCommandCount_options_: *c.objc_selector = undefined;
-var sel_indexType: *c.objc_selector = undefined;
-var sel_setVertexBuffers_offsets_withRange_: *c.objc_selector = undefined;
-var sel_useHeaps_count_: *c.objc_selector = undefined;
-var sel_setVertexBuffers_offsets_attributeStrides_withRange_: *c.objc_selector = undefined;
-var sel_waitForEvent_value_: *c.objc_selector = undefined;
-var sel_newHeapWithDescriptor_: *c.objc_selector = undefined;
-var sel_resolveTexture: *c.objc_selector = undefined;
-var sel_resolveSlice: *c.objc_selector = undefined;
-var sel_setVertexAdditionalBinaryFunctions_: *c.objc_selector = undefined;
-var sel_setFastMathEnabled_: *c.objc_selector = undefined;
-var sel_setMaxCallStackDepth_: *c.objc_selector = undefined;
-var sel_hazardTrackingMode: *c.objc_selector = undefined;
-var sel_supportDynamicAttributeStride: *c.objc_selector = undefined;
-var sel_setFunctionGraphs_: *c.objc_selector = undefined;
-var sel_setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth_: *c.objc_selector = undefined;
-var sel_layerAtIndex_: *c.objc_selector = undefined;
-var sel_minimumTextureBufferAlignmentForPixelFormat_: *c.objc_selector = undefined;
-var sel_setVertexBuffer_: *c.objc_selector = undefined;
-var sel_supportsQueryTextureLOD: *c.objc_selector = undefined;
-var sel_setVertexBufferOffset_atIndex_: *c.objc_selector = undefined;
-var sel_setObjectBufferOffset_atIndex_: *c.objc_selector = undefined;
-var sel_setMutability_: *c.objc_selector = undefined;
-var sel_vertexLinkedFunctions: *c.objc_selector = undefined;
-var sel_newCaptureScopeWithDevice_: *c.objc_selector = undefined;
-var sel_supportsRenderDynamicLibraries: *c.objc_selector = undefined;
-var sel_pointerType: *c.objc_selector = undefined;
-var sel_setFragmentBuffer_offset_atIndex_: *c.objc_selector = undefined;
-var sel_bufferDataSize: *c.objc_selector = undefined;
-var sel_setClearDepth_: *c.objc_selector = undefined;
-var sel_attributeIndex: *c.objc_selector = undefined;
-var sel_setArgumentBuffer_startOffset_arrayElement_: *c.objc_selector = undefined;
-var sel_resetTextureAccessCounters_region_mipLevel_slice_: *c.objc_selector = undefined;
-var sel_constantValues: *c.objc_selector = undefined;
-var sel_copyFromTexture_toTexture_: *c.objc_selector = undefined;
-var sel_setStencilAttachmentPixelFormat_: *c.objc_selector = undefined;
-var sel_setMaxVertexBufferBindCount_: *c.objc_selector = undefined;
-var sel_error: *c.objc_selector = undefined;
-var sel_instanceCount: *c.objc_selector = undefined;
-var sel_fastMathEnabled: *c.objc_selector = undefined;
-var sel_drawPrimitives_indirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
-var sel_concurrentDispatchThreads_threadsPerThreadgroup_: *c.objc_selector = undefined;
-var sel_presentDrawable_atTime_: *c.objc_selector = undefined;
-var sel_newIntersectionFunctionTableWithDescriptor_stage_: *c.objc_selector = undefined;
-var sel_readWriteTextureSupport: *c.objc_selector = undefined;
-var sel_supportsShaderBarycentricCoordinates: *c.objc_selector = undefined;
-var sel_endEncoding: *c.objc_selector = undefined;
-var sel_setDispatchType_: *c.objc_selector = undefined;
-var sel_useResources_count_usage_: *c.objc_selector = undefined;
-var sel_setBufferOffset_attributeStride_atIndex_: *c.objc_selector = undefined;
-var sel_setVisibilityResultMode_offset_: *c.objc_selector = undefined;
-var sel_drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance_: *c.objc_selector = undefined;
-var sel_renderTargetWidth: *c.objc_selector = undefined;
-var sel_sAddressMode: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithTileDescriptor_options_completionHandler_: *c.objc_selector = undefined;
-var sel_startCaptureWithCommandQueue_: *c.objc_selector = undefined;
-var sel_setMaxKernelBufferBindCount_: *c.objc_selector = undefined;
-var sel_peerGroupID: *c.objc_selector = undefined;
-var sel_initWithSampleCount_: *c.objc_selector = undefined;
-var sel_waitUntilCompleted: *c.objc_selector = undefined;
-var sel_setBlendingEnabled_: *c.objc_selector = undefined;
-var sel_size: *c.objc_selector = undefined;
-var sel_setOpaque_: *c.objc_selector = undefined;
-var sel_supportsRasterizationRateMapWithLayerCount_: *c.objc_selector = undefined;
-var sel_storeAction: *c.objc_selector = undefined;
-var sel_setMotionStartBorderMode_: *c.objc_selector = undefined;
-var sel_setWriteMask_: *c.objc_selector = undefined;
-var sel_newCounterSampleBufferWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_mapPhysicalToScreenCoordinates_forLayer_: *c.objc_selector = undefined;
-var sel_setResolveLevel_: *c.objc_selector = undefined;
-var sel_depthAttachmentPixelFormat: *c.objc_selector = undefined;
-var sel_setName_: *c.objc_selector = undefined;
-var sel_fragmentPreloadedLibraries: *c.objc_selector = undefined;
-var sel_setDepth_: *c.objc_selector = undefined;
-var sel_newTextureViewWithPixelFormat_: *c.objc_selector = undefined;
-var sel_vertexAdditionalBinaryFunctions: *c.objc_selector = undefined;
-var sel_setRAddressMode_: *c.objc_selector = undefined;
-var sel_setTileIntersectionFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange_: *c.objc_selector = undefined;
-var sel_functionGraphs: *c.objc_selector = undefined;
-var sel_computeCommandEncoderWithDescriptor_: *c.objc_selector = undefined;
-var sel_optimizeContentsForGPUAccess_: *c.objc_selector = undefined;
-var sel_depthResolveFilter: *c.objc_selector = undefined;
-var sel_setFunctionName_: *c.objc_selector = undefined;
-var sel_newSharedTextureHandle: *c.objc_selector = undefined;
-var sel_storageMode: *c.objc_selector = undefined;
-var sel_setSupportIndirectCommandBuffers_: *c.objc_selector = undefined;
-var sel_setSamplerStates_withRange_: *c.objc_selector = undefined;
-var sel_setMotionTransformCount_: *c.objc_selector = undefined;
-var sel_encodeWaitForEvent_value_: *c.objc_selector = undefined;
-var sel_counterSets: *c.objc_selector = undefined;
-var sel_vertical: *c.objc_selector = undefined;
-var sel_setSupportAddingBinaryFunctions_: *c.objc_selector = undefined;
-var sel_newBufferWithBytesNoCopy_length_options_deallocator_: *c.objc_selector = undefined;
-var sel_clearBarrier: *c.objc_selector = undefined;
-var sel_binaryFunctions: *c.objc_selector = undefined;
-var sel_addRenderPipelineFunctionsWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_setVertexPreloadedLibraries_: *c.objc_selector = undefined;
-var sel_setVertexBufferOffset_: *c.objc_selector = undefined;
-var sel_vertexBufferOffset: *c.objc_selector = undefined;
-var sel_newArgumentEncoderWithBufferBinding_: *c.objc_selector = undefined;
-var sel_iosurface: *c.objc_selector = undefined;
-var sel_newRenderPipelineStateWithMeshDescriptor_options_completionHandler_: *c.objc_selector = undefined;
-var sel_imageblockSampleLength: *c.objc_selector = undefined;
-var sel_instancedAccelerationStructures: *c.objc_selector = undefined;
-var sel_url: *c.objc_selector = undefined;
-var sel_setFragmentBufferOffset_atIndex_: *c.objc_selector = undefined;
-var sel_setVertexStride_: *c.objc_selector = undefined;
-var sel_writeCompactedAccelerationStructureSize_toBuffer_offset_: *c.objc_selector = undefined;
-var sel_setTessellationPartitionMode_: *c.objc_selector = undefined;
-var sel_setTileFunction_: *c.objc_selector = undefined;
-var sel_setFragmentLinkedFunctions_: *c.objc_selector = undefined;
-var sel_setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange_: *c.objc_selector = undefined;
-var sel_setMotionKeyframeCount_: *c.objc_selector = undefined;
-var sel_setViewports_count_: *c.objc_selector = undefined;
-var sel_newLibraryWithStitchedDescriptor_error_: *c.objc_selector = undefined;
-var sel_setBytes_length_atIndex_: *c.objc_selector = undefined;
-var sel_resolveCounterRange_: *c.objc_selector = undefined;
-var sel_scratchBufferAllocator: *c.objc_selector = undefined;
-var sel_functionConstantsDictionary: *c.objc_selector = undefined;
-var sel_newSharedEvent: *c.objc_selector = undefined;
-var sel_setMaxCommandBufferCount_: *c.objc_selector = undefined;
-var sel_supportsFeatureSet_: *c.objc_selector = undefined;
-var sel_vertexAttributes: *c.objc_selector = undefined;
-var sel_vertexDescriptor: *c.objc_selector = undefined;
-var sel_motionTransformBuffer: *c.objc_selector = undefined;
-var sel_bindings: *c.objc_selector = undefined;
-var sel_intersectionFunctionTableDescriptor: *c.objc_selector = undefined;
-var sel_setFragmentVisibleFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_renderTargetHeight: *c.objc_selector = undefined;
-var sel_setTessellationFactorScale_: *c.objc_selector = undefined;
-var sel_maxThreadsPerThreadgroup: *c.objc_selector = undefined;
-var sel_setSamplerState_atIndex_: *c.objc_selector = undefined;
-var sel_setTexture_: *c.objc_selector = undefined;
-var sel_isLowPower: *c.objc_selector = undefined;
-var sel_lodAverage: *c.objc_selector = undefined;
-var sel_replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage_: *c.objc_selector = undefined;
-var sel_setFragmentBytes_length_atIndex_: *c.objc_selector = undefined;
-var sel_newDepthStencilStateWithDescriptor_: *c.objc_selector = undefined;
-var sel_supportsDestination_: *c.objc_selector = undefined;
-var sel_triangleCount: *c.objc_selector = undefined;
-var sel_newSamplerStateWithDescriptor_: *c.objc_selector = undefined;
-var sel_didModifyRange_: *c.objc_selector = undefined;
-var sel_patchType: *c.objc_selector = undefined;
-var sel_rAddressMode: *c.objc_selector = undefined;
-var sel_copyIndirectCommandBuffer_sourceRange_destination_destinationIndex_: *c.objc_selector = undefined;
-var sel_setIntersectionFunctionTableOffset_: *c.objc_selector = undefined;
-var sel_setMaxTessellationFactor_: *c.objc_selector = undefined;
-var sel_setLodMaxClamp_: *c.objc_selector = undefined;
-var sel_setRenderTargetWidth_: *c.objc_selector = undefined;
-var sel_initWithArgumentIndex_: *c.objc_selector = undefined;
-var sel_outputNode: *c.objc_selector = undefined;
-var sel_setCompareFunction_: *c.objc_selector = undefined;
-var sel_maxFragmentBufferBindCount: *c.objc_selector = undefined;
-var sel_cpuCacheMode: *c.objc_selector = undefined;
-var sel_setCompileSymbolVisibility_: *c.objc_selector = undefined;
-var sel_setNodes_: *c.objc_selector = undefined;
-var sel_errorOptions: *c.objc_selector = undefined;
-var sel_setMaxObjectThreadgroupMemoryBindCount_: *c.objc_selector = undefined;
-var sel_setInstanceDescriptorBuffer_: *c.objc_selector = undefined;
-var sel_drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_: *c.objc_selector = undefined;
-var sel_contents: *c.objc_selector = undefined;
-var sel_setFragmentPreloadedLibraries_: *c.objc_selector = undefined;
-var sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_: *c.objc_selector = undefined;
-var sel_maxTotalThreadsPerObjectThreadgroup: *c.objc_selector = undefined;
-var sel_setTileIntersectionFunctionTables_withBufferRange_: *c.objc_selector = undefined;
-var sel_setBoundingBoxBufferOffset_: *c.objc_selector = undefined;
-var sel_setTileBytes_length_atIndex_: *c.objc_selector = undefined;
-var sel_loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset_: *c.objc_selector = undefined;
-var sel_stageInputDescriptor: *c.objc_selector = undefined;
-var sel_drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset_: *c.objc_selector = undefined;
-var sel_setKernelBuffer_offset_atIndex_: *c.objc_selector = undefined;
-var sel_newIOHandleWithURL_error_: *c.objc_selector = undefined;
-var sel_stepFunction: *c.objc_selector = undefined;
-var sel_setMotionTransformBufferOffset_: *c.objc_selector = undefined;
-var sel_newComputePipelineStateWithFunction_options_reflection_error_: *c.objc_selector = undefined;
-var sel_setConstantValue_type_atIndex_: *c.objc_selector = undefined;
-var sel_newEvent: *c.objc_selector = undefined;
-var sel_setSupportRayTracing_: *c.objc_selector = undefined;
-var sel_concurrentDispatchThreadgroups_threadsPerThreadgroup_: *c.objc_selector = undefined;
-var sel_setStencilStoreActionOptions_: *c.objc_selector = undefined;
-var sel_maxObjectThreadgroupMemoryBindCount: *c.objc_selector = undefined;
-var sel_sparseTileSizeInBytesForSparsePageSize_: *c.objc_selector = undefined;
-var sel_newDefaultLibraryWithBundle_error_: *c.objc_selector = undefined;
-var sel_drawPrimitives_vertexStart_vertexCount_instanceCount_: *c.objc_selector = undefined;
-var sel_replaceRegion_mipmapLevel_withBytes_bytesPerRow_: *c.objc_selector = undefined;
-var sel_transformationMatrixBuffer: *c.objc_selector = undefined;
-var sel_useResource_usage_: *c.objc_selector = undefined;
-var sel_setDepthFailureOperation_: *c.objc_selector = undefined;
-var sel_sparseTileSizeWithTextureType_pixelFormat_sampleCount_: *c.objc_selector = undefined;
-var sel_nodes: *c.objc_selector = undefined;
-var sel_setPrimitiveDataBuffer_: *c.objc_selector = undefined;
-var sel_clearStencil: *c.objc_selector = undefined;
-var sel_supportsRaytracing: *c.objc_selector = undefined;
-var sel_setLodAverage_: *c.objc_selector = undefined;
-var sel_setGroups_: *c.objc_selector = undefined;
-var sel_newTextureWithDescriptor_offset_bytesPerRow_: *c.objc_selector = undefined;
-var sel_optimizeIndirectCommandBuffer_withRange_: *c.objc_selector = undefined;
-var sel_supportsVertexAmplificationCount_: *c.objc_selector = undefined;
-var sel_setVertexLinkedFunctions_: *c.objc_selector = undefined;
-var sel_setBytes_length_attributeStride_atIndex_: *c.objc_selector = undefined;
-var sel_setDepthAttachment_: *c.objc_selector = undefined;
-var sel_tessellationControlPointIndexType: *c.objc_selector = undefined;
-var sel_setThreadgroupSizeMatchesTileSize_: *c.objc_selector = undefined;
-var sel_setVertexVisibleFunctionTable_atBufferIndex_: *c.objc_selector = undefined;
-var sel_addCompletedHandler_: *c.objc_selector = undefined;
-var sel_setResolveTexture_: *c.objc_selector = undefined;
-var sel_setInstanceDescriptorType_: *c.objc_selector = undefined;
-var sel_setTileTexture_atIndex_: *c.objc_selector = undefined;
-var sel_setLodMinClamp_: *c.objc_selector = undefined;
-var sel_setGeometryDescriptors_: *c.objc_selector = undefined;
-var sel_setFragmentTextures_withRange_: *c.objc_selector = undefined;
-var sel_setArrayLength_: *c.objc_selector = undefined;
-var sel_supportsCounterSampling_: *c.objc_selector = undefined;
-var sel_newBinaryArchiveWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_setBorderColor_: *c.objc_selector = undefined;
-var sel_defaultRasterSampleCount: *c.objc_selector = undefined;
-var sel_setTransformationMatrixBuffer_: *c.objc_selector = undefined;
-var sel_setPrimitiveDataBufferOffset_: *c.objc_selector = undefined;
-var sel_setIndexBuffer_: *c.objc_selector = undefined;
-var sel_access: *c.objc_selector = undefined;
-var sel_setTileHeight_: *c.objc_selector = undefined;
-var sel_sparseTileSizeInBytes: *c.objc_selector = undefined;
-var sel_setAllowReferencingUndefinedSymbols_: *c.objc_selector = undefined;
-var sel_memoryBarrierWithScope_afterStages_beforeStages_: *c.objc_selector = undefined;
-var sel_setConstantValues_: *c.objc_selector = undefined;
-var sel_resourceStatePassDescriptor: *c.objc_selector = undefined;
-var sel_resolveLevel: *c.objc_selector = undefined;
-var sel_inheritBuffers: *c.objc_selector = undefined;
-var sel_length: *c.objc_selector = undefined;
-var sel_maxTotalThreadsPerMeshThreadgroup: *c.objc_selector = undefined;
-var sel_bufferPointerType: *c.objc_selector = undefined;
-var sel_accelerationStructureSizesWithDescriptor_: *c.objc_selector = undefined;
-var sel_setObjectSamplerStates_withRange_: *c.objc_selector = undefined;
-var sel_maxVertexCallStackDepth: *c.objc_selector = undefined;
-var sel_rootResource: *c.objc_selector = undefined;
-var sel_lodMinClamp: *c.objc_selector = undefined;
-var sel_bufferStructType: *c.objc_selector = undefined;
-var sel_setOffset_: *c.objc_selector = undefined;
-var sel_maxTessellationFactor: *c.objc_selector = undefined;
-var sel_texture: *c.objc_selector = undefined;
-var sel_newComputePipelineStateWithAdditionalBinaryFunctions_error_: *c.objc_selector = undefined;
-var sel_newLibraryWithStitchedDescriptor_completionHandler_: *c.objc_selector = undefined;
-var sel_setBoundingBoxCount_: *c.objc_selector = undefined;
-var sel_functionHandleWithFunction_stage_: *c.objc_selector = undefined;
-var sel_setThreadgroupMemoryLength_: *c.objc_selector = undefined;
-var sel_addComputePipelineFunctionsWithDescriptor_error_: *c.objc_selector = undefined;
-var sel_primitiveDataBufferOffset: *c.objc_selector = undefined;
-var sel_attributes: *c.objc_selector = undefined;
-var sel_setOutputURL_: *c.objc_selector = undefined;
-var sel_priority: *c.objc_selector = undefined;
-var sel_enqueue: *c.objc_selector = undefined;
-var sel_setObjectBuffer_offset_atIndex_: *c.objc_selector = undefined;
-var sel_pushDebugGroup_: *c.objc_selector = undefined;
-var sel_setAccess_: *c.objc_selector = undefined;
-var sel_presentDrawable_: *c.objc_selector = undefined;
-var sel_setAlphaToCoverageEnabled_: *c.objc_selector = undefined;
-var sel_iosurfacePlane: *c.objc_selector = undefined;
-var sel_tessellationOutputWindingOrder: *c.objc_selector = undefined;
-var sel_memberByName_: *c.objc_selector = undefined;
-
 pub fn init() void {
     class_AccelerationStructureDescriptor = c.objc_getClass("MTLAccelerationStructureDescriptor").?;
     class_AccelerationStructureGeometryDescriptor = c.objc_getClass("MTLAccelerationStructureGeometryDescriptor").?;
@@ -9064,1090 +7979,4 @@ pub fn init() void {
     class_VertexAttributeDescriptorArray = c.objc_getClass("MTLVertexAttributeDescriptorArray").?;
     class_VertexDescriptor = c.objc_getClass("MTLVertexDescriptor").?;
     class_VisibleFunctionTableDescriptor = c.objc_getClass("MTLVisibleFunctionTableDescriptor").?;
-
-    sel_optimizeContentsForGPUAccess_slice_level_ = c.sel_registerName("optimizeContentsForGPUAccess:slice:level:").?;
-    sel_setStorageMode_ = c.sel_registerName("setStorageMode:").?;
-    sel_setMaxKernelThreadgroupMemoryBindCount_ = c.sel_registerName("setMaxKernelThreadgroupMemoryBindCount:").?;
-    sel_setOptions_ = c.sel_registerName("setOptions:").?;
-    sel_status = c.sel_registerName("status").?;
-    sel_width = c.sel_registerName("width").?;
-    sel_copyAndCompactAccelerationStructure_toAccelerationStructure_ = c.sel_registerName("copyAndCompactAccelerationStructure:toAccelerationStructure:").?;
-    sel_newTextureWithDescriptor_iosurface_plane_ = c.sel_registerName("newTextureWithDescriptor:iosurface:plane:").?;
-    sel_computeCommandEncoder = c.sel_registerName("computeCommandEncoder").?;
-    sel_functionHandleWithFunction_ = c.sel_registerName("functionHandleWithFunction:").?;
-    sel_setRasterizationRateMap_ = c.sel_registerName("setRasterizationRateMap:").?;
-    sel_remoteStorageTexture = c.sel_registerName("remoteStorageTexture").?;
-    sel_setMeshSamplerState_atIndex_ = c.sel_registerName("setMeshSamplerState:atIndex:").?;
-    sel_setTileBufferOffset_atIndex_ = c.sel_registerName("setTileBufferOffset:atIndex:").?;
-    sel_controlDependencies = c.sel_registerName("controlDependencies").?;
-    sel_maxTransferRate = c.sel_registerName("maxTransferRate").?;
-    sel_maxAvailableSizeWithAlignment_ = c.sel_registerName("maxAvailableSizeWithAlignment:").?;
-    sel_computePassDescriptor = c.sel_registerName("computePassDescriptor").?;
-    sel_setMeshBuffers_offsets_withRange_ = c.sel_registerName("setMeshBuffers:offsets:withRange:").?;
-    sel_buffer = c.sel_registerName("buffer").?;
-    sel_maxVertexAmplificationCount = c.sel_registerName("maxVertexAmplificationCount").?;
-    sel_texture2DDescriptorWithPixelFormat_width_height_mipmapped_ = c.sel_registerName("texture2DDescriptorWithPixelFormat:width:height:mipmapped:").?;
-    sel_setRetainedReferences_ = c.sel_registerName("setRetainedReferences:").?;
-    sel_newTextureViewWithPixelFormat_textureType_levels_slices_swizzle_ = c.sel_registerName("newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:").?;
-    sel_newSharedEventHandle = c.sel_registerName("newSharedEventHandle").?;
-    sel_objectPayloadAlignment = c.sel_registerName("objectPayloadAlignment").?;
-    sel_setMeshSamplerState_lodMinClamp_lodMaxClamp_atIndex_ = c.sel_registerName("setMeshSamplerState:lodMinClamp:lodMaxClamp:atIndex:").?;
-    sel_setFunctionCount_ = c.sel_registerName("setFunctionCount:").?;
-    sel_depthAttachment = c.sel_registerName("depthAttachment").?;
-    sel_preloadedLibraries = c.sel_registerName("preloadedLibraries").?;
-    sel_setVertexTexture_atIndex_ = c.sel_registerName("setVertexTexture:atIndex:").?;
-    sel_arguments = c.sel_registerName("arguments").?;
-    sel_setSamplerState_lodMinClamp_lodMaxClamp_atIndex_ = c.sel_registerName("setSamplerState:lodMinClamp:lodMaxClamp:atIndex:").?;
-    sel_counterSet = c.sel_registerName("counterSet").?;
-    sel_copyStatusToBuffer_offset_ = c.sel_registerName("copyStatusToBuffer:offset:").?;
-    sel_setObjectBytes_length_atIndex_ = c.sel_registerName("setObjectBytes:length:atIndex:").?;
-    sel_setDataType_ = c.sel_registerName("setDataType:").?;
-    sel_endScope = c.sel_registerName("endScope").?;
-    sel_allowDuplicateIntersectionFunctionInvocation = c.sel_registerName("allowDuplicateIntersectionFunctionInvocation").?;
-    sel_setAllowDuplicateIntersectionFunctionInvocation_ = c.sel_registerName("setAllowDuplicateIntersectionFunctionInvocation:").?;
-    sel_motionKeyframeCount = c.sel_registerName("motionKeyframeCount").?;
-    sel_setSampleCount_ = c.sel_registerName("setSampleCount:").?;
-    sel_setFunctions_withRange_ = c.sel_registerName("setFunctions:withRange:").?;
-    sel_setConstantBlockAlignment_ = c.sel_registerName("setConstantBlockAlignment:").?;
-    sel_clearColor = c.sel_registerName("clearColor").?;
-    sel_supportsTextureSampleCount_ = c.sel_registerName("supportsTextureSampleCount:").?;
-    sel_setWidth_ = c.sel_registerName("setWidth:").?;
-    sel_setHeight_ = c.sel_registerName("setHeight:").?;
-    sel_setFunction_atIndex_ = c.sel_registerName("setFunction:atIndex:").?;
-    sel_newTextureWithDescriptor_offset_ = c.sel_registerName("newTextureWithDescriptor:offset:").?;
-    sel_setMotionTransformBuffer_ = c.sel_registerName("setMotionTransformBuffer:").?;
-    sel_setLayer_atIndex_ = c.sel_registerName("setLayer:atIndex:").?;
-    sel_name = c.sel_registerName("name").?;
-    sel_allocatedSize = c.sel_registerName("allocatedSize").?;
-    sel_newLibraryWithFile_error_ = c.sel_registerName("newLibraryWithFile:error:").?;
-    sel_isArgument = c.sel_registerName("isArgument").?;
-    sel_setDestination_ = c.sel_registerName("setDestination:").?;
-    sel_backFaceStencil = c.sel_registerName("backFaceStencil").?;
-    sel_setStencilReferenceValue_ = c.sel_registerName("setStencilReferenceValue:").?;
-    sel_endOfFragmentSampleIndex = c.sel_registerName("endOfFragmentSampleIndex").?;
-    sel_setTessellationFactorScaleEnabled_ = c.sel_registerName("setTessellationFactorScaleEnabled:").?;
-    sel_format = c.sel_registerName("format").?;
-    sel_commit = c.sel_registerName("commit").?;
-    sel_tessellationFactorStepFunction = c.sel_registerName("tessellationFactorStepFunction").?;
-    sel_debugSignposts = c.sel_registerName("debugSignposts").?;
-    sel_resourceStateCommandEncoderWithDescriptor_ = c.sel_registerName("resourceStateCommandEncoderWithDescriptor:").?;
-    sel_setTileVisibleFunctionTables_withBufferRange_ = c.sel_registerName("setTileVisibleFunctionTables:withBufferRange:").?;
-    sel_tessellationFactorFormat = c.sel_registerName("tessellationFactorFormat").?;
-    sel_setVertexAmplificationCount_viewMappings_ = c.sel_registerName("setVertexAmplificationCount:viewMappings:").?;
-    sel_setFragmentSamplerState_lodMinClamp_lodMaxClamp_atIndex_ = c.sel_registerName("setFragmentSamplerState:lodMinClamp:lodMaxClamp:atIndex:").?;
-    sel_elementPointerType = c.sel_registerName("elementPointerType").?;
-    sel_accelerationStructurePassDescriptor = c.sel_registerName("accelerationStructurePassDescriptor").?;
-    sel_device = c.sel_registerName("device").?;
-    sel_setMotionStartTime_ = c.sel_registerName("setMotionStartTime:").?;
-    sel_maxCommandBufferCount = c.sel_registerName("maxCommandBufferCount").?;
-    sel_setLibraryType_ = c.sel_registerName("setLibraryType:").?;
-    sel_dataType = c.sel_registerName("dataType").?;
-    sel_newDynamicLibrary_error_ = c.sel_registerName("newDynamicLibrary:error:").?;
-    sel_tileAdditionalBinaryFunctions = c.sel_registerName("tileAdditionalBinaryFunctions").?;
-    sel_physicalSizeForLayer_ = c.sel_registerName("physicalSizeForLayer:").?;
-    sel_imageblockMemoryLengthForDimensions_ = c.sel_registerName("imageblockMemoryLengthForDimensions:").?;
-    sel_firstMipmapInTail = c.sel_registerName("firstMipmapInTail").?;
-    sel_tileWidth = c.sel_registerName("tileWidth").?;
-    sel_elementArrayType = c.sel_registerName("elementArrayType").?;
-    sel_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_ = c.sel_registerName("copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:").?;
-    sel_setSamplePositions_count_ = c.sel_registerName("setSamplePositions:count:").?;
-    sel_setObjectFunction_ = c.sel_registerName("setObjectFunction:").?;
-    sel_supportsFunctionPointers = c.sel_registerName("supportsFunctionPointers").?;
-    sel_sharedCaptureManager = c.sel_registerName("sharedCaptureManager").?;
-    sel_newComputePipelineStateWithFunction_completionHandler_ = c.sel_registerName("newComputePipelineStateWithFunction:completionHandler:").?;
-    sel_getTextureAccessCounters_region_mipLevel_slice_resetCounters_countersBuffer_countersBufferOffset_ = c.sel_registerName("getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:").?;
-    sel_setMaxTotalThreadsPerMeshThreadgroup_ = c.sel_registerName("setMaxTotalThreadsPerMeshThreadgroup:").?;
-    sel_newVisibleFunctionTableWithDescriptor_ = c.sel_registerName("newVisibleFunctionTableWithDescriptor:").?;
-    sel_setInheritBuffers_ = c.sel_registerName("setInheritBuffers:").?;
-    sel_setPayloadMemoryLength_ = c.sel_registerName("setPayloadMemoryLength:").?;
-    sel_registryID = c.sel_registerName("registryID").?;
-    sel_supportsRaytracingFromRender = c.sel_registerName("supportsRaytracingFromRender").?;
-    sel_newIntersectionFunctionWithDescriptor_completionHandler_ = c.sel_registerName("newIntersectionFunctionWithDescriptor:completionHandler:").?;
-    sel_indexBufferOffset = c.sel_registerName("indexBufferOffset").?;
-    sel_setVisibleFunctionTable_atIndex_ = c.sel_registerName("setVisibleFunctionTable:atIndex:").?;
-    sel_gpuAddress = c.sel_registerName("gpuAddress").?;
-    sel_setVisibilityResultBuffer_ = c.sel_registerName("setVisibilityResultBuffer:").?;
-    sel_loadBuffer_offset_size_sourceHandle_sourceHandleOffset_ = c.sel_registerName("loadBuffer:offset:size:sourceHandle:sourceHandleOffset:").?;
-    sel_stencilAttachmentPixelFormat = c.sel_registerName("stencilAttachmentPixelFormat").?;
-    sel_setIntersectionFunctionTables_withRange_ = c.sel_registerName("setIntersectionFunctionTables:withRange:").?;
-    sel_setSize_ = c.sel_registerName("setSize:").?;
-    sel_setVertexVisibleFunctionTables_withBufferRange_ = c.sel_registerName("setVertexVisibleFunctionTables:withBufferRange:").?;
-    sel_compressionType = c.sel_registerName("compressionType").?;
-    sel_setErrorOptions_ = c.sel_registerName("setErrorOptions:").?;
-    sel_setCaptureObject_ = c.sel_registerName("setCaptureObject:").?;
-    sel_updateFence_ = c.sel_registerName("updateFence:").?;
-    sel_waitForFence_beforeStages_ = c.sel_registerName("waitForFence:beforeStages:").?;
-    sel_setStencilResolveFilter_ = c.sel_registerName("setStencilResolveFilter:").?;
-    sel_swizzle = c.sel_registerName("swizzle").?;
-    sel_sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize_ = c.sel_registerName("sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:").?;
-    sel_frontFaceStencil = c.sel_registerName("frontFaceStencil").?;
-    sel_setMaxAnisotropy_ = c.sel_registerName("setMaxAnisotropy:").?;
-    sel_drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride_ = c.sel_registerName("drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:").?;
-    sel_depthStencilPassOperation = c.sel_registerName("depthStencilPassOperation").?;
-    sel_mapScreenToPhysicalCoordinates_forLayer_ = c.sel_registerName("mapScreenToPhysicalCoordinates:forLayer:").?;
-    sel_setTileSamplerState_lodMinClamp_lodMaxClamp_atIndex_ = c.sel_registerName("setTileSamplerState:lodMinClamp:lodMaxClamp:atIndex:").?;
-    sel_vertexBuffer = c.sel_registerName("vertexBuffer").?;
-    sel_visibilityResultBuffer = c.sel_registerName("visibilityResultBuffer").?;
-    sel_maxFragmentCallStackDepth = c.sel_registerName("maxFragmentCallStackDepth").?;
-    sel_setFragmentAccelerationStructure_atBufferIndex_ = c.sel_registerName("setFragmentAccelerationStructure:atBufferIndex:").?;
-    sel_presentAfterMinimumDuration_ = c.sel_registerName("presentAfterMinimumDuration:").?;
-    sel_newCommandQueueWithMaxCommandBufferCount_ = c.sel_registerName("newCommandQueueWithMaxCommandBufferCount:").?;
-    sel_elementTextureReferenceType = c.sel_registerName("elementTextureReferenceType").?;
-    sel_dispatchQueue = c.sel_registerName("dispatchQueue").?;
-    sel_setTileAdditionalBinaryFunctions_ = c.sel_registerName("setTileAdditionalBinaryFunctions:").?;
-    sel_setEndOfVertexSampleIndex_ = c.sel_registerName("setEndOfVertexSampleIndex:").?;
-    sel_stride = c.sel_registerName("stride").?;
-    sel_setIndexType_ = c.sel_registerName("setIndexType:").?;
-    sel_addDebugMarker_range_ = c.sel_registerName("addDebugMarker:range:").?;
-    sel_motionEndTime = c.sel_registerName("motionEndTime").?;
-    sel_setDepthWriteEnabled_ = c.sel_registerName("setDepthWriteEnabled:").?;
-    sel_setRenderPipelineState_ = c.sel_registerName("setRenderPipelineState:").?;
-    sel_setVertexBytes_length_attributeStride_atIndex_ = c.sel_registerName("setVertexBytes:length:attributeStride:atIndex:").?;
-    sel_sampleBuffer = c.sel_registerName("sampleBuffer").?;
-    sel_newLibraryWithData_error_ = c.sel_registerName("newLibraryWithData:error:").?;
-    sel_tileHeight = c.sel_registerName("tileHeight").?;
-    sel_setHazardTrackingMode_ = c.sel_registerName("setHazardTrackingMode:").?;
-    sel_elementIsArgumentBuffer = c.sel_registerName("elementIsArgumentBuffer").?;
-    sel_setVertexIntersectionFunctionTables_withBufferRange_ = c.sel_registerName("setVertexIntersectionFunctionTables:withBufferRange:").?;
-    sel_setComputePipelineStates_withRange_ = c.sel_registerName("setComputePipelineStates:withRange:").?;
-    sel_init = c.sel_registerName("init").?;
-    sel_setMaxFragmentBufferBindCount_ = c.sel_registerName("setMaxFragmentBufferBindCount:").?;
-    sel_setInstancedAccelerationStructures_ = c.sel_registerName("setInstancedAccelerationStructures:").?;
-    sel_presentDrawable_afterMinimumDuration_ = c.sel_registerName("presentDrawable:afterMinimumDuration:").?;
-    sel_options = c.sel_registerName("options").?;
-    sel_patchControlPointCount = c.sel_registerName("patchControlPointCount").?;
-    sel_stencilCompareFunction = c.sel_registerName("stencilCompareFunction").?;
-    sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_ = c.sel_registerName("drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:").?;
-    sel_newLibraryWithSource_options_completionHandler_ = c.sel_registerName("newLibraryWithSource:options:completionHandler:").?;
-    sel_newAccelerationStructureWithDescriptor_offset_ = c.sel_registerName("newAccelerationStructureWithDescriptor:offset:").?;
-    sel_setObjectThreadgroupMemoryLength_atIndex_ = c.sel_registerName("setObjectThreadgroupMemoryLength:atIndex:").?;
-    sel_minimumLinearTextureAlignmentForPixelFormat_ = c.sel_registerName("minimumLinearTextureAlignmentForPixelFormat:").?;
-    sel_setBarrier = c.sel_registerName("setBarrier").?;
-    sel_setMeshFunction_ = c.sel_registerName("setMeshFunction:").?;
-    sel_transformationMatrixBufferOffset = c.sel_registerName("transformationMatrixBufferOffset").?;
-    sel_slice = c.sel_registerName("slice").?;
-    sel_newBufferWithLength_options_ = c.sel_registerName("newBufferWithLength:options:").?;
-    sel_initWithFunctionName_nodes_outputNode_attributes_ = c.sel_registerName("initWithFunctionName:nodes:outputNode:attributes:").?;
-    sel_physicalGranularity = c.sel_registerName("physicalGranularity").?;
-    sel_meshLinkedFunctions = c.sel_registerName("meshLinkedFunctions").?;
-    sel_setFragmentFunction_ = c.sel_registerName("setFragmentFunction:").?;
-    sel_renderTargetArrayLength = c.sel_registerName("renderTargetArrayLength").?;
-    sel_setVertexBuffer_offset_atIndex_ = c.sel_registerName("setVertexBuffer:offset:atIndex:").?;
-    sel_maxTotalThreadgroupsPerMeshGrid = c.sel_registerName("maxTotalThreadgroupsPerMeshGrid").?;
-    sel_rasterizationRateMap = c.sel_registerName("rasterizationRateMap").?;
-    sel_setMeshLinkedFunctions_ = c.sel_registerName("setMeshLinkedFunctions:").?;
-    sel_setOpaqueTriangleIntersectionFunctionWithSignature_atIndex_ = c.sel_registerName("setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:").?;
-    sel_setMipmapLevelCount_ = c.sel_registerName("setMipmapLevelCount:").?;
-    sel_newComputePipelineStateWithFunction_options_completionHandler_ = c.sel_registerName("newComputePipelineStateWithFunction:options:completionHandler:").?;
-    sel_attributeType = c.sel_registerName("attributeType").?;
-    sel_newIOCommandQueueWithDescriptor_error_ = c.sel_registerName("newIOCommandQueueWithDescriptor:error:").?;
-    sel_setFragmentTexture_atIndex_ = c.sel_registerName("setFragmentTexture:atIndex:").?;
-    sel_destinationAlphaBlendFactor = c.sel_registerName("destinationAlphaBlendFactor").?;
-    sel_setAlphaBlendOperation_ = c.sel_registerName("setAlphaBlendOperation:").?;
-    sel_newRemoteBufferViewForDevice_ = c.sel_registerName("newRemoteBufferViewForDevice:").?;
-    sel_setFragmentSamplerStates_withRange_ = c.sel_registerName("setFragmentSamplerStates:withRange:").?;
-    sel_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options_ = c.sel_registerName("refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:").?;
-    sel_horizontalSampleStorage = c.sel_registerName("horizontalSampleStorage").?;
-    sel_writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType_ = c.sel_registerName("writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:").?;
-    sel_allowReferencingUndefinedSymbols = c.sel_registerName("allowReferencingUndefinedSymbols").?;
-    sel_setFragmentSamplerState_atIndex_ = c.sel_registerName("setFragmentSamplerState:atIndex:").?;
-    sel_setTriangleCount_ = c.sel_registerName("setTriangleCount:").?;
-    sel_setObjectSamplerStates_lodMinClamps_lodMaxClamps_withRange_ = c.sel_registerName("setObjectSamplerStates:lodMinClamps:lodMaxClamps:withRange:").?;
-    sel_borderColor = c.sel_registerName("borderColor").?;
-    sel_arrayType = c.sel_registerName("arrayType").?;
-    sel_debugLocation = c.sel_registerName("debugLocation").?;
-    sel_setFrontFacingWinding_ = c.sel_registerName("setFrontFacingWinding:").?;
-    sel_meshThreadExecutionWidth = c.sel_registerName("meshThreadExecutionWidth").?;
-    sel_parentTexture = c.sel_registerName("parentTexture").?;
-    sel_sampleBufferAttachments = c.sel_registerName("sampleBufferAttachments").?;
-    sel_setBackFaceStencil_ = c.sel_registerName("setBackFaceStencil:").?;
-    sel_sampleCountersInBuffer_atSampleIndex_withBarrier_ = c.sel_registerName("sampleCountersInBuffer:atSampleIndex:withBarrier:").?;
-    sel_setSignaledValue_ = c.sel_registerName("setSignaledValue:").?;
-    sel_peerCount = c.sel_registerName("peerCount").?;
-    sel_setCpuCacheMode_ = c.sel_registerName("setCpuCacheMode:").?;
-    sel_startCaptureWithDevice_ = c.sel_registerName("startCaptureWithDevice:").?;
-    sel_indirectComputeCommandAtIndex_ = c.sel_registerName("indirectComputeCommandAtIndex:").?;
-    sel_tryCancel = c.sel_registerName("tryCancel").?;
-    sel_isPatchControlPointData = c.sel_registerName("isPatchControlPointData").?;
-    sel_newArgumentEncoderWithBufferIndex_reflection_ = c.sel_registerName("newArgumentEncoderWithBufferIndex:reflection:").?;
-    sel_tAddressMode = c.sel_registerName("tAddressMode").?;
-    sel_height = c.sel_registerName("height").?;
-    sel_resourceOptions = c.sel_registerName("resourceOptions").?;
-    sel_setBinaryFunctions_ = c.sel_registerName("setBinaryFunctions:").?;
-    sel_blitCommandEncoderWithDescriptor_ = c.sel_registerName("blitCommandEncoderWithDescriptor:").?;
-    sel_setMaxObjectBufferBindCount_ = c.sel_registerName("setMaxObjectBufferBindCount:").?;
-    sel_setBlendColorRed_green_blue_alpha_ = c.sel_registerName("setBlendColorRed:green:blue:alpha:").?;
-    sel_setTriangleFillMode_ = c.sel_registerName("setTriangleFillMode:").?;
-    sel_setLabel_ = c.sel_registerName("setLabel:").?;
-    sel_setSwizzle_ = c.sel_registerName("setSwizzle:").?;
-    sel_renderPassDescriptor = c.sel_registerName("renderPassDescriptor").?;
-    sel_newDefaultLibrary = c.sel_registerName("newDefaultLibrary").?;
-    sel_synchronizeTexture_slice_level_ = c.sel_registerName("synchronizeTexture:slice:level:").?;
-    sel_newIOFileHandleWithURL_compressionMethod_error_ = c.sel_registerName("newIOFileHandleWithURL:compressionMethod:error:").?;
-    sel_bufferDataType = c.sel_registerName("bufferDataType").?;
-    sel_setTileSamplerStates_lodMinClamps_lodMaxClamps_withRange_ = c.sel_registerName("setTileSamplerStates:lodMinClamps:lodMaxClamps:withRange:").?;
-    sel_boundingBoxBufferOffset = c.sel_registerName("boundingBoxBufferOffset").?;
-    sel_setPrimitiveDataElementSize_ = c.sel_registerName("setPrimitiveDataElementSize:").?;
-    sel_GPUEndTime = c.sel_registerName("GPUEndTime").?;
-    sel_reset = c.sel_registerName("reset").?;
-    sel_supports32BitFloatFiltering = c.sel_registerName("supports32BitFloatFiltering").?;
-    sel_memoryBarrierWithScope_ = c.sel_registerName("memoryBarrierWithScope:").?;
-    sel_setInstanceDescriptorBufferOffset_ = c.sel_registerName("setInstanceDescriptorBufferOffset:").?;
-    sel_setInsertLibraries_ = c.sel_registerName("setInsertLibraries:").?;
-    sel_memoryBarrierWithResources_count_ = c.sel_registerName("memoryBarrierWithResources:count:").?;
-    sel_maxAnisotropy = c.sel_registerName("maxAnisotropy").?;
-    sel_constantDataAtIndex_ = c.sel_registerName("constantDataAtIndex:").?;
-    sel_mipmapLevelCount = c.sel_registerName("mipmapLevelCount").?;
-    sel_setIntersectionFunctionTable_atBufferIndex_ = c.sel_registerName("setIntersectionFunctionTable:atBufferIndex:").?;
-    sel_setVertexBuffer_offset_attributeStride_atIndex_ = c.sel_registerName("setVertexBuffer:offset:attributeStride:atIndex:").?;
-    sel_tileBindings = c.sel_registerName("tileBindings").?;
-    sel_instanceDescriptorType = c.sel_registerName("instanceDescriptorType").?;
-    sel_setDepthResolveFilter_ = c.sel_registerName("setDepthResolveFilter:").?;
-    sel_setUsage_ = c.sel_registerName("setUsage:").?;
-    sel_tileFunction = c.sel_registerName("tileFunction").?;
-    sel_motionStartTime = c.sel_registerName("motionStartTime").?;
-    sel_setAccelerationStructure_atIndex_ = c.sel_registerName("setAccelerationStructure:atIndex:").?;
-    sel_setMaxTotalThreadsPerThreadgroup_ = c.sel_registerName("setMaxTotalThreadsPerThreadgroup:").?;
-    sel_stencilResolveFilter = c.sel_registerName("stencilResolveFilter").?;
-    sel_visibleFunctionTableDescriptor = c.sel_registerName("visibleFunctionTableDescriptor").?;
-    sel_renderCommandEncoder = c.sel_registerName("renderCommandEncoder").?;
-    sel_bufferBytesPerRow = c.sel_registerName("bufferBytesPerRow").?;
-    sel_layerCount = c.sel_registerName("layerCount").?;
-    sel_newArgumentEncoderWithArguments_ = c.sel_registerName("newArgumentEncoderWithArguments:").?;
-    sel_newScratchBufferWithMinimumSize_ = c.sel_registerName("newScratchBufferWithMinimumSize:").?;
-    sel_setFormat_ = c.sel_registerName("setFormat:").?;
-    sel_setAllowGPUOptimizedContents_ = c.sel_registerName("setAllowGPUOptimizedContents:").?;
-    sel_data = c.sel_registerName("data").?;
-    sel_isDepthWriteEnabled = c.sel_registerName("isDepthWriteEnabled").?;
-    sel_present = c.sel_registerName("present").?;
-    sel_setTileAccelerationStructure_atBufferIndex_ = c.sel_registerName("setTileAccelerationStructure:atBufferIndex:").?;
-    sel_setPreloadedLibraries_ = c.sel_registerName("setPreloadedLibraries:").?;
-    sel_functionName = c.sel_registerName("functionName").?;
-    sel_setMaxTotalThreadgroupsPerMeshGrid_ = c.sel_registerName("setMaxTotalThreadgroupsPerMeshGrid:").?;
-    sel_setTAddressMode_ = c.sel_registerName("setTAddressMode:").?;
-    sel_objectBindings = c.sel_registerName("objectBindings").?;
-    sel_mutability = c.sel_registerName("mutability").?;
-    sel_setTessellationOutputWindingOrder_ = c.sel_registerName("setTessellationOutputWindingOrder:").?;
-    sel_serializeToURL_error_ = c.sel_registerName("serializeToURL:error:").?;
-    sel_objectThreadExecutionWidth = c.sel_registerName("objectThreadExecutionWidth").?;
-    sel_newTextureWithDescriptor_ = c.sel_registerName("newTextureWithDescriptor:").?;
-    sel_setVertexIntersectionFunctionTable_atBufferIndex_ = c.sel_registerName("setVertexIntersectionFunctionTable:atBufferIndex:").?;
-    sel_setDepthPlane_ = c.sel_registerName("setDepthPlane:").?;
-    sel_useHeap_stages_ = c.sel_registerName("useHeap:stages:").?;
-    sel_optimizeContentsForCPUAccess_ = c.sel_registerName("optimizeContentsForCPUAccess:").?;
-    sel_setVertexDescriptor_ = c.sel_registerName("setVertexDescriptor:").?;
-    sel_startCaptureWithScope_ = c.sel_registerName("startCaptureWithScope:").?;
-    sel_heap = c.sel_registerName("heap").?;
-    sel_drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_ = c.sel_registerName("drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:").?;
-    sel_supports32BitMSAA = c.sel_registerName("supports32BitMSAA").?;
-    sel_setArguments_ = c.sel_registerName("setArguments:").?;
-    sel_setTessellationFactorStepFunction_ = c.sel_registerName("setTessellationFactorStepFunction:").?;
-    sel_renderCommandEncoderWithDescriptor_ = c.sel_registerName("renderCommandEncoderWithDescriptor:").?;
-    sel_newBufferWithLength_options_offset_ = c.sel_registerName("newBufferWithLength:options:offset:").?;
-    sel_objectFunction = c.sel_registerName("objectFunction").?;
-    sel_isFramebufferOnly = c.sel_registerName("isFramebufferOnly").?;
-    sel_inheritPipelineState = c.sel_registerName("inheritPipelineState").?;
-    sel_setDefaultCaptureScope_ = c.sel_registerName("setDefaultCaptureScope:").?;
-    sel_boundingBoxBuffer = c.sel_registerName("boundingBoxBuffer").?;
-    sel_setMaxCommandsInFlight_ = c.sel_registerName("setMaxCommandsInFlight:").?;
-    sel_location = c.sel_registerName("location").?;
-    sel_newBufferWithBytes_length_options_ = c.sel_registerName("newBufferWithBytes:length:options:").?;
-    sel_addPresentedHandler_ = c.sel_registerName("addPresentedHandler:").?;
-    sel_setRenderTargetHeight_ = c.sel_registerName("setRenderTargetHeight:").?;
-    sel_setStepRate_ = c.sel_registerName("setStepRate:").?;
-    sel_executeCommandsInBuffer_withRange_ = c.sel_registerName("executeCommandsInBuffer:withRange:").?;
-    sel_languageVersion = c.sel_registerName("languageVersion").?;
-    sel_vertexFormat = c.sel_registerName("vertexFormat").?;
-    sel_setDepthBias_slopeScale_clamp_ = c.sel_registerName("setDepthBias:slopeScale:clamp:").?;
-    sel_tessellationPartitionMode = c.sel_registerName("tessellationPartitionMode").?;
-    sel_magFilter = c.sel_registerName("magFilter").?;
-    sel_getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice_ = c.sel_registerName("getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:").?;
-    sel_newCommandQueue = c.sel_registerName("newCommandQueue").?;
-    sel_newFunctionWithDescriptor_error_ = c.sel_registerName("newFunctionWithDescriptor:error:").?;
-    sel_setVertexSamplerState_lodMinClamp_lodMaxClamp_atIndex_ = c.sel_registerName("setVertexSamplerState:lodMinClamp:lodMaxClamp:atIndex:").?;
-    sel_setSupportArgumentBuffers_ = c.sel_registerName("setSupportArgumentBuffers:").?;
-    sel_isPatchData = c.sel_registerName("isPatchData").?;
-    sel_meshFunction = c.sel_registerName("meshFunction").?;
-    sel_outputURL = c.sel_registerName("outputURL").?;
-    sel_newRenderPipelineStateWithDescriptor_completionHandler_ = c.sel_registerName("newRenderPipelineStateWithDescriptor:completionHandler:").?;
-    sel_heapOffset = c.sel_registerName("heapOffset").?;
-    sel_setStencilCompareFunction_ = c.sel_registerName("setStencilCompareFunction:").?;
-    sel_privateFunctions = c.sel_registerName("privateFunctions").?;
-    sel_setIndexBufferIndex_ = c.sel_registerName("setIndexBufferIndex:").?;
-    sel_setMaxVertexCallStackDepth_ = c.sel_registerName("setMaxVertexCallStackDepth:").?;
-    sel_maxMeshBufferBindCount = c.sel_registerName("maxMeshBufferBindCount").?;
-    sel_setDepthStencilState_ = c.sel_registerName("setDepthStencilState:").?;
-    sel_geometryDescriptors = c.sel_registerName("geometryDescriptors").?;
-    sel_boundingBoxStride = c.sel_registerName("boundingBoxStride").?;
-    sel_drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_ = c.sel_registerName("drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:").?;
-    sel_commandBufferWithUnretainedReferences = c.sel_registerName("commandBufferWithUnretainedReferences").?;
-    sel_setCounterSet_ = c.sel_registerName("setCounterSet:").?;
-    sel_setScissorRects_count_ = c.sel_registerName("setScissorRects:count:").?;
-    sel_setRenderTargetArrayLength_ = c.sel_registerName("setRenderTargetArrayLength:").?;
-    sel_threadgroupMemoryAlignment = c.sel_registerName("threadgroupMemoryAlignment").?;
-    sel_dispatchThreadgroups_threadsPerThreadgroup_ = c.sel_registerName("dispatchThreadgroups:threadsPerThreadgroup:").?;
-    sel_setFragmentIntersectionFunctionTables_withBufferRange_ = c.sel_registerName("setFragmentIntersectionFunctionTables:withBufferRange:").?;
-    sel_areBarycentricCoordsSupported = c.sel_registerName("areBarycentricCoordsSupported").?;
-    sel_setLoadAction_ = c.sel_registerName("setLoadAction:").?;
-    sel_setTileBuffers_offsets_withRange_ = c.sel_registerName("setTileBuffers:offsets:withRange:").?;
-    sel_synchronizeResource_ = c.sel_registerName("synchronizeResource:").?;
-    sel_logs = c.sel_registerName("logs").?;
-    sel_newVisibleFunctionTableWithDescriptor_stage_ = c.sel_registerName("newVisibleFunctionTableWithDescriptor:stage:").?;
-    sel_getBytes_bytesPerRow_fromRegion_mipmapLevel_ = c.sel_registerName("getBytes:bytesPerRow:fromRegion:mipmapLevel:").?;
-    sel_architecture = c.sel_registerName("architecture").?;
-    sel_groups = c.sel_registerName("groups").?;
-    sel_setDepthClipMode_ = c.sel_registerName("setDepthClipMode:").?;
-    sel_motionTransformBufferOffset = c.sel_registerName("motionTransformBufferOffset").?;
-    sel_setMaxTotalThreadsPerObjectThreadgroup_ = c.sel_registerName("setMaxTotalThreadsPerObjectThreadgroup:").?;
-    sel_setTileTextures_withRange_ = c.sel_registerName("setTileTextures:withRange:").?;
-    sel_computeFunction = c.sel_registerName("computeFunction").?;
-    sel_setVertexFunction_ = c.sel_registerName("setVertexFunction:").?;
-    sel_type = c.sel_registerName("type").?;
-    sel_setObjectSamplerState_lodMinClamp_lodMaxClamp_atIndex_ = c.sel_registerName("setObjectSamplerState:lodMinClamp:lodMaxClamp:atIndex:").?;
-    sel_waitUntilScheduled = c.sel_registerName("waitUntilScheduled").?;
-    sel_setThreadGroupSizeIsMultipleOfThreadExecutionWidth_ = c.sel_registerName("setThreadGroupSizeIsMultipleOfThreadExecutionWidth:").?;
-    sel_allowGPUOptimizedContents = c.sel_registerName("allowGPUOptimizedContents").?;
-    sel_primitiveDataElementSize = c.sel_registerName("primitiveDataElementSize").?;
-    sel_isAlphaToOneEnabled = c.sel_registerName("isAlphaToOneEnabled").?;
-    sel_getDefaultSamplePositions_count_ = c.sel_registerName("getDefaultSamplePositions:count:").?;
-    sel_setBufferIndex_ = c.sel_registerName("setBufferIndex:").?;
-    sel_setMotionEndBorderMode_ = c.sel_registerName("setMotionEndBorderMode:").?;
-    sel_maxVertexBufferBindCount = c.sel_registerName("maxVertexBufferBindCount").?;
-    sel_opaque = c.sel_registerName("opaque").?;
-    sel_drawIndexedPrimitives_indexType_indexBuffer_indexBufferOffset_indirectBuffer_indirectBufferOffset_ = c.sel_registerName("drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:").?;
-    sel_setStoreActionOptions_ = c.sel_registerName("setStoreActionOptions:").?;
-    sel_label = c.sel_registerName("label").?;
-    sel_setScratchBufferAllocator_ = c.sel_registerName("setScratchBufferAllocator:").?;
-    sel_setStageInRegion_ = c.sel_registerName("setStageInRegion:").?;
-    sel_counters = c.sel_registerName("counters").?;
-    sel_rasterizationRateMapDescriptorWithScreenSize_layerCount_layers_ = c.sel_registerName("rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:").?;
-    sel_setTileBuffer_offset_atIndex_ = c.sel_registerName("setTileBuffer:offset:atIndex:").?;
-    sel_setBuffer_ = c.sel_registerName("setBuffer:").?;
-    sel_startOfVertexSampleIndex = c.sel_registerName("startOfVertexSampleIndex").?;
-    sel_supportsPullModelInterpolation = c.sel_registerName("supportsPullModelInterpolation").?;
-    sel_preserveInvariance = c.sel_registerName("preserveInvariance").?;
-    sel_setColorStoreAction_atIndex_ = c.sel_registerName("setColorStoreAction:atIndex:").?;
-    sel_drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_ = c.sel_registerName("drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:").?;
-    sel_compileSymbolVisibility = c.sel_registerName("compileSymbolVisibility").?;
-    sel_setImageblockSampleLength_ = c.sel_registerName("setImageblockSampleLength:").?;
-    sel_setRasterSampleCount_ = c.sel_registerName("setRasterSampleCount:").?;
-    sel_meshThreadgroupSizeIsMultipleOfThreadExecutionWidth = c.sel_registerName("meshThreadgroupSizeIsMultipleOfThreadExecutionWidth").?;
-    sel_objectPayloadDataSize = c.sel_registerName("objectPayloadDataSize").?;
-    sel_fragmentArguments = c.sel_registerName("fragmentArguments").?;
-    sel_setObjectTexture_atIndex_ = c.sel_registerName("setObjectTexture:atIndex:").?;
-    sel_meshBuffers = c.sel_registerName("meshBuffers").?;
-    sel_newSharedTextureWithDescriptor_ = c.sel_registerName("newSharedTextureWithDescriptor:").?;
-    sel_endOfVertexSampleIndex = c.sel_registerName("endOfVertexSampleIndex").?;
-    sel_meshBindings = c.sel_registerName("meshBindings").?;
-    sel_setStride_ = c.sel_registerName("setStride:").?;
-    sel_isShareable = c.sel_registerName("isShareable").?;
-    sel_dispatchType = c.sel_registerName("dispatchType").?;
-    sel_level = c.sel_registerName("level").?;
-    sel_setThreadgroupMemoryLength_atIndex_ = c.sel_registerName("setThreadgroupMemoryLength:atIndex:").?;
-    sel_setResourceOptions_ = c.sel_registerName("setResourceOptions:").?;
-    sel_libraryType = c.sel_registerName("libraryType").?;
-    sel_usage = c.sel_registerName("usage").?;
-    sel_setEndOfEncoderSampleIndex_ = c.sel_registerName("setEndOfEncoderSampleIndex:").?;
-    sel_presentAtTime_ = c.sel_registerName("presentAtTime:").?;
-    sel_setVertexBytes_length_atIndex_ = c.sel_registerName("setVertexBytes:length:atIndex:").?;
-    sel_newIntersectionFunctionTableWithDescriptor_ = c.sel_registerName("newIntersectionFunctionTableWithDescriptor:").?;
-    sel_stopCapture = c.sel_registerName("stopCapture").?;
-    sel_setAlphaToOneEnabled_ = c.sel_registerName("setAlphaToOneEnabled:").?;
-    sel_isBlendingEnabled = c.sel_registerName("isBlendingEnabled").?;
-    sel_setLevel_ = c.sel_registerName("setLevel:").?;
-    sel_fragmentBindings = c.sel_registerName("fragmentBindings").?;
-    sel_setViewport_ = c.sel_registerName("setViewport:").?;
-    sel_refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_ = c.sel_registerName("refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:").?;
-    sel_setObject_atIndexedSubscript_ = c.sel_registerName("setObject:atIndexedSubscript:").?;
-    sel_setStoreAction_ = c.sel_registerName("setStoreAction:").?;
-    sel_setVertexSamplerState_atIndex_ = c.sel_registerName("setVertexSamplerState:atIndex:").?;
-    sel_setVertexSamplerStates_withRange_ = c.sel_registerName("setVertexSamplerStates:withRange:").?;
-    sel_notifyListener_atValue_block_ = c.sel_registerName("notifyListener:atValue:block:").?;
-    sel_addFunctionWithDescriptor_library_error_ = c.sel_registerName("addFunctionWithDescriptor:library:error:").?;
-    sel_popDebugGroup = c.sel_registerName("popDebugGroup").?;
-    sel_setBoundingBoxBuffer_ = c.sel_registerName("setBoundingBoxBuffer:").?;
-    sel_resetCommandsInBuffer_withRange_ = c.sel_registerName("resetCommandsInBuffer:withRange:").?;
-    sel_vertexBindings = c.sel_registerName("vertexBindings").?;
-    sel_functionCount = c.sel_registerName("functionCount").?;
-    sel_gpuResourceID = c.sel_registerName("gpuResourceID").?;
-    sel_textureType = c.sel_registerName("textureType").?;
-    sel_setVisibleFunctionTable_atBufferIndex_ = c.sel_registerName("setVisibleFunctionTable:atBufferIndex:").?;
-    sel_updateTextureMapping_mode_region_mipLevel_slice_ = c.sel_registerName("updateTextureMapping:mode:region:mipLevel:slice:").?;
-    sel_setVertexBufferOffset_attributeStride_atIndex_ = c.sel_registerName("setVertexBufferOffset:attributeStride:atIndex:").?;
-    sel_maxSampleCount = c.sel_registerName("maxSampleCount").?;
-    sel_buffers = c.sel_registerName("buffers").?;
-    sel_buildAccelerationStructure_descriptor_scratchBuffer_scratchBufferOffset_ = c.sel_registerName("buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:").?;
-    sel_newRenderPipelineStateWithMeshDescriptor_options_reflection_error_ = c.sel_registerName("newRenderPipelineStateWithMeshDescriptor:options:reflection:error:").?;
-    sel_setIndirectCommandBuffer_atIndex_ = c.sel_registerName("setIndirectCommandBuffer:atIndex:").?;
-    sel_moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_ = c.sel_registerName("moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:").?;
-    sel_setMeshBytes_length_atIndex_ = c.sel_registerName("setMeshBytes:length:atIndex:").?;
-    sel_functionType = c.sel_registerName("functionType").?;
-    sel_setType_ = c.sel_registerName("setType:").?;
-    sel_optimizationLevel = c.sel_registerName("optimizationLevel").?;
-    sel_setDepthStoreActionOptions_ = c.sel_registerName("setDepthStoreActionOptions:").?;
-    sel_payloadMemoryLength = c.sel_registerName("payloadMemoryLength").?;
-    sel_setVertexFormat_ = c.sel_registerName("setVertexFormat:").?;
-    sel_setInstanceDescriptorStride_ = c.sel_registerName("setInstanceDescriptorStride:").?;
-    sel_depthCompareFunction = c.sel_registerName("depthCompareFunction").?;
-    sel_errorState = c.sel_registerName("errorState").?;
-    sel_threadGroupSizeIsMultipleOfThreadExecutionWidth = c.sel_registerName("threadGroupSizeIsMultipleOfThreadExecutionWidth").?;
-    sel_newAccelerationStructureWithDescriptor_ = c.sel_registerName("newAccelerationStructureWithDescriptor:").?;
-    sel_installName = c.sel_registerName("installName").?;
-    sel_setLanguageVersion_ = c.sel_registerName("setLanguageVersion:").?;
-    sel_newRenderPipelineStateWithDescriptor_error_ = c.sel_registerName("newRenderPipelineStateWithDescriptor:error:").?;
-    sel_setRenderPipelineState_atIndex_ = c.sel_registerName("setRenderPipelineState:atIndex:").?;
-    sel_supportRayTracing = c.sel_registerName("supportRayTracing").?;
-    sel_rasterizationRateMapDescriptorWithScreenSize_layer_ = c.sel_registerName("rasterizationRateMapDescriptorWithScreenSize:layer:").?;
-    sel_threadgroupMemoryLength = c.sel_registerName("threadgroupMemoryLength").?;
-    sel_tileArguments = c.sel_registerName("tileArguments").?;
-    sel_boundingBoxCount = c.sel_registerName("boundingBoxCount").?;
-    sel_elementType = c.sel_registerName("elementType").?;
-    sel_depthFailureOperation = c.sel_registerName("depthFailureOperation").?;
-    sel_textureReferenceType = c.sel_registerName("textureReferenceType").?;
-    sel_useHeap_ = c.sel_registerName("useHeap:").?;
-    sel_newComputePipelineStateWithDescriptor_options_completionHandler_ = c.sel_registerName("newComputePipelineStateWithDescriptor:options:completionHandler:").?;
-    sel_peerIndex = c.sel_registerName("peerIndex").?;
-    sel_setControlDependencies_ = c.sel_registerName("setControlDependencies:").?;
-    sel_endOfEncoderSampleIndex = c.sel_registerName("endOfEncoderSampleIndex").?;
-    sel_maxObjectBufferBindCount = c.sel_registerName("maxObjectBufferBindCount").?;
-    sel_newRenderPipelineStateWithAdditionalBinaryFunctions_error_ = c.sel_registerName("newRenderPipelineStateWithAdditionalBinaryFunctions:error:").?;
-    sel_setStageInRegionWithIndirectBuffer_indirectBufferOffset_ = c.sel_registerName("setStageInRegionWithIndirectBuffer:indirectBufferOffset:").?;
-    sel_heapAccelerationStructureSizeAndAlignWithDescriptor_ = c.sel_registerName("heapAccelerationStructureSizeAndAlignWithDescriptor:").?;
-    sel_addTileRenderPipelineFunctionsWithDescriptor_error_ = c.sel_registerName("addTileRenderPipelineFunctionsWithDescriptor:error:").?;
-    sel_convertSparseTileRegions_toPixelRegions_withTileSize_numRegions_ = c.sel_registerName("convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:").?;
-    sel_setArgumentBuffer_offset_ = c.sel_registerName("setArgumentBuffer:offset:").?;
-    sel_setSparsePageSize_ = c.sel_registerName("setSparsePageSize:").?;
-    sel_stageInputOutputDescriptor = c.sel_registerName("stageInputOutputDescriptor").?;
-    sel_setTileSamplerStates_withRange_ = c.sel_registerName("setTileSamplerStates:withRange:").?;
-    sel_setBuffers_offsets_attributeStrides_withRange_ = c.sel_registerName("setBuffers:offsets:attributeStrides:withRange:").?;
-    sel_parallelRenderCommandEncoderWithDescriptor_ = c.sel_registerName("parallelRenderCommandEncoderWithDescriptor:").?;
-    sel_setAccelerationStructure_atBufferIndex_ = c.sel_registerName("setAccelerationStructure:atBufferIndex:").?;
-    sel_newSharedEventWithHandle_ = c.sel_registerName("newSharedEventWithHandle:").?;
-    sel_stencilAttachment = c.sel_registerName("stencilAttachment").?;
-    sel_newComputePipelineStateWithFunction_error_ = c.sel_registerName("newComputePipelineStateWithFunction:error:").?;
-    sel_setClearColor_ = c.sel_registerName("setClearColor:").?;
-    sel_setMaxMeshBufferBindCount_ = c.sel_registerName("setMaxMeshBufferBindCount:").?;
-    sel_generateMipmapsForTexture_ = c.sel_registerName("generateMipmapsForTexture:").?;
-    sel_setStencilAttachment_ = c.sel_registerName("setStencilAttachment:").?;
-    sel_insertDebugCaptureBoundary = c.sel_registerName("insertDebugCaptureBoundary").?;
-    sel_optimizeContentsForCPUAccess_slice_level_ = c.sel_registerName("optimizeContentsForCPUAccess:slice:level:").?;
-    sel_setFrontFaceStencil_ = c.sel_registerName("setFrontFaceStencil:").?;
-    sel_copyParameterDataToBuffer_offset_ = c.sel_registerName("copyParameterDataToBuffer:offset:").?;
-    sel_supportAddingFragmentBinaryFunctions = c.sel_registerName("supportAddingFragmentBinaryFunctions").?;
-    sel_beginScope = c.sel_registerName("beginScope").?;
-    sel_textureBarrier = c.sel_registerName("textureBarrier").?;
-    sel_useResource_usage_stages_ = c.sel_registerName("useResource:usage:stages:").?;
-    sel_setFragmentVisibleFunctionTable_atBufferIndex_ = c.sel_registerName("setFragmentVisibleFunctionTable:atBufferIndex:").?;
-    sel_specializedName = c.sel_registerName("specializedName").?;
-    sel_stencilFailureOperation = c.sel_registerName("stencilFailureOperation").?;
-    sel_commandTypes = c.sel_registerName("commandTypes").?;
-    sel_setRenderPipelineStates_withRange_ = c.sel_registerName("setRenderPipelineStates:withRange:").?;
-    sel_setComputePipelineState_atIndex_ = c.sel_registerName("setComputePipelineState:atIndex:").?;
-    sel_supportIndirectCommandBuffers = c.sel_registerName("supportIndirectCommandBuffers").?;
-    sel_setStencilStoreAction_ = c.sel_registerName("setStencilStoreAction:").?;
-    sel_objectLinkedFunctions = c.sel_registerName("objectLinkedFunctions").?;
-    sel_setMipFilter_ = c.sel_registerName("setMipFilter:").?;
-    sel_newFence = c.sel_registerName("newFence").?;
-    sel_setPurgeableState_ = c.sel_registerName("setPurgeableState:").?;
-    sel_textureDataType = c.sel_registerName("textureDataType").?;
-    sel_isAlphaToCoverageEnabled = c.sel_registerName("isAlphaToCoverageEnabled").?;
-    sel_destination = c.sel_registerName("destination").?;
-    sel_setResolveDepthPlane_ = c.sel_registerName("setResolveDepthPlane:").?;
-    sel_setImageblockWidth_height_ = c.sel_registerName("setImageblockWidth:height:").?;
-    sel_setSourceRGBBlendFactor_ = c.sel_registerName("setSourceRGBBlendFactor:").?;
-    sel_newSharedTextureWithHandle_ = c.sel_registerName("newSharedTextureWithHandle:").?;
-    sel_setVisibleFunctionTables_withRange_ = c.sel_registerName("setVisibleFunctionTables:withRange:").?;
-    sel_indexBufferIndex = c.sel_registerName("indexBufferIndex").?;
-    sel_setMeshBufferOffset_atIndex_ = c.sel_registerName("setMeshBufferOffset:atIndex:").?;
-    sel_setPriority_ = c.sel_registerName("setPriority:").?;
-    sel_binaryArchives = c.sel_registerName("binaryArchives").?;
-    sel_resolveCounters_inRange_destinationBuffer_destinationOffset_ = c.sel_registerName("resolveCounters:inRange:destinationBuffer:destinationOffset:").?;
-    sel_setBuffer_offset_atIndex_ = c.sel_registerName("setBuffer:offset:atIndex:").?;
-    sel_functions = c.sel_registerName("functions").?;
-    sel_readMask = c.sel_registerName("readMask").?;
-    sel_computeCommandEncoderWithDispatchType_ = c.sel_registerName("computeCommandEncoderWithDispatchType:").?;
-    sel_isSparse = c.sel_registerName("isSparse").?;
-    sel_setMeshSamplerStates_withRange_ = c.sel_registerName("setMeshSamplerStates:withRange:").?;
-    sel_setFunctions_ = c.sel_registerName("setFunctions:").?;
-    sel_supportsPrimitiveMotionBlur = c.sel_registerName("supportsPrimitiveMotionBlur").?;
-    sel_setShouldMaximizeConcurrentCompilation_ = c.sel_registerName("setShouldMaximizeConcurrentCompilation:").?;
-    sel_setClearStencil_ = c.sel_registerName("setClearStencil:").?;
-    sel_minFilter = c.sel_registerName("minFilter").?;
-    sel_setDestinationRGBBlendFactor_ = c.sel_registerName("setDestinationRGBBlendFactor:").?;
-    sel_setNormalizedCoordinates_ = c.sel_registerName("setNormalizedCoordinates:").?;
-    sel_addScheduledHandler_ = c.sel_registerName("addScheduledHandler:").?;
-    sel_isDepth24Stencil8PixelFormatSupported = c.sel_registerName("isDepth24Stencil8PixelFormatSupported").?;
-    sel_setTileVisibleFunctionTable_atBufferIndex_ = c.sel_registerName("setTileVisibleFunctionTable:atBufferIndex:").?;
-    sel_memoryBarrierWithResources_count_afterStages_beforeStages_ = c.sel_registerName("memoryBarrierWithResources:count:afterStages:beforeStages:").?;
-    sel_vertexBuffers = c.sel_registerName("vertexBuffers").?;
-    sel_setTextures_withRange_ = c.sel_registerName("setTextures:withRange:").?;
-    sel_setStartOfVertexSampleIndex_ = c.sel_registerName("setStartOfVertexSampleIndex:").?;
-    sel_setMeshTextures_withRange_ = c.sel_registerName("setMeshTextures:withRange:").?;
-    sel_encodeSignalEvent_value_ = c.sel_registerName("encodeSignalEvent:value:").?;
-    sel_descriptor = c.sel_registerName("descriptor").?;
-    sel_setTransformationMatrixBufferOffset_ = c.sel_registerName("setTransformationMatrixBufferOffset:").?;
-    sel_startOfEncoderSampleIndex = c.sel_registerName("startOfEncoderSampleIndex").?;
-    sel_newIOHandleWithURL_compressionMethod_error_ = c.sel_registerName("newIOHandleWithURL:compressionMethod:error:").?;
-    sel_heapAccelerationStructureSizeAndAlignWithSize_ = c.sel_registerName("heapAccelerationStructureSizeAndAlignWithSize:").?;
-    sel_maxBufferLength = c.sel_registerName("maxBufferLength").?;
-    sel_setBoundingBoxBuffers_ = c.sel_registerName("setBoundingBoxBuffers:").?;
-    sel_writeMask = c.sel_registerName("writeMask").?;
-    sel_textureCubeDescriptorWithPixelFormat_size_mipmapped_ = c.sel_registerName("textureCubeDescriptorWithPixelFormat:size:mipmapped:").?;
-    sel_staticThreadgroupMemoryLength = c.sel_registerName("staticThreadgroupMemoryLength").?;
-    sel_newTextureViewWithPixelFormat_textureType_levels_slices_ = c.sel_registerName("newTextureViewWithPixelFormat:textureType:levels:slices:").?;
-    sel_setLinkedFunctions_ = c.sel_registerName("setLinkedFunctions:").?;
-    sel_colorAttachments = c.sel_registerName("colorAttachments").?;
-    sel_setOpaqueCurveIntersectionFunctionWithSignature_withRange_ = c.sel_registerName("setOpaqueCurveIntersectionFunctionWithSignature:withRange:").?;
-    sel_maxCallStackDepth = c.sel_registerName("maxCallStackDepth").?;
-    sel_supportsFamily_ = c.sel_registerName("supportsFamily:").?;
-    sel_sparsePageSize = c.sel_registerName("sparsePageSize").?;
-    sel_setPrimitiveDataStride_ = c.sel_registerName("setPrimitiveDataStride:").?;
-    sel_resourceStateCommandEncoder = c.sel_registerName("resourceStateCommandEncoder").?;
-    sel_setSampleBuffer_ = c.sel_registerName("setSampleBuffer:").?;
-    sel_setObjectBuffers_offsets_withRange_ = c.sel_registerName("setObjectBuffers:offsets:withRange:").?;
-    sel_isDepthTexture = c.sel_registerName("isDepthTexture").?;
-    sel_setComputeFunction_ = c.sel_registerName("setComputeFunction:").?;
-    sel_copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size_ = c.sel_registerName("copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:").?;
-    sel_setObjectLinkedFunctions_ = c.sel_registerName("setObjectLinkedFunctions:").?;
-    sel_parentRelativeSlice = c.sel_registerName("parentRelativeSlice").?;
-    sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_ = c.sel_registerName("drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:").?;
-    sel_setMaxFragmentCallStackDepth_ = c.sel_registerName("setMaxFragmentCallStackDepth:").?;
-    sel_primitiveDataStride = c.sel_registerName("primitiveDataStride").?;
-    sel_instanceDescriptorBuffer = c.sel_registerName("instanceDescriptorBuffer").?;
-    sel_setIndex_ = c.sel_registerName("setIndex:").?;
-    sel_setSupportAddingFragmentBinaryFunctions_ = c.sel_registerName("setSupportAddingFragmentBinaryFunctions:").?;
-    sel_setSpecializedName_ = c.sel_registerName("setSpecializedName:").?;
-    sel_copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount_ = c.sel_registerName("copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:").?;
-    sel_initWithName_arguments_controlDependencies_ = c.sel_registerName("initWithName:arguments:controlDependencies:").?;
-    sel_setInstanceCount_ = c.sel_registerName("setInstanceCount:").?;
-    sel_structType = c.sel_registerName("structType").?;
-    sel_setCommandTypes_ = c.sel_registerName("setCommandTypes:").?;
-    sel_layers = c.sel_registerName("layers").?;
-    sel_vertexPreloadedLibraries = c.sel_registerName("vertexPreloadedLibraries").?;
-    sel_stepRate = c.sel_registerName("stepRate").?;
-    sel_URL = c.sel_registerName("URL").?;
-    sel_isAliasable = c.sel_registerName("isAliasable").?;
-    sel_layouts = c.sel_registerName("layouts").?;
-    sel_setBinaryArchives_ = c.sel_registerName("setBinaryArchives:").?;
-    sel_maxThreadgroupMemoryLength = c.sel_registerName("maxThreadgroupMemoryLength").?;
-    sel_setOpaqueCurveIntersectionFunctionWithSignature_atIndex_ = c.sel_registerName("setOpaqueCurveIntersectionFunctionWithSignature:atIndex:").?;
-    sel_setMaxVertexAmplificationCount_ = c.sel_registerName("setMaxVertexAmplificationCount:").?;
-    sel_supportsFunctionPointersFromRender = c.sel_registerName("supportsFunctionPointersFromRender").?;
-    sel_supportAddingBinaryFunctions = c.sel_registerName("supportAddingBinaryFunctions").?;
-    sel_setOpaqueTriangleIntersectionFunctionWithSignature_withRange_ = c.sel_registerName("setOpaqueTriangleIntersectionFunctionWithSignature:withRange:").?;
-    sel_updateTextureMappings_mode_regions_mipLevels_slices_numRegions_ = c.sel_registerName("updateTextureMappings:mode:regions:mipLevels:slices:numRegions:").?;
-    sel_motionStartBorderMode = c.sel_registerName("motionStartBorderMode").?;
-    sel_newRenderPipelineStateWithDescriptor_options_completionHandler_ = c.sel_registerName("newRenderPipelineStateWithDescriptor:options:completionHandler:").?;
-    sel_startOfFragmentSampleIndex = c.sel_registerName("startOfFragmentSampleIndex").?;
-    sel_removeAllDebugMarkers = c.sel_registerName("removeAllDebugMarkers").?;
-    sel_kernelEndTime = c.sel_registerName("kernelEndTime").?;
-    sel_isUsed = c.sel_registerName("isUsed").?;
-    sel_indirectRenderCommandAtIndex_ = c.sel_registerName("indirectRenderCommandAtIndex:").?;
-    sel_setTessellationFactorFormat_ = c.sel_registerName("setTessellationFactorFormat:").?;
-    sel_constantBlockAlignment = c.sel_registerName("constantBlockAlignment").?;
-    sel_updateFence_afterStages_ = c.sel_registerName("updateFence:afterStages:").?;
-    sel_setMotionEndTime_ = c.sel_registerName("setMotionEndTime:").?;
-    sel_setComputePipelineState_ = c.sel_registerName("setComputePipelineState:").?;
-    sel_horizontal = c.sel_registerName("horizontal").?;
-    sel_setObjectTextures_withRange_ = c.sel_registerName("setObjectTextures:withRange:").?;
-    sel_dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup_ = c.sel_registerName("dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:").?;
-    sel_setScreenSize_ = c.sel_registerName("setScreenSize:").?;
-    sel_textureBufferDescriptorWithPixelFormat_width_resourceOptions_usage_ = c.sel_registerName("textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:").?;
-    sel_copyAccelerationStructure_toAccelerationStructure_ = c.sel_registerName("copyAccelerationStructure:toAccelerationStructure:").?;
-    sel_setAttributes_ = c.sel_registerName("setAttributes:").?;
-    sel_resetWithRange_ = c.sel_registerName("resetWithRange:").?;
-    sel_setFragmentBuffers_offsets_withRange_ = c.sel_registerName("setFragmentBuffers:offsets:withRange:").?;
-    sel_compareFunction = c.sel_registerName("compareFunction").?;
-    sel_newRasterizationRateMapWithDescriptor_ = c.sel_registerName("newRasterizationRateMapWithDescriptor:").?;
-    sel_setScissorRect_ = c.sel_registerName("setScissorRect:").?;
-    sel_setStencilFrontReferenceValue_backReferenceValue_ = c.sel_registerName("setStencilFrontReferenceValue:backReferenceValue:").?;
-    sel_fragmentBuffers = c.sel_registerName("fragmentBuffers").?;
-    sel_instanceDescriptorBufferOffset = c.sel_registerName("instanceDescriptorBufferOffset").?;
-    sel_setOptimizationLevel_ = c.sel_registerName("setOptimizationLevel:").?;
-    sel_parameterBufferSizeAndAlign = c.sel_registerName("parameterBufferSizeAndAlign").?;
-    sel_instanceDescriptorStride = c.sel_registerName("instanceDescriptorStride").?;
-    sel_setDefaultRasterSampleCount_ = c.sel_registerName("setDefaultRasterSampleCount:").?;
-    sel_alphaBlendOperation = c.sel_registerName("alphaBlendOperation").?;
-    sel_setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth_ = c.sel_registerName("setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:").?;
-    sel_setResolveSlice_ = c.sel_registerName("setResolveSlice:").?;
-    sel_setBuffers_offsets_withRange_ = c.sel_registerName("setBuffers:offsets:withRange:").?;
-    sel_elementStructType = c.sel_registerName("elementStructType").?;
-    sel_isHeadless = c.sel_registerName("isHeadless").?;
-    sel_areProgrammableSamplePositionsSupported = c.sel_registerName("areProgrammableSamplePositionsSupported").?;
-    sel_useHeaps_count_stages_ = c.sel_registerName("useHeaps:count:stages:").?;
-    sel_newFunctionWithName_constantValues_error_ = c.sel_registerName("newFunctionWithName:constantValues:error:").?;
-    sel_setPreserveInvariance_ = c.sel_registerName("setPreserveInvariance:").?;
-    sel_remoteStorageBuffer = c.sel_registerName("remoteStorageBuffer").?;
-    sel_boundingBoxBuffers = c.sel_registerName("boundingBoxBuffers").?;
-    sel_setDestinationAlphaBlendFactor_ = c.sel_registerName("setDestinationAlphaBlendFactor:").?;
-    sel_setBufferOffset_atIndex_ = c.sel_registerName("setBufferOffset:atIndex:").?;
-    sel_drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride_ = c.sel_registerName("drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:").?;
-    sel_drawableID = c.sel_registerName("drawableID").?;
-    sel_setVertexTextures_withRange_ = c.sel_registerName("setVertexTextures:withRange:").?;
-    sel_commandBufferWithDescriptor_ = c.sel_registerName("commandBufferWithDescriptor:").?;
-    sel_retainedReferences = c.sel_registerName("retainedReferences").?;
-    sel_setRgbBlendOperation_ = c.sel_registerName("setRgbBlendOperation:").?;
-    sel_rasterizationRateMapDescriptorWithScreenSize_ = c.sel_registerName("rasterizationRateMapDescriptorWithScreenSize:").?;
-    sel_setSupportAddingVertexBinaryFunctions_ = c.sel_registerName("setSupportAddingVertexBinaryFunctions:").?;
-    sel_depth = c.sel_registerName("depth").?;
-    sel_indexBuffer = c.sel_registerName("indexBuffer").?;
-    sel_setConstantValue_type_withName_ = c.sel_registerName("setConstantValue:type:withName:").?;
-    sel_initWithSampleCount_horizontal_vertical_ = c.sel_registerName("initWithSampleCount:horizontal:vertical:").?;
-    sel_newArgumentEncoderWithBufferIndex_ = c.sel_registerName("newArgumentEncoderWithBufferIndex:").?;
-    sel_functionNames = c.sel_registerName("functionNames").?;
-    sel_inputPrimitiveTopology = c.sel_registerName("inputPrimitiveTopology").?;
-    sel_libraries = c.sel_registerName("libraries").?;
-    sel_setTileWidth_ = c.sel_registerName("setTileWidth:").?;
-    sel_storeActionOptions = c.sel_registerName("storeActionOptions").?;
-    sel_threadgroupSizeMatchesTileSize = c.sel_registerName("threadgroupSizeMatchesTileSize").?;
-    sel_setMinFilter_ = c.sel_registerName("setMinFilter:").?;
-    sel_usedSize = c.sel_registerName("usedSize").?;
-    sel_setStepFunction_ = c.sel_registerName("setStepFunction:").?;
-    sel_waitForFence_ = c.sel_registerName("waitForFence:").?;
-    sel_setTessellationFactorBuffer_offset_instanceStride_ = c.sel_registerName("setTessellationFactorBuffer:offset:instanceStride:").?;
-    sel_setThreadgroupMemoryLength_offset_atIndex_ = c.sel_registerName("setThreadgroupMemoryLength:offset:atIndex:").?;
-    sel_setPrivateFunctions_ = c.sel_registerName("setPrivateFunctions:").?;
-    sel_screenSize = c.sel_registerName("screenSize").?;
-    sel_updateTextureMapping_mode_indirectBuffer_indirectBufferOffset_ = c.sel_registerName("updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:").?;
-    sel_commandQueue = c.sel_registerName("commandQueue").?;
-    sel_accelerationStructureCommandEncoder = c.sel_registerName("accelerationStructureCommandEncoder").?;
-    sel_line = c.sel_registerName("line").?;
-    sel_newRemoteTextureViewForDevice_ = c.sel_registerName("newRemoteTextureViewForDevice:").?;
-    sel_setColorStoreActionOptions_atIndex_ = c.sel_registerName("setColorStoreActionOptions:atIndex:").?;
-    sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options_ = c.sel_registerName("copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:").?;
-    sel_setReadMask_ = c.sel_registerName("setReadMask:").?;
-    sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_ = c.sel_registerName("copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:").?;
-    sel_convertSparsePixelRegions_toTileRegions_withTileSize_alignmentMode_numRegions_ = c.sel_registerName("convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:").?;
-    sel_setInputPrimitiveTopology_ = c.sel_registerName("setInputPrimitiveTopology:").?;
-    sel_initWithDispatchQueue_ = c.sel_registerName("initWithDispatchQueue:").?;
-    sel_offset = c.sel_registerName("offset").?;
-    sel_executeCommandsInBuffer_indirectBuffer_indirectBufferOffset_ = c.sel_registerName("executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:").?;
-    sel_linkedFunctions = c.sel_registerName("linkedFunctions").?;
-    sel_newLibraryWithURL_error_ = c.sel_registerName("newLibraryWithURL:error:").?;
-    sel_setStencilFailureOperation_ = c.sel_registerName("setStencilFailureOperation:").?;
-    sel_isRasterizationEnabled = c.sel_registerName("isRasterizationEnabled").?;
-    sel_bufferOffset = c.sel_registerName("bufferOffset").?;
-    sel_argumentDescriptor = c.sel_registerName("argumentDescriptor").?;
-    sel_dispatchThreadsPerTile_ = c.sel_registerName("dispatchThreadsPerTile:").?;
-    sel_hasUnifiedMemory = c.sel_registerName("hasUnifiedMemory").?;
-    sel_encoderLabel = c.sel_registerName("encoderLabel").?;
-    sel_signaledValue = c.sel_registerName("signaledValue").?;
-    sel_setDepthStoreAction_ = c.sel_registerName("setDepthStoreAction:").?;
-    sel_objectThreadgroupSizeIsMultipleOfThreadExecutionWidth = c.sel_registerName("objectThreadgroupSizeIsMultipleOfThreadExecutionWidth").?;
-    sel_maxTotalThreadsPerThreadgroup = c.sel_registerName("maxTotalThreadsPerThreadgroup").?;
-    sel_setFragmentSamplerStates_lodMinClamps_lodMaxClamps_withRange_ = c.sel_registerName("setFragmentSamplerStates:lodMinClamps:lodMaxClamps:withRange:").?;
-    sel_supportAddingVertexBinaryFunctions = c.sel_registerName("supportAddingVertexBinaryFunctions").?;
-    sel_newAccelerationStructureWithSize_ = c.sel_registerName("newAccelerationStructureWithSize:").?;
-    sel_objectAtIndexedSubscript_ = c.sel_registerName("objectAtIndexedSubscript:").?;
-    sel_setIntersectionFunctionTables_withBufferRange_ = c.sel_registerName("setIntersectionFunctionTables:withBufferRange:").?;
-    sel_fragmentFunction = c.sel_registerName("fragmentFunction").?;
-    sel_setIndexBufferOffset_ = c.sel_registerName("setIndexBufferOffset:").?;
-    sel_insertDebugSignpost_ = c.sel_registerName("insertDebugSignpost:").?;
-    sel_setMeshBuffer_offset_atIndex_ = c.sel_registerName("setMeshBuffer:offset:atIndex:").?;
-    sel_newIOFileHandleWithURL_error_ = c.sel_registerName("newIOFileHandleWithURL:error:").?;
-    sel_presentedTime = c.sel_registerName("presentedTime").?;
-    sel_sampleTimestamps_gpuTimestamp_ = c.sel_registerName("sampleTimestamps:gpuTimestamp:").?;
-    sel_functionDescriptor = c.sel_registerName("functionDescriptor").?;
-    sel_depthPlane = c.sel_registerName("depthPlane").?;
-    sel_fillBuffer_range_value_ = c.sel_registerName("fillBuffer:range:value:").?;
-    sel_useResources_count_usage_stages_ = c.sel_registerName("useResources:count:usage:stages:").?;
-    sel_setSupportDynamicAttributeStride_ = c.sel_registerName("setSupportDynamicAttributeStride:").?;
-    sel_setVisibleFunctionTables_withBufferRange_ = c.sel_registerName("setVisibleFunctionTables:withBufferRange:").?;
-    sel_encodedLength = c.sel_registerName("encodedLength").?;
-    sel_setObjectSamplerState_atIndex_ = c.sel_registerName("setObjectSamplerState:atIndex:").?;
-    sel_setFragmentIntersectionFunctionTable_atBufferIndex_ = c.sel_registerName("setFragmentIntersectionFunctionTable:atBufferIndex:").?;
-    sel_shouldMaximizeConcurrentCompilation = c.sel_registerName("shouldMaximizeConcurrentCompilation").?;
-    sel_GPUStartTime = c.sel_registerName("GPUStartTime").?;
-    sel_primitiveDataBuffer = c.sel_registerName("primitiveDataBuffer").?;
-    sel_isActive = c.sel_registerName("isActive").?;
-    sel_commandBuffer = c.sel_registerName("commandBuffer").?;
-    sel_insertLibraries = c.sel_registerName("insertLibraries").?;
-    sel_maxKernelThreadgroupMemoryBindCount = c.sel_registerName("maxKernelThreadgroupMemoryBindCount").?;
-    sel_tailSizeInBytes = c.sel_registerName("tailSizeInBytes").?;
-    sel_setCompressionType_ = c.sel_registerName("setCompressionType:").?;
-    sel_column = c.sel_registerName("column").?;
-    sel_enqueueBarrier = c.sel_registerName("enqueueBarrier").?;
-    sel_isTessellationFactorScaleEnabled = c.sel_registerName("isTessellationFactorScaleEnabled").?;
-    sel_setUrl_ = c.sel_registerName("setUrl:").?;
-    sel_loadBytes_size_sourceHandle_sourceHandleOffset_ = c.sel_registerName("loadBytes:size:sourceHandle:sourceHandleOffset:").?;
-    sel_setRasterizationEnabled_ = c.sel_registerName("setRasterizationEnabled:").?;
-    sel_maxKernelBufferBindCount = c.sel_registerName("maxKernelBufferBindCount").?;
-    sel_supportsBCTextureCompression = c.sel_registerName("supportsBCTextureCompression").?;
-    sel_argumentBuffersSupport = c.sel_registerName("argumentBuffersSupport").?;
-    sel_setStartOfFragmentSampleIndex_ = c.sel_registerName("setStartOfFragmentSampleIndex:").?;
-    sel_setSamplerStates_lodMinClamps_lodMaxClamps_withRange_ = c.sel_registerName("setSamplerStates:lodMinClamps:lodMaxClamps:withRange:").?;
-    sel_newFunctionWithName_constantValues_completionHandler_ = c.sel_registerName("newFunctionWithName:constantValues:completionHandler:").?;
-    sel_verticalSampleStorage = c.sel_registerName("verticalSampleStorage").?;
-    sel_setPreprocessorMacros_ = c.sel_registerName("setPreprocessorMacros:").?;
-    sel_setStageInputDescriptor_ = c.sel_registerName("setStageInputDescriptor:").?;
-    sel_setCullMode_ = c.sel_registerName("setCullMode:").?;
-    sel_motionTransformCount = c.sel_registerName("motionTransformCount").?;
-    sel_maxCommandsInFlight = c.sel_registerName("maxCommandsInFlight").?;
-    sel_setDepthCompareFunction_ = c.sel_registerName("setDepthCompareFunction:").?;
-    sel_setDepthStencilPassOperation_ = c.sel_registerName("setDepthStencilPassOperation:").?;
-    sel_setTileSamplerState_atIndex_ = c.sel_registerName("setTileSamplerState:atIndex:").?;
-    sel_motionEndBorderMode = c.sel_registerName("motionEndBorderMode").?;
-    sel_areRasterOrderGroupsSupported = c.sel_registerName("areRasterOrderGroupsSupported").?;
-    sel_drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance_ = c.sel_registerName("drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:").?;
-    sel_setPixelFormat_ = c.sel_registerName("setPixelFormat:").?;
-    sel_setLibraries_ = c.sel_registerName("setLibraries:").?;
-    sel_setTextureType_ = c.sel_registerName("setTextureType:").?;
-    sel_newArgumentEncoderForBufferAtIndex_ = c.sel_registerName("newArgumentEncoderForBufferAtIndex:").?;
-    sel_setKernelBuffer_offset_attributeStride_atIndex_ = c.sel_registerName("setKernelBuffer:offset:attributeStride:atIndex:").?;
-    sel_newFunctionWithDescriptor_completionHandler_ = c.sel_registerName("newFunctionWithDescriptor:completionHandler:").?;
-    sel_newFunctionWithName_ = c.sel_registerName("newFunctionWithName:").?;
-    sel_makeAliasable = c.sel_registerName("makeAliasable").?;
-    sel_newIntersectionFunctionWithDescriptor_error_ = c.sel_registerName("newIntersectionFunctionWithDescriptor:error:").?;
-    sel_bufferAlignment = c.sel_registerName("bufferAlignment").?;
-    sel_isRemovable = c.sel_registerName("isRemovable").?;
-    sel_dispatchThreads_threadsPerThreadgroup_ = c.sel_registerName("dispatchThreads:threadsPerThreadgroup:").?;
-    sel_setIntersectionFunctionTable_atIndex_ = c.sel_registerName("setIntersectionFunctionTable:atIndex:").?;
-    sel_clearDepth = c.sel_registerName("clearDepth").?;
-    sel_rgbBlendOperation = c.sel_registerName("rgbBlendOperation").?;
-    sel_getSamplePositions_count_ = c.sel_registerName("getSamplePositions:count:").?;
-    sel_setDepthAttachmentPixelFormat_ = c.sel_registerName("setDepthAttachmentPixelFormat:").?;
-    sel_dataSize = c.sel_registerName("dataSize").?;
-    sel_sourceAlphaBlendFactor = c.sel_registerName("sourceAlphaBlendFactor").?;
-    sel_threadExecutionWidth = c.sel_registerName("threadExecutionWidth").?;
-    sel_supportsDynamicLibraries = c.sel_registerName("supportsDynamicLibraries").?;
-    sel_setMeshTexture_atIndex_ = c.sel_registerName("setMeshTexture:atIndex:").?;
-    sel_loadAction = c.sel_registerName("loadAction").?;
-    sel_sampleCount = c.sel_registerName("sampleCount").?;
-    sel_locationNumber = c.sel_registerName("locationNumber").?;
-    sel_newAccelerationStructureWithSize_offset_ = c.sel_registerName("newAccelerationStructureWithSize:offset:").?;
-    sel_isCapturing = c.sel_registerName("isCapturing").?;
-    sel_bufferIndex = c.sel_registerName("bufferIndex").?;
-    sel_index = c.sel_registerName("index").?;
-    sel_recommendedMaxWorkingSetSize = c.sel_registerName("recommendedMaxWorkingSetSize").?;
-    sel_arrayLength = c.sel_registerName("arrayLength").?;
-    sel_newLibraryWithSource_options_error_ = c.sel_registerName("newLibraryWithSource:options:error:").?;
-    sel_setSourceAlphaBlendFactor_ = c.sel_registerName("setSourceAlphaBlendFactor:").?;
-    sel_newDynamicLibraryWithURL_error_ = c.sel_registerName("newDynamicLibraryWithURL:error:").?;
-    sel_heapTextureSizeAndAlignWithDescriptor_ = c.sel_registerName("heapTextureSizeAndAlignWithDescriptor:").?;
-    sel_stageInputAttributes = c.sel_registerName("stageInputAttributes").?;
-    sel_members = c.sel_registerName("members").?;
-    sel_setFragmentAdditionalBinaryFunctions_ = c.sel_registerName("setFragmentAdditionalBinaryFunctions:").?;
-    sel_setTexture_atIndex_ = c.sel_registerName("setTexture:atIndex:").?;
-    sel_captureObject = c.sel_registerName("captureObject").?;
-    sel_addBarrier = c.sel_registerName("addBarrier").?;
-    sel_supportArgumentBuffers = c.sel_registerName("supportArgumentBuffers").?;
-    sel_vertexStride = c.sel_registerName("vertexStride").?;
-    sel_setBoundingBoxStride_ = c.sel_registerName("setBoundingBoxStride:").?;
-    sel_setStartOfEncoderSampleIndex_ = c.sel_registerName("setStartOfEncoderSampleIndex:").?;
-    sel_setMagFilter_ = c.sel_registerName("setMagFilter:").?;
-    sel_setArgumentIndex_ = c.sel_registerName("setArgumentIndex:").?;
-    sel_parentRelativeLevel = c.sel_registerName("parentRelativeLevel").?;
-    sel_newCaptureScopeWithCommandQueue_ = c.sel_registerName("newCaptureScopeWithCommandQueue:").?;
-    sel_setSlice_ = c.sel_registerName("setSlice:").?;
-    sel_pixelFormat = c.sel_registerName("pixelFormat").?;
-    sel_argumentIndexStride = c.sel_registerName("argumentIndexStride").?;
-    sel_kernelStartTime = c.sel_registerName("kernelStartTime").?;
-    sel_destinationRGBBlendFactor = c.sel_registerName("destinationRGBBlendFactor").?;
-    sel_rasterSampleCount = c.sel_registerName("rasterSampleCount").?;
-    sel_maxArgumentBufferSamplerCount = c.sel_registerName("maxArgumentBufferSamplerCount").?;
-    sel_argumentIndex = c.sel_registerName("argumentIndex").?;
-    sel_newRenderPipelineStateWithDescriptor_options_reflection_error_ = c.sel_registerName("newRenderPipelineStateWithDescriptor:options:reflection:error:").?;
-    sel_normalizedCoordinates = c.sel_registerName("normalizedCoordinates").?;
-    sel_setVertexAccelerationStructure_atBufferIndex_ = c.sel_registerName("setVertexAccelerationStructure:atBufferIndex:").?;
-    sel_heapBufferSizeAndAlignWithLength_options_ = c.sel_registerName("heapBufferSizeAndAlignWithLength:options:").?;
-    sel_drawPatches_patchIndexBuffer_patchIndexBufferOffset_indirectBuffer_indirectBufferOffset_ = c.sel_registerName("drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:").?;
-    sel_currentAllocatedSize = c.sel_registerName("currentAllocatedSize").?;
-    sel_objectBuffers = c.sel_registerName("objectBuffers").?;
-    sel_accelerationStructureCommandEncoderWithDescriptor_ = c.sel_registerName("accelerationStructureCommandEncoderWithDescriptor:").?;
-    sel_drawPrimitives_vertexStart_vertexCount_ = c.sel_registerName("drawPrimitives:vertexStart:vertexCount:").?;
-    sel_alignment = c.sel_registerName("alignment").?;
-    sel_newRenderPipelineStateWithTileDescriptor_options_reflection_error_ = c.sel_registerName("newRenderPipelineStateWithTileDescriptor:options:reflection:error:").?;
-    sel_resolveDepthPlane = c.sel_registerName("resolveDepthPlane").?;
-    sel_threadgroupMemoryDataSize = c.sel_registerName("threadgroupMemoryDataSize").?;
-    sel_setConstantValues_type_withRange_ = c.sel_registerName("setConstantValues:type:withRange:").?;
-    sel_newComputePipelineStateWithDescriptor_options_reflection_error_ = c.sel_registerName("newComputePipelineStateWithDescriptor:options:reflection:error:").?;
-    sel_fragmentLinkedFunctions = c.sel_registerName("fragmentLinkedFunctions").?;
-    sel_setIndirectCommandBuffers_withRange_ = c.sel_registerName("setIndirectCommandBuffers:withRange:").?;
-    sel_startCaptureWithDescriptor_error_ = c.sel_registerName("startCaptureWithDescriptor:error:").?;
-    sel_setBuffer_offset_attributeStride_atIndex_ = c.sel_registerName("setBuffer:offset:attributeStride:atIndex:").?;
-    sel_function = c.sel_registerName("function").?;
-    sel_intersectionFunctionTableOffset = c.sel_registerName("intersectionFunctionTableOffset").?;
-    sel_fragmentAdditionalBinaryFunctions = c.sel_registerName("fragmentAdditionalBinaryFunctions").?;
-    sel_blitPassDescriptor = c.sel_registerName("blitPassDescriptor").?;
-    sel_preprocessorMacros = c.sel_registerName("preprocessorMacros").?;
-    sel_sourceRGBBlendFactor = c.sel_registerName("sourceRGBBlendFactor").?;
-    sel_blitCommandEncoder = c.sel_registerName("blitCommandEncoder").?;
-    sel_setInstallName_ = c.sel_registerName("setInstallName:").?;
-    sel_lodMaxClamp = c.sel_registerName("lodMaxClamp").?;
-    sel_setVertexBuffers_ = c.sel_registerName("setVertexBuffers:").?;
-    sel_defaultCaptureScope = c.sel_registerName("defaultCaptureScope").?;
-    sel_signalEvent_value_ = c.sel_registerName("signalEvent:value:").?;
-    sel_setEndOfFragmentSampleIndex_ = c.sel_registerName("setEndOfFragmentSampleIndex:").?;
-    sel_tileBuffers = c.sel_registerName("tileBuffers").?;
-    sel_vertexArguments = c.sel_registerName("vertexArguments").?;
-    sel_setOutputNode_ = c.sel_registerName("setOutputNode:").?;
-    sel_vertexFunction = c.sel_registerName("vertexFunction").?;
-    sel_drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_ = c.sel_registerName("drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:").?;
-    sel_required = c.sel_registerName("required").?;
-    sel_setTessellationControlPointIndexType_ = c.sel_registerName("setTessellationControlPointIndexType:").?;
-    sel_mipFilter = c.sel_registerName("mipFilter").?;
-    sel_setInheritPipelineState_ = c.sel_registerName("setInheritPipelineState:").?;
-    sel_maximumConcurrentCompilationTaskCount = c.sel_registerName("maximumConcurrentCompilationTaskCount").?;
-    sel_setSAddressMode_ = c.sel_registerName("setSAddressMode:").?;
-    sel_copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options_ = c.sel_registerName("copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:").?;
-    sel_newIndirectCommandBufferWithDescriptor_maxCommandCount_options_ = c.sel_registerName("newIndirectCommandBufferWithDescriptor:maxCommandCount:options:").?;
-    sel_indexType = c.sel_registerName("indexType").?;
-    sel_setVertexBuffers_offsets_withRange_ = c.sel_registerName("setVertexBuffers:offsets:withRange:").?;
-    sel_useHeaps_count_ = c.sel_registerName("useHeaps:count:").?;
-    sel_setVertexBuffers_offsets_attributeStrides_withRange_ = c.sel_registerName("setVertexBuffers:offsets:attributeStrides:withRange:").?;
-    sel_waitForEvent_value_ = c.sel_registerName("waitForEvent:value:").?;
-    sel_newHeapWithDescriptor_ = c.sel_registerName("newHeapWithDescriptor:").?;
-    sel_resolveTexture = c.sel_registerName("resolveTexture").?;
-    sel_resolveSlice = c.sel_registerName("resolveSlice").?;
-    sel_setVertexAdditionalBinaryFunctions_ = c.sel_registerName("setVertexAdditionalBinaryFunctions:").?;
-    sel_setFastMathEnabled_ = c.sel_registerName("setFastMathEnabled:").?;
-    sel_setMaxCallStackDepth_ = c.sel_registerName("setMaxCallStackDepth:").?;
-    sel_hazardTrackingMode = c.sel_registerName("hazardTrackingMode").?;
-    sel_supportDynamicAttributeStride = c.sel_registerName("supportDynamicAttributeStride").?;
-    sel_setFunctionGraphs_ = c.sel_registerName("setFunctionGraphs:").?;
-    sel_setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth_ = c.sel_registerName("setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:").?;
-    sel_layerAtIndex_ = c.sel_registerName("layerAtIndex:").?;
-    sel_minimumTextureBufferAlignmentForPixelFormat_ = c.sel_registerName("minimumTextureBufferAlignmentForPixelFormat:").?;
-    sel_setVertexBuffer_ = c.sel_registerName("setVertexBuffer:").?;
-    sel_supportsQueryTextureLOD = c.sel_registerName("supportsQueryTextureLOD").?;
-    sel_setVertexBufferOffset_atIndex_ = c.sel_registerName("setVertexBufferOffset:atIndex:").?;
-    sel_setObjectBufferOffset_atIndex_ = c.sel_registerName("setObjectBufferOffset:atIndex:").?;
-    sel_setMutability_ = c.sel_registerName("setMutability:").?;
-    sel_vertexLinkedFunctions = c.sel_registerName("vertexLinkedFunctions").?;
-    sel_newCaptureScopeWithDevice_ = c.sel_registerName("newCaptureScopeWithDevice:").?;
-    sel_supportsRenderDynamicLibraries = c.sel_registerName("supportsRenderDynamicLibraries").?;
-    sel_pointerType = c.sel_registerName("pointerType").?;
-    sel_setFragmentBuffer_offset_atIndex_ = c.sel_registerName("setFragmentBuffer:offset:atIndex:").?;
-    sel_bufferDataSize = c.sel_registerName("bufferDataSize").?;
-    sel_setClearDepth_ = c.sel_registerName("setClearDepth:").?;
-    sel_attributeIndex = c.sel_registerName("attributeIndex").?;
-    sel_setArgumentBuffer_startOffset_arrayElement_ = c.sel_registerName("setArgumentBuffer:startOffset:arrayElement:").?;
-    sel_resetTextureAccessCounters_region_mipLevel_slice_ = c.sel_registerName("resetTextureAccessCounters:region:mipLevel:slice:").?;
-    sel_constantValues = c.sel_registerName("constantValues").?;
-    sel_copyFromTexture_toTexture_ = c.sel_registerName("copyFromTexture:toTexture:").?;
-    sel_setStencilAttachmentPixelFormat_ = c.sel_registerName("setStencilAttachmentPixelFormat:").?;
-    sel_setMaxVertexBufferBindCount_ = c.sel_registerName("setMaxVertexBufferBindCount:").?;
-    sel_error = c.sel_registerName("error").?;
-    sel_instanceCount = c.sel_registerName("instanceCount").?;
-    sel_fastMathEnabled = c.sel_registerName("fastMathEnabled").?;
-    sel_drawPrimitives_indirectBuffer_indirectBufferOffset_ = c.sel_registerName("drawPrimitives:indirectBuffer:indirectBufferOffset:").?;
-    sel_concurrentDispatchThreads_threadsPerThreadgroup_ = c.sel_registerName("concurrentDispatchThreads:threadsPerThreadgroup:").?;
-    sel_presentDrawable_atTime_ = c.sel_registerName("presentDrawable:atTime:").?;
-    sel_newIntersectionFunctionTableWithDescriptor_stage_ = c.sel_registerName("newIntersectionFunctionTableWithDescriptor:stage:").?;
-    sel_readWriteTextureSupport = c.sel_registerName("readWriteTextureSupport").?;
-    sel_supportsShaderBarycentricCoordinates = c.sel_registerName("supportsShaderBarycentricCoordinates").?;
-    sel_endEncoding = c.sel_registerName("endEncoding").?;
-    sel_setDispatchType_ = c.sel_registerName("setDispatchType:").?;
-    sel_useResources_count_usage_ = c.sel_registerName("useResources:count:usage:").?;
-    sel_setBufferOffset_attributeStride_atIndex_ = c.sel_registerName("setBufferOffset:attributeStride:atIndex:").?;
-    sel_setVisibilityResultMode_offset_ = c.sel_registerName("setVisibilityResultMode:offset:").?;
-    sel_drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance_ = c.sel_registerName("drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:").?;
-    sel_renderTargetWidth = c.sel_registerName("renderTargetWidth").?;
-    sel_sAddressMode = c.sel_registerName("sAddressMode").?;
-    sel_newRenderPipelineStateWithTileDescriptor_options_completionHandler_ = c.sel_registerName("newRenderPipelineStateWithTileDescriptor:options:completionHandler:").?;
-    sel_startCaptureWithCommandQueue_ = c.sel_registerName("startCaptureWithCommandQueue:").?;
-    sel_setMaxKernelBufferBindCount_ = c.sel_registerName("setMaxKernelBufferBindCount:").?;
-    sel_peerGroupID = c.sel_registerName("peerGroupID").?;
-    sel_initWithSampleCount_ = c.sel_registerName("initWithSampleCount:").?;
-    sel_waitUntilCompleted = c.sel_registerName("waitUntilCompleted").?;
-    sel_setBlendingEnabled_ = c.sel_registerName("setBlendingEnabled:").?;
-    sel_size = c.sel_registerName("size").?;
-    sel_setOpaque_ = c.sel_registerName("setOpaque:").?;
-    sel_supportsRasterizationRateMapWithLayerCount_ = c.sel_registerName("supportsRasterizationRateMapWithLayerCount:").?;
-    sel_storeAction = c.sel_registerName("storeAction").?;
-    sel_setMotionStartBorderMode_ = c.sel_registerName("setMotionStartBorderMode:").?;
-    sel_setWriteMask_ = c.sel_registerName("setWriteMask:").?;
-    sel_newCounterSampleBufferWithDescriptor_error_ = c.sel_registerName("newCounterSampleBufferWithDescriptor:error:").?;
-    sel_mapPhysicalToScreenCoordinates_forLayer_ = c.sel_registerName("mapPhysicalToScreenCoordinates:forLayer:").?;
-    sel_setResolveLevel_ = c.sel_registerName("setResolveLevel:").?;
-    sel_depthAttachmentPixelFormat = c.sel_registerName("depthAttachmentPixelFormat").?;
-    sel_setName_ = c.sel_registerName("setName:").?;
-    sel_fragmentPreloadedLibraries = c.sel_registerName("fragmentPreloadedLibraries").?;
-    sel_setDepth_ = c.sel_registerName("setDepth:").?;
-    sel_newTextureViewWithPixelFormat_ = c.sel_registerName("newTextureViewWithPixelFormat:").?;
-    sel_vertexAdditionalBinaryFunctions = c.sel_registerName("vertexAdditionalBinaryFunctions").?;
-    sel_setRAddressMode_ = c.sel_registerName("setRAddressMode:").?;
-    sel_setTileIntersectionFunctionTable_atBufferIndex_ = c.sel_registerName("setTileIntersectionFunctionTable:atBufferIndex:").?;
-    sel_setMeshSamplerStates_lodMinClamps_lodMaxClamps_withRange_ = c.sel_registerName("setMeshSamplerStates:lodMinClamps:lodMaxClamps:withRange:").?;
-    sel_functionGraphs = c.sel_registerName("functionGraphs").?;
-    sel_computeCommandEncoderWithDescriptor_ = c.sel_registerName("computeCommandEncoderWithDescriptor:").?;
-    sel_optimizeContentsForGPUAccess_ = c.sel_registerName("optimizeContentsForGPUAccess:").?;
-    sel_depthResolveFilter = c.sel_registerName("depthResolveFilter").?;
-    sel_setFunctionName_ = c.sel_registerName("setFunctionName:").?;
-    sel_newSharedTextureHandle = c.sel_registerName("newSharedTextureHandle").?;
-    sel_storageMode = c.sel_registerName("storageMode").?;
-    sel_setSupportIndirectCommandBuffers_ = c.sel_registerName("setSupportIndirectCommandBuffers:").?;
-    sel_setSamplerStates_withRange_ = c.sel_registerName("setSamplerStates:withRange:").?;
-    sel_setMotionTransformCount_ = c.sel_registerName("setMotionTransformCount:").?;
-    sel_encodeWaitForEvent_value_ = c.sel_registerName("encodeWaitForEvent:value:").?;
-    sel_counterSets = c.sel_registerName("counterSets").?;
-    sel_vertical = c.sel_registerName("vertical").?;
-    sel_setSupportAddingBinaryFunctions_ = c.sel_registerName("setSupportAddingBinaryFunctions:").?;
-    sel_newBufferWithBytesNoCopy_length_options_deallocator_ = c.sel_registerName("newBufferWithBytesNoCopy:length:options:deallocator:").?;
-    sel_clearBarrier = c.sel_registerName("clearBarrier").?;
-    sel_binaryFunctions = c.sel_registerName("binaryFunctions").?;
-    sel_addRenderPipelineFunctionsWithDescriptor_error_ = c.sel_registerName("addRenderPipelineFunctionsWithDescriptor:error:").?;
-    sel_setVertexPreloadedLibraries_ = c.sel_registerName("setVertexPreloadedLibraries:").?;
-    sel_setVertexBufferOffset_ = c.sel_registerName("setVertexBufferOffset:").?;
-    sel_vertexBufferOffset = c.sel_registerName("vertexBufferOffset").?;
-    sel_newArgumentEncoderWithBufferBinding_ = c.sel_registerName("newArgumentEncoderWithBufferBinding:").?;
-    sel_iosurface = c.sel_registerName("iosurface").?;
-    sel_newRenderPipelineStateWithMeshDescriptor_options_completionHandler_ = c.sel_registerName("newRenderPipelineStateWithMeshDescriptor:options:completionHandler:").?;
-    sel_imageblockSampleLength = c.sel_registerName("imageblockSampleLength").?;
-    sel_instancedAccelerationStructures = c.sel_registerName("instancedAccelerationStructures").?;
-    sel_url = c.sel_registerName("url").?;
-    sel_setFragmentBufferOffset_atIndex_ = c.sel_registerName("setFragmentBufferOffset:atIndex:").?;
-    sel_setVertexStride_ = c.sel_registerName("setVertexStride:").?;
-    sel_writeCompactedAccelerationStructureSize_toBuffer_offset_ = c.sel_registerName("writeCompactedAccelerationStructureSize:toBuffer:offset:").?;
-    sel_setTessellationPartitionMode_ = c.sel_registerName("setTessellationPartitionMode:").?;
-    sel_setTileFunction_ = c.sel_registerName("setTileFunction:").?;
-    sel_setFragmentLinkedFunctions_ = c.sel_registerName("setFragmentLinkedFunctions:").?;
-    sel_setVertexSamplerStates_lodMinClamps_lodMaxClamps_withRange_ = c.sel_registerName("setVertexSamplerStates:lodMinClamps:lodMaxClamps:withRange:").?;
-    sel_setMotionKeyframeCount_ = c.sel_registerName("setMotionKeyframeCount:").?;
-    sel_setViewports_count_ = c.sel_registerName("setViewports:count:").?;
-    sel_newLibraryWithStitchedDescriptor_error_ = c.sel_registerName("newLibraryWithStitchedDescriptor:error:").?;
-    sel_setBytes_length_atIndex_ = c.sel_registerName("setBytes:length:atIndex:").?;
-    sel_resolveCounterRange_ = c.sel_registerName("resolveCounterRange:").?;
-    sel_scratchBufferAllocator = c.sel_registerName("scratchBufferAllocator").?;
-    sel_functionConstantsDictionary = c.sel_registerName("functionConstantsDictionary").?;
-    sel_newSharedEvent = c.sel_registerName("newSharedEvent").?;
-    sel_setMaxCommandBufferCount_ = c.sel_registerName("setMaxCommandBufferCount:").?;
-    sel_supportsFeatureSet_ = c.sel_registerName("supportsFeatureSet:").?;
-    sel_vertexAttributes = c.sel_registerName("vertexAttributes").?;
-    sel_vertexDescriptor = c.sel_registerName("vertexDescriptor").?;
-    sel_motionTransformBuffer = c.sel_registerName("motionTransformBuffer").?;
-    sel_bindings = c.sel_registerName("bindings").?;
-    sel_intersectionFunctionTableDescriptor = c.sel_registerName("intersectionFunctionTableDescriptor").?;
-    sel_setFragmentVisibleFunctionTables_withBufferRange_ = c.sel_registerName("setFragmentVisibleFunctionTables:withBufferRange:").?;
-    sel_renderTargetHeight = c.sel_registerName("renderTargetHeight").?;
-    sel_setTessellationFactorScale_ = c.sel_registerName("setTessellationFactorScale:").?;
-    sel_maxThreadsPerThreadgroup = c.sel_registerName("maxThreadsPerThreadgroup").?;
-    sel_setSamplerState_atIndex_ = c.sel_registerName("setSamplerState:atIndex:").?;
-    sel_setTexture_ = c.sel_registerName("setTexture:").?;
-    sel_isLowPower = c.sel_registerName("isLowPower").?;
-    sel_lodAverage = c.sel_registerName("lodAverage").?;
-    sel_replaceRegion_mipmapLevel_slice_withBytes_bytesPerRow_bytesPerImage_ = c.sel_registerName("replaceRegion:mipmapLevel:slice:withBytes:bytesPerRow:bytesPerImage:").?;
-    sel_setFragmentBytes_length_atIndex_ = c.sel_registerName("setFragmentBytes:length:atIndex:").?;
-    sel_newDepthStencilStateWithDescriptor_ = c.sel_registerName("newDepthStencilStateWithDescriptor:").?;
-    sel_supportsDestination_ = c.sel_registerName("supportsDestination:").?;
-    sel_triangleCount = c.sel_registerName("triangleCount").?;
-    sel_newSamplerStateWithDescriptor_ = c.sel_registerName("newSamplerStateWithDescriptor:").?;
-    sel_didModifyRange_ = c.sel_registerName("didModifyRange:").?;
-    sel_patchType = c.sel_registerName("patchType").?;
-    sel_rAddressMode = c.sel_registerName("rAddressMode").?;
-    sel_copyIndirectCommandBuffer_sourceRange_destination_destinationIndex_ = c.sel_registerName("copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:").?;
-    sel_setIntersectionFunctionTableOffset_ = c.sel_registerName("setIntersectionFunctionTableOffset:").?;
-    sel_setMaxTessellationFactor_ = c.sel_registerName("setMaxTessellationFactor:").?;
-    sel_setLodMaxClamp_ = c.sel_registerName("setLodMaxClamp:").?;
-    sel_setRenderTargetWidth_ = c.sel_registerName("setRenderTargetWidth:").?;
-    sel_initWithArgumentIndex_ = c.sel_registerName("initWithArgumentIndex:").?;
-    sel_outputNode = c.sel_registerName("outputNode").?;
-    sel_setCompareFunction_ = c.sel_registerName("setCompareFunction:").?;
-    sel_maxFragmentBufferBindCount = c.sel_registerName("maxFragmentBufferBindCount").?;
-    sel_cpuCacheMode = c.sel_registerName("cpuCacheMode").?;
-    sel_setCompileSymbolVisibility_ = c.sel_registerName("setCompileSymbolVisibility:").?;
-    sel_setNodes_ = c.sel_registerName("setNodes:").?;
-    sel_errorOptions = c.sel_registerName("errorOptions").?;
-    sel_setMaxObjectThreadgroupMemoryBindCount_ = c.sel_registerName("setMaxObjectThreadgroupMemoryBindCount:").?;
-    sel_setInstanceDescriptorBuffer_ = c.sel_registerName("setInstanceDescriptorBuffer:").?;
-    sel_drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup_ = c.sel_registerName("drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:").?;
-    sel_contents = c.sel_registerName("contents").?;
-    sel_setFragmentPreloadedLibraries_ = c.sel_registerName("setFragmentPreloadedLibraries:").?;
-    sel_copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_ = c.sel_registerName("copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:").?;
-    sel_maxTotalThreadsPerObjectThreadgroup = c.sel_registerName("maxTotalThreadsPerObjectThreadgroup").?;
-    sel_setTileIntersectionFunctionTables_withBufferRange_ = c.sel_registerName("setTileIntersectionFunctionTables:withBufferRange:").?;
-    sel_setBoundingBoxBufferOffset_ = c.sel_registerName("setBoundingBoxBufferOffset:").?;
-    sel_setTileBytes_length_atIndex_ = c.sel_registerName("setTileBytes:length:atIndex:").?;
-    sel_loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset_ = c.sel_registerName("loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:").?;
-    sel_stageInputDescriptor = c.sel_registerName("stageInputDescriptor").?;
-    sel_drawIndexedPatches_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_indirectBuffer_indirectBufferOffset_ = c.sel_registerName("drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:").?;
-    sel_setKernelBuffer_offset_atIndex_ = c.sel_registerName("setKernelBuffer:offset:atIndex:").?;
-    sel_newIOHandleWithURL_error_ = c.sel_registerName("newIOHandleWithURL:error:").?;
-    sel_stepFunction = c.sel_registerName("stepFunction").?;
-    sel_setMotionTransformBufferOffset_ = c.sel_registerName("setMotionTransformBufferOffset:").?;
-    sel_newComputePipelineStateWithFunction_options_reflection_error_ = c.sel_registerName("newComputePipelineStateWithFunction:options:reflection:error:").?;
-    sel_setConstantValue_type_atIndex_ = c.sel_registerName("setConstantValue:type:atIndex:").?;
-    sel_newEvent = c.sel_registerName("newEvent").?;
-    sel_setSupportRayTracing_ = c.sel_registerName("setSupportRayTracing:").?;
-    sel_concurrentDispatchThreadgroups_threadsPerThreadgroup_ = c.sel_registerName("concurrentDispatchThreadgroups:threadsPerThreadgroup:").?;
-    sel_setStencilStoreActionOptions_ = c.sel_registerName("setStencilStoreActionOptions:").?;
-    sel_maxObjectThreadgroupMemoryBindCount = c.sel_registerName("maxObjectThreadgroupMemoryBindCount").?;
-    sel_sparseTileSizeInBytesForSparsePageSize_ = c.sel_registerName("sparseTileSizeInBytesForSparsePageSize:").?;
-    sel_newDefaultLibraryWithBundle_error_ = c.sel_registerName("newDefaultLibraryWithBundle:error:").?;
-    sel_drawPrimitives_vertexStart_vertexCount_instanceCount_ = c.sel_registerName("drawPrimitives:vertexStart:vertexCount:instanceCount:").?;
-    sel_replaceRegion_mipmapLevel_withBytes_bytesPerRow_ = c.sel_registerName("replaceRegion:mipmapLevel:withBytes:bytesPerRow:").?;
-    sel_transformationMatrixBuffer = c.sel_registerName("transformationMatrixBuffer").?;
-    sel_useResource_usage_ = c.sel_registerName("useResource:usage:").?;
-    sel_setDepthFailureOperation_ = c.sel_registerName("setDepthFailureOperation:").?;
-    sel_sparseTileSizeWithTextureType_pixelFormat_sampleCount_ = c.sel_registerName("sparseTileSizeWithTextureType:pixelFormat:sampleCount:").?;
-    sel_nodes = c.sel_registerName("nodes").?;
-    sel_setPrimitiveDataBuffer_ = c.sel_registerName("setPrimitiveDataBuffer:").?;
-    sel_clearStencil = c.sel_registerName("clearStencil").?;
-    sel_supportsRaytracing = c.sel_registerName("supportsRaytracing").?;
-    sel_setLodAverage_ = c.sel_registerName("setLodAverage:").?;
-    sel_setGroups_ = c.sel_registerName("setGroups:").?;
-    sel_newTextureWithDescriptor_offset_bytesPerRow_ = c.sel_registerName("newTextureWithDescriptor:offset:bytesPerRow:").?;
-    sel_optimizeIndirectCommandBuffer_withRange_ = c.sel_registerName("optimizeIndirectCommandBuffer:withRange:").?;
-    sel_supportsVertexAmplificationCount_ = c.sel_registerName("supportsVertexAmplificationCount:").?;
-    sel_setVertexLinkedFunctions_ = c.sel_registerName("setVertexLinkedFunctions:").?;
-    sel_setBytes_length_attributeStride_atIndex_ = c.sel_registerName("setBytes:length:attributeStride:atIndex:").?;
-    sel_setDepthAttachment_ = c.sel_registerName("setDepthAttachment:").?;
-    sel_tessellationControlPointIndexType = c.sel_registerName("tessellationControlPointIndexType").?;
-    sel_setThreadgroupSizeMatchesTileSize_ = c.sel_registerName("setThreadgroupSizeMatchesTileSize:").?;
-    sel_setVertexVisibleFunctionTable_atBufferIndex_ = c.sel_registerName("setVertexVisibleFunctionTable:atBufferIndex:").?;
-    sel_addCompletedHandler_ = c.sel_registerName("addCompletedHandler:").?;
-    sel_setResolveTexture_ = c.sel_registerName("setResolveTexture:").?;
-    sel_setInstanceDescriptorType_ = c.sel_registerName("setInstanceDescriptorType:").?;
-    sel_setTileTexture_atIndex_ = c.sel_registerName("setTileTexture:atIndex:").?;
-    sel_setLodMinClamp_ = c.sel_registerName("setLodMinClamp:").?;
-    sel_setGeometryDescriptors_ = c.sel_registerName("setGeometryDescriptors:").?;
-    sel_setFragmentTextures_withRange_ = c.sel_registerName("setFragmentTextures:withRange:").?;
-    sel_setArrayLength_ = c.sel_registerName("setArrayLength:").?;
-    sel_supportsCounterSampling_ = c.sel_registerName("supportsCounterSampling:").?;
-    sel_newBinaryArchiveWithDescriptor_error_ = c.sel_registerName("newBinaryArchiveWithDescriptor:error:").?;
-    sel_setBorderColor_ = c.sel_registerName("setBorderColor:").?;
-    sel_defaultRasterSampleCount = c.sel_registerName("defaultRasterSampleCount").?;
-    sel_setTransformationMatrixBuffer_ = c.sel_registerName("setTransformationMatrixBuffer:").?;
-    sel_setPrimitiveDataBufferOffset_ = c.sel_registerName("setPrimitiveDataBufferOffset:").?;
-    sel_setIndexBuffer_ = c.sel_registerName("setIndexBuffer:").?;
-    sel_access = c.sel_registerName("access").?;
-    sel_setTileHeight_ = c.sel_registerName("setTileHeight:").?;
-    sel_sparseTileSizeInBytes = c.sel_registerName("sparseTileSizeInBytes").?;
-    sel_setAllowReferencingUndefinedSymbols_ = c.sel_registerName("setAllowReferencingUndefinedSymbols:").?;
-    sel_memoryBarrierWithScope_afterStages_beforeStages_ = c.sel_registerName("memoryBarrierWithScope:afterStages:beforeStages:").?;
-    sel_setConstantValues_ = c.sel_registerName("setConstantValues:").?;
-    sel_resourceStatePassDescriptor = c.sel_registerName("resourceStatePassDescriptor").?;
-    sel_resolveLevel = c.sel_registerName("resolveLevel").?;
-    sel_inheritBuffers = c.sel_registerName("inheritBuffers").?;
-    sel_length = c.sel_registerName("length").?;
-    sel_maxTotalThreadsPerMeshThreadgroup = c.sel_registerName("maxTotalThreadsPerMeshThreadgroup").?;
-    sel_bufferPointerType = c.sel_registerName("bufferPointerType").?;
-    sel_accelerationStructureSizesWithDescriptor_ = c.sel_registerName("accelerationStructureSizesWithDescriptor:").?;
-    sel_setObjectSamplerStates_withRange_ = c.sel_registerName("setObjectSamplerStates:withRange:").?;
-    sel_maxVertexCallStackDepth = c.sel_registerName("maxVertexCallStackDepth").?;
-    sel_rootResource = c.sel_registerName("rootResource").?;
-    sel_lodMinClamp = c.sel_registerName("lodMinClamp").?;
-    sel_bufferStructType = c.sel_registerName("bufferStructType").?;
-    sel_setOffset_ = c.sel_registerName("setOffset:").?;
-    sel_maxTessellationFactor = c.sel_registerName("maxTessellationFactor").?;
-    sel_texture = c.sel_registerName("texture").?;
-    sel_newComputePipelineStateWithAdditionalBinaryFunctions_error_ = c.sel_registerName("newComputePipelineStateWithAdditionalBinaryFunctions:error:").?;
-    sel_newLibraryWithStitchedDescriptor_completionHandler_ = c.sel_registerName("newLibraryWithStitchedDescriptor:completionHandler:").?;
-    sel_setBoundingBoxCount_ = c.sel_registerName("setBoundingBoxCount:").?;
-    sel_functionHandleWithFunction_stage_ = c.sel_registerName("functionHandleWithFunction:stage:").?;
-    sel_setThreadgroupMemoryLength_ = c.sel_registerName("setThreadgroupMemoryLength:").?;
-    sel_addComputePipelineFunctionsWithDescriptor_error_ = c.sel_registerName("addComputePipelineFunctionsWithDescriptor:error:").?;
-    sel_primitiveDataBufferOffset = c.sel_registerName("primitiveDataBufferOffset").?;
-    sel_attributes = c.sel_registerName("attributes").?;
-    sel_setOutputURL_ = c.sel_registerName("setOutputURL:").?;
-    sel_priority = c.sel_registerName("priority").?;
-    sel_enqueue = c.sel_registerName("enqueue").?;
-    sel_setObjectBuffer_offset_atIndex_ = c.sel_registerName("setObjectBuffer:offset:atIndex:").?;
-    sel_pushDebugGroup_ = c.sel_registerName("pushDebugGroup:").?;
-    sel_setAccess_ = c.sel_registerName("setAccess:").?;
-    sel_presentDrawable_ = c.sel_registerName("presentDrawable:").?;
-    sel_setAlphaToCoverageEnabled_ = c.sel_registerName("setAlphaToCoverageEnabled:").?;
-    sel_iosurfacePlane = c.sel_registerName("iosurfacePlane").?;
-    sel_tessellationOutputWindingOrder = c.sel_registerName("tessellationOutputWindingOrder").?;
-    sel_memberByName_ = c.sel_registerName("memberByName:").?;
 }
