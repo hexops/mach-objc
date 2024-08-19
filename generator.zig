@@ -1115,7 +1115,7 @@ fn Generator(comptime WriterType: type) type {
                 if (container.super) |super| {
                     try self.generateContainerName(super);
                 } else {
-                    try self.writer.writeAll("c.object_type");
+                    try self.writer.writeAll("objc.Id");
                 }
                 try self.writer.writeAll(", &.{");
             } else {

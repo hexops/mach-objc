@@ -30,6 +30,7 @@ pub const opt_new = objc_opt_new;
 pub const opt_class = objc_opt_class;
 pub const opt_isKindOfClass = objc_opt_isKindOfClass;
 
+// APIs that are part of libobjc's public API.
 pub const Class = opaque {};
 pub const Id = opaque {
     pub const InternalInfo = struct {
