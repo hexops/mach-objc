@@ -9,9 +9,6 @@ pub const dispatch_data_t = *opaque {};
 pub const dispatch_queue_t = *opaque {};
 pub const IOSurfaceRef = *opaque {};
 
-// TODO - can we use definition in ns
-extern const _NSConcreteStackBlock: *anyopaque;
-
 // ------------------------------------------------------------------------------------------------
 // Types
 
