@@ -13,6 +13,3 @@ pub const AVAudioSessionLocation = *ns.String;
 pub const AVAudioSessionOrientation = *ns.String;
 
 pub const AudioChannelLabel = u32;
-
-// TODO - can we use definition in ns
-extern const _NSConcreteStackBlock: *anyopaque;
