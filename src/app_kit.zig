@@ -1,4 +1,3 @@
-const c = @import("c.zig");
 const ca = @import("quartz_core.zig");
 const cf = @import("core_foundation.zig");
 const ns = @import("foundation.zig");
@@ -159,7 +158,7 @@ pub const Notification = opaque {
 };
 
 pub const ObjectInterface = opaque {
-    pub const InternalInfo = objc.ExternClass("NSObject", @This(), c.object_type, &.{});
+    pub const InternalInfo = objc.ExternClass("NSObject", @This(), objc.Id, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;

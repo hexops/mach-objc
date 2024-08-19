@@ -1,4 +1,3 @@
-const c = @import("c.zig");
 const cg = @import("core_graphics.zig");
 const mtl = @import("metal.zig");
 const ns = @import("foundation.zig");
