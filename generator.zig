@@ -2168,6 +2168,16 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addProtocol("NSPreviewRepresentableActivityItem");
 }
 
+fn generateScreenCaptureKit(generator: anytype) !void {
+    generator.namespace = "SC";
+    generator.allow_methods = &.{};
+
+    try generator.addInterface("SCShareableContent");
+    try generator.addInterface("SCRunningApplication");
+    try generator.addInterface("SCDisplay");
+    try generator.addInterface("SCWindow");
+}
+
 fn usage() void {
     std.log.warn(
         \\mach-objc-generator [options]
@@ -2184,6 +2194,7 @@ const Framework = enum {
     avf_audio,
     core_midi,
     app_kit,
+    screen_capture_kit,
 };
 
 pub fn main() anyerror!void {
@@ -2209,6 +2220,7 @@ pub fn main() anyerror!void {
                 if (std.mem.eql(u8, args[i], "AVFAudio")) break :blk .avf_audio;
                 if (std.mem.eql(u8, args[i], "CoreMIDI")) break :blk .core_midi;
                 if (std.mem.eql(u8, args[i], "AppKit")) break :blk .app_kit;
+                if (std.mem.eql(u8, args[i], "ScreenCaptureKit")) break :blk .screen_capture_kit;
                 usage();
                 std.process.exit(1);
             };
@@ -2260,6 +2272,7 @@ pub fn main() anyerror!void {
         .avf_audio => try generateAVFAudio(&generator),
         .core_midi => try generateCoreMIDI(&generator),
         .app_kit => try generateAppKit(&generator),
+        .screen_capture_kit => try generateScreenCaptureKit(&generator),
     }
     try generator.generate();
 }

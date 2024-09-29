@@ -22,42 +22,52 @@ git_clone_rev https://github.com/hexops/xcode-frameworks 3d1d9613c39bfc2ebfa2551
 
 zig build -Doptimize=ReleaseFast
 
-rm -f src/metal.zig
-echo "Generating Metal"
-echo "
-#include <Metal/Metal.h>
-" > headers.m
-clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations > headers.json
-cat metal_manual.zig > src/metal.zig
-./zig-out/bin/generator --framework Metal >> src/metal.zig
-rm headers.json headers.m
+# rm -f src/metal.zig
+# echo "Generating Metal"
+# echo "
+# #include <Metal/Metal.h>
+# " > headers.m
+# clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations > headers.json
+# cat metal_manual.zig > src/metal.zig
+# ./zig-out/bin/generator --framework Metal >> src/metal.zig
+# rm headers.json headers.m
 
-rm -f src/avf_audio.zig
-echo "Generating AVFAudio"
-cp avf_audio_headers.m headers.m
-clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations > headers.json
-cat avf_audio_manual.zig > src/avf_audio.zig
-./zig-out/bin/generator --framework AVFAudio >> src/avf_audio.zig
-rm headers.json headers.m
+# rm -f src/avf_audio.zig
+# echo "Generating AVFAudio"
+# cp avf_audio_headers.m headers.m
+# clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations > headers.json
+# cat avf_audio_manual.zig > src/avf_audio.zig
+# ./zig-out/bin/generator --framework AVFAudio >> src/avf_audio.zig
+# rm headers.json headers.m
 
-rm -f src/core_midi.zig
-echo "Generating CoreMIDI"
-echo "
-#include <CoreMIDI/MidiServices.h>
-" > headers.m
-clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations > headers.json
-cat core_midi_manual.zig > src/core_midi.zig
-./zig-out/bin/generator --framework CoreMIDI >> src/core_midi.zig
-rm headers.json headers.m
+# rm -f src/core_midi.zig
+# echo "Generating CoreMIDI"
+# echo "
+# #include <CoreMIDI/MidiServices.h>
+# " > headers.m
+# clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations > headers.json
+# cat core_midi_manual.zig > src/core_midi.zig
+# ./zig-out/bin/generator --framework CoreMIDI >> src/core_midi.zig
+# rm headers.json headers.m
 
-rm -f src/app_kit.zig
-echo "Generating AppKit"
+# rm -f src/app_kit.zig
+# echo "Generating AppKit"
+# echo "
+# #include <AppKit/AppKit.h>
+# " > headers.m
+# clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations -Wno-availability > headers.json
+# cat app_kit_manual.zig > src/app_kit.zig
+# ./zig-out/bin/generator --framework AppKit >> src/app_kit.zig
+# rm headers.json headers.m
+
+rm -f src/screen_capture_kit.zig
+echo "Generating ScreenCaptureKit"
 echo "
-#include <AppKit/AppKit.h>
+#include <ScreenCaptureKit/ScreenCaptureKit.h>
 " > headers.m
 clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations -Wno-availability > headers.json
-cat app_kit_manual.zig > src/app_kit.zig
-./zig-out/bin/generator --framework AppKit >> src/app_kit.zig
+cat screen_capture_kit_manual.zig > src/screen_capture_kit.zig
+./zig-out/bin/generator --framework ScreenCaptureKit >> src/screen_capture_kit.zig
 rm headers.json headers.m
 
 zig fmt .
