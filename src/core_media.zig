@@ -1,17 +1,25 @@
 // const ca = @import("quartz_core.zig");
-const cf = @import("core_foundation.zig");
-const pid_t = @import("std").os.posix.pid_t;
-const cm = @import("core_media.zig");
-const ns = @import("foundation.zig");
-const cg = @import("core_graphics.zig");
-const objc = @import("objc.zig");
+// const cf = @import("core_foundation.zig");
+// const pid_t = @import("std").os.posix.pid_t;
+// const size_t = usize;
+// const ns = @import("foundation.zig");
+// const cg = @import("core_graphics.zig");
+// const objc = @import("objc.zig");
 
-const size_t = usize;
-const OSType = [4]u8;
-const CMTime = cm.Time;
-const CMClockRef = cm.CMClockRef;
-const CMSampleBufferRef = cm.CMSampleBufferRef;
-pub const dispatch_queue_t = *anyopaque;
+pub const TimeValue = i64;
+pub const TimeScale = i32;
+pub const TimeEpoch = u32;
+pub const CMClockRef = *opaque {};
+pub const CMSampleBufferRef = *opaque {};
+
+pub const Time = extern struct {
+    value: TimeValue,
+    timescale: TimeScale,
+    flags: CMTimeFlags,
+    epoch: TimeEpoch,
+};
+
+pub const ClockRef = extern struct {};
 
 // pub const applicationMain = NSApplicationMain;
 // extern fn NSApplicationMain(argc: c_int, argv: [*]*c_char) c_int;
@@ -62,3 +70,11 @@ pub const dispatch_queue_t = *anyopaque;
 // pub const WindowFrameAutosaveName = *String;
 // pub const AccessibilityParameterizedAttributeName = *String;
 // pub const UserInterfaceItemIdentifier = *String;
+
+pub const CMTimeFlags = u32;
+pub const kCMTimeFlags_Valid: CMTimeFlags = 1;
+pub const kCMTimeFlags_HasBeenRounded: CMTimeFlags = 2;
+pub const kCMTimeFlags_PositiveInfinity: CMTimeFlags = 4;
+pub const kCMTimeFlags_NegativeInfinity: CMTimeFlags = 8;
+pub const kCMTimeFlags_Indefinite: CMTimeFlags = 16;
+pub const kCMTimeFlags_ImpliedValueFlagsMask: CMTimeFlags = 28;
