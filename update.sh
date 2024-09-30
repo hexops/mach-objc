@@ -18,7 +18,7 @@ git_clone_rev() {
     popd
 }
 
-git_clone_rev https://github.com/hexops/xcode-frameworks 3d1d9613c39bfc2ebfa2551626e87b7f38e0a29f xcode-frameworks
+# git_clone_rev https://github.com/hexops/xcode-frameworks 3d1d9613c39bfc2ebfa2551626e87b7f38e0a29f xcode-frameworks
 
 zig build -Doptimize=ReleaseFast
 
@@ -68,6 +68,16 @@ echo "
 clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations -Wno-availability > headers.json
 cat screen_capture_kit_manual.zig > src/screen_capture_kit.zig
 ./zig-out/bin/generator --framework ScreenCaptureKit >> src/screen_capture_kit.zig
+rm headers.json headers.m
+
+rm -f src/core_media.zig
+echo "Generating CoreMedia"
+echo "
+#include <CoreMedia/CoreMedia.h>
+" > headers.m
+clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations -Wno-availability > headers.json
+cat core_media_manual.zig > src/core_media.zig
+./zig-out/bin/generator --framework CoreMedia >> src/core_media.zig
 rm headers.json headers.m
 
 zig fmt .

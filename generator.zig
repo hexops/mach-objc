@@ -2173,9 +2173,28 @@ fn generateScreenCaptureKit(generator: anytype) !void {
     generator.allow_methods = &.{};
 
     try generator.addInterface("SCShareableContent");
+    try generator.addEnum("SCShareableContentStyle");
+    try generator.addInterface("SCShareableContentInfo");
+    try generator.addInterface("SCContentFilter");
+    try generator.addEnum("SCStreamType");
+    try generator.addEnum("SCCaptureResolutionType");
+    try generator.addEnum("SCPresenterOverlayAlertSetting");
+
+    try generator.addInterface("SCStreamConfiguration");
+    try generator.addInterface("SCStream");
+    try generator.addProtocol("SCStreamOutput");
+    try generator.addEnum("SCStreamOutputType");
+    try generator.addProtocol("SCStreamDelegate");
     try generator.addInterface("SCRunningApplication");
     try generator.addInterface("SCDisplay");
     try generator.addInterface("SCWindow");
+}
+
+fn generateCoreMedia(generator: anytype) !void {
+    generator.namespace = "CM";
+    generator.allow_methods = &.{};
+
+    try generator.addEnum("CMTimeFlags");
 }
 
 fn usage() void {
@@ -2195,6 +2214,7 @@ const Framework = enum {
     core_midi,
     app_kit,
     screen_capture_kit,
+    core_media,
 };
 
 pub fn main() anyerror!void {
@@ -2221,6 +2241,7 @@ pub fn main() anyerror!void {
                 if (std.mem.eql(u8, args[i], "CoreMIDI")) break :blk .core_midi;
                 if (std.mem.eql(u8, args[i], "AppKit")) break :blk .app_kit;
                 if (std.mem.eql(u8, args[i], "ScreenCaptureKit")) break :blk .screen_capture_kit;
+                if (std.mem.eql(u8, args[i], "CoreMedia")) break :blk .core_media;
                 usage();
                 std.process.exit(1);
             };
@@ -2273,6 +2294,7 @@ pub fn main() anyerror!void {
         .core_midi => try generateCoreMIDI(&generator),
         .app_kit => try generateAppKit(&generator),
         .screen_capture_kit => try generateScreenCaptureKit(&generator),
+        .core_media => try generateCoreMedia(&generator),
     }
     try generator.generate();
 }
