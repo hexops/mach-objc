@@ -10,7 +10,7 @@ const size_t = usize;
 const OSType = [4]u8;
 const CMTime = cm.Time;
 const CMClockRef = cm.CMClockRef;
-const CMSampleBufferRef = cm.CMSampleBufferRef;
+pub const CMSampleBufferRef = cm.CMSampleBufferRef;
 pub const dispatch_queue_t = *anyopaque;
 
 // pub const applicationMain = NSApplicationMain;
