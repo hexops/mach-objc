@@ -10,7 +10,27 @@ pub const TimeValue = i64;
 pub const TimeScale = i32;
 pub const TimeEpoch = u32;
 pub const CMClockRef = *opaque {};
-pub const CMSampleBufferRef = *opaque {};
+
+pub const CVImageBufferRef = *CVImageBuffer;
+pub const CVImageBuffer = opaque {
+    extern fn CVPixelBufferGetBaseAddress(CVImageBufferRef) ?*anyopaque;
+    pub inline fn getBaseAddress(pxl: CVImageBufferRef) ?*anyopaque {
+        return CVPixelBufferGetBaseAddress(pxl);
+    }
+    extern fn CVPixelBufferGetBaseAddressOfPlane(CVImageBufferRef) ?*anyopaque;
+    pub inline fn getBaseAddressOfPlane(pxl: CVImageBufferRef) ?*anyopaque {
+        return CVPixelBufferGetBaseAddressOfPlane(pxl);
+    }
+};
+
+pub const CMSampleBufferRef = *CMSampleBuffer;
+pub const CMSampleBuffer = opaque {
+    extern fn CMSampleBufferGetDataBuffer(*anyopaque) callconv(.C) ?CVImageBufferRef;
+
+    pub inline fn getImageBuffer(sbuf: *CMSampleBuffer) ?CVImageBufferRef {
+        return CMSampleBufferGetDataBuffer(sbuf);
+    }
+};
 
 pub const Time = extern struct {
     value: TimeValue,
