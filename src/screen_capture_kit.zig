@@ -100,9 +100,6 @@ pub const SCShareableContent = opaque {
     pub fn getShareableContentWithCompletionHandler(completionHandler_: *ns.Block(fn (?*SCShareableContent, ?*ns.Error) void)) void {
         return objc.msgSend(@This().InternalInfo.class(), "getShareableContentWithCompletionHandler:", void, .{completionHandler_});
     }
-    pub fn getCurrentProcessShareableContentWithCompletionHandler(completionHandler_: *ns.Block(fn (?*SCShareableContent, ?*ns.Error) void)) void {
-        return objc.msgSend(@This().InternalInfo.class(), "getCurrentProcessShareableContentWithCompletionHandler:", void, .{completionHandler_});
-    }
     pub fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnly_completionHandler(excludeDesktopWindows_: bool, onScreenWindowsOnly_: bool, completionHandler_: *ns.Block(fn (?*SCShareableContent, ?*ns.Error) void)) void {
         return objc.msgSend(@This().InternalInfo.class(), "getShareableContentExcludingDesktopWindows:onScreenWindowsOnly:completionHandler:", void, .{ excludeDesktopWindows_, onScreenWindowsOnly_, completionHandler_ });
     }
@@ -183,12 +180,6 @@ pub const SCContentFilter = opaque {
     }
     pub fn contentRect(self_: *@This()) cg.Rect {
         return objc.msgSend(self_, "contentRect", cg.Rect, .{});
-    }
-    pub fn includeMenuBar(self_: *@This()) bool {
-        return objc.msgSend(self_, "includeMenuBar", bool, .{});
-    }
-    pub fn setIncludeMenuBar(self_: *@This(), includeMenuBar_: bool) void {
-        return objc.msgSend(self_, "setIncludeMenuBar:", void, .{includeMenuBar_});
     }
 };
 
@@ -358,12 +349,6 @@ pub const SCStreamConfiguration = opaque {
     pub fn setPresenterOverlayPrivacyAlertSetting(self_: *@This(), presenterOverlayPrivacyAlertSetting_: SCPresenterOverlayAlertSetting) void {
         return objc.msgSend(self_, "setPresenterOverlayPrivacyAlertSetting:", void, .{presenterOverlayPrivacyAlertSetting_});
     }
-    pub fn includeChildWindows(self_: *@This()) bool {
-        return objc.msgSend(self_, "includeChildWindows", bool, .{});
-    }
-    pub fn setIncludeChildWindows(self_: *@This(), includeChildWindows_: bool) void {
-        return objc.msgSend(self_, "setIncludeChildWindows:", void, .{includeChildWindows_});
-    }
 };
 
 pub const SCStream = opaque {
@@ -423,9 +408,6 @@ pub const SCStreamDelegate = opaque {
 
     pub fn stream_didStopWithError(self_: *@This(), stream_: *SCStream, error_: *ns.Error) void {
         return objc.msgSend(self_, "stream:didStopWithError:", void, .{ stream_, error_ });
-    }
-    pub fn userDidStopStream(self_: *@This(), stream_: *SCStream) void {
-        return objc.msgSend(self_, "userDidStopStream:", void, .{stream_});
     }
     pub fn outputVideoEffectDidStartForStream(self_: *@This(), stream_: *SCStream) void {
         return objc.msgSend(self_, "outputVideoEffectDidStartForStream:", void, .{stream_});

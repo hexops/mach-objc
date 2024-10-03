@@ -11,24 +11,35 @@ pub const TimeScale = i32;
 pub const TimeEpoch = u32;
 pub const CMClockRef = *opaque {};
 
-pub const CVImageBufferRef = *CVImageBuffer;
-pub const CVImageBuffer = opaque {
-    extern fn CVPixelBufferGetBaseAddress(CVImageBufferRef) ?*anyopaque;
-    pub inline fn getBaseAddress(pxl: CVImageBufferRef) ?*anyopaque {
+pub const CVPixelBufferRef = *CVPixelBuffer;
+pub const CVPixelBuffer = opaque {
+    extern fn CVPixelBufferGetBaseAddress(CVPixelBufferRef) ?*anyopaque;
+    pub inline fn getBaseAddress(pxl: CVPixelBufferRef) ?*anyopaque {
         return CVPixelBufferGetBaseAddress(pxl);
     }
-    extern fn CVPixelBufferGetBaseAddressOfPlane(CVImageBufferRef) ?*anyopaque;
-    pub inline fn getBaseAddressOfPlane(pxl: CVImageBufferRef) ?*anyopaque {
+
+    extern fn CVPixelBufferGetBaseAddressOfPlane(CVPixelBufferRef) ?*anyopaque;
+    pub inline fn getBaseAddressOfPlane(pxl: CVPixelBufferRef) ?*anyopaque {
         return CVPixelBufferGetBaseAddressOfPlane(pxl);
     }
 };
 
+pub const CVImageBufferRef = *CVImageBuffer;
+pub const CVImageBuffer = opaque {};
+
+pub const CMBlockBufferRef = *CMBlockBuffer;
+pub const CMBlockBuffer = opaque {};
+
 pub const CMSampleBufferRef = *CMSampleBuffer;
 pub const CMSampleBuffer = opaque {
-    extern fn CMSampleBufferGetDataBuffer(*anyopaque) callconv(.C) ?CVImageBufferRef;
-
-    pub inline fn getImageBuffer(sbuf: *CMSampleBuffer) ?CVImageBufferRef {
+    extern fn CMSampleBufferGetDataBuffer(CMSampleBufferRef) callconv(.C) ?CMBlockBufferRef;
+    pub inline fn getDataBuffer(sbuf: *CMSampleBuffer) ?CMBlockBufferRef {
         return CMSampleBufferGetDataBuffer(sbuf);
+    }
+
+    extern fn CMSampleBufferGetImageBuffer(CMSampleBufferRef) callconv(.C) ?CVImageBufferRef;
+    pub inline fn getImageBuffer(sbuf: *CMSampleBuffer) ?CVImageBufferRef {
+        return CMSampleBufferGetImageBuffer(sbuf);
     }
 };
 
