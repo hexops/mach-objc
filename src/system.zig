@@ -132,6 +132,7 @@ fn validateBlockSignature(comptime Invoke: type, comptime ExpectedLiteralType: t
 
             // TODO: should we allow zero params? At the ABI-level it would be fine but I think the compiler might consider it UB.
             if (fn_info.params.len == 0 or fn_info.params[0].type != *ExpectedLiteralType) {
+                @compileLog(ExpectedLiteralType);
                 @compileError("The first parameter for a block's `invoke` must be a block literal pointer");
             }
         },

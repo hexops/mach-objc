@@ -165,7 +165,7 @@ pub const Range = extern struct {
 
 pub fn Array(comptime ObjectType: type) type {
     return opaque {
-        pub const InternalInfo = objc.ExternClass("NSArray", @This(), ObjectInterface, .{Copying});
+        pub const InternalInfo = objc.ExternClass("NSArray", @This(), ObjectInterface, &.{Copying});
         pub const as = InternalInfo.as;
         pub const retain = InternalInfo.retain;
         pub const release = InternalInfo.release;
