@@ -2197,6 +2197,11 @@ fn generateCoreMedia(generator: anytype) !void {
     try generator.addEnum("CMTimeFlags");
 }
 
+fn generateCoreVideo(generator: anytype) !void {
+    generator.namespace = "CV";
+    generator.allow_methods = &.{};
+}
+
 fn usage() void {
     std.log.warn(
         \\mach-objc-generator [options]
@@ -2215,6 +2220,7 @@ const Framework = enum {
     app_kit,
     screen_capture_kit,
     core_media,
+    core_video,
 };
 
 pub fn main() anyerror!void {
@@ -2242,6 +2248,7 @@ pub fn main() anyerror!void {
                 if (std.mem.eql(u8, args[i], "AppKit")) break :blk .app_kit;
                 if (std.mem.eql(u8, args[i], "ScreenCaptureKit")) break :blk .screen_capture_kit;
                 if (std.mem.eql(u8, args[i], "CoreMedia")) break :blk .core_media;
+                if (std.mem.eql(u8, args[i], "CoreVideo")) break :blk .core_video;
                 usage();
                 std.process.exit(1);
             };
@@ -2295,6 +2302,7 @@ pub fn main() anyerror!void {
         .app_kit => try generateAppKit(&generator),
         .screen_capture_kit => try generateScreenCaptureKit(&generator),
         .core_media => try generateCoreMedia(&generator),
+        .core_video => try generateCoreVideo(&generator),
     }
     try generator.generate();
 }

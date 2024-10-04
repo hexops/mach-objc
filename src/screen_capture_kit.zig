@@ -181,6 +181,12 @@ pub const SCContentFilter = opaque {
     pub fn contentRect(self_: *@This()) cg.Rect {
         return objc.msgSend(self_, "contentRect", cg.Rect, .{});
     }
+    pub fn includeMenuBar(self_: *@This()) bool {
+        return objc.msgSend(self_, "includeMenuBar", bool, .{});
+    }
+    pub fn setIncludeMenuBar(self_: *@This(), includeMenuBar_: bool) void {
+        return objc.msgSend(self_, "setIncludeMenuBar:", void, .{includeMenuBar_});
+    }
 };
 
 pub const SCStreamConfiguration = opaque {
@@ -348,6 +354,12 @@ pub const SCStreamConfiguration = opaque {
     }
     pub fn setPresenterOverlayPrivacyAlertSetting(self_: *@This(), presenterOverlayPrivacyAlertSetting_: SCPresenterOverlayAlertSetting) void {
         return objc.msgSend(self_, "setPresenterOverlayPrivacyAlertSetting:", void, .{presenterOverlayPrivacyAlertSetting_});
+    }
+    pub fn includeChildWindows(self_: *@This()) bool {
+        return objc.msgSend(self_, "includeChildWindows", bool, .{});
+    }
+    pub fn setIncludeChildWindows(self_: *@This(), includeChildWindows_: bool) void {
+        return objc.msgSend(self_, "setIncludeChildWindows:", void, .{includeChildWindows_});
     }
 };
 
