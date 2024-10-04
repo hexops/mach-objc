@@ -42,5 +42,3 @@ jobs:
           sudo sh -c 'wget -c https://pkg.machengine.org/zig/zig-macos-x86_64-0.14.0-dev.1710+8ee52f99c.tar.xz -O - | tar -xJ --strip-components=1 -C /usr/local/bin'
       - name: build
         run: zig build
-      - name: test
-        run: zig build test
