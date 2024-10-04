@@ -80,7 +80,7 @@ pub fn msgSend(receiver: anytype, comptime selector: []const u8, return_type: ty
                 .type = [*:0]c_char,
             },
         };
-        for (@typeInfo(@TypeOf(args)).Struct.fields) |field| {
+        for (@typeInfo(@TypeOf(args)).@"struct".fields) |field| {
             params = params ++
                 .{.{
                 .is_generic = false,
@@ -89,7 +89,7 @@ pub fn msgSend(receiver: anytype, comptime selector: []const u8, return_type: ty
             }};
         }
         break :init std.builtin.Type{
-            .Fn = .{
+            .@"fn" = .{
                 .calling_convention = .C,
                 .is_generic = false,
                 .is_var_args = false,

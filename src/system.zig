@@ -10,7 +10,7 @@ extern fn _Block_copy(*const anyopaque) *anyopaque; // Provided by libSystem on 
 extern fn _Block_release(*const anyopaque) void; // Provided by libSystem on iOS but not macOS.
 
 pub fn Block(comptime Signature: type) type {
-    const signature_fn_info = @typeInfo(Signature).Fn;
+    const signature_fn_info = @typeInfo(Signature).@"fn";
     return opaque {
         pub fn invoke(self: *@This(), args: std.meta.ArgsTuple(Signature)) signature_fn_info.return_type.? {
             const self_param = std.builtin.Type.Fn.Param{
@@ -19,7 +19,7 @@ pub fn Block(comptime Signature: type) type {
                 .type = *@This(),
             };
             const SignatureForInvoke = @Type(.{
-                .Fn = .{
+                .@"fn" = .{
                     .calling_convention = .C,
                     .is_generic = signature_fn_info.is_generic,
                     .is_var_args = signature_fn_info.is_var_args,
@@ -71,7 +71,7 @@ pub fn BlockLiteral(comptime Context: type) type {
 }
 
 pub fn BlockLiteralWithSignature(comptime Context: type, comptime Signature: type) type {
-    // We could also obtain `Context` from `@typeInfo(Signature).Fn.params[0].type`.
+    // We could also obtain `Context` from `@typeInfo(Signature).@"fn".params[0].type`.
     return extern struct {
         literal: BlockLiteral(Context),
 
@@ -118,14 +118,14 @@ fn CopyDisposeBlockDescriptor(comptime Context: type) type {
 
 fn SignatureWithoutBlockLiteral(comptime Signature: type) type {
     var type_info = @typeInfo(Signature);
-    type_info.Fn.calling_convention = .Unspecified;
-    type_info.Fn.params = type_info.Fn.params[1..];
+    type_info.@"fn".calling_convention = .Unspecified;
+    type_info.@"fn".params = type_info.@"fn".params[1..];
     return @Type(type_info);
 }
 
 fn validateBlockSignature(comptime Invoke: type, comptime ExpectedLiteralType: type) void {
     switch (@typeInfo(Invoke)) {
-        .Fn => |fn_info| {
+        .@"fn" => |fn_info| {
             if (fn_info.calling_convention != .C) {
                 @compileError("A block's `invoke` must use the C calling convention");
             }

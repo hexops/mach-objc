@@ -196,7 +196,7 @@ pub fn Array(comptime ObjectType: type) type {
 }
 
 pub const Bundle = opaque {
-    pub const InternalInfo = objc.ExternClass("", @This(), ObjectInterface, .{});
+    pub const InternalInfo = objc.ExternClass("", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
     pub const retain = InternalInfo.retain;
     pub const release = InternalInfo.release;
