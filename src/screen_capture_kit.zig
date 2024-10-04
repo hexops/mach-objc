@@ -8,8 +8,8 @@ const objc = @import("objc.zig");
 const size_t = usize;
 const OSType = [4]u8;
 const CMTime = cm.Time;
-const CMClockRef = cm.CMClockRef;
-pub const CMSampleBufferRef = cm.CMSampleBufferRef;
+const CMClockRef = cm.ClockRef;
+pub const CMSampleBufferRef = cm.SampleBufferRef;
 pub const dispatch_queue_t = *anyopaque;
 
 pub const SCShareableContentStyle = ns.Integer;
