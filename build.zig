@@ -24,10 +24,11 @@ pub fn build(b: *std.Build) void {
         // TODO: Add iOS asm files once they are generated.
     }
 
-    const xcode_frameworks = b.dependency("xcode_frameworks", .{});
-    module.addSystemFrameworkPath(xcode_frameworks.path("Frameworks"));
-    module.addSystemIncludePath(xcode_frameworks.path("include"));
-    module.addLibraryPath(xcode_frameworks.path("lib"));
+    if (b.lazyDependency("xcode_frameworks", .{})) |dep| {
+        module.addSystemFrameworkPath(dep.path("Frameworks"));
+        module.addSystemIncludePath(dep.path("include"));
+        module.addLibraryPath(dep.path("lib"));
+    }
 
     const generator_exe = b.addExecutable(.{
         .name = "generator",
