@@ -119,8 +119,17 @@ pub const Window = opaque {
     pub fn initWithContentRect_styleMask_backing_defer_screen(self_: *@This(), contentRect_: Rect, style_: WindowStyleMask, backingStoreType_: BackingStoreType, flag_: bool, screen_: ?*Screen) *@This() {
         return objc.msgSend(self_, "initWithContentRect:styleMask:backing:defer:screen:", *@This(), .{ contentRect_, style_, backingStoreType_, flag_, screen_ });
     }
+    pub fn update(self_: *@This()) void {
+        return objc.msgSend(self_, "update", void, .{});
+    }
     pub fn makeKeyAndOrderFront(self_: *@This(), sender_: ?*objc.Id) void {
         return objc.msgSend(self_, "makeKeyAndOrderFront:", void, .{sender_});
+    }
+    pub fn title(self_: *@This()) *String {
+        return objc.msgSend(self_, "title", *String, .{});
+    }
+    pub fn setTitle(self_: *@This(), title_: *String) void {
+        return objc.msgSend(self_, "setTitle:", void, .{title_});
     }
     pub fn contentView(self_: *@This()) ?*View {
         return objc.msgSend(self_, "contentView", ?*View, .{});
@@ -133,6 +142,9 @@ pub const Window = opaque {
     }
     pub fn isVisible(self_: *@This()) bool {
         return objc.msgSend(self_, "isVisible", bool, .{});
+    }
+    pub fn setMinSize(self_: *@This(), minSize_: Size) void {
+        return objc.msgSend(self_, "setMinSize:", void, .{minSize_});
     }
     pub fn setIsVisible(self_: *@This(), flag_: bool) void {
         return objc.msgSend(self_, "setIsVisible:", void, .{flag_});
@@ -205,6 +217,12 @@ pub const Screen = opaque {
     }
     pub fn mainScreen() ?*Screen {
         return objc.msgSend(@This().InternalInfo.class(), "mainScreen", ?*Screen, .{});
+    }
+    pub fn frame(self_: *@This()) Rect {
+        return objc.msgSend(self_, "frame", Rect, .{});
+    }
+    pub fn visibleFrame(self_: *@This()) Rect {
+        return objc.msgSend(self_, "visibleFrame", Rect, .{});
     }
 };
 

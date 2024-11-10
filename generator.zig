@@ -1911,14 +1911,27 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSWindow", "isVisible" },
         [2][]const u8{ "NSWindow", "setIsVisible" },
         [2][]const u8{ "NSWindow", "makeKeyAndOrderFront" },
+        //[2][]const u8{ "NSWindow", "setDelegate" },
+        [2][]const u8{ "NSWindow", "title" },
+        [2][]const u8{ "NSWindow", "setTitle" },
+
+        [2][]const u8{ "NSWindow", "update" },
+        [2][]const u8{ "NSWindow", "setMinSize" },
+
+        //[2][]const u8{ "NSWindowDelegate", "windowWillResize:toSize" },
 
         [2][]const u8{ "NSView", "layer" },
         [2][]const u8{ "NSView", "setLayer" },
 
         [2][]const u8{ "NSResponder", "" },
 
+        //[2][]const u8{ "NSCoder", "" },
+        //[2][]const u8{ "NSDictionary", "" },
+
         [2][]const u8{ "NSScreen", "screens" },
         [2][]const u8{ "NSScreen", "mainScreen" },
+        [2][]const u8{ "NSScreen", "frame" },
+        [2][]const u8{ "NSScreen", "visibleFrame" },
 
         [2][]const u8{ "NSApplicationDelegate", "applicationDidFinishLaunching" },
 
@@ -2150,6 +2163,7 @@ fn generateAppKit(generator: anytype) !void {
     // // try generator.addEnum("NSLinguisticTagScheme");
 
     try generator.addProtocol("NSApplicationDelegate");
+    try generator.addProtocol("NSWindowDelegate");
     // try generator.addProtocol("NSUserActivityRestoring");
     // try generator.addProtocol("NSSecureCoding");
     // try generator.addProtocol("NSCopying");
