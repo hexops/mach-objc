@@ -94,3 +94,31 @@ done
 
 mv MACHAppDelegate_aarch64-macos.s MACHAppDelegate_arm64_apple_macos12.s
 mv MACHAppDelegate_x86_64-macos.s MACHAppDelegate_x86_64_apple_macos12.s
+
+for pair in \
+    'MACHWindowDelegate_aarch64-macos.s aarch64-macos.12.0' \
+    'MACHWindowDelegate_x86_64-macos.s x86_64-macos.12.0'
+do
+    dst=${pair%% *}
+    target=${pair#* }
+
+    zig cc -c MACHWindowDelegate.m \
+        -target "$target" \
+        -S -Os -fomit-frame-pointer -fobjc-arc -fno-objc-exceptions \
+        -o "$dst" \
+        -iframework ./xcode-frameworks/Frameworks \
+        -isystem ./xcode-frameworks/include
+
+    cat "$dst" |
+        sed 's/\x01/\\x01/g' |
+        sed 's/  *; .*//g' | # Strip comments at the end of lines
+        sed 's/  *## .*//g' |
+        sed '/^    \.build_version .*/d' | # Strip OS-specific version info
+        sed '/^; .*/d' | # Strip whole-line comments
+        sed '/^## .*/d' > "$dst.tmp"
+
+    mv "$dst.tmp" "$dst"
+done
+
+mv MACHWindowDelegate_aarch64-macos.s MACHWindowDelegate_arm64_apple_macos12.s
+mv MACHWindowDelegate_x86_64-macos.s MACHWindowDelegate_x86_64_apple_macos12.s
