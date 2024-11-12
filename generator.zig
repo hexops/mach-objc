@@ -1911,14 +1911,19 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSWindow", "isVisible" },
         [2][]const u8{ "NSWindow", "setIsVisible" },
         [2][]const u8{ "NSWindow", "makeKeyAndOrderFront" },
-        //[2][]const u8{ "NSWindow", "setDelegate" },
+        [2][]const u8{ "NSWindow", "setDelegate" },
         [2][]const u8{ "NSWindow", "title" },
         [2][]const u8{ "NSWindow", "setTitle" },
+        [2][]const u8{ "NSWindow", "contentRectForFrameRect" },
+        [2][]const u8{ "NSWindow", "frameRectForContentRect" },
+        [2][]const u8{ "NSWindow", "frame" },
+        [2][]const u8{ "NSWindow", "setFrame:display:animate" },
+        [2][]const u8{ "NSWindow", "toggleFullscreen" },
 
         [2][]const u8{ "NSWindow", "update" },
         [2][]const u8{ "NSWindow", "setMinSize" },
 
-        //[2][]const u8{ "NSWindowDelegate", "windowWillResize:toSize" },
+        [2][]const u8{ "NSWindowDelegate", "windowWillResize:toSize" },
 
         [2][]const u8{ "NSView", "layer" },
         [2][]const u8{ "NSView", "setLayer" },

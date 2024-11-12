@@ -11,7 +11,7 @@ pub const app_kit = @import("app_kit.zig");
 
 pub const mach = struct {
     pub const AppDelegate = opaque {
-        pub const InternalInfo = objc.ExternClass("MACHAppDelegate", @This(), foundation.ObjectInterface, &.{app_kit.ApplicationDelegate});
+        pub const InternalInfo = objc.ExternClass("MACHAppDelegate", AppDelegate, foundation.ObjectInterface, &.{app_kit.ApplicationDelegate});
         pub const as = InternalInfo.as;
         pub const retain = InternalInfo.retain;
         pub const release = InternalInfo.release;
@@ -26,6 +26,25 @@ pub const mach = struct {
         const method = @extern(
             *const fn (*AppDelegate, *foundation.Block(fn () void)) callconv(.C) void,
             .{ .name = "\x01-[MACHAppDelegate setRunBlock:]" },
+        );
+    };
+
+    pub const WindowDelegate = opaque {
+        pub const InternalInfo = objc.ExternClass("MACHWindowDelegate", WindowDelegate, foundation.ObjectInterface, &.{app_kit.WindowDelegate});
+        pub const as = InternalInfo.as;
+        pub const retain = InternalInfo.retain;
+        pub const release = InternalInfo.release;
+        pub const autorelease = InternalInfo.autorelease;
+        pub const new = InternalInfo.new;
+        pub const alloc = InternalInfo.alloc;
+        pub const allocInit = InternalInfo.allocInit;
+
+        pub fn setBlock_windowWillResize_toSize(self: *WindowDelegate, block: *foundation.Block(fn (core_graphics.Size) void)) void {
+            method_windowWillResize_toSize(self, block);
+        }
+        const method_windowWillResize_toSize = @extern(
+            *const fn (*WindowDelegate, *foundation.Block(fn (core_graphics.Size) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHWindowDelegate setBlock_windowWillResize_toSize:]" },
         );
     };
 };
