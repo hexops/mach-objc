@@ -116,8 +116,17 @@ pub const Window = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
+    pub fn frameRectForContentRect(self_: *@This(), contentRect_: Rect) Rect {
+        return objc.msgSend(self_, "frameRectForContentRect:", Rect, .{contentRect_});
+    }
+    pub fn contentRectForFrameRect(self_: *@This(), frameRect_: Rect) Rect {
+        return objc.msgSend(self_, "contentRectForFrameRect:", Rect, .{frameRect_});
+    }
     pub fn initWithContentRect_styleMask_backing_defer_screen(self_: *@This(), contentRect_: Rect, style_: WindowStyleMask, backingStoreType_: BackingStoreType, flag_: bool, screen_: ?*Screen) *@This() {
         return objc.msgSend(self_, "initWithContentRect:styleMask:backing:defer:screen:", *@This(), .{ contentRect_, style_, backingStoreType_, flag_, screen_ });
+    }
+    pub fn setFrame_display_animate(self_: *@This(), frameRect_: Rect, displayFlag_: bool, animateFlag_: bool) void {
+        return objc.msgSend(self_, "setFrame:display:animate:", void, .{ frameRect_, displayFlag_, animateFlag_ });
     }
     pub fn update(self_: *@This()) void {
         return objc.msgSend(self_, "update", void, .{});
@@ -133,6 +142,12 @@ pub const Window = opaque {
     }
     pub fn contentView(self_: *@This()) ?*View {
         return objc.msgSend(self_, "contentView", ?*View, .{});
+    }
+    pub fn setDelegate(self_: *@This(), delegate_: ?*WindowDelegate) void {
+        return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
+    }
+    pub fn frame(self_: *@This()) Rect {
+        return objc.msgSend(self_, "frame", Rect, .{});
     }
     pub fn isReleasedWhenClosed(self_: *@This()) bool {
         return objc.msgSend(self_, "isReleasedWhenClosed", bool, .{});
@@ -235,6 +250,18 @@ pub const ApplicationDelegate = opaque {
 
     pub fn applicationDidFinishLaunching(self_: *@This(), notification_: *Notification) void {
         return objc.msgSend(self_, "applicationDidFinishLaunching:", void, .{notification_});
+    }
+};
+
+pub const WindowDelegate = opaque {
+    pub const InternalInfo = objc.ExternProtocol(@This(), &.{ ObjectProtocol, ObjectProtocol });
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+
+    pub fn windowWillResize_toSize(self_: *@This(), sender_: *Window, frameSize_: Size) Size {
+        return objc.msgSend(self_, "windowWillResize:toSize:", Size, .{ sender_, frameSize_ });
     }
 };
 
