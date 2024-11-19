@@ -46,6 +46,48 @@ pub const mach = struct {
             *const fn (*WindowDelegate, *foundation.Block(fn (core_graphics.Size) void)) callconv(.C) void,
             .{ .name = "\x01-[MACHWindowDelegate setBlock_windowWillResize_toSize:]" },
         );
+
+        pub fn setBlock_windowShouldClose(self: *WindowDelegate, block: *foundation.Block(fn () bool)) void {
+            method_windowShouldClose(self, block);
+        }
+        const method_windowShouldClose = @extern(
+            *const fn (*WindowDelegate, *foundation.Block(fn () bool)) callconv(.C) void,
+            .{ .name = "\x01-[MACHWindowDelegate setBlock_windowShouldClose:]" },
+        );
+    };
+
+    pub const View = opaque {
+        pub const InternalInfo = objc.ExternClass("MACHView", View, app_kit.Responder, &.{});
+        pub const as = InternalInfo.as;
+        pub const retain = InternalInfo.retain;
+        pub const release = InternalInfo.release;
+        pub const autorelease = InternalInfo.autorelease;
+        pub const new = InternalInfo.new;
+        pub const alloc = InternalInfo.alloc;
+        pub const allocInit = InternalInfo.allocInit;
+
+        pub fn layer(self_: *@This()) *quartz_core.Layer {
+            return objc.msgSend(self_, "layer", *quartz_core.Layer, .{});
+        }
+        pub fn setLayer(self_: *@This(), layer_: *quartz_core.Layer) void {
+            return objc.msgSend(self_, "setLayer:", void, .{layer_});
+        }
+
+        pub fn setBlock_keyDown(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_keyDown(self, block);
+        }
+        const method_keyDown = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_keyDown:]" },
+        );
+
+        pub fn setBlock_keyUp(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_keyUp(self, block);
+        }
+        const method_keyUp = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_keyUp:]" },
+        );
     };
 };
 

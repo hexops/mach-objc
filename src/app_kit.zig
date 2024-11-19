@@ -54,10 +54,26 @@ pub const WindowFrameAutosaveName = *String;
 pub const AccessibilityParameterizedAttributeName = *String;
 pub const UserInterfaceItemIdentifier = *String;
 
+pub const ApplicationActivationPolicy = Integer;
+pub const ApplicationActivationPolicyRegular: ApplicationActivationPolicy = 0;
+pub const ApplicationActivationPolicyAccessory: ApplicationActivationPolicy = 0;
+pub const ApplicationActivationPolicyProhibited: ApplicationActivationPolicy = 0;
+
 pub const BackingStoreType = UInteger;
 pub const BackingStoreRetained: BackingStoreType = 0;
 pub const BackingStoreNonretained: BackingStoreType = 1;
 pub const BackingStoreBuffered: BackingStoreType = 2;
+
+pub const EventModifierFlags = UInteger;
+pub const EventModifierFlagCapsLock: EventModifierFlags = 65536;
+pub const EventModifierFlagShift: EventModifierFlags = 131072;
+pub const EventModifierFlagControl: EventModifierFlags = 262144;
+pub const EventModifierFlagOption: EventModifierFlags = 524288;
+pub const EventModifierFlagCommand: EventModifierFlags = 1048576;
+pub const EventModifierFlagNumericPad: EventModifierFlags = 2097152;
+pub const EventModifierFlagHelp: EventModifierFlags = 4194304;
+pub const EventModifierFlagFunction: EventModifierFlags = 8388608;
+pub const EventModifierFlagDeviceIndependentFlagsMask: EventModifierFlags = 4294901760;
 
 pub const WindowStyleMask = UInteger;
 pub const WindowStyleMaskBorderless: WindowStyleMask = 0;
@@ -84,8 +100,14 @@ pub const Application = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
+    pub fn activateIgnoringOtherApps(self_: *@This(), flag_: bool) void {
+        return objc.msgSend(self_, "activateIgnoringOtherApps:", void, .{flag_});
+    }
     pub fn run(self_: *@This()) void {
         return objc.msgSend(self_, "run", void, .{});
+    }
+    pub fn setActivationPolicy(self_: *@This(), activationPolicy_: ApplicationActivationPolicy) bool {
+        return objc.msgSend(self_, "setActivationPolicy:", bool, .{activationPolicy_});
     }
     pub fn sharedApplication() *Application {
         return objc.msgSend(@This().InternalInfo.class(), "sharedApplication", *Application, .{});
@@ -143,6 +165,9 @@ pub const Window = opaque {
     pub fn contentView(self_: *@This()) ?*View {
         return objc.msgSend(self_, "contentView", ?*View, .{});
     }
+    pub fn setContentView(self_: *@This(), contentView_: ?*View) void {
+        return objc.msgSend(self_, "setContentView:", void, .{contentView_});
+    }
     pub fn setDelegate(self_: *@This(), delegate_: ?*WindowDelegate) void {
         return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
     }
@@ -197,6 +222,27 @@ pub const ObjectInterface = opaque {
     pub fn copy(self_: *@This()) *objc.Id {
         return objc.msgSend(self_, "copy", *objc.Id, .{});
     }
+};
+
+pub const Event = opaque {
+    pub const InternalInfo = objc.ExternClass("NSEvent", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn modifierFlags(self_: *@This()) EventModifierFlags {
+        return objc.msgSend(self_, "modifierFlags", EventModifierFlags, .{});
+    }
+    pub fn keyCode(self_: *@This()) c_ushort {
+        return objc.msgSend(self_, "keyCode", c_ushort, .{});
+    }
+    // pub fn modifierFlags() EventModifierFlags {
+    //     return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
+    // }
 };
 
 pub const View = opaque {
