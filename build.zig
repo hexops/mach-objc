@@ -17,9 +17,11 @@ pub fn build(b: *std.Build) void {
         if (target.result.cpu.arch == .x86_64) {
             module.addAssemblyFile(b.path("MACHAppDelegate_x86_64_apple_macos12.s"));
             module.addAssemblyFile(b.path("MACHWindowDelegate_x86_64_apple_macos12.s"));
+            module.addAssemblyFile(b.path("MACHView_x86_64_apple_macos12.s"));
         } else {
             module.addAssemblyFile(b.path("MACHAppDelegate_arm64_apple_macos12.s"));
             module.addAssemblyFile(b.path("MACHWindowDelegate_arm64_apple_macos12.s"));
+            module.addAssemblyFile(b.path("MACHView_arm64_apple_macos12.s"));
         }
     } else {
         module.linkFramework("UIKit", .{});

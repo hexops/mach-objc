@@ -3,7 +3,7 @@ set -euo pipefail
 
 # TODO: delete this shell script and move all this logic into generator.zig
 
-# `git clone --depth 1` but at a specific revision
+`git clone --depth 1` but at a specific revision
 git_clone_rev() {
     repo=$1
     rev=$2
@@ -122,3 +122,31 @@ done
 
 mv MACHWindowDelegate_aarch64-macos.s MACHWindowDelegate_arm64_apple_macos12.s
 mv MACHWindowDelegate_x86_64-macos.s MACHWindowDelegate_x86_64_apple_macos12.s
+
+for pair in \
+    'MACHView_aarch64-macos.s aarch64-macos.12.0' \
+    'MACHView_x86_64-macos.s x86_64-macos.12.0'
+do
+    dst=${pair%% *}
+    target=${pair#* }
+
+    zig cc -c MACHView.m \
+        -target "$target" \
+        -S -Os -fomit-frame-pointer -fobjc-arc -fno-objc-exceptions \
+        -o "$dst" \
+        -iframework ./xcode-frameworks/Frameworks \
+        -isystem ./xcode-frameworks/include
+
+    cat "$dst" |
+        sed 's/\x01/\\x01/g' |
+        sed 's/  *; .*//g' | # Strip comments at the end of lines
+        sed 's/  *## .*//g' |
+        sed '/^    \.build_version .*/d' | # Strip OS-specific version info
+        sed '/^; .*/d' | # Strip whole-line comments
+        sed '/^## .*/d' > "$dst.tmp"
+
+    mv "$dst.tmp" "$dst"
+done
+
+mv MACHView_aarch64-macos.s MACHView_arm64_apple_macos12.s
+mv MACHView_x86_64-macos.s MACHView_x86_64_apple_macos12.s
