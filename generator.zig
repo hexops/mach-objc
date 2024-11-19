@@ -1923,6 +1923,7 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSWindow", "setContentView" },
         [2][]const u8{ "NSWindow", "update" },
         [2][]const u8{ "NSWindow", "setMinSize" },
+        [2][]const u8{ "NSWindow", "center" },
 
         [2][]const u8{ "NSWindowDelegate", "windowWillResize:toSize" },
 
@@ -1937,7 +1938,6 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSScreen", "screens" },
         [2][]const u8{ "NSScreen", "mainScreen" },
         [2][]const u8{ "NSScreen", "frame" },
-        [2][]const u8{ "NSScreen", "visibleFrame" },
 
         [2][]const u8{ "NSApplicationDelegate", "applicationDidFinishLaunching" },
 

@@ -153,6 +153,9 @@ pub const Window = opaque {
     pub fn update(self_: *@This()) void {
         return objc.msgSend(self_, "update", void, .{});
     }
+    pub fn center(self_: *@This()) void {
+        return objc.msgSend(self_, "center", void, .{});
+    }
     pub fn makeKeyAndOrderFront(self_: *@This(), sender_: ?*objc.Id) void {
         return objc.msgSend(self_, "makeKeyAndOrderFront:", void, .{sender_});
     }
@@ -281,9 +284,6 @@ pub const Screen = opaque {
     }
     pub fn frame(self_: *@This()) Rect {
         return objc.msgSend(self_, "frame", Rect, .{});
-    }
-    pub fn visibleFrame(self_: *@This()) Rect {
-        return objc.msgSend(self_, "visibleFrame", Rect, .{});
     }
 };
 
