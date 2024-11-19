@@ -3,7 +3,7 @@ set -euo pipefail
 
 # TODO: delete this shell script and move all this logic into generator.zig
 
-`git clone --depth 1` but at a specific revision
+#`git clone --depth 1` but at a specific revision
 git_clone_rev() {
     repo=$1
     rev=$2
