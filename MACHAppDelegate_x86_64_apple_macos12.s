@@ -24,12 +24,18 @@ LBB0_1:
 "-[MACHAppDelegate applicationDidFinishLaunching:]":
 
 	.cfi_startproc
-	cmpq	$0, 8(%rdi)
+	movq	8(%rdi), %rdi
+	testq	%rdi, %rdi
 	je	LBB1_1
-	movq	8(%rdi), %rsi
-	movq	__dispatch_main_q@GOTPCREL(%rip), %rdi
-	jmp	_dispatch_async
+	jmpq	*16(%rdi)
 LBB1_1:
+	retq
+	.cfi_endproc
+
+"-[MACHAppDelegate applicationShouldTerminate:]":
+
+	.cfi_startproc
+	xorl	%eax, %eax
 	retq
 	.cfi_endproc
 
@@ -859,10 +865,13 @@ L_OBJC_METH_VAR_TYPE_.118:
 	.p2align	3, 0x0
 __OBJC_$_INSTANCE_METHODS_MACHAppDelegate:
 	.long	24
-	.long	2
+	.long	3
 	.quad	L_OBJC_METH_VAR_NAME_.81
 	.quad	L_OBJC_METH_VAR_TYPE_.80
 	.quad	"-[MACHAppDelegate applicationDidFinishLaunching:]"
+	.quad	L_OBJC_METH_VAR_NAME_.42
+	.quad	L_OBJC_METH_VAR_TYPE_.43
+	.quad	"-[MACHAppDelegate applicationShouldTerminate:]"
 	.quad	L_OBJC_METH_VAR_NAME_.117
 	.quad	L_OBJC_METH_VAR_TYPE_.118
 	.quad	"-[MACHAppDelegate .cxx_destruct]"

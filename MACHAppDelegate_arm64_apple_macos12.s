@@ -30,17 +30,19 @@ LBB0_2:
 	.p2align	2
 "-[MACHAppDelegate applicationDidFinishLaunching:]":
 	.cfi_startproc
-	ldr	x8, [x0, #8]
-	cbz	x8, LBB1_2
-	ldr	x1, [x0, #8]
-Lloh0:
-	adrp	x0, __dispatch_main_q@GOTPAGE
-Lloh1:
-	ldr	x0, [x0, __dispatch_main_q@GOTPAGEOFF]
-	b	_dispatch_async
+	ldr	x0, [x0, #8]
+	cbz	x0, LBB1_2
+	ldr	x1, [x0, #16]
+	br	x1
 LBB1_2:
 	ret
-	.loh AdrpLdrGot	Lloh0, Lloh1
+	.cfi_endproc
+
+	.p2align	2
+"-[MACHAppDelegate applicationShouldTerminate:]":
+	.cfi_startproc
+	mov	x0, xzr
+	ret
 	.cfi_endproc
 
 	.p2align	2
@@ -869,10 +871,13 @@ l_OBJC_METH_VAR_TYPE_.118:
 	.p2align	3, 0x0
 __OBJC_$_INSTANCE_METHODS_MACHAppDelegate:
 	.long	24
-	.long	2
+	.long	3
 	.quad	l_OBJC_METH_VAR_NAME_.81
 	.quad	l_OBJC_METH_VAR_TYPE_.80
 	.quad	"-[MACHAppDelegate applicationDidFinishLaunching:]"
+	.quad	l_OBJC_METH_VAR_NAME_.42
+	.quad	l_OBJC_METH_VAR_TYPE_.43
+	.quad	"-[MACHAppDelegate applicationShouldTerminate:]"
 	.quad	l_OBJC_METH_VAR_NAME_.117
 	.quad	l_OBJC_METH_VAR_TYPE_.118
 	.quad	"-[MACHAppDelegate .cxx_destruct]"
