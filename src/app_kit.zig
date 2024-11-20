@@ -106,6 +106,12 @@ pub const Application = opaque {
     pub fn run(self_: *@This()) void {
         return objc.msgSend(self_, "run", void, .{});
     }
+    pub fn stop(self_: *@This(), sender_: ?*objc.Id) void {
+        return objc.msgSend(self_, "stop:", void, .{sender_});
+    }
+    pub fn terminate(self_: *@This(), sender_: ?*objc.Id) void {
+        return objc.msgSend(self_, "terminate:", void, .{sender_});
+    }
     pub fn setActivationPolicy(self_: *@This(), activationPolicy_: ApplicationActivationPolicy) bool {
         return objc.msgSend(self_, "setActivationPolicy:", bool, .{activationPolicy_});
     }
@@ -239,6 +245,9 @@ pub const Event = opaque {
 
     pub fn modifierFlags(self_: *@This()) EventModifierFlags {
         return objc.msgSend(self_, "modifierFlags", EventModifierFlags, .{});
+    }
+    pub fn isARepeat(self_: *@This()) bool {
+        return objc.msgSend(self_, "isARepeat", bool, .{});
     }
     pub fn keyCode(self_: *@This()) c_ushort {
         return objc.msgSend(self_, "keyCode", c_ushort, .{});
