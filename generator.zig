@@ -1934,6 +1934,7 @@ fn generateAppKit(generator: anytype) !void {
 
         [2][]const u8{ "NSEvent", "keyCode" },
         [2][]const u8{ "NSEvent", "modifierFlags" },
+        [2][]const u8{ "NSEvent", "isARepeat" },
 
         [2][]const u8{ "NSScreen", "screens" },
         [2][]const u8{ "NSScreen", "mainScreen" },
