@@ -106,12 +106,6 @@ pub const Application = opaque {
     pub fn run(self_: *@This()) void {
         return objc.msgSend(self_, "run", void, .{});
     }
-    pub fn stop(self_: *@This(), sender_: ?*objc.Id) void {
-        return objc.msgSend(self_, "stop:", void, .{sender_});
-    }
-    pub fn terminate(self_: *@This(), sender_: ?*objc.Id) void {
-        return objc.msgSend(self_, "terminate:", void, .{sender_});
-    }
     pub fn setActivationPolicy(self_: *@This(), activationPolicy_: ApplicationActivationPolicy) bool {
         return objc.msgSend(self_, "setActivationPolicy:", bool, .{activationPolicy_});
     }
@@ -171,6 +165,12 @@ pub const Window = opaque {
     pub fn setTitle(self_: *@This(), title_: *String) void {
         return objc.msgSend(self_, "setTitle:", void, .{title_});
     }
+    pub fn titlebarAppearsTransparent(self_: *@This()) bool {
+        return objc.msgSend(self_, "titlebarAppearsTransparent", bool, .{});
+    }
+    pub fn setTitlebarAppearsTransparent(self_: *@This(), titlebarAppearsTransparent_: bool) void {
+        return objc.msgSend(self_, "setTitlebarAppearsTransparent:", void, .{titlebarAppearsTransparent_});
+    }
     pub fn contentView(self_: *@This()) ?*View {
         return objc.msgSend(self_, "contentView", ?*View, .{});
     }
@@ -188,6 +188,12 @@ pub const Window = opaque {
     }
     pub fn setReleasedWhenClosed(self_: *@This(), releasedWhenClosed_: bool) void {
         return objc.msgSend(self_, "setReleasedWhenClosed:", void, .{releasedWhenClosed_});
+    }
+    pub fn backgroundColor(self_: *@This()) *Color {
+        return objc.msgSend(self_, "backgroundColor", *Color, .{});
+    }
+    pub fn setBackgroundColor(self_: *@This(), backgroundColor_: ?*Color) void {
+        return objc.msgSend(self_, "setBackgroundColor:", void, .{backgroundColor_});
     }
     pub fn isVisible(self_: *@This()) bool {
         return objc.msgSend(self_, "isVisible", bool, .{});
@@ -272,6 +278,21 @@ pub const View = opaque {
     }
     pub fn setLayer(self_: *@This(), layer_: *ca.Layer) void {
         return objc.msgSend(self_, "setLayer:", void, .{layer_});
+    }
+};
+
+pub const Color = opaque {
+    pub const InternalInfo = objc.ExternClass("NSColor", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn colorWithRed_green_blue_alpha(red_: cg.Float, green_: cg.Float, blue_: cg.Float, alpha_: cg.Float) *Color {
+        return objc.msgSend(@This().InternalInfo.class(), "colorWithRed:green:blue:alpha:", *Color, .{ red_, green_, blue_, alpha_ });
     }
 };
 
