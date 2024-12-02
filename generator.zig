@@ -1924,11 +1924,17 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSWindow", "update" },
         [2][]const u8{ "NSWindow", "setMinSize" },
         [2][]const u8{ "NSWindow", "center" },
+        [2][]const u8{ "NSWindow", "titlebarAppearsTransparent" },
+        [2][]const u8{ "NSWindow", "setTitlebarAppearsTransparent" },
+        [2][]const u8{ "NSWindow", "backgroundColor" },
+        [2][]const u8{ "NSWindow", "setBackgroundColor" },
 
         [2][]const u8{ "NSWindowDelegate", "windowWillResize:toSize" },
 
         [2][]const u8{ "NSView", "layer" },
         [2][]const u8{ "NSView", "setLayer" },
+
+        [2][]const u8{ "NSColor", "colorWithRed:green:blue:alpha" },
 
         [2][]const u8{ "NSResponder", "" },
 
@@ -1999,7 +2005,7 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addInterface("NSClassDescription");
     // try generator.addInterface("NSClipView");
     // try generator.addInterface("NSCloseCommand");
-    // try generator.addInterface("NSColor");
+    try generator.addInterface("NSColor");
     // try generator.addInterface("NSColorSpace");
     // try generator.addInterface("NSCursor");
     // try generator.addInterface("NSDraggingItem");
