@@ -84,6 +84,12 @@ pub const MetalLayer = opaque {
     pub fn setColorspace(self_: *@This(), colorspace_: cg.ColorSpaceRef) void {
         return objc.msgSend(self_, "setColorspace:", void, .{colorspace_});
     }
+    pub fn setOpaque(self_: *@This(), opaque_: bool) void {
+        return objc.msgSend(self_, "setOpaque:", void, .{opaque_});
+    }
+    pub fn setOpacity(self_: *@This(), opacity_: f32) void {
+        return objc.msgSend(self_, "setOpaque:", void, .{opacity_});
+    }
     pub fn wantsExtendedDynamicRangeContent(self_: *@This()) bool {
         return objc.msgSend(self_, "wantsExtendedDynamicRangeContent", bool, .{});
     }
