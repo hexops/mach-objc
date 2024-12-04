@@ -2195,6 +2195,40 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addProtocol("NSPreviewRepresentableActivityItem");
 }
 
+fn generateScreenCaptureKit(generator: anytype) !void {
+    generator.namespace = "SC";
+    generator.allow_methods = &.{};
+
+    try generator.addInterface("SCShareableContent");
+    try generator.addEnum("SCShareableContentStyle");
+    try generator.addInterface("SCShareableContentInfo");
+    try generator.addInterface("SCContentFilter");
+    try generator.addEnum("SCStreamType");
+    try generator.addEnum("SCCaptureResolutionType");
+    try generator.addEnum("SCPresenterOverlayAlertSetting");
+
+    try generator.addInterface("SCStreamConfiguration");
+    try generator.addInterface("SCStream");
+    try generator.addProtocol("SCStreamOutput");
+    try generator.addEnum("SCStreamOutputType");
+    try generator.addProtocol("SCStreamDelegate");
+    try generator.addInterface("SCRunningApplication");
+    try generator.addInterface("SCDisplay");
+    try generator.addInterface("SCWindow");
+}
+
+fn generateCoreMedia(generator: anytype) !void {
+    generator.namespace = "CM";
+    generator.allow_methods = &.{};
+
+    try generator.addEnum("CMTimeFlags");
+}
+
+fn generateCoreVideo(generator: anytype) !void {
+    generator.namespace = "CV";
+    generator.allow_methods = &.{};
+}
+
 fn usage() void {
     std.log.warn(
         \\mach-objc-generator [options]
@@ -2211,6 +2245,9 @@ const Framework = enum {
     avf_audio,
     core_midi,
     app_kit,
+    screen_capture_kit,
+    core_media,
+    core_video,
 };
 
 pub fn main() anyerror!void {
@@ -2236,6 +2273,9 @@ pub fn main() anyerror!void {
                 if (std.mem.eql(u8, args[i], "AVFAudio")) break :blk .avf_audio;
                 if (std.mem.eql(u8, args[i], "CoreMIDI")) break :blk .core_midi;
                 if (std.mem.eql(u8, args[i], "AppKit")) break :blk .app_kit;
+                if (std.mem.eql(u8, args[i], "ScreenCaptureKit")) break :blk .screen_capture_kit;
+                if (std.mem.eql(u8, args[i], "CoreMedia")) break :blk .core_media;
+                if (std.mem.eql(u8, args[i], "CoreVideo")) break :blk .core_video;
                 usage();
                 std.process.exit(1);
             };
@@ -2287,6 +2327,9 @@ pub fn main() anyerror!void {
         .avf_audio => try generateAVFAudio(&generator),
         .core_midi => try generateCoreMIDI(&generator),
         .app_kit => try generateAppKit(&generator),
+        .screen_capture_kit => try generateScreenCaptureKit(&generator),
+        .core_media => try generateCoreMedia(&generator),
+        .core_video => try generateCoreVideo(&generator),
     }
     try generator.generate();
 }
