@@ -5,25 +5,28 @@
 @end
 
 @implementation MACHWindowDelegate {
-    void (^_windowWillResize_toSize_block)(NSSize);
+    void (^_windowDidResize_block)(void);
     bool (^_windowShouldClose_block)(void);
 }
 
-- (void)setBlock_windowWillResize_toSize:(void (^)(NSSize))windowWillResize_toSize_block __attribute__((objc_direct)) {
-    _windowWillResize_toSize_block = windowWillResize_toSize_block;
+- (void)setBlock_windowDidResize:(void (^)(void))windowDidResize_block __attribute__((objc_direct)) {
+    _windowDidResize_block = windowDidResize_block;
 }
 
 - (void)setBlock_windowShouldClose:(bool (^)(void))windowShouldClose_block __attribute__((objc_direct)) {
     _windowShouldClose_block = windowShouldClose_block;
 }
 
-- (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)frameSize {
-    if (self->_windowWillResize_toSize_block) self->_windowWillResize_toSize_block(frameSize);
-    return frameSize;
+- (void) windowDidResize:(NSNotification *) notification {
+    if (self->_windowDidResize_block) self->_windowDidResize_block();
 }
 
 - (BOOL)windowShouldClose:(NSWindow *)sender {
     if (self->_windowShouldClose_block) self->_windowShouldClose_block();
     return NO;
+}
+
+- (void)windowWillClose:(NSNotification *)notification {
+    //NSLog(@"windowWillClose");
 }
 @end
