@@ -39,12 +39,12 @@ pub const mach = struct {
         pub const alloc = InternalInfo.alloc;
         pub const allocInit = InternalInfo.allocInit;
 
-        pub fn setBlock_windowWillResize_toSize(self: *WindowDelegate, block: *foundation.Block(fn (core_graphics.Size) void)) void {
-            method_windowWillResize_toSize(self, block);
+        pub fn setBlock_windowDidResize(self: *WindowDelegate, block: *foundation.Block(fn () void)) void {
+            method_windowDidResize(self, block);
         }
-        const method_windowWillResize_toSize = @extern(
-            *const fn (*WindowDelegate, *foundation.Block(fn (core_graphics.Size) void)) callconv(.C) void,
-            .{ .name = "\x01-[MACHWindowDelegate setBlock_windowWillResize_toSize:]" },
+        const method_windowDidResize = @extern(
+            *const fn (*WindowDelegate, *foundation.Block(fn () void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHWindowDelegate setBlock_windowDidResize:]" },
         );
 
         pub fn setBlock_windowShouldClose(self: *WindowDelegate, block: *foundation.Block(fn () bool)) void {
@@ -66,10 +66,10 @@ pub const mach = struct {
         pub const alloc = InternalInfo.alloc;
         pub const allocInit = InternalInfo.allocInit;
 
-        pub fn layer(self_: *@This()) *quartz_core.Layer {
-            return objc.msgSend(self_, "layer", *quartz_core.Layer, .{});
+        pub fn layer(self_: *@This()) *quartz_core.MetalLayer {
+            return objc.msgSend(self_, "layer", *quartz_core.MetalLayer, .{});
         }
-        pub fn setLayer(self_: *@This(), layer_: *quartz_core.Layer) void {
+        pub fn setLayer(self_: *@This(), layer_: *quartz_core.MetalLayer) void {
             return objc.msgSend(self_, "setLayer:", void, .{layer_});
         }
 
