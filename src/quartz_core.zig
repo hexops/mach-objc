@@ -18,6 +18,10 @@ pub const MetalDrawable = opaque {
     pub const release = InternalInfo.release;
     pub const autorelease = InternalInfo.autorelease;
 
+    pub fn present(self_: *@This()) void {
+        return objc.msgSend(self_, "present", void, .{});
+    }
+
     pub fn texture(self_: *@This()) *mtl.Texture {
         return objc.msgSend(self_, "texture", *mtl.Texture, .{});
     }
@@ -88,7 +92,7 @@ pub const MetalLayer = opaque {
         return objc.msgSend(self_, "setOpaque:", void, .{opaque_});
     }
     pub fn setOpacity(self_: *@This(), opacity_: f32) void {
-        return objc.msgSend(self_, "setOpaque:", void, .{opacity_});
+        return objc.msgSend(self_, "setOpacity:", void, .{opacity_});
     }
     pub fn wantsExtendedDynamicRangeContent(self_: *@This()) bool {
         return objc.msgSend(self_, "wantsExtendedDynamicRangeContent", bool, .{});
