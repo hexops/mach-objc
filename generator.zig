@@ -1928,11 +1928,13 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSWindow", "setTitlebarAppearsTransparent" },
         [2][]const u8{ "NSWindow", "backgroundColor" },
         [2][]const u8{ "NSWindow", "setBackgroundColor" },
+        [2][]const u8{ "NSWindow", "backingScaleFactor" },
 
         [2][]const u8{ "NSWindowDelegate", "windowWillResize:toSize" },
 
         [2][]const u8{ "NSView", "layer" },
         [2][]const u8{ "NSView", "setLayer" },
+        [2][]const u8{ "NSView", "initWithFrame" },
 
         [2][]const u8{ "NSColor", "colorWithRed:green:blue:alpha" },
 
@@ -1941,6 +1943,14 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSEvent", "keyCode" },
         [2][]const u8{ "NSEvent", "modifierFlags" },
         [2][]const u8{ "NSEvent", "isARepeat" },
+        [2][]const u8{ "NSEvent", "locationInWindow" },
+        [2][]const u8{ "NSEvent", "pressedMouseButtons" },
+        [2][]const u8{ "NSEvent", "buttonNumber" },
+        [2][]const u8{ "NSEvent", "scrollingDeltaX" },
+        [2][]const u8{ "NSEvent", "scrollingDeltaY" },
+        [2][]const u8{ "NSEvent", "hasPreciseScrollingDeltas" },
+
+        [2][]const u8{ "NSDictionary", "" },
 
         [2][]const u8{ "NSScreen", "screens" },
         [2][]const u8{ "NSScreen", "mainScreen" },
@@ -1964,7 +1974,7 @@ fn generateAppKit(generator: anytype) !void {
     try generator.addInterface("NSNotification");
     // try generator.addInterface("NSUserActivity");
     // try generator.addInterface("NSCoder");
-    // try generator.addInterface("NSDictionary");
+    try generator.addInterface("NSDictionary");
     // try generator.addInterface("NSMenu");
     // try generator.addInterface("NSArray");
     // try generator.addInterface("NSURL");
@@ -2059,7 +2069,8 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addInterface("NSToolbar");
     // try generator.addInterface("NSToolbarItem");
     // try generator.addInterface("NSTouch");
-    // try generator.addInterface("NSTrackingArea");
+    try generator.addInterface("NSTrackingArea");
+    try generator.addEnum("NSTrackingAreaOptions");
     // try generator.addInterface("NSURLHandle");
     // try generator.addInterface("NSUndoManager");
     // try generator.addInterface("NSWindowController");

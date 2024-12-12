@@ -57,7 +57,7 @@ pub const mach = struct {
     };
 
     pub const View = opaque {
-        pub const InternalInfo = objc.ExternClass("MACHView", View, app_kit.Responder, &.{});
+        pub const InternalInfo = objc.ExternClass("MACHView", View, app_kit.View, &.{});
         pub const as = InternalInfo.as;
         pub const retain = InternalInfo.retain;
         pub const release = InternalInfo.release;
@@ -65,6 +65,14 @@ pub const mach = struct {
         pub const new = InternalInfo.new;
         pub const alloc = InternalInfo.alloc;
         pub const allocInit = InternalInfo.allocInit;
+
+        pub fn initWithFrame(self_: *@This(), frameRect_: app_kit.Rect) *@This() {
+            return objc.msgSend(self_, "initWithFrame:", *@This(), .{frameRect_});
+        }
+
+        pub fn currentDrawable(self_: *@This()) ?*quartz_core.MetalDrawable {
+            return objc.msgSend(self_, "currentDrawable", ?*quartz_core.MetalDrawable, .{});
+        }
 
         pub fn layer(self_: *@This()) *quartz_core.MetalLayer {
             return objc.msgSend(self_, "layer", *quartz_core.MetalLayer, .{});
@@ -87,6 +95,46 @@ pub const mach = struct {
         const method_keyUp = @extern(
             *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
             .{ .name = "\x01-[MACHView setBlock_keyUp:]" },
+        );
+
+        pub fn setBlock_flagsChanged(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_flagsChanged(self, block);
+        }
+        const method_flagsChanged = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_flagsChanged:]" },
+        );
+
+        pub fn setBlock_mouseMoved(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_mouseMoved(self, block);
+        }
+        const method_mouseMoved = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_mouseMoved:]" },
+        );
+
+        pub fn setBlock_mouseDown(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_mouseDown(self, block);
+        }
+        const method_mouseDown = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_mouseDown:]" },
+        );
+
+        pub fn setBlock_mouseUp(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_mouseUp(self, block);
+        }
+        const method_mouseUp = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_mouseUp:]" },
+        );
+
+        pub fn setBlock_scrollWheel(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_scrollWheel(self, block);
+        }
+        const method_scrollWheel = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_scrollWheel:]" },
         );
     };
 };
