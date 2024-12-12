@@ -2018,7 +2018,7 @@ fn generateAppKit(generator: anytype) !void {
     // try generator.addInterface("NSCloseCommand");
     try generator.addInterface("NSColor");
     // try generator.addInterface("NSColorSpace");
-    // try generator.addInterface("NSCursor");
+    try generator.addInterface("NSCursor");
     // try generator.addInterface("NSDraggingItem");
     // try generator.addInterface("NSDrawer");
     // try generator.addInterface("NSEnumerator");
