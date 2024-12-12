@@ -89,6 +89,14 @@ pub const mach = struct {
             .{ .name = "\x01-[MACHView setBlock_keyDown:]" },
         );
 
+        pub fn setBlock_insertText(self: *View, block: *foundation.Block(fn (*app_kit.Event, u32) void)) void {
+            method_insertText(self, block);
+        }
+        const method_insertText = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event, u32) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_insertText:]" },
+        );
+
         pub fn setBlock_keyUp(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
             method_keyUp(self, block);
         }

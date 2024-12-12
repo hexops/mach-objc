@@ -13,6 +13,7 @@
   void (^_mouseUp_block)(NSEvent *);
   void (^_scrollWheel_block)(NSEvent *);
   void (^_magnify_block)(NSEvent *);
+  void (^_insertText_block)(NSEvent *, uint32_t);
   NSTrackingArea *trackingArea;
 }
 
@@ -59,6 +60,11 @@
   _flagsChanged_block = flagsChanged_block;
 }
 
+- (void)setBlock_insertText:(void (^)(NSEvent *, uint32_t))insertText_block
+    __attribute__((objc_direct)) {
+  _insertText_block = insertText_block;
+}
+
 - (void)setBlock_magnify:(void (^)(NSEvent *))magnify_block
     __attribute__((objc_direct)) {
   _magnify_block = magnify_block;
@@ -67,6 +73,37 @@
 - (void)keyDown:(NSEvent *)event {
   if (_keyDown_block)
     _keyDown_block(event);
+
+  [self interpretKeyEvents:@[ event ]];
+}
+
+- (void)insertText:(id)string {
+  NSString *characters;
+  NSEvent *event = [NSApp currentEvent];
+
+  if ([string isKindOfClass:[NSAttributedString class]])
+    characters = [string string];
+  else
+    characters = (NSString *)string;
+
+  NSRange range = NSMakeRange(0, [characters length]);
+  while (range.length) {
+    uint32_t codepoint = 0;
+
+    if ([characters getBytes:&codepoint
+                   maxLength:sizeof(codepoint)
+                  usedLength:NULL
+                    encoding:NSUTF32StringEncoding
+                     options:0
+                       range:range
+              remainingRange:&range]) {
+      if (codepoint >= 0xf700 && codepoint <= 0xf7ff) {
+        continue;
+      }
+      if (_insertText_block)
+        _insertText_block(event, codepoint);
+    }
+  }
 }
 
 - (void)keyUp:(NSEvent *)event {
