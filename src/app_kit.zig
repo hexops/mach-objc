@@ -346,6 +346,132 @@ pub const Color = opaque {
     }
 };
 
+pub const Cursor = opaque {
+    pub const InternalInfo = objc.ExternClass("NSCursor", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    // pub fn initWithImage_hotSpot(self_: *@This(), newImage_: *Image, point_: Point) *@This() {
+    //     return objc.msgSend(self_, "initWithImage:hotSpot:", *@This(), .{ newImage_, point_ });
+    // }
+    // pub fn initWithCoder(self_: *@This(), coder_: *Coder) *@This() {
+    //     return objc.msgSend(self_, "initWithCoder:", *@This(), .{coder_});
+    // }
+    pub fn hide() void {
+        return objc.msgSend(@This().InternalInfo.class(), "hide", void, .{});
+    }
+    pub fn unhide() void {
+        return objc.msgSend(@This().InternalInfo.class(), "unhide", void, .{});
+    }
+    pub fn setHiddenUntilMouseMoves(flag_: bool) void {
+        return objc.msgSend(@This().InternalInfo.class(), "setHiddenUntilMouseMoves:", void, .{flag_});
+    }
+    pub fn pop() void {
+        return objc.msgSend(@This().InternalInfo.class(), "pop", void, .{});
+    }
+    pub fn push(self_: *@This()) void {
+        return objc.msgSend(self_, "push", void, .{});
+    }
+    // pub fn pop(self_: *@This()) void {
+    //     return objc.msgSend(self_, "pop", void, .{});
+    // }
+    pub fn set(self_: *@This()) void {
+        return objc.msgSend(self_, "set", void, .{});
+    }
+    pub fn currentCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "currentCursor", *Cursor, .{});
+    }
+    pub fn currentSystemCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "currentSystemCursor", *Cursor, .{});
+    }
+    pub fn arrowCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "arrowCursor", *Cursor, .{});
+    }
+    pub fn IBeamCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "IBeamCursor", *Cursor, .{});
+    }
+    pub fn pointingHandCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "pointingHandCursor", *Cursor, .{});
+    }
+    pub fn closedHandCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "closedHandCursor", *Cursor, .{});
+    }
+    pub fn openHandCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "openHandCursor", *Cursor, .{});
+    }
+    pub fn resizeLeftCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeLeftCursor", *Cursor, .{});
+    }
+    pub fn resizeRightCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeRightCursor", *Cursor, .{});
+    }
+    pub fn resizeLeftRightCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeLeftRightCursor", *Cursor, .{});
+    }
+    pub fn resizeUpCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeUpCursor", *Cursor, .{});
+    }
+    pub fn resizeDownCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeDownCursor", *Cursor, .{});
+    }
+    pub fn resizeUpDownCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeUpDownCursor", *Cursor, .{});
+    }
+    pub fn crosshairCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "crosshairCursor", *Cursor, .{});
+    }
+    pub fn disappearingItemCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "disappearingItemCursor", *Cursor, .{});
+    }
+    pub fn operationNotAllowedCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "operationNotAllowedCursor", *Cursor, .{});
+    }
+    pub fn dragLinkCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "dragLinkCursor", *Cursor, .{});
+    }
+    pub fn dragCopyCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "dragCopyCursor", *Cursor, .{});
+    }
+    pub fn contextualMenuCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "contextualMenuCursor", *Cursor, .{});
+    }
+    pub fn IBeamCursorForVerticalLayout() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "IBeamCursorForVerticalLayout", *Cursor, .{});
+    }
+    // pub fn image(self_: *@This()) *Image {
+    //     return objc.msgSend(self_, "image", *Image, .{});
+    // }
+    pub fn hotSpot(self_: *@This()) Point {
+        return objc.msgSend(self_, "hotSpot", Point, .{});
+    }
+    // pub fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(self_: *@This(), newImage_: *Image, fg_: ?*Color, bg_: ?*Color, hotSpot_: Point) *@This() {
+    //     return objc.msgSend(self_, "initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:", *@This(), .{ newImage_, fg_, bg_, hotSpot_ });
+    // }
+    pub fn setOnMouseExited(self_: *@This(), flag_: bool) void {
+        return objc.msgSend(self_, "setOnMouseExited:", void, .{flag_});
+    }
+    pub fn setOnMouseEntered(self_: *@This(), flag_: bool) void {
+        return objc.msgSend(self_, "setOnMouseEntered:", void, .{flag_});
+    }
+    pub fn mouseEntered(self_: *@This(), event_: *Event) void {
+        return objc.msgSend(self_, "mouseEntered:", void, .{event_});
+    }
+    pub fn mouseExited(self_: *@This(), event_: *Event) void {
+        return objc.msgSend(self_, "mouseExited:", void, .{event_});
+    }
+    pub fn isSetOnMouseExited(self_: *@This()) bool {
+        return objc.msgSend(self_, "isSetOnMouseExited", bool, .{});
+    }
+    pub fn isSetOnMouseEntered(self_: *@This()) bool {
+        return objc.msgSend(self_, "isSetOnMouseEntered", bool, .{});
+    }
+};
+
 pub const Screen = opaque {
     pub const InternalInfo = objc.ExternClass("NSScreen", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
