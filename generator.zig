@@ -1949,6 +1949,7 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSEvent", "scrollingDeltaX" },
         [2][]const u8{ "NSEvent", "scrollingDeltaY" },
         [2][]const u8{ "NSEvent", "hasPreciseScrollingDeltas" },
+        [2][]const u8{ "NSEvent", "magnification" },
 
         [2][]const u8{ "NSDictionary", "" },
 

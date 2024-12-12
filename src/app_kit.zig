@@ -299,6 +299,9 @@ pub const Event = opaque {
     pub fn keyCode(self_: *@This()) c_ushort {
         return objc.msgSend(self_, "keyCode", c_ushort, .{});
     }
+    pub fn magnification(self_: *@This()) cg.Float {
+        return objc.msgSend(self_, "magnification", cg.Float, .{});
+    }
     // pub fn modifierFlags() EventModifierFlags {
     //     return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
     // }

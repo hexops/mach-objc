@@ -12,6 +12,7 @@
   void (^_mouseDown_block)(NSEvent *);
   void (^_mouseUp_block)(NSEvent *);
   void (^_scrollWheel_block)(NSEvent *);
+  void (^_magnify_block)(NSEvent *);
   NSTrackingArea *trackingArea;
 }
 
@@ -56,6 +57,11 @@
 - (void)setBlock_flagsChanged:(void (^)(NSEvent *))flagsChanged_block
     __attribute__((objc_direct)) {
   _flagsChanged_block = flagsChanged_block;
+}
+
+- (void)setBlock_magnify:(void (^)(NSEvent *))magnify_block
+    __attribute__((objc_direct)) {
+  _magnify_block = magnify_block;
 }
 
 - (void)keyDown:(NSEvent *)event {
@@ -126,6 +132,11 @@
 - (void)scrollWheel:(NSEvent *)event {
   if (_scrollWheel_block)
     _scrollWheel_block(event);
+}
+
+- (void)magnifyWithEvent:(NSEvent *)event {
+  if (_magnify_block)
+    _magnify_block(event);
 }
 
 // This overrides the default initializer and creates a tracking area over the
