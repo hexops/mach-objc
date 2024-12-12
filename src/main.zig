@@ -105,6 +105,14 @@ pub const mach = struct {
             .{ .name = "\x01-[MACHView setBlock_flagsChanged:]" },
         );
 
+        pub fn setBlock_magnify(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
+            method_magnify(self, block);
+        }
+        const method_magnify = @extern(
+            *const fn (*View, *foundation.Block(fn (*app_kit.Event) void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_magnify:]" },
+        );
+
         pub fn setBlock_mouseMoved(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
             method_mouseMoved(self, block);
         }
