@@ -71,6 +71,42 @@ pub const ApplicationActivationPolicyRegular: ApplicationActivationPolicy = 0;
 pub const ApplicationActivationPolicyAccessory: ApplicationActivationPolicy = 0;
 pub const ApplicationActivationPolicyProhibited: ApplicationActivationPolicy = 0;
 
+pub const EventMask = c_ulonglong;
+pub const EventMaskLeftMouseDown: EventMask = 2;
+pub const EventMaskLeftMouseUp: EventMask = 4;
+pub const EventMaskRightMouseDown: EventMask = 8;
+pub const EventMaskRightMouseUp: EventMask = 16;
+pub const EventMaskMouseMoved: EventMask = 32;
+pub const EventMaskLeftMouseDragged: EventMask = 64;
+pub const EventMaskRightMouseDragged: EventMask = 128;
+pub const EventMaskMouseEntered: EventMask = 256;
+pub const EventMaskMouseExited: EventMask = 512;
+pub const EventMaskKeyDown: EventMask = 1024;
+pub const EventMaskKeyUp: EventMask = 2048;
+pub const EventMaskFlagsChanged: EventMask = 4096;
+pub const EventMaskAppKitDefined: EventMask = 8192;
+pub const EventMaskSystemDefined: EventMask = 16384;
+pub const EventMaskApplicationDefined: EventMask = 32768;
+pub const EventMaskPeriodic: EventMask = 65536;
+pub const EventMaskCursorUpdate: EventMask = 131072;
+pub const EventMaskScrollWheel: EventMask = 4194304;
+pub const EventMaskTabletPoint: EventMask = 8388608;
+pub const EventMaskTabletProximity: EventMask = 16777216;
+pub const EventMaskOtherMouseDown: EventMask = 33554432;
+pub const EventMaskOtherMouseUp: EventMask = 67108864;
+pub const EventMaskOtherMouseDragged: EventMask = 134217728;
+pub const EventMaskGesture: EventMask = 536870912;
+pub const EventMaskMagnify: EventMask = 1073741824;
+pub const EventMaskSwipe: EventMask = 2147483648;
+pub const EventMaskRotate: EventMask = 262144;
+pub const EventMaskBeginGesture: EventMask = 524288;
+pub const EventMaskEndGesture: EventMask = 1048576;
+pub const EventMaskSmartMagnify: EventMask = 4294967296;
+pub const EventMaskPressure: EventMask = 17179869184;
+pub const EventMaskDirectTouch: EventMask = 137438953472;
+pub const EventMaskChangeMode: EventMask = 274877906944;
+pub const EventMaskAny: EventMask = 0;
+
 pub const BackingStoreType = UInteger;
 pub const BackingStoreRetained: BackingStoreType = 0;
 pub const BackingStoreNonretained: BackingStoreType = 1;
@@ -86,6 +122,15 @@ pub const EventModifierFlagNumericPad: EventModifierFlags = 2097152;
 pub const EventModifierFlagHelp: EventModifierFlags = 4194304;
 pub const EventModifierFlagFunction: EventModifierFlags = 8388608;
 pub const EventModifierFlagDeviceIndependentFlagsMask: EventModifierFlags = 4294901760;
+
+pub const EventPhase = UInteger;
+pub const EventPhaseNone: EventPhase = 0;
+pub const EventPhaseBegan: EventPhase = 1;
+pub const EventPhaseStationary: EventPhase = 2;
+pub const EventPhaseChanged: EventPhase = 4;
+pub const EventPhaseEnded: EventPhase = 8;
+pub const EventPhaseCancelled: EventPhase = 16;
+pub const EventPhaseMayBegin: EventPhase = 32;
 
 pub const WindowStyleMask = UInteger;
 pub const WindowStyleMaskBorderless: WindowStyleMask = 0;
@@ -216,6 +261,9 @@ pub const Window = opaque {
     pub fn setMinSize(self_: *@This(), minSize_: Size) void {
         return objc.msgSend(self_, "setMinSize:", void, .{minSize_});
     }
+    pub fn sendEvent(self_: *@This(), event_: *Event) void {
+        return objc.msgSend(self_, "sendEvent:", void, .{event_});
+    }
     pub fn setIsVisible(self_: *@This(), flag_: bool) void {
         return objc.msgSend(self_, "setIsVisible:", void, .{flag_});
     }
@@ -265,6 +313,21 @@ pub const ObjectInterface = opaque {
     }
 };
 
+pub const Appearance = opaque {
+    pub const InternalInfo = objc.ExternClass("NSAppearance", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn appearanceNamed(name_: *String) ?*Appearance {
+        return objc.msgSend(@This().InternalInfo.class(), "appearanceNamed:", ?*Appearance, .{name_});
+    }
+};
+
 pub const Event = opaque {
     pub const InternalInfo = objc.ExternClass("NSEvent", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
@@ -275,6 +338,9 @@ pub const Event = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
+    pub fn addLocalMonitorForEventsMatchingMask_handler(mask_: EventMask, block_: *ns.Block(fn (*Event) ?*Event)) ?*objc.Id {
+        return objc.msgSend(@This().InternalInfo.class(), "addLocalMonitorForEventsMatchingMask:handler:", ?*objc.Id, .{ mask_, block_ });
+    }
     pub fn modifierFlags(self_: *@This()) EventModifierFlags {
         return objc.msgSend(self_, "modifierFlags", EventModifierFlags, .{});
     }
@@ -301,6 +367,9 @@ pub const Event = opaque {
     }
     pub fn magnification(self_: *@This()) cg.Float {
         return objc.msgSend(self_, "magnification", cg.Float, .{});
+    }
+    pub fn phase(self_: *@This()) EventPhase {
+        return objc.msgSend(self_, "phase", EventPhase, .{});
     }
     // pub fn modifierFlags() EventModifierFlags {
     //     return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
@@ -356,20 +425,11 @@ pub const Cursor = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    // pub fn initWithImage_hotSpot(self_: *@This(), newImage_: *Image, point_: Point) *@This() {
-    //     return objc.msgSend(self_, "initWithImage:hotSpot:", *@This(), .{ newImage_, point_ });
-    // }
-    // pub fn initWithCoder(self_: *@This(), coder_: *Coder) *@This() {
-    //     return objc.msgSend(self_, "initWithCoder:", *@This(), .{coder_});
-    // }
     pub fn hide() void {
         return objc.msgSend(@This().InternalInfo.class(), "hide", void, .{});
     }
     pub fn unhide() void {
         return objc.msgSend(@This().InternalInfo.class(), "unhide", void, .{});
-    }
-    pub fn setHiddenUntilMouseMoves(flag_: bool) void {
-        return objc.msgSend(@This().InternalInfo.class(), "setHiddenUntilMouseMoves:", void, .{flag_});
     }
     pub fn pop() void {
         return objc.msgSend(@This().InternalInfo.class(), "pop", void, .{});
@@ -380,15 +440,6 @@ pub const Cursor = opaque {
     // pub fn pop(self_: *@This()) void {
     //     return objc.msgSend(self_, "pop", void, .{});
     // }
-    pub fn set(self_: *@This()) void {
-        return objc.msgSend(self_, "set", void, .{});
-    }
-    pub fn currentCursor() *Cursor {
-        return objc.msgSend(@This().InternalInfo.class(), "currentCursor", *Cursor, .{});
-    }
-    pub fn currentSystemCursor() *Cursor {
-        return objc.msgSend(@This().InternalInfo.class(), "currentSystemCursor", *Cursor, .{});
-    }
     pub fn arrowCursor() *Cursor {
         return objc.msgSend(@This().InternalInfo.class(), "arrowCursor", *Cursor, .{});
     }
@@ -425,50 +476,8 @@ pub const Cursor = opaque {
     pub fn crosshairCursor() *Cursor {
         return objc.msgSend(@This().InternalInfo.class(), "crosshairCursor", *Cursor, .{});
     }
-    pub fn disappearingItemCursor() *Cursor {
-        return objc.msgSend(@This().InternalInfo.class(), "disappearingItemCursor", *Cursor, .{});
-    }
     pub fn operationNotAllowedCursor() *Cursor {
         return objc.msgSend(@This().InternalInfo.class(), "operationNotAllowedCursor", *Cursor, .{});
-    }
-    pub fn dragLinkCursor() *Cursor {
-        return objc.msgSend(@This().InternalInfo.class(), "dragLinkCursor", *Cursor, .{});
-    }
-    pub fn dragCopyCursor() *Cursor {
-        return objc.msgSend(@This().InternalInfo.class(), "dragCopyCursor", *Cursor, .{});
-    }
-    pub fn contextualMenuCursor() *Cursor {
-        return objc.msgSend(@This().InternalInfo.class(), "contextualMenuCursor", *Cursor, .{});
-    }
-    pub fn IBeamCursorForVerticalLayout() *Cursor {
-        return objc.msgSend(@This().InternalInfo.class(), "IBeamCursorForVerticalLayout", *Cursor, .{});
-    }
-    // pub fn image(self_: *@This()) *Image {
-    //     return objc.msgSend(self_, "image", *Image, .{});
-    // }
-    pub fn hotSpot(self_: *@This()) Point {
-        return objc.msgSend(self_, "hotSpot", Point, .{});
-    }
-    // pub fn initWithImage_foregroundColorHint_backgroundColorHint_hotSpot(self_: *@This(), newImage_: *Image, fg_: ?*Color, bg_: ?*Color, hotSpot_: Point) *@This() {
-    //     return objc.msgSend(self_, "initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:", *@This(), .{ newImage_, fg_, bg_, hotSpot_ });
-    // }
-    pub fn setOnMouseExited(self_: *@This(), flag_: bool) void {
-        return objc.msgSend(self_, "setOnMouseExited:", void, .{flag_});
-    }
-    pub fn setOnMouseEntered(self_: *@This(), flag_: bool) void {
-        return objc.msgSend(self_, "setOnMouseEntered:", void, .{flag_});
-    }
-    pub fn mouseEntered(self_: *@This(), event_: *Event) void {
-        return objc.msgSend(self_, "mouseEntered:", void, .{event_});
-    }
-    pub fn mouseExited(self_: *@This(), event_: *Event) void {
-        return objc.msgSend(self_, "mouseExited:", void, .{event_});
-    }
-    pub fn isSetOnMouseExited(self_: *@This()) bool {
-        return objc.msgSend(self_, "isSetOnMouseExited", bool, .{});
-    }
-    pub fn isSetOnMouseEntered(self_: *@This()) bool {
-        return objc.msgSend(self_, "isSetOnMouseEntered", bool, .{});
     }
 };
 
