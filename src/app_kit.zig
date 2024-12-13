@@ -54,10 +54,58 @@ pub const WindowFrameAutosaveName = *String;
 pub const AccessibilityParameterizedAttributeName = *String;
 pub const UserInterfaceItemIdentifier = *String;
 
+pub const TrackingAreaOptions = UInteger;
+pub const TrackingMouseEnteredAndExited: TrackingAreaOptions = 1;
+pub const TrackingMouseMoved: TrackingAreaOptions = 2;
+pub const TrackingCursorUpdate: TrackingAreaOptions = 4;
+pub const TrackingActiveWhenFirstResponder: TrackingAreaOptions = 16;
+pub const TrackingActiveInKeyWindow: TrackingAreaOptions = 32;
+pub const TrackingActiveInActiveApp: TrackingAreaOptions = 64;
+pub const TrackingActiveAlways: TrackingAreaOptions = 128;
+pub const TrackingAssumeInside: TrackingAreaOptions = 256;
+pub const TrackingInVisibleRect: TrackingAreaOptions = 512;
+pub const TrackingEnabledDuringMouseDrag: TrackingAreaOptions = 1024;
+
 pub const ApplicationActivationPolicy = Integer;
 pub const ApplicationActivationPolicyRegular: ApplicationActivationPolicy = 0;
 pub const ApplicationActivationPolicyAccessory: ApplicationActivationPolicy = 0;
 pub const ApplicationActivationPolicyProhibited: ApplicationActivationPolicy = 0;
+
+pub const EventMask = c_ulonglong;
+pub const EventMaskLeftMouseDown: EventMask = 2;
+pub const EventMaskLeftMouseUp: EventMask = 4;
+pub const EventMaskRightMouseDown: EventMask = 8;
+pub const EventMaskRightMouseUp: EventMask = 16;
+pub const EventMaskMouseMoved: EventMask = 32;
+pub const EventMaskLeftMouseDragged: EventMask = 64;
+pub const EventMaskRightMouseDragged: EventMask = 128;
+pub const EventMaskMouseEntered: EventMask = 256;
+pub const EventMaskMouseExited: EventMask = 512;
+pub const EventMaskKeyDown: EventMask = 1024;
+pub const EventMaskKeyUp: EventMask = 2048;
+pub const EventMaskFlagsChanged: EventMask = 4096;
+pub const EventMaskAppKitDefined: EventMask = 8192;
+pub const EventMaskSystemDefined: EventMask = 16384;
+pub const EventMaskApplicationDefined: EventMask = 32768;
+pub const EventMaskPeriodic: EventMask = 65536;
+pub const EventMaskCursorUpdate: EventMask = 131072;
+pub const EventMaskScrollWheel: EventMask = 4194304;
+pub const EventMaskTabletPoint: EventMask = 8388608;
+pub const EventMaskTabletProximity: EventMask = 16777216;
+pub const EventMaskOtherMouseDown: EventMask = 33554432;
+pub const EventMaskOtherMouseUp: EventMask = 67108864;
+pub const EventMaskOtherMouseDragged: EventMask = 134217728;
+pub const EventMaskGesture: EventMask = 536870912;
+pub const EventMaskMagnify: EventMask = 1073741824;
+pub const EventMaskSwipe: EventMask = 2147483648;
+pub const EventMaskRotate: EventMask = 262144;
+pub const EventMaskBeginGesture: EventMask = 524288;
+pub const EventMaskEndGesture: EventMask = 1048576;
+pub const EventMaskSmartMagnify: EventMask = 4294967296;
+pub const EventMaskPressure: EventMask = 17179869184;
+pub const EventMaskDirectTouch: EventMask = 137438953472;
+pub const EventMaskChangeMode: EventMask = 274877906944;
+pub const EventMaskAny: EventMask = 0;
 
 pub const BackingStoreType = UInteger;
 pub const BackingStoreRetained: BackingStoreType = 0;
@@ -74,6 +122,15 @@ pub const EventModifierFlagNumericPad: EventModifierFlags = 2097152;
 pub const EventModifierFlagHelp: EventModifierFlags = 4194304;
 pub const EventModifierFlagFunction: EventModifierFlags = 8388608;
 pub const EventModifierFlagDeviceIndependentFlagsMask: EventModifierFlags = 4294901760;
+
+pub const EventPhase = UInteger;
+pub const EventPhaseNone: EventPhase = 0;
+pub const EventPhaseBegan: EventPhase = 1;
+pub const EventPhaseStationary: EventPhase = 2;
+pub const EventPhaseChanged: EventPhase = 4;
+pub const EventPhaseEnded: EventPhase = 8;
+pub const EventPhaseCancelled: EventPhase = 16;
+pub const EventPhaseMayBegin: EventPhase = 32;
 
 pub const WindowStyleMask = UInteger;
 pub const WindowStyleMaskBorderless: WindowStyleMask = 0;
@@ -198,8 +255,14 @@ pub const Window = opaque {
     pub fn isVisible(self_: *@This()) bool {
         return objc.msgSend(self_, "isVisible", bool, .{});
     }
+    pub fn backingScaleFactor(self_: *@This()) cg.Float {
+        return objc.msgSend(self_, "backingScaleFactor", cg.Float, .{});
+    }
     pub fn setMinSize(self_: *@This(), minSize_: Size) void {
         return objc.msgSend(self_, "setMinSize:", void, .{minSize_});
+    }
+    pub fn sendEvent(self_: *@This(), event_: *Event) void {
+        return objc.msgSend(self_, "sendEvent:", void, .{event_});
     }
     pub fn setIsVisible(self_: *@This(), flag_: bool) void {
         return objc.msgSend(self_, "setIsVisible:", void, .{flag_});
@@ -224,6 +287,17 @@ pub const Notification = opaque {
     }
 };
 
+pub const Dictionary = opaque {
+    pub const InternalInfo = objc.ExternClass("NSDictionary", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+};
+
 pub const ObjectInterface = opaque {
     pub const InternalInfo = objc.ExternClass("NSObject", @This(), objc.Id, &.{});
     pub const as = InternalInfo.as;
@@ -239,6 +313,21 @@ pub const ObjectInterface = opaque {
     }
 };
 
+pub const Appearance = opaque {
+    pub const InternalInfo = objc.ExternClass("NSAppearance", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn appearanceNamed(name_: *String) ?*Appearance {
+        return objc.msgSend(@This().InternalInfo.class(), "appearanceNamed:", ?*Appearance, .{name_});
+    }
+};
+
 pub const Event = opaque {
     pub const InternalInfo = objc.ExternClass("NSEvent", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
@@ -249,8 +338,26 @@ pub const Event = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
+    pub fn addLocalMonitorForEventsMatchingMask_handler(mask_: EventMask, block_: *ns.Block(fn (*Event) ?*Event)) ?*objc.Id {
+        return objc.msgSend(@This().InternalInfo.class(), "addLocalMonitorForEventsMatchingMask:handler:", ?*objc.Id, .{ mask_, block_ });
+    }
     pub fn modifierFlags(self_: *@This()) EventModifierFlags {
         return objc.msgSend(self_, "modifierFlags", EventModifierFlags, .{});
+    }
+    pub fn buttonNumber(self_: *@This()) Integer {
+        return objc.msgSend(self_, "buttonNumber", Integer, .{});
+    }
+    pub fn locationInWindow(self_: *@This()) Point {
+        return objc.msgSend(self_, "locationInWindow", Point, .{});
+    }
+    pub fn hasPreciseScrollingDeltas(self_: *@This()) bool {
+        return objc.msgSend(self_, "hasPreciseScrollingDeltas", bool, .{});
+    }
+    pub fn scrollingDeltaX(self_: *@This()) cg.Float {
+        return objc.msgSend(self_, "scrollingDeltaX", cg.Float, .{});
+    }
+    pub fn scrollingDeltaY(self_: *@This()) cg.Float {
+        return objc.msgSend(self_, "scrollingDeltaY", cg.Float, .{});
     }
     pub fn isARepeat(self_: *@This()) bool {
         return objc.msgSend(self_, "isARepeat", bool, .{});
@@ -258,9 +365,18 @@ pub const Event = opaque {
     pub fn keyCode(self_: *@This()) c_ushort {
         return objc.msgSend(self_, "keyCode", c_ushort, .{});
     }
+    pub fn magnification(self_: *@This()) cg.Float {
+        return objc.msgSend(self_, "magnification", cg.Float, .{});
+    }
+    pub fn phase(self_: *@This()) EventPhase {
+        return objc.msgSend(self_, "phase", EventPhase, .{});
+    }
     // pub fn modifierFlags() EventModifierFlags {
     //     return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
     // }
+    pub fn pressedMouseButtons() UInteger {
+        return objc.msgSend(@This().InternalInfo.class(), "pressedMouseButtons", UInteger, .{});
+    }
 };
 
 pub const View = opaque {
@@ -273,6 +389,9 @@ pub const View = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
+    pub fn initWithFrame(self_: *@This(), frameRect_: Rect) *@This() {
+        return objc.msgSend(self_, "initWithFrame:", *@This(), .{frameRect_});
+    }
     pub fn layer(self_: *@This()) *ca.Layer {
         return objc.msgSend(self_, "layer", *ca.Layer, .{});
     }
@@ -296,6 +415,72 @@ pub const Color = opaque {
     }
 };
 
+pub const Cursor = opaque {
+    pub const InternalInfo = objc.ExternClass("NSCursor", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn hide() void {
+        return objc.msgSend(@This().InternalInfo.class(), "hide", void, .{});
+    }
+    pub fn unhide() void {
+        return objc.msgSend(@This().InternalInfo.class(), "unhide", void, .{});
+    }
+    pub fn pop() void {
+        return objc.msgSend(@This().InternalInfo.class(), "pop", void, .{});
+    }
+    pub fn push(self_: *@This()) void {
+        return objc.msgSend(self_, "push", void, .{});
+    }
+    // pub fn pop(self_: *@This()) void {
+    //     return objc.msgSend(self_, "pop", void, .{});
+    // }
+    pub fn arrowCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "arrowCursor", *Cursor, .{});
+    }
+    pub fn IBeamCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "IBeamCursor", *Cursor, .{});
+    }
+    pub fn pointingHandCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "pointingHandCursor", *Cursor, .{});
+    }
+    pub fn closedHandCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "closedHandCursor", *Cursor, .{});
+    }
+    pub fn openHandCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "openHandCursor", *Cursor, .{});
+    }
+    pub fn resizeLeftCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeLeftCursor", *Cursor, .{});
+    }
+    pub fn resizeRightCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeRightCursor", *Cursor, .{});
+    }
+    pub fn resizeLeftRightCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeLeftRightCursor", *Cursor, .{});
+    }
+    pub fn resizeUpCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeUpCursor", *Cursor, .{});
+    }
+    pub fn resizeDownCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeDownCursor", *Cursor, .{});
+    }
+    pub fn resizeUpDownCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "resizeUpDownCursor", *Cursor, .{});
+    }
+    pub fn crosshairCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "crosshairCursor", *Cursor, .{});
+    }
+    pub fn operationNotAllowedCursor() *Cursor {
+        return objc.msgSend(@This().InternalInfo.class(), "operationNotAllowedCursor", *Cursor, .{});
+    }
+};
+
 pub const Screen = opaque {
     pub const InternalInfo = objc.ExternClass("NSScreen", @This(), ObjectInterface, &.{});
     pub const as = InternalInfo.as;
@@ -314,6 +499,33 @@ pub const Screen = opaque {
     }
     pub fn frame(self_: *@This()) Rect {
         return objc.msgSend(self_, "frame", Rect, .{});
+    }
+};
+
+pub const TrackingArea = opaque {
+    pub const InternalInfo = objc.ExternClass("NSTrackingArea", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn initWithRect_options_owner_userInfo(self_: *@This(), rect_: Rect, options_: TrackingAreaOptions, owner_: ?*objc.Id, userInfo_: ?*Dictionary(*objc.Id, *objc.Id)) *@This() {
+        return objc.msgSend(self_, "initWithRect:options:owner:userInfo:", *@This(), .{ rect_, options_, owner_, userInfo_ });
+    }
+    pub fn rect(self_: *@This()) Rect {
+        return objc.msgSend(self_, "rect", Rect, .{});
+    }
+    pub fn options(self_: *@This()) TrackingAreaOptions {
+        return objc.msgSend(self_, "options", TrackingAreaOptions, .{});
+    }
+    pub fn owner(self_: *@This()) ?*objc.Id {
+        return objc.msgSend(self_, "owner", ?*objc.Id, .{});
+    }
+    pub fn userInfo(self_: *@This()) ?*Dictionary(*objc.Id, *objc.Id) {
+        return objc.msgSend(self_, "userInfo", ?*Dictionary(*objc.Id, *objc.Id), .{});
     }
 };
 

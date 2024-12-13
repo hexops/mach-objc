@@ -39,6 +39,13 @@ LBB1_1:
 	retq
 	.cfi_endproc
 
+"-[MACHAppDelegate applicationShouldTerminateAfterLastWindowClosed:]":
+
+	.cfi_startproc
+	movl	$1, %eax
+	retq
+	.cfi_endproc
+
 "-[MACHAppDelegate .cxx_destruct]":
 
 	.cfi_startproc
@@ -865,13 +872,16 @@ L_OBJC_METH_VAR_TYPE_.118:
 	.p2align	3, 0x0
 __OBJC_$_INSTANCE_METHODS_MACHAppDelegate:
 	.long	24
-	.long	3
+	.long	4
 	.quad	L_OBJC_METH_VAR_NAME_.81
 	.quad	L_OBJC_METH_VAR_TYPE_.80
 	.quad	"-[MACHAppDelegate applicationDidFinishLaunching:]"
 	.quad	L_OBJC_METH_VAR_NAME_.42
 	.quad	L_OBJC_METH_VAR_TYPE_.43
 	.quad	"-[MACHAppDelegate applicationShouldTerminate:]"
+	.quad	L_OBJC_METH_VAR_NAME_.56
+	.quad	L_OBJC_METH_VAR_TYPE_
+	.quad	"-[MACHAppDelegate applicationShouldTerminateAfterLastWindowClosed:]"
 	.quad	L_OBJC_METH_VAR_NAME_.117
 	.quad	L_OBJC_METH_VAR_TYPE_.118
 	.quad	"-[MACHAppDelegate .cxx_destruct]"
