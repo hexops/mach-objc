@@ -323,7 +323,7 @@ pub const Appearance = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn appearanceNamed(name_: *String) ?*Appearance {
+    pub fn appearanceNamed(name_: AppearanceName) ?*Appearance {
         return objc.msgSend(@This().InternalInfo.class(), "appearanceNamed:", ?*Appearance, .{name_});
     }
 };
@@ -371,9 +371,9 @@ pub const Event = opaque {
     pub fn phase(self_: *@This()) EventPhase {
         return objc.msgSend(self_, "phase", EventPhase, .{});
     }
-    // pub fn modifierFlags() EventModifierFlags {
-    //     return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
-    // }
+    pub fn modifierFlags() EventModifierFlags {
+        return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
+    }
     pub fn pressedMouseButtons() UInteger {
         return objc.msgSend(@This().InternalInfo.class(), "pressedMouseButtons", UInteger, .{});
     }
@@ -437,9 +437,9 @@ pub const Cursor = opaque {
     pub fn push(self_: *@This()) void {
         return objc.msgSend(self_, "push", void, .{});
     }
-    // pub fn pop(self_: *@This()) void {
-    //     return objc.msgSend(self_, "pop", void, .{});
-    // }
+    pub fn pop(self_: *@This()) void {
+        return objc.msgSend(self_, "pop", void, .{});
+    }
     pub fn arrowCursor() *Cursor {
         return objc.msgSend(@This().InternalInfo.class(), "arrowCursor", *Cursor, .{});
     }
