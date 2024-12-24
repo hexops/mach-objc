@@ -30,6 +30,7 @@ pub const String = ns.String;
 pub const ModalResponse = *String;
 pub const PasteboardType = *String;
 pub const AboutPanelOptionKey = *String;
+pub const AppearanceName = *String;
 pub const ModalSession = *opaque {};
 pub const PrintInfoAttributeKey = *String;
 pub const Rect = cg.Rect;
