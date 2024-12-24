@@ -1186,8 +1186,28 @@ fn Generator(comptime WriterType: type) type {
                     return;
             }
 
+            // Class 'type methods' and 'self methods' can have naming conflicts, e.g. NSCursor pop()
+            // which takes a self parameter and NSCursor pop() which is a type method. We prefix the
+            // type method one with 'T_' only if there would be a conflict.
+            const nameConflict = blk: {
+                var count: usize = 0;
+                for (container.methods.items) |m| {
+                    if (std.mem.eql(u8, m.name, method.name)) count += 1;
+                    if (count >= 2) break :blk true;
+                }
+                break :blk false;
+            };
+            var name = method.name;
+            if (nameConflict and !method.instance) {
+                const new_name = try self.allocator.alloc(u8, method.name.len + 2);
+                @memcpy(new_name[2..], method.name);
+                new_name[0] = 'T';
+                new_name[1] = '_';
+                name = new_name;
+            }
+
             try self.writer.writeAll("    pub fn ");
-            try self.generateMethodName(method.name);
+            try self.generateMethodName(name);
             try self.writer.print("(", .{});
             try self.generateMethodParams(method);
             try self.writer.print(") ", .{});
@@ -1935,6 +1955,7 @@ fn generateAppKit(generator: anytype) !void {
         [2][]const u8{ "NSCursor", "hide" },
         [2][]const u8{ "NSCursor", "unhide" },
         [2][]const u8{ "NSCursor", "pop" },
+
         [2][]const u8{ "NSCursor", "push" },
         [2][]const u8{ "NSCursor", "arrowCursor" },
         [2][]const u8{ "NSCursor", "IBeamCursor" },

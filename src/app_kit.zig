@@ -371,7 +371,7 @@ pub const Event = opaque {
     pub fn phase(self_: *@This()) EventPhase {
         return objc.msgSend(self_, "phase", EventPhase, .{});
     }
-    pub fn modifierFlags() EventModifierFlags {
+    pub fn T_modifierFlags() EventModifierFlags {
         return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
     }
     pub fn pressedMouseButtons() UInteger {
@@ -431,7 +431,7 @@ pub const Cursor = opaque {
     pub fn unhide() void {
         return objc.msgSend(@This().InternalInfo.class(), "unhide", void, .{});
     }
-    pub fn pop() void {
+    pub fn T_pop() void {
         return objc.msgSend(@This().InternalInfo.class(), "pop", void, .{});
     }
     pub fn push(self_: *@This()) void {
