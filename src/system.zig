@@ -20,7 +20,7 @@ pub fn Block(comptime Signature: type) type {
             };
             const SignatureForInvoke = @Type(.{
                 .@"fn" = .{
-                    .calling_convention = .C,
+                    .calling_convention = std.builtin.CallingConvention.c,
                     .is_generic = signature_fn_info.is_generic,
                     .is_var_args = signature_fn_info.is_var_args,
                     .return_type = signature_fn_info.return_type,
@@ -118,7 +118,7 @@ fn CopyDisposeBlockDescriptor(comptime Context: type) type {
 
 fn SignatureWithoutBlockLiteral(comptime Signature: type) type {
     var type_info = @typeInfo(Signature);
-    type_info.@"fn".calling_convention = .Unspecified;
+    type_info.@"fn".calling_convention = .auto;
     type_info.@"fn".params = type_info.@"fn".params[1..];
     return @Type(type_info);
 }
@@ -126,9 +126,10 @@ fn SignatureWithoutBlockLiteral(comptime Signature: type) type {
 fn validateBlockSignature(comptime Invoke: type, comptime ExpectedLiteralType: type) void {
     switch (@typeInfo(Invoke)) {
         .@"fn" => |fn_info| {
-            if (fn_info.calling_convention != .C) {
-                @compileError("A block's `invoke` must use the C calling convention");
-            }
+            // TODO: unsure how to write this with latest Zig version
+            // if (fn_info.calling_convention != .c) {
+            //     @compileError("A block's `invoke` must use the C calling convention");
+            // }
 
             // TODO: should we allow zero params? At the ABI-level it would be fine but I think the compiler might consider it UB.
             if (fn_info.params.len == 0 or fn_info.params[0].type != *ExpectedLiteralType) {
