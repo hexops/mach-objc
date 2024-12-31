@@ -480,14 +480,12 @@ pub const Parser = struct {
                 const return_type = try self.allocator.create(Type);
                 return_type.* = .{ .void = {} };
 
-                const ty = .{
+                return self.parseTypeSuffix(.{
                     .function = .{
                         .return_type = return_type,
                         .params = std.ArrayList(Type).init(self.allocator),
                     },
-                };
-
-                return self.parseTypeSuffix(ty, is_const, true);
+                }, is_const, true);
             },
             .kw_instancetype => {
                 try self.match(.kw_instancetype);
