@@ -136,6 +136,42 @@ pub const EventPhaseEnded: EventPhase = 8;
 pub const EventPhaseCancelled: EventPhase = 16;
 pub const EventPhaseMayBegin: EventPhase = 32;
 
+pub const EventType = UInteger;
+pub const EventTypeLeftMouseDown: EventType = 1;
+pub const EventTypeLeftMouseUp: EventType = 2;
+pub const EventTypeRightMouseDown: EventType = 3;
+pub const EventTypeRightMouseUp: EventType = 4;
+pub const EventTypeMouseMoved: EventType = 5;
+pub const EventTypeLeftMouseDragged: EventType = 6;
+pub const EventTypeRightMouseDragged: EventType = 7;
+pub const EventTypeMouseEntered: EventType = 8;
+pub const EventTypeMouseExited: EventType = 9;
+pub const EventTypeKeyDown: EventType = 10;
+pub const EventTypeKeyUp: EventType = 11;
+pub const EventTypeFlagsChanged: EventType = 12;
+pub const EventTypeAppKitDefined: EventType = 13;
+pub const EventTypeSystemDefined: EventType = 14;
+pub const EventTypeApplicationDefined: EventType = 15;
+pub const EventTypePeriodic: EventType = 16;
+pub const EventTypeCursorUpdate: EventType = 17;
+pub const EventTypeScrollWheel: EventType = 22;
+pub const EventTypeTabletPoint: EventType = 23;
+pub const EventTypeTabletProximity: EventType = 24;
+pub const EventTypeOtherMouseDown: EventType = 25;
+pub const EventTypeOtherMouseUp: EventType = 26;
+pub const EventTypeOtherMouseDragged: EventType = 27;
+pub const EventTypeGesture: EventType = 29;
+pub const EventTypeMagnify: EventType = 30;
+pub const EventTypeSwipe: EventType   = 31;
+pub const EventTypeRotate: EventType  = 18;
+pub const EventTypeBeginGesture: EventType = 19;
+pub const EventTypeEndGesture: EventType = 20;
+pub const EventTypeSmartMagnify: EventType = 32;
+pub const EventTypeQuickLook: EventType = 33;
+pub const EventTypePressure: EventType = 34;
+pub const EventTypeDirectTouch: EventType = 37;
+pub const EventTypeChangeMode: EventType = 38;
+
 pub const WindowStyleMask = UInteger;
 pub const WindowStyleMaskBorderless: WindowStyleMask = 0;
 pub const WindowStyleMaskTitled: WindowStyleMask = 1;
@@ -172,6 +208,9 @@ pub const Application = opaque {
     }
     pub fn sharedApplication() *Application {
         return objc.msgSend(@This().InternalInfo.class(), "sharedApplication", *Application, .{});
+    }
+    pub fn delegate(self_: *@This()) ?*ApplicationDelegate {
+        return objc.msgSend(self_, "delegate", ?*ApplicationDelegate, .{});
     }
     pub fn setDelegate(self_: *@This(), delegate_: ?*ApplicationDelegate) void {
         return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
@@ -397,6 +436,9 @@ pub const Event = opaque {
     pub fn phase(self_: *@This()) EventPhase {
         return objc.msgSend(self_, "phase", EventPhase, .{});
     }
+    pub fn getType(self_: *@This()) EventType {
+        return objc.msgSend(self_, "type", EventType, .{});
+    }
     pub fn T_modifierFlags() EventModifierFlags {
         return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
     }
@@ -424,6 +466,12 @@ pub const View = opaque {
     pub fn setFrameSize(self_: *@This(), size_: Size) void {
         return objc.msgSend(self_, "setFrameSize:", void, .{size_});
     }
+    pub fn setBoundsOrigin(self_: *@This(), point_: Point) void {
+        return objc.msgSend(self_, "setBoundsOrigin:", void, .{point_});
+    }
+    pub fn setBoundsSize(self_: *@This(), size_: Size) void {
+        return objc.msgSend(self_, "setBoundsSize:", void, .{size_});
+    }
     pub fn initWithFrame(self_: *@This(), frameRect_: Rect) *@This() {
         return objc.msgSend(self_, "initWithFrame:", *@This(), .{frameRect_});
     }
@@ -435,6 +483,9 @@ pub const View = opaque {
     }
     pub fn setWantsLayer(self_: *@This(), wants_layer_: bool) void {
         return objc.msgSend(self_, "setWantsLayer:", void, .{wants_layer_});
+    }
+    pub fn window(self_: *@This()) *Window {
+        return objc.msgSend(self_, "window", *Window, .{});
     }
 };
 
