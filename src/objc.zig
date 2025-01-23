@@ -99,8 +99,8 @@ pub fn msgSend(receiver: anytype, comptime selector: []const u8, return_type: ty
         };
     };
 
-    const needs_fpret = comptime builtin.target.cpu.arch == .x86_64 and (return_type == f32 or return_type == f64);
-    const needs_stret = comptime builtin.target.cpu.arch == .x86_64 and @sizeOf(return_type) > 16;
+    const needs_fpret = comptime builtin.target.cpu.arch == .x86 and (return_type == f32 or return_type == f64);
+    const needs_stret = comptime builtin.target.cpu.arch == .x86 and @sizeOf(return_type) > 16;
     const msg_send_fn_name = comptime if (needs_stret) "objc_msgSend_stret" else if (needs_fpret) "objc_msgSend_fpret" else "objc_msgSend";
     const msg_send_fn = @extern(*const @Type(fn_type), .{ .name = msg_send_fn_name ++ "$" ++ selector });
     return @call(.auto, msg_send_fn, .{ receiver, undefined } ++ args);
