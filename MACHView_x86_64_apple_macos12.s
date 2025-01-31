@@ -336,8 +336,10 @@ LBB12_3:
 	leaq	44(%rsp), %rbp
 LBB12_5:
 	movl	$0, 44(%rsp)
-	movups	56(%rsp), %xmm0
-	movups	%xmm0, 8(%rsp)
+	movq	56(%rsp), %rax
+	movq	64(%rsp), %rcx
+	movq	%rcx, 16(%rsp)
+	movq	%rax, 8(%rsp)
 	movq	%r14, 24(%rsp)
 	movq	$0, (%rsp)
 	movl	$4, %ecx
@@ -577,6 +579,12 @@ LBB26_1:
 	retq
 	.cfi_endproc
 
+"-[MACHView doCommandBySelector:]":
+
+	.cfi_startproc
+	retq
+	.cfi_endproc
+
 "-[MACHView initWithFrame:]":
 
 	.cfi_startproc
@@ -596,15 +604,19 @@ LBB26_1:
 	movq	l_OBJC_CLASSLIST_SUP_REFS_$_(%rip), %rcx
 	movq	%rcx, 8(%rax)
 	movq	_OBJC_SELECTOR_REFERENCES_.17(%rip), %rsi
-	movaps	112(%rsp), %xmm0
-	movaps	128(%rsp), %xmm1
-	movups	%xmm1, 16(%rsp)
-	movups	%xmm0, (%rsp)
+	movq	136(%rsp), %rcx
+	movq	%rcx, 24(%rsp)
+	movq	128(%rsp), %rcx
+	movq	%rcx, 16(%rsp)
+	movq	112(%rsp), %rcx
+	movq	120(%rsp), %rdx
+	movq	%rdx, 8(%rsp)
+	movq	%rcx, (%rsp)
 	movq	%rax, %rdi
 	callq	_objc_msgSendSuper2
 	movq	%rax, %rbx
 	testq	%rax, %rax
-	je	LBB27_2
+	je	LBB28_2
 	movq	_OBJC_SELECTOR_REFERENCES_.19(%rip), %rdx
 	leaq	48(%rsp), %r14
 	movq	%r14, %rdi
@@ -613,10 +625,14 @@ LBB26_1:
 	movq	_OBJC_CLASSLIST_REFERENCES_$_.20(%rip), %rdi
 	callq	_objc_alloc
 	movq	_OBJC_SELECTOR_REFERENCES_.22(%rip), %rsi
-	movups	(%r14), %xmm0
-	movups	16(%r14), %xmm1
-	movups	%xmm1, 16(%rsp)
-	movups	%xmm0, (%rsp)
+	movq	24(%r14), %rcx
+	movq	%rcx, 24(%rsp)
+	movq	16(%r14), %rcx
+	movq	%rcx, 16(%rsp)
+	movq	(%r14), %rcx
+	movq	8(%r14), %rdx
+	movq	%rdx, 8(%rsp)
+	movq	%rcx, (%rsp)
 	movq	_objc_msgSend@GOTPCREL(%rip), %r14
 	movl	$67, %edx
 	movq	%rax, %rdi
@@ -631,7 +647,7 @@ LBB26_1:
 	movq	_OBJC_SELECTOR_REFERENCES_.24(%rip), %rsi
 	movq	%rbx, %rdi
 	callq	*%r14
-LBB27_2:
+LBB28_2:
 	movq	%rbx, %rax
 	addq	$80, %rsp
 	popq	%rbx
@@ -671,10 +687,14 @@ LBB27_2:
 	movq	_OBJC_CLASSLIST_REFERENCES_$_.20(%rip), %rdi
 	callq	_objc_alloc
 	movq	_OBJC_SELECTOR_REFERENCES_.22(%rip), %rsi
-	movups	(%r14), %xmm0
-	movups	16(%r14), %xmm1
-	movups	%xmm1, 16(%rsp)
-	movups	%xmm0, (%rsp)
+	movq	24(%r14), %rcx
+	movq	%rcx, 24(%rsp)
+	movq	16(%r14), %rcx
+	movq	%rcx, 16(%rsp)
+	movq	(%r14), %rcx
+	movq	8(%r14), %rdx
+	movq	%rdx, 8(%rsp)
+	movq	%rcx, (%rsp)
 	movl	$67, %edx
 	movq	%rax, %rdi
 	movq	%rbx, %rcx
@@ -1052,27 +1072,33 @@ L_OBJC_METH_VAR_NAME_.45:
 L_OBJC_METH_VAR_NAME_.46:
 	.asciz	"magnifyWithEvent:"
 
+L_OBJC_METH_VAR_NAME_.47:
+	.asciz	"doCommandBySelector:"
+
 	.section	__TEXT,__objc_methtype,cstring_literals
-L_OBJC_METH_VAR_TYPE_.47:
+L_OBJC_METH_VAR_TYPE_.48:
+	.asciz	"v24@0:8:16"
+
+L_OBJC_METH_VAR_TYPE_.49:
 	.asciz	"@48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-L_OBJC_METH_VAR_NAME_.48:
+L_OBJC_METH_VAR_NAME_.50:
 	.asciz	"updateTrackingAreas"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-L_OBJC_METH_VAR_TYPE_.49:
+L_OBJC_METH_VAR_TYPE_.51:
 	.asciz	"v16@0:8"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-L_OBJC_METH_VAR_NAME_.50:
+L_OBJC_METH_VAR_NAME_.52:
 	.asciz	".cxx_destruct"
 
 	.section	__DATA,__objc_const
 	.p2align	3, 0x0
 __OBJC_$_INSTANCE_METHODS_MACHView:
 	.long	24
-	.long	21
+	.long	22
 	.quad	L_OBJC_METH_VAR_NAME_.28
 	.quad	L_OBJC_METH_VAR_TYPE_
 	.quad	"-[MACHView canBecomeKeyView]"
@@ -1127,54 +1153,57 @@ __OBJC_$_INSTANCE_METHODS_MACHView:
 	.quad	L_OBJC_METH_VAR_NAME_.46
 	.quad	L_OBJC_METH_VAR_TYPE_.31
 	.quad	"-[MACHView magnifyWithEvent:]"
+	.quad	L_OBJC_METH_VAR_NAME_.47
+	.quad	L_OBJC_METH_VAR_TYPE_.48
+	.quad	"-[MACHView doCommandBySelector:]"
 	.quad	L_OBJC_METH_VAR_NAME_.16
-	.quad	L_OBJC_METH_VAR_TYPE_.47
+	.quad	L_OBJC_METH_VAR_TYPE_.49
 	.quad	"-[MACHView initWithFrame:]"
-	.quad	L_OBJC_METH_VAR_NAME_.48
-	.quad	L_OBJC_METH_VAR_TYPE_.49
-	.quad	"-[MACHView updateTrackingAreas]"
 	.quad	L_OBJC_METH_VAR_NAME_.50
-	.quad	L_OBJC_METH_VAR_TYPE_.49
+	.quad	L_OBJC_METH_VAR_TYPE_.51
+	.quad	"-[MACHView updateTrackingAreas]"
+	.quad	L_OBJC_METH_VAR_NAME_.52
+	.quad	L_OBJC_METH_VAR_TYPE_.51
 	.quad	"-[MACHView .cxx_destruct]"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-L_OBJC_METH_VAR_NAME_.51:
+L_OBJC_METH_VAR_NAME_.53:
 	.asciz	"_keyDown_block"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-L_OBJC_METH_VAR_TYPE_.52:
+L_OBJC_METH_VAR_TYPE_.54:
 	.asciz	"@?"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-L_OBJC_METH_VAR_NAME_.53:
+L_OBJC_METH_VAR_NAME_.55:
 	.asciz	"_keyUp_block"
 
-L_OBJC_METH_VAR_NAME_.54:
+L_OBJC_METH_VAR_NAME_.56:
 	.asciz	"_flagsChanged_block"
 
-L_OBJC_METH_VAR_NAME_.55:
+L_OBJC_METH_VAR_NAME_.57:
 	.asciz	"_mouseMoved_block"
 
-L_OBJC_METH_VAR_NAME_.56:
+L_OBJC_METH_VAR_NAME_.58:
 	.asciz	"_mouseDown_block"
 
-L_OBJC_METH_VAR_NAME_.57:
+L_OBJC_METH_VAR_NAME_.59:
 	.asciz	"_mouseUp_block"
 
-L_OBJC_METH_VAR_NAME_.58:
+L_OBJC_METH_VAR_NAME_.60:
 	.asciz	"_scrollWheel_block"
 
-L_OBJC_METH_VAR_NAME_.59:
+L_OBJC_METH_VAR_NAME_.61:
 	.asciz	"_magnify_block"
 
-L_OBJC_METH_VAR_NAME_.60:
+L_OBJC_METH_VAR_NAME_.62:
 	.asciz	"_insertText_block"
 
-L_OBJC_METH_VAR_NAME_.61:
+L_OBJC_METH_VAR_NAME_.63:
 	.asciz	"trackingArea"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-L_OBJC_METH_VAR_TYPE_.62:
+L_OBJC_METH_VAR_TYPE_.64:
 	.asciz	"@\"NSTrackingArea\""
 
 	.section	__DATA,__objc_const
@@ -1183,53 +1212,53 @@ __OBJC_$_INSTANCE_VARIABLES_MACHView:
 	.long	32
 	.long	10
 	.quad	_OBJC_IVAR_$_MACHView._keyDown_block
-	.quad	L_OBJC_METH_VAR_NAME_.51
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.53
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._keyUp_block
-	.quad	L_OBJC_METH_VAR_NAME_.53
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.55
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._flagsChanged_block
-	.quad	L_OBJC_METH_VAR_NAME_.54
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.56
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._mouseMoved_block
-	.quad	L_OBJC_METH_VAR_NAME_.55
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.57
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._mouseDown_block
-	.quad	L_OBJC_METH_VAR_NAME_.56
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.58
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._mouseUp_block
-	.quad	L_OBJC_METH_VAR_NAME_.57
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.59
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._scrollWheel_block
-	.quad	L_OBJC_METH_VAR_NAME_.58
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.60
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._magnify_block
-	.quad	L_OBJC_METH_VAR_NAME_.59
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.61
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._insertText_block
-	.quad	L_OBJC_METH_VAR_NAME_.60
-	.quad	L_OBJC_METH_VAR_TYPE_.52
+	.quad	L_OBJC_METH_VAR_NAME_.62
+	.quad	L_OBJC_METH_VAR_TYPE_.54
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView.trackingArea
-	.quad	L_OBJC_METH_VAR_NAME_.61
-	.quad	L_OBJC_METH_VAR_TYPE_.62
+	.quad	L_OBJC_METH_VAR_NAME_.63
+	.quad	L_OBJC_METH_VAR_TYPE_.64
 	.long	3
 	.long	8
 

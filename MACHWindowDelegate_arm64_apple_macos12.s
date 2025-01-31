@@ -7,8 +7,8 @@
 	.cfi_startproc
 	cbz	x0, LBB0_2
 	stp	x20, x19, [sp, #-32]!
-	stp	x29, x30, [sp, #16]
 	.cfi_def_cfa_offset 32
+	stp	x29, x30, [sp, #16]
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	.cfi_offset w19, -24
@@ -17,11 +17,15 @@
 	mov	x0, x1
 	bl	_objc_retainBlock
 	ldr	x8, [x19, #8]
-	ldp	x29, x30, [sp, #16]
-	mov	x9, x0
+	str	x0, [x19, #8]
 	mov	x0, x8
-	str	x9, [x19, #8]
+	ldp	x29, x30, [sp, #16]
 	ldp	x20, x19, [sp], #32
+	.cfi_def_cfa_offset 0
+	.cfi_restore w30
+	.cfi_restore w29
+	.cfi_restore w19
+	.cfi_restore w20
 	b	_objc_release
 LBB0_2:
 	ret
@@ -34,8 +38,8 @@ LBB0_2:
 	.cfi_startproc
 	cbz	x0, LBB1_2
 	stp	x20, x19, [sp, #-32]!
-	stp	x29, x30, [sp, #16]
 	.cfi_def_cfa_offset 32
+	stp	x29, x30, [sp, #16]
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	.cfi_offset w19, -24
@@ -44,11 +48,15 @@ LBB0_2:
 	mov	x0, x1
 	bl	_objc_retainBlock
 	ldr	x8, [x19, #16]
-	ldp	x29, x30, [sp, #16]
-	mov	x9, x0
+	str	x0, [x19, #16]
 	mov	x0, x8
-	str	x9, [x19, #16]
+	ldp	x29, x30, [sp, #16]
 	ldp	x20, x19, [sp], #32
+	.cfi_def_cfa_offset 0
+	.cfi_restore w30
+	.cfi_restore w29
+	.cfi_restore w19
+	.cfi_restore w20
 	b	_objc_release
 LBB1_2:
 	ret
@@ -77,8 +85,11 @@ LBB2_2:
 	ldr	x8, [x0, #16]
 	blr	x8
 	ldp	x29, x30, [sp], #16
+	.cfi_def_cfa_offset 0
+	.cfi_restore w30
+	.cfi_restore w29
 LBB3_2:
-	mov	w0, wzr
+	mov	w0, #0
 	ret
 	.cfi_endproc
 
@@ -92,20 +103,25 @@ LBB3_2:
 "-[MACHWindowDelegate .cxx_destruct]":
 	.cfi_startproc
 	stp	x20, x19, [sp, #-32]!
-	stp	x29, x30, [sp, #16]
 	.cfi_def_cfa_offset 32
+	stp	x29, x30, [sp, #16]
 	.cfi_offset w30, -8
 	.cfi_offset w29, -16
 	.cfi_offset w19, -24
 	.cfi_offset w20, -32
 	mov	x19, x0
 	add	x0, x0, #16
-	mov	x1, xzr
+	mov	x1, #0
 	bl	_objc_storeStrong
-	ldp	x29, x30, [sp, #16]
 	add	x0, x19, #8
-	mov	x1, xzr
+	mov	x1, #0
+	ldp	x29, x30, [sp, #16]
 	ldp	x20, x19, [sp], #32
+	.cfi_def_cfa_offset 0
+	.cfi_restore w30
+	.cfi_restore w29
+	.cfi_restore w19
+	.cfi_restore w20
 	b	_objc_storeStrong
 	.cfi_endproc
 

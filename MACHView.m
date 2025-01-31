@@ -176,6 +176,12 @@
     _magnify_block(event);
 }
 
+// Add this method to prevent default macos keybind operations
+// such as escape pulling the window out of fullscreen
+- (void)doCommandBySelector:(SEL)selector
+{
+}
+
 // This overrides the default initializer and creates a tracking area over the
 // views visible rect
 - (id)initWithFrame:(NSRect)frame {
