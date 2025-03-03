@@ -60,6 +60,16 @@ cat app_kit_manual.zig > src/app_kit.zig
 ./zig-out/bin/generator --framework AppKit >> src/app_kit.zig
 rm headers.json headers.m
 
+rm -f src/core_video.zig
+echo "Generating CoreVideo"
+echo "
+#include <CoreVideo/CoreVideo.h>
+" > headers.m
+clang headers.m -F ./xcode-frameworks/Frameworks -Xclang -ast-dump=json -fsyntax-only -Wno-deprecated-declarations -Wno-availability > headers.json
+cat core_video_manual.zig > src/core_video.zig
+./zig-out/bin/generator --framework CoreVideo >> src/core_video.zig
+rm headers.json headers.m
+
 zig fmt .
 
 # TODO: generate src/foundation/ns.zig

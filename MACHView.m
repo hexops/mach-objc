@@ -1,5 +1,6 @@
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
+#import <CoreVideo/CVDisplayLink.h>
 
 @interface MACHView : NSView
 @end
@@ -14,7 +15,10 @@
   void (^_scrollWheel_block)(NSEvent *);
   void (^_magnify_block)(NSEvent *);
   void (^_insertText_block)(NSEvent *, uint32_t);
+  void (^_render_block)(void);
   NSTrackingArea *trackingArea;
+  dispatch_source_t m_displaySource;
+  CVDisplayLinkRef m_displayLink;
 }
 
 - (BOOL)canBecomeKeyView {
@@ -23,6 +27,74 @@
 
 - (BOOL)acceptsFirstResponder {
   return YES;
+}
+
+- (void)dealloc
+{
+    [self stopRenderLoop];
+}
+
+- (void)viewDidMoveToWindow
+{
+    [super viewDidMoveToWindow];
+    [self stopRenderLoop];
+
+    if (self.window)
+    {
+        m_displaySource = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0,
+            0, dispatch_get_main_queue());
+        dispatch_source_set_event_handler(m_displaySource, ^() { [self render]; });
+        dispatch_resume(m_displaySource);
+
+        CVDisplayLinkCreateWithActiveCGDisplays(&m_displayLink);
+        CVDisplayLinkSetOutputCallback(m_displayLink, &displayLinkCallback, (__bridge void*)m_displaySource);
+        CVDisplayLinkStart(m_displayLink);
+    }
+}
+
+static CVReturn displayLinkCallback(
+    CVDisplayLinkRef displayLink,
+    const CVTimeStamp* now,
+    const CVTimeStamp* outputTime,
+    CVOptionFlags flagsIn,
+    CVOptionFlags* flagsOut,
+    void* displayLinkContext)
+{
+    @autoreleasepool
+    {
+
+     
+        dispatch_source_t source = (__bridge dispatch_source_t)displayLinkContext;
+        dispatch_source_merge_data(source, 1);
+        return kCVReturnSuccess;
+    }
+}
+
+- (void)render
+{
+  if (_render_block)
+    _render_block();
+}
+
+- (void)stopRenderLoop
+{
+    if (m_displaySource)
+    {
+        dispatch_source_cancel(m_displaySource);
+        m_displaySource = nil;
+    }
+
+    if (m_displayLink)
+    {
+        CVDisplayLinkStop(m_displayLink);
+        CVDisplayLinkRelease(m_displayLink);
+        m_displayLink = nil;
+    }
+}
+
+- (void)setBlock_render:(void (^)(void))render_block
+    __attribute__((objc_direct)) {
+  _render_block = render_block;
 }
 
 - (void)setBlock_keyDown:(void (^)(NSEvent *))keyDown_block
@@ -197,6 +269,7 @@
                                                   owner:self
                                                userInfo:nil];
     [self addTrackingArea:trackingArea];
+    
   }
   return self;
 }

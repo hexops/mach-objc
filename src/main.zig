@@ -8,6 +8,7 @@ pub const foundation = @import("foundation.zig");
 pub const metal = @import("metal.zig");
 pub const quartz_core = @import("quartz_core.zig");
 pub const app_kit = @import("app_kit.zig");
+pub const core_video = @import("core_video.zig");
 
 pub const mach = struct {
     pub const AppDelegate = opaque {
@@ -80,6 +81,14 @@ pub const mach = struct {
         pub fn setLayer(self_: *@This(), layer_: *quartz_core.MetalLayer) void {
             return objc.msgSend(self_, "setLayer:", void, .{layer_});
         }
+
+        pub fn setBlock_render(self: *View, block: *foundation.Block(fn () void)) void {
+            method_render(self, block);
+        }
+        const method_render = @extern(
+            *const fn (*View, *foundation.Block(fn () void)) callconv(.C) void,
+            .{ .name = "\x01-[MACHView setBlock_render:]" },
+        );
 
         pub fn setBlock_keyDown(self: *View, block: *foundation.Block(fn (*app_kit.Event) void)) void {
             method_keyDown(self, block);

@@ -3,7 +3,6 @@ const cf = @import("core_foundation.zig");
 const ns = @import("foundation.zig");
 const cg = @import("core_graphics.zig");
 const objc = @import("objc.zig");
-const std = @import("std");
 
 pub const applicationMain = NSApplicationMain;
 extern fn NSApplicationMain(argc: c_int, argv: [*]*c_char) c_int;
@@ -37,6 +36,7 @@ pub const PrintInfoAttributeKey = *String;
 pub const Rect = cg.Rect;
 pub const Point = cg.Point;
 pub const Size = cg.Size;
+pub const RunLoopMode = *String;
 pub const PrinterPaperName = *String;
 pub const PrintJobDispositionValue = *String;
 pub const InterfaceStyle = UInteger;
@@ -55,7 +55,6 @@ pub const WindowFrameAutosaveName = *String;
 pub const AccessibilityParameterizedAttributeName = *String;
 pub const UserInterfaceItemIdentifier = *String;
 
-pub const RunLoopMode = *String;
 pub extern const NSDefaultRunLoopMode: RunLoopMode;
 
 pub const TrackingAreaOptions = UInteger;
@@ -109,7 +108,7 @@ pub const EventMaskSmartMagnify: EventMask = 4294967296;
 pub const EventMaskPressure: EventMask = 17179869184;
 pub const EventMaskDirectTouch: EventMask = 137438953472;
 pub const EventMaskChangeMode: EventMask = 274877906944;
-pub const EventMaskAny: EventMask = std.math.maxInt(UInteger);
+pub const EventMaskAny: EventMask = 0;
 
 pub const BackingStoreType = UInteger;
 pub const BackingStoreRetained: BackingStoreType = 0;
@@ -135,42 +134,6 @@ pub const EventPhaseChanged: EventPhase = 4;
 pub const EventPhaseEnded: EventPhase = 8;
 pub const EventPhaseCancelled: EventPhase = 16;
 pub const EventPhaseMayBegin: EventPhase = 32;
-
-pub const EventType = UInteger;
-pub const EventTypeLeftMouseDown: EventType = 1;
-pub const EventTypeLeftMouseUp: EventType = 2;
-pub const EventTypeRightMouseDown: EventType = 3;
-pub const EventTypeRightMouseUp: EventType = 4;
-pub const EventTypeMouseMoved: EventType = 5;
-pub const EventTypeLeftMouseDragged: EventType = 6;
-pub const EventTypeRightMouseDragged: EventType = 7;
-pub const EventTypeMouseEntered: EventType = 8;
-pub const EventTypeMouseExited: EventType = 9;
-pub const EventTypeKeyDown: EventType = 10;
-pub const EventTypeKeyUp: EventType = 11;
-pub const EventTypeFlagsChanged: EventType = 12;
-pub const EventTypeAppKitDefined: EventType = 13;
-pub const EventTypeSystemDefined: EventType = 14;
-pub const EventTypeApplicationDefined: EventType = 15;
-pub const EventTypePeriodic: EventType = 16;
-pub const EventTypeCursorUpdate: EventType = 17;
-pub const EventTypeScrollWheel: EventType = 22;
-pub const EventTypeTabletPoint: EventType = 23;
-pub const EventTypeTabletProximity: EventType = 24;
-pub const EventTypeOtherMouseDown: EventType = 25;
-pub const EventTypeOtherMouseUp: EventType = 26;
-pub const EventTypeOtherMouseDragged: EventType = 27;
-pub const EventTypeGesture: EventType = 29;
-pub const EventTypeMagnify: EventType = 30;
-pub const EventTypeSwipe: EventType   = 31;
-pub const EventTypeRotate: EventType  = 18;
-pub const EventTypeBeginGesture: EventType = 19;
-pub const EventTypeEndGesture: EventType = 20;
-pub const EventTypeSmartMagnify: EventType = 32;
-pub const EventTypeQuickLook: EventType = 33;
-pub const EventTypePressure: EventType = 34;
-pub const EventTypeDirectTouch: EventType = 37;
-pub const EventTypeChangeMode: EventType = 38;
 
 pub const WindowStyleMask = UInteger;
 pub const WindowStyleMaskBorderless: WindowStyleMask = 0;
@@ -209,17 +172,11 @@ pub const Application = opaque {
     pub fn sharedApplication() *Application {
         return objc.msgSend(@This().InternalInfo.class(), "sharedApplication", *Application, .{});
     }
-    pub fn delegate(self_: *@This()) ?*ApplicationDelegate {
-        return objc.msgSend(self_, "delegate", ?*ApplicationDelegate, .{});
-    }
     pub fn setDelegate(self_: *@This(), delegate_: ?*ApplicationDelegate) void {
         return objc.msgSend(self_, "setDelegate:", void, .{delegate_});
     }
-    pub fn nextEventMatchingMask(self_: *@This(), mask_: EventMask, expiration_: ?*Date, run_loop_mode_: RunLoopMode, dequeue_: bool) ?*Event {
-        return objc.msgSend(self_, "nextEventMatchingMask:untilDate:inMode:dequeue:", ?*Event, .{mask_, expiration_, run_loop_mode_, dequeue_});
-    }
-    pub fn sendEvent(self_: *@This(), event_: *Event) void {
-        return objc.msgSend(self_, "sendEvent:", void, .{event_});
+    pub fn nextEventMatchingMask_untilDate_inMode_dequeue(self_: *@This(), mask_: EventMask, expiration_: ?*Date, mode_: RunLoopMode, deqFlag_: bool) ?*Event {
+        return objc.msgSend(self_, "nextEventMatchingMask:untilDate:inMode:dequeue:", ?*Event, .{ mask_, expiration_, mode_, deqFlag_ });
     }
 };
 
@@ -232,22 +189,6 @@ pub const Responder = opaque {
     pub const new = InternalInfo.new;
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
-};
-
-pub const Date = opaque {
-    pub const InternalInfo = objc.ExternClass("NSDate", @This(), Responder, &.{});
-    pub const as = InternalInfo.as;
-    pub const retain = InternalInfo.retain;
-    pub const release = InternalInfo.release;
-    pub const autorelease = InternalInfo.autorelease;
-    pub const new = InternalInfo.new;
-    pub const alloc = InternalInfo.alloc;
-    pub const allocInit = InternalInfo.allocInit;
-
-
-    pub fn distantPast() *Date {
-        return objc.msgSend(@This().InternalInfo.class(), "distantPast", *Date, .{});
-    }
 };
 
 pub const Window = opaque {
@@ -436,14 +377,26 @@ pub const Event = opaque {
     pub fn phase(self_: *@This()) EventPhase {
         return objc.msgSend(self_, "phase", EventPhase, .{});
     }
-    pub fn getType(self_: *@This()) EventType {
-        return objc.msgSend(self_, "type", EventType, .{});
-    }
     pub fn T_modifierFlags() EventModifierFlags {
         return objc.msgSend(@This().InternalInfo.class(), "modifierFlags", EventModifierFlags, .{});
     }
     pub fn pressedMouseButtons() UInteger {
         return objc.msgSend(@This().InternalInfo.class(), "pressedMouseButtons", UInteger, .{});
+    }
+};
+
+pub const Date = opaque {
+    pub const InternalInfo = objc.ExternClass("NSDate", @This(), ObjectInterface, &.{});
+    pub const as = InternalInfo.as;
+    pub const retain = InternalInfo.retain;
+    pub const release = InternalInfo.release;
+    pub const autorelease = InternalInfo.autorelease;
+    pub const new = InternalInfo.new;
+    pub const alloc = InternalInfo.alloc;
+    pub const allocInit = InternalInfo.allocInit;
+
+    pub fn dateWithTimeIntervalSinceNow(secs_: TimeInterval) *@This() {
+        return objc.msgSend(@This().InternalInfo.class(), "dateWithTimeIntervalSinceNow:", *@This(), .{secs_});
     }
 };
 
@@ -457,21 +410,6 @@ pub const View = opaque {
     pub const alloc = InternalInfo.alloc;
     pub const allocInit = InternalInfo.allocInit;
 
-    pub fn addSubView(self_: *@This(), subView_: *@This()) void {
-        return objc.msgSend(self_, "addSubview:", void, .{subView_});
-    }
-    pub fn setFrameOrigin(self_: *@This(), point_: Point) void {
-        return objc.msgSend(self_, "setFrameOrigin:", void, .{point_});
-    }
-    pub fn setFrameSize(self_: *@This(), size_: Size) void {
-        return objc.msgSend(self_, "setFrameSize:", void, .{size_});
-    }
-    pub fn setBoundsOrigin(self_: *@This(), point_: Point) void {
-        return objc.msgSend(self_, "setBoundsOrigin:", void, .{point_});
-    }
-    pub fn setBoundsSize(self_: *@This(), size_: Size) void {
-        return objc.msgSend(self_, "setBoundsSize:", void, .{size_});
-    }
     pub fn initWithFrame(self_: *@This(), frameRect_: Rect) *@This() {
         return objc.msgSend(self_, "initWithFrame:", *@This(), .{frameRect_});
     }
@@ -480,12 +418,6 @@ pub const View = opaque {
     }
     pub fn setLayer(self_: *@This(), layer_: *ca.Layer) void {
         return objc.msgSend(self_, "setLayer:", void, .{layer_});
-    }
-    pub fn setWantsLayer(self_: *@This(), wants_layer_: bool) void {
-        return objc.msgSend(self_, "setWantsLayer:", void, .{wants_layer_});
-    }
-    pub fn window(self_: *@This()) *Window {
-        return objc.msgSend(self_, "window", *Window, .{});
     }
 };
 
