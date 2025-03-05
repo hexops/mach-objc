@@ -56,6 +56,7 @@ pub const AccessibilityParameterizedAttributeName = *String;
 pub const UserInterfaceItemIdentifier = *String;
 
 pub extern const NSDefaultRunLoopMode: RunLoopMode;
+pub extern const NSEventTrackingRunLoopMode: RunLoopMode;
 
 pub const TrackingAreaOptions = UInteger;
 pub const TrackingMouseEnteredAndExited: TrackingAreaOptions = 1;

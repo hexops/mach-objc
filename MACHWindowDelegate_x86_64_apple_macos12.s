@@ -1,5 +1,5 @@
 	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 12, 0
+	.build_version macos, 14, 0
 	.private_extern	"-[MACHWindowDelegate setBlock_windowDidResize:]"
 	.globl	"-[MACHWindowDelegate setBlock_windowDidResize:]"
 "-[MACHWindowDelegate setBlock_windowDidResize:]":

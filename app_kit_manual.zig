@@ -56,3 +56,4 @@ pub const AccessibilityParameterizedAttributeName = *String;
 pub const UserInterfaceItemIdentifier = *String;
 
 pub extern const NSDefaultRunLoopMode: RunLoopMode;
+pub extern const NSEventTrackingRunLoopMode: RunLoopMode;
