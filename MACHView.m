@@ -19,6 +19,7 @@
   NSTrackingArea *trackingArea;
   dispatch_source_t m_displaySource;
   CVDisplayLinkRef m_displayLink;
+  BOOL separateThread;
 }
 
 - (BOOL)canBecomeKeyView {
@@ -30,25 +31,31 @@
 }
 
 - (void)dealloc
-{
+{   
+  if (self->separateThread) {
     [self stopRenderLoop];
+  }
 }
 
 - (void)viewDidMoveToWindow
 {
     [super viewDidMoveToWindow];
-    [self stopRenderLoop];
 
-    if (self.window)
-    {
-        m_displaySource = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0,
-            0, dispatch_get_main_queue());
-        dispatch_source_set_event_handler(m_displaySource, ^() { [self render]; });
-        dispatch_resume(m_displaySource);
+    if (self->separateThread) {
 
-        CVDisplayLinkCreateWithActiveCGDisplays(&m_displayLink);
-        CVDisplayLinkSetOutputCallback(m_displayLink, &displayLinkCallback, (__bridge void*)m_displaySource);
-        CVDisplayLinkStart(m_displayLink);
+      [self stopRenderLoop];
+
+      if (self.window)
+      {
+          m_displaySource = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0,
+              0, dispatch_get_main_queue());
+          dispatch_source_set_event_handler(m_displaySource, ^() { [self render]; });
+          dispatch_resume(m_displaySource);
+
+          CVDisplayLinkCreateWithActiveCGDisplays(&m_displayLink);
+          CVDisplayLinkSetOutputCallback(m_displayLink, &displayLinkCallback, (__bridge void*)m_displaySource);
+          CVDisplayLinkStart(m_displayLink);
+      }
     }
 }
 
@@ -250,6 +257,13 @@ static CVReturn displayLinkCallback(
 // such as escape pulling the window out of fullscreen
 - (void)doCommandBySelector:(SEL)selector
 {
+}
+
+
+-(id)initWithFrame:(NSRect)frame withThread:(BOOL)thread {
+  self = [self initWithFrame:frame];
+  self->separateThread = thread;
+  return self;
 }
 
 // This overrides the default initializer and creates a tracking area over the

@@ -71,6 +71,10 @@ pub const mach = struct {
             return objc.msgSend(self_, "initWithFrame:", *@This(), .{frameRect_});
         }
 
+        pub fn initWithFrame_withThread(self_: *@This(), frameRect_: app_kit.Rect, separateThread_: bool) *@This() {
+            return objc.msgSend(self_, "initWithFrame:withThread:", *@This(), .{ frameRect_, separateThread_ });
+        }
+
         pub fn currentDrawable(self_: *@This()) ?*quartz_core.MetalDrawable {
             return objc.msgSend(self_, "currentDrawable", ?*quartz_core.MetalDrawable, .{});
         }

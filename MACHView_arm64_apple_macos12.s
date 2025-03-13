@@ -27,18 +27,27 @@
 	.cfi_offset w20, -32
 	mov	x19, x0
 Lloh0:
-	adrp	x8, _OBJC_SELECTOR_REFERENCES_@PAGE
+	adrp	x8, _OBJC_IVAR_$_MACHView.separateThread@PAGE
 Lloh1:
-	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_@PAGEOFF]
-	bl	_objc_msgSend
+	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView.separateThread@PAGEOFF]
+	ldrb	w8, [x0, x8]
+	cmp	w8, #1
+	b.ne	LBB2_2
 Lloh2:
-	adrp	x8, l_OBJC_CLASSLIST_SUP_REFS_$_@PAGE
+	adrp	x8, _OBJC_SELECTOR_REFERENCES_@PAGE
 Lloh3:
+	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_@PAGEOFF]
+	mov	x0, x19
+	bl	_objc_msgSend
+LBB2_2:
+Lloh4:
+	adrp	x8, l_OBJC_CLASSLIST_SUP_REFS_$_@PAGE
+Lloh5:
 	ldr	x8, [x8, l_OBJC_CLASSLIST_SUP_REFS_$_@PAGEOFF]
 	stp	x19, x8, [sp]
-Lloh4:
+Lloh6:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.2@PAGE
-Lloh5:
+Lloh7:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.2@PAGEOFF]
 	mov	x0, sp
 	bl	_objc_msgSendSuper2
@@ -51,9 +60,10 @@ Lloh5:
 	.cfi_restore w19
 	.cfi_restore w20
 	ret
-	.loh AdrpLdr	Lloh4, Lloh5
-	.loh AdrpLdr	Lloh2, Lloh3
 	.loh AdrpLdr	Lloh0, Lloh1
+	.loh AdrpLdr	Lloh2, Lloh3
+	.loh AdrpLdr	Lloh6, Lloh7
+	.loh AdrpLdr	Lloh4, Lloh5
 	.cfi_endproc
 
 	.section	__TEXT,__literal8,8byte_literals
@@ -77,26 +87,33 @@ lCPI3_0:
 	.cfi_offset w21, -40
 	.cfi_offset w22, -48
 	mov	x19, x0
-Lloh6:
+Lloh8:
 	adrp	x8, l_OBJC_CLASSLIST_SUP_REFS_$_@PAGE
-Lloh7:
+Lloh9:
 	ldr	x8, [x8, l_OBJC_CLASSLIST_SUP_REFS_$_@PAGEOFF]
 	stp	x0, x8, [sp, #48]
-Lloh8:
+Lloh10:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.4@PAGE
-Lloh9:
+Lloh11:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.4@PAGEOFF]
 	add	x0, sp, #48
 	bl	_objc_msgSendSuper2
-Lloh10:
+Lloh12:
+	adrp	x8, _OBJC_IVAR_$_MACHView.separateThread@PAGE
+Lloh13:
+	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView.separateThread@PAGEOFF]
+	ldrb	w8, [x19, x8]
+	cmp	w8, #1
+	b.ne	LBB3_3
+Lloh14:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_@PAGE
-Lloh11:
+Lloh15:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_@PAGEOFF]
 	mov	x0, x19
 	bl	_objc_msgSend
-Lloh12:
+Lloh16:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.6@PAGE
-Lloh13:
+Lloh17:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.6@PAGEOFF]
 	mov	x0, x19
 	bl	_objc_msgSend
@@ -104,44 +121,44 @@ Lloh13:
 	bl	_objc_retainAutoreleasedReturnValue
 	mov	x20, x0
 	bl	_objc_release
-	cbz	x20, LBB3_2
-Lloh14:
+	cbz	x20, LBB3_3
+Lloh18:
 	adrp	x0, __dispatch_source_type_data_add@GOTPAGE
-Lloh15:
+Lloh19:
 	ldr	x0, [x0, __dispatch_source_type_data_add@GOTPAGEOFF]
-Lloh16:
+Lloh20:
 	adrp	x3, __dispatch_main_q@GOTPAGE
-Lloh17:
+Lloh21:
 	ldr	x3, [x3, __dispatch_main_q@GOTPAGEOFF]
 	mov	x1, #0
 	mov	x2, #0
 	bl	_dispatch_source_create
-Lloh18:
+Lloh22:
 	adrp	x8, _OBJC_IVAR_$_MACHView.m_displaySource@PAGE
-Lloh19:
+Lloh23:
 	ldrsw	x20, [x8, _OBJC_IVAR_$_MACHView.m_displaySource@PAGEOFF]
 	ldr	x8, [x19, x20]
 	str	x0, [x19, x20]
 	mov	x0, x8
 	bl	_objc_release
 	ldr	x0, [x19, x20]
-Lloh20:
+Lloh24:
 	adrp	x8, __NSConcreteStackBlock@GOTPAGE
-Lloh21:
+Lloh25:
 	ldr	x8, [x8, __NSConcreteStackBlock@GOTPAGEOFF]
 	str	x8, [sp, #8]
-Lloh22:
+Lloh26:
 	adrp	x8, lCPI3_0@PAGE
-Lloh23:
+Lloh27:
 	ldr	d0, [x8, lCPI3_0@PAGEOFF]
-Lloh24:
+Lloh28:
 	adrp	x8, "___31-[MACHView viewDidMoveToWindow]_block_invoke"@PAGE
-Lloh25:
+Lloh29:
 	add	x8, x8, "___31-[MACHView viewDidMoveToWindow]_block_invoke"@PAGEOFF
 	str	d0, [sp, #16]
-Lloh26:
+Lloh30:
 	adrp	x9, "___block_descriptor_40_8_32s_e5_v8\x01?0l"@PAGE
-Lloh27:
+Lloh31:
 	add	x9, x9, "___block_descriptor_40_8_32s_e5_v8\x01?0l"@PAGEOFF
 	stp	x8, x9, [sp, #24]
 	str	x19, [sp, #40]
@@ -149,22 +166,22 @@ Lloh27:
 	bl	_dispatch_source_set_event_handler
 	ldr	x0, [x19, x20]
 	bl	_dispatch_resume
-Lloh28:
+Lloh32:
 	adrp	x8, _OBJC_IVAR_$_MACHView.m_displayLink@PAGE
-Lloh29:
+Lloh33:
 	ldrsw	x21, [x8, _OBJC_IVAR_$_MACHView.m_displayLink@PAGEOFF]
 	add	x0, x19, x21
 	bl	_CVDisplayLinkCreateWithActiveCGDisplays
 	ldr	x0, [x19, x21]
 	ldr	x2, [x19, x20]
-Lloh30:
+Lloh34:
 	adrp	x1, _displayLinkCallback@PAGE
-Lloh31:
+Lloh35:
 	add	x1, x1, _displayLinkCallback@PAGEOFF
 	bl	_CVDisplayLinkSetOutputCallback
 	ldr	x0, [x19, x21]
 	bl	_CVDisplayLinkStart
-LBB3_2:
+LBB3_3:
 	ldp	x29, x30, [sp, #96]
 	ldp	x20, x19, [sp, #80]
 	ldp	x22, x21, [sp, #64]
@@ -180,29 +197,30 @@ LBB3_2:
 	.loh AdrpLdr	Lloh12, Lloh13
 	.loh AdrpLdr	Lloh10, Lloh11
 	.loh AdrpLdr	Lloh8, Lloh9
-	.loh AdrpLdr	Lloh6, Lloh7
+	.loh AdrpLdr	Lloh16, Lloh17
+	.loh AdrpLdr	Lloh14, Lloh15
+	.loh AdrpAdd	Lloh34, Lloh35
+	.loh AdrpLdr	Lloh32, Lloh33
 	.loh AdrpAdd	Lloh30, Lloh31
-	.loh AdrpLdr	Lloh28, Lloh29
-	.loh AdrpAdd	Lloh26, Lloh27
-	.loh AdrpAdd	Lloh24, Lloh25
-	.loh AdrpAdrp	Lloh22, Lloh24
+	.loh AdrpAdd	Lloh28, Lloh29
+	.loh AdrpAdrp	Lloh26, Lloh28
+	.loh AdrpLdr	Lloh26, Lloh27
+	.loh AdrpLdrGot	Lloh24, Lloh25
 	.loh AdrpLdr	Lloh22, Lloh23
 	.loh AdrpLdrGot	Lloh20, Lloh21
-	.loh AdrpLdr	Lloh18, Lloh19
-	.loh AdrpLdrGot	Lloh16, Lloh17
-	.loh AdrpLdrGot	Lloh14, Lloh15
+	.loh AdrpLdrGot	Lloh18, Lloh19
 	.cfi_endproc
 
 	.p2align	2
 "___31-[MACHView viewDidMoveToWindow]_block_invoke":
 	.cfi_startproc
 	ldr	x0, [x0, #32]
-Lloh32:
+Lloh36:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.8@PAGE
-Lloh33:
+Lloh37:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.8@PAGEOFF]
 	b	_objc_msgSend
-	.loh AdrpLdr	Lloh32, Lloh33
+	.loh AdrpLdr	Lloh36, Lloh37
 	.cfi_endproc
 
 	.private_extern	___copy_helper_block_8_32s
@@ -257,9 +275,9 @@ _displayLinkCallback:
 	.p2align	2
 "-[MACHView render]":
 	.cfi_startproc
-Lloh34:
+Lloh38:
 	adrp	x8, _OBJC_IVAR_$_MACHView._render_block@PAGE
-Lloh35:
+Lloh39:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._render_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB8_2
@@ -267,7 +285,7 @@ Lloh35:
 	br	x1
 LBB8_2:
 	ret
-	.loh AdrpLdr	Lloh34, Lloh35
+	.loh AdrpLdr	Lloh38, Lloh39
 	.cfi_endproc
 
 	.p2align	2
@@ -281,9 +299,9 @@ LBB8_2:
 	.cfi_offset w19, -24
 	.cfi_offset w20, -32
 	mov	x19, x0
-Lloh36:
+Lloh40:
 	adrp	x8, _OBJC_IVAR_$_MACHView.m_displaySource@PAGE
-Lloh37:
+Lloh41:
 	ldrsw	x20, [x8, _OBJC_IVAR_$_MACHView.m_displaySource@PAGEOFF]
 	ldr	x0, [x0, x20]
 	cbz	x0, LBB9_2
@@ -292,9 +310,9 @@ Lloh37:
 	str	xzr, [x19, x20]
 	bl	_objc_release
 LBB9_2:
-Lloh38:
+Lloh42:
 	adrp	x8, _OBJC_IVAR_$_MACHView.m_displayLink@PAGE
-Lloh39:
+Lloh43:
 	ldrsw	x20, [x8, _OBJC_IVAR_$_MACHView.m_displayLink@PAGEOFF]
 	ldr	x0, [x19, x20]
 	cbz	x0, LBB9_4
@@ -311,8 +329,8 @@ LBB9_4:
 	.cfi_restore w19
 	.cfi_restore w20
 	ret
-	.loh AdrpLdr	Lloh36, Lloh37
-	.loh AdrpLdr	Lloh38, Lloh39
+	.loh AdrpLdr	Lloh40, Lloh41
+	.loh AdrpLdr	Lloh42, Lloh43
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_render:]"
@@ -331,9 +349,9 @@ LBB9_4:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh40:
+Lloh44:
 	adrp	x8, _OBJC_IVAR_$_MACHView._render_block@PAGE
-Lloh41:
+Lloh45:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._render_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -348,7 +366,7 @@ Lloh41:
 	b	_objc_release
 LBB10_2:
 	ret
-	.loh AdrpLdr	Lloh40, Lloh41
+	.loh AdrpLdr	Lloh44, Lloh45
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_keyDown:]"
@@ -367,9 +385,9 @@ LBB10_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh42:
+Lloh46:
 	adrp	x8, _OBJC_IVAR_$_MACHView._keyDown_block@PAGE
-Lloh43:
+Lloh47:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._keyDown_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -384,7 +402,7 @@ Lloh43:
 	b	_objc_release
 LBB11_2:
 	ret
-	.loh AdrpLdr	Lloh42, Lloh43
+	.loh AdrpLdr	Lloh46, Lloh47
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_keyUp:]"
@@ -403,9 +421,9 @@ LBB11_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh44:
+Lloh48:
 	adrp	x8, _OBJC_IVAR_$_MACHView._keyUp_block@PAGE
-Lloh45:
+Lloh49:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._keyUp_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -420,7 +438,7 @@ Lloh45:
 	b	_objc_release
 LBB12_2:
 	ret
-	.loh AdrpLdr	Lloh44, Lloh45
+	.loh AdrpLdr	Lloh48, Lloh49
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_mouseMoved:]"
@@ -439,9 +457,9 @@ LBB12_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh46:
+Lloh50:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGE
-Lloh47:
+Lloh51:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -456,7 +474,7 @@ Lloh47:
 	b	_objc_release
 LBB13_2:
 	ret
-	.loh AdrpLdr	Lloh46, Lloh47
+	.loh AdrpLdr	Lloh50, Lloh51
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_mouseDown:]"
@@ -475,9 +493,9 @@ LBB13_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh48:
+Lloh52:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGE
-Lloh49:
+Lloh53:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -492,7 +510,7 @@ Lloh49:
 	b	_objc_release
 LBB14_2:
 	ret
-	.loh AdrpLdr	Lloh48, Lloh49
+	.loh AdrpLdr	Lloh52, Lloh53
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_mouseUp:]"
@@ -511,9 +529,9 @@ LBB14_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh50:
+Lloh54:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGE
-Lloh51:
+Lloh55:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -528,7 +546,7 @@ Lloh51:
 	b	_objc_release
 LBB15_2:
 	ret
-	.loh AdrpLdr	Lloh50, Lloh51
+	.loh AdrpLdr	Lloh54, Lloh55
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_scrollWheel:]"
@@ -547,9 +565,9 @@ LBB15_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh52:
+Lloh56:
 	adrp	x8, _OBJC_IVAR_$_MACHView._scrollWheel_block@PAGE
-Lloh53:
+Lloh57:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._scrollWheel_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -564,7 +582,7 @@ Lloh53:
 	b	_objc_release
 LBB16_2:
 	ret
-	.loh AdrpLdr	Lloh52, Lloh53
+	.loh AdrpLdr	Lloh56, Lloh57
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_flagsChanged:]"
@@ -583,9 +601,9 @@ LBB16_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh54:
+Lloh58:
 	adrp	x8, _OBJC_IVAR_$_MACHView._flagsChanged_block@PAGE
-Lloh55:
+Lloh59:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._flagsChanged_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -600,7 +618,7 @@ Lloh55:
 	b	_objc_release
 LBB17_2:
 	ret
-	.loh AdrpLdr	Lloh54, Lloh55
+	.loh AdrpLdr	Lloh58, Lloh59
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_insertText:]"
@@ -619,9 +637,9 @@ LBB17_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh56:
+Lloh60:
 	adrp	x8, _OBJC_IVAR_$_MACHView._insertText_block@PAGE
-Lloh57:
+Lloh61:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._insertText_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -636,7 +654,7 @@ Lloh57:
 	b	_objc_release
 LBB18_2:
 	ret
-	.loh AdrpLdr	Lloh56, Lloh57
+	.loh AdrpLdr	Lloh60, Lloh61
 	.cfi_endproc
 
 	.private_extern	"-[MACHView setBlock_magnify:]"
@@ -655,9 +673,9 @@ LBB18_2:
 	mov	x19, x0
 	mov	x0, x1
 	bl	_objc_retainBlock
-Lloh58:
+Lloh62:
 	adrp	x8, _OBJC_IVAR_$_MACHView._magnify_block@PAGE
-Lloh59:
+Lloh63:
 	ldrsw	x9, [x8, _OBJC_IVAR_$_MACHView._magnify_block@PAGEOFF]
 	ldr	x8, [x19, x9]
 	str	x0, [x19, x9]
@@ -672,7 +690,7 @@ Lloh59:
 	b	_objc_release
 LBB19_2:
 	ret
-	.loh AdrpLdr	Lloh58, Lloh59
+	.loh AdrpLdr	Lloh62, Lloh63
 	.cfi_endproc
 
 	.p2align	2
@@ -693,9 +711,9 @@ LBB19_2:
 	mov	x20, x0
 	mov	x0, x2
 	bl	_objc_retain
-Lloh60:
+Lloh64:
 	adrp	x8, _OBJC_IVAR_$_MACHView._keyDown_block@PAGE
-Lloh61:
+Lloh65:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._keyDown_block@PAGEOFF]
 	ldr	x0, [x20, x8]
 	cbz	x0, LBB20_2
@@ -704,13 +722,13 @@ Lloh61:
 	blr	x8
 LBB20_2:
 	str	x19, [sp, #8]
-Lloh62:
+Lloh66:
 	adrp	x8, _OBJC_CLASSLIST_REFERENCES_$_@PAGE
-Lloh63:
+Lloh67:
 	ldr	x0, [x8, _OBJC_CLASSLIST_REFERENCES_$_@PAGEOFF]
-Lloh64:
+Lloh68:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.10@PAGE
-Lloh65:
+Lloh69:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.10@PAGEOFF]
 	add	x2, sp, #8
 	mov	w3, #1
@@ -718,9 +736,9 @@ Lloh65:
 	mov	x29, x29
 	bl	_objc_retainAutoreleasedReturnValue
 	mov	x21, x0
-Lloh66:
+Lloh70:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.12@PAGE
-Lloh67:
+Lloh71:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.12@PAGEOFF]
 	mov	x0, x20
 	mov	x2, x21
@@ -741,11 +759,11 @@ Lloh67:
 	.cfi_restore w21
 	.cfi_restore w22
 	ret
-	.loh AdrpLdr	Lloh60, Lloh61
-	.loh AdrpLdr	Lloh66, Lloh67
 	.loh AdrpLdr	Lloh64, Lloh65
-	.loh AdrpAdrp	Lloh62, Lloh64
-	.loh AdrpLdr	Lloh62, Lloh63
+	.loh AdrpLdr	Lloh70, Lloh71
+	.loh AdrpLdr	Lloh68, Lloh69
+	.loh AdrpAdrp	Lloh66, Lloh68
+	.loh AdrpLdr	Lloh66, Lloh67
 	.cfi_endproc
 
 	.p2align	2
@@ -772,40 +790,40 @@ Lloh67:
 	mov	x20, x0
 	mov	x0, x2
 	bl	_objc_retain
-Lloh68:
-	adrp	x8, _NSApp@GOTPAGE
-Lloh69:
-	ldr	x8, [x8, _NSApp@GOTPAGEOFF]
-Lloh70:
-	ldr	x0, [x8]
-Lloh71:
-	adrp	x8, _OBJC_SELECTOR_REFERENCES_.14@PAGE
 Lloh72:
+	adrp	x8, _NSApp@GOTPAGE
+Lloh73:
+	ldr	x8, [x8, _NSApp@GOTPAGEOFF]
+Lloh74:
+	ldr	x0, [x8]
+Lloh75:
+	adrp	x8, _OBJC_SELECTOR_REFERENCES_.14@PAGE
+Lloh76:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.14@PAGEOFF]
 	bl	_objc_msgSend
 	mov	x29, x29
 	bl	_objc_retainAutoreleasedReturnValue
 	mov	x21, x0
-Lloh73:
+Lloh77:
 	adrp	x8, _OBJC_CLASSLIST_REFERENCES_$_.15@PAGE
-Lloh74:
+Lloh78:
 	ldr	x0, [x8, _OBJC_CLASSLIST_REFERENCES_$_.15@PAGEOFF]
-Lloh75:
+Lloh79:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.17@PAGE
-Lloh76:
+Lloh80:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.17@PAGEOFF]
 	bl	_objc_msgSend
 	mov	x2, x0
-Lloh77:
+Lloh81:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.19@PAGE
-Lloh78:
+Lloh82:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.19@PAGEOFF]
 	mov	x0, x19
 	bl	_objc_msgSend
 	cbz	w0, LBB21_2
-Lloh79:
+Lloh83:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.21@PAGE
-Lloh80:
+Lloh84:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.21@PAGEOFF]
 	mov	x0, x19
 	bl	_objc_msgSend
@@ -818,17 +836,17 @@ LBB21_2:
 	bl	_objc_retain
 	mov	x22, x19
 LBB21_3:
-Lloh81:
+Lloh85:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.23@PAGE
-Lloh82:
+Lloh86:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.23@PAGEOFF]
 	mov	x0, x22
 	bl	_objc_msgSend
 	stp	xzr, x0, [sp, #32]
 	cbz	x0, LBB21_10
-Lloh83:
+Lloh87:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.25@PAGE
-Lloh84:
+Lloh88:
 	ldr	x23, [x8, _OBJC_SELECTOR_REFERENCES_.25@PAGEOFF]
 	add	x24, sp, #32
 	adrp	x25, _OBJC_IVAR_$_MACHView._insertText_block@PAGE
@@ -885,23 +903,23 @@ LBB21_10:
 	.cfi_restore w25
 	.cfi_restore w26
 	ret
+	.loh AdrpLdr	Lloh81, Lloh82
+	.loh AdrpLdr	Lloh79, Lloh80
+	.loh AdrpAdrp	Lloh77, Lloh79
 	.loh AdrpLdr	Lloh77, Lloh78
 	.loh AdrpLdr	Lloh75, Lloh76
-	.loh AdrpAdrp	Lloh73, Lloh75
-	.loh AdrpLdr	Lloh73, Lloh74
-	.loh AdrpLdr	Lloh71, Lloh72
-	.loh AdrpLdrGotLdr	Lloh68, Lloh69, Lloh70
-	.loh AdrpLdr	Lloh79, Lloh80
-	.loh AdrpLdr	Lloh81, Lloh82
+	.loh AdrpLdrGotLdr	Lloh72, Lloh73, Lloh74
 	.loh AdrpLdr	Lloh83, Lloh84
+	.loh AdrpLdr	Lloh85, Lloh86
+	.loh AdrpLdr	Lloh87, Lloh88
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView keyUp:]":
 	.cfi_startproc
-Lloh85:
+Lloh89:
 	adrp	x8, _OBJC_IVAR_$_MACHView._keyUp_block@PAGE
-Lloh86:
+Lloh90:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._keyUp_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB22_2
@@ -910,15 +928,15 @@ Lloh86:
 	br	x3
 LBB22_2:
 	ret
-	.loh AdrpLdr	Lloh85, Lloh86
+	.loh AdrpLdr	Lloh89, Lloh90
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView flagsChanged:]":
 	.cfi_startproc
-Lloh87:
+Lloh91:
 	adrp	x8, _OBJC_IVAR_$_MACHView._flagsChanged_block@PAGE
-Lloh88:
+Lloh92:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._flagsChanged_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB23_2
@@ -927,15 +945,15 @@ Lloh88:
 	br	x3
 LBB23_2:
 	ret
-	.loh AdrpLdr	Lloh87, Lloh88
+	.loh AdrpLdr	Lloh91, Lloh92
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView mouseMoved:]":
 	.cfi_startproc
-Lloh89:
+Lloh93:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGE
-Lloh90:
+Lloh94:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB24_2
@@ -944,15 +962,15 @@ Lloh90:
 	br	x3
 LBB24_2:
 	ret
-	.loh AdrpLdr	Lloh89, Lloh90
+	.loh AdrpLdr	Lloh93, Lloh94
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView mouseDragged:]":
 	.cfi_startproc
-Lloh91:
+Lloh95:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGE
-Lloh92:
+Lloh96:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB25_2
@@ -961,15 +979,15 @@ Lloh92:
 	br	x3
 LBB25_2:
 	ret
-	.loh AdrpLdr	Lloh91, Lloh92
+	.loh AdrpLdr	Lloh95, Lloh96
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView rightMouseDragged:]":
 	.cfi_startproc
-Lloh93:
+Lloh97:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGE
-Lloh94:
+Lloh98:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB26_2
@@ -978,15 +996,15 @@ Lloh94:
 	br	x3
 LBB26_2:
 	ret
-	.loh AdrpLdr	Lloh93, Lloh94
+	.loh AdrpLdr	Lloh97, Lloh98
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView otherMouseDragged:]":
 	.cfi_startproc
-Lloh95:
+Lloh99:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGE
-Lloh96:
+Lloh100:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB27_2
@@ -995,15 +1013,15 @@ Lloh96:
 	br	x3
 LBB27_2:
 	ret
-	.loh AdrpLdr	Lloh95, Lloh96
+	.loh AdrpLdr	Lloh99, Lloh100
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView mouseDown:]":
 	.cfi_startproc
-Lloh97:
+Lloh101:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGE
-Lloh98:
+Lloh102:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB28_2
@@ -1012,15 +1030,15 @@ Lloh98:
 	br	x3
 LBB28_2:
 	ret
-	.loh AdrpLdr	Lloh97, Lloh98
+	.loh AdrpLdr	Lloh101, Lloh102
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView rightMouseDown:]":
 	.cfi_startproc
-Lloh99:
+Lloh103:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGE
-Lloh100:
+Lloh104:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB29_2
@@ -1029,15 +1047,15 @@ Lloh100:
 	br	x3
 LBB29_2:
 	ret
-	.loh AdrpLdr	Lloh99, Lloh100
+	.loh AdrpLdr	Lloh103, Lloh104
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView otherMouseDown:]":
 	.cfi_startproc
-Lloh101:
+Lloh105:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGE
-Lloh102:
+Lloh106:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB30_2
@@ -1046,15 +1064,15 @@ Lloh102:
 	br	x3
 LBB30_2:
 	ret
-	.loh AdrpLdr	Lloh101, Lloh102
+	.loh AdrpLdr	Lloh105, Lloh106
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView mouseUp:]":
 	.cfi_startproc
-Lloh103:
+Lloh107:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGE
-Lloh104:
+Lloh108:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB31_2
@@ -1063,15 +1081,15 @@ Lloh104:
 	br	x3
 LBB31_2:
 	ret
-	.loh AdrpLdr	Lloh103, Lloh104
+	.loh AdrpLdr	Lloh107, Lloh108
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView rightMouseUp:]":
 	.cfi_startproc
-Lloh105:
+Lloh109:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGE
-Lloh106:
+Lloh110:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB32_2
@@ -1080,15 +1098,15 @@ Lloh106:
 	br	x3
 LBB32_2:
 	ret
-	.loh AdrpLdr	Lloh105, Lloh106
+	.loh AdrpLdr	Lloh109, Lloh110
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView otherMouseUp:]":
 	.cfi_startproc
-Lloh107:
+Lloh111:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGE
-Lloh108:
+Lloh112:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB33_2
@@ -1097,15 +1115,15 @@ Lloh108:
 	br	x3
 LBB33_2:
 	ret
-	.loh AdrpLdr	Lloh107, Lloh108
+	.loh AdrpLdr	Lloh111, Lloh112
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView scrollWheel:]":
 	.cfi_startproc
-Lloh109:
+Lloh113:
 	adrp	x8, _OBJC_IVAR_$_MACHView._scrollWheel_block@PAGE
-Lloh110:
+Lloh114:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._scrollWheel_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB34_2
@@ -1114,15 +1132,15 @@ Lloh110:
 	br	x3
 LBB34_2:
 	ret
-	.loh AdrpLdr	Lloh109, Lloh110
+	.loh AdrpLdr	Lloh113, Lloh114
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView magnifyWithEvent:]":
 	.cfi_startproc
-Lloh111:
+Lloh115:
 	adrp	x8, _OBJC_IVAR_$_MACHView._magnify_block@PAGE
-Lloh112:
+Lloh116:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._magnify_block@PAGEOFF]
 	ldr	x0, [x0, x8]
 	cbz	x0, LBB35_2
@@ -1131,13 +1149,46 @@ Lloh112:
 	br	x3
 LBB35_2:
 	ret
-	.loh AdrpLdr	Lloh111, Lloh112
+	.loh AdrpLdr	Lloh115, Lloh116
 	.cfi_endproc
 
 	.p2align	2
 "-[MACHView doCommandBySelector:]":
 	.cfi_startproc
 	ret
+	.cfi_endproc
+
+	.p2align	2
+"-[MACHView initWithFrame:withThread:]":
+	.cfi_startproc
+	stp	x20, x19, [sp, #-32]!
+	.cfi_def_cfa_offset 32
+	stp	x29, x30, [sp, #16]
+	.cfi_offset w30, -8
+	.cfi_offset w29, -16
+	.cfi_offset w19, -24
+	.cfi_offset w20, -32
+	mov	x19, x2
+Lloh117:
+	adrp	x8, _OBJC_SELECTOR_REFERENCES_.27@PAGE
+Lloh118:
+	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.27@PAGEOFF]
+	bl	_objc_msgSend
+Lloh119:
+	adrp	x8, _OBJC_IVAR_$_MACHView.separateThread@PAGE
+Lloh120:
+	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView.separateThread@PAGEOFF]
+	strb	w19, [x0, x8]
+	ldp	x29, x30, [sp, #16]
+	ldp	x20, x19, [sp], #32
+	.cfi_def_cfa_offset 0
+	.cfi_restore w30
+	.cfi_restore w29
+	.cfi_restore w19
+	.cfi_restore w20
+	ret
+	.loh AdrpLdr	Lloh119, Lloh120
+	.loh AdrpLdr	Lloh117, Lloh118
 	.cfi_endproc
 
 	.p2align	2
@@ -1157,22 +1208,22 @@ LBB35_2:
 	.cfi_offset b9, -48
 	.cfi_offset b10, -56
 	.cfi_offset b11, -64
-Lloh113:
+Lloh121:
 	adrp	x8, l_OBJC_CLASSLIST_SUP_REFS_$_@PAGE
-Lloh114:
+Lloh122:
 	ldr	x8, [x8, l_OBJC_CLASSLIST_SUP_REFS_$_@PAGEOFF]
 	stp	x0, x8, [sp]
-Lloh115:
+Lloh123:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.27@PAGE
-Lloh116:
+Lloh124:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.27@PAGEOFF]
 	mov	x0, sp
 	bl	_objc_msgSendSuper2
 	mov	x19, x0
-	cbz	x0, LBB37_2
-Lloh117:
+	cbz	x0, LBB38_2
+Lloh125:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.29@PAGE
-Lloh118:
+Lloh126:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.29@PAGEOFF]
 	mov	x0, x19
 	bl	_objc_msgSend
@@ -1180,14 +1231,14 @@ Lloh118:
 	fmov	d9, d1
 	fmov	d10, d2
 	fmov	d11, d3
-Lloh119:
+Lloh127:
 	adrp	x8, _OBJC_CLASSLIST_REFERENCES_$_.30@PAGE
-Lloh120:
+Lloh128:
 	ldr	x0, [x8, _OBJC_CLASSLIST_REFERENCES_$_.30@PAGEOFF]
 	bl	_objc_alloc
-Lloh121:
+Lloh129:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.32@PAGE
-Lloh122:
+Lloh130:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.32@PAGEOFF]
 	fmov	d0, d8
 	fmov	d1, d9
@@ -1197,22 +1248,22 @@ Lloh122:
 	mov	x3, x19
 	mov	x4, #0
 	bl	_objc_msgSend
-Lloh123:
+Lloh131:
 	adrp	x8, _OBJC_IVAR_$_MACHView.trackingArea@PAGE
-Lloh124:
+Lloh132:
 	ldrsw	x20, [x8, _OBJC_IVAR_$_MACHView.trackingArea@PAGEOFF]
 	ldr	x8, [x19, x20]
 	str	x0, [x19, x20]
 	mov	x0, x8
 	bl	_objc_release
 	ldr	x2, [x19, x20]
-Lloh125:
+Lloh133:
 	adrp	x8, _OBJC_SELECTOR_REFERENCES_.34@PAGE
-Lloh126:
+Lloh134:
 	ldr	x1, [x8, _OBJC_SELECTOR_REFERENCES_.34@PAGEOFF]
 	mov	x0, x19
 	bl	_objc_msgSend
-LBB37_2:
+LBB38_2:
 	mov	x0, x19
 	ldp	x29, x30, [sp, #64]
 	ldp	x20, x19, [sp, #48]
@@ -1229,13 +1280,13 @@ LBB37_2:
 	.cfi_restore b10
 	.cfi_restore b11
 	ret
-	.loh AdrpLdr	Lloh115, Lloh116
-	.loh AdrpLdr	Lloh113, Lloh114
-	.loh AdrpLdr	Lloh125, Lloh126
 	.loh AdrpLdr	Lloh123, Lloh124
 	.loh AdrpLdr	Lloh121, Lloh122
-	.loh AdrpLdr	Lloh119, Lloh120
-	.loh AdrpLdr	Lloh117, Lloh118
+	.loh AdrpLdr	Lloh133, Lloh134
+	.loh AdrpLdr	Lloh131, Lloh132
+	.loh AdrpLdr	Lloh129, Lloh130
+	.loh AdrpLdr	Lloh127, Lloh128
+	.loh AdrpLdr	Lloh125, Lloh126
 	.cfi_endproc
 
 	.p2align	2
@@ -1249,86 +1300,86 @@ LBB37_2:
 	.cfi_offset w19, -24
 	.cfi_offset w20, -32
 	mov	x19, x0
-Lloh127:
+Lloh135:
 	adrp	x8, _OBJC_IVAR_$_MACHView.m_displaySource@PAGE
-Lloh128:
+Lloh136:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView.m_displaySource@PAGEOFF]
 	add	x0, x0, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh129:
+Lloh137:
 	adrp	x8, _OBJC_IVAR_$_MACHView.trackingArea@PAGE
-Lloh130:
+Lloh138:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView.trackingArea@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh131:
+Lloh139:
 	adrp	x8, _OBJC_IVAR_$_MACHView._render_block@PAGE
-Lloh132:
+Lloh140:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._render_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh133:
+Lloh141:
 	adrp	x8, _OBJC_IVAR_$_MACHView._insertText_block@PAGE
-Lloh134:
+Lloh142:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._insertText_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh135:
+Lloh143:
 	adrp	x8, _OBJC_IVAR_$_MACHView._magnify_block@PAGE
-Lloh136:
+Lloh144:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._magnify_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh137:
+Lloh145:
 	adrp	x8, _OBJC_IVAR_$_MACHView._scrollWheel_block@PAGE
-Lloh138:
+Lloh146:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._scrollWheel_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh139:
+Lloh147:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGE
-Lloh140:
+Lloh148:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseUp_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh141:
+Lloh149:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGE
-Lloh142:
+Lloh150:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseDown_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh143:
+Lloh151:
 	adrp	x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGE
-Lloh144:
+Lloh152:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._mouseMoved_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh145:
+Lloh153:
 	adrp	x8, _OBJC_IVAR_$_MACHView._flagsChanged_block@PAGE
-Lloh146:
+Lloh154:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._flagsChanged_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh147:
+Lloh155:
 	adrp	x8, _OBJC_IVAR_$_MACHView._keyUp_block@PAGE
-Lloh148:
+Lloh156:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._keyUp_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
 	bl	_objc_storeStrong
-Lloh149:
+Lloh157:
 	adrp	x8, _OBJC_IVAR_$_MACHView._keyDown_block@PAGE
-Lloh150:
+Lloh158:
 	ldrsw	x8, [x8, _OBJC_IVAR_$_MACHView._keyDown_block@PAGEOFF]
 	add	x0, x19, x8
 	mov	x1, #0
@@ -1340,6 +1391,10 @@ Lloh150:
 	.cfi_restore w19
 	.cfi_restore w20
 	b	_objc_storeStrong
+	.loh AdrpLdr	Lloh157, Lloh158
+	.loh AdrpLdr	Lloh155, Lloh156
+	.loh AdrpLdr	Lloh153, Lloh154
+	.loh AdrpLdr	Lloh151, Lloh152
 	.loh AdrpLdr	Lloh149, Lloh150
 	.loh AdrpLdr	Lloh147, Lloh148
 	.loh AdrpLdr	Lloh145, Lloh146
@@ -1348,11 +1403,14 @@ Lloh150:
 	.loh AdrpLdr	Lloh139, Lloh140
 	.loh AdrpLdr	Lloh137, Lloh138
 	.loh AdrpLdr	Lloh135, Lloh136
-	.loh AdrpLdr	Lloh133, Lloh134
-	.loh AdrpLdr	Lloh131, Lloh132
-	.loh AdrpLdr	Lloh129, Lloh130
-	.loh AdrpLdr	Lloh127, Lloh128
 	.cfi_endproc
+
+	.private_extern	_OBJC_IVAR_$_MACHView.separateThread
+	.section	__DATA,__objc_ivar
+	.globl	_OBJC_IVAR_$_MACHView.separateThread
+	.p2align	2, 0x0
+_OBJC_IVAR_$_MACHView.separateThread:
+	.long	112
 
 	.section	__TEXT,__objc_methname,cstring_literals
 l_OBJC_METH_VAR_NAME_:
@@ -1745,18 +1803,26 @@ l_OBJC_METH_VAR_NAME_.56:
 l_OBJC_METH_VAR_TYPE_.57:
 	.asciz	"v24@0:8:16"
 
-l_OBJC_METH_VAR_TYPE_.58:
+	.section	__TEXT,__objc_methname,cstring_literals
+l_OBJC_METH_VAR_NAME_.58:
+	.asciz	"initWithFrame:withThread:"
+
+	.section	__TEXT,__objc_methtype,cstring_literals
+l_OBJC_METH_VAR_TYPE_.59:
+	.asciz	"@52@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16B48"
+
+l_OBJC_METH_VAR_TYPE_.60:
 	.asciz	"@48@0:8{CGRect={CGPoint=dd}{CGSize=dd}}16"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.59:
+l_OBJC_METH_VAR_NAME_.61:
 	.asciz	".cxx_destruct"
 
 	.section	__DATA,__objc_const
 	.p2align	3, 0x0
 __OBJC_$_INSTANCE_METHODS_MACHView:
 	.long	24
-	.long	25
+	.long	26
 	.quad	l_OBJC_METH_VAR_NAME_.36
 	.quad	l_OBJC_METH_VAR_TYPE_
 	.quad	"-[MACHView canBecomeKeyView]"
@@ -1826,148 +1892,164 @@ __OBJC_$_INSTANCE_METHODS_MACHView:
 	.quad	l_OBJC_METH_VAR_NAME_.56
 	.quad	l_OBJC_METH_VAR_TYPE_.57
 	.quad	"-[MACHView doCommandBySelector:]"
+	.quad	l_OBJC_METH_VAR_NAME_.58
+	.quad	l_OBJC_METH_VAR_TYPE_.59
+	.quad	"-[MACHView initWithFrame:withThread:]"
 	.quad	l_OBJC_METH_VAR_NAME_.26
-	.quad	l_OBJC_METH_VAR_TYPE_.58
+	.quad	l_OBJC_METH_VAR_TYPE_.60
 	.quad	"-[MACHView initWithFrame:]"
-	.quad	l_OBJC_METH_VAR_NAME_.59
+	.quad	l_OBJC_METH_VAR_NAME_.61
 	.quad	l_OBJC_METH_VAR_TYPE_.38
 	.quad	"-[MACHView .cxx_destruct]"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.60:
+l_OBJC_METH_VAR_NAME_.62:
 	.asciz	"_keyDown_block"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.61:
+l_OBJC_METH_VAR_TYPE_.63:
 	.asciz	"@?"
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.62:
+l_OBJC_METH_VAR_NAME_.64:
 	.asciz	"_keyUp_block"
 
-l_OBJC_METH_VAR_NAME_.63:
+l_OBJC_METH_VAR_NAME_.65:
 	.asciz	"_flagsChanged_block"
 
-l_OBJC_METH_VAR_NAME_.64:
+l_OBJC_METH_VAR_NAME_.66:
 	.asciz	"_mouseMoved_block"
 
-l_OBJC_METH_VAR_NAME_.65:
+l_OBJC_METH_VAR_NAME_.67:
 	.asciz	"_mouseDown_block"
 
-l_OBJC_METH_VAR_NAME_.66:
+l_OBJC_METH_VAR_NAME_.68:
 	.asciz	"_mouseUp_block"
 
-l_OBJC_METH_VAR_NAME_.67:
+l_OBJC_METH_VAR_NAME_.69:
 	.asciz	"_scrollWheel_block"
 
-l_OBJC_METH_VAR_NAME_.68:
+l_OBJC_METH_VAR_NAME_.70:
 	.asciz	"_magnify_block"
 
-l_OBJC_METH_VAR_NAME_.69:
+l_OBJC_METH_VAR_NAME_.71:
 	.asciz	"_insertText_block"
 
-l_OBJC_METH_VAR_NAME_.70:
+l_OBJC_METH_VAR_NAME_.72:
 	.asciz	"_render_block"
 
-l_OBJC_METH_VAR_NAME_.71:
+l_OBJC_METH_VAR_NAME_.73:
 	.asciz	"trackingArea"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.72:
+l_OBJC_METH_VAR_TYPE_.74:
 	.asciz	"@\"NSTrackingArea\""
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.73:
+l_OBJC_METH_VAR_NAME_.75:
 	.asciz	"m_displaySource"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.74:
+l_OBJC_METH_VAR_TYPE_.76:
 	.asciz	"@\"NSObject<OS_dispatch_source>\""
 
 	.section	__TEXT,__objc_methname,cstring_literals
-l_OBJC_METH_VAR_NAME_.75:
+l_OBJC_METH_VAR_NAME_.77:
 	.asciz	"m_displayLink"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
-l_OBJC_METH_VAR_TYPE_.76:
+l_OBJC_METH_VAR_TYPE_.78:
 	.asciz	"^{__CVDisplayLink=}"
+
+	.section	__TEXT,__objc_methname,cstring_literals
+l_OBJC_METH_VAR_NAME_.79:
+	.asciz	"separateThread"
+
+	.section	__TEXT,__objc_methtype,cstring_literals
+l_OBJC_METH_VAR_TYPE_.80:
+	.asciz	"B"
 
 	.section	__DATA,__objc_const
 	.p2align	3, 0x0
 __OBJC_$_INSTANCE_VARIABLES_MACHView:
 	.long	32
-	.long	13
+	.long	14
 	.quad	_OBJC_IVAR_$_MACHView._keyDown_block
-	.quad	l_OBJC_METH_VAR_NAME_.60
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.62
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._keyUp_block
-	.quad	l_OBJC_METH_VAR_NAME_.62
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.64
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._flagsChanged_block
-	.quad	l_OBJC_METH_VAR_NAME_.63
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.65
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._mouseMoved_block
-	.quad	l_OBJC_METH_VAR_NAME_.64
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.66
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._mouseDown_block
-	.quad	l_OBJC_METH_VAR_NAME_.65
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.67
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._mouseUp_block
-	.quad	l_OBJC_METH_VAR_NAME_.66
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.68
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._scrollWheel_block
-	.quad	l_OBJC_METH_VAR_NAME_.67
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.69
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._magnify_block
-	.quad	l_OBJC_METH_VAR_NAME_.68
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.70
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._insertText_block
-	.quad	l_OBJC_METH_VAR_NAME_.69
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.71
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView._render_block
-	.quad	l_OBJC_METH_VAR_NAME_.70
-	.quad	l_OBJC_METH_VAR_TYPE_.61
+	.quad	l_OBJC_METH_VAR_NAME_.72
+	.quad	l_OBJC_METH_VAR_TYPE_.63
 	.long	3
 	.long	8
 	.quad	_OBJC_IVAR_$_MACHView.trackingArea
-	.quad	l_OBJC_METH_VAR_NAME_.71
-	.quad	l_OBJC_METH_VAR_TYPE_.72
-	.long	3
-	.long	8
-	.quad	_OBJC_IVAR_$_MACHView.m_displaySource
 	.quad	l_OBJC_METH_VAR_NAME_.73
 	.quad	l_OBJC_METH_VAR_TYPE_.74
 	.long	3
 	.long	8
-	.quad	_OBJC_IVAR_$_MACHView.m_displayLink
+	.quad	_OBJC_IVAR_$_MACHView.m_displaySource
 	.quad	l_OBJC_METH_VAR_NAME_.75
 	.quad	l_OBJC_METH_VAR_TYPE_.76
 	.long	3
 	.long	8
+	.quad	_OBJC_IVAR_$_MACHView.m_displayLink
+	.quad	l_OBJC_METH_VAR_NAME_.77
+	.quad	l_OBJC_METH_VAR_TYPE_.78
+	.long	3
+	.long	8
+	.quad	_OBJC_IVAR_$_MACHView.separateThread
+	.quad	l_OBJC_METH_VAR_NAME_.79
+	.quad	l_OBJC_METH_VAR_TYPE_.80
+	.long	0
+	.long	1
 
 	.p2align	3, 0x0
 __OBJC_CLASS_RO_$_MACHView:
 	.long	388
 	.long	8
-	.long	112
+	.long	113
 	.space	4
 	.quad	l_OBJC_CLASS_NAME_.35
 	.quad	l_OBJC_CLASS_NAME_
