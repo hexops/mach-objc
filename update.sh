@@ -78,8 +78,8 @@ zig fmt .
 # Generate assembly. We currently target iOS 15+ and macOS 12+.
 # TODO: Add arm64-apple-ios15 and x86_64-apple-ios15-simulator to the targets once we get their SDKs in xcode-frameworks
 for pair in \
-    'MACHAppDelegate_aarch64-macos.s aarch64-macos.14.0' \
-    'MACHAppDelegate_x86_64-macos.s x86_64-macos.14.0'
+    'MACHAppDelegate_aarch64-macos.s aarch64-macos.12.0' \
+    'MACHAppDelegate_x86_64-macos.s x86_64-macos.12.0'
 do
     dst=${pair%% *}
     target=${pair#* }
@@ -106,8 +106,8 @@ mv MACHAppDelegate_aarch64-macos.s MACHAppDelegate_arm64_apple_macos12.s
 mv MACHAppDelegate_x86_64-macos.s MACHAppDelegate_x86_64_apple_macos12.s
 
 for pair in \
-    'MACHWindowDelegate_aarch64-macos.s aarch64-macos.14.0' \
-    'MACHWindowDelegate_x86_64-macos.s x86_64-macos.14.0'
+    'MACHWindowDelegate_aarch64-macos.s aarch64-macos.12.0' \
+    'MACHWindowDelegate_x86_64-macos.s x86_64-macos.12.0'
 do
     dst=${pair%% *}
     target=${pair#* }
@@ -134,8 +134,8 @@ mv MACHWindowDelegate_aarch64-macos.s MACHWindowDelegate_arm64_apple_macos12.s
 mv MACHWindowDelegate_x86_64-macos.s MACHWindowDelegate_x86_64_apple_macos12.s
 
 for pair in \
-    'MACHView_aarch64-macos.s aarch64-macos.14.0' \
-    'MACHView_x86_64-macos.s x86_64-macos.14.0'
+    'MACHView_aarch64-macos.s aarch64-macos.12.0' \
+    'MACHView_x86_64-macos.s x86_64-macos.12.0'
 do
     dst=${pair%% *}
     target=${pair#* }
