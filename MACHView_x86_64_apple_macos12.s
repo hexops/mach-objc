@@ -1,5 +1,5 @@
 	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 14, 0
+	.build_version macos, 12, 0
 "-[MACHView canBecomeKeyView]":
 
 	.cfi_startproc
@@ -23,7 +23,7 @@
 	.cfi_def_cfa_offset 32
 	.cfi_offset %rbx, -16
 	movq	%rdi, %rbx
-	movq	_OBJC_IVAR_$_MACHView.separateThread(%rip), %rax
+	movq	_OBJC_IVAR_$_MACHView._hasRenderLoop(%rip), %rax
 	cmpb	$0, (%rdi,%rax)
 	je	LBB2_2
 	movq	_OBJC_SELECTOR_REFERENCES_(%rip), %rsi
@@ -62,7 +62,7 @@ LBB2_2:
 	movq	%rax, 8(%rdi)
 	movq	_OBJC_SELECTOR_REFERENCES_.4(%rip), %rsi
 	callq	_objc_msgSendSuper2
-	movq	_OBJC_IVAR_$_MACHView.separateThread(%rip), %rax
+	movq	_OBJC_IVAR_$_MACHView._hasRenderLoop(%rip), %rax
 	cmpb	$0, (%rbx,%rax)
 	je	LBB3_3
 	movq	_OBJC_SELECTOR_REFERENCES_(%rip), %rsi
@@ -812,7 +812,7 @@ LBB35_1:
 	retq
 	.cfi_endproc
 
-"-[MACHView initWithFrame:withThread:]":
+"-[MACHView initWithFrame:withRenderLoop:]":
 
 	.cfi_startproc
 	pushq	%rbx
@@ -831,7 +831,7 @@ LBB35_1:
 	movq	%rcx, 8(%rsp)
 	movq	%rax, (%rsp)
 	callq	*_objc_msgSend@GOTPCREL(%rip)
-	movq	_OBJC_IVAR_$_MACHView.separateThread(%rip), %rcx
+	movq	_OBJC_IVAR_$_MACHView._hasRenderLoop(%rip), %rcx
 	movb	%bl, (%rax,%rcx)
 	addq	$32, %rsp
 	popq	%rbx
@@ -967,11 +967,11 @@ LBB38_2:
 	jmp	_objc_storeStrong
 	.cfi_endproc
 
-	.private_extern	_OBJC_IVAR_$_MACHView.separateThread
+	.private_extern	_OBJC_IVAR_$_MACHView._hasRenderLoop
 	.section	__DATA,__objc_ivar
-	.globl	_OBJC_IVAR_$_MACHView.separateThread
+	.globl	_OBJC_IVAR_$_MACHView._hasRenderLoop
 	.p2align	3, 0x0
-_OBJC_IVAR_$_MACHView.separateThread:
+_OBJC_IVAR_$_MACHView._hasRenderLoop:
 	.quad	112
 
 	.section	__TEXT,__objc_methname,cstring_literals
@@ -1367,7 +1367,7 @@ L_OBJC_METH_VAR_TYPE_.57:
 
 	.section	__TEXT,__objc_methname,cstring_literals
 L_OBJC_METH_VAR_NAME_.58:
-	.asciz	"initWithFrame:withThread:"
+	.asciz	"initWithFrame:withRenderLoop:"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
 L_OBJC_METH_VAR_TYPE_.59:
@@ -1456,7 +1456,7 @@ __OBJC_$_INSTANCE_METHODS_MACHView:
 	.quad	"-[MACHView doCommandBySelector:]"
 	.quad	L_OBJC_METH_VAR_NAME_.58
 	.quad	L_OBJC_METH_VAR_TYPE_.59
-	.quad	"-[MACHView initWithFrame:withThread:]"
+	.quad	"-[MACHView initWithFrame:withRenderLoop:]"
 	.quad	L_OBJC_METH_VAR_NAME_.26
 	.quad	L_OBJC_METH_VAR_TYPE_.60
 	.quad	"-[MACHView initWithFrame:]"
@@ -1525,7 +1525,7 @@ L_OBJC_METH_VAR_TYPE_.78:
 
 	.section	__TEXT,__objc_methname,cstring_literals
 L_OBJC_METH_VAR_NAME_.79:
-	.asciz	"separateThread"
+	.asciz	"_hasRenderLoop"
 
 	.section	__TEXT,__objc_methtype,cstring_literals
 L_OBJC_METH_VAR_TYPE_.80:
@@ -1601,7 +1601,7 @@ __OBJC_$_INSTANCE_VARIABLES_MACHView:
 	.quad	L_OBJC_METH_VAR_TYPE_.78
 	.long	3
 	.long	8
-	.quad	_OBJC_IVAR_$_MACHView.separateThread
+	.quad	_OBJC_IVAR_$_MACHView._hasRenderLoop
 	.quad	L_OBJC_METH_VAR_NAME_.79
 	.quad	L_OBJC_METH_VAR_TYPE_.80
 	.long	0

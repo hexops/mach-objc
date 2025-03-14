@@ -19,7 +19,7 @@
   NSTrackingArea *trackingArea;
   dispatch_source_t m_displaySource;
   CVDisplayLinkRef m_displayLink;
-  BOOL separateThread;
+  BOOL _hasRenderLoop;
 }
 
 - (BOOL)canBecomeKeyView {
@@ -32,7 +32,7 @@
 
 - (void)dealloc
 {   
-  if (self->separateThread) {
+  if (self->_hasRenderLoop) {
     [self stopRenderLoop];
   }
 }
@@ -41,7 +41,7 @@
 {
     [super viewDidMoveToWindow];
 
-    if (self->separateThread) {
+    if (self->_hasRenderLoop) {
 
       [self stopRenderLoop];
 
@@ -260,9 +260,9 @@ static CVReturn displayLinkCallback(
 }
 
 
--(id)initWithFrame:(NSRect)frame withThread:(BOOL)thread {
+-(id)initWithFrame:(NSRect)frame withRenderLoop:(BOOL)loop {
   self = [self initWithFrame:frame];
-  self->separateThread = thread;
+  self->_hasRenderLoop = loop;
   return self;
 }
 

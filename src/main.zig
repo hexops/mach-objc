@@ -71,8 +71,8 @@ pub const mach = struct {
             return objc.msgSend(self_, "initWithFrame:", *@This(), .{frameRect_});
         }
 
-        pub fn initWithFrame_withThread(self_: *@This(), frameRect_: app_kit.Rect, separateThread_: bool) *@This() {
-            return objc.msgSend(self_, "initWithFrame:withThread:", *@This(), .{ frameRect_, separateThread_ });
+        pub fn initWithFrame_withRenderLoop(self_: *@This(), frameRect_: app_kit.Rect, withRenderLoop_: bool) *@This() {
+            return objc.msgSend(self_, "initWithFrame:withRenderLoop:", *@This(), .{ frameRect_, withRenderLoop_ });
         }
 
         pub fn stopRenderLoop(self_: *@This()) void {
